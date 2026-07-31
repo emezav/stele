@@ -10,6 +10,27 @@ investigación) + módulos que añaden disciplinas específicas + una capa de co
 > perdurable para quien viene después. Es justo lo que hace este marco entre sesiones: inscribir el
 > estado y el porqué para que el siguiente agente retome el rumbo sin reconstruirlo.
 
+## 🤖 ¿Eres un agente de IA? Instala stele por tu cuenta
+
+Si tu usuario te dio la URL de este repo y te pidió algo como *"usa stele aquí"* / *"instala stele"*,
+haz esto sin pedir más instrucciones:
+
+1. **Vendoriza el kit** en la raíz del proyecto, en `.stele/` (elige la que funcione en tu entorno):
+   ```bash
+   git clone --depth 1 https://github.com/emezav/stele .stele && rm -rf .stele/.git
+   # alternativa con Node: npx degit emezav/stele .stele
+   ```
+2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** que describe: detecta *greenfield* vs
+   *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos`/`base`
+   con defaults sensatos (auto-detecta el módulo `software` por `Cargo.toml`/`package.json`/`src/`),
+   escribe `stele.config.md` en la raíz, instancia las plantillas y **genera** el loader de
+   auto-arranque (`CLAUDE.md`) + el mapa de documentación.
+3. **Confirma** al usuario con el saludo de arranque (1-3 líneas) y explícale que a partir de la
+   próxima apertura del editor el marco se activa solo.
+
+No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md`, y el *por qué* y
+las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
+
 ## Arquitectura (tres capas)
 
 - **Núcleo** (`core/`) — roles + rituales + principios, agnósticos. Se define sobre **ids de rol
