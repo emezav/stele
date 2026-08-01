@@ -72,6 +72,12 @@ marco se lleve por delante el historial. De ahí el **invariante duro: `base` nu
 (ni iguales). El caso inverso, `kit` dentro de `base`, es legal pero se avisa: contamina los `grep`
 del ritual de apertura con plantillas del marco.
 
+**Modo auto-hospedado** (`kit = .`): el repo del propio marco, donde el kit no se vendoriza sino que
+se desarrolla en sitio. Ahí el invariante se relaja — nunca hay un borrado del kit que pueda llevarse
+los docs — y `base` es un subdirectorio suyo. Es el único caso en que el kit **es el producto** del
+proyecto: los docs de `base` hablan *sobre* el marco, igual que en un proyecto de software hablan
+sobre el código, y no se confunden con él.
+
 `loader` es tercero porque el nombre del archivo de auto-arranque depende del **agente**, no del
 proyecto: `CLAUDE.md` para Claude Code, `AGENTS.md` para otros, `.github/copilot-instructions.md`
 para Copilot. Es la única pieza acoplada a una herramienta concreta, y aislarla mantiene agnóstico

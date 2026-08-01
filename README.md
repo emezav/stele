@@ -16,13 +16,16 @@ Si tu usuario te dio la URL de este repo y te pidió algo como *"usa stele aquí
 haz esto sin pedir más instrucciones:
 
 1. **Vendoriza el kit** en la raíz del proyecto, en `.stele/` (elige la que funcione en tu entorno):
+
    ```bash
    git clone --depth 1 https://github.com/emezav/stele .stele && rm -rf .stele/.git
    # alternativa con Node: npx degit emezav/stele .stele
    ```
+
    `.stele/` es el default de la ruta **`kit`**, y es **independiente** de dónde vayan los docs del
    proyecto (ruta `base`). Si el usuario nombró una carpeta sin más ("usa stele aquí, base stele"),
-   eso es `base`, no `kit`: no muevas el kit salvo que diga "kit" o "marco".
+   eso es `base`, no `kit`: no muevas el kit salvo que diga "kit" o "marco". Si **sí** nombró dónde
+   va el kit, clona directamente ahí — no clones en `.stele/` para mover después.
 2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** que describe: detecta *greenfield* vs
    *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos` y las
    tres rutas `kit`/`base`/`loader` con defaults sensatos (auto-detecta el módulo `software` por
@@ -49,6 +52,7 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
   mapa de documentación.
 
 ## Qué contiene esta carpeta
+
 - **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · config*, el
   mapa de documentación (cómo se genera) y la convención de tokens. Léelo primero.
 - **`GUIDE.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
@@ -69,12 +73,14 @@ del proyecto, en la ruta `kit` (default `.stele/`). La copia es la fuente para e
 actualizar, se re-vendoriza — por eso **tus docs (`base`) nunca pueden vivir dentro del kit**.
 
 1. Trae el kit a `<proyecto>/.stele/` (elige uno):
+
    ```bash
    # opción a — degit (sin historia git, recomendado)
    npx degit emezav/stele .stele
    # opción b — clonar y copiar
-   git clone --depth 1 git@github.com:emezav/stele.git /tmp/stele && cp -r /tmp/stele/. .stele/ && rm -rf .stele/.git
+   git clone --depth 1 git@github.com:emezav/stele.git /tmp/stele && mkdir -p .stele && cp -r /tmp/stele/. .stele/ && rm -rf .stele/.git
    ```
+
 2. Pide al agente **"bootstrapea la stele"** (ritual BOOTSTRAP en `.stele/SKILL.md`): detecta
    greenfield vs adopción, elige `idioma`/`módulos` y las tres rutas (con defaults), te muestra el
    layout resuelto, escribe `stele.config.md` en la raíz, instancia las plantillas bajo `base`, y
@@ -82,9 +88,10 @@ actualizar, se re-vendoriza — por eso **tus docs (`base`) nunca pueden vivir d
 3. El **loader** (ruta `loader`, por defecto `CLAUDE.md`) es la activación automática: el agente lo
    carga al iniciar la sesión, hace `@`-import del set de arranque y saluda con 1-3 líneas (señal de
    que arrancó). Cámbialo si tu agente espera otro nombre (`AGENTS.md`, etc.).
-4. (Opcional, Claude Code) actívalo como skill: `cp -r .stele .claude/skills/stele`. Luego
-   `/stele` recuerda los rituales bajo demanda. Para evitar la copia doble, pon directamente
-   `kit = .claude/skills/stele` y vendoriza ahí.
+4. (Opcional, Claude Code) para que `/stele` recuerde los rituales bajo demanda, vendoriza el kit
+   directamente en `.claude/skills/stele` y pon `kit = .claude/skills/stele`: una sola copia, que se
+   actualiza en un solo sitio. Si ya lo tienes en `.stele/`, `cp -r .stele .claude/skills/stele`
+   también funciona, pero deja dos copias que hay que mantener sincronizadas a mano.
 
 Para cambiar nombres, activar/desactivar módulos o mover cualquiera de las tres rutas después:
 ritual **CONFIG** (no editar los derivados a mano).

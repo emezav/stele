@@ -41,7 +41,8 @@ Los bloques marcados `<!-- GENERADO -->` los produce el marco, no se editan a ma
 
 `{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. Se resuelve **siempre
 relativo a la raíz del proyecto**, nunca al doc que lo contiene: los agentes operan con el CWD en la
-raíz y es lo que hace `grep`, así que el valor no depende de dónde quedó cada doc.
+raíz y es lo que hace `grep`, así que el valor no depende de dónde quedó cada doc. **Con `kit = .`
+el prefijo colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
 
 ## Las tres rutas: `kit` · `base` · `loader`
 
@@ -54,7 +55,10 @@ raíz y es lo que hace `grep`, así que el valor no depende de dónde quedó cad
 **Invariantes** (validar en `bootstrap` y en `config`, antes de escribir):
 
 1. `base` **nunca** dentro de `kit`: el kit se actualiza borrándolo y re-vendorizando, y se llevaría
-   los docs por delante. Violación = abortar.
+   los docs por delante. Violación = abortar. **Excepción: modo auto-hospedado** (`kit = .`), cuando
+   el proyecto **es** el marco — el repo del kit. Ahí el kit no se vendoriza: se desarrolla en sitio
+   y nunca se borra, así que la razón del invariante no aplica y `base` es por fuerza un
+   subdirectorio suyo. En ese modo `base` debe ser un subdirectorio propio, nunca `.` (ver 2).
 2. `kit` == `base` = abortar (misma razón, caso degenerado).
 3. `kit` dentro de `base` (p. ej. `base = stele`, `kit = stele/.stele`) es legal pero **se avisa**:
    los `grep` del ritual de apertura empiezan a encontrar plantillas del marco como si fueran docs
