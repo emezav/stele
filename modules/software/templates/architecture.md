@@ -1,11 +1,11 @@
-# {{architecture}} — <área/codebase>
+# {{architecture}} — <área/producto>
 
-> Mapa de módulos y **patrones reutilizables** de este codebase. Objetivo: que ningún agente
-> tenga que releer el fuente para redescubrir un patrón ya entendido. Se **lee** al inicio de
-> cualquier sesión que toque esta área y se **actualiza** al cerrar si se descubre un patrón
-> nuevo. Uno por codebase (monorepo: uno por paquete relevante).
+> Mapa de módulos y **patrones reutilizables** de este producto (normalmente un codebase). Objetivo:
+> que ningún agente tenga que releer el fuente para redescubrir un patrón ya entendido. Se **lee** al
+> inicio de cualquier sesión que toque esta área y se **actualiza** al cerrar si se descubre un patrón
+> nuevo. Uno por producto (monorepo: uno por paquete relevante).
 >
-> Frontera: aquí va *cómo está organizado el código* (estructura + patrones). Las *trampas
+> Frontera: aquí va *cómo está organizado el producto* (estructura + patrones). Las *trampas
 > puntuales* van en `{{gotchas}}`; las *decisiones de producto* en `{{specs}}`.
 
 ## Stack

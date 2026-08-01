@@ -68,6 +68,32 @@ el prefijo colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
    (con `base = .` y `loader = AGENTS.md` chocaría con `entry`). Colisión = abortar.
 5. `stele.config.md` y el `loader` son las **dos anclas fijas de la raíz**: no siguen a `base`.
 
+### Layouts con nombre (vocabulario, no parámetro)
+
+Cuatro combinaciones de `kit` + `base` cubren casi todos los proyectos. Son **atajos de
+conversación**: se resuelven a las tres rutas y **nunca se guardan en el manifiesto**. El layout es
+derivable de la sección Rutas; guardarlo crearía un segundo hogar del mismo dato, que se
+desincroniza en cuanto alguien mueva una ruta.
+
+| Layout | `kit` | `base` | Para quién |
+| --- | --- | --- | --- |
+| `default` | `.stele` | `.` | Docs en la raíz, marco invisible |
+| `agrupado` | `.stele` | `stele` | Todo lo del marco junto y visible |
+| `docs` | `.stele` | `docs` | Proyecto con carpeta de docs ya establecida |
+| `skill` | `.claude/skills/stele` | `stele` | Claude Code: una sola copia del kit, además usable como `/stele` |
+
+Cualquier otra combinación es legal y se nombra `personalizado` (incluido el modo auto-hospedado,
+`kit = .`). El `loader` **no** forma parte del layout: depende del agente, no del proyecto.
+
+Se usan de tres maneras:
+
+- **En el eco**, siempre: nombrar el layout resuelto dice más, y más rápido, que tres rutas sueltas.
+  Un usuario que pidió "agrupado" detecta `layout -> default` al instante.
+- **Como menú**, solo cuando el ritual ya iba a preguntar (BOOTSTRAP paso 1, "ante duda real"). No
+  convierte el bootstrap en un cuestionario: sin ambigüedad se aplican los defaults sin preguntar.
+- **Como entrada**: "bootstrapea con layout agrupado" o "pásame a layout docs" son peticiones
+  válidas; se traducen a valores de ruta y se previsualizan como tales.
+
 ## Ritual: ABRIR sesión (ponerse al día, barato)
 
 Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo software):
@@ -135,9 +161,12 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    Zero-question posible.
    **Desambiguación obligatoria:** una ruta suelta en la petición del usuario ("usa stele aquí, base
    stele") se interpreta como **`base`** — es lo que al usuario le importa; `kit` solo cambia si dice
-   "kit" o "marco" explícitamente. Ante duda real, preguntar por las dos de golpe, no adivinar.
-2. **Eco del layout resuelto ANTES de escribir nada** (3 líneas, siempre, incluso en zero-question):
+   "kit" o "marco" explícitamente. **Ante duda real, ofrecer el menú de layouts** (ver "Layouts con
+   nombre") con una opción `otro` para dar `kit` y `base` a mano — una pregunta cerrada en vez de dos
+   abiertas. Nunca adivinar.
+2. **Eco del layout resuelto ANTES de escribir nada** (siempre, incluso en zero-question):
    ```text
+   layout       -> agrupado   (o "personalizado")
    kit          -> .stele     (el marco, reemplazable)
    base         -> stele      (tus docs, versionados)
    loader       -> CLAUDE.md
@@ -162,9 +191,11 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
 
 1. **Leer + reconciliar** `stele.config.md` contra los archivos reales; reportar/arreglar drift.
 2. **Clasificar** el cambio por radio de impacto: renombrar / toggle módulo / toggle feature /
-   presupuesto / wording / idioma / `persistencia` / **ruta** (`kit`, `base` o `loader`).
+   presupuesto / wording / idioma / `persistencia` / **ruta** (`kit`, `base` o `loader`). Un layout
+   con nombre ("pásame a `agrupado`") es una petición de **ruta**: se resuelve a valores concretos
+   antes de clasificar, y lo que se escribe en el manifiesto son las rutas, nunca el nombre.
 3. **Previsualizar** (dry-run) y confirmar (renombrar toca varios archivos). Para un cambio de ruta,
-   el dry-run es el **mismo eco de 3 líneas** del bootstrap, con el antes y el después.
+   el dry-run es el **mismo eco** del bootstrap, con el antes y el después (línea `layout` incluida).
 4. **Aplicar**, acotado a los **docs del marco** (nunca código de producto): mover (`git mv`, o `mv`
    si el kit no está versionado) → reescribir la tabla del manifiesto **completa** → barrido de
    referencias por el mapa viejo→nuevo → regenerar derivados (auto-arranque + mapa-doc).

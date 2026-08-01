@@ -50,6 +50,14 @@ El marco es **modular y configurable**, en tres capas:
   accionable en tablas. De aquí se **generan** dos derivados: el auto-arranque y el mapa de
   documentación.
 
+**La frontera núcleo/módulo** es una sola pregunta: el núcleo modela el **proceso de continuidad**
+(dónde estamos, qué pasó, qué quedó a medias — agnóstico); un módulo modela el **objeto del trabajo**
+(el codebase, el corpus, el plan). Por eso `specs`, `architecture` y `gotchas` son roles de módulo
+aunque suenen universales: un proyecto de planeación los dejaría vacíos, y un documento vacío es
+peso muerto en cada adopción. El corolario práctico es que activar `software` no exige un
+compilador, sino un producto con estructura y decisiones por feature — un kit de documentación
+también lo es (ver `modules/software/module.md`).
+
 **Separar rol de nombre** es lo que hace configurable el marco: los rituales y punteros se expresan
 en roles; la config los resuelve a nombres. Renombrar es una operación del ritual `config`, no un
 find/replace a ciegas — es segura porque el marco se auto-documenta.
@@ -87,10 +95,11 @@ todo lo demás.
 indirección) y el manifiesto `stele.config.md` (es el punto desde el que se resuelve todo lo demás,
 así que no puede depender de una ruta que él mismo declara).
 
-Combinaciones típicas: `kit = .stele` + `base = .` (default: docs en la raíz, marco invisible) ·
-`base = stele` (todo lo del marco junto y visible) · `base = docs` (proyecto con carpeta de docs ya
-establecida) · `kit = .claude/skills/stele` (Claude Code: una sola copia del kit, que además queda
-disponible como `/stele`).
+Las combinaciones habituales tienen **nombre** (`default`, `agrupado`, `docs`, `skill`) para poder
+pedirlas y confirmarlas de un tirón; la tabla vive en `SKILL.md` → "Layouts con nombre". Son
+vocabulario, no un cuarto parámetro: **no se guardan en el manifiesto**, porque el layout ya es
+derivable de las tres rutas y un dato con dos hogares se desincroniza. Por eso el eco del bootstrap
+lo *nombra* pero lo que se escribe son siempre las rutas.
 
 ## Persistencia y la red de recuperación
 

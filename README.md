@@ -97,14 +97,11 @@ actualizar, se re-vendoriza — por eso **tus docs (`base`) nunca pueden vivir d
 Para cambiar nombres, activar/desactivar módulos o mover cualquiera de las tres rutas después:
 ritual **CONFIG** (no editar los derivados a mano).
 
-**Layouts típicos:**
-
-| Layout | `kit` | `base` | Para quién |
-| --- | --- | --- | --- |
-| default | `.stele` | `.` | Docs en la raíz, marco invisible |
-| agrupado | `.stele` | `stele` | Todo lo del marco junto y visible |
-| docs | `.stele` | `docs` | Proyecto con carpeta de docs ya establecida |
-| skill | `.claude/skills/stele` | `stele` | Claude Code, una sola copia del kit |
+**Layouts con nombre:** hay cuatro atajos para las combinaciones habituales de `kit` + `base` —
+`default`, `agrupado`, `docs` y `skill`. Puedes pedir uno por su nombre ("bootstrapea con layout
+agrupado"), y bootstrap te dice cuál resolvió antes de escribir nada. La tabla con los valores de
+cada uno está en `SKILL.md` → "Layouts con nombre"; no son un parámetro que se guarde, solo una
+forma corta de nombrar dos rutas.
 
 > Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `GUIDE.md`.
 > El historial de diseño del marco vive en `git log`, no en el kit: todo lo que se vendoriza es lo

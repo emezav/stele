@@ -27,6 +27,19 @@ Wording, default *antes de un cambio interrumpible*); este módulo lo especializ
 archivo de código". Un proyecto de software sin código todavía —o cuyo producto no es código— debe
 reescribirlo con el ritual `config`, o la exención de documentación deja la regla muerta.
 
+## Cuando el producto no es código
+
+Los roles de este módulo (`gotchas`, `specs`, `architecture`) describen el **objeto del trabajo**;
+los del núcleo describen el **proceso de continuidad**. Por eso viven aquí. El criterio para activar
+el módulo es que el proyecto tenga un **producto con estructura y decisiones por feature** — no que
+haya un compilador. Un kit de documentación, un corpus curado o una colección de plantillas encajan
+igual que un codebase: `architecture` mapea la estructura de ese producto, `specs` sus decisiones y
+`gotchas` las trampas al editarlo.
+
+Lo que sí hay que ajustar en ese caso es el `checkpoint_trigger` (ver arriba): si el producto **es**
+documentación, la exención de "cambios que SOLO tocan documentación" eximiría al proyecto entero y
+dejaría la regla dura muerta. Especialízalo a lo que hace las veces de código.
+
 ## Defaults que aporta al manifiesto
 
 ```text

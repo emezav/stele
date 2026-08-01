@@ -31,7 +31,7 @@ Exención: cambios que SOLO tocan documentación.
 ## Dónde va cada decisión de código
 
 - Contrato/feature/modelo de datos → `{{specs}}`.
-- Patrón reutilizable de un codebase → `{{architecture}}` (uno por codebase).
+- Patrón reutilizable del producto → `{{architecture}}` (uno por producto).
 - Trampa no evidente al leer el código → `{{gotchas}}`.
 - Principio/apuesta grande transversal → `{{charter}}`.
 - Nunca dejar una decisión de código solo en el historial ni en memoria privada del agente.
