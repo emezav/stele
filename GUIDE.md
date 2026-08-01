@@ -92,9 +92,19 @@ proyecto: `CLAUDE.md` para Claude Code, `AGENTS.md` para otros, `.github/copilot
 para Copilot. Es la única pieza acoplada a una herramienta concreta, y aislarla mantiene agnóstico
 todo lo demás.
 
-**Dos anclas fijas en la raíz** que no siguen a `base`: el `loader` (el agente lo carga solo, sin
-indirección) y el manifiesto `stele.config.md` (es el punto desde el que se resuelve todo lo demás,
-así que no puede depender de una ruta que él mismo declara).
+**Dos anclas fijas en la raíz** que no siguen a `base`: el `loader` y el manifiesto
+`stele.config.md`.
+
+El **loader** porque el agente lo carga por nombre al abrir la sesión: si se moviera, no habría quién
+le dijera dónde está. El **manifiesto** porque no es un doc del proyecto, es **el resolvedor**:
+`base` declara dónde viven los docs de los *roles*, y el manifiesto no es un rol — es lo que traduce
+roles a nombres y rutas. Guardarlo dentro de lo que él mismo resuelve es un error de categoría, la
+misma razón por la que `package.json` no vive en `src/`. Y es donde lo busca un humano, que también
+lee la configuración.
+
+La pregunta aparece sola al usar `agrupado`: *si todo lo del marco se junta, ¿por qué el manifiesto
+se queda fuera?* Porque agrupar del todo es imposible — el loader nunca se mueve, así que la raíz
+pasaría de dos archivos del marco a uno. Ver "Alternativas descartadas".
 
 Las combinaciones habituales tienen **nombre** (`default`, `agrupado`, `docs`, `skill`) para poder
 pedirlas y confirmarlas de un tirón; la tabla vive en `SKILL.md` → "Layouts con nombre". Son
@@ -147,6 +157,13 @@ gestor de esa herramienta.
 - **Roles y módulos definidos por el usuario:** fuera de alcance a propósito. La config llega hasta
   nombres, toggles, presupuestos, wording, idioma y rutas; ampliar el vocabulario de roles rompería
   que el núcleo sea la fuente del mapa derivado.
+- **Mover el manifiesto bajo `base`** (para que `agrupado` deje la raíz limpia): descartado, y no
+  por la circularidad aparente — esa se rompería con un puntero desde el loader. Se descarta porque
+  no consigue su objetivo (el loader no puede moverse, así que la raíz queda igual de "sucia", con un
+  archivo en vez de dos) y porque el manifiesto es el resolvedor, no un doc de rol. A cambio de eso
+  habría que añadir una ruta más, reescribir el invariante 5 y dejar no conformes las instancias ya
+  existentes. Además, alcanzarlo solo a través del loader lo haría depender de un **derivado**:
+  borrarlo o renombrarlo dejaría el manifiesto localizable únicamente por búsqueda.
 - **Marcador de versión del kit** (`VERSION`, changelog de migración): descartado. El **diff** dice
   *qué* cambió y dónde, que es lo único accionable; un número no dice qué migrar, hay que acordarse
   de subirlo en cada cambio del kit, y miente en cuanto alguien lo olvida — un dato derivable con un
