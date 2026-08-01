@@ -28,7 +28,8 @@ importado abajo. No hace falta pedir "lee {{entry}}".
 ## Contexto de arranque (auto-importado — GENERADO desde la lista de arranque)
 
 <!-- BOOTSTRAP: emitir un @import por cada rol `startup: obligatorio`, ordenado por `order`, con la
-     ruta resuelta {base}/[{history_dir}/]{nombre} — relativa a la raíz, donde vive este loader.
+     ruta resuelta {base}/[<valor de history_dir>]{nombre} — relativa a la raíz, donde vive este
+     loader. El valor de history_dir ya trae su `/` final; no añadir otro.
      Ejemplo con defaults (base = .): -->
 
 @AGENTS.md

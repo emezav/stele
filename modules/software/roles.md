@@ -17,8 +17,10 @@
 por área (`<área>/ARCHITECTURE.md`). Si el producto no es código, mapea la estructura de ese producto
 — ver `module.md` → "Cuando el producto no es código".
 
-`specs_dir` se resuelve relativo a `base` y alimenta el token `{{specs_dir}}` de la plantilla
-`specs`: cuando una decisión supera ~50 líneas se extrae a `{base}/{specs_dir}/<TEMA>.md`.
+`specs_dir` es un rol contenedor: el manifiesto guarda el nombre de la carpeta (`temas/`) y el token
+`{{specs_dir}}` de la plantilla `specs` resuelve a la ruta completa desde la raíz, con `base` ya
+delante y con `/` final. Cuando una decisión supera ~50 líneas se extrae a `{{specs_dir}}<TEMA>.md`
+(sin barra intermedia). Ver `SKILL.md` → "Convención de tokens".
 
 ## Triggers (enrutamiento)
 

@@ -7,8 +7,14 @@
 
 ## Resolución de ruta
 
-`ruta = {base}/[{history_dir}/ si ubicación=history]{nombre}`. Un rol con nombre `—` en la config
-está **desactivado** (no aparece en arranque ni en el mapa).
+`ruta = {base}/[<valor de history_dir> si ubicación=history]{nombre}`, donde `<valor de history_dir>`
+es el nombre de carpeta del manifiesto (`HISTORY/`). Un rol con nombre `—` en la config está
+**desactivado** (no aparece en arranque ni en el mapa).
+
+**No confundir el valor con el token.** El manifiesto guarda el nombre de la carpeta; el token
+`{{history_dir}}` que usan las plantillas resuelve a la ruta completa desde la raíz, **con `base` ya
+delante**. Por eso `{{history_dir}}{{index}}` es una ruta ejecutable y `{base}/{{history_dir}}…`
+duplicaría `base`. Ver `SKILL.md` → "Convención de tokens".
 
 **Ningún rol vive en el kit.** `base` (docs instanciados) y `kit` (el marco) son rutas
 independientes del manifiesto: los roles se resuelven siempre bajo `base`; `{{kit}}` solo aparece

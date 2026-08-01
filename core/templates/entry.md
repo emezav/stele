@@ -43,12 +43,15 @@ codebase), `{{index}}`/`{{session}}` (historial).
 ## Regla dura: {{checkpoint_trigger}}
 
 `{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance y verificación prevista.
-No depende del tamaño estimado del cambio. Exención: cambios que SOLO tocan documentación.
+No depende del tamaño estimado del cambio. **Exención:** cambios que SOLO tocan el **contenido** de
+la documentación. No exime una **migración estructural** (mover o renombrar docs: rituales CONFIG y
+ACTUALIZAR), aunque no toque código: es justo lo que deja media instancia inconsistente si se corta.
 
 ## Al finalizar cada sesión (OBLIGATORIO)
 
-Seguir el checklist de cierre de `{{protocol}}`. En resumen: crear `{{session}}`; append de una fila
-a `{{index}}` (y `{{effort}}` si se usa) con `printf >>`; reescribir `{{state}}` completo; llevar
+Seguir el checklist de cierre de `{{protocol}}`. En resumen: crear `{{history_dir}}{{session}}`;
+append de una fila a `{{history_dir}}{{index}}` (y `{{history_dir}}{{effort}}` si se usa) con
+`printf >>`; reescribir `{{state}}` completo; llevar
 toda decisión durable a su hogar (mapa abajo), nunca solo en el historial; refrescar `{{handover}}`
 (→ `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); y **persistir**
 según `persistencia`.

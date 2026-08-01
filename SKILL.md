@@ -35,16 +35,26 @@ no leas un archivo entero "por si acaso"; usa el mapa y `grep -n` + lectura por 
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
 `{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}` y `{{specs_dir}}` →
-carpetas (roles contenedores); `{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
+**rutas** de los roles contenedores; `{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
 `{{checkpoint_trigger}}` → valores de Features/Wording; `{{kit}}` y `{{loader}}` → rutas
 (sección Rutas). Los toggles como `session_greeting` **se consultan, no se interpolan**: no hay
 token para ellos.
 Los bloques marcados `<!-- GENERADO -->` los produce el marco, no se editan a mano.
 
-`{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. Se resuelve **siempre
-relativo a la raíz del proyecto**, nunca al doc que lo contiene: los agentes operan con el CWD en la
-raíz y es lo que hace `grep`, así que el valor no depende de dónde quedó cada doc. **Con `kit = .`
-el prefijo colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
+**Toda ruta interpolada es relativa a la raíz del proyecto**, nunca al doc que la contiene: los
+agentes operan con el CWD en la raíz y es lo que hace `grep`, así que el valor no depende de dónde
+quedó cada archivo. De ahí dos reglas de composición:
+
+- `{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. **Con `kit = .` el prefijo
+  colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
+- Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`) resuelven **con `base` delante y con `/`
+  final**, así que se concatenan directos, sin barra intermedia: `{{history_dir}}{{index}}` →
+  `stele/HISTORY/INDEX.md` con `base = stele`, y `HISTORY/INDEX.md` con `base = .` (el prefijo
+  colapsa igual que en `{{kit}}`). En el manifiesto el valor configurado es solo el nombre de la
+  carpeta (`HISTORY/`); es el token el que le antepone `base` al resolverse.
+
+Esto importa sobre todo en lo **ejecutable**. Un `printf '…' >> {{history_dir}}{{index}}` mal
+compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila.
 
 ## Las tres rutas: `kit` · `base` · `loader`
 
@@ -112,8 +122,13 @@ indistinguible de uno que no corrió. (Se omite si `session_greeting = off`.)
 Deja `handover` en `EN_PROGRESO` con objetivo + alcance + verificación prevista (plantilla
 `core/templates/handover.md`) **{{checkpoint_trigger}}**. No es opcional ni depende del tamaño: una
 sesión puede cortarse en cualquier momento y el checkpoint (~20 líneas) siempre cuesta menos que
-reconstruir el contexto desde el diff. Exención: cambios que SOLO tocan documentación. (El módulo
-software especializa el trigger a "antes del primer archivo de código".)
+reconstruir el contexto desde el diff. (El módulo software especializa el trigger a "antes del primer
+archivo de código".)
+
+**Exención:** cambios que SOLO tocan el **contenido** de la documentación. **No exime una migración
+estructural** — mover, renombrar o reestructurar docs, es decir los rituales CONFIG y ACTUALIZAR —
+aunque no toque una línea de código: si se corta a la mitad, media instancia está en un sitio, el
+manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
 
 ## Ritual: CERRAR sesión (dejar registro durable)
 

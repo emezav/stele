@@ -19,7 +19,9 @@
 Antes de tocar el primer archivo de **código** de la sesión, `handover` debe quedar en
 `EN_PROGRESO` con objetivo + alcance + verificación prevista. No depende del tamaño estimado del
 cambio: una sesión puede cortarse en cualquier momento y el checkpoint (~20 líneas) siempre cuesta
-menos que reconstruir el contexto desde el diff. **Exención:** cambios que SOLO tocan documentación.
+menos que reconstruir el contexto desde el diff. **Exención:** cambios que SOLO tocan el **contenido**
+de la documentación — no una **migración estructural** (mover o renombrar docs: rituales CONFIG y
+ACTUALIZAR), que es interrumpible aunque no toque código.
 
 Esta regla vive en el módulo (no en el núcleo) porque presupone la noción de "archivo de código".
 El núcleo agnóstico usa un `checkpoint_trigger` genérico configurable (`stele.config.md` →
@@ -37,7 +39,7 @@ igual que un codebase: `architecture` mapea la estructura de ese producto, `spec
 `gotchas` las trampas al editarlo.
 
 Lo que sí hay que ajustar en ese caso es el `checkpoint_trigger` (ver arriba): si el producto **es**
-documentación, la exención de "cambios que SOLO tocan documentación" eximiría al proyecto entero y
+documentación, la exención por "solo contenido de documentación" eximiría al proyecto entero y
 dejaría la regla dura muerta. Especialízalo a lo que hace las veces de código.
 
 ## Defaults que aporta al manifiesto

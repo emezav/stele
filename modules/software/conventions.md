@@ -26,7 +26,8 @@
 ## Checkpoint antes del primer archivo de código
 
 Regla dura del módulo (ver `module.md`): `{{handover}}` en `EN_PROGRESO` **{{checkpoint_trigger}}**.
-Exención: cambios que SOLO tocan documentación.
+Exención: cambios que SOLO tocan el **contenido** de la documentación; una migración estructural
+(mover o renombrar docs) **no** está exenta.
 
 ## Dónde va cada decisión de código
 
