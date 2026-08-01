@@ -168,7 +168,10 @@ gestor de esa herramienta.
   *qué* cambió y dónde, que es lo único accionable; un número no dice qué migrar, hay que acordarse
   de subirlo en cada cambio del kit, y miente en cuanto alguien lo olvida — un dato derivable con un
   segundo hogar. El ritual ACTUALIZAR garantiza que el diff exista siempre, que es lo que hace
-  innecesario el marcador.
+  innecesario el marcador. **La procedencia es el caso contrario y sí se guarda** (`kit_origen`, en
+  Meta): de qué remoto salió tu copia no se deduce de nada — ni del árbol, ni de un diff, ni del
+  `README` vendorizado, que apuntaría al upstream aunque hubieras clonado un fork. Lo derivable no se
+  guarda; lo no derivable, sí. Sin `kit_origen`, ACTUALIZAR se bloquea en el primer paso.
 - **`idioma` no es traducción en runtime.** Dirige qué variante de plantilla se instancia y el
   wording de los rituales, nada más; el contenido del proyecto queda como lo escribió su autor. Los
   ids de rol y los headers `##` del manifiesto son **tokens fijos que no se traducen**, para que el

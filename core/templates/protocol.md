@@ -15,6 +15,22 @@
 5. Nada de esto vive en memoria privada del agente; todo en el repo.
 6. **Un hogar por dato** (mapa en `{{kit}}/SKILL.md` y en `{{entry}}`).
 
+## Rutas: comando contra enlace
+
+Dos clases, y no se resuelven igual:
+
+- **Ruta de comando** (`printf '...' >> …`, `grep`, `git log --`): siempre **desde la raíz del
+  proyecto**, porque ahí opera el agente. Incluye `{{history_dir}}` delante del nombre del archivo.
+- **Enlace Markdown clicable** (`[{{index}}](./{{index}})`): relativo **al archivo que lo contiene**,
+  que es como lo resuelve cualquier visor.
+
+El `printf >>` del cierre es el que más vigilar: si la ruta está mal, **no da error** — crea el
+archivo que falta y el bueno se queda sin la fila. Si hay más de una copia del comando en los docs,
+todas deben decir lo mismo; mejor aún, que solo una lo deletree y las demás lo nombren en prosa.
+
+Al mover `base`, los enlaces relativos sobreviven si su destino viaja en el mismo bloque (es el caso
+dentro de `{{history_dir}}`); los que apuntan fuera del bloque se rompen y hay que revisarlos.
+
 ## Archivos y su rol
 
 Ver `{{kit}}/GUIDE.md` → "Roles y fronteras". Aquí solo los **formatos**.

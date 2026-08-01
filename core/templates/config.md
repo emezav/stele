@@ -19,11 +19,19 @@
 | módulos | software |
 | persistencia | git |
 | persistencia_cmd | — |
+| kit_origen | `https://github.com/emezav/stele` |
 
 > `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
 > disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
 > secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
 > en el gestor de la herramienta. Ver `{{kit}}/SKILL.md` → CERRAR, paso 7.
+>
+> `kit_origen` = de dónde se vendorizó el kit. Lo escribe `bootstrap` y lo lee el ritual ACTUALIZAR
+> para traer la versión nueva; sin él, actualizar se bloquea. **No es un número de versión** — eso se
+> descartó por derivable (`{{kit}}/GUIDE.md` → Alternativas descartadas): la procedencia es lo
+> contrario, no hay nada en el árbol de donde deducirla, y el `README` del kit no sirve porque
+> apuntaría al upstream aunque tú vendorizaras de un fork. `—` si el kit no se vendoriza (modo
+> auto-hospedado). Es una URL o ruta pública: **nunca** con credenciales embebidas.
 
 ## Rutas
 

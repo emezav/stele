@@ -56,6 +56,17 @@ quedó cada archivo. De ahí dos reglas de composición:
 Esto importa sobre todo en lo **ejecutable**. Un `printf '…' >> {{history_dir}}{{index}}` mal
 compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila.
 
+**Dos clases de ruta, y no se resuelven igual** — confundirlas es lo que rompe enlaces al mover
+`base`:
+
+- **Ruta de comando** (`printf >> …`, `grep`, `git log --`): relativa a la **raíz del proyecto**,
+  porque los agentes operan con el CWD ahí. Es la que producen los tokens.
+- **Enlace Markdown clicable** (`[INDEX.md](./INDEX.md)`): relativo al **archivo que lo contiene**,
+  porque así lo resuelve cualquier visor. Sobrevive a un cambio de `base` solo si su destino se mueve
+  en el mismo bloque — que es el caso dentro de `{{history_dir}}`, y por eso el historial se mueve
+  entero y no se reescribe. Un enlace que apunte **fuera** del bloque movido sí se rompe: revísalos
+  al migrar.
+
 ## Las tres rutas: `kit` · `base` · `loader`
 
 | Ruta | Default | Qué contiene | Quién la escribe |
@@ -194,7 +205,8 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
 3. Validar los **invariantes de ruta** (ver "Las tres rutas"). Violación = abortar y re-preguntar.
 4. Resolver nombres (defaults de rol + módulo; override libre).
 5. Escribir `stele.config.md` en la raíz (plantilla `core/templates/config.md`), con la sección
-   Rutas ya resuelta.
+   Rutas ya resuelta y **`kit_origen` anotado**: la URL o ruta de la que acabas de traer el kit. Es
+   el único momento en que se sabe con certeza, y sin ella ACTUALIZAR no puede correr después.
 6. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
 7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío.
@@ -215,8 +227,10 @@ adoptante haya versionado el kit ni de acordarse de respaldarlo — y una actual
 medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 
 1. **Traer la versión nueva a un temporal**, fuera del árbol del proyecto o en un directorio ignorado
-   por el VCS (si cae dentro, ensucia el `status` y puede acabar commiteado). Mismo `degit`/`clone`
-   de la instalación (ver `README.md`). **Nunca sobre `{kit}`.**
+   por el VCS (si cae dentro, ensucia el `status` y puede acabar commiteado). La fuente es
+   **`kit_origen`** (manifiesto → Meta); con el mismo `degit`/`clone` de la instalación. **Nunca sobre
+   `{kit}`.** Si `kit_origen` falta o está vacío, **pide la URL al usuario y escríbela en el
+   manifiesto** antes de seguir: sin ella el ritual no arranca, y no se deduce del árbol.
 2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Vacío = ya estabas al día:** dilo en
    una línea, borra el temporal y termina, sin haber tocado nada.
 3. **Clasificar por zona de impacto** (tabla abajo). Lo que no aparece en la tabla es procedimiento:
@@ -250,7 +264,8 @@ cambio. El porqué, en `GUIDE.md` → "Alternativas descartadas".
 
 1. **Leer + reconciliar** `stele.config.md` contra los archivos reales; reportar/arreglar drift.
 2. **Clasificar** el cambio por radio de impacto: renombrar / toggle módulo / toggle feature /
-   presupuesto / wording / idioma / `persistencia` / **ruta** (`kit`, `base` o `loader`). Un layout
+   presupuesto / wording / idioma / `persistencia` / `kit_origen` (cambiar de fork o de mirror; no
+   toca ningún archivo, solo el manifiesto) / **ruta** (`kit`, `base` o `loader`). Un layout
    con nombre ("pásame a `agrupado`") es una petición de **ruta**: se resuelve a valores concretos
    antes de clasificar, y lo que se escribe en el manifiesto son las rutas, nunca el nombre.
 3. **Previsualizar** (dry-run) y confirmar (renombrar toca varios archivos). Para un cambio de ruta,
