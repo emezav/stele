@@ -20,11 +20,15 @@ haz esto sin pedir más instrucciones:
    git clone --depth 1 https://github.com/emezav/stele .stele && rm -rf .stele/.git
    # alternativa con Node: npx degit emezav/stele .stele
    ```
+   `.stele/` es el default de la ruta **`kit`**, y es **independiente** de dónde vayan los docs del
+   proyecto (ruta `base`). Si el usuario nombró una carpeta sin más ("usa stele aquí, base stele"),
+   eso es `base`, no `kit`: no muevas el kit salvo que diga "kit" o "marco".
 2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** que describe: detecta *greenfield* vs
-   *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos`/`base`
-   con defaults sensatos (auto-detecta el módulo `software` por `Cargo.toml`/`package.json`/`src/`),
-   escribe `stele.config.md` en la raíz, instancia las plantillas y **genera** el loader de
-   auto-arranque (`CLAUDE.md`) + el mapa de documentación.
+   *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos` y las
+   tres rutas `kit`/`base`/`loader` con defaults sensatos (auto-detecta el módulo `software` por
+   `Cargo.toml`/`package.json`/`src/`), **hace eco del layout resuelto antes de escribir**, escribe
+   `stele.config.md` en la raíz, instancia las plantillas y **genera** el loader de auto-arranque
+   (`CLAUDE.md`) + el mapa de documentación.
 3. **Confirma** al usuario con el saludo de arranque (1-3 líneas) y explícale que a partir de la
    próxima apertura del editor el marco se activa solo.
 
@@ -39,8 +43,10 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
   (añade `specs`/`architecture`/`gotchas`/`effort` + convenciones + la regla del checkpoint antes
   del primer archivo de código). Un proyecto no-software no lo activa.
 - **Config** (`stele.config.md`, en la raíz del proyecto destino) — **fuente única** que enlaza
-  `rol → nombre`, activa módulos y fija toggles/presupuestos/wording/idioma/`base`. De aquí se
-  **generan** el auto-arranque y el mapa de documentación.
+  `rol → nombre`, activa módulos, fija toggles/presupuestos/wording/idioma y declara las **tres
+  rutas**: `kit` (dónde vive el marco, default `.stele`), `base` (dónde viven tus docs, default `.`)
+  y `loader` (el auto-arranque, default `CLAUDE.md`). De aquí se **generan** el auto-arranque y el
+  mapa de documentación.
 
 ## Qué contiene esta carpeta
 - **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · config*, el
@@ -59,7 +65,8 @@ nombres del manifiesto (los docs instanciados quedan con nombres concretos y leg
 ## Instalar en un proyecto (vendorizado)
 
 El marco es **markdown puro** (sin runtime): se instala **vendorizando** una copia del kit dentro
-del proyecto, en `.stele/`. La copia es la fuente para el agente; para actualizar, se re-vendoriza.
+del proyecto, en la ruta `kit` (default `.stele/`). La copia es la fuente para el agente; para
+actualizar, se re-vendoriza — por eso **tus docs (`base`) nunca pueden vivir dentro del kit**.
 
 1. Trae el kit a `<proyecto>/.stele/` (elige uno):
    ```bash
@@ -69,17 +76,28 @@ del proyecto, en `.stele/`. La copia es la fuente para el agente; para actualiza
    git clone --depth 1 git@github.com:emezav/stele.git /tmp/stele && cp -r /tmp/stele/. .stele/ && rm -rf .stele/.git
    ```
 2. Pide al agente **"bootstrapea la stele"** (ritual BOOTSTRAP en `.stele/SKILL.md`): detecta
-   greenfield vs adopción, elige `idioma`/`módulos`/`base` (con defaults), escribe `stele.config.md`
-   en la raíz, instancia las plantillas bajo `base`, y genera el loader de auto-arranque + el mapa-doc.
-3. El **loader** (por defecto `CLAUDE.md`) es la activación automática: el agente lo carga al iniciar
-   la sesión, hace `@`-import del set de arranque y saluda con 1-3 líneas (señal de que arrancó).
+   greenfield vs adopción, elige `idioma`/`módulos` y las tres rutas (con defaults), te muestra el
+   layout resuelto, escribe `stele.config.md` en la raíz, instancia las plantillas bajo `base`, y
+   genera el loader de auto-arranque + el mapa-doc.
+3. El **loader** (ruta `loader`, por defecto `CLAUDE.md`) es la activación automática: el agente lo
+   carga al iniciar la sesión, hace `@`-import del set de arranque y saluda con 1-3 líneas (señal de
+   que arrancó). Cámbialo si tu agente espera otro nombre (`AGENTS.md`, etc.).
 4. (Opcional, Claude Code) actívalo como skill: `cp -r .stele .claude/skills/stele`. Luego
-   `/stele` recuerda los rituales bajo demanda.
+   `/stele` recuerda los rituales bajo demanda. Para evitar la copia doble, pon directamente
+   `kit = .claude/skills/stele` y vendoriza ahí.
 
-Para cambiar nombres, activar/desactivar módulos o mover `base` después: ritual **CONFIG** (no editar
-los derivados a mano).
+Para cambiar nombres, activar/desactivar módulos o mover cualquiera de las tres rutas después:
+ritual **CONFIG** (no editar los derivados a mano).
 
-> `DESIGN-NOTES.md` documenta el *por qué* del rediseño modular (rol↔nombre, capas, config). Es
-> historia de diseño del marco; puedes borrarlo de tu copia vendorizada si no lo necesitas.
+**Layouts típicos:**
+
+| Layout | `kit` | `base` | Para quién |
+| --- | --- | --- | --- |
+| default | `.stele` | `.` | Docs en la raíz, marco invisible |
+| agrupado | `.stele` | `stele` | Todo lo del marco junto y visible |
+| docs | `.stele` | `docs` | Proyecto con carpeta de docs ya establecida |
+| skill | `.claude/skills/stele` | `stele` | Claude Code, una sola copia del kit |
 
 > Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `GUIDE.md`.
+> El historial de diseño del marco vive en `git log`, no en el kit: todo lo que se vendoriza es lo
+> que un agente necesita para trabajar.

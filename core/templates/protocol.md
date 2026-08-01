@@ -2,7 +2,7 @@
 
 > **Cómo** se documenta (formatos, convenciones de edición, topes de tamaño) para que ningún
 > archivo de estado crezca sin límite y para minimizar tokens/roundtrips de cualquier agente.
-> Los rituales condensados están en `.stele/SKILL.md`; el *por qué*, en `.stele/GUIDE.md`.
+> Los rituales condensados están en `{{kit}}/SKILL.md`; el *por qué*, en `{{kit}}/GUIDE.md`.
 > Los nombres de archivo abajo son los del manifiesto (`stele.config.md`).
 
 ## Principios
@@ -12,10 +12,10 @@
 4. Ninguna sección de un doc fuente-de-verdad supera **~150-200 líneas**; si crece, se extrae a
    un tema de `{{specs}}` + link.
 5. Nada de esto vive en memoria privada del agente; todo en el repo.
-6. **Un hogar por dato** (mapa en `.stele/SKILL.md` y en `{{entry}}`).
+6. **Un hogar por dato** (mapa en `{{kit}}/SKILL.md` y en `{{entry}}`).
 
 ## Archivos y su rol
-Ver `.stele/GUIDE.md` → "Roles y fronteras". Aquí solo los **formatos**.
+Ver `{{kit}}/GUIDE.md` → "Roles y fronteras". Aquí solo los **formatos**.
 
 ### `{{state}}` — formato fijo, se SOBREESCRIBE (~{{budget:state}} líneas)
 ```markdown
@@ -50,7 +50,7 @@ y `## Esfuerzo equivalente` (si se usa). `NNN` con padding a 3 dígitos. No se r
 ### `{{handover}}` — checkpoint de trabajo en curso (~{{budget:handover}} líneas)
 Estados: `SIN_TRABAJO_ACTIVO` | `EN_PROGRESO` | `COMPLETADO`. **Regla dura:** {{checkpoint_trigger}},
 `EN_PROGRESO` con objetivo/alcance/verificación. Al cerrar, siempre refrescar el puntero a la
-sesión que se cierra AHORA. Plantilla en `.stele/core/templates/handover.md`.
+sesión que se cierra AHORA. Plantilla en `{{kit}}/core/templates/handover.md`.
 
 ### `{{specs}}` (+ temas)
 Índice de decisiones: cada entrada ≤3 líneas + link cuando el detalle supera ~50 líneas. Un tema
@@ -61,7 +61,7 @@ Hogar único de gotchas de código. Se edita incrementalmente pero se **cura** (
 obsoleto). Una sección de subsistema que supera ~150-200 líneas se extrae a un tema de `{{specs}}`.
 
 ## Checklist de inicio / cierre
-Condensados en `.stele/SKILL.md` (rituales ABRIR / CERRAR). Este archivo es la referencia de
+Condensados en `{{kit}}/SKILL.md` (rituales ABRIR / CERRAR). Este archivo es la referencia de
 formato cuando haya dudas.
 
 ## Operaciones de bajo coste (preferir)

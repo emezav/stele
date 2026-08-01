@@ -10,6 +10,11 @@
 `ruta = {base}/[{history_dir}/ si ubicación=history]{nombre}`. Un rol con nombre `—` en la config
 está **desactivado** (no aparece en arranque ni en el mapa).
 
+**Ningún rol vive en el kit.** `base` (docs instanciados) y `kit` (el marco) son rutas
+independientes del manifiesto: los roles se resuelven siempre bajo `base`; `{{kit}}` solo aparece
+como referencia *hacia* el marco dentro de las plantillas. El `loader` es la tercera ruta y no es
+un rol: se genera en la raíz. Ver `GUIDE.md` → "Las tres rutas".
+
 ## Roles
 
 | Rol | Nombre default | Ubicación | startup | order | Propósito |

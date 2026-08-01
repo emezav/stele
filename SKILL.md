@@ -35,8 +35,33 @@ no leas un archivo entero "por si acaso"; usa el mapa y `grep -n` + lectura por 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
 `{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}` → carpeta de
 historial; `{{budget:rol}}` → tope de líneas; `{{effort_unit}}`, `{{checkpoint_trigger}}`,
-`{{session_greeting}}` → valores de Features/Wording; `{{specs_dir}}` → carpeta de temas de `specs`.
+`{{session_greeting}}` → valores de Features/Wording; `{{specs_dir}}` → carpeta de temas de `specs`;
+`{{kit}}` y `{{loader}}` → rutas del manifiesto (sección Rutas).
 Los bloques marcados `<!-- GENERADO -->` los produce el marco, no se editan a mano.
+
+`{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. Se resuelve **siempre
+relativo a la raíz del proyecto**, nunca al doc que lo contiene: los agentes operan con el CWD en la
+raíz y es lo que hace `grep`, así que el valor no depende de dónde quedó cada doc.
+
+## Las tres rutas: `kit` · `base` · `loader`
+
+| Ruta | Default | Qué contiene | Quién la escribe |
+| --- | --- | --- | --- |
+| `kit` | `.stele` | El marco vendorizado. Maquinaria **reemplazable**. | Se re-vendoriza |
+| `base` | `.` | Los docs instanciados (roles). Contenido **del proyecto**. | El agente, cada sesión |
+| `loader` | `CLAUDE.md` | Auto-arranque, siempre en la raíz. Derivado GENERADO. | `bootstrap`/`config` |
+
+**Invariantes** (validar en `bootstrap` y en `config`, antes de escribir):
+
+1. `base` **nunca** dentro de `kit`: el kit se actualiza borrándolo y re-vendorizando, y se llevaría
+   los docs por delante. Violación = abortar.
+2. `kit` == `base` = abortar (misma razón, caso degenerado).
+3. `kit` dentro de `base` (p. ej. `base = stele`, `kit = stele/.stele`) es legal pero **se avisa**:
+   los `grep` del ritual de apertura empiezan a encontrar plantillas del marco como si fueran docs
+   del proyecto.
+4. El `loader` vive en la raíz y no puede colisionar con el nombre de un rol resuelto bajo `base`
+   (con `base = .` y `loader = AGENTS.md` chocaría con `entry`). Colisión = abortar.
+5. `stele.config.md` y el `loader` son las **dos anclas fijas de la raíz**: no siguen a `base`.
 
 ## Ritual: ABRIR sesión (ponerse al día, barato)
 
@@ -75,31 +100,55 @@ software especializa el trigger a "antes del primer archivo de código".)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
 sobrescribir contenido; solo generar lo que falte). Pasos:
-1. Elegir `idioma`/`módulos`/`base` (defaults sensatos; auto-detectar módulo software por
-   `Cargo.toml`/`package.json`/`src/`). Zero-question posible; si no, confirmar los 3 de golpe.
-2. Resolver nombres (defaults de rol + módulo; override libre).
-3. Escribir `stele.config.md` en la raíz (plantilla `core/templates/config.md`).
-4. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
-   tokens**. En adopción, saltar los docs que ya existen.
-5. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío.
-6. Generar derivados: loader de auto-arranque en la raíz (plantilla `autostart.md`) + mapa-doc en `entry`.
-7. Validar (ver ritual CONFIG, fase 5).
-8. Confirmar + activar: reabrir el editor → el loader se auto-carga.
+1. Elegir `idioma`/`módulos` y las **tres rutas** (`kit`/`base`/`loader`) con defaults sensatos
+   (auto-detectar módulo software por `Cargo.toml`/`package.json`/`src/`). Zero-question posible.
+   **Desambiguación obligatoria:** una ruta suelta en la petición del usuario ("usa stele aquí, base
+   stele") se interpreta como **`base`** — es lo que al usuario le importa; `kit` solo cambia si dice
+   "kit" o "marco" explícitamente. Ante duda real, preguntar por las dos de golpe, no adivinar.
+2. **Eco del layout resuelto ANTES de escribir nada** (3 líneas, siempre, incluso en zero-question):
+   ```text
+   kit    -> .stele     (el marco, reemplazable)
+   base   -> stele      (tus docs, versionados)
+   loader -> CLAUDE.md
+   ```
+   Coste cero y ataja la mala interpretación antes del scaffold, no después. Si el kit ya se
+   vendorizó en la ruta equivocada, moverlo aquí (`git mv`) es trivial; después no.
+3. Validar los **invariantes de ruta** (ver "Las tres rutas"). Violación = abortar y re-preguntar.
+4. Resolver nombres (defaults de rol + módulo; override libre).
+5. Escribir `stele.config.md` en la raíz (plantilla `core/templates/config.md`), con la sección
+   Rutas ya resuelta.
+6. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
+   tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
+7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío.
+8. Generar derivados: loader de auto-arranque en la raíz, con el nombre de la ruta `loader`
+   (plantilla `autostart.md`) + mapa-doc en `entry`.
+9. Validar (ver ritual CONFIG, fase 5).
+10. Confirmar + activar: reabrir el editor → el loader se auto-carga.
 
 ## Ritual: CONFIG (adaptar nombres/parámetros — único renombrador sancionado)
 
 1. **Leer + reconciliar** `stele.config.md` contra los archivos reales; reportar/arreglar drift.
 2. **Clasificar** el cambio por radio de impacto: renombrar / toggle módulo / toggle feature /
-   presupuesto / wording / idioma / `base`.
-3. **Previsualizar** (dry-run) y confirmar (renombrar toca varios archivos).
-4. **Aplicar**, acotado a los **docs del marco** (nunca código de producto): `git mv` → reescribir
-   la tabla del manifiesto **completa** → barrido de referencias por el mapa viejo→nuevo →
-   regenerar derivados (auto-arranque + mapa-doc).
-5. **Validar**: `grep` del nombre viejo = 0; cada nombre resuelve a un archivo; ningún rol activo
-   apunta a faltante.
+   presupuesto / wording / idioma / **ruta** (`kit`, `base` o `loader`).
+3. **Previsualizar** (dry-run) y confirmar (renombrar toca varios archivos). Para un cambio de ruta,
+   el dry-run es el **mismo eco de 3 líneas** del bootstrap, con el antes y el después.
+4. **Aplicar**, acotado a los **docs del marco** (nunca código de producto): mover (`git mv`, o `mv`
+   si el kit no está versionado) → reescribir la tabla del manifiesto **completa** → barrido de
+   referencias por el mapa viejo→nuevo → regenerar derivados (auto-arranque + mapa-doc).
+5. **Validar**: `grep` del nombre (o ruta) viejo = 0; cada nombre resuelve a un archivo; ningún rol
+   activo apunta a faltante; los invariantes de ruta se cumplen.
 
 Reglas fijas: desactivar un módulo **no** borra sus docs (huérfanos preservados + aviso); colisión
 de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el historial es inmutable).
+
+**Cambios de ruta, en concreto:**
+
+- Mover `kit`: mover el directorio y barrer las referencias `{{kit}}` ya resueltas en los docs
+  instanciados (`entry`, `protocol`, `loader`). No toca ningún doc de contenido.
+- Mover `base`: mover los docs de rol (y `history_dir` completo, con su historial) y regenerar el
+  loader, cuyos `@import` son relativos a la raíz. El historial se mueve entero, no se reescribe.
+- Cambiar `loader`: generar el nuevo y **borrar el viejo** (dos loaders compitiendo es peor que
+  ninguno). Verificar antes que el nombre nuevo no colisiona con un rol bajo `base`.
 
 ## Operaciones de bajo coste (preferir siempre)
 - Apéndice de una fila → `printf '...' >> archivo` (sin `Read` previo).
