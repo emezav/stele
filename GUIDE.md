@@ -92,6 +92,33 @@ Combinaciones típicas: `kit = .stele` + `base = .` (default: docs en la raíz, 
 establecida) · `kit = .claude/skills/stele` (Claude Code: una sola copia del kit, que además queda
 disponible como `/stele`).
 
+## Persistencia y la red de recuperación
+
+Cerrar una sesión **escribe** el registro; persistirlo es otro paso, y el marco no asume cuál. El
+parámetro `persistencia` lo declara: `git` · `ninguna` (los archivos en disco son el registro) ·
+`comando` (una orden que el usuario configuró: `rclone`, un empaquetado fechado, otro VCS). El
+núcleo es agnóstico a propósito — un proyecto de planeación o de investigación no tiene por qué usar
+git — y el ritual de cierre se resuelve contra ese parámetro.
+
+Lo importante no es el mecanismo sino lo que se pierde sin él. **Un VCS no es solo respaldo: es la
+red que permite reconstruir el *qué* cuando la documentación falla.** Sin esa red, la disciplina
+documental **sube**, no baja:
+
+- El registro de sesión pasa a ser el **único** rastro de qué cambió. "Archivos tocados" ya no puede
+  listar rutas: tiene que decir qué cambió dentro de cada una, porque no habrá diff que consultar.
+- La regla "revertir solo los hunks propios" **presupone que puedes identificar hunks**. Sin VCS
+  degrada a "no toques lo que no escribiste en esta sesión, y ante la duda pregunta".
+- El checkpoint se vuelve **más** crítico, no menos: sin `git status` ni diff, el `handover` es la
+  única forma de saber qué quedó a medias tras una interrupción.
+
+**El marco nunca implementa la persistencia**: eso sería runtime, y rompería "markdown puro". El
+paso de cierre es declarativo — le dice al usuario qué hacer, o ejecuta el comando que él configuró.
+
+**Credenciales, nunca.** Ningún doc del marco lleva tokens, claves ni cadenas de conexión: son
+markdown legible, normalmente versionado, y en un kit vendorizado hasta se copian a otros proyectos.
+Un comando de persistencia nombra la herramienta; las credenciales viven en el entorno o en el
+gestor de esa herramienta.
+
 ## Alternativas descartadas (para no volver a proponerlas)
 
 - **Referencia por rol en vivo** (escribir `[state]` en los docs y resolverlo al leer): descartada.

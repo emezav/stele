@@ -8,20 +8,29 @@
 >      (`stele.config.md`). No editarlas a mano. El ejemplo mostrado usa el módulo `software`. -->
 
 ## Regla crítica: no revertir trabajo ajeno
+
 Un agente solo revierte cambios que él mismo hizo en la sesión actual. No revertir cambios
 preexistentes, del usuario ni de otros agentes. Ante un archivo con cambios mezclados, revertir
 solo los hunks propios; si no se puede identificar el origen con certeza, conservar y preguntar.
 
+Con `persistencia = ninguna` no hay diff que permita identificar hunks: la regla se endurece a
+**no tocar lo que no escribiste en esta sesión** y preguntar ante la duda.
+
 ## Descripción del proyecto
-ADAPTAR: 2-4 líneas de qué es `<PROYECTO>` y sus componentes principales. El detalle de
+
+ADAPTAR: 2-4 líneas de qué es el proyecto y sus componentes principales. El detalle de
 propósito, principios y decisiones grandes vive en `{{charter}}` (no duplicar aquí).
 
 ## Estructura del proyecto
+
 ADAPTAR: directorios principales y su rol en una línea cada uno. Árbol completo → bajo demanda.
 
 ## Al inicio de cada sesión (OBLIGATORIO)
+
 <!-- GENERADO: lista de arranque = roles `startup: obligatorio` ordenados por `order`. -->
+
 Leer en este orden antes de responder cualquier cosa:
+
 1. `{{entry}}` — este archivo.
 2. `{{gotchas}}` — gotchas y convenciones técnicas no evidentes en el código.
 3. `{{state}}` — estado actual y próximo paso (snapshot corto).
@@ -32,19 +41,24 @@ Leer en este orden antes de responder cualquier cosa:
 codebase), `{{index}}`/`{{session}}` (historial).
 
 ## Regla dura: {{checkpoint_trigger}}
+
 `{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance y verificación prevista.
 No depende del tamaño estimado del cambio. Exención: cambios que SOLO tocan documentación.
 
 ## Al finalizar cada sesión (OBLIGATORIO)
+
 Seguir el checklist de cierre de `{{protocol}}`. En resumen: crear `{{session}}`; append de una fila
 a `{{index}}` (y `{{effort}}` si se usa) con `printf >>`; reescribir `{{state}}` completo; llevar
 toda decisión durable a su hogar (mapa abajo), nunca solo en el historial; refrescar `{{handover}}`
-(→ `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`).
+(→ `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); y **persistir**
+según `persistencia`.
 
 ## Dónde vive cada cosa (un hogar por dato)
+
 <!-- GENERADO: tabla de enrutamiento derivada de los `triggers` de los roles activos. -->
+
 | Necesito… | Hogar |
-|---|---|
+| --- | --- |
 | cómo trabajar, proceso, convenciones, arranque | `{{entry}}` |
 | por qué: principios, decisiones grandes, restricciones, glosario | `{{charter}}` |
 | formatos/protocolo de documentación | `{{protocol}}` |
@@ -57,11 +71,19 @@ toda decisión durable a su hogar (mapa abajo), nunca solo en el historial; refr
 | esfuerzo equivalente | `{{effort}}` |
 
 **PROHIBIDO** guardar contenido del proyecto en memoria privada del agente (`.claude/` etc.):
-todo va al repo, visible para cualquier agente y humano.
+todo va a los docs del proyecto, visibles para cualquier agente y humano.
+
+**PROHIBIDO** escribir credenciales, tokens o claves en cualquier doc del marco. Si el proyecto
+necesita acceso a un servicio, el doc nombra la herramienta y de dónde toma sus credenciales
+(variable de entorno, gestor de credenciales), nunca el secreto.
 
 ## Convenciones
+
 ADAPTAR: convenciones de nombre (lenguaje, endpoints, ramas git, colecciones/tablas),
-política de código legacy/experimental si aplica, y reglas de commit/push.
+política de código legacy/experimental si aplica, y cómo se persiste el trabajo (según
+`persistencia`: reglas de commit/push, o el procedimiento que aplique).
 
 ## Arranque de desarrollo
-ADAPTAR: puertos, comandos de arranque, credenciales de dev (o puntero a un `DEV_SETUP.md`).
+
+ADAPTAR: puertos, comandos de arranque, cómo se obtienen las credenciales de dev (nunca los
+valores) o puntero a un `DEV_SETUP.md`.

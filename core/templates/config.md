@@ -17,6 +17,13 @@
 | --- | --- |
 | idioma | es |
 | módulos | software |
+| persistencia | git |
+| persistencia_cmd | — |
+
+> `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
+> disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
+> secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
+> en el gestor de la herramienta. Ver `{{kit}}/SKILL.md` → CERRAR, paso 7.
 
 ## Rutas
 

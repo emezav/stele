@@ -98,25 +98,53 @@ software especializa el trigger a "antes del primer archivo de código".)
    grande → `charter`; patrón de código → `architecture`; gotcha → `gotchas`. Nunca solo en historial.
 6. **`handover`**: si cerró completo → `SIN_TRABAJO_ACTIVO` **apuntando a la sesión que cierras
    ahora**. Si quedó salto → `EN_PROGRESO`.
-7. Si dejaste un commit: dile al usuario el `git push` exacto (o hazlo si lo autoriza).
+7. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
+   (pasos 1-6) y se persiste **una sola vez**, al final.
+
+**`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
+sesión, no en uno aparte. Dile al usuario el `git push` exacto (o hazlo si lo autoriza). Reglas,
+porque **un commit no puede contener su propio hash**:
+
+- **No anotes el hash del commit que lleva el cierre.** Es información derivable, y por eso no se
+  guarda: `git log --diff-filter=A -- {history_dir}{session}` devuelve el commit exacto de esa
+  sesión. Guardar lo que se puede derivar es duplicar un hogar.
+- **Nunca `git commit --amend`** para plegar los docs dentro del commit del trabajo: el amend
+  **cambia el hash**, así que cualquier hash ya anotado queda apuntando a un commit inexistente.
+  Falla en silencio; es peor que el problema que intenta resolver.
+- Los hashes de commits **anteriores** de la sesión sí se anotan: existen y son estables.
+- Si el trabajo ya se pusheó a mitad de sesión, el cierre va en un commit posterior. Es inevitable
+  y está bien — ahí sí puede anotar el hash del trabajo. Que sea una decisión, no un accidente.
+
+**`persistencia = ninguna`** — no hay VCS: los archivos en disco **son** el registro. Verifica que
+todo quedó escrito y dile al usuario en 2-3 líneas qué cambió y dónde. Sin red de recuperación la
+disciplina **sube**, no baja: ver `GUIDE.md` → "Persistencia y la red de recuperación".
+
+**`persistencia = comando`** — ejecuta el `persistencia_cmd` del manifiesto y reporta su resultado
+con honestidad: si falla, dilo y **no des el cierre por persistido**. El comando **nunca lleva
+secretos** — el manifiesto es markdown versionado y legible. Las credenciales viven en el entorno o
+en el gestor de la propia herramienta, nunca en un doc del marco.
 
 ## Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
 sobrescribir contenido; solo generar lo que falte). Pasos:
-1. Elegir `idioma`/`módulos` y las **tres rutas** (`kit`/`base`/`loader`) con defaults sensatos
-   (auto-detectar módulo software por `Cargo.toml`/`package.json`/`src/`). Zero-question posible.
+1. Elegir `idioma`/`módulos`/`persistencia` y las **tres rutas** (`kit`/`base`/`loader`) con
+   defaults sensatos. Auto-detectar: módulo software por `Cargo.toml`/`package.json`/`src/`;
+   `persistencia = git` si hay `.git`, si no `ninguna` (avisando de la consecuencia).
+   Zero-question posible.
    **Desambiguación obligatoria:** una ruta suelta en la petición del usuario ("usa stele aquí, base
    stele") se interpreta como **`base`** — es lo que al usuario le importa; `kit` solo cambia si dice
    "kit" o "marco" explícitamente. Ante duda real, preguntar por las dos de golpe, no adivinar.
 2. **Eco del layout resuelto ANTES de escribir nada** (3 líneas, siempre, incluso en zero-question):
    ```text
-   kit    -> .stele     (el marco, reemplazable)
-   base   -> stele      (tus docs, versionados)
-   loader -> CLAUDE.md
+   kit          -> .stele     (el marco, reemplazable)
+   base         -> stele      (tus docs, versionados)
+   loader       -> CLAUDE.md
+   persistencia -> git
    ```
+
    Coste cero y ataja la mala interpretación antes del scaffold, no después. Si el kit ya se
-   vendorizó en la ruta equivocada, moverlo aquí (`git mv`) es trivial; después no.
+   vendorizó en la ruta equivocada, moverlo aquí es trivial; después no.
 3. Validar los **invariantes de ruta** (ver "Las tres rutas"). Violación = abortar y re-preguntar.
 4. Resolver nombres (defaults de rol + módulo; override libre).
 5. Escribir `stele.config.md` en la raíz (plantilla `core/templates/config.md`), con la sección
@@ -133,7 +161,7 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
 
 1. **Leer + reconciliar** `stele.config.md` contra los archivos reales; reportar/arreglar drift.
 2. **Clasificar** el cambio por radio de impacto: renombrar / toggle módulo / toggle feature /
-   presupuesto / wording / idioma / **ruta** (`kit`, `base` o `loader`).
+   presupuesto / wording / idioma / `persistencia` / **ruta** (`kit`, `base` o `loader`).
 3. **Previsualizar** (dry-run) y confirmar (renombrar toca varios archivos). Para un cambio de ruta,
    el dry-run es el **mismo eco de 3 líneas** del bootstrap, con el antes y el después.
 4. **Aplicar**, acotado a los **docs del marco** (nunca código de producto): mover (`git mv`, o `mv`
