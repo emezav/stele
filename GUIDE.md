@@ -205,9 +205,10 @@ de código"; el núcleo usa el `checkpoint_trigger` genérico configurable.
   después.
 - **Actualizar** trae una versión nueva del kit y reconcilia la instancia contra ella. Lo importante
   no es copiar archivos: es **leer el diff** entre el kit viejo y el nuevo y decidir qué implica
-  (¿roles nuevos? ¿cambió la forma del manifiesto?). De ahí la regla dura de no sobrescribir el kit
-  sin poder recuperar el viejo — sin las dos versiones no hay diff, y sin diff la actualización es a
-  ciegas. Nunca toca `base`: una plantilla nueva no reinstancia tus docs.
+  (¿roles nuevos? ¿cambió la forma del manifiesto?). Por eso la versión nueva se trae **al lado**, no
+  encima: el diff necesita las dos versiones, y traerlas en ese orden convierte la seguridad en una
+  propiedad de la secuencia en vez de en una disciplina que hay que recordar. Nunca toca `base`: una
+  plantilla nueva no reinstancia tus docs.
 - **Config** cambia nombres, módulos, toggles, presupuestos, wording, idioma y las tres rutas — sin
   romper referencias, porque regenera los derivados.
 - **Escala la ceremonia.** `effort` y la numeración `sesion-NNN` son opcionales; un proyecto pequeño

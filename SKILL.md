@@ -194,25 +194,26 @@ Se dispara con "actualiza stele" / "trae la última versión del marco". Cambia 
 `base` no se toca nunca — esos docs son del proyecto, y una plantilla nueva **no reinstancia nada**.
 No aplica en modo auto-hospedado (`kit = .`): ahí el marco se desarrolla en sitio, no se vendoriza.
 
-**Regla dura: no sobrescribas el kit sin poder recuperar el viejo.** El valor de una actualización
-no está en los archivos nuevos sino en el **diff**, y el diff necesita las dos versiones. Traer la
-copia nueva encima destruye la evidencia justo antes de necesitarla.
+**Regla dura: no toques el kit hasta haber leído el diff.** La versión nueva se trae **al lado**, a
+un temporal, nunca encima de la que ya tienes. Así el diff existe siempre — sin depender de que el
+adoptante haya versionado el kit ni de acordarse de respaldarlo — y una actualización que se aborta a
+medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 
-1. **Asegurar el diff.** Si `{kit}` está versionado en el repo (lo normal: se vendoriza y se
-   commitea), el propio VCS es el respaldo y no hay que hacer nada. Si no lo está, copiarlo a un
-   temporal **antes** de traer nada.
-2. **Traer la versión nueva** a la misma ruta `kit` (`degit`/`clone`; ver `README.md`). Reemplazar el
-   directorio entero es seguro *aquí* porque el invariante 1 garantiza que `base` no está dentro.
-3. **Obtener el diff:** `git diff -- {kit}` o `diff -r {temporal} {kit}`. **Vacío = ya estabas al
-   día:** dilo en una línea y termina, sin tocar el manifiesto.
-4. **Clasificar por zona de impacto** (tabla abajo). Lo que no aparece en la tabla es procedimiento:
+1. **Traer la versión nueva a un temporal**, fuera del árbol del proyecto o en un directorio ignorado
+   por el VCS (si cae dentro, ensucia el `status` y puede acabar commiteado). Mismo `degit`/`clone`
+   de la instalación (ver `README.md`). **Nunca sobre `{kit}`.**
+2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Vacío = ya estabas al día:** dilo en
+   una línea, borra el temporal y termina, sin haber tocado nada.
+3. **Clasificar por zona de impacto** (tabla abajo). Lo que no aparece en la tabla es procedimiento:
    se lee, no se migra.
+4. **Aplicar:** sustituir `{kit}` por el temporal. Es seguro *aquí* porque el invariante 1 garantiza
+   que `base` no está dentro.
 5. **Reconciliar con CONFIG** (fase 1, drift), acotado a lo que el diff señaló: filas que le faltan
    al manifiesto, secciones nuevas, derivados a regenerar.
 6. **Informar** en pocas líneas: qué cambió, qué se reconcilió solo, y qué exige decisión del usuario
    (un rol nuevo que quizá quiera desactivar, un default que él había sobrescrito, un cambio del
    contrato de parseo).
-7. **Limpiar** el temporal, si lo hubo.
+7. **Limpiar** el temporal.
 
 | Zona del diff | Qué implica para esta instancia |
 | --- | --- |

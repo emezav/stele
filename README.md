@@ -37,8 +37,8 @@ haz esto sin pedir más instrucciones:
 
 Si lo que te piden es *"actualiza stele"*, el ritual es **otro**: ACTUALIZAR, en `.stele/SKILL.md`.
 No hay archivo de versión que consultar — lo que manda es el **diff** entre el kit que ya tienes y el
-nuevo. Por eso la regla dura es no sobrescribir el kit sin poder recuperar el viejo: si lo borras
-primero, te quedas sin con qué comparar.
+nuevo. Por eso la copia nueva se trae **a un temporal, al lado**, y no encima: primero se lee el
+diff, y solo después se sustituye el kit.
 
 No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md`, y el *por qué* y
 las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
