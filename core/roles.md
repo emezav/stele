@@ -18,27 +18,30 @@ un rol: se genera en la raíz. Ver `GUIDE.md` → "Las tres rutas".
 ## Roles
 
 | Rol | Nombre default | Ubicación | startup | order | Propósito |
-|---|---|---|---|---|---|
-| entry       | AGENTS.md    | base    | obligatorio | 10 | Cómo trabajar: proceso, estructura, convenciones, arranque. Punto de entrada único. |
-| state       | LATEST.md    | history | obligatorio | 30 | Dónde estamos y el próximo paso. Se **sobrescribe**; acotado. |
-| handover    | HANDOVER.md  | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado ≠ `SIN_TRABAJO_ACTIVO`. |
-| charter     | DESIGN.md    | base    | on-demand   | —  | Por qué el proyecto es así: norte, principios, restricciones, decisiones grandes, glosario. |
-| protocol    | PROTOCOL.md  | base    | on-demand   | —  | Formatos y convenciones de documentación entre sesiones. |
-| index       | INDEX.md     | history | on-demand   | —  | Índice append-only de sesiones. Se lee con grep. |
-| session     | sesion-{NNN}-{YYYY-MM-DD}.md | history | on-demand | — | Registro por sesión. Inmutable; se lee con grep. |
-| history_dir | HISTORY/     | base    | contenedor  | —  | Carpeta que agrupa state/handover/index/session. No es un doc. |
+| --- | --- | --- | --- | --- | --- |
+| entry | AGENTS.md | base | obligatorio | 10 | Cómo trabajar: proceso, estructura, convenciones, arranque. Punto de entrada único. |
+| state | LATEST.md | history | obligatorio | 30 | Dónde estamos y el próximo paso. Se **sobrescribe**; acotado. |
+| handover | HANDOVER.md | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado ≠ `SIN_TRABAJO_ACTIVO`. |
+| charter | DESIGN.md | base | on-demand | — | Por qué el proyecto es así: norte, principios, restricciones, decisiones grandes, glosario. |
+| protocol | PROTOCOL.md | base | on-demand | — | Formatos y convenciones de documentación entre sesiones. |
+| index | INDEX.md | history | on-demand | — | Índice append-only de sesiones. Se lee con grep. |
+| session | sesion-{NNN}-{YYYY-MM-DD}.md | history | on-demand | — | Registro por sesión. Inmutable; se lee con grep. |
+| history_dir | HISTORY/ | base | contenedor | — | Carpeta que agrupa state/handover/index/session. No es un doc. |
+
+El patrón de numeración de `session` (`{NNN}`) vive **solo aquí**: es parte de su nombre, no un
+parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial es inmutable).
 
 ## Triggers (enrutamiento: "necesito… → hogar")
 
 | Rol | Necesito… |
-|---|---|
-| entry    | cómo trabajar, proceso, reglas operativas, arranque |
-| charter  | por qué: principios, decisiones grandes, restricciones, glosario |
+| --- | --- |
+| entry | cómo trabajar, proceso, reglas operativas, arranque |
+| charter | por qué: principios, decisiones grandes, restricciones, glosario |
 | protocol | formatos/reglas de documentación y registro |
-| state    | dónde estamos, próximo paso inmediato, retomar contexto |
+| state | dónde estamos, próximo paso inmediato, retomar contexto |
 | handover | trabajo a medias, checkpoint de un salto en curso |
-| index    | qué pasó y cuándo (índice de sesiones) |
-| session  | el detalle de una sesión concreta |
+| index | qué pasó y cuándo (índice de sesiones) |
+| session | el detalle de una sesión concreta |
 
 ## Notas
 

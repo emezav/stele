@@ -52,6 +52,7 @@
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | núcleo |
 | gotchas | MEMORY.md | software |
 | specs | REQUIREMENTS.md | software |
+| specs_dir | temas/ | software |
 | architecture | ARCHITECTURE.md | software |
 | effort | ESFUERZO.md | software |
 
@@ -62,7 +63,6 @@
 | effort_log | on |
 | effort_unit | horas-ingeniero |
 | session_greeting | on |
-| session_numbering | NNN |
 
 ## Presupuestos
 
@@ -75,5 +75,9 @@
 
 | Ritual | Parámetro | Texto |
 | --- | --- | --- |
-| checkpoint | trigger | antes de la primera edición de código |
+| checkpoint | trigger | antes de un cambio interrumpible |
 | abrir | saludo | 1-3 líneas: última sesión + estado handover + próximo paso |
+
+> El `trigger` de arriba es el default **agnóstico** del núcleo. Si el módulo `software` está
+> activo, bootstrap escribe aquí su especialización: *antes de la primera edición de código*.
+> Un proyecto sin código lo adapta a lo que haga sus veces (ritual `config`, clase *wording*).

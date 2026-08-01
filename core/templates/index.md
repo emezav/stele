@@ -4,5 +4,4 @@
 > `printf '| N | YYYY-MM-DD | resumen | <session> |\n' >> {{history_dir}}{{index}}`
 
 | Sesión | Fecha | Resumen | Archivo |
-|--------|-------|---------|---------|
-| 1 | <YYYY-MM-DD> | <resumen de una línea> | <session-001> |
+| --- | --- | --- | --- |

@@ -114,6 +114,15 @@ documental **sube**, no baja:
 **El marco nunca implementa la persistencia**: eso sería runtime, y rompería "markdown puro". El
 paso de cierre es declarativo — le dice al usuario qué hacer, o ejecuta el comando que él configuró.
 
+**Carpeta sincronizada** (Drive, OneDrive, Dropbox) es el caso más común de `ninguna`: guardar en
+disco ya *es* el respaldo, sin credenciales ni configuración. Dos trampas que hacen que no sustituya
+a un VCS:
+
+- **La sincronización no es atómica.** Versiona archivo por archivo; un cierre toca cinco a la vez y
+  no se recupera el conjunto como unidad. Las tres reglas de arriba siguen aplicando igual.
+- **Los conflictos rompen justo los archivos append-only.** Cerrar sesión desde dos máquinas genera
+  copias en conflicto, y `index`/`effort` son precisamente los que se duplican o se pisan.
+
 **Credenciales, nunca.** Ningún doc del marco lleva tokens, claves ni cadenas de conexión: son
 markdown legible, normalmente versionado, y en un kit vendorizado hasta se copian a otros proyectos.
 Un comando de persistencia nombra la herramienta; las credenciales viven en el entorno o en el

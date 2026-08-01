@@ -46,10 +46,11 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
   (añade `specs`/`architecture`/`gotchas`/`effort` + convenciones + la regla del checkpoint antes
   del primer archivo de código). Un proyecto no-software no lo activa.
 - **Config** (`stele.config.md`, en la raíz del proyecto destino) — **fuente única** que enlaza
-  `rol → nombre`, activa módulos, fija toggles/presupuestos/wording/idioma y declara las **tres
-  rutas**: `kit` (dónde vive el marco, default `.stele`), `base` (dónde viven tus docs, default `.`)
-  y `loader` (el auto-arranque, default `CLAUDE.md`). De aquí se **generan** el auto-arranque y el
-  mapa de documentación.
+  `rol → nombre`, activa módulos, fija toggles/presupuestos/wording/idioma, declara las **tres
+  rutas** — `kit` (dónde vive el marco, default `.stele`), `base` (dónde viven tus docs, default
+  `.`) y `loader` (el auto-arranque, default `CLAUDE.md`) — y la **persistencia** (`git` ·
+  `ninguna` · `comando`: cómo se vuelve durable el trabajo al cerrar). De aquí se **generan** el
+  auto-arranque y el mapa de documentación.
 
 ## Qué contiene esta carpeta
 

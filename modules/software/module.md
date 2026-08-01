@@ -7,8 +7,8 @@
 ## Qué aporta
 
 | Aporta | Detalle |
-|---|---|
-| **Roles** | `gotchas`, `specs`, `architecture`, `effort` (ver `roles.md`). `gotchas` es **obligatorio de arranque** (order 20). |
+| --- | --- |
+| **Roles** | `gotchas`, `specs`, `specs_dir`, `architecture`, `effort` (ver `roles.md`). `gotchas` es **obligatorio de arranque** (order 20). |
 | **Templates** | `templates/{gotchas,specs,architecture,effort}.md` |
 | **Features** | enciende `effort_log` (opcional; el rol `effort` depende de este toggle) |
 | **Convenciones** | git/test/deploy + reglas de código (ver `conventions.md`) |
@@ -23,17 +23,22 @@ menos que reconstruir el contexto desde el diff. **Exención:** cambios que SOLO
 
 Esta regla vive en el módulo (no en el núcleo) porque presupone la noción de "archivo de código".
 El núcleo agnóstico usa un `checkpoint_trigger` genérico configurable (`stele.config.md` →
-Wording); este módulo lo especializa a "antes del primer archivo de código".
+Wording, default *antes de un cambio interrumpible*); este módulo lo especializa a "antes del primer
+archivo de código". Un proyecto de software sin código todavía —o cuyo producto no es código— debe
+reescribirlo con el ritual `config`, o la exención de documentación deja la regla muerta.
 
 ## Defaults que aporta al manifiesto
 
-```
+```text
 módulos: [software]
 features:  effort_log = on
-nombres:   gotchas=MEMORY.md  specs=REQUIREMENTS.md  architecture=ARCHITECTURE.md  effort=ESFUERZO.md
+nombres:   gotchas=MEMORY.md  specs=REQUIREMENTS.md  specs_dir=temas/
+           architecture=ARCHITECTURE.md  effort=ESFUERZO.md
+wording:   checkpoint.trigger = antes de la primera edición de código
 ```
 
 ## Al desactivarlo
 
 `config` retira sus filas del arranque y del mapa, pero **no borra** los docs `gotchas`/`specs`/
 `architecture`/`effort` (quedan huérfanos preservados + aviso). El usuario decide archivarlos.
+El `checkpoint_trigger` vuelve al default genérico del núcleo.

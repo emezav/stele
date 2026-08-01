@@ -8,5 +8,4 @@
 > (Feature `effort_log`: quitar este archivo y apagar el toggle si el proyecto no lleva la serie.)
 
 | Sesión | Fecha | {{effort_unit}} | Funcionalidades clave |
-|--------|-------|-------------|----------------------|
-| 1 | <YYYY-MM-DD> | <X-Y> | <funcionalidades> |
+| --- | --- | --- | --- |

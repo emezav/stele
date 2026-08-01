@@ -33,10 +33,11 @@ no leas un archivo entero "por si acaso"; usa el mapa y `grep -n` + lectura por 
 ## Convención de tokens en plantillas
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
-`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}` → carpeta de
-historial; `{{budget:rol}}` → tope de líneas; `{{effort_unit}}`, `{{checkpoint_trigger}}`,
-`{{session_greeting}}` → valores de Features/Wording; `{{specs_dir}}` → carpeta de temas de `specs`;
-`{{kit}}` y `{{loader}}` → rutas del manifiesto (sección Rutas).
+`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}` y `{{specs_dir}}` →
+carpetas (roles contenedores); `{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
+`{{checkpoint_trigger}}` → valores de Features/Wording; `{{kit}}` y `{{loader}}` → rutas
+(sección Rutas). Los toggles como `session_greeting` **se consultan, no se interpolan**: no hay
+token para ellos.
 Los bloques marcados `<!-- GENERADO -->` los produce el marco, no se editan a mano.
 
 `{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. Se resuelve **siempre
