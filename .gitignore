@@ -1,0 +1,18 @@
+# Instancia local de stele (dogfood del propio marco).
+#
+# Por que ignorada y no commiteada: este repo se distribuye COPIANDOSE
+# (`npx degit emezav/stele .stele` se lleva el arbol entero), asi que todo lo
+# versionado aqui viaja al .stele/ de cada persona que adopte el marco. El
+# historial de sesiones de este proyecto seria peso muerto creciente en la
+# copia vendorizada de todos los demas.
+#
+# Coste aceptado: la continuidad no viaja al clonar este repo en otra maquina.
+# Si hace falta portabilidad, `stele/` puede ser a su vez un repo git propio
+# con su remoto privado.
+stele/
+
+# Anclas de la raiz: son derivados que apuntan a `stele/`. Si se commitearan,
+# cada adoptante recibiria un loader y un manifiesto que referencian un
+# directorio que en su copia no existe.
+stele.config.md
+CLAUDE.md
