@@ -5,8 +5,9 @@ description: >
   través de muchas sesiones sin perder contexto y con coste de tokens acotado. Sirve para software
   y para trabajo no-software (materiales, planeación, investigación). Úsalo al INICIAR una sesión
   (ponerse al día), al CERRAR (registro durable), antes de un cambio interrumpible (checkpoint),
-  para INICIALIZAR el marco en un proyecto (bootstrap), o para ADAPTARLO (config: nombres, módulos,
-  parámetros). Núcleo agnóstico + módulos (software) + config (stele.config.md).
+  para INICIALIZAR el marco en un proyecto (bootstrap), para ACTUALIZARLO a una versión nueva del kit
+  (actualizar), o para ADAPTARLO (config: nombres, módulos, parámetros). Núcleo agnóstico + módulos
+  (software) + config (stele.config.md).
 ---
 
 # stele — rituales de sesión
@@ -49,13 +50,13 @@ el prefijo colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
 
 | Ruta | Default | Qué contiene | Quién la escribe |
 | --- | --- | --- | --- |
-| `kit` | `.stele` | El marco vendorizado. Maquinaria **reemplazable**. | Se re-vendoriza |
+| `kit` | `.stele` | El marco vendorizado. Maquinaria **reemplazable**. | Ritual ACTUALIZAR |
 | `base` | `.` | Los docs instanciados (roles). Contenido **del proyecto**. | El agente, cada sesión |
 | `loader` | `CLAUDE.md` | Auto-arranque, siempre en la raíz. Derivado GENERADO. | `bootstrap`/`config` |
 
 **Invariantes** (validar en `bootstrap` y en `config`, antes de escribir):
 
-1. `base` **nunca** dentro de `kit`: el kit se actualiza borrándolo y re-vendorizando, y se llevaría
+1. `base` **nunca** dentro de `kit`: actualizar reemplaza el directorio del kit entero, y se llevaría
    los docs por delante. Violación = abortar. **Excepción: modo auto-hospedado** (`kit = .`), cuando
    el proyecto **es** el marco — el repo del kit. Ahí el kit no se vendoriza: se desarrolla en sitio
    y nunca se borra, así que la razón del invariante no aplica y `base` es por fuerza un
@@ -186,6 +187,48 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    (plantilla `autostart.md`) + mapa-doc en `entry`.
 9. Validar (ver ritual CONFIG, fase 5).
 10. Confirmar + activar: reabrir el editor → el loader se auto-carga.
+
+## Ritual: ACTUALIZAR (traer una versión nueva del kit)
+
+Se dispara con "actualiza stele" / "trae la última versión del marco". Cambia **solo la ruta `kit`**:
+`base` no se toca nunca — esos docs son del proyecto, y una plantilla nueva **no reinstancia nada**.
+No aplica en modo auto-hospedado (`kit = .`): ahí el marco se desarrolla en sitio, no se vendoriza.
+
+**Regla dura: no sobrescribas el kit sin poder recuperar el viejo.** El valor de una actualización
+no está en los archivos nuevos sino en el **diff**, y el diff necesita las dos versiones. Traer la
+copia nueva encima destruye la evidencia justo antes de necesitarla.
+
+1. **Asegurar el diff.** Si `{kit}` está versionado en el repo (lo normal: se vendoriza y se
+   commitea), el propio VCS es el respaldo y no hay que hacer nada. Si no lo está, copiarlo a un
+   temporal **antes** de traer nada.
+2. **Traer la versión nueva** a la misma ruta `kit` (`degit`/`clone`; ver `README.md`). Reemplazar el
+   directorio entero es seguro *aquí* porque el invariante 1 garantiza que `base` no está dentro.
+3. **Obtener el diff:** `git diff -- {kit}` o `diff -r {temporal} {kit}`. **Vacío = ya estabas al
+   día:** dilo en una línea y termina, sin tocar el manifiesto.
+4. **Clasificar por zona de impacto** (tabla abajo). Lo que no aparece en la tabla es procedimiento:
+   se lee, no se migra.
+5. **Reconciliar con CONFIG** (fase 1, drift), acotado a lo que el diff señaló: filas que le faltan
+   al manifiesto, secciones nuevas, derivados a regenerar.
+6. **Informar** en pocas líneas: qué cambió, qué se reconcilió solo, y qué exige decisión del usuario
+   (un rol nuevo que quizá quiera desactivar, un default que él había sobrescrito, un cambio del
+   contrato de parseo).
+7. **Limpiar** el temporal, si lo hubo.
+
+| Zona del diff | Qué implica para esta instancia |
+| --- | --- |
+| `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados** |
+| `core/templates/config.md` | Cambió la forma del manifiesto o el contrato de parseo: la instancia puede estar desfasada (secciones nuevas, claves nuevas) |
+| `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
+| `core/templates/*` de rol, `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
+| `SKILL.md`, `GUIDE.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
+
+**Si el diff muestra cambios que no vienen de arriba sino de ediciones locales del kit, para y
+avisa**: el kit no se edita dentro de un proyecto (para eso está la config), y re-vendorizar los
+borra. Recupéralos o descártalos con el usuario antes de seguir, nunca en silencio.
+
+**Sin marcador de versión, a propósito.** El kit no lleva `VERSION` ni changelog: el diff dice *qué*
+cambió y dónde, que es lo único accionable, y un número habría que acordarse de subirlo en cada
+cambio. El porqué, en `GUIDE.md` → "Alternativas descartadas".
 
 ## Ritual: CONFIG (adaptar nombres/parámetros — único renombrador sancionado)
 

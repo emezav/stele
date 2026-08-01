@@ -27,13 +27,14 @@ entero al arrancar cada sesión.
 6. **Curación.** Los documentos vivos se **podan**: una entrada obsoleta se borra (su rastro queda
    en el historial). No se acumula.
 
-## Los tres rituales base + dos de ciclo de vida
+## Los tres rituales base + tres de ciclo de vida
 
 - **Abrir** (ponerse al día, barato) · **Checkpoint** (dejar el salto en curso a salvo antes de un
   cambio interrumpible) · **Cerrar** (dejar registro durable).
-- **Bootstrap** (instanciar el marco en un proyecto) y **Config** (adaptar nombres/parámetros).
+- **Bootstrap** (instanciar el marco en un proyecto), **Actualizar** (traer una versión nueva del kit
+  y reconciliar la instancia) y **Config** (adaptar nombres/parámetros).
 
-Detalle operativo de los cinco: `SKILL.md`.
+Detalle operativo de los seis: `SKILL.md`.
 
 ## Arquitectura: núcleo · módulos · config
 
@@ -69,7 +70,7 @@ sección Rutas del manifiesto:
 
 | Ruta | Default | Qué es | Ciclo de vida |
 | --- | --- | --- | --- |
-| `kit` | `.stele` | El marco vendorizado: `SKILL.md`, `GUIDE.md`, `core/`, `modules/`. | **Reemplazable**: se actualiza borrando y re-vendorizando. |
+| `kit` | `.stele` | El marco vendorizado: `SKILL.md`, `GUIDE.md`, `core/`, `modules/`. | **Reemplazable**: se sustituye entero con el ritual ACTUALIZAR. |
 | `base` | `.` | Los docs instanciados (los roles) y el `history_dir`. | **Tuyo**: crece cada sesión, se versiona, no se regenera jamás. |
 | `loader` | `CLAUDE.md` | El auto-arranque en la raíz. | **Derivado**: se regenera desde el manifiesto. |
 
@@ -146,6 +147,11 @@ gestor de esa herramienta.
 - **Roles y módulos definidos por el usuario:** fuera de alcance a propósito. La config llega hasta
   nombres, toggles, presupuestos, wording, idioma y rutas; ampliar el vocabulario de roles rompería
   que el núcleo sea la fuente del mapa derivado.
+- **Marcador de versión del kit** (`VERSION`, changelog de migración): descartado. El **diff** dice
+  *qué* cambió y dónde, que es lo único accionable; un número no dice qué migrar, hay que acordarse
+  de subirlo en cada cambio del kit, y miente en cuanto alguien lo olvida — un dato derivable con un
+  segundo hogar. El ritual ACTUALIZAR garantiza que el diff exista siempre, que es lo que hace
+  innecesario el marcador.
 - **`idioma` no es traducción en runtime.** Dirige qué variante de plantilla se instancia y el
   wording de los rituales, nada más; el contenido del proyecto queda como lo escribió su autor. Los
   ids de rol y los headers `##` del manifiesto son **tokens fijos que no se traducen**, para que el
@@ -197,6 +203,11 @@ de código"; el núcleo usa el `checkpoint_trigger` genérico configurable.
   adopción (si ya hay docs, los mapea sin sobrescribir), y **hace eco del layout resuelto — las tres
   rutas — antes de escribir nada**: corregir la interpretación cuesta cero antes del scaffold y caro
   después.
+- **Actualizar** trae una versión nueva del kit y reconcilia la instancia contra ella. Lo importante
+  no es copiar archivos: es **leer el diff** entre el kit viejo y el nuevo y decidir qué implica
+  (¿roles nuevos? ¿cambió la forma del manifiesto?). De ahí la regla dura de no sobrescribir el kit
+  sin poder recuperar el viejo — sin las dos versiones no hay diff, y sin diff la actualización es a
+  ciegas. Nunca toca `base`: una plantilla nueva no reinstancia tus docs.
 - **Config** cambia nombres, módulos, toggles, presupuestos, wording, idioma y las tres rutas — sin
   romper referencias, porque regenera los derivados.
 - **Escala la ceremonia.** `effort` y la numeración `sesion-NNN` son opcionales; un proyecto pequeño

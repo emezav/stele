@@ -35,6 +35,11 @@ haz esto sin pedir más instrucciones:
 3. **Confirma** al usuario con el saludo de arranque (1-3 líneas) y explícale que a partir de la
    próxima apertura del editor el marco se activa solo.
 
+Si lo que te piden es *"actualiza stele"*, el ritual es **otro**: ACTUALIZAR, en `.stele/SKILL.md`.
+No hay archivo de versión que consultar — lo que manda es el **diff** entre el kit que ya tienes y el
+nuevo. Por eso la regla dura es no sobrescribir el kit sin poder recuperar el viejo: si lo borras
+primero, te quedas sin con qué comparar.
+
 No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md`, y el *por qué* y
 las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
 
@@ -54,8 +59,8 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
 
 ## Qué contiene esta carpeta
 
-- **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · config*, el
-  mapa de documentación (cómo se genera) y la convención de tokens. Léelo primero.
+- **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · actualizar ·
+  config*, el mapa de documentación (cómo se genera) y la convención de tokens. Léelo primero.
 - **`GUIDE.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
   Referencia; se lee una vez.
 - **`core/`** — `roles.md` (roles del núcleo, fuente del mapa derivado) + `templates/` (plantillas
@@ -71,7 +76,8 @@ nombres del manifiesto (los docs instanciados quedan con nombres concretos y leg
 
 El marco es **markdown puro** (sin runtime): se instala **vendorizando** una copia del kit dentro
 del proyecto, en la ruta `kit` (default `.stele/`). La copia es la fuente para el agente; para
-actualizar, se re-vendoriza — por eso **tus docs (`base`) nunca pueden vivir dentro del kit**.
+actualizar se sustituye entera con el ritual **ACTUALIZAR** (que primero saca el diff y luego
+reconcilia tu instancia) — por eso **tus docs (`base`) nunca pueden vivir dentro del kit**.
 
 1. Trae el kit a `<proyecto>/.stele/` (elige uno):
 

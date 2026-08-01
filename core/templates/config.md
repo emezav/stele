@@ -28,9 +28,9 @@
 ## Rutas
 
 > Tres rutas independientes, todas relativas a la raíz del proyecto y sin `/` final. `kit` es
-> maquinaria **reemplazable** (se actualiza borrándola y re-vendorizando); `base` son tus docs,
-> versionados. **Invariante duro: `base` nunca puede quedar dentro de `kit`.** Ver
-> `{{kit}}/GUIDE.md` → "Las tres rutas".
+> maquinaria **reemplazable** (se sustituye entera con el ritual ACTUALIZAR); `base` son tus docs,
+> versionados, y nunca se tocan al actualizar. **Invariante duro: `base` nunca puede quedar dentro de
+> `kit`.** Ver `{{kit}}/GUIDE.md` → "Las tres rutas".
 
 | Ruta | Valor | Qué es |
 | --- | --- | --- |
