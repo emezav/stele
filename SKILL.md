@@ -162,9 +162,13 @@ porque **un commit no puede contener su propio hash**:
 - **No anotes el hash del commit que lleva el cierre.** Es información derivable, y por eso no se
   guarda: `git log --diff-filter=A -- {history_dir}{session}` devuelve el commit exacto de esa
   sesión. Guardar lo que se puede derivar es duplicar un hogar.
-- **Nunca `git commit --amend`** para plegar los docs dentro del commit del trabajo: el amend
-  **cambia el hash**, así que cualquier hash ya anotado queda apuntando a un commit inexistente.
-  Falla en silencio; es peor que el problema que intenta resolver.
+- **`--amend` solo mientras el commit sea privado y nadie lo cite.** El amend **cambia el hash**, así
+  que un hash ya anotado queda apuntando a un commit inexistente, y falla en silencio. Dos
+  condiciones, ambas comprobables antes de tocar nada: (a) **no se ha pusheado** y (b) **ningún doc
+  anota su hash**. Si se cumplen —el caso típico es arreglar el mensaje del commit que acabas de
+  hacer— el amend es seguro y no hay que dar rodeos. Si no se cumplen, no lo es: en particular,
+  **nunca lo uses para plegar los docs de cierre dentro de un commit de trabajo cuyo hash ya
+  anotaste**, que es el caso que originó la regla.
 - Los hashes de commits **anteriores** de la sesión sí se anotan: existen y son estables.
 - Si el trabajo ya se pusheó a mitad de sesión, el cierre va en un commit posterior. Es inevitable
   y está bien — ahí sí puede anotar el hash del trabajo. Que sea una decisión, no un accidente.

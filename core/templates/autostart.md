@@ -17,7 +17,7 @@ importado abajo. No hace falta pedir "lee {{entry}}".
   stele se activó.) *(Se omite si `session_greeting = off`.)*
 - Si `{{handover}}` (abajo) está en `EN_PROGRESO`, respeta su alcance antes de editar.
 - **{{checkpoint_trigger}}**, deja `{{handover}}` en `EN_PROGRESO` con objetivo + alcance (regla
-  dura; exención: cambios solo de documentación).
+  dura; exención: editar el **contenido** de un doc — mover o renombrar docs **no** exime).
 - **Al cerrar**, sigue el checklist de cierre de `{{protocol}}` (sesión-NNN, {{index}}, [{{effort}}],
   reescribir {{state}}, decisiones a su hogar, refrescar {{handover}}).
 - **Un hogar por dato:** consulta el *mapa de documentación* en `{{entry}}` (se genera del manifiesto).
