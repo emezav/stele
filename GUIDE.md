@@ -72,7 +72,7 @@ sección Rutas del manifiesto:
 | --- | --- | --- | --- |
 | `kit` | `.stele` | El marco vendorizado: `SKILL.md`, `GUIDE.md`, `core/`, `modules/`. | **Reemplazable**: se sustituye entero con el ritual ACTUALIZAR. |
 | `base` | `.` | Los docs instanciados (los roles) y el `history_dir`. | **Tuyo**: crece cada sesión, se versiona, no se regenera jamás. |
-| `loader` | `CLAUDE.md` | El auto-arranque en la raíz. | **Derivado**: se regenera desde el manifiesto. |
+| `loader` | `CLAUDE.md` | El auto-arranque en la raíz. | **Derivado por bloque**: se regenera el bloque del marco, no el archivo. |
 
 Por qué son tres parámetros y no uno: **`kit` y `base` tienen ciclos de vida opuestos**. Uno se tira
 y se reemplaza entero al actualizar; el otro es el trabajo acumulado del proyecto y no puede perderse
@@ -89,8 +89,17 @@ sobre el código, y no se confunden con él.
 
 `loader` es tercero porque el nombre del archivo de auto-arranque depende del **agente**, no del
 proyecto: `CLAUDE.md` para Claude Code, `AGENTS.md` para otros, `.github/copilot-instructions.md`
-para Copilot. Es la única pieza acoplada a una herramienta concreta, y aislarla mantiene agnóstico
-todo lo demás.
+para Copilot. Aislarlo mantiene agnóstico casi todo lo demás — con una excepción que conviene saber:
+si el `entry` conserva su nombre por defecto `AGENTS.md`, **también** hay agentes que lo auto-cargan
+desde la raíz. Entonces mover `base` fuera de la raíz les quita el `entry` sin romper nada visible,
+porque el loader sigue funcionando. Es un fallo silencioso; ver el aviso de `SKILL.md` → "Layouts con
+nombre".
+
+**El loader es derivado en parte, no desechable.** Lo que genera el marco es el **bloque** entre
+`STELE:INICIO` y `STELE:FIN`; el **archivo** puede ser compartido, porque muchos equipos ya tenían un
+`CLAUDE.md` o un `AGENTS.md` escrito a mano antes de adoptar stele. Por eso, si existe, se modifica y
+no se crea de cero: es la misma regla de adopción que rige para cualquier doc de rol. La distinción
+no es teórica — tratarlo como puro derivado destruyó el `CLAUDE.md` de un proyecto real.
 
 **Dos anclas fijas en la raíz** que no siguen a `base`: el `loader` y el manifiesto
 `stele.config.md`.

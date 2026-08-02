@@ -1,8 +1,15 @@
 # Auto-arranque de la stele ({{loader}})
 
-<!-- PLANTILLA. Bootstrap/`config` la resuelven a nombres concretos y regeneran el bloque
-     auto-importado desde la lista de arranque del manifiesto. NO editar el bloque a mano.
-     Se escribe SIEMPRE en la raíz del proyecto, con el nombre de la ruta `loader`. -->
+<!-- PLANTILLA. Bootstrap/`config` la resuelven a nombres concretos. Se escribe SIEMPRE en la raíz
+     del proyecto, con el nombre de la ruta `loader`.
+
+     REGLA DURA — si el archivo YA EXISTE, se MODIFICA, no se crea de cero: su contenido es del
+     usuario y se conserva íntegro. Todo lo que produce el marco va entre las marcas
+     STELE:INICIO / STELE:FIN de abajo, y **solo eso** se reescribe al regenerar. Sobrescribir el
+     archivo entero ya destruyó el `CLAUDE.md` de un proyecto real. -->
+
+<!-- STELE:INICIO — bloque GENERADO. No editar a mano: se reescribe entero en `config` y al
+     actualizar. Lo que esté FUERA de estas marcas es del proyecto y el marco no lo toca. -->
 
 Este proyecto usa el marco **stele** (`{{kit}}/`). El agente carga este archivo al iniciar cada
 sesión, así que el ritual de apertura se ejecuta **automáticamente**: el contexto mínimo viene
@@ -36,3 +43,5 @@ importado abajo. No hace falta pedir "lee {{entry}}".
 @MEMORY.md
 @HISTORY/LATEST.md
 @HISTORY/HANDOVER.md
+
+<!-- STELE:FIN -->

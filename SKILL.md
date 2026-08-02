@@ -73,7 +73,7 @@ compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila
 | --- | --- | --- | --- |
 | `kit` | `.stele` | El marco vendorizado. Maquinaria **reemplazable**. | Ritual ACTUALIZAR |
 | `base` | `.` | Los docs instanciados (roles). Contenido **del proyecto**. | El agente, cada sesión |
-| `loader` | `CLAUDE.md` | Auto-arranque, siempre en la raíz. Derivado GENERADO. | `bootstrap`/`config` |
+| `loader` | `CLAUDE.md` | Auto-arranque, siempre en la raíz. GENERADO **por bloque**. | `bootstrap`/`config` |
 
 **Invariantes** (validar en `bootstrap` y en `config`, antes de escribir):
 
@@ -89,6 +89,15 @@ compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila
 4. El `loader` vive en la raíz y no puede colisionar con el nombre de un rol resuelto bajo `base`
    (con `base = .` y `loader = AGENTS.md` chocaría con `entry`). Colisión = abortar.
 5. `stele.config.md` y el `loader` son las **dos anclas fijas de la raíz**: no siguen a `base`.
+6. **Si el archivo del `loader` ya existe, se MODIFICA — nunca se crea de cero.** Su contenido es del
+   usuario: se conserva íntegro y el bloque del marco se **inserta** entre las marcas
+   `STELE:INICIO` / `STELE:FIN`. Solo ese bloque se reescribe después. Sobrescribir el archivo entero
+   destruyó el `CLAUDE.md` de un proyecto real. Vale igual en `bootstrap` y en `config`.
+
+**El loader es derivado en parte, no desechable.** Lo generado es el bloque; el **archivo** puede ser
+compartido con contenido del proyecto — muchos equipos ya tenían un `CLAUDE.md` o un `AGENTS.md`
+escrito a mano antes de adoptar el marco. Se le aplica la misma regla de adopción que a cualquier doc
+de rol: mapear y añadir, jamás reemplazar.
 
 ### Layouts con nombre (vocabulario, no parámetro)
 
@@ -106,6 +115,12 @@ desincroniza en cuanto alguien mueva una ruta.
 
 Cualquier otra combinación es legal y se nombra `personalizado` (incluido el modo auto-hospedado,
 `kit = .`). El `loader` **no** forma parte del layout: depende del agente, no del proyecto.
+
+**Aviso antes de elegir `agrupado` o `docs`:** si el `entry` se llama `AGENTS.md`, hay agentes
+(Codex y otros) que lo **auto-cargan desde la raíz** igual que Claude Code carga `CLAUDE.md`. Sacarlo
+de la raíz con `base != .` no rompe nada visible —el loader sigue funcionando— pero esos agentes
+dejan de leer el `entry` por su cuenta. Falla en silencio. Si trabajas con alguno de ellos, o
+`base = .`, o renombra el `entry` a algo que no sea `AGENTS.md`.
 
 Se usan de tres maneras:
 
@@ -188,7 +203,8 @@ en el gestor de la propia herramienta, nunca en un doc del marco.
 sobrescribir contenido; solo generar lo que falte). Pasos:
 1. Elegir `idioma`/`módulos`/`persistencia` y las **tres rutas** (`kit`/`base`/`loader`) con
    defaults sensatos. Auto-detectar: módulo software por `Cargo.toml`/`package.json`/`src/`;
-   `persistencia = git` si hay `.git`, si no `ninguna` (avisando de la consecuencia).
+   `persistencia = git` si hay `.git` **en la raíz del proyecto** — no vale uno anidado en un
+   subdirectorio, que deja la raíz sin versionar —, si no `ninguna` (avisando de la consecuencia).
    Zero-question posible.
    **Desambiguación obligatoria:** una ruta suelta en la petición del usuario ("usa stele aquí, base
    stele") se interpreta como **`base`** — es lo que al usuario le importa; `kit` solo cambia si dice
@@ -215,7 +231,10 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
 7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío.
 8. Generar derivados: loader de auto-arranque en la raíz, con el nombre de la ruta `loader`
-   (plantilla `autostart.md`) + mapa-doc en `entry`.
+   (plantilla `autostart.md`) + mapa-doc en `entry`. **Si el loader ya existe** (`CLAUDE.md`,
+   `AGENTS.md`… escritos a mano antes de adoptar el marco), **léelo primero e inserta** el bloque
+   `STELE:INICIO`/`STELE:FIN` conservando todo lo demás — invariante 6. Igual que en adopción con
+   cualquier otro doc: nunca reemplazar contenido que no escribiste.
 9. Validar (ver ritual CONFIG, fase 5).
 10. Confirmar + activar: reabrir el editor → el loader se auto-carga.
 
@@ -289,8 +308,12 @@ de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el 
   instanciados (`entry`, `protocol`, `loader`). No toca ningún doc de contenido.
 - Mover `base`: mover los docs de rol (y `history_dir` completo, con su historial) y regenerar el
   loader, cuyos `@import` son relativos a la raíz. El historial se mueve entero, no se reescribe.
-- Cambiar `loader`: generar el nuevo y **borrar el viejo** (dos loaders compitiendo es peor que
-  ninguno). Verificar antes que el nombre nuevo no colisiona con un rol bajo `base`.
+- Cambiar `loader`: insertar el bloque en el archivo nuevo (creándolo o modificándolo, invariante 6)
+  y **retirar el bloque del viejo** — no borrar el archivo viejo a ciegas: puede tener contenido del
+  usuario. Si al quitar el bloque no queda nada más, entonces sí se borra; si queda algo, se conserva
+  y se avisa. Dos loaders **activos** compitiendo es peor que ninguno, pero eso lo resuelve retirar
+  el bloque, no destruir el archivo. Verificar antes que el nombre nuevo no colisiona con un rol bajo
+  `base`.
 
 ## Operaciones de bajo coste (preferir siempre)
 - Apéndice de una fila → `printf '...' >> archivo` (sin `Read` previo).
