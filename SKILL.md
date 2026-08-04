@@ -5,9 +5,10 @@ description: >
   través de muchas sesiones sin perder contexto y con coste de tokens acotado. Sirve para software
   y para trabajo no-software (materiales, planeación, investigación). Úsalo al INICIAR una sesión
   (ponerse al día), al CERRAR (registro durable), antes de un cambio interrumpible (checkpoint),
-  para INICIALIZAR el marco en un proyecto (bootstrap), para ACTUALIZARLO a una versión nueva del kit
-  (actualizar), o para ADAPTARLO (config: nombres, módulos, parámetros). Núcleo agnóstico + módulos
-  (software) + config (stele.config.md).
+  para AUDITAR la documentación (verificar que lo escrito sigue siendo cierto), para INICIALIZAR el
+  marco en un proyecto (bootstrap), para ACTUALIZARLO a una versión nueva del kit (actualizar), o
+  para ADAPTARLO (config: nombres, módulos, parámetros). Núcleo agnóstico + módulos (software) +
+  config (stele.config.md).
 ---
 
 # stele — rituales de sesión
@@ -162,7 +163,10 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
    `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos.
 2. **`index`**: una fila con append de Bash — `printf '| N | … |\n' >> {history_dir}{index}`.
 3. **`effort`** (si `effort_log`): una fila con `printf >>`.
-4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla (nunca prepend).
+4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla (nunca prepend). Si `audit_log`
+   está activo y desde la última fila de `audit` han pasado más de `audit_every_n_sessions`
+   sesiones, anota **"auditoría vencida (última: sesión X)"** en *Pendientes operativos*. Es una
+   comparación de dos números, no una verificación: cerrar no audita.
 5. **Decisiones que perduran** → su hogar (mapa): producto/feature → `specs`; principio/decisión
    grande → `charter`; patrón de código → `architecture`; gotcha → `gotchas`. Nunca solo en historial.
 6. **`handover`**: si cerró completo → `SIN_TRABAJO_ACTIVO` **apuntando a la sesión que cierras
@@ -197,6 +201,167 @@ con honestidad: si falla, dilo y **no des el cierre por persistido**. El comando
 secretos** — el manifiesto es markdown versionado y legible. Las credenciales viven en el entorno o
 en el gestor de la propia herramienta, nunca en un doc del marco.
 
+## Ritual: AUDITAR (verificar que lo escrito sigue siendo cierto)
+
+Se dispara con "audita la documentación" / "corre el audit". **Se invoca; nunca corre solo** —
+auditar es caro por naturaleza y choca de frente con la regla madre *lee poco al arrancar*.
+
+Los otros seis rituales **escriben** documentación (abrir, checkpoint, cerrar) o mantienen el
+**marco** (bootstrap, actualizar, config). Ninguno re-verifica lo ya escrito: `abrir` lee poco a
+propósito, `cerrar` escribe el estado nuevo sin releer el viejo, y `config`/`actualizar` tocan el
+manifiesto y la maquinaria, no el contenido de los docs. Sin AUDITAR la documentación deriva en
+silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el dato.
+
+**Dos reglas duras:**
+
+- **El historial es inmutable.** AUDITAR **nunca** reescribe `session` ni `index`. Un registro puede
+  ser la *fuente* que delata el drift, y puede contener algo que nunca llegó a su hogar: en los dos
+  casos se corrige **el hogar**, no el registro.
+- **Nada se reescribe en silencio.** Los errores se aplican tras confirmación en bloque; las
+  preferencias se preguntan una a una.
+
+### Alcance (qué se relee, y qué no)
+
+Releer todo en cada auditoría no escala. Default = **incremental**:
+
+| Entra | Por qué |
+| --- | --- |
+| Los docs de la **lista de arranque** | Son pocos, y son los que más caro salen si mienten: se leen sin filtro en cada sesión |
+| Los **hogares** que las sesiones desde la última auditoría debieron tocar | Ahí aparece la clase 7, la invisible |
+| Lo que esas sesiones declaran en "Archivos tocados" | Lo tocado hace poco es lo que más contradice a lo viejo |
+
+El rango de sesiones sale de la última fila de `audit` (desde) y de `index` (hasta). Sin `audit_log`
+no hay desde dónde contar y toda auditoría es completa. **`audit completo`** se pide a mano: primera
+auditoría, después de una migración estructural, o cuando el usuario lo quiera.
+
+Los `session` y el `index` **no son objeto de corrección**, solo fuente contra la que contrastar.
+
+### Las ocho clases de drift
+
+| # | Clase | Qué es |
+| --- | --- | --- |
+| 1 | Afirmación caducada | Era cierta al escribirse, dejó de serlo, y se sigue leyendo como hecho |
+| 2 | Estado obsoleto | Hitos o fases que declaran un estado superado hace sesiones |
+| 3 | Criterio refutado | Una sesión posterior demostró que el criterio falla; el doc lo sigue pidiendo igual |
+| 4 | Índice desincronizado | El índice no menciona secciones que se añadieron después al detalle |
+| 5 | Metadato incorrecto | Una cabecera atribuye a la sesión N algo hecho en la N+2, contra otra tabla del mismo doc |
+| 6 | Bloqueo obsoleto | "Bloquea la fase X" cuando X ya arrancó, e incluso respondió parte de lo que bloqueaba |
+| 7 | **Hallazgo sin hogar** | Conocimiento que se quedó en el registro de sesión o en un doc de detalle y **nunca se promovió** al doc que se lee al abrir |
+| 8 | Crecimiento sin revisión | Un doc pasó de legible y nadie decidió si partirlo |
+
+Las ocho son agnósticas de dominio, y por eso el ritual es del núcleo. Un módulo activo aporta
+**detectores atados a sus roles** (software: el par `specs`↔`specs_dir` y los hogares
+`gotchas`/`specs`/`architecture` — ver `modules/software/module.md`).
+
+**La clase 7 es la que justifica el ritual.** Las otras siete se ven leyendo el doc con atención;
+esta no se ve en **ningún** doc, porque el defecto es una **ausencia**: el dato existe, pero no donde
+se lee. Solo aparece contrastando dos sitios. Es la regla "un hogar por dato" fallando en silencio.
+
+### Detectores (sin esto, el ritual es decorativo)
+
+Un audit que devuelve "todo se ve bien" no ha auditado. Barre primero, verifica después:
+
+```bash
+# clases 1 y 3 — afirmaciones absolutas y criterios que quizá ya no valen
+grep -rniE "siempre|nunca|todos los|todas las|ningún|en ningún caso|garantiza|basta con" {base} --include="*.md"
+
+# clases 2 y 6 — marcadores de estado y bloqueos
+grep -rniE "pendiente|por confirmar|validado en|en curso|en progreso|provisional|bloquea" {base} --include="*.md"
+
+# clase 3 — vocabulario de refutación en las sesiones del rango (fuente, no objeto)
+grep -rniE "en realidad|result[oó]|falso negativo|falso positivo|no funciona|descartad|corregi" {history_dir}
+
+# clase 5 — metadatos de sesión en cabeceras, para contrastar contra {index}
+grep -rniE "sesi[oó]n [0-9]+" {base} --include="*.md"
+
+# clase 4 — secciones reales del detalle, para contrastar con su índice
+grep -n "^## " <doc de detalle>
+
+# clase 8 — tamaño contra presupuesto
+wc -l <docs vivos>
+```
+
+**Separa la afirmación de la regla.** El barrido de absolutos lo primero que encuentra son **reglas**
+("nunca se sobrescribe el loader", "el historial es inmutable"), y una regla **no caduca**: se deroga,
+que es otra cosa y no la decide una auditoría. Solo caducan las **afirmaciones sobre el mundo** — lo
+que el sistema hace, lo que una muestra contiene, en qué estado está una fase. Descartar las reglas
+en el primer vistazo es lo que baja de decenas a unos pocos los candidatos que hay que verificar.
+
+**El vocabulario es lo único atado al idioma.** Estas listas están en el `idioma` del kit; un
+proyecto en otro idioma las traduce y guarda su versión en `protocol` (*Acuerdos de auditoría*), no
+en el manifiesto: son una lista larga y viva, no un parámetro.
+
+### Fases
+
+1. **Delimitar** el alcance y decirlo en una línea *antes* de leer nada: rango de sesiones y cuántos
+   docs entran. Si sale caro, el momento de acotar es ese, no después.
+2. **Barrer** con los detectores. Lo que sale es un **candidato**, no un hallazgo.
+3. **Verificar** cada candidato. Aquí se va el grueso del coste. Un hallazgo entra al informe **solo
+   con evidencia**: dos punteros que se contradicen (`archivo:línea` de la afirmación + el
+   `archivo:línea`, comando o hecho que la desmiente). Sin evidencia es **sospecha** — va aparte y no
+   se aplica.
+4. **Informar** con la forma fija de abajo, separando errores de preferencias.
+5. **Aplicar** tras confirmación: los errores en bloque, las preferencias una a una.
+6. **Segunda pasada** (obligatoria, ver abajo).
+7. **Registrar**: fila en `audit`, acuerdos a su hogar, y lo aplicado contado en el `session` de la
+   sesión que auditó. Lo que perdura va a su hogar, como en cualquier cierre.
+
+### Segunda pasada (obligatoria)
+
+Después de aplicar, **re-verifica lo tocado**. No es una formalidad: en la auditoría real que originó
+este ritual, **dos de los ocho hallazgos —incluida la clase 7— aparecieron verificando los arreglos
+de los cinco primeros**, no en el barrido inicial. Arreglar un doc cambia lo que otro debería decir.
+
+Alcance de la segunda pasada = **solo lo tocado** y sus hogares. Si aparece algo nuevo, pasa por las
+fases 3-5 y se repite; se termina cuando una pasada no produce nada nuevo. Cada pasada es más barata
+que la anterior porque su alcance se estrecha.
+
+### Informe (forma fija)
+
+```text
+AUDIT — sesiones 10-24 · 6 docs · alcance incremental
+
+ERRORES (contradicción verificable)
+1. [clase 2] LATEST.md:14 declara la fase 3 "validada en pruebas locales"
+   contradice: INDEX.md:31 — la sesión 19 la desplegó  ->  corregir LATEST.md
+2. [clase 7] tres gotchas del sistema externo viven solo en las sesiones 17, 19 y 22
+   contradice: MEMORY.md no tiene ninguno  ->  promover a MEMORY.md
+
+PREFERENCIAS (decide el usuario)
+3. [clase 8] REQUIREMENTS.md: 786 líneas, 13 secciones  ->  partir, o dejar con umbral
+
+SOSPECHAS (sin evidencia, no se aplican)
+- ARCHITECTURE.md:52 "siempre" suena absoluto; no encontré nada que lo desmienta
+```
+
+**Errores contra preferencias** — la frontera es una pregunta: *¿se decide contrastando dos fuentes,
+o consultando el gusto del usuario?* Lo primero es error (hay un hecho que manda); lo segundo es
+preferencia. Mezclarlos obliga a revisar el informe entero con la misma desconfianza, y entonces no
+ahorra nada.
+
+### Acuerdos: cuando el usuario decide no cambiar
+
+Un "déjalo así" **se registra con su umbral**, que es lo que lo convierte en decisión en vez de en
+aplazamiento. Si no, se rediscute en cada auditoría:
+
+- **Excepción de contenido** (una frase absoluta que sí es absoluta, un estado que se mantiene a
+  propósito) → sección *Acuerdos de auditoría* de `protocol`, con fecha y umbral. Se **cura**: al
+  cruzarse el umbral, el acuerdo se revisita y se reescribe o se borra.
+- **Tope de tamaño de un rol** (clase 8) → eso no es un acuerdo, es un **presupuesto**: va a la
+  sección Presupuestos del manifiesto con el ritual `config` ("déjalo entero; revisar si pasa de
+  ~1000 líneas" = `specs = 1000`). Ya hay un hogar para ese dato; crear un segundo lo desincroniza.
+
+### Cadencia
+
+Manual, siempre. `audit_every_n_sessions` (Features) **no dispara nada**: es el umbral con el que el
+cierre decide si anota "auditoría vencida" en los pendientes de `state` (CERRAR, paso 4). Avisar
+cuesta comparar dos números; auditar cuesta lo que cuesta, y lo decide el usuario. `—` = sin aviso.
+
+**Coste de referencia:** la auditoría manual que originó el ritual costó ~1-1,5 horas-ingeniero sobre
+~15 docs, con 8 hallazgos (7 errores, 1 preferencia) y la mayor parte del tiempo en **verificar**, no
+en encontrar. Si tu barrido produce cincuenta candidatos, el problema es el barrido: acota el alcance
+antes de ponerte a verificarlos.
+
 ## Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
@@ -229,7 +394,8 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    el único momento en que se sabe con certeza, y sin ella ACTUALIZAR no puede correr después.
 6. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
-7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío.
+7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío. **`audit` no se
+   instancia**: lo crea la primera auditoría, y su ausencia es el dato (nunca se auditó).
 8. Generar derivados: loader de auto-arranque en la raíz, con el nombre de la ruta `loader`
    (plantilla `autostart.md`) + mapa-doc en `entry`. **Si el loader ya existe** (`CLAUDE.md`,
    `AGENTS.md`… escritos a mano antes de adoptar el marco), **léelo primero e inserta** el bloque

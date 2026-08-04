@@ -67,6 +67,13 @@ se escribe antes de commitear y quedaría obsoleto al minuto siguiente.
 ingeniero senior el mismo trabajo con calidad de producción (investigación + implementación +
 validación + docs), en rango. Detalle por funcionalidad en el `{{session}}`.
 
+### `{{audit}}` — tabla append-only (OPCIONAL, feature `audit_log`)
+
+`| Audit | Fecha | Sesiones | Alcance | Hallazgos | Desenlace |`. Una fila por auditoría (ritual
+AUDITAR). **Lo crea la primera auditoría, no el bootstrap.** `Sesiones` es el rango cubierto y es lo
+que acota el alcance de la siguiente. Los hallazgos no se copian aquí: el detalle vive en el
+`{{session}}` de la sesión que auditó, y lo que perdura, en el hogar que corrigió.
+
 ### `{{session}}` — uno por sesión
 
 Detalle completo: qué se hizo, decisiones, archivos tocados, verificación, notas para retomar,
@@ -91,6 +98,23 @@ por feature de diseño extenso; si supera ~600-800 líneas, dividir en sub-temas
 
 Hogar único de gotchas de código. Se edita incrementalmente pero se **cura** (se poda lo
 obsoleto). Una sección de subsistema que supera ~150-200 líneas se extrae a un tema de `{{specs}}`.
+
+## Acuerdos de auditoría
+
+Lo que el ritual AUDITAR señaló y el usuario decidió **no** cambiar. Se registra aquí para no
+rediscutirlo en cada auditoría, y **siempre con umbral** — eso es lo que lo hace una decisión y no un
+aplazamiento. Sección **curada**: al cruzarse el umbral, el acuerdo se revisita y se reescribe o se
+borra.
+
+| Fecha | Doc | Acuerdo | Umbral de revisión |
+| --- | --- | --- | --- |
+
+Un **tope de tamaño** de un rol no va aquí: es un **presupuesto** y su hogar es el manifiesto
+(sección Presupuestos, con el ritual `config`). Aquí van las excepciones de **contenido**.
+
+Si el proyecto no está en el idioma del kit, su versión traducida del **vocabulario de detectores**
+(las listas de `grep` de `{{kit}}/SKILL.md` → AUDITAR) también vive aquí: es una lista larga y viva,
+no un parámetro del manifiesto.
 
 ## Checklist de inicio / cierre
 

@@ -68,6 +68,7 @@ según `persistencia`.
 | dónde estamos / próximo paso | `{{state}}` |
 | trabajo a medias (checkpoint) | `{{handover}}` |
 | qué pasó y cuándo | `{{index}}` → `{{session}}` |
+| cuándo se auditó la documentación y qué se decidió | `{{audit}}` |
 | trampas de código | `{{gotchas}}` |
 | specs/contratos/modelo de datos/decisiones por feature | `{{specs}}` |
 | patrones y mapa del código | `{{architecture}}` |

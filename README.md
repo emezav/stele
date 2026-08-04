@@ -59,13 +59,14 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
 
 ## Qué contiene esta carpeta
 
-- **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · actualizar ·
-  config*, el mapa de documentación (cómo se genera) y la convención de tokens. Léelo primero.
+- **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · auditar ·
+  actualizar · config*, el mapa de documentación (cómo se genera) y la convención de tokens. Léelo
+  primero.
 - **`GUIDE.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
   Referencia; se lee una vez.
 - **`core/`** — `roles.md` (roles del núcleo, fuente del mapa derivado) + `templates/` (plantillas
-  por rol: `entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`, `autostart`,
-  `config`).
+  por rol: `entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`, `audit`,
+  `autostart`, `config`).
 - **`modules/software/`** — `module.md` (manifiesto), `roles.md`, `conventions.md` y `templates/`
   (`specs`, `architecture`, `gotchas`, `effort`).
 

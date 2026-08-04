@@ -58,6 +58,7 @@
 | index | INDEX.md | núcleo |
 | history_dir | HISTORY/ | núcleo |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | núcleo |
+| audit | AUDIT.md | núcleo |
 | gotchas | MEMORY.md | software |
 | specs | REQUIREMENTS.md | software |
 | specs_dir | temas/ | software |
@@ -71,6 +72,13 @@
 | effort_log | on |
 | effort_unit | horas-ingeniero |
 | session_greeting | on |
+| audit_log | on |
+| audit_every_n_sessions | 20 |
+
+> `audit_every_n_sessions` **no dispara nada**: es el umbral con el que el cierre decide si anota
+> "auditoría vencida" en los pendientes de `{{state}}`. Auditar sigue siendo un acto explícito del
+> usuario (ver `{{kit}}/SKILL.md` → AUDITAR). `—` = sin recordatorio. Con `audit_log = off` no hay
+> desde cuándo contar y el recordatorio no aplica.
 
 ## Presupuestos
 

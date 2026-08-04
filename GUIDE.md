@@ -27,14 +27,30 @@ entero al arrancar cada sesión.
 6. **Curación.** Los documentos vivos se **podan**: una entrada obsoleta se borra (su rastro queda
    en el historial). No se acumula.
 
-## Los tres rituales base + tres de ciclo de vida
+## Los tres rituales base + tres de ciclo de vida + uno de mantenimiento
 
 - **Abrir** (ponerse al día, barato) · **Checkpoint** (dejar el salto en curso a salvo antes de un
   cambio interrumpible) · **Cerrar** (dejar registro durable).
 - **Bootstrap** (instanciar el marco en un proyecto), **Actualizar** (traer una versión nueva del kit
   y reconciliar la instancia) y **Config** (adaptar nombres/parámetros).
+- **Auditar** (verificar que lo escrito sigue siendo cierto).
 
-Detalle operativo de los seis: `SKILL.md`.
+Detalle operativo de los siete: `SKILL.md`.
+
+**Por qué el séptimo existe.** Los seis primeros se reparten en dos grupos —los que **escriben**
+documentación y los que mantienen el **marco**— y ninguno de los dos re-verifica el **contenido** ya
+escrito: `abrir` lee poco a propósito, `cerrar` escribe el estado nuevo sin releer el viejo, y
+`config`/`actualizar` tocan el manifiesto y la maquinaria, no lo que dicen los docs. El hueco solo se
+nota con el uso prolongado, y lo que crece dentro es **drift**: afirmaciones que fueron ciertas y
+dejaron de serlo. **Un dato obsoleto se lee como hecho**, así que documentación derivada es peor que
+documentación ausente — la ausencia se nota, el drift no.
+
+Auditar es, en la práctica, el ritual de dos pilares que hasta ahora solo eran buenas intenciones: la
+**curación** (pilar 6) y **un hogar por dato** (pilar 3). El fallo más caro que encuentra no es una
+frase falsa sino una **ausencia**: conocimiento que se quedó en un registro de sesión y nunca se
+promovió al doc que se lee al abrir. Eso no se ve leyendo ningún documento; solo aparece contrastando
+dos. Por eso no puede ser un efecto secundario de otro ritual, y por eso **se invoca**: auditar es
+caro por naturaleza, y meterlo en `abrir` rompería el pilar 4 (arranque barato).
 
 ## Arquitectura: núcleo · módulos · config
 
@@ -201,6 +217,10 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
   operaciones de bajo coste). Referencia de formato.
 - **`state`/`handover`/`index`/`session` — el historial** (`history_dir`, HISTORY/): estado que se
   sobrescribe, checkpoint del salto en curso, índice y detalle por sesión (se leen con grep).
+- **`audit` (AUDIT.md) — la serie de auditorías**, también en `history_dir` y append-only. Opcional
+  (feature `audit_log`) y **no se instancia en bootstrap**: lo crea la primera auditoría, y su
+  ausencia significa que el proyecto nunca se auditó. Guarda *cuándo y con qué alcance*, no los
+  hallazgos: lo que perdura de una auditoría vive en el hogar que corrigió.
 
 Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (p. ej. software:
 `gotchas`, `specs`, `architecture`, `effort`).

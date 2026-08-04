@@ -32,6 +32,7 @@ un rol: se genera en la raíz. Ver `GUIDE.md` → "Las tres rutas".
 | protocol | PROTOCOL.md | base | on-demand | — | Formatos y convenciones de documentación entre sesiones. |
 | index | INDEX.md | history | on-demand | — | Índice append-only de sesiones. Se lee con grep. |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | history | on-demand | — | Registro por sesión. Inmutable; se lee con grep. |
+| audit | AUDIT.md | history | on-demand | — | Log append-only de auditorías de documentación. Opcional (feature `audit_log`). |
 | history_dir | HISTORY/ | base | contenedor | — | Carpeta que agrupa state/handover/index/session. No es un doc. |
 
 El patrón de numeración de `session` (`{NNN}`) vive **solo aquí**: es parte de su nombre, no un
@@ -48,6 +49,7 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
 | handover | trabajo a medias, checkpoint de un salto en curso |
 | index | qué pasó y cuándo (índice de sesiones) |
 | session | el detalle de una sesión concreta |
+| audit | cuándo se auditó la documentación, qué salió y qué se decidió no cambiar |
 
 ## Notas
 
@@ -56,3 +58,6 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
 - **`triggers`** alimenta la *tabla de enrutamiento* del mapa de documentación.
 - Los módulos activos aportan más roles (ver `modules/<mód>/roles.md`); se fusionan con estos por
   `order`. Que `gotchas` sea obligatorio-de-arranque, por ejemplo, lo aporta el módulo `software`.
+- **`audit` no se instancia en `bootstrap`**: lo crea la primera auditoría que corre. Un log vacío en
+  cada adopción es peso muerto, y su **ausencia es el dato** — significa que este proyecto no se ha
+  auditado nunca. Es el único rol que nace del uso y no del scaffold.

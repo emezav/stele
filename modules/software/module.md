@@ -13,6 +13,7 @@
 | **Features** | enciende `effort_log` (opcional; el rol `effort` depende de este toggle) |
 | **Convenciones** | git/test/deploy + reglas de código (ver `conventions.md`) |
 | **Regla dura** | *HANDOVER en `EN_PROGRESO` antes de editar el PRIMER archivo de código* (ver abajo) |
+| **Detectores** | Lo que el ritual AUDITAR puede comprobar gracias a estos roles (ver abajo) |
 
 ## Regla dura: checkpoint antes del primer archivo de código
 
@@ -28,6 +29,23 @@ El núcleo agnóstico usa un `checkpoint_trigger` genérico configurable (`stele
 Wording, default *antes de un cambio interrumpible*); este módulo lo especializa a "antes del primer
 archivo de código". Un proyecto de software sin código todavía —o cuyo producto no es código— debe
 reescribirlo con el ritual `config`, o la exención de documentación deja la regla muerta.
+
+## Qué aporta al ritual AUDITAR
+
+Las ocho clases de drift son del núcleo (`SKILL.md` → AUDITAR): son propiedades de cualquier
+documentación, no de software. Lo que aporta este módulo son **detectores concretos**, porque una
+detección necesita saber *qué doc contradice a cuál*, y eso depende de los roles activos:
+
+| Clase | Detector que habilitan estos roles |
+| --- | --- |
+| 4 — índice desincronizado | Par `specs` ↔ `specs_dir`: cada tema de `specs_dir` tiene entrada en `specs`, y cada entrada apunta a un archivo que existe. Al revés también: una sección de `specs` que ya superó ~50 líneas debería estar extraída |
+| 7 — hallazgo sin hogar | Los tres hogares de promoción del módulo: trampa técnica → `gotchas`; decisión por feature → `specs`; patrón o mapa del producto → `architecture`. Por cada sesión del rango, sus *Decisiones* deben tener eco en uno de los tres |
+| 8 — crecimiento sin revisión | Los topes del módulo: sección de `gotchas` por subsistema ~150-200 líneas; tema de `specs` ~600-800 |
+| 2 y 6 — estado obsoleto y bloqueo | `specs` es donde viven las fases y las preguntas abiertas por feature, y por eso es el doc que más rápido caduca cuando el producto avanza |
+
+El hogar de promoción es lo que hace detectable la clase 7 —la más valiosa y la más invisible— y es
+justo lo que un proyecto sin este módulo no tiene: sin `gotchas` ni `specs`, un hallazgo de sesión
+solo puede promoverse a `entry` o a `charter`, y el detector se queda en eso.
 
 ## Cuando el producto no es código
 
