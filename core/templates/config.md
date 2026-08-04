@@ -73,19 +73,24 @@
 | effort_unit | horas-ingeniero |
 | session_greeting | on |
 | audit_log | on |
-| audit_every_n_sessions | 20 |
+| audit_every_n_sessions | 10 |
 
 > `audit_every_n_sessions` **no dispara nada**: es el umbral con el que el cierre decide si anota
 > "auditoría vencida" en los pendientes de `{{state}}`. Auditar sigue siendo un acto explícito del
 > usuario (ver `{{kit}}/SKILL.md` → AUDITAR). `—` = sin recordatorio. Con `audit_log = off` no hay
 > desde cuándo contar y el recordatorio no aplica.
+>
+> **El número es del usuario, no del marco.** El default 10 es un punto de partida deliberadamente
+> bajo: más vale que el aviso llegue pronto y el usuario lo aplace —cuesta una línea en `{{state}}`—
+> a que el drift se acumule sin que nadie lo mire. Súbelo o bájalo con el ritual `config` (clase
+> *feature*) según lo que cambie tu documentación por sesión.
 
 ## Presupuestos
 
 | Doc (rol) | Máx. líneas |
 | --- | --- |
 | state | 100 |
-| handover | 30 |
+| handover | 50 |
 
 ## Wording de rituales
 

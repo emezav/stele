@@ -18,10 +18,13 @@ importado abajo. No hace falta pedir "lee {{entry}}".
 **Reglas de sesión (resumen — detalle en `{{kit}}/SKILL.md`):**
 
 - **En tu PRIMERA respuesta de la sesión, empieza con 1-3 líneas de orientación** que confirmen el
-  arranque: última sesión (N + título), estado del `{{handover}}`, y próximo paso propuesto — sea
-  cual sea el primer mensaje del usuario. (No puedes emitir un mensaje antes de que el usuario
-  escriba; por eso el saludo va AL FRENTE de tu primera respuesta. Es la señal visible de que la
-  stele se activó.) *(Se omite si `session_greeting = off`.)*
+  arranque: última sesión (N + título), si quedó trabajo a medias (`{{handover}}`), y próximo paso
+  propuesto — sea cual sea el primer mensaje del usuario. (No puedes emitir un mensaje antes de que
+  el usuario escriba; por eso el saludo va AL FRENTE de tu primera respuesta. Es la señal visible de
+  que la stele se activó.) *(Se omite si `session_greeting = off`.)*
+- **Al usuario se le habla en llano, y se nombra el archivo entre paréntesis** — vale para el saludo,
+  los informes y los resúmenes, no para lo que escribes en los docs. Tabla de equivalencias en
+  `{{kit}}/SKILL.md` → "Cómo se le habla al usuario". Hablar claro nunca es suavizar el hecho.
 - Si `{{handover}}` (abajo) está en `EN_PROGRESO`, respeta su alcance antes de editar.
 - **{{checkpoint_trigger}}**, deja `{{handover}}` en `EN_PROGRESO` con objetivo + alcance (regla
   dura; exención: editar el **contenido** de un doc — mover o renombrar docs **no** exime).

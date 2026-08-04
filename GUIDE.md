@@ -79,6 +79,15 @@ también lo es (ver `modules/software/module.md`).
 en roles; la config los resuelve a nombres. Renombrar es una operación del ritual `config`, no un
 find/replace a ciegas — es segura porque el marco se auto-documenta.
 
+La misma separación, aplicada una tercera vez, resuelve un problema distinto: **el vocabulario del
+marco no es el vocabulario de la conversación**. Los ids, las claves del manifiesto y los estados se
+*parsean*, así que son contrato y no se traducen; pero el saludo, los ecos y los informes no los
+consume ninguna máquina. Ahí el agente habla **en llano y nombra el archivo** (`SKILL.md` → "Cómo se
+le habla al usuario"). No hace falta un parámetro: como el nombre del archivo va siempre entre
+paréntesis, un usuario técnico no pierde precisión y uno que no lo es no tiene que aprenderse
+`handover` para saber que quedó trabajo a medias. Lo que la regla **no** permite es suavizar el
+hecho: si algo quedó a medias o dos docs se contradicen, se dice.
+
 ## Las tres rutas: `kit` · `base` · `loader`
 
 La misma separación aplica a las **ubicaciones**. Hay tres, independientes entre sí, todas en la
@@ -197,6 +206,13 @@ gestor de esa herramienta.
   Meta): de qué remoto salió tu copia no se deduce de nada — ni del árbol, ni de un diff, ni del
   `README` vendorizado, que apuntaría al upstream aunque hubieras clonado un fork. Lo derivable no se
   guarda; lo no derivable, sí. Sin `kit_origen`, ACTUALIZAR se bloquea en el primer paso.
+- **Un toggle de vocabulario** (`tecnico` | `llano`, para decidir cómo le habla el agente al
+  usuario): descartado. La regla de hablar en llano **y nombrar el archivo** no le quita nada a un
+  usuario técnico —el nombre va igualmente entre paréntesis—, así que no hay dos públicos que
+  atender, solo uno. Un toggle habría añadido un parámetro a cada adopción, una rama más en cada
+  ritual y una forma nueva de quedar incoherente con el resto de la config, a cambio de una salida
+  algo más corta. El vocabulario **de datos** sigue intacto: eso es lo que hace innecesario el
+  parámetro.
 - **`idioma` no es traducción en runtime.** Dirige qué variante de plantilla se instancia y el
   wording de los rituales, nada más; el contenido del proyecto queda como lo escribió su autor. Los
   ids de rol y los headers `##` del manifiesto son **tokens fijos que no se traducen**, para que el
@@ -230,7 +246,7 @@ Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (
 | Rol | Tope objetivo | Al superarlo |
 | --- | --- | --- |
 | `state` | ~100 líneas | Podar; es estado, no historia |
-| `handover` | ~30 líneas | Solo lo del salto activo |
+| `handover` | ~50 líneas | Solo lo del salto activo |
 | `charter` | ~200 líneas | Extraer una decisión a un tema del módulo + link |
 | `session` | sin tope | Es histórico; se lee con grep, no al arrancar |
 

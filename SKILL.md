@@ -132,6 +132,45 @@ Se usan de tres maneras:
 - **Como entrada**: "bootstrapea con layout agrupado" o "pásame a layout docs" son peticiones
   válidas; se traducen a valores de ruta y se previsualizan como tales.
 
+## Cómo se le habla al usuario (registro llano)
+
+El marco tiene **dos vocabularios**, y solo uno es contrato:
+
+- **Vocabulario de datos** — ids de rol, claves y headers `##` del manifiesto, estados
+  (`EN_PROGRESO`), nombres de archivo. Se **parsean**: no se traducen ni se adornan, ni en los docs
+  ni en los comandos. Es la misma razón por la que `idioma` no traduce los ids.
+- **Registro de habla** — lo que **dices**: saludo, ecos, informes, preguntas, resúmenes. No lo
+  consume ninguna máquina, así que aquí no hay contrato que romper.
+
+**Regla: al usuario se le habla en llano, y se nombra el archivo.** No *"el handover está en
+`EN_PROGRESO`"*, sino *"quedó trabajo a medias, con su alcance anotado (`HANDOVER.md`)"*. El nombre
+entre paréntesis va **siempre**: es lo que le permite ir a mirarlo, y lo que hace que hablar claro no
+le quite precisión a un usuario técnico. Por eso la regla no necesita un parámetro que la active.
+
+**Suavizar no es diluir.** Se traduce el **nombre** del concepto; **nunca se esconde el hecho**. Si
+hay trabajo a medias, un doc que se contradice o una migración a medio aplicar, se dice — en llano y
+sin rodeos. Un resumen tranquilizador es peor que la jerga.
+
+| Concepto del marco | Cómo se dice |
+| --- | --- |
+| `handover` en `EN_PROGRESO` | quedó trabajo a medias, con su alcance anotado |
+| checkpoint | dejar guardado dónde vas, antes de algo que se puede interrumpir |
+| bootstrap | preparar el proyecto la primera vez |
+| `kit` / `base` / `loader` | el marco / tus documentos / el archivo que arranca al agente |
+| layout (`agrupado`, `docs`…) | dónde va cada cosa: todo el marco junto, o los docs en `docs/`… |
+| manifiesto | el archivo de configuración |
+| rol / token / derivado | (no se nombran: se dice el archivo, o "se regenera solo") |
+| instancia | tus documentos, los que ya existen en el proyecto |
+| drift | documentación que se quedó desactualizada |
+| clase 7 (AUDITAR) | un dato que se quedó en el registro de una sesión y nunca llegó a su sitio |
+| append-only | solo se añade; no se reescribe lo anterior |
+| vendorizar / actualizar el kit | traer al proyecto una copia del marco / traer la versión nueva |
+| presupuesto de un doc | el tamaño máximo que debería tener |
+
+Esto **no cambia nada de lo que se escribe**: los docs, el manifiesto y los mensajes de commit siguen
+con el vocabulario del marco. Un documento lo lee el siguiente agente; el habla la lee quien está
+delante ahora.
+
 ## Ritual: ABRIR sesión (ponerse al día, barato)
 
 Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo software):
@@ -141,7 +180,8 @@ respétalo antes de editar. Bajo demanda (grep): `charter` (1ª vez / orientaci�
 
 **Confirma el arranque (visible):** un agente **no puede hablar antes de que el usuario escriba**,
 así que la confirmación va **al frente de tu PRIMERA respuesta** — 1-3 líneas: última sesión
-(N + título), estado del `handover`, próximo paso propuesto. Sin esto, el arranque silencioso es
+(N + título), si quedó trabajo a medias, próximo paso propuesto. En llano, nombrando los archivos
+(ver "Cómo se le habla al usuario"). Sin esto, el arranque silencioso es
 indistinguible de uno que no corrió. (Se omite si `session_greeting = off`.)
 
 ## Regla dura: checkpoint antes de un cambio interrumpible
@@ -319,25 +359,30 @@ que la anterior porque su alcance se estrecha.
 ### Informe (forma fija)
 
 ```text
-AUDIT — sesiones 10-24 · 6 docs · alcance incremental
+AUDIT — sesiones 10-24 · 6 docs revisados
 
-ERRORES (contradicción verificable)
-1. [clase 2] LATEST.md:14 declara la fase 3 "validada en pruebas locales"
-   contradice: INDEX.md:31 — la sesión 19 la desplegó  ->  corregir LATEST.md
-2. [clase 7] tres gotchas del sistema externo viven solo en las sesiones 17, 19 y 22
-   contradice: MEMORY.md no tiene ninguno  ->  promover a MEMORY.md
+HAY QUE CORREGIR (algo lo contradice; manda el hecho)
+1. LATEST.md:14 da la fase 3 por "validada en pruebas locales",
+   pero la sesión 19 ya la desplegó (INDEX.md:31)   ->  corregir LATEST.md      [clase 2]
+2. Tres trampas del sistema externo se quedaron en las sesiones 17, 19 y 22
+   y nunca llegaron a MEMORY.md, que es donde se leen  ->  llevarlas a MEMORY.md [clase 7]
 
-PREFERENCIAS (decide el usuario)
-3. [clase 8] REQUIREMENTS.md: 786 líneas, 13 secciones  ->  partir, o dejar con umbral
+LO DECIDES TÚ (no hay contradicción: es criterio)
+3. REQUIREMENTS.md tiene 786 líneas y 13 secciones  ->  partirlo, o dejarlo
+   con un umbral para revisarlo más adelante                                    [clase 8]
 
-SOSPECHAS (sin evidencia, no se aplican)
-- ARCHITECTURE.md:52 "siempre" suena absoluto; no encontré nada que lo desmienta
+SIN PRUEBA (no se aplican)
+- ARCHITECTURE.md:52 dice "siempre" y suena absoluto, pero no encontré nada que lo desmienta
 ```
 
 **Errores contra preferencias** — la frontera es una pregunta: *¿se decide contrastando dos fuentes,
 o consultando el gusto del usuario?* Lo primero es error (hay un hecho que manda); lo segundo es
 preferencia. Mezclarlos obliga a revisar el informe entero con la misma desconfianza, y entonces no
 ahorra nada.
+
+El informe **va en llano** (ver "Cómo se le habla al usuario"): es la superficie donde el usuario
+decide, y "clase 7" no significa nada fuera de este archivo. El número de clase va al margen, como
+etiqueta para el agente; lo que se lee es el hecho y el arreglo propuesto.
 
 ### Acuerdos: cuando el usuario decide no cambiar
 
@@ -378,11 +423,11 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    abiertas. Nunca adivinar.
 2. **Eco del layout resuelto ANTES de escribir nada** (siempre, incluso en zero-question):
    ```text
-   layout       -> agrupado   (o "personalizado")
-   kit          -> .stele     (el marco, reemplazable)
-   base         -> stele      (tus docs, versionados)
-   loader       -> CLAUDE.md
-   persistencia -> git
+   layout       -> agrupado   (dónde va cada cosa; o "personalizado")
+   kit          -> .stele     (el marco; se reemplaza al actualizar)
+   base         -> stele      (tus documentos; no se tocan nunca)
+   loader       -> CLAUDE.md  (el archivo que arranca al agente)
+   persistencia -> git        (cómo se guarda el trabajo al cerrar)
    ```
 
    Coste cero y ataja la mala interpretación antes del scaffold, no después. Si el kit ya se
