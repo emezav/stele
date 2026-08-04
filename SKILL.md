@@ -483,8 +483,18 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 | `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados** |
 | `core/templates/config.md` | Cambió la forma del manifiesto o el contrato de parseo: la instancia puede estar desfasada (secciones nuevas, claves nuevas) |
 | `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
-| `core/templates/*` de rol, `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
+| `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: hay que **regenerar ese bloque** en el archivo real (loader y mapa-doc), conservando íntegro todo lo que quede fuera de las marcas — invariante 6 |
+| `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
 | `SKILL.md`, `GUIDE.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
+
+**Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
+en medio, y confundirlas es un fallo silencioso. Una plantilla de **contenido** produjo un doc que
+desde el primer día es del proyecto: se instancia una vez y no se vuelve a tocar jamás. Una plantilla
+**generadora** produce un **bloque** que el marco sigue siendo dueño de reescribir —el del loader y
+los dos del `entry`— y ese bloque **sí** viaja con cada actualización. Si no se regenera, el
+adoptante se queda con el kit nuevo y las reglas viejas cargándose en cada sesión, sin ninguna señal
+de que algo falta. Regenerar el bloque **nunca** autoriza a tocar lo que esté fuera de las marcas
+(invariante 6).
 
 **Si el diff muestra cambios que no vienen de arriba sino de ediciones locales del kit, para y
 avisa**: el kit no se edita dentro de un proyecto (para eso está la config), y re-vendorizar los
