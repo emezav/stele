@@ -55,6 +55,9 @@ Ver `{{kit}}/GUIDE.md` → "Roles y fronteras". Aquí solo los **formatos**.
 Al cerrar: reescribir COMPLETO con `Write`. Nunca `Edit` para prepend/rename de "anterior".
 En *Pendientes operativos* no anotes "push pendiente" por el commit que lleva este mismo cierre:
 se escribe antes de commitear y quedaría obsoleto al minuto siguiente.
+**Este archivo condiciona a la sesión siguiente**, porque lo lee al arrancar: si lo que viene es una
+prueba de comportamiento, no escribas aquí los criterios con los que la vas a evaluar — sería darle
+la respuesta.
 
 ### `{{index}}` — tabla append-only
 

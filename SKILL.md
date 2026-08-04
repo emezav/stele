@@ -171,6 +171,13 @@ Esto **no cambia nada de lo que se escribe**: los docs, el manifiesto y los mens
 con el vocabulario del marco. Un documento lo lee el siguiente agente; el habla la lee quien está
 delante ahora.
 
+**El habla va en el `idioma` del proyecto, con su ortografía natural.** Con `idioma = es` se habla
+con acentos y con `ñ`. Una regla de "solo ASCII" —del proyecto o de la configuración del agente—
+gobierna **lo que se escribe a un archivo**: ids, claves, nombres, código y cualquier texto que otra
+herramienta vaya a parsear. El habla no es eso: es prosa dirigida a una persona, y nada la parsea. El
+eje no es qué idioma, sino **a dónde va**. Un saludo sin acentos se lee como un fallo de codificación
+en la primera línea que ve el usuario — el sitio más caro para parecer roto.
+
 ## Ritual: ABRIR sesión (ponerse al día, barato)
 
 Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo software):
