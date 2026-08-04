@@ -321,6 +321,14 @@ grep -n "^## " <doc de detalle>
 wc -l <docs vivos>
 ```
 
+**Busca por palabra rara, no por frase.** Los docs llevan ajuste de línea, así que cualquier frase de
+más de tres o cuatro palabras puede tener un salto en medio — y `grep` trabaja por líneas, así que no
+la encuentra. El fallo cae del lado peligroso: el detector de la clase 7 diría que un dato **no está**
+en su hogar cuando sí está, y el "arreglo" sería duplicarlo, que es exactamente lo que el marco
+prohíbe. Elige la palabra menos común del hallazgo y busca esa; si necesitas la frase entera, usa
+`grep -Pzo` o normaliza los saltos antes de buscar. Comprobado en la auditoría 2 de este marco: `"no
+se instancia"` daba 0 resultados y `"se instancia"`, 1.
+
 **Separa la afirmación de la regla.** El barrido de absolutos lo primero que encuentra son **reglas**
 ("nunca se sobrescribe el loader", "el historial es inmutable"), y una regla **no caduca**: se deroga,
 que es otra cosa y no la decide una auditoría. Solo caducan las **afirmaciones sobre el mundo** — lo

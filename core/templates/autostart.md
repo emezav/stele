@@ -29,7 +29,8 @@ importado abajo. No hace falta pedir "lee {{entry}}".
 - **{{checkpoint_trigger}}**, deja `{{handover}}` en `EN_PROGRESO` con objetivo + alcance (regla
   dura; exención: editar el **contenido** de un doc — mover o renombrar docs **no** exime).
 - **Al cerrar**, sigue el checklist de cierre de `{{protocol}}` (sesión-NNN, {{index}}, [{{effort}}],
-  reescribir {{state}}, decisiones a su hogar, refrescar {{handover}}).
+  reescribir {{state}}, decisiones a su hogar, refrescar {{handover}}, y el **aviso de auditoría** si
+  toca).
 - **Un hogar por dato:** consulta el *mapa de documentación* en `{{entry}}` (se genera del manifiesto).
 - Lee lo demás **bajo demanda con `grep`**; no abras archivos grandes completos.
 

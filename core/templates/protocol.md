@@ -91,8 +91,13 @@ sesión que se cierra AHORA. Plantilla en `{{kit}}/core/templates/handover.md`.
 
 ### `{{specs}}` (+ temas)
 
-Índice de decisiones: cada entrada ≤3 líneas + link cuando el detalle supera ~50 líneas. Un tema
-por feature de diseño extenso; si supera ~600-800 líneas, dividir en sub-temas.
+Una sección por decisión o feature, **autocontenida**. Se lee con `grep` y por rango, nunca entera:
+lo que importa es que cada sección sea corta por sí misma, no el tamaño del archivo.
+
+**Umbral de extracción: ~50 líneas.** Por debajo, la decisión vive aquí. Por encima, se mueve a
+`{{specs_dir}}<TEMA>.md` y aquí queda un resumen de 2-3 líneas + link; si un tema supera ~600-800
+líneas, se divide en sub-temas. `{{specs_dir}}` se crea **cuando la primera decisión cruce el
+umbral**, no en el scaffold: una carpeta vacía no documenta nada.
 
 ### `{{gotchas}}`
 

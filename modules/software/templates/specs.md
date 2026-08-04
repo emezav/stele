@@ -5,9 +5,11 @@
 > sesiones. Frontera: los *principios y apuestas grandes transversales* van en `{{charter}}`;
 > los *patrones de código* en `{{architecture}}`; las *trampas de código* en `{{gotchas}}`.
 >
-> **Estructura:** el índice (`§`) lleva entradas ≤3 líneas + link. Cuando el detalle de una
-> decisión supera ~50 líneas, se extrae a un archivo de tema (p. ej. `{{specs_dir}}<TEMA>.md`) y
-> aquí queda el resumen + link. Un tema que supera ~600-800 líneas se divide en sub-temas.
+> **Estructura:** una sección `§` por decisión o feature, **autocontenida**. Este archivo se lee con
+> `grep` y por rango, nunca entero: lo que importa es que cada sección sea corta por sí misma, no el
+> tamaño del total. **Umbral de extracción: ~50 líneas** — por encima, la decisión se mueve a un
+> archivo de tema (`{{specs_dir}}<TEMA>.md`) y aquí queda un resumen de 2-3 líneas + link. Un tema
+> que supera ~600-800 líneas se divide en sub-temas.
 
 ## Cómo usar este archivo
 
@@ -17,11 +19,13 @@
 
 ## § Índice de decisiones
 
-ADAPTAR: una entrada por decisión/feature, ≤3 líneas, con link al tema cuando aplique.
+ADAPTAR: una sección por decisión/feature, autocontenida y por debajo de ~50 líneas; con link al
+tema cuando la haya superado.
 
 ### §1 — <Área / feature>
 
-- **<Decisión / contrato / regla>** — resumen ≤3 líneas. Detalle: `{{specs_dir}}<TEMA>.md`.
+- **<Decisión / contrato / regla>** — el qué, el porqué y lo que se descartó. Si esta sección pasa
+  de ~50 líneas, se extrae: `{{specs_dir}}<TEMA>.md`.
 
 ## Modelo de datos
 

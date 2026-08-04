@@ -53,8 +53,9 @@ Seguir el checklist de cierre de `{{protocol}}`. En resumen: crear `{{history_di
 append de una fila a `{{history_dir}}{{index}}` (y `{{history_dir}}{{effort}}` si se usa) con
 `printf >>`; reescribir `{{state}}` completo; llevar
 toda decisión durable a su hogar (mapa abajo), nunca solo en el historial; refrescar `{{handover}}`
-(→ `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); y **persistir**
-según `persistencia`.
+(→ `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); **comprobar si
+toca auditar** (si pasaron más de `audit_every_n_sessions` desde la última fila de `{{audit}}`,
+anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia`.
 
 ## Dónde vive cada cosa (un hogar por dato)
 
