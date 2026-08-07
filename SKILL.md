@@ -246,6 +246,14 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
+**Antes de persistir, comprueba lo que acabas de escribir contra las convenciones de texto de tu
+proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). No es una formalidad, y hay dos sitios
+donde se escapa siempre: **las filas append-only** y **el mensaje de commit**. Son los dos únicos
+momentos del cierre en que se redacta **prosa narrativa hacia un archivo**, con el mismo impulso con el
+que se le habla al usuario — y ahí el registro equivocado se cuela sin que nadie lo note, porque el
+resto de lo que se escribe son identificadores y rutas, donde el error salta solo. Compruébalo con un
+comando, no releyendo: es lo que hace la diferencia entre una regla escrita y una regla aplicada.
+
 **`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
 sesión, no en uno aparte. Dile al usuario el `git push` exacto (o hazlo si lo autoriza). Reglas,
 porque **un commit no puede contener su propio hash**:
@@ -632,6 +640,27 @@ dejan de valer.
    cuenta. El canal da igual y el marco no opina: pegar el texto en la sesión de otro agente, un
    correo, un issue, un PR si el proyecto tiene git y el usuario quiere. Copiar y pegar es el suelo, y
    funciona siempre.
+
+### Público o privado
+
+**Lo privado es el modo por defecto y no hay nada que construir:** una carta que va por chat, correo o
+un repo cerrado se archiva igual y no toca ningún buzón. Lo que exige criterio es lo contrario —
+**publicar**:
+
+- **Va a un buzón** lo que le sirve a **cualquiera**: preguntas abiertas, y respuestas cuyo
+  razonamiento es reutilizable. *Por qué no entró tal propuesta* le ahorra el viaje al siguiente que
+  la tenga; ese es el mismo motivo por el que el índice guarda los rechazos.
+- **Se queda privado** lo que solo le sirve a uno, lo que lleva **tripas del corresponsal**, y **todo
+  lo que él no haya consentido publicar**. Pedir ese permiso es, en sí mismo, una carta privada.
+
+**Un buzón no puede tener correspondencia privada, y no se debe fingir que sí.** El canal de bajada es
+gratis precisamente porque el kit se copia entero: no hay destinatarios, ni entrega selectiva, ni
+autenticación. Un archivo con el nombre de alguien, o un texto ofuscado, sería **algo que parece
+protegido sin estarlo** — el mismo error que hace inservible un identificador derivado. Cifrar tampoco:
+claves, runtime y la prohibición de credenciales.
+
+Lo que sí hay es **público pero seudónimo**: la carta la lee todo el mundo, pero solo su destinatario
+sabe que ese `remitente` es él. Para hablar de una idea, alcanza.
 6. **Archivar y registrar**: tu copia como `letter` —la del otro lado puede desaparecer— y la fila en
    `correspondence`.
 

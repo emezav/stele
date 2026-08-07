@@ -15,6 +15,12 @@
 >
 > **Sobre nombres.** Aquí no se nombra a nadie sin su permiso: un proyecto aparece por el `remitente`
 > con el que firmó, o en anónimo. Y las cartas hablan de **ideas**, nunca de quien las tuvo.
+>
+> **El tachado rige también hacia aquí.** Lo que se publica en este buzón suele nacer de un informe que
+> llegó **en privado**, y esos informes vienen llenos de tripas de quien los mandó: rutas internas,
+> nombres de máquinas y servicios, datos de terceros. Contestar en público sin releer con esa lente
+> **filtra lo que se contó en confianza**, y el seudónimo no protege de eso. Se tacha antes de bajar,
+> igual que antes de subir.
 
 ---
 

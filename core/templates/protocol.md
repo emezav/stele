@@ -164,6 +164,30 @@ Si el proyecto no está en el idioma del kit, su versión traducida del **vocabu
 (las listas de `grep` de `{{kit}}/SKILL.md` → AUDITAR) también vive aquí: es una lista larga y viva,
 no un parámetro del manifiesto.
 
+## Convenciones de texto (y dónde se escapan)
+
+Si este proyecto restringe qué se puede escribir a un archivo —solo ASCII, terminología fija, lo que
+sea—, la regla vive en `{{entry}}` → Convenciones. Lo que va aquí es **cómo se comprueba**, porque una
+convención de texto no falla donde está escrita sino donde se escribe.
+
+**Los dos sitios calientes son las filas append-only y el mensaje de commit.** Son los únicos momentos
+del cierre en que se redacta **prosa narrativa hacia un archivo**; en el resto se escriben rutas e
+identificadores, donde el error salta solo. Ahí es donde se cuela el registro con el que se le habla al
+usuario.
+
+**Se comprueba con un comando, no releyendo**, y como paso del cierre. Ejemplo para una regla de
+solo-ASCII, sobre lo que acabas de escribir:
+
+```bash
+# la fila que acabas de añadir
+tail -n 1 {{history_dir}}{{index}} | LC_ALL=C grep -n '[^ -~]'
+# el mensaje del commit, antes de pushear
+git log -1 --format=%B | LC_ALL=C grep -n '[^ -~]'
+```
+
+Sin salida = limpio. Con `persistencia = git`, si el mensaje ya está commiteado pero **no pusheado y
+sin hash citado en ningún doc**, `--amend` lo arregla (ver reglas de `--amend` en CERRAR).
+
 ## Checklist de inicio / cierre
 
 Condensados en `{{kit}}/SKILL.md` (rituales ABRIR / CERRAR). Este archivo es la referencia de
