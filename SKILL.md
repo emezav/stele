@@ -697,6 +697,11 @@ cautela 0 de AUDITAR — no te fíes del recorte, vuelve a la fuente.
    **Si aparece, diffea antes de decidir.** Idéntica = ya procesada: di dónde está archivada y qué
    salió de ella, y para. **Distinta = es una revisión**, y entonces lo que importa es el **delta** —
    procesarla entera de nuevo es tan malo como ignorarla.
+   **Y ya que estás en el archivo, comprueba el estado: si esta carta responde a una tuya, la tuya
+   tiene que figurar como `entregada`.** Si dice `redactada`, uno de los dos registros está mal —
+   resuélvelo antes de seguir. Los dos estados **crean** la contradicción, pero no la miran solas: la
+   primera vez que ocurrió la vio el usuario preguntando, y la segunda pasó desapercibida **en el
+   mismo material que se estaba archivando**. Una señal que nadie comprueba no es una señal.
 1. **Clasificar** las afirmaciones del informe en las tres clases de arriba.
 2. **Verificar** las de la primera clase contra tu trabajo, una a una.
 3. **Separar diagnóstico de remedio** y volver a derivar el remedio. Decide su hogar con las fronteras
