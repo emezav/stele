@@ -30,6 +30,7 @@ un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas".
 | state | latest.md | history | obligatorio | 30 | Dónde estamos y el próximo paso. Se **sobrescribe**; acotado. |
 | handover | handover.md | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado ≠ `SIN_TRABAJO_ACTIVO`. |
 | charter | design.md | base | on-demand | — | Por qué el proyecto es así: norte, principios, restricciones, decisiones grandes, glosario. |
+| manual | manual.md | base | on-demand | — | **Para la persona, no para el agente**: qué se espera de ella, qué avisos verá y qué significan. Escrito en el vocabulario del proyecto. Opcional (feature `manual_doc`). |
 | protocol | protocol.md | base | on-demand | — | Formatos y convenciones de documentación entre sesiones. |
 | index | index.md | history | on-demand | — | Índice append-only de sesiones. Se lee con grep. |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | history | on-demand | — | Registro por sesión. Inmutable; se lee con grep. |
@@ -55,7 +56,7 @@ Los que la conservan, y por qué:
 | --- | --- |
 | `README.md`, `LICENSE` | Convención universal y las plataformas de código |
 | `CLAUDE.md` (u otro `loader`) | La herramienta lo busca por ese nombre exacto |
-| `AGENTS.md` (el `entry`) | Varios agentes lo auto-cargan de la raíz (ver `{{kit}}/GUIDE.md` → acoplamiento) |
+| `AGENTS.md` (el `entry`) | Varios agentes lo auto-cargan de la raíz (ver `{{kit}}/guide.md` → acoplamiento) |
 | `SKILL.md` | El layout `skill`: al vendorizar el kit en `.claude/skills/…`, Claude Code busca ese nombre |
 
 **`SKILL.md` es el que más fácil se cuela en un barrido de minúsculas**, porque no lo impone la
@@ -72,6 +73,7 @@ sustitución textual corrompa en silencio.
 | --- | --- |
 | entry | cómo trabajar, proceso, reglas operativas, arranque |
 | charter | por qué: principios, decisiones grandes, restricciones, glosario |
+| manual | qué se espera de mí, qué significa este aviso, qué hace falta que yo haga |
 | protocol | formatos/reglas de documentación y registro |
 | state | dónde estamos, próximo paso inmediato, retomar contexto |
 | handover | trabajo a medias, checkpoint de un salto en curso |
@@ -98,6 +100,11 @@ sustitución textual corrompa en silencio.
     fuera.
   - **`artifacts_dir`** lo crea el primer artefacto; que no exista significa que ninguna sesión ha
     necesitado producir nada fuera de la documentación.
+- **`manual` es el único rol cuyo lector no es un agente**, y de ahí salen sus dos particularidades.
+  Es `on-demand` **para el agente** —no entra en la lista de arranque, que se lee entera cada sesión—
+  pero para la persona es lo contrario: es lo primero, y a veces lo único. Y **no se redacta desde la
+  plantilla sino desde el proyecto**: la plantilla dice qué preguntas contestar, no con qué palabras.
+  Un `manual` que suene al marco en vez de al proyecto ha fallado aunque esté completo.
 - **La correspondencia tiene la misma forma que el historial**, y por eso no hay nada nuevo que
   aprender: un **índice** (`correspondence`, como `index`), un **archivo por pieza** (`letter`, como
   `session`, inmutable y numerado) y su **carpeta** (`correspondence_dir`, como `history_dir`). La

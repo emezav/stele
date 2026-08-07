@@ -256,6 +256,14 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
 - **`charter` (design.md) — por qué el proyecto es así (a gran escala).** Norte, principios,
   restricciones y no-negociables, decisiones estructurales grandes (ADR-lite, fechadas), glosario.
   Estable. Frontera: *principios transversales* aquí; *specs por feature* → módulo.
+- **`manual` (manual.md) — para la persona, no para el agente.** Es el único rol cuyo lector es
+  humano, y por eso se **redacta** con el proyecto delante en vez de rellenarse: contesta *qué se
+  espera de mí*, *qué avisos voy a ver y qué me piden*, y sobre todo *qué NO tengo que hacer*. Opcional
+  (feature `manual_doc`), **en `on` por defecto** porque un doc que hay que acordarse de activar no
+  existe para quien más lo necesita. Frontera con este archivo que estás leyendo: **`guide` explica el
+  marco a quien lo adopta; `manual` explica *ese* proyecto a quien lo vive** — sin nombrar roles,
+  tokens ni rituales. Y no nace completo: **crece con las preguntas que la persona hace de verdad**,
+  que es lo que impide que sea genérico.
 - **`protocol` (protocol.md) — formatos.** Cómo se documenta (formatos de cada archivo, topes,
   operaciones de bajo coste). Referencia de formato.
 - **`state`/`handover`/`index`/`session` — el historial** (`history_dir`, history/): estado que se

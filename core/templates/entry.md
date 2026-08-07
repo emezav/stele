@@ -67,6 +67,7 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | --- | --- |
 | cómo trabajar, proceso, convenciones, arranque | `{{entry}}` |
 | por qué: principios, decisiones grandes, restricciones, glosario | `{{charter}}` |
+| qué se espera de la persona, qué significa un aviso que vio | `{{manual}}` |
 | formatos/protocolo de documentación | `{{protocol}}` |
 | dónde estamos / próximo paso | `{{state}}` |
 | trabajo a medias (checkpoint) | `{{handover}}` |

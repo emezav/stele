@@ -72,6 +72,7 @@
 | --- | --- | --- |
 | entry | AGENTS.md | núcleo |
 | charter | design.md | núcleo |
+| manual | manual.md | núcleo |
 | protocol | protocol.md | núcleo |
 | state | latest.md | núcleo |
 | handover | handover.md | núcleo |
@@ -107,7 +108,14 @@
 | audit_log | on |
 | audit_every_n_sessions | 10 |
 | correspondence_log | on |
+| manual_doc | on |
 
+> `manual_doc` enciende el `manual`, el único doc dirigido a **la persona** y no al agente. Apágalo si
+> quien usa el proyecto es quien lo configuró y conoce el marco; enciéndelo en cuanto lo use alguien
+> más — o el propio autor dentro de un año. **Está en `on` por defecto a propósito:** un doc que hay
+> que acordarse de activar no existe para quien más lo necesitaba, que es justo quien no sabe que el
+> toggle existe.
+>
 > `audit_every_n_sessions` **no dispara nada**: es el umbral con el que el cierre decide si anota
 > "auditoría vencida" en los pendientes de `{{state}}`. Auditar sigue siendo un acto explícito del
 > usuario (ver `{{kit}}/SKILL.md` → AUDITAR). `—` = sin recordatorio. Con `audit_log = off` no hay

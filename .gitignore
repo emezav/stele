@@ -21,3 +21,8 @@ CLAUDE.md
 # Misma razon que arriba: nada de esto lo necesita un agente que adopta el marco,
 # y aqui todo lo versionado en la raiz viaja en la copia.
 tmp/
+
+# Configuracion local de la herramienta que ejecuta al agente. Es de esta
+# maquina y de esta persona, no del marco: si viajara, cada adoptante
+# heredaria ajustes que no eligio. Misma razon que todo lo de arriba.
+.claude/

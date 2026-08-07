@@ -212,6 +212,30 @@ le quite precisión a un usuario técnico. Por eso la regla no necesita un pará
 hay trabajo a medias, un doc que se contradice o una migración a medio aplicar, se dice — en llano y
 sin rodeos. Un resumen tranquilizador es peor que la jerga.
 
+**Y todo número que le muestres lleva qué se espera de él, aunque la respuesta sea "nada".** Hablar
+llano dice *cómo* hablarle; no dice **qué necesita saber**, y un dato claro que no le sirve sigue
+siendo hablarle de más. El caso peligroso es el **contador**: una persona que ve *"van 8, umbral 10"*
+lee **cuota** —plan gratuito, batería, límite—, porque es lo que significa en todos los sitios donde ha
+visto uno. Caso real de campo: un usuario leyó el aviso de auditoría del cierre y preguntó si eso
+quería decir que **no debía cerrar más sesiones**. El aviso nombraba un coste —*"queda pendiente de
+auditar"*— y ningún beneficio, así que **desincentivaba el hábito que el marco más quiere**.
+
+La forma correcta dice las tres cosas: el número, qué pasa al llegar, y qué se espera de la persona.
+*"Van 8 sesiones desde la última revisión de la documentación; a la 10 conviene hacer una. No cambia
+nada de lo tuyo: cerrar sesiones siempre suma, y la revisión se pide cuando quieras."* Esto **no** es
+"no des números": a un usuario técnico el número le sirve. Lo que faltaba era la consecuencia.
+
+**Y vale para toda la contabilidad del marco**, no solo para el aviso de auditoría — presupuestos,
+tamaños, sesiones transcurridas, cartas sin contestar. Si el número existe para que **el agente**
+decida algo, la pregunta antes de decirlo en voz alta es si le cambia algo **a quien lo escucha**; si
+no, no se dice, y si sí, se dice qué.
+
+**Una pregunta de la persona que el `manual` no contesta se contesta y se escribe ahí** (si el rol está
+activo). No al cerrar, no "cuando haya varias": **antes de seguir**, mientras se sabe qué se preguntó y
+con qué palabras. Es lo que hace que ese doc no sea genérico — nace corto y **crece con las preguntas
+reales**, no con las que imaginamos. Y la señal de que funciona no es su tamaño, es que las preguntas
+dejen de repetirse. Si te descubres explicando lo mismo dos veces, la primera vez no se escribió.
+
 | Concepto del marco | Cómo se dice |
 | --- | --- |
 | `handover` en `EN_PROGRESO` | quedó trabajo a medias, con su alcance anotado |
@@ -227,6 +251,7 @@ sin rodeos. Un resumen tranquilizador es peor que la jerga.
 | append-only | solo se añade; no se reescribe lo anterior |
 | vendorizar / actualizar el kit | traer al proyecto una copia del marco / traer la versión nueva |
 | presupuesto de un doc | el tamaño máximo que debería tener |
+| `audit_every_n_sessions` / auditoría vencida | cada tantas sesiones conviene revisar la documentación — no es un límite, y cerrar sesiones siempre suma |
 
 Esto **no cambia nada de lo que se escribe**: los docs, el manifiesto y los mensajes de commit siguen
 con el vocabulario del marco. Un documento lo lee el siguiente agente; el habla la lee quien está
@@ -1019,13 +1044,20 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 
 | Zona del diff | Qué implica para esta instancia |
 | --- | --- |
-| `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados** |
+| `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados**. Y si el rol nuevo es un **doc**, su archivo **no existe en esta instancia**: ofrécelo al usuario e instáncialo si acepta — regenerar los derivados deja el mapa apuntando a algo que no está |
 | `core/templates/config.md` | Cambió la forma del manifiesto o el contrato de parseo: la instancia puede estar desfasada (secciones nuevas, claves nuevas) |
 | `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: hay que **regenerar ese bloque** en el archivo real (loader y mapa-doc), conservando íntegro todo lo que quede fuera de las marcas — invariante 6. **Salvo que la marca de apertura diga `RICO`**: entonces no se reescribe, se **porta el delta a mano** (ver abajo) |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
 | El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo |
+
+**Un rol nuevo es el único caso donde una plantilla de contenido sí llega a quien ya adoptó.** La fila
+de abajo dice que los docs de `base` no se regeneran jamás, y es cierto **para los que existen**: son
+del proyecto. Pero un rol que no existía no tiene doc que respetar, así que ahí no hay conflicto — hay
+una ausencia. Sin esta excepción, una capacidad nueva del marco solo la reciben los proyectos que
+empiecen después, y el que la necesitaba lleva sesiones sin saber que existe. **Se ofrece, no se
+crea en silencio:** el usuario puede no quererla.
 
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
 en medio, y confundirlas es un fallo silencioso. Una plantilla de **contenido** produjo un doc que
