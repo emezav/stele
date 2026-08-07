@@ -716,7 +716,22 @@ claves, runtime y la prohibición de credenciales.
 Lo que sí hay es **público pero seudónimo**: la carta la lee todo el mundo, pero solo su destinatario
 sabe que ese `remitente` es él. Para hablar de una idea, alcanza.
 6. **Archivar y registrar**: tu copia como `letter` —la del otro lado puede desaparecer— y la fila en
-   `correspondence`.
+   `correspondence`, **con el estado sincero**.
+
+### Una carta saliente tiene dos estados, y el agente solo puede mover el primero
+
+**`redactada` -> `entregada`.** El agente escribe la fila al redactar; **solo el usuario mueve la
+segunda**, porque el cartero es él. Un agente **no puede comprobar** que una carta salió: puede saber
+que la escribió y nada más, así que anotar "enviada" al archivarla es una suposición disfrazada de
+registro — y el índice es justo el doc que no debe contenerlas.
+
+Ocurrió: una carta estuvo dos sesiones en el cajón mientras el índice decía "enviada", y lo descubrió
+el usuario preguntando si ya se había contestado. Con los dos estados, esa pregunta **se responde
+mirando** en vez de preguntando: una fila `redactada` es una conversación que no ha salido.
+
+**Y la inmutabilidad empieza en la entrega, no en la escritura.** Una carta **entregada** o
+**recibida** no se reescribe jamás. Un borrador sin entregar sí se revisa — si mientras espera pasa
+algo que el destinatario debería saber, entra en la carta en vez de en la siguiente.
 
 ### El remitente, y por qué son dos claves
 
@@ -820,6 +835,10 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    se lee, no se migra. **Y lee entero todo archivo que el diff marque como NUEVO** (`Only in
    <temporal>:`) antes de aplicar, esté o no en la tabla: un archivo que no existía no puede tener
    fila, porque la fila que lo describiría viaja en el mismo kit que lo trae. Ver abajo.
+   **Si el diff muestra un archivo del kit RENOMBRADO o ELIMINADO, busca en tus propios docs los
+   enlaces al nombre viejo.** La tabla te dice qué hacer con el contenido del kit, no con las
+   referencias que tú tengas hacia él, y esas se quedan colgando en silencio. `grep` del nombre viejo
+   en `{base}` = 0 antes de dar la actualización por buena.
 4. **Aplicar:** sustituir `{kit}` por el temporal. Es seguro *aquí* porque el invariante 1 garantiza
    que `base` no está dentro.
 5. **Reconciliar con CONFIG** (fase 1, drift), acotado a lo que el diff señaló: filas que le faltan

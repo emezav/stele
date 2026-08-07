@@ -16,6 +16,11 @@
 > discutirlo, y le dice a quien escribió cómo calibrar la próxima. El detalle de lo aceptado no se
 > copia aquí: vive en el hogar que corrigió, con su procedencia.
 >
+> **En una carta que sale, el desenlace empieza por su estado: `redactada` o `entregada`.** El agente
+> escribe la fila al redactar y **solo el usuario mueve el estado a entregada**, porque el cartero es
+> él: un agente no puede comprobar que una carta salió. Una fila `redactada` es una conversación que
+> no ha salido, y verla es lo que evita que alguien tenga que preguntar si ya se contestó.
+>
 > **El acuse de recibo no necesita mecanismo.** La numeración es única para las dos direcciones, así
 > que una carta que sale y **no tiene detrás una que entra** es una conversación abierta, y se ve de
 > un vistazo. No hay columna de "¿contestaron?" que mantener.

@@ -24,7 +24,55 @@
 
 ---
 
-## Carta 1 — ¿Tu loader tenía contenido propio antes de adoptar stele?
+## Carta 1 — Aviso: dos archivos del kit cambiaron de nombre
+
+**De:** stele · **Para:** todo el que ya tuviera el kit · **Fecha:** 2026-08-07
+
+**El caso.** El kit pasó a la regla *"minúscula por defecto; MAYÚSCULA solo donde la impone algo
+externo"*. Sobreviven en mayúscula `README.md`, `LICENSE`, `CLAUDE.md`, `AGENTS.md` y `SKILL.md` — este
+último **no** por GitHub sino por el layout `skill`, donde Claude Code busca ese nombre exacto.
+
+Cambiaron dos: **`GUIDE.md` -> `guide.md`** y **`BUZON.md` -> `buzon.md`**.
+
+**Lo que te afecta, y no lo cubre la tabla de zonas.** Si algún doc **tuyo** enlaza al kit por el
+nombre viejo, ahora tienes una referencia colgada. La tabla dice que `guide.md` "se lee, no se migra",
+lo cual es cierto para su contenido y **no dice nada de tus enlaces hacia él**. Compruébalo:
+
+```bash
+grep -rn "GUIDE\.md\|BUZON\.md" . --include="*.md"
+```
+
+Lo que salga fuera del kit es tuyo y hay que corregirlo a mano. Si estás en Windows, ojo: el sistema
+de archivos no distingue mayúsculas, así que un `grep` puede acertar donde el enlace **funciona igual**
+— arréglalo de todos modos, o se romperá en el primer clon en Linux.
+
+**Qué NO demuestra este caso.** No sabemos cuántos adoptantes enlazan al kit por nombre; puede que
+ninguno. El aviso cuesta menos que el silencio.
+
+## Carta 2 — Qué se rechazó de los reportes de campo, y por qué
+
+**De:** stele · **Para:** quien vaya a reportar algo · **Fecha:** 2026-08-07
+
+Las **reglas** que salieron de los reportes ya están en el kit; lo que el kit no lleva son los
+**descartes**, y son lo que más viaje ahorra. Tres, sin nombrar a nadie:
+
+- **No se creó un módulo nuevo para los detectores de red.** La propuesta era razonable —puertos y
+  servicios no son "software" en general, sino proyectos que operan servicios— pero aquí **un módulo
+  es un paquete de roles**, y ese aporte no traía ninguno. Va condicionado dentro de `software`.
+- **No se suben los presupuestos porque alguien los exceda.** Un tope que sube cada vez se convierte
+  en decoración. Se decide: se poda con criterio, o se sube con `config` **después** de podar. Y un
+  presupuesto no distingue *"el proyecto creció"* de *"el doc derivó de género"* — la pregunta *"¿qué
+  sobra?"* es lo único que las separa.
+- **No se finge privacidad en un buzón.** El kit se copia entero, así que no hay destinatarios ni
+  entrega selectiva: un archivo con el nombre de alguien sería *algo que parece protegido sin
+  estarlo*. Lo privado va por otro canal, que es el modo por defecto de todos modos.
+
+**Y la regla que gobierna esto:** el **diagnóstico viaja, el remedio no**. Cuatro de cuatro reportes
+llegaron con el diagnóstico correcto y el remedio equivocado o incompleto — no por torpeza, sino
+porque quien reporta tiene el **caso** y el proyecto tiene el **contexto de diseño**. Escribe el caso;
+la propuesta es la parte menos valiosa de tu carta y no hace falta traerla.
+
+## Carta 3 — ¿Tu loader tenía contenido propio antes de adoptar stele?
 
 **De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-07
 

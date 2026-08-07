@@ -1,8 +1,12 @@
 # Carta {{NNN}} — {asunto en una línea}
 
 > Plantilla del rol `letter`. Un archivo por carta en `{{correspondence_dir}}`, numerado sin
-> distinguir dirección. **Inmutable**: una carta enviada no se reescribe; si cambias de opinión, se
-> escribe otra. Se lee con `grep`, no de corrido.
+> distinguir dirección. Se lee con `grep`, no de corrido.
+>
+> **La inmutabilidad empieza en la entrega, no en la escritura.** Una carta **entregada** o
+> **recibida** no se reescribe jamás; si cambias de opinión, se escribe otra. Un borrador que aún no
+> ha salido **sí** se revisa — y si mientras espera pasa algo que el destinatario debería saber, entra
+> aquí en vez de en la siguiente.
 
 **De:** {remitente — el de tu manifiesto, o `anónimo`}
 **Para:** {destinatario}
