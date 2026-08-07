@@ -32,6 +32,25 @@ El mapa "necesito X → tal archivo" **no se escribe a mano**: se genera en el d
 Se regenera en `config` y al activar/desactivar módulos o renombrar. **Regla de oro anti-tokens:**
 no leas un archivo entero "por si acaso"; usa el mapa y `grep -n` + lectura por rango.
 
+## El punto inicial significa "maquinaria", y conviene decirlo
+
+El kit vive en un directorio oculto (`.stele`, `.claude/skills/stele`) y tus documentos no. **Eso no
+es casualidad: el punto marca lo que el marco se autoriza a sustituir entero.** Lo que empieza por
+punto es reemplazable y no se edita a mano; lo que no, es tuyo y el marco no lo toca jamás.
+
+Estaba en vigor desde el principio y nunca se había escrito, que es como una convención deja de
+comunicar.
+
+**Con un límite que hay que reconocer:** la convención del punto **es legible exactamente para quien
+no la necesita**. Quien programa ya sabe que lo oculto es herramienta; quien no, no tiene por qué
+saberlo — y es justo el público al que se le recomienda `agrupado`. Por eso declararla **no sustituye**
+a que las dos carpetas se llamen distinto: lo acompaña.
+
+**Consecuencia práctica que sorprende:** un directorio oculto **no lo tratan igual todas las
+herramientas**. `ripgrep` y muchos buscadores lo saltan por defecto; `grep -r` de GNU entra. Así que
+un mismo comando de barrido da resultados distintos según qué tenga instalado quien lo corre — y por
+eso **todo comando que publiques debe acotar dónde busca** en vez de fiarse del default.
+
 ## Precedencia frente a los defaults del harness
 
 **Dónde vive lo que produces en este proyecto lo decide el marco, no la herramienta que te ejecuta.**
@@ -130,12 +149,22 @@ desincroniza en cuanto alguien mueva una ruta.
 | Layout | `kit` | `base` | Para quién |
 | --- | --- | --- | --- |
 | `default` | `.stele` | `.` | Docs en la raíz, marco invisible |
-| `agrupado` | `.stele` | `stele` | Todo lo del marco junto y visible |
+| `agrupado` | `.stele` | `bitacora` | Tus docs juntos en una carpeta visible |
 | `docs` | `.stele` | `docs` | Proyecto con carpeta de docs ya establecida |
-| `skill` | `.claude/skills/stele` | `stele` | Claude Code: una sola copia del kit, además usable como `/stele` |
+| `skill` | `.claude/skills/stele` | `bitacora` | Claude Code: una sola copia del kit, además usable como `/stele` |
 
 Cualquier otra combinación es legal y se nombra `personalizado` (incluido el modo auto-hospedado,
 `kit = .`). El `loader` **no** forma parte del layout: depende del agente, no del proyecto.
+
+**Por qué `base` no se llama como el marco.** El nombre obvio para `agrupado` sería `stele/`, y estuvo
+así hasta que un proyecto lo señaló al agrupar: **`.stele/` y `stele/` se diferencian en un punto**, y
+son cosas opuestas — una es maquinaria que se sustituye entera al actualizar, la otra son **tus
+documentos**, los que editas cada sesión.
+
+Y el fallo **no es simétrico**: escribir en tus docs creyendo que es el kit no rompe nada; **escribir
+dentro del kit creyendo que son tus docs hace que el cambio desaparezca en la próxima actualización,
+sin error y sin aviso**. Un nombre distinto elimina la confusión de raíz, sin depender de que nadie
+entienda la convención del punto.
 
 **Aviso antes de elegir `agrupado` o `docs`:** si el `entry` se llama `AGENTS.md`, hay agentes
 (Codex y otros) que lo **auto-cargan desde la raíz** igual que Claude Code carga `CLAUDE.md`. Sacarlo
@@ -808,14 +837,14 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    **Si no detectas código, recomienda `agrupado`** (y dilo, no lo impongas). Con el default
    `base = .` los docs de rol caen sueltos en la raíz del proyecto, y a quien no programa eso le
    parece un desorden ajeno: no distingue lo suyo de lo del marco, y acaba sin tocar archivos que son
-   **suyos** y que debería editar cada sesión. Con `agrupado` todo queda bajo una carpeta con el
-   nombre del marco y la raíz sigue siendo del usuario. No hace falta prefijar nada: **una carpeta
-   con nombre ya dice de quién es lo que hay dentro.**
+   **suyos** y que debería editar cada sesión. Con `agrupado` todo queda bajo `bitacora/` y la raíz
+   sigue siendo del usuario. No hace falta prefijar nada: **una carpeta con nombre ya dice de quién es
+   lo que hay dentro** — y por eso no se llama como el marco (ver la tabla de layouts).
 2. **Eco del layout resuelto ANTES de escribir nada** (siempre, incluso en zero-question):
    ```text
    layout       -> agrupado   (dónde va cada cosa; o "personalizado")
    kit          -> .stele     (el marco; se reemplaza al actualizar)
-   base         -> stele      (tus documentos; no se tocan nunca)
+   base         -> bitacora   (tus documentos; no se tocan nunca)
    loader       -> CLAUDE.md  (el archivo que arranca al agente)
    persistencia -> git        (cómo se guarda el trabajo al cerrar)
    ```

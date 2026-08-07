@@ -39,12 +39,18 @@ nombre viejo, ahora tienes una referencia colgada. La tabla dice que `guide.md` 
 lo cual es cierto para su contenido y **no dice nada de tus enlaces hacia él**. Compruébalo:
 
 ```bash
-grep -rn "GUIDE\.md\|BUZON\.md" . --include="*.md"
+# acotado a TUS docs: sustituye <base> por tu ruta base (`.`, `docs`, `bitacora`…)
+grep -rn "GUIDE\.md\|BUZON\.md" <base> --include="*.md"
 ```
 
-Lo que salga fuera del kit es tuyo y hay que corregirlo a mano. Si estás en Windows, ojo: el sistema
-de archivos no distingue mayúsculas, así que un `grep` puede acertar donde el enlace **funciona igual**
-— arréglalo de todos modos, o se romperá en el primer clon en Linux.
+**Acota el comando a tu `base` en vez de barrer desde la raíz**, y no es un detalle: el kit vive en un
+directorio **oculto**, y las herramientas no coinciden en qué hacer con eso — `ripgrep` lo salta por
+defecto, `grep -r` de GNU entra. Barriendo desde la raíz con GNU te salen las referencias **internas
+del kit**, que están perfectamente bien, y parecen enlaces rotos.
+
+Lo que salga dentro de tu `base` es tuyo y hay que corregirlo a mano. Y si estás en Windows, ojo: el
+sistema de archivos no distingue mayúsculas, así que el enlace viejo **te sigue funcionando ahí** y se
+romperá en el primer clon en Linux. Arréglalo igual.
 
 **Qué NO demuestra este caso.** No sabemos cuántos adoptantes enlazan al kit por nombre; puede que
 ninguno. El aviso cuesta menos que el silencio.
