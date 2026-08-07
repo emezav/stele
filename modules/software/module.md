@@ -58,14 +58,40 @@ Así que **el filtro de verdad es el ancla léxica del propio barrido**, no el r
 grep -rhoE "\b(puerto |port |:)[0-9]{2,5}\b" {base} --include="*.md"
 ```
 
-Con dos avisos, porque el ancla tampoco es gratis:
+Con tres avisos, porque el ancla tampoco es gratis:
 
-- **`:` pegado a dígitos casa con `archivo:línea`**, que la documentación técnica usa a todas horas
-  (`SKILL.md:401`), y también con marcas de tiempo (`10:36`), fragmentos IPv6 e identificadores de
-  dispositivo. Descarta esos antes de comprobar nada: si el token de la izquierda parece un archivo,
-  no es un puerto.
+- **`:` pegado a dígitos casa con `archivo:línea`** (`SKILL.md:401`), con **marcas de tiempo**
+  (`10:36`), con fragmentos IPv6 y con identificadores de dispositivo. Dos reglas baratas: si el token
+  de la izquierda parece un archivo, no es un puerto; y **si a la izquierda hay uno o dos dígitos y a
+  la derecha exactamente dos, es una hora**.
+- **Cuál de esas poblaciones domina depende de TU corpus, no del patrón.** Medido en dos árboles: en
+  uno las horas eran el 57% y `archivo:línea` el 5%; en el otro, al revés (93% referencias, horas
+  anecdóticas). Cuenta la tuya antes de decidir qué excluyes.
 - **El rango `<1024` sigue sirviendo, pero como segundo filtro, no como el principal.** Documentarlo
   al revés —que es lo que hacía este módulo— vende como filtro lo que apenas descarta nada.
+
+### El ancla es ciega en tablas, y ahí es donde viven los puertos
+
+**El ancla compra precisión y paga con recall, y paga donde más duele.** Una URL en prosa arrastra
+`host:puerto`; una fila de inventario lleva `| 8080 |` y nada más. Así que el patrón anclado **funciona
+peor cuanto mejor estructurado está el documento** — y este detector existe para auditar documentos
+operativos, que tienden a ser tablas. Caso de campo: de diez puertos reales documentados, tres no
+tenían **ni una sola** mención con ancla en 254 documentos.
+
+Por eso hay una segunda estrategia, para el mismo valor y otro tipo de documento:
+
+```bash
+# un numero solo en una celda: es una afirmacion tabular
+grep -rhoE '\| *[0-9]{4,5} *\|' {base} --include="*.md"
+```
+
+Midió **0 falsos** en campo, y no por suerte: una celda que contiene **solo** un número no tiene sitio
+donde esconder un año o una norma. Las dos son complementarias —el ancla coge la prosa, la celda coge
+las tablas— y juntas dieron 8 de 10 con ruido casi nulo.
+
+**Esto no vale para rutas.** El patrón de rutas es de **forma**, no de ancla, así que una tabla no le
+quita nada. El problema es específico de los valores **sin forma**: necesitan contexto, y estructurar
+un documento es precisamente quitarle contexto.
 
 ### Cuándo NO aplica este detector
 

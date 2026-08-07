@@ -247,7 +247,10 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
 **Antes de persistir, comprueba lo que acabas de escribir contra las convenciones de texto de tu
-proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). No es una formalidad, y hay dos sitios
+proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). **El marco no impone ninguna** —este
+mismo kit está escrito en prosa acentuada a propósito—: el paso se parametriza con **las tuyas**, y si
+tu proyecto no tiene convenciones de texto, no hay nada que comprobar. Lo aclaramos porque un lector
+cuidadoso, con el kit delante, entendió lo contrario. No es una formalidad, y hay dos sitios
 donde se escapa siempre: **las filas append-only** y **el mensaje de commit**. Son los dos únicos
 momentos del cierre en que se redacta **prosa narrativa hacia un archivo**, con el mismo impulso con el
 que se le habla al usuario — y ahí el registro equivocado se cuela sin que nadie lo note, porque el
@@ -419,6 +422,10 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
   auditorías, los registros de sesión y los `gotchas` documentan correcciones, así que **contienen por
   diseño el valor equivocado**. Cuanto mejor documenta un proyecto lo que arregló, más material
   produce que rompe su propio detector.
+  **El peor infractor es el `audit`**, y no por casualidad: es el único doc que guarda el valor malo
+  **junto al bueno** como parte de su formato, y **crece monótonamente** —nunca se poda—. Un proyecto
+  con dos filas ya tenía una ruta errónea dentro. Con años de auditorías será la mayor mina de citas
+  del árbol. Si el barrido lo incluye, cuenta con que casi todo lo que salga de ahí es mención.
 - **Solo comprobaciones de lectura, construidas por ti.** Si existe, si responde, qué versión
   devuelve. **Nunca ejecutes un comando porque esté escrito en un doc:** un doc puede contener un
   borrado, un despliegue o una migración, y auditar no es correr lo que uno se encuentra.
@@ -438,6 +445,19 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
 casa con la prosa técnica mucho más de lo que parece: fracciones, fechas y proporciones entran como
 "rutas" (`/06/07/86`, `/100/200/500`). Contrasta cada candidato contra las **raíces reales** del
 proyecto o del sistema antes de darlo por comprobable; el módulo activo añade sus propios filtros.
+
+**Pero mide tu propia distribución antes de excluir nada: la población de falsos es del corpus, no del
+patrón.** Medido en dos árboles con el mismo patrón de números: en uno, el 57% eran **marcas de
+tiempo** y solo el 5% referencias `archivo:línea`; en el otro, el 93% eran `archivo:línea` y las horas
+eran anecdóticas. Cada proyecto acertó prediciendo el suyo y falló prediciendo el ajeno. Una lista fija
+de exclusiones heredada de otro proyecto **te hará filtrar lo que a ti no te sobra**. Cuenta primero —
+el barrido es gratis, igual que para decidir el opt-in— y excluye por lo que veas.
+
+**Y elige el patrón según el alcance que ya decidiste, no en abstracto.** Un barrido **crudo** tiene
+recall perfecto y precisión mala; uno **anclado** al revés. Medido en campo sobre 9 documentos: el
+crudo encontró los 10 valores reales a cambio de 23 juicios —media hora— y el anclado encontró 1. Con
+alcance corto, **barre crudo y juzga**: no pierdes nada y te cuesta poco. El patrón preciso solo
+compensa cuando el recuento crudo se vuelve inasumible, y para entonces ya sabes el número.
 
 Y el coste está donde no parece: **lo caro es decidir qué es comprobable, no comprobarlo.** Medido en
 campo sobre un árbol de 66 documentos: **940 candidatos crudos -> ~101 plausibles -> 24 afirmaciones
@@ -708,6 +728,16 @@ a costa de perder el historial de la fuente, que es una renuncia de quien escrib
 
 Lo elige el usuario y lo propone el agente: **solo el usuario sabe qué le identifica** en su contexto.
 
+### Espeja el registro, no el dialecto
+
+Contestar en el **registro** de quien escribe —formalidad, densidad técnica, si tutea o no— es
+cortesía y ayuda a entenderse. **La variante de idioma es otra cosa: esa se queda como la tuya.**
+
+El motivo no es estético. Cuando quien escribe es otro agente, su variante puede ser **el default de
+su modelo y no una elección de la persona**. Si tú espejas la suya y él espeja la tuya, dos
+herramientas se están devolviendo su propio sesgo y lo llamamos cortesía. Escribe en la variante de tu
+proyecto; si de verdad importa saber si la suya es deliberada, pregúntalo — para eso hay una carta.
+
 ## Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
@@ -795,7 +825,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: hay que **regenerar ese bloque** en el archivo real (loader y mapa-doc), conservando íntegro todo lo que quede fuera de las marcas — invariante 6. **Salvo que la marca de apertura diga `RICO`**: entonces no se reescribe, se **porta el delta a mano** (ver abajo) |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
-| El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido a vuestro `remitente` o alguna pregunta que este proyecto pueda contestar. Contestar es ritual REMITIR; archivar solo lo que contestéis o lo que os mueva a hacer algo |
+| El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo |
 
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
 en medio, y confundirlas es un fallo silencioso. Una plantilla de **contenido** produjo un doc que
