@@ -12,7 +12,9 @@
 3. Los **apéndices de una línea** usan `printf '...' >> archivo`, no `Read`+`Edit`.
 4. Ninguna sección de un doc fuente-de-verdad supera **~150-200 líneas**; si crece, se extrae a
    un tema de `{{specs}}` + link.
-5. Nada de esto vive en memoria privada del agente; todo en el repo.
+5. Nada de esto vive en memoria privada del agente; todo en el proyecto. **Tampoco los artefactos**
+   —scripts de un solo uso, extracciones, volcados—: su hogar es `{{artifacts_dir}}sesion-{NNN}/`, y
+   esa regla vale por encima de cualquier default del harness (`{{kit}}/SKILL.md` → Precedencia).
 6. **Un hogar por dato** (mapa en `{{kit}}/SKILL.md` y en `{{entry}}`).
 
 ## Rutas: comando contra enlace
@@ -88,6 +90,21 @@ y `## Esfuerzo equivalente` (si se usa). `NNN` con padding a 3 dígitos. No se r
 **No lleva su propio hash de commit** (con `persistencia = git`). El cierre viaja en el mismo commit
 que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
 `git log --diff-filter=A -- {{history_dir}}<archivo de sesión>`.
+
+### `{{artifacts_dir}}` — artefactos por sesión (se crea con el primero, no en bootstrap)
+
+Un subdirectorio por sesión: `{{artifacts_dir}}sesion-{NNN}/`. Dentro va lo que la sesión produjo y
+**no es documentación**: scripts de un solo uso, extracciones de un binario, volcados intermedios,
+comparaciones de dos fuentes. **No** va aquí nada que sea contenido del proyecto ni ninguna decisión:
+eso tiene su hogar en el mapa, y duplicarlo aquí lo desincroniza.
+
+**Dos clases, y el `{{session}}` dice cuál es cuál.** Un artefacto que **sostiene un cambio
+irreversible** —el script que movió los archivos, el que reescribió en lote— es **evidencia**: es la
+única reconstrucción del *cómo* cuando el historial solo guarda el *qué*, y con `persistencia = ninguna`
+es la única que hay. Ése no se poda. El resto es desecho y se borra cuando el usuario quiera.
+
+**El agente nunca limpia por su cuenta.** Borrar es decisión del usuario, siempre. Un agente
+"ordenando" al cerrar destruye justo lo que hacía auditable la sesión.
 
 ### `{{handover}}` — checkpoint de trabajo en curso (~{{budget:handover}} líneas)
 

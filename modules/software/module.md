@@ -61,6 +61,12 @@ Lo que sí hay que ajustar en ese caso es el `checkpoint_trigger` (ver arriba): 
 documentación, la exención por "solo contenido de documentación" eximiría al proyecto entero y
 dejaría la regla dura muerta. Especialízalo a lo que hace las veces de código.
 
+**Escribir código no es lo que decide activar el módulo.** Un proyecto de documentación pura genera
+scripts en cuanto hay volumen: inventariar, emparejar, comparar dos fuentes, mover veinte archivos.
+Eso es **herramienta para manipular el proyecto**, no producto, y su hogar es `artifacts_dir` — no
+convierte el proyecto en software ni pide estos roles. El criterio sigue siendo el de arriba: un
+producto con estructura y decisiones por feature.
+
 ## Defaults que aporta al manifiesto
 
 ```text

@@ -237,6 +237,11 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
   (feature `audit_log`) y **no se instancia en bootstrap**: lo crea la primera auditoría, y su
   ausencia significa que el proyecto nunca se auditó. Guarda *cuándo y con qué alcance*, no los
   hallazgos: lo que perdura de una auditoría vive en el hogar que corrigió.
+- **`artifacts_dir` (artefactos/) — lo que la sesión produce y no es documentación:** scripts de un
+  solo uso, extracciones, volcados. Un subdirectorio por sesión, y **tampoco se instancia en
+  bootstrap**: lo crea el primer artefacto. Existe porque el historial guarda el *qué* y no el *cómo*,
+  y un script de un solo uso escrito en el temporal privado del agente se lleva el *cómo* consigo —
+  con `persistencia = ninguna`, la única reconstrucción posible. Ver `SKILL.md` → Precedencia.
 
 Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (p. ej. software:
 `gotchas`, `specs`, `architecture`, `effort`).

@@ -59,11 +59,20 @@
 | history_dir | HISTORY/ | núcleo |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | núcleo |
 | audit | AUDIT.md | núcleo |
+| artifacts_dir | artefactos/ | núcleo |
 | gotchas | MEMORY.md | software |
 | specs | REQUIREMENTS.md | software |
 | specs_dir | temas/ | software |
 | architecture | ARCHITECTURE.md | software |
 | effort | ESFUERZO.md | software |
+
+> `artifacts_dir` es el hogar de lo que una sesión produce y **no es documentación**: scripts de un
+> solo uso, extracciones de binarios, volcados intermedios. Un subdirectorio por sesión. **No se
+> instancia en bootstrap** —lo crea el primer artefacto, y su ausencia significa que ninguna sesión ha
+> necesitado producir nada—; `—` lo desactiva del todo.
+> **Con `persistencia = git` no se versiona por defecto:** añádelo a tu `.gitignore`. Si prefieres el
+> rastro auditable dentro del repo, versiona al menos los artefactos que el `{{session}}` marca como
+> sostén de un cambio irreversible, e ignora el resto. Ver `{{kit}}/SKILL.md` → CERRAR.
 
 ## Features (toggles)
 

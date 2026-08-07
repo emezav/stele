@@ -16,3 +16,8 @@ stele/
 # directorio que en su copia no existe.
 stele.config.md
 CLAUDE.md
+
+# Borradores y entregas temporales (notas a otros proyectos, scratch de trabajo).
+# Misma razon que arriba: nada de esto lo necesita un agente que adopta el marco,
+# y aqui todo lo versionado en la raiz viaja en la copia.
+tmp/

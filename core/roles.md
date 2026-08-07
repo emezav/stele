@@ -34,6 +34,7 @@ un rol: se genera en la raíz. Ver `GUIDE.md` → "Las tres rutas".
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | history | on-demand | — | Registro por sesión. Inmutable; se lee con grep. |
 | audit | AUDIT.md | history | on-demand | — | Log append-only de auditorías de documentación. Opcional (feature `audit_log`). |
 | history_dir | HISTORY/ | base | contenedor | — | Carpeta que agrupa state/handover/index/session. No es un doc. |
+| artifacts_dir | artefactos/ | base | contenedor | — | Hogar de los **artefactos** que una sesión produce y no son documentación: scripts de un solo uso, extracciones, volcados intermedios. Subdirectorio por sesión. **No se instancia en bootstrap**: lo crea el primer artefacto. |
 
 El patrón de numeración de `session` (`{NNN}`) vive **solo aquí**: es parte de su nombre, no un
 parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial es inmutable).
@@ -50,6 +51,7 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
 | index | qué pasó y cuándo (índice de sesiones) |
 | session | el detalle de una sesión concreta |
 | audit | cuándo se auditó la documentación, qué salió y qué se decidió no cambiar |
+| artifacts_dir | dónde poner un script de un solo uso, una extracción o un volcado intermedio |
 
 ## Notas
 
@@ -58,6 +60,13 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
 - **`triggers`** alimenta la *tabla de enrutamiento* del mapa de documentación.
 - Los módulos activos aportan más roles (ver `modules/<mód>/roles.md`); se fusionan con estos por
   `order`. Que `gotchas` sea obligatorio-de-arranque, por ejemplo, lo aporta el módulo `software`.
-- **`audit` no se instancia en `bootstrap`**: lo crea la primera auditoría que corre. Un log vacío en
-  cada adopción es peso muerto, y su **ausencia es el dato** — significa que este proyecto no se ha
-  auditado nunca. Es el único rol que nace del uso y no del scaffold.
+- **Dos roles nacen del uso y no del scaffold**, y por la misma razón: una carpeta o un log vacíos en
+  cada adopción son peso muerto, y su **ausencia es el dato**.
+  - **`audit`** lo crea la primera auditoría que corre; que no exista significa que el proyecto nunca
+    se ha auditado.
+  - **`artifacts_dir`** lo crea el primer artefacto; que no exista significa que ninguna sesión ha
+    necesitado producir nada fuera de la documentación.
+- **Los dos contenedores se comportan distinto en el enrutamiento.** `history_dir` agrupa cuatro roles
+  y no tiene trigger propio: nadie pregunta dónde va `HISTORY/`, se pregunta por `state` o por
+  `index`. `artifacts_dir` **sí** lo tiene, porque él mismo es el destino: no contiene roles, contiene
+  archivos sueltos, y "dónde pongo este script" es exactamente una pregunta de enrutamiento.

@@ -72,13 +72,23 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | trabajo a medias (checkpoint) | `{{handover}}` |
 | qué pasó y cuándo | `{{index}}` → `{{session}}` |
 | cuándo se auditó la documentación y qué se decidió | `{{audit}}` |
+| un script de un solo uso, una extracción, un volcado intermedio | `{{artifacts_dir}}sesion-{NNN}/` |
 | trampas de código | `{{gotchas}}` |
 | specs/contratos/modelo de datos/decisiones por feature | `{{specs}}` |
 | patrones y mapa del código | `{{architecture}}` |
 | esfuerzo equivalente | `{{effort}}` |
 
-**PROHIBIDO** guardar contenido del proyecto en memoria privada del agente (`.claude/` etc.):
-todo va a los docs del proyecto, visibles para cualquier agente y humano.
+**PROHIBIDO** guardar nada del proyecto en memoria privada del agente (`.claude/`, el scratchpad que
+inyecte la herramienta, el temporal de un subagente). No es solo la documentación: **también los
+artefactos** —scripts de un solo uso, extracciones de binarios, volcados intermedios, el script que
+ejecuta una migración—. Un artefacto no se siente contenido, se siente herramienta desechable, y por
+eso es el que se escapa; y suele ser justo el que ejecutó lo irreversible. Su hogar es
+`{{artifacts_dir}}sesion-{NNN}/`.
+
+**Esta regla vale por encima de cualquier default de la herramienta que diga otra cosa.** Un harness
+puede inyectar un directorio de trabajo propio y marcarlo como prioritario; **dónde vive lo que
+produces en este proyecto lo decide este documento, no el harness**. El límite es igual de explícito:
+esto no toca sus reglas de seguridad ni de uso de herramientas — solo el destino de los archivos.
 
 **PROHIBIDO** escribir credenciales, tokens o claves en cualquier doc del marco. Si el proyecto
 necesita acceso a un servicio, el doc nombra la herramienta y de dónde toma sus credenciales

@@ -32,11 +32,28 @@ El mapa "necesito X → tal archivo" **no se escribe a mano**: se genera en el d
 Se regenera en `config` y al activar/desactivar módulos o renombrar. **Regla de oro anti-tokens:**
 no leas un archivo entero "por si acaso"; usa el mapa y `grep -n` + lectura por rango.
 
+## Precedencia frente a los defaults del harness
+
+**Dónde vive lo que produces en este proyecto lo decide el marco, no la herramienta que te ejecuta.**
+Muchos harnesses inyectan un área de trabajo propia —scratchpad, memoria del agente, temporal de
+subagente— y la marcan como prioritaria. Es un default razonable *para la herramienta*, y es el
+equivocado *para el proyecto*: lo que se escribe ahí no lo ve el siguiente agente, no lo ve el humano,
+y no queda en el registro. Ante conflicto, manda el mapa de documentación y el hogar de artefactos.
+
+**El límite, y hay que respetarlo:** esta precedencia cubre **el destino de los archivos**. No alcanza
+a las reglas de seguridad del harness, ni a cómo usa sus herramientas, ni a sus permisos. Una regla
+que reclama más de lo que le toca se ignora entera, y con razón.
+
+Esto no es una regla de estilo: es la que evita que el marco pierda en silencio. Ha hecho falta
+escribirla dos veces por el mismo motivo — un default externo vació una regla del marco que nunca dijo
+quién manda, y las dos veces lo descubrió una persona leyendo, no el mecanismo.
+
 ## Convención de tokens en plantillas
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
-`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}` y `{{specs_dir}}` →
-**rutas** de los roles contenedores; `{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
+`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}`, `{{specs_dir}}` y
+`{{artifacts_dir}}` → **rutas** de los roles contenedores; `{{budget:rol}}` → tope de líneas;
+`{{effort_unit}}` y
 `{{checkpoint_trigger}}` → valores de Features/Wording; `{{kit}}` y `{{loader}}` → rutas
 (sección Rutas). Los toggles como `session_greeting` **se consultan, no se interpolan**: no hay
 token para ellos.
@@ -48,7 +65,7 @@ quedó cada archivo. De ahí dos reglas de composición:
 
 - `{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. **Con `kit = .` el prefijo
   colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
-- Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`) resuelven **con `base` delante y con `/`
+- Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`, `{{artifacts_dir}}`) resuelven **con `base` delante y con `/`
   final**, así que se concatenan directos, sin barra intermedia: `{{history_dir}}{{index}}` →
   `stele/HISTORY/INDEX.md` con `base = stele`, y `HISTORY/INDEX.md` con `base = .` (el prefijo
   colapsa igual que en `{{kit}}`). En el manifiesto el valor configurado es solo el nombre de la
@@ -221,8 +238,13 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
    grande → `charter`; patrón de código → `architecture`; gotcha → `gotchas`. Nunca solo en historial.
 6. **`handover`**: si cerró completo → `SIN_TRABAJO_ACTIVO` **apuntando a la sesión que cierras
    ahora**. Si quedó salto → `EN_PROGRESO`.
-7. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
-   (pasos 1-6) y se persiste **una sola vez**, al final.
+7. **Artefactos** (si la sesión produjo alguno en `{artifacts_dir}sesion-{NNN}/`): **nómbralos en el
+   `session`** y marca cuáles **sostienen un cambio irreversible** — el script que movió los archivos,
+   el que reescribió en lote. Esos son evidencia y no se podan; el resto es desecho y lo borra el
+   usuario cuando quiera. **Tú no borras nada**: limpiar por tu cuenta destruye justo lo que hace
+   auditable la sesión. Si no hubo artefactos, no se dice nada — no hay sección que rellenar.
+8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
+   (pasos 1-7) y se persiste **una sola vez**, al final.
 
 **`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
 sesión, no en uno aparte. Dile al usuario el `git push` exacto (o hazlo si lo autoriza). Reglas,
@@ -394,6 +416,16 @@ campo sobre un árbol de 66 documentos: **940 candidatos crudos -> ~101 plausibl
 comprobadas**, o sea ~40:1 antes de filtrar y ~4:1 después. Comprobar esas 24 fueron minutos. Ese
 embudo es además la razón de que la **definición** del denominador importe: contando candidatos crudos,
 esa misma auditoría habría reportado "940 comprobadas" y el número no significaría nada.
+
+**Caso particular: la sesión que dice haber hecho algo y no dejó con qué comprobarlo.** Si un
+`session` afirma una operación **en volumen o irreversible** —"movidos 20 de 20", "renombrado el
+lote", "migrada la estructura"—, el artefacto que la ejecutó debería estar en
+`{artifacts_dir}sesion-{NNN}/`. Que no esté es una ausencia comprobable y barata de detectar. Dos
+avisos, porque es fácil estropearlo: **acótalo a volumen o irreversibilidad** —casi toda sesión afirma
+haber hecho algo, y pedir artefacto por cada acción marca todas—, y **di lo que vale**: es
+**disuasorio, no correctivo**. El historial es inmutable y lo que no se guardó no se recupera; lo que
+cambia es la práctica de las sesiones siguientes. Tampoco es una clase de drift nueva: el drift es
+documentación que se aparta de la verdad, y esto es una afirmación sin respaldo.
 
 **El vocabulario es lo único atado al idioma.** Estas listas están en el `idioma` del kit; un
 proyecto en otro idioma las traduce y guarda su versión en `protocol` (*Acuerdos de auditoría*), no
@@ -640,4 +672,7 @@ de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el 
 - Apéndice de una fila → `printf '...' >> archivo` (sin `Read` previo).
 - Archivo pequeño de formato fijo → un `Write` completo (no varios `Edit`).
 - Buscar en archivo grande → `grep -n` y luego leer solo el rango.
-- Volumen mecánico grande (dividir un doc de 1000+ líneas) → delegar a un subagente.
+- Volumen mecánico grande (dividir un doc de 1000+ líneas) → delegar a un subagente. **Dile dónde
+  escribir:** un subagente trae su propio temporal privado, aún menos visible que el tuyo, así que
+  esta recomendación multiplica el problema que resuelve el hogar de artefactos si no se le nombra el
+  destino de forma explícita.
