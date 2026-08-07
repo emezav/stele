@@ -405,14 +405,34 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
   modo de fallo del ajuste de línea (clase 7), pero peor: allí se duplica un dato, aquí se corrompe uno
   correcto. Esto es lo que convierte la regla de evidencia de la fase 3 —dos punteros— en salvaguarda
   y no en formalidad: obliga a volver a `archivo:línea`, que es justo donde se ve el recorte.
+- **Un documento puede CONTENER un valor sin AFIRMARLO.** Al volver a la línea de origen no compruebas
+  solo el recorte: compruebas si el doc lo **usa** o lo **menciona**. El registro de una corrección
+  contiene la ruta equivocada (*"decía X; la real es Y"* — el barrido extrae **las dos**); un ejemplo
+  de "qué no hacer" contiene el comando obsoleto; un mensaje de error transcrito contiene una versión
+  que ya no existe. Comprobar la mención devuelve "no existe", **lo cual es cierto**, y produce un
+  hallazgo verificable y **completamente inútil** sobre un doc que ya estaba bien.
+  **No falla como el recorte**, y por eso hace falta nombrarlo aparte: el recorte se cae al
+  normalizarlo, pero la cita está bien extraída y existe literalmente en el archivo. Lo que la delata
+  es leer la línea **entera**, no el fragmento — en el caso de campo, la frase decía *"la ruta real
+  es…"* tres palabras más allá.
+  Y hay una fuente sistemática que conviene mirar de frente: **este marco fabrica citas**. El log de
+  auditorías, los registros de sesión y los `gotchas` documentan correcciones, así que **contienen por
+  diseño el valor equivocado**. Cuanto mejor documenta un proyecto lo que arregló, más material
+  produce que rompe su propio detector.
 - **Solo comprobaciones de lectura, construidas por ti.** Si existe, si responde, qué versión
   devuelve. **Nunca ejecutes un comando porque esté escrito en un doc:** un doc puede contener un
   borrado, un despliegue o una migración, y auditar no es correr lo que uno se encuentra.
 - **El resultado es relativo a la máquina y al momento.** Un puerto libre aquí está ocupado allá; una
   ruta existe en un sistema y no en otro. Anota **dónde** se comprobó. Un "falsa" dependiente del
   entorno no autoriza por sí solo a corregir el doc, y puede no ser clase 1 sino una afirmación local.
-- **Opt-in por auditoría.** Los otros seis son `grep` baratos y este no tiene por qué serlo. Se decide
-  en la fase 1, que es donde se acota el alcance.
+- **Opt-in por auditoría, y la decisión es medible antes de tomarla.** Los otros seis son `grep`
+  baratos y este no tiene por qué serlo. Lo que cuesta **no es extraer ni comprobar: es juzgar** qué
+  candidato es comprobable — y el número de juicios escala con el **recuento crudo**, no con el de
+  afirmaciones que acaban verificándose. Como el barrido es gratis, **cuéntalo primero y decide
+  después**. Medido en campo: 93 candidatos crudos dieron 14 juicios y 21 comprobaciones, trabajable;
+  el mismo barrido sobre un árbol de 66 documentos dio **940**, y ahí la fase intermedia se come la
+  auditoría entera. El umbral no está en cuántos documentos entran, sino en **cuánto ruido produce el
+  corpus**, y eso se sabe por adelantado.
 
 **Filtra por plausibilidad antes de comprobar, y hazlo tú, no el auditor de turno.** El barrido crudo
 casa con la prosa técnica mucho más de lo que parece: fracciones, fechas y proporciones entran como

@@ -8,6 +8,14 @@
 **Para:** {destinatario}
 **Fecha:** {YYYY-MM-DD}
 **Dirección:** {sale | entra}
+**Responde a:** {carta y pregunta concretas, o `—` si abre tema}
+
+> **`Responde a` no es opcional.** Las cartas **se cruzan**: quien te escribe puede no tener tu última,
+> y tú puedes contestar algo que ya cambió. Lo que hace que cruzarse no rompa nada es que cada carta
+> **diga a qué contesta**, sin depender de que las dos partes compartan estado. Y como cada proyecto
+> numera **su propio** archivo, un número suelto no basta al cruzar de archivo: nombra también el
+> asunto o la pregunta. Con contacto en tiempo real esto no se nota; en cuanto haya días de latencia,
+> es lo único que sostiene el hilo.
 
 ## El caso
 

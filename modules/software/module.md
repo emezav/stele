@@ -42,7 +42,37 @@ detección necesita saber *qué doc contradice a cuál*, y eso depende de los ro
 | 7 — hallazgo sin hogar | Los tres hogares de promoción del módulo: trampa técnica → `gotchas`; decisión por feature → `specs`; patrón o mapa del producto → `architecture`. Por cada sesión del rango, sus *Decisiones* deben tener eco en uno de los tres |
 | 8 — crecimiento sin revisión | Los topes del módulo: sección de `gotchas` por subsistema ~150-200 líneas; tema de `specs` ~600-800 |
 | 2 y 6 — estado obsoleto y bloqueo | `specs` es donde viven las fases y las preguntas abiertas por feature, y por eso es el doc que más rápido caduca cuando el producto avanza |
-| 1 — afirmación caducada | Patrones comprobables propios de software, para el detector de entorno del núcleo: puertos (`grep -rhoE "\b(:\|puerto \|port )[0-9]{2,5}\b"`), unidades de servicio (`\b[a-z0-9_-]+\.service\b`), nombres de contenedor e imágenes. **Filtro de plausibilidad del módulo:** descartar puertos `<1024` (casan con números sueltos de la prosa) y rutas que no cuelguen de una raíz real del sistema. Valen las cuatro cautelas del núcleo, empezando por que un candidato extraído es un **recorte** de la afirmación |
+| 1 — afirmación caducada | Patrones comprobables propios de software, para el detector de entorno del núcleo: puertos, unidades de servicio (`\b[a-z0-9_-]+\.service\b`), nombres de contenedor e imágenes. **Solo si el proyecto opera servicios en red** (ver abajo). Valen las cuatro cautelas del núcleo, empezando por que un candidato extraído es un **recorte** de la afirmación |
+
+### Números contra formas: por qué el filtro de puertos es distinto
+
+**Una ruta tiene forma; un número solo tiene contexto.** Por eso el filtro de plausibilidad de rutas
+—contrastar contra raíces reales— descarta el 80% sin equivocarse, y el equivalente para puertos **no
+existe**: ningún rango numérico distingue un puerto de un año, de un recuento de líneas, de una norma
+(`8601`) o de un identificador. La documentación técnica está llena de números en el rango de puertos.
+
+Así que **el filtro de verdad es el ancla léxica del propio barrido**, no el rango:
+
+```bash
+# el ancla es lo que filtra: dos puntos PEGADOS a los digitos, o la palabra delante
+grep -rhoE "\b(puerto |port |:)[0-9]{2,5}\b" {base} --include="*.md"
+```
+
+Con dos avisos, porque el ancla tampoco es gratis:
+
+- **`:` pegado a dígitos casa con `archivo:línea`**, que la documentación técnica usa a todas horas
+  (`SKILL.md:401`), y también con marcas de tiempo (`10:36`), fragmentos IPv6 e identificadores de
+  dispositivo. Descarta esos antes de comprobar nada: si el token de la izquierda parece un archivo,
+  no es un puerto.
+- **El rango `<1024` sigue sirviendo, pero como segundo filtro, no como el principal.** Documentarlo
+  al revés —que es lo que hacía este módulo— vende como filtro lo que apenas descarta nada.
+
+### Cuándo NO aplica este detector
+
+Los patrones de puertos, servicios y contenedores son de **proyectos que operan servicios en red**, no
+de "software" en general. Una librería, un compilador o un paquete de análisis no tienen nada que
+comprobar aquí y solo arrastrarían falsos. Es más estrecho que el módulo, y por eso va condicionado en
+vez de en un módulo aparte: **un módulo es un paquete de roles**, y esto no aporta ninguno.
 
 El hogar de promoción es lo que hace detectable la clase 7 —la más valiosa y la más invisible— y es
 justo lo que un proyecto sin este módulo no tiene: sin `gotchas` ni `specs`, un hallazgo de sesión
