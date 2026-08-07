@@ -41,9 +41,15 @@ dar por probado lo que no lo está.
 
 **Si el caso es sobre comportamiento de un agente, di en qué entorno ocurrió** — herramienta, versión,
 superficie, y el modelo si lo sabes. *"El agente hizo X"* no es reproducible ni comparable sin eso: dos
-proyectos pueden diferir en cosas que ninguno de los dos ve —hasta en si el razonamiento del agente es
-visible— y entonces las observaciones no se están comparando entre sí, sino entre dos montajes
-distintos. Sin el entorno, una observación de comportamiento es una anécdota bien contada.
+proyectos pueden diferir en cosas que ninguno de los dos ve, y entonces las observaciones no se
+comparan entre sí sino entre dos montajes distintos. Sin el entorno, una observación de comportamiento
+es una anécdota bien contada.
+
+**Y hay un remedio más barato que ver lo que hace un agente: que el agente escriba lo que observa
+donde queda.** Un caso real: una observación valiosa sobre el marco viajó porque su autor la dejó
+**commiteada en un archivo** de su proyecto, no porque nadie le leyera el razonamiento. Lo que hace
+comunicable una observación no es la transparencia del proceso, es que **el resultado aterrice en algo
+durable** — que es, exactamente, el disparador de REMITIR.
 
 ## Propuesta (opcional, y la parte menos valiosa)
 

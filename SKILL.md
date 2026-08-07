@@ -264,9 +264,12 @@ hecho ese mismo día fueron ingenuos. Aquí, en cambio, la trampa equivalente es
 se lee al abrir cada sesión— y **no impidió el fallo que describía**, cometido una sesión después de
 escribirla y encontrado cinco sesiones más tarde por una auditoría.
 
-**Misma clase de trampa, dos colocaciones, resultados opuestos.** Lo que decide no es que esté
-escrita, es **la distancia al momento de uso**. Un doc que se lee al arrancar te informa; el
-checkpoint del salto que va a tropezar te detiene.
+**Lo que decide no es solo que esté escrita: es la distancia al momento de uso.** Con un matiz que el
+propio corresponsal aportó y que rebaja la conclusión — **su trampa estaba también en `gotchas`**, no
+solo en el checkpoint. Así que la comparación limpia no es *"doc de arranque contra checkpoint"* sino
+**"doc de arranque solo" contra "doc de arranque más checkpoint"**, y lo que muestra es que
+**añadirlo funciona**, no que el doc de arranque sobre. Escríbela en los dos sitios si hace falta: el
+de arranque te informa, el del salto te detiene.
 
 ## Ritual: CERRAR sesión (dejar registro durable)
 
@@ -683,6 +686,17 @@ cautela 0 de AUDITAR — no te fíes del recorte, vuelve a la fuente.
   no se comprobaron.
 - **Propuestas** — no son afirmaciones y no se verifican: se **deciden**, al final y por separado.
 
+**Y clasifica también lo que dice quien trae la carta.** Un informe casi nunca llega desnudo: llega
+con un marco alrededor —*"esto viene de tal proyecto"*, *"esto salió del razonamiento del agente"*,
+*"me lo pasaron sin contexto"*—, y **ese marco es una afirmación más**, de la segunda clase: habla de
+un terreno que no puedes ver. Tómala bajo palabra si quieres, pero **márcala**, y sobre todo no
+construyas una conclusión de diseño encima sin decir en qué se apoya.
+
+Ocurrió: se dio por bueno que una observación venía del razonamiento interno de un agente ajeno —lo
+dijo el cartero, de buena fe— y se levantó sobre eso una hipótesis. Al comprobarlo, la observación
+estaba **commiteada en un archivo** del otro proyecto: visible desde cualquier sitio. La hipótesis
+sobrevivió por otras razones, pero **su ejemplo la contradecía**.
+
 ### Fases
 
 0. **¿Ya llegó esta carta?** Antes de leerla con atención, búscala en tu archivo. **Con cartero humano
@@ -852,6 +866,13 @@ El motivo no es estético. Cuando quien escribe es otro agente, su variante pued
 su modelo y no una elección de la persona**. Si tú espejas la suya y él espeja la tuya, dos
 herramientas se están devolviendo su propio sesgo y lo llamamos cortesía. Escribe en la variante de tu
 proyecto; si de verdad importa saber si la suya es deliberada, pregúntalo — para eso hay una carta.
+
+**Y el límite: escribir en tu variante tampoco garantiza acertar con la persona que hay detrás.** La
+regla te saca del bucle entre agentes; no te dice qué prefiere quien lee. Caso real y humillante: dos
+proyectos intercambiaron ocho cartas en una variante que **ninguno de los dos usuarios humanos usa**,
+sin que nadie lo notara, porque los dos agentes compartían el mismo default. Que al aplicar la regla
+se acertara con el destinatario fue **suerte**. La respuesta a *"¿qué variante quiere la persona?"* no
+es una regla — es una pregunta, y cuesta una línea.
 
 ## Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
