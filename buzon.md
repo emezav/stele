@@ -55,30 +55,7 @@ romperá en el primer clon en Linux. Arréglalo igual.
 **Qué NO demuestra este caso.** No sabemos cuántos adoptantes enlazan al kit por nombre; puede que
 ninguno. El aviso cuesta menos que el silencio.
 
-## Carta 2 — Qué se rechazó de los reportes de campo, y por qué
-
-**De:** stele · **Para:** quien vaya a reportar algo · **Fecha:** 2026-08-07
-
-Las **reglas** que salieron de los reportes ya están en el kit; lo que el kit no lleva son los
-**descartes**, y son lo que más viaje ahorra. Tres, sin nombrar a nadie:
-
-- **No se creó un módulo nuevo para los detectores de red.** La propuesta era razonable —puertos y
-  servicios no son "software" en general, sino proyectos que operan servicios— pero aquí **un módulo
-  es un paquete de roles**, y ese aporte no traía ninguno. Va condicionado dentro de `software`.
-- **No se suben los presupuestos porque alguien los exceda.** Un tope que sube cada vez se convierte
-  en decoración. Se decide: se poda con criterio, o se sube con `config` **después** de podar. Y un
-  presupuesto no distingue *"el proyecto creció"* de *"el doc derivó de género"* — la pregunta *"¿qué
-  sobra?"* es lo único que las separa.
-- **No se finge privacidad en un buzón.** El kit se copia entero, así que no hay destinatarios ni
-  entrega selectiva: un archivo con el nombre de alguien sería *algo que parece protegido sin
-  estarlo*. Lo privado va por otro canal, que es el modo por defecto de todos modos.
-
-**Y la regla que gobierna esto:** el **diagnóstico viaja, el remedio no**. Cuatro de cuatro reportes
-llegaron con el diagnóstico correcto y el remedio equivocado o incompleto — no por torpeza, sino
-porque quien reporta tiene el **caso** y el proyecto tiene el **contexto de diseño**. Escribe el caso;
-la propuesta es la parte menos valiosa de tu carta y no hace falta traerla.
-
-## Carta 3 — ¿Tu loader tenía contenido propio antes de adoptar stele?
+## Carta 2 — ¿Tu loader tenía contenido propio antes de adoptar stele?
 
 **De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-07
 
@@ -118,3 +95,39 @@ tu caso no responde a ninguna de las dos. Hace falta un archivo que **preexistí
 **Por qué te lo pedimos a ti.** Es una pregunta que el marco no puede contestarse solo: solo la
 responde alguien que llegó con documentación propia. Y de esa respuesta depende una regla que hoy
 protege datos que no podemos ver.
+
+## Carta 3 — En AUDITAR, el falso positivo es el lado peligroso (y queremos saber si te pasa igual)
+
+**De:** stele · **Para:** quien corra AUDITAR · **Fecha:** 2026-08-07
+
+**El caso.** Los detectores del ritual se equivocan de dos maneras, y durante mucho tiempo el kit las
+trató como si fueran igual de malas. No lo son.
+
+- Un **falso negativo** deja un hallazgo sin encontrar. Malo, pero el documento **queda como estaba**,
+  y lo que se te escapa vuelve en la siguiente auditoría.
+- Un **falso positivo** trae un "arreglo", y el arreglo **corrompe algo que ya era correcto**.
+
+Lo escribimos porque nos pasó tres veces, con tres detectores distintos y el mismo desenlace:
+
+- Comprobar un candidato **recortado** por el barrido (una ruta que perdió su prefijo, o que se llevó
+  el punto final de la frase) devuelve *"no existe"* — y el arreglo **corrige una ruta que estaba
+  bien**.
+- Comprobar una **mención** como si fuera un uso —el valor viejo que aparece dentro de *"decía X, la
+  real es Y"*— devuelve *"no existe"*, **lo cual es cierto**, y el arreglo edita un documento sano.
+- Declarar **huérfano** un dato que sí tiene hogar, escrito con otras palabras, lleva a **duplicarlo**
+  en un segundo hogar: exactamente lo que la clase 7 existe para impedir.
+
+**Lo que cambió en el kit.** Ahora el ritual dice hacia qué lado equivocarse: **ante la duda, no
+declares**. Y añade el paso que faltaba antes de dar algo por huérfano — **buscar el concepto, no la
+formulación**, porque un hogar legítimo rara vez repite el vocabulario del hallazgo. Eso no sustituye
+al barrido: lo verifica.
+
+**Qué NO demuestra este caso.** Son **tres casos de dos proyectos** que comparten este marco y esta
+familia de detectores. Que la asimetría sea una propiedad de auditar documentación en general, y no de
+cómo están escritos *estos* detectores, **no lo sabemos**.
+
+**Lo que te pedimos, y es barato.** Si corres AUDITAR y te sale un falso positivo, mira una cosa más
+antes de seguir: **¿qué habría pasado si lo aplicas?** ¿Habrías corrompido algo que estaba bien, o solo
+perdido el rato? Con dos o tres respuestas de fuera sabremos si la regla es del marco o del mundo. Y si
+te sale al revés —un falso positivo inofensivo— **eso nos interesa más todavía**, porque es lo único
+que puede refutarla.

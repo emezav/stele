@@ -59,6 +59,18 @@ subagente— y la marcan como prioritaria. Es un default razonable *para la herr
 equivocado *para el proyecto*: lo que se escribe ahí no lo ve el siguiente agente, no lo ve el humano,
 y no queda en el registro. Ante conflicto, manda el mapa de documentación y el hogar de artefactos.
 
+**Y de esa lista, la memoria del agente es la que más engaña, porque el motivo de arriba no le
+aplica.** Un scratchpad se siente desechable; una memoria se siente **lo contrario** —permanente,
+curada, con su índice y su formato—, y es verdad que **el siguiente agente de esa misma herramienta sí
+la lee**. Ahí la razón correcta es otra, y es más estrecha: **no la lee nadie más.** Ni otro agente, ni
+el humano que abra el repo, ni quien clone el proyecto en otra máquina — y no queda en el registro. Un
+dato que solo sobrevive mientras nadie cambie de herramienta no está guardado: está prestado.
+
+**La prueba es la ruta, no la intención.** Si el destino lleva el nombre de este proyecto y vive bajo
+la configuración del agente (`…/<agente>/projects/<este-repo>/memory/` y equivalentes), es memoria
+privada **de proyecto** por construcción — da igual lo general que parezca el dato que ibas a escribir
+ahí. El hogar de una convención de trabajo es el doc de proceso; el de una trampa, el de gotchas.
+
 **El límite, y hay que respetarlo:** esta precedencia cubre **el destino de los archivos**. No alcanza
 a las reglas de seguridad del harness, ni a cómo usa sus herramientas, ni a sus permisos. Una regla
 que reclama más de lo que le toca se ignora entera, y con razón.
