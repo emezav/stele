@@ -253,6 +253,21 @@ estructural** — mover, renombrar o reestructurar docs, es decir los rituales C
 aunque no toque una línea de código: si se corta a la mitad, media instancia está en un sitio, el
 manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
 
+**Y aquí también van las trampas de ESTE salto**, no solo el objetivo y el alcance: lo que sabes que
+puede salir mal en lo que estás a punto de hacer. No es adorno, es el sitio donde una advertencia
+llega a tiempo.
+
+La evidencia de campo tiene los dos lados, que es raro y por eso vale. Un proyecto anotó en su
+checkpoint que una sustitución textual podía alcanzar al kit, hizo el cambio y **lo esquivó** — y
+reconoce que sin ese aviso probablemente habría caído, porque los dos cambios equivalentes que había
+hecho ese mismo día fueron ingenuos. Aquí, en cambio, la trampa equivalente estaba en `gotchas` —que
+se lee al abrir cada sesión— y **no impidió el fallo que describía**, cometido una sesión después de
+escribirla y encontrado cinco sesiones más tarde por una auditoría.
+
+**Misma clase de trampa, dos colocaciones, resultados opuestos.** Lo que decide no es que esté
+escrita, es **la distancia al momento de uso**. Un doc que se lee al arrancar te informa; el
+checkpoint del salto que va a tropezar te detiene.
+
 ## Ritual: CERRAR sesión (dejar registro durable)
 
 1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, notas para retomar, y
@@ -561,9 +576,15 @@ Después de aplicar, **re-verifica lo tocado**. No es una formalidad: en la audi
 este ritual, **dos de los ocho hallazgos —incluida la clase 7— aparecieron verificando los arreglos
 de los cinco primeros**, no en el barrido inicial. Arreglar un doc cambia lo que otro debería decir.
 
-Alcance de la segunda pasada = **solo lo tocado** y sus hogares. Si aparece algo nuevo, pasa por las
-fases 3-5 y se repite; se termina cuando una pasada no produce nada nuevo. Cada pasada es más barata
-que la anterior porque su alcance se estrecha.
+**Y cubre el radio de la corrección, no solo su epicentro.** Lo tocado es el punto de partida; lo que
+hay que revisar es **lo que se apoyaba en lo tocado**. Una cifra corregida en un doc puede sostener
+una frase en otro que no abriste: cuando rebajes un número, **sigue sus hilos en vez de tacharlo donde
+estaba**. Caso de campo: un corresponsal corrigió un denominador y dejó en pie, dos documentos más
+allá, una proporción que se apoyaba en él — lo vio el otro lado, no él.
+
+Alcance de la segunda pasada = **lo tocado, sus hogares y lo que dependía de ello**. Si aparece algo
+nuevo, pasa por las fases 3-5 y se repite; se termina cuando una pasada no produce nada nuevo. Cada
+pasada es más barata que la anterior porque su alcance se estrecha.
 
 ### Informe (forma fija)
 
@@ -784,6 +805,13 @@ Ocurrió: una carta estuvo dos sesiones en el cajón mientras el índice decía 
 el usuario preguntando si ya se había contestado. Con los dos estados, esa pregunta **se responde
 mirando** en vez de preguntando: una fila `redactada` es una conversación que no ha salido.
 
+**Y el valor no está en que el estado sea exacto: está en que crea una superficie de contradicción.**
+Con un solo estado no hay señal posible, porque no hay nada con lo que chocar. Con dos, un registro
+que dice *"sin entregar"* junto a una respuesta que llegó **es una incoherencia visible**, y eso
+obliga a preguntar en vez de suponer. Es la misma razón por la que funciona *un hogar por dato* y por
+la que la clase 7 solo aparece contrastando dos sitios: **lo que detecta no es la exactitud de un
+registro, es el desacuerdo entre dos.**
+
 **Y la inmutabilidad empieza en la entrega, no en la escritura.** Una carta **entregada** o
 **recibida** no se reescribe jamás. Un borrador sin entregar sí se revisa — si mientras espera pasa
 algo que el destinatario debería saber, entra en la carta en vez de en la siguiente.
@@ -994,6 +1022,13 @@ cambio. El porqué, en `guide.md` → "Alternativas descartadas".
 4. **Aplicar**, acotado a los **docs del marco** (nunca código de producto): mover (`git mv`, o `mv`
    si el kit no está versionado) → reescribir la tabla del manifiesto **completa** → barrido de
    referencias por el mapa viejo→nuevo → regenerar derivados (auto-arranque + mapa-doc).
+   **Antes del barrido, comprueba si el nombre viejo es SUBCADENA de otra ruta viva.** Si lo es, una
+   sustitución textual la corrompe **en silencio**: caso real de campo, `.stele/` contiene `stele/`, y
+   un `replace("stele/", "bitacora/")` ingenuo habría convertido el kit en `.bitacora/` — el marco
+   entero fuera de su sitio, el manifiesto apuntando a la nada, y **ninguna señal hasta la sesión
+   siguiente**. Se ancla la sustitución (un *lookbehind* basta) y **se verifica después** que lo que no
+   debía moverse sigue donde estaba. Es el mismo peligro que hace que `base` no se llame como el kit:
+   la adyacencia **no solo confunde a las personas, confunde a las herramientas**.
 5. **Validar**: `grep` del nombre (o ruta) viejo = 0; cada nombre resuelve a un archivo; ningún rol
    activo apunta a faltante; los invariantes de ruta se cumplen.
 

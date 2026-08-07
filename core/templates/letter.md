@@ -39,6 +39,12 @@ Dónde termina tu evidencia. Un caso describe un terreno; lo que no cubre sigue 
 existe porque **es el que más veces ha faltado**, y sin él el receptor tiene que deducirlo o —peor—
 dar por probado lo que no lo está.
 
+**Si el caso es sobre comportamiento de un agente, di en qué entorno ocurrió** — herramienta, versión,
+superficie, y el modelo si lo sabes. *"El agente hizo X"* no es reproducible ni comparable sin eso: dos
+proyectos pueden diferir en cosas que ninguno de los dos ve —hasta en si el razonamiento del agente es
+visible— y entonces las observaciones no se están comparando entre sí, sino entre dos montajes
+distintos. Sin el entorno, una observación de comportamiento es una anécdota bien contada.
+
 ## Propuesta (opcional, y la parte menos valiosa)
 
 Si tienes una idea de qué hacer, dila. Pero se sabe, y está medido, que **el diagnóstico viaja y el
