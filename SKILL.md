@@ -400,6 +400,13 @@ hogar tiene que leerse en cada sesión. El otro remedio es un **artefacto de con
 que se busca con `grep` cuando hace falta y no entra en la lista de arranque. Elegir mal engorda el
 arranque de todas las sesiones futuras, que es un coste que no se ve al aplicarlo.
 
+**Y viven en tres sitios concretos, lo que los hace buscables.** Un hallazgo se escribe **cuando es
+noticia**, y lo que es noticia aterriza en el **checkpoint** o el doc de estado (que se podan), en el
+**registro de sesión** (inmutable, y por eso nadie lo mueve de ahí) y en las **cartas** (archivadas, o
+previstas para retirarse). Ninguno de los tres se lee para trabajar. Dos proyectos independientes han
+encontrado su huérfano en **exactamente esa constelación**, con reglas distintas y sin conocer el caso
+del otro: no es casualidad, es dónde cae por defecto lo que aún no tiene hogar. Empieza por ahí.
+
 ### Detectores (sin esto, el ritual es decorativo)
 
 Un audit que devuelve "todo se ve bien" no ha auditado. Barre primero, verifica después:
@@ -431,11 +438,27 @@ grep -rhoE "\bv?[0-9]+\.[0-9]+\.[0-9]+\b" {base} --include="*.md" | sort -u  # v
 
 **Busca por palabra rara, no por frase.** Los docs llevan ajuste de línea, así que cualquier frase de
 más de tres o cuatro palabras puede tener un salto en medio — y `grep` trabaja por líneas, así que no
-la encuentra. El fallo cae del lado peligroso: el detector de la clase 7 diría que un dato **no está**
-en su hogar cuando sí está, y el "arreglo" sería duplicarlo, que es exactamente lo que el marco
-prohíbe. Elige la palabra menos común del hallazgo y busca esa; si necesitas la frase entera, usa
+la encuentra. Elige la palabra menos común del hallazgo y busca esa; si necesitas la frase entera, usa
 `grep -Pzo` o normaliza los saltos antes de buscar. Comprobado en la auditoría 2 de este marco: `"no
 se instancia"` daba 0 resultados y `"se instancia"`, 1.
+
+**Y busca el concepto, no la formulación.** Lo anterior te salva del dato que está partido; esto, del
+dato que **está escrito con otras palabras**. Un hogar legítimo rara vez repite el vocabulario del
+hallazgo: dice lo mismo con otros términos, o lo dice de pasada dentro de una regla más general. Así
+que el barrido te da candidatos, no veredictos — **antes de declarar algo huérfano, ve al hogar que le
+tocaría y léelo**. No es desconfiar del `grep`: el barrido sigue siendo el mecanismo, y sin él no hay
+detector. Lo que se añade es un paso de verificación, el mismo que la fase 3 pide para todo lo demás.
+Caso de campo: un barrido de once hallazgos devolvió varios "sin hogar" que sí lo tenían, con otra
+redacción; el huérfano real era **uno**.
+
+**En estos detectores el falso positivo es el lado peligroso, y conviene saberlo antes de correrlos.**
+No son simétricos: un falso **negativo** deja algo sin encontrar —malo, pero el doc queda como
+estaba—, mientras que el falso **positivo** trae un "arreglo" que **corrompe algo que estaba bien**. Un
+huérfano falso se "arregla" duplicando el dato en un segundo hogar, que es justo lo que la clase 7
+existe para impedir; un recorte comprobado a ciegas se "arregla" corrigiendo una ruta correcta; una
+cita comprobada como uso se "arregla" editando un doc que no tenía nada mal. Tres modos de fallo
+distintos y el mismo desenlace. De ahí la consigna: **ante la duda, no declares** — un hallazgo que se
+te escapa vuelve en la siguiente auditoría, y uno que fabricas se queda escrito.
 
 **Separa la afirmación de la regla.** El barrido de absolutos lo primero que encuentra son **reglas**
 ("nunca se sobrescribe el loader", "el historial es inmutable"), y una regla **no caduca**: se deroga,
@@ -696,6 +719,11 @@ Ocurrió: se dio por bueno que una observación venía del razonamiento interno 
 dijo el cartero, de buena fe— y se levantó sobre eso una hipótesis. Al comprobarlo, la observación
 estaba **commiteada en un archivo** del otro proyecto: visible desde cualquier sitio. La hipótesis
 sobrevivió por otras razones, pero **su ejemplo la contradecía**.
+
+**Y esto alcanza al archivo, no solo a la sesión en que llega: se archiva la carta, no el sobre.**
+Marcarla te protege hoy; el archivo es donde el dato se releerá dentro de meses, ya sin nadie que
+recuerde de dónde salió. Una atribución que venga en el sobre entra **marcada como no verificada**, o
+no entra — nunca puede acabar leyéndose como si viniera firmada.
 
 ### Fases
 

@@ -29,6 +29,13 @@
 > seguiste adelante, no. No es cuestión de frecuencia —eso no se puede decidir cuando llega la primera
 > carta— sino de relevancia, igual que con los artefactos de una sesión.
 >
+> **Se archiva la carta, no el sobre.** Lo que rodea a una carta al llegar —*"esto viene de tal
+> proyecto"*, *"esto lo dijo su agente"*, *"me lo pasaron por ahí"*— no forma parte de ella y **no se
+> comprobó**: es una afirmación de la segunda clase (`{{kit}}/SKILL.md` -> CONTRASTAR). Si entra al
+> archivo, entra **marcada como no verificada**; si no vale la pena marcarla, no entra. Lo que nunca
+> puede pasar es que una atribución del sobre se lea, meses después, como si viniera firmada — y menos
+> que alguien construya encima una conclusión de diseño. Ya ocurrió, y acabó publicado en una carta.
+>
 > (Feature `correspondence_log`: apagarlo si el proyecto no intercambia nada con fuera. Apagarlo deja
 > a los dos rituales sin memoria: cada carta se evalúa como si fuera la primera, y lo ya rechazado
 > vuelve.)

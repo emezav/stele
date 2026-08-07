@@ -40,10 +40,19 @@ existe porque **es el que más veces ha faltado**, y sin él el receptor tiene q
 dar por probado lo que no lo está.
 
 **Si el caso es sobre comportamiento de un agente, di en qué entorno ocurrió** — herramienta, versión,
-superficie, y el modelo si lo sabes. *"El agente hizo X"* no es reproducible ni comparable sin eso: dos
-proyectos pueden diferir en cosas que ninguno de los dos ve, y entonces las observaciones no se
-comparan entre sí sino entre dos montajes distintos. Sin el entorno, una observación de comportamiento
-es una anécdota bien contada.
+superficie, el modelo si lo sabes, y **los ajustes que hayas cambiado**. *"El agente hizo X"* no es
+reproducible ni comparable sin eso: dos proyectos pueden diferir en cosas que ninguno de los dos ve, y
+entonces las observaciones no se comparan entre sí sino entre dos montajes distintos. Sin el entorno,
+una observación de comportamiento es una anécdota bien contada.
+
+**Los ajustes son la parte que más se olvida, y la que más engaña.** Herramienta y versión se
+recuerdan porque se nombran a diario; un interruptor que alguien encendió una vez se vuelve invisible
+en cuanto deja de sorprender. Di **cuál es y de qué alcance** —global o de este proyecto—, porque un
+ajuste de proyecto suele vivir en un archivo **no versionado**: entonces *"el mismo proyecto"* tampoco
+es una variable controlada, y dos máquinas del mismo repo se comportan distinto sin que nada en el
+repo lo explique. Caso de campo: dos proyectos llevaban tres cartas atribuyendo una diferencia de
+comportamiento al sistema operativo; era un interruptor de proyecto, sin versionar, que uno tenía
+encendido y el otro ni sabía que existía.
 
 **Y hay un remedio más barato que ver lo que hace un agente: que el agente escriba lo que observa
 donde queda.** Un caso real: una observación valiosa sobre el marco viajó porque su autor la dejó
