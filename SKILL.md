@@ -609,7 +609,19 @@ cautela 0 de AUDITAR — no te fíes del recorte, vuelve a la fuente.
 
 ### Fases
 
-1. **Clasificar** las afirmaciones del informe en las tres clases de arriba. Antes de nada.
+0. **¿Ya llegó esta carta?** Antes de leerla con atención, búscala en tu archivo. **Con cartero humano
+   el reenvío es normal** —se pega dos veces, se pega una vieja creyéndola nueva, se reenvía tras una
+   interrupción— y no detectarlo sale caro: reprocesas, **reaplicas hallazgos ya aplicados**, escribes
+   una fila duplicada y, en el peor caso, "descubres" lo mismo dos veces y lo registras como nuevo.
+   Detectarlo cuesta un `grep`.
+   **Busca por un token distintivo —un número raro, un comando literal—, nunca por el número de
+   carta.** Cada proyecto numera **su propio** archivo, así que la "carta 5" de quien escribe puede ser
+   tu carta 8: buscar por número da un falso negativo y te hace reprocesarla entera. Y por token y no
+   por frase, por lo de siempre: los docs llevan ajuste de línea y una oración puede partirse en dos.
+   **Si aparece, diffea antes de decidir.** Idéntica = ya procesada: di dónde está archivada y qué
+   salió de ella, y para. **Distinta = es una revisión**, y entonces lo que importa es el **delta** —
+   procesarla entera de nuevo es tan malo como ignorarla.
+1. **Clasificar** las afirmaciones del informe en las tres clases de arriba.
 2. **Verificar** las de la primera clase contra tu trabajo, una a una.
 3. **Separar diagnóstico de remedio** y volver a derivar el remedio. Decide su hogar con las fronteras
    de siempre: núcleo, módulo, instancia, o nada.
