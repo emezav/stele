@@ -80,7 +80,8 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
   `session`, inmutable y numerado) y su **carpeta** (`correspondence_dir`, como `history_dir`). La
   única diferencia real es que la numeración de `letter` **no distingue dirección**: una carta
   enviada y su respuesta son consecutivas, así que el hilo es el orden.
-- **Los dos contenedores se comportan distinto en el enrutamiento.** `history_dir` agrupa cuatro roles
-  y no tiene trigger propio: nadie pregunta dónde va `history/`, se pregunta por `state` o por
-  `index`. `artifacts_dir` **sí** lo tiene, porque él mismo es el destino: no contiene roles, contiene
-  archivos sueltos, y "dónde pongo este script" es exactamente una pregunta de enrutamiento.
+- **Los tres contenedores no se comportan igual en el enrutamiento.** `history_dir` y
+  `correspondence_dir` **agrupan roles** y no tienen trigger propio: nadie pregunta dónde va
+  `history/`, se pregunta por `state`, por `index` o por `letter`. `artifacts_dir` **sí** lo tiene,
+  porque él mismo es el destino: no contiene roles sino archivos sueltos, y "dónde pongo este script"
+  es exactamente una pregunta de enrutamiento.

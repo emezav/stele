@@ -111,6 +111,11 @@ no frecuencia —cuando llega la primera carta no puedes saber si habrá más—
 artefactos de una sesión. Y guarda **tu copia de lo que envías**: los buzones se curan, así que la
 copia del otro lado puede desaparecer.
 
+**Excepción: una carta publicada en un buzón propio no necesita copia aquí.** Ese archivo está
+versionado, así que el historial del control de versiones conserva lo que la curación retire — la copia
+ya existe. Solo lo que sale por un canal que no deja rastro (chat, correo, un mensaje pegado) necesita
+archivarse aparte.
+
 ### `{{artifacts_dir}}` — artefactos por sesión (se crea con el primero, no en bootstrap)
 
 Un subdirectorio por sesión: `{{artifacts_dir}}sesion-{NNN}/`. Dentro va lo que la sesión produjo y
