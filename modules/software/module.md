@@ -75,8 +75,11 @@ Con tres avisos, porque el ancla tampoco es gratis:
 **El ancla compra precisión y paga con recall, y paga donde más duele.** Una URL en prosa arrastra
 `host:puerto`; una fila de inventario lleva `| 8080 |` y nada más. Así que el patrón anclado **funciona
 peor cuanto mejor estructurado está el documento** — y este detector existe para auditar documentos
-operativos, que tienden a ser tablas. Caso de campo: de diez puertos reales documentados, tres no
-tenían **ni una sola** mención con ancla en 254 documentos.
+operativos, que tienden a ser tablas. Caso de campo: **tres puertos reales, documentados y
+verificables, sin ni una sola mención con ancla** en 254 documentos — solo aparecían como número
+desnudo en celdas de inventario. Se cita así, en absoluto y no como fracción, a propósito: el
+denominador de aquel caso salía del propio barrido, así que servía para exhibir el fallo pero no para
+cuantificarlo.
 
 Por eso hay una segunda estrategia, para el mismo valor y otro tipo de documento:
 

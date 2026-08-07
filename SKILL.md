@@ -246,6 +246,13 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
+**No registres un estado que no puedas observar.** Antes de escribir un hecho en un doc, pregúntate si
+puedes comprobarlo desde donde estás. Lo que ocurre fuera de tu alcance —que una carta se entregó, que
+un comando llegó a su destino, que alguien leyó algo— **no lo sabes: lo supones**, y una suposición en
+un registro es peor que una ausencia, porque se lee como hecho y nadie vuelve a comprobarla. Cuando el
+estado importe y no puedas observarlo, **regístralo por lo que sí sabes** —*redactada* en vez de
+*enviada*— y deja que lo mueva quien sí puede verlo.
+
 **Antes de persistir, comprueba lo que acabas de escribir contra las convenciones de texto de tu
 proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). **El marco no impone ninguna** —este
 mismo kit está escrito en prosa acentuada a propósito—: el paso se parametriza con **las tuyas**, y si
@@ -422,10 +429,16 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
   auditorías, los registros de sesión y los `gotchas` documentan correcciones, así que **contienen por
   diseño el valor equivocado**. Cuanto mejor documenta un proyecto lo que arregló, más material
   produce que rompe su propio detector.
-  **El peor infractor es el `audit`**, y no por casualidad: es el único doc que guarda el valor malo
-  **junto al bueno** como parte de su formato, y **crece monótonamente** —nunca se poda—. Un proyecto
-  con dos filas ya tenía una ruta errónea dentro. Con años de auditorías será la mayor mina de citas
-  del árbol. Si el barrido lo incluye, cuenta con que casi todo lo que salga de ahí es mención.
+  **Y el infractor no es un documento concreto, es un GÉNERO de sección:** *"aquí está lo que
+  corregimos"*. Aparece en un log de auditorías, en un inventario, en un registro de sesión o en un
+  `gotchas`, y lo peligroso no es qué doc lo aloja sino que **el formato invite a reproducir el valor
+  malo en vez de describirlo**.
+  De ahí una salvaguarda que **no depende del detector**, y por tanto protege también a quien no audite
+  nunca: **describe la corrección, no la cites.** *"Una ruta que ya se corrigió"* no rompe el barrido
+  de nadie; escribir la ruta, sí. Con una excepción que hay que reconocer: **a veces la cita es la
+  carga útil** —una tabla de equivalencias tras un renombrado necesita los nombres viejos literales, o
+  no sirve para nada—. La regla es *describe, salvo que el valor literal sea lo que el lector
+  necesita*.
 - **Solo comprobaciones de lectura, construidas por ti.** Si existe, si responde, qué versión
   devuelve. **Nunca ejecutes un comando porque esté escrito en un doc:** un doc puede contener un
   borrado, un despliegue o una migración, y auditar no es correr lo que uno se encuentra.
@@ -454,10 +467,23 @@ de exclusiones heredada de otro proyecto **te hará filtrar lo que a ti no te so
 el barrido es gratis, igual que para decidir el opt-in— y excluye por lo que veas.
 
 **Y elige el patrón según el alcance que ya decidiste, no en abstracto.** Un barrido **crudo** tiene
-recall perfecto y precisión mala; uno **anclado** al revés. Medido en campo sobre 9 documentos: el
-crudo encontró los 10 valores reales a cambio de 23 juicios —media hora— y el anclado encontró 1. Con
-alcance corto, **barre crudo y juzga**: no pierdes nada y te cuesta poco. El patrón preciso solo
+**más** recall y precisión mala; uno **anclado** al revés. Medido en campo sobre 9 documentos: el
+crudo encontró **10 de los 10 que él mismo detectó** a cambio de 23 juicios, y el anclado encontró 1.
+Con alcance corto, **barre crudo y juzga**: cuesta poco y pierdes menos. El patrón preciso solo
 compensa cuando el recuento crudo se vuelve inasumible, y para entonces ya sabes el número.
+
+**Cuidado con ese "10 de 10": no es recall, y el propio corresponsal lo corrigió.** El denominador
+salió del mismo barrido que se estaba midiendo, así que era 10/10 **por construcción**. Al releer
+aparecieron dos valores más —de dos dígitos, en prosa— que el patrón no podía ver, y que **ninguna de
+las tres estrategias encuentra**: el denominador real era al menos 12.
+
+> **El recall es la métrica que un detector no puede medir sobre sí mismo.** La precisión sí: verificas
+> lo que sale. El recall exige una **lista de verdad construida por otro medio** —a mano, con otro
+> patrón, por alguien que conozca el terreno—. Sin ella, cualquier cifra de recall es circular, y suena
+> a permiso para dejar de buscar.
+
+Vale para toda proporción que lleve dentro un conteo del propio detector: si ves *"N de M"*, pregunta
+de dónde salió la M.
 
 Y el coste está donde no parece: **lo caro es decidir qué es comprobable, no comprobarlo.** Medido en
 campo sobre un árbol de 66 documentos: **940 candidatos crudos -> ~101 plausibles -> 24 afirmaciones
