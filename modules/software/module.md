@@ -102,8 +102,8 @@ producto con estructura y decisiones por feature.
 ```text
 módulos: [software]
 features:  effort_log = on
-nombres:   gotchas=MEMORY.md  specs=REQUIREMENTS.md  specs_dir=temas/
-           architecture=ARCHITECTURE.md  effort=ESFUERZO.md
+nombres:   gotchas=memory.md  specs=requirements.md  specs_dir=temas/
+           architecture=architecture.md  effort=esfuerzo.md
 wording:   checkpoint.trigger = antes de la primera edición de código
 ```
 

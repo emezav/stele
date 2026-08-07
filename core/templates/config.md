@@ -48,7 +48,7 @@
 >
 > `kit_origen` = de dónde se vendorizó el kit. Lo escribe `bootstrap` y lo lee el ritual ACTUALIZAR
 > para traer la versión nueva; sin él, actualizar se bloquea. **No es un número de versión** — eso se
-> descartó por derivable (`{{kit}}/GUIDE.md` → Alternativas descartadas): la procedencia es lo
+> descartó por derivable (`{{kit}}/guide.md` → Alternativas descartadas): la procedencia es lo
 > contrario, no hay nada en el árbol de donde deducirla, y el `README` del kit no sirve porque
 > apuntaría al upstream aunque tú vendorizaras de un fork. `—` si el kit no se vendoriza (modo
 > auto-hospedado). Es una URL o ruta pública: **nunca** con credenciales embebidas.
@@ -58,11 +58,11 @@
 > Tres rutas independientes, todas relativas a la raíz del proyecto y sin `/` final. `kit` es
 > maquinaria **reemplazable** (se sustituye entera con el ritual ACTUALIZAR); `base` son tus docs,
 > versionados, y nunca se tocan al actualizar. **Invariante duro: `base` nunca puede quedar dentro de
-> `kit`.** Ver `{{kit}}/GUIDE.md` → "Las tres rutas".
+> `kit`.** Ver `{{kit}}/guide.md` → "Las tres rutas".
 
 | Ruta | Valor | Qué es |
 | --- | --- | --- |
-| kit | .stele | El marco vendorizado (`SKILL.md`, `GUIDE.md`, `core/`, `modules/`). |
+| kit | .stele | El marco vendorizado (`SKILL.md`, `guide.md`, `core/`, `modules/`). |
 | base | . | Raíz de los docs instanciados. `.` = raíz del proyecto. |
 | loader | CLAUDE.md | Loader de auto-arranque, siempre en la raíz. GENERADO. |
 
@@ -71,23 +71,23 @@
 | Rol | Archivo | Origen |
 | --- | --- | --- |
 | entry | AGENTS.md | núcleo |
-| charter | DESIGN.md | núcleo |
-| protocol | PROTOCOL.md | núcleo |
-| state | LATEST.md | núcleo |
-| handover | HANDOVER.md | núcleo |
-| index | INDEX.md | núcleo |
-| history_dir | HISTORY/ | núcleo |
+| charter | design.md | núcleo |
+| protocol | protocol.md | núcleo |
+| state | latest.md | núcleo |
+| handover | handover.md | núcleo |
+| index | index.md | núcleo |
+| history_dir | history/ | núcleo |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | núcleo |
-| audit | AUDIT.md | núcleo |
-| correspondence | CORRESPONDENCIA.md | núcleo |
+| audit | audit.md | núcleo |
+| correspondence | cartas.md | núcleo |
 | letter | carta-{NNN}-{YYYY-MM-DD}.md | núcleo |
 | correspondence_dir | correspondencia/ | núcleo |
 | artifacts_dir | artefactos/ | núcleo |
-| gotchas | MEMORY.md | software |
-| specs | REQUIREMENTS.md | software |
+| gotchas | memory.md | software |
+| specs | requirements.md | software |
 | specs_dir | temas/ | software |
-| architecture | ARCHITECTURE.md | software |
-| effort | ESFUERZO.md | software |
+| architecture | architecture.md | software |
+| effort | esfuerzo.md | software |
 
 > `artifacts_dir` es el hogar de lo que una sesión produce y **no es documentación**: scripts de un
 > solo uso, extracciones de binarios, volcados intermedios. Un subdirectorio por sesión. **No se

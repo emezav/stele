@@ -13,7 +13,7 @@ description: >
 
 # stele — rituales de sesión
 
-> Hoja operativa. El *por qué* y las fronteras están en `GUIDE.md` (leer una vez). Plantillas en
+> Hoja operativa. El *por qué* y las fronteras están en `guide.md` (leer una vez). Plantillas en
 > `core/templates/` y `modules/<mód>/templates/`. Roles en `core/roles.md` y `modules/<mód>/roles.md`.
 > Regla madre: **un hogar por dato; el estado se sobrescribe; el historial es append-only; lee poco
 > al arrancar.** Los nombres de archivo salen del manifiesto `stele.config.md`.
@@ -51,7 +51,7 @@ quién manda, y las dos veces lo descubrió una persona leyendo, no el mecanismo
 ## Convención de tokens en plantillas
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
-`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}`, `{{specs_dir}}`,
+`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`latest.md`); `{{history_dir}}`, `{{specs_dir}}`,
 `{{artifacts_dir}}` y `{{correspondence_dir}}` → **rutas** de los roles contenedores;
 `{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
 `{{checkpoint_trigger}}` → valores de Features/Wording; `{{kit}}` y `{{loader}}` → rutas
@@ -67,9 +67,9 @@ quedó cada archivo. De ahí dos reglas de composición:
   colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
 - Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`, `{{artifacts_dir}}`, `{{correspondence_dir}}`) resuelven **con `base` delante y con `/`
   final**, así que se concatenan directos, sin barra intermedia: `{{history_dir}}{{index}}` →
-  `stele/HISTORY/INDEX.md` con `base = stele`, y `HISTORY/INDEX.md` con `base = .` (el prefijo
+  `stele/history/index.md` con `base = stele`, y `history/index.md` con `base = .` (el prefijo
   colapsa igual que en `{{kit}}`). En el manifiesto el valor configurado es solo el nombre de la
-  carpeta (`HISTORY/`); es el token el que le antepone `base` al resolverse.
+  carpeta (`history/`); es el token el que le antepone `base` al resolverse.
 
 Esto importa sobre todo en lo **ejecutable**. Un `printf '…' >> {{history_dir}}{{index}}` mal
 compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila.
@@ -79,7 +79,7 @@ compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila
 
 - **Ruta de comando** (`printf >> …`, `grep`, `git log --`): relativa a la **raíz del proyecto**,
   porque los agentes operan con el CWD ahí. Es la que producen los tokens.
-- **Enlace Markdown clicable** (`[INDEX.md](./INDEX.md)`): relativo al **archivo que lo contiene**,
+- **Enlace Markdown clicable** (`[index.md](./index.md)`): relativo al **archivo que lo contiene**,
   porque así lo resuelve cualquier visor. Sobrevive a un cambio de `base` solo si su destino se mueve
   en el mismo bloque — que es el caso dentro de `{{history_dir}}`, y por eso el historial se mueve
   entero y no se reescribe. Un enlace que apunte **fuera** del bloque movido sí se rompe: revísalos
@@ -163,7 +163,7 @@ El marco tiene **dos vocabularios**, y solo uno es contrato:
   consume ninguna máquina, así que aquí no hay contrato que romper.
 
 **Regla: al usuario se le habla en llano, y se nombra el archivo.** No *"el handover está en
-`EN_PROGRESO`"*, sino *"quedó trabajo a medias, con su alcance anotado (`HANDOVER.md`)"*. El nombre
+`EN_PROGRESO`"*, sino *"quedó trabajo a medias, con su alcance anotado (`handover.md`)"*. El nombre
 entre paréntesis va **siempre**: es lo que le permite ir a mirarlo, y lo que hace que hablar claro no
 le quite precisión a un usuario técnico. Por eso la regla no necesita un parámetro que la active.
 
@@ -274,7 +274,7 @@ porque **un commit no puede contener su propio hash**:
 
 **`persistencia = ninguna`** — no hay VCS: los archivos en disco **son** el registro. Verifica que
 todo quedó escrito y dile al usuario en 2-3 líneas qué cambió y dónde. Sin red de recuperación la
-disciplina **sube**, no baja: ver `GUIDE.md` → "Persistencia y la red de recuperación".
+disciplina **sube**, no baja: ver `guide.md` → "Persistencia y la red de recuperación".
 
 **`persistencia = comando`** — ejecuta el `persistencia_cmd` del manifiesto y reporta su resultado
 con honestidad: si falla, dilo y **no des el cierre por persistido**. El comando **nunca lleva
@@ -496,17 +496,17 @@ que la anterior porque su alcance se estrecha.
 AUDIT — sesiones 10-24 · 6 docs revisados · 24 afirmaciones comprobadas, 1 falsa
 
 HAY QUE CORREGIR (algo lo contradice; manda el hecho)
-1. LATEST.md:14 da la fase 3 por "validada en pruebas locales",
-   pero la sesión 19 ya la desplegó (INDEX.md:31)   ->  corregir LATEST.md      [clase 2]
+1. latest.md:14 da la fase 3 por "validada en pruebas locales",
+   pero la sesión 19 ya la desplegó (index.md:31)   ->  corregir latest.md      [clase 2]
 2. Tres trampas del sistema externo se quedaron en las sesiones 17, 19 y 22
-   y nunca llegaron a MEMORY.md, que es donde se leen  ->  llevarlas a MEMORY.md [clase 7]
+   y nunca llegaron a memory.md, que es donde se leen  ->  llevarlas a memory.md [clase 7]
 
 LO DECIDES TÚ (no hay contradicción: es criterio)
-3. REQUIREMENTS.md tiene 786 líneas y 13 secciones  ->  partirlo, o dejarlo
+3. requirements.md tiene 786 líneas y 13 secciones  ->  partirlo, o dejarlo
    con un umbral para revisarlo más adelante                                    [clase 8]
 
 SIN PRUEBA (no se aplican)
-- ARCHITECTURE.md:52 dice "siempre" y suena absoluto, pero no encontré nada que lo desmienta
+- architecture.md:52 dice "siempre" y suena absoluto, pero no encontré nada que lo desmienta
 ```
 
 **Sin denominador, una auditoría confirma lo que fue a buscar.** Dos auditorías con tres hallazgos son
@@ -722,6 +722,12 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    "kit" o "marco" explícitamente. **Ante duda real, ofrecer el menú de layouts** (ver "Layouts con
    nombre") con una opción `otro` para dar `kit` y `base` a mano — una pregunta cerrada en vez de dos
    abiertas. Nunca adivinar.
+   **Si no detectas código, recomienda `agrupado`** (y dilo, no lo impongas). Con el default
+   `base = .` los docs de rol caen sueltos en la raíz del proyecto, y a quien no programa eso le
+   parece un desorden ajeno: no distingue lo suyo de lo del marco, y acaba sin tocar archivos que son
+   **suyos** y que debería editar cada sesión. Con `agrupado` todo queda bajo una carpeta con el
+   nombre del marco y la raíz sigue siendo del usuario. No hace falta prefijar nada: **una carpeta
+   con nombre ya dice de quién es lo que hay dentro.**
 2. **Eco del layout resuelto ANTES de escribir nada** (siempre, incluso en zero-question):
    ```text
    layout       -> agrupado   (dónde va cada cosa; o "personalizado")
@@ -788,7 +794,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 | `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: hay que **regenerar ese bloque** en el archivo real (loader y mapa-doc), conservando íntegro todo lo que quede fuera de las marcas — invariante 6. **Salvo que la marca de apertura diga `RICO`**: entonces no se reescribe, se **porta el delta a mano** (ver abajo) |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
-| `SKILL.md`, `GUIDE.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
+| `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
 | El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido a vuestro `remitente` o alguna pregunta que este proyecto pueda contestar. Contestar es ritual REMITIR; archivar solo lo que contestéis o lo que os mueva a hacer algo |
 
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
@@ -841,7 +847,7 @@ llegó tarde una vez —no hay forma de evitarlo, nada puede gobernar su propia 
 fila por cada una. Una fila por feature, en cambio, llega tarde siempre.
 
 Detectado en campo: un proyecto recibió el buzón y su agente lo leyó, pero **no por la fila** —que no
-existía en su kit— sino porque `diff -rq` imprimió `Only in <temporal>: BUZON.md` y la fase de
+existía en su kit— sino porque `diff -rq` imprimió `Only in <temporal>: buzon.md` y la fase de
 clasificar le llevó a abrirlo. **Funcionó porque el diff obliga a mirar**, que es más robusto que
 cualquier fila: no depende de que el destinatario ya tenga la versión que se lo dice.
 
@@ -857,7 +863,7 @@ borra. Recupéralos o descártalos con el usuario antes de seguir, nunca en sile
 
 **Sin marcador de versión, a propósito.** El kit no lleva `VERSION` ni changelog: el diff dice *qué*
 cambió y dónde, que es lo único accionable, y un número habría que acordarse de subirlo en cada
-cambio. El porqué, en `GUIDE.md` → "Alternativas descartadas".
+cambio. El porqué, en `guide.md` → "Alternativas descartadas".
 
 ## Ritual: CONFIG (adaptar nombres/parámetros — único renombrador sancionado)
 

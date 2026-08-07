@@ -41,7 +41,7 @@ nuevo. Por eso la copia nueva se trae **a un temporal, al lado**, y no encima: p
 diff, y solo después se sustituye el kit.
 
 No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md`, y el *por qué* y
-las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
+las fronteras están en `.stele/guide.md`. Léelos antes de escribir nada.
 
 ## Arquitectura (tres capas)
 
@@ -62,14 +62,14 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
 - **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · auditar ·
   contrastar · remitir · actualizar · config*, el mapa de documentación (cómo se genera) y la
   convención de tokens. Léelo primero.
-- **`GUIDE.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
+- **`guide.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
   Referencia; se lee una vez.
 - **`core/`** — `roles.md` (roles del núcleo, fuente del mapa derivado) + `templates/` (plantillas
   por rol: `entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`, `audit`,
   `correspondence`, `letter`, `autostart`, `config`).
 - **`modules/software/`** — `module.md` (manifiesto), `roles.md`, `conventions.md` y `templates/`
   (`specs`, `architecture`, `gotchas`, `effort`).
-- **`BUZON.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
+- **`buzon.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
   actualización (no hay servicio ni cuenta: el kit se copia, y las cartas viajan con él). Contiene
   preguntas que solo pueden responder proyectos reales. Se contesta con el ritual REMITIR, por el
   canal que prefieras — copiar y pegar basta.
@@ -114,6 +114,6 @@ agrupado"), y bootstrap te dice cuál resolvió antes de escribir nada. La tabla
 cada uno está en `SKILL.md` → "Layouts con nombre"; no son un parámetro que se guarde, solo una
 forma corta de nombrar dos rutas.
 
-> Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `GUIDE.md`.
+> Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `guide.md`.
 > El historial de diseño del marco vive en `git log`, no en el kit: todo lo que se vendoriza es lo
 > que un agente necesita para trabajar.

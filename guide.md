@@ -122,7 +122,7 @@ sección Rutas del manifiesto:
 
 | Ruta | Default | Qué es | Ciclo de vida |
 | --- | --- | --- | --- |
-| `kit` | `.stele` | El marco vendorizado: `SKILL.md`, `GUIDE.md`, `core/`, `modules/`. | **Reemplazable**: se sustituye entero con el ritual ACTUALIZAR. |
+| `kit` | `.stele` | El marco vendorizado: `SKILL.md`, `guide.md`, `core/`, `modules/`. | **Reemplazable**: se sustituye entero con el ritual ACTUALIZAR. |
 | `base` | `.` | Los docs instanciados (los roles) y el `history_dir`. | **Tuyo**: crece cada sesión, se versiona, no se regenera jamás. |
 | `loader` | `CLAUDE.md` | El auto-arranque en la raíz. | **Derivado por bloque**: se regenera el bloque del marco, no el archivo. |
 
@@ -253,14 +253,14 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
 - **`entry` (AGENTS.md) — cómo trabajar.** Proceso, estructura, convenciones operativas, checklists
   (como punteros). Entrada única. Incluye el *mapa de documentación* (generado). NO lleva el detalle
   de otros hogares: apunta.
-- **`charter` (DESIGN.md) — por qué el proyecto es así (a gran escala).** Norte, principios,
+- **`charter` (design.md) — por qué el proyecto es así (a gran escala).** Norte, principios,
   restricciones y no-negociables, decisiones estructurales grandes (ADR-lite, fechadas), glosario.
   Estable. Frontera: *principios transversales* aquí; *specs por feature* → módulo.
-- **`protocol` (PROTOCOL.md) — formatos.** Cómo se documenta (formatos de cada archivo, topes,
+- **`protocol` (protocol.md) — formatos.** Cómo se documenta (formatos de cada archivo, topes,
   operaciones de bajo coste). Referencia de formato.
-- **`state`/`handover`/`index`/`session` — el historial** (`history_dir`, HISTORY/): estado que se
+- **`state`/`handover`/`index`/`session` — el historial** (`history_dir`, history/): estado que se
   sobrescribe, checkpoint del salto en curso, índice y detalle por sesión (se leen con grep).
-- **`audit` (AUDIT.md) — la serie de auditorías**, también en `history_dir` y append-only. Opcional
+- **`audit` (audit.md) — la serie de auditorías**, también en `history_dir` y append-only. Opcional
   (feature `audit_log`) y **no se instancia en bootstrap**: lo crea la primera auditoría, y su
   ausencia significa que el proyecto nunca se auditó. Guarda *cuándo y con qué alcance*, no los
   hallazgos: lo que perdura de una auditoría vive en el hogar que corrigió.

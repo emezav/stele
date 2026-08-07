@@ -1,4 +1,4 @@
-# BUZON.md — Correspondencia de stele hacia quien usa el marco
+# buzon.md — Correspondencia de stele hacia quien usa el marco
 
 > **Qué es.** El buzón de salida del kit. Como ACTUALIZAR se trae el árbol entero, **estas cartas
 > bajan solas** con cada actualización: no hay servicio, ni red, ni cuenta que crear. Tu agente lo lee

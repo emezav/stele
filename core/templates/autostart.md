@@ -51,8 +51,8 @@ importado abajo. No hace falta pedir "lee {{entry}}".
      Ejemplo con defaults (base = .): -->
 
 @AGENTS.md
-@MEMORY.md
-@HISTORY/LATEST.md
-@HISTORY/HANDOVER.md
+@memory.md
+@history/latest.md
+@history/handover.md
 
 <!-- STELE:FIN -->

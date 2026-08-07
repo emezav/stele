@@ -2,7 +2,7 @@
 
 > **Cómo** se documenta (formatos, convenciones de edición, topes de tamaño) para que ningún
 > archivo de estado crezca sin límite y para minimizar tokens/roundtrips de cualquier agente.
-> Los rituales condensados están en `{{kit}}/SKILL.md`; el *por qué*, en `{{kit}}/GUIDE.md`.
+> Los rituales condensados están en `{{kit}}/SKILL.md`; el *por qué*, en `{{kit}}/guide.md`.
 > Los nombres de archivo abajo son los del manifiesto (`stele.config.md`).
 
 ## Principios
@@ -35,7 +35,7 @@ dentro de `{{history_dir}}`); los que apuntan fuera del bloque se rompen y hay q
 
 ## Archivos y su rol
 
-Ver `{{kit}}/GUIDE.md` → "Roles y fronteras". Aquí solo los **formatos**.
+Ver `{{kit}}/guide.md` → "Roles y fronteras". Aquí solo los **formatos**.
 
 ### `{{state}}` — formato fijo, se SOBREESCRIBE (~{{budget:state}} líneas)
 
