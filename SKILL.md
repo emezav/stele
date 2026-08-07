@@ -398,8 +398,8 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
 - **Un candidato extraído no es la afirmación: es un recorte de ella.** Antes de comprobar nada,
   normalízalo y contrástalo con su línea de origen. La extracción se come el prefijo, arrastra la
   puntuación de la frase o trunca el nombre — casos reales de campo:
-  `/etc/apache2/conf-enabled/.fullchain.pem` (perdió el prefijo), `/etc/iot/platform-gas.env.` (se
-  llevó el punto final de la frase), `/etc/chirpstack/region_au915_` (truncada). Ninguna existe *tal
+  `/etc/servidor/conf-enabled/.fullchain.pem` (perdió el prefijo), `/etc/app/config.env.` (se
+  llevó el punto final de la frase), `/etc/paquete/region_zona_` (truncada). Ninguna existe *tal
   como quedó extraída*, así que la comprobación devuelve "no existe" y el detector **fabrica el
   hallazgo que dice haber encontrado** — y el arreglo sería corromper una ruta que estaba bien. Es el
   modo de fallo del ajuste de línea (clase 7), pero peor: allí se duplica un dato, aquí se corrompe uno
@@ -649,7 +649,9 @@ un repo cerrado se archiva igual y no toca ningún buzón. Lo que exige criterio
 
 - **Va a un buzón** lo que le sirve a **cualquiera**: preguntas abiertas, y respuestas cuyo
   razonamiento es reutilizable. *Por qué no entró tal propuesta* le ahorra el viaje al siguiente que
-  la tenga; ese es el mismo motivo por el que el índice guarda los rechazos.
+  la tenga; ese es el mismo motivo por el que el índice guarda los rechazos. **Publicado sin nombrar a
+  nadie** salvo que su `remitente_publico` lo autorice — el razonamiento se puede publicar entero sin
+  decir de quién vino.
 - **Se queda privado** lo que solo le sirve a uno, lo que lleva **tripas del corresponsal**, y **todo
   lo que él no haya consentido publicar**. Pedir ese permiso es, en sí mismo, una carta privada.
 
@@ -664,12 +666,20 @@ sabe que ese `remitente` es él. Para hablar de una idea, alcanza.
 6. **Archivar y registrar**: tu copia como `letter` —la del otro lado puede desaparecer— y la fila en
    `correspondence`.
 
-### El remitente
+### El remitente, y por qué son dos claves
 
-Un seudónimo estable en `Meta` (clave `remitente`), **elegido, no derivado**. Derivarlo de la carpeta,
-la ruta o el remoto rompe el rastro en cuanto algo se renombra **y además no es anónimo**: el espacio
-de búsqueda de una ruta es minúsculo y se recorre por fuerza bruta, así que publicarías algo que
-parece protegido y no lo está.
+En `Meta`, **elegido, no derivado**. Derivarlo de la carpeta, la ruta o el remoto rompe el rastro en
+cuanto algo se renombra **y además no es anónimo**: el espacio de búsqueda de una ruta es minúsculo y
+se recorre por fuerza bruta, así que publicarías algo que parece protegido y no lo está.
+
+**`remitente` firma lo privado; `remitente_publico` es lo que puede aparecer en un buzón, y por defecto
+es `—` = anónimo.** Son dos porque son dos trabajos incompatibles: ante un corresponsal concreto
+conviene ser **reconocible** —para que el historial de la fuente se acumule—; en un canal que lee
+cualquiera conviene **no serlo**. Con una sola clave, un proyecto que quiera las dos cosas tiene que
+renunciar a una. Lo destapó una organización que firma en privado con su nombre real a propósito y
+que **no quiere ese nombre publicado**.
+
+En la duda, anónimo: autorizar se puede más tarde, despublicar no.
 
 Tres cosas que conviene tener claras: **identifica, no autentica** —cualquiera podría firmar como otro,
 y es aceptable porque el cartero es una persona, pero nadie debe construir confianza encima—; **nunca
@@ -739,7 +749,9 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Vacío = ya estabas al día:** dilo en
    una línea, borra el temporal y termina, sin haber tocado nada.
 3. **Clasificar por zona de impacto** (tabla abajo). Lo que no aparece en la tabla es procedimiento:
-   se lee, no se migra.
+   se lee, no se migra. **Y lee entero todo archivo que el diff marque como NUEVO** (`Only in
+   <temporal>:`) antes de aplicar, esté o no en la tabla: un archivo que no existía no puede tener
+   fila, porque la fila que lo describiría viaja en el mismo kit que lo trae. Ver abajo.
 4. **Aplicar:** sustituir `{kit}` por el temporal. Es seguro *aquí* porque el invariante 1 garantiza
    que `base` no está dentro.
 5. **Reconciliar con CONFIG** (fase 1, drift), acotado a lo que el diff señaló: filas que le faltan
@@ -774,11 +786,44 @@ cientos de sesiones encima suele tener en su loader reglas propias que la planti
 refrescar: es **perder**. Por eso el bloque puede declararse rico en su propia marca de apertura
 (`STELE:INICIO RICO`), y entonces ACTUALIZAR **porta el delta a mano** en vez de reescribirlo.
 
+**Y hay una variante donde la marca no es una comodidad, sino la única protección que existe.** El
+invariante 6 conserva lo que queda **fuera** de las marcas — pero un proyecto que adoptó puede haber
+acabado con su texto escrito a mano **dentro** de ellas, si al insertar el bloque se rodeó lo que ya
+había en vez de añadirlo aparte. Ahí el invariante 6 no protege nada, porque **no hay nada fuera**: todo
+lo propio está en la zona que la regla autoriza a reescribir entera. Caso real y documentado en campo,
+con el loader escrito a mano meses antes de la adopción.
+
+Así que al adoptar sobre un loader existente hay **tres situaciones, no dos**: generado de cero (nada
+que proteger), contenido propio fuera de las marcas (lo cubre el invariante 6), y **contenido propio
+encerrado dentro** (solo lo cubre `RICO`). La tercera es la más peligrosa y la menos evidente, porque
+desde fuera se ve igual que la primera.
+
 La marca vive en el bloque y no en el manifiesto **a propósito**: el dato viaja con la cosa que
-describe y lo lee el agente en el momento exacto en que iba a sobrescribir. Escrito como prosa en el
+describe y lo lee el agente en el momento exacto en que iba a sobrescribir.
+
+**Lo que la marca no hace:** decir *qué* falta. Marca un bloque como no reescribible, pero portar el
+delta sigue exigiendo comparar la plantilla nueva contra el bloque a mano. Convierte una regeneración
+automática en una **comparación manual** — que es lo correcto, pero cuesta, y conviene no venderla como
+gratis. Escrito como prosa en el
 manifiesto ya falló en campo — un proyecto adoptado tenía justo esa nota, la fila de arriba disparó
 igual, y lo que evitó la pérdida fue que el agente leyera y decidiera, no el mecanismo. Un mecanismo
 que depende de que alguien recuerde una nota en otro archivo no es un mecanismo.
+
+**Una regla que gobierna el actualizar no gobierna la actualización que la entrega.** Quien actualiza
+sigue el ritual del kit **viejo**: cuando clasifica el diff, el kit nuevo todavía no está aplicado. Así
+que **cualquier fila que se añada a esta tabla es invisible durante la actualización que la introduce**,
+y solo empieza a servir a partir de la siguiente. No es un defecto de una fila concreta: es una
+propiedad del mecanismo, y vale para todas las que hay aquí.
+
+Por eso la fase 3 manda **leer todo archivo nuevo del diff**, esté o no en la tabla. Esa regla también
+llegó tarde una vez —no hay forma de evitarlo, nada puede gobernar su propia entrega—, pero al ser
+**genérica** solo llega tarde **esa** vez: después cubre cualquier pieza futura sin necesidad de una
+fila por cada una. Una fila por feature, en cambio, llega tarde siempre.
+
+Detectado en campo: un proyecto recibió el buzón y su agente lo leyó, pero **no por la fila** —que no
+existía en su kit— sino porque `diff -rq` imprimió `Only in <temporal>: BUZON.md` y la fase de
+clasificar le llevó a abrirlo. **Funcionó porque el diff obliga a mirar**, que es más robusto que
+cualquier fila: no depende de que el destinatario ya tenga la versión que se lo dice.
 
 **El canal de bajada no es maquinaria: es esta fila.** ACTUALIZAR ya se trae el árbol entero del kit,
 así que **si el kit lleva un buzón, las cartas bajan con la actualización** — sin red, sin API y sin

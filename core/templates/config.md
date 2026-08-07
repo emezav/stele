@@ -21,20 +21,30 @@
 | persistencia_cmd | — |
 | kit_origen | `https://github.com/emezav/stele` |
 | remitente | — |
+| remitente_publico | — |
 
 > `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
 > disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
 > secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
 > en el gestor de la herramienta. Ver `{{kit}}/SKILL.md` → CERRAR, paso 7.
 >
-> `remitente` = con qué nombre firma este proyecto sus cartas (ritual REMITIR), y lo que permite
-> reconocer la correspondencia dirigida a él. **Elegido, no derivado:** un valor calculado de la
-> carpeta o la ruta rompe el rastro al renombrar **y no es anónimo** —el espacio de búsqueda de una
-> ruta es diminuto—. Lo propone el agente y **lo aprueba el usuario**, que es el único que sabe qué le
+> `remitente` = con qué nombre firma este proyecto la **correspondencia privada**, y lo que permite
+> reconocer lo que va dirigido a él. **Elegido, no derivado:** un valor calculado de la carpeta o la
+> ruta rompe el rastro al renombrar **y no es anónimo** —el espacio de búsqueda de una ruta es
+> diminuto—. Lo propone el agente y **lo aprueba el usuario**, que es el único que sabe qué le
 > identifica en su contexto. **Identifica, no autentica**, y por tanto **nunca es un secreto**: si
 > alguien lo convierte en prueba de identidad, pasa a ser una credencial y no puede vivir aquí. `—` =
-> este proyecto no firma; las cartas van anónimas y se pierde el historial de la fuente, que es una
-> renuncia legítima de quien escribe.
+> este proyecto no firma ni siquiera en privado.
+>
+> `remitente_publico` = con qué nombre puede aparecer en un **buzón público**, que es un canal
+> distinto y una decisión distinta. **`—` (default) = anónimo: no se publica su nombre.** Son dos
+> claves porque son **dos trabajos incompatibles** —identificar ante un corresponsal concreto, donde
+> conviene ser reconocible; y protegerse en un canal que lee cualquiera, donde conviene no serlo— y una
+> sola no puede hacer los dos. Caso real: una organización que firma en privado con su nombre real,
+> a propósito, para que el historial se le acumule entre varios proyectos suyos, y que **no quiere ese
+> nombre publicado**. Con un solo campo, ese proyecto tendría que elegir entre atribución y privacidad.
+>
+> El default es el seguro: **en la duda, anónimo**. Autorizar se puede después; despublicar, no.
 >
 > `kit_origen` = de dónde se vendorizó el kit. Lo escribe `bootstrap` y lo lee el ritual ACTUALIZAR
 > para traer la versión nueva; sin él, actualizar se bloquea. **No es un número de versión** — eso se
