@@ -73,8 +73,9 @@ validación + docs), en rango. Detalle por funcionalidad en el `{{session}}`.
 ### `{{audit}}` — tabla append-only (OPCIONAL, feature `audit_log`)
 
 `| Audit | Fecha | Sesiones | Alcance | Comprobadas | Hallazgos | Desenlace |`. Una fila por auditoría
-(ritual AUDITAR). **Lo crea la primera auditoría, no el bootstrap.** `Sesiones` es el rango cubierto y
-es lo que acota el alcance de la siguiente. `Comprobadas` es el **denominador** —cuántas afirmaciones
+(ritual AUDITAR). **Lo crea la primera auditoría, no el bootstrap.** `Sesiones` es el rango cubierto:
+**cobertura temporal, no alcance** — dice qué quedó fuera, y quien acota el trabajo es el conjunto de
+documentos de `Alcance`. `Comprobadas` es el **denominador** —cuántas afirmaciones
 sobre el mundo se resolvieron y cuántas salieron falsas—, sin el cual dos auditorías con los mismos
 hallazgos son indistinguibles; `—` si no se registró. Los hallazgos no se copian aquí: el detalle vive
 en el `{{session}}` de la sesión que auditó, y lo que perdura, en el hogar que corrigió.

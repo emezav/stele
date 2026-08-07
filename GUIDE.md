@@ -253,6 +253,18 @@ Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (
 Los presupuestos son parámetros de la config (sección Presupuestos); los módulos pueden añadir los
 suyos (p. ej. software: sección de `gotchas` por subsistema ~150-200 líneas).
 
+**Un presupuesto excedido se decide, no se recorta.** El tope es un **umbral de olor**, no un límite:
+lo que pide al cruzarse es una decisión, y hay dos salidas legítimas. Podar, si al mirarlo sobra algo
+—que es el caso corriente—. O **subirlo con `config`** para ese proyecto, si el doc de verdad necesita
+ese tamaño: un proyecto grande con varios frentes en paralelo puede necesitar un `handover` que no cabe
+en el default, y forzarlo a caber destruye justo lo que el doc existe para conservar. Lo que no vale es
+recortar hasta cuadrar el número: eso deja el tope intacto y el contenido mutilado, y además borra la
+señal — un presupuesto que siempre se cumple porque se recorta ya no mide nada.
+
+Y antes de subirlo, mira **por qué** no cabe: un `handover` que se desborda porque lleva tres saltos en
+paralelo no está diciendo que el tope sea pequeño, sino que se está usando para algo que no es un
+checkpoint. Los dos diagnósticos piden arreglos distintos.
+
 ## Por qué la regla dura del checkpoint
 
 Una sesión puede cortarse en cualquier momento (límite de uso, cierre de la herramienta,

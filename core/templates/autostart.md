@@ -9,7 +9,12 @@
      archivo entero ya destruyó el `CLAUDE.md` de un proyecto real. -->
 
 <!-- STELE:INICIO — bloque GENERADO. No editar a mano: se reescribe entero en `config` y al
-     actualizar. Lo que esté FUERA de estas marcas es del proyecto y el marco no lo toca. -->
+     actualizar. Lo que esté FUERA de estas marcas es del proyecto y el marco no lo toca.
+
+     MODO ADOPCIÓN: si este bloque se enriqueció con reglas propias del proyecto que la plantilla
+     base no contiene, cambia la marca de apertura a `STELE:INICIO RICO`. Entonces ni ACTUALIZAR ni
+     CONFIG lo reescriben entero: portan solo el delta del kit nuevo, a mano. Sin la marca, un
+     proyecto adoptado pierde sus reglas la primera vez que alguien regenere. -->
 
 Este proyecto usa el marco **stele** (`{{kit}}/`). El agente carga este archivo al iniciar cada
 sesión, así que el ritual de apertura se ejecuta **automáticamente**: el contexto mínimo viene

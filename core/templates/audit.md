@@ -5,8 +5,10 @@
 > Al terminar:
 > `printf '| N | YYYY-MM-DD | A-B | alcance | C (F falsas) | E/P | desenlace |\n' >> {{history_dir}}{{audit}}`
 >
-> `Sesiones` = rango cubierto (desde la última auditoría hasta la última cerrada). Es el dato que
-> **acota el alcance de la próxima**: sin él, auditar es releerlo todo cada vez.
+> `Sesiones` = rango cubierto (desde la última auditoría hasta la última cerrada). Es **cobertura
+> temporal, no alcance**: dice qué quedó fuera, no cuánto trabajo entra. Pasada cierta escala el rango
+> no acota nada —265 sesiones pueden tener una lista de arranque de seis docs—, y quien acota de verdad
+> es el **conjunto de documentos** de la columna `Alcance`.
 > `Comprobadas` = cuántas **afirmaciones sobre el mundo** se extrajeron y resolvieron, y cuántas
 > resultaron falsas. Es el **denominador**: sin él, dos auditorías con los mismos hallazgos son
 > indistinguibles aunque una comprobara cinco afirmaciones y la otra quinientas. Las reglas no cuentan
