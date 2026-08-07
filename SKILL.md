@@ -355,10 +355,11 @@ en el gestor de la propia herramienta, nunca en un doc del marco.
 Se dispara con "audita la documentación" / "corre el audit". **Se invoca; nunca corre solo** —
 auditar es caro por naturaleza y choca de frente con la regla madre *lee poco al arrancar*.
 
-Los otros seis rituales **escriben** documentación (abrir, checkpoint, cerrar) o mantienen el
-**marco** (bootstrap, actualizar, config). Ninguno re-verifica lo ya escrito: `abrir` lee poco a
-propósito, `cerrar` escribe el estado nuevo sin releer el viejo, y `config`/`actualizar` tocan el
-manifiesto y la maquinaria, no el contenido de los docs. Sin AUDITAR la documentación deriva en
+Los otros ocho **escriben** documentación (abrir, checkpoint, cerrar), mantienen el **marco**
+(bootstrap, actualizar, config) o hablan con **fuera** (contrastar, remitir). Ninguno re-verifica lo ya
+escrito: `abrir` lee poco a propósito, `cerrar` escribe el estado nuevo sin releer el viejo,
+`config`/`actualizar` tocan el manifiesto y la maquinaria —no el contenido de los docs—, y los dos de
+correspondencia miran lo que entra y lo que sale, no lo que ya está escrito aquí. Sin AUDITAR la documentación deriva en
 silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el dato.
 
 **Dos reglas duras:**
@@ -448,6 +449,13 @@ grep -rhoE "https?://[^ )\"]+" {base} --include="*.md" | sort -u        # URLs y
 grep -rhoE "\bv?[0-9]+\.[0-9]+\.[0-9]+\b" {base} --include="*.md" | sort -u  # versiones
 ```
 
+**Un cero se comprueba antes de creerlo.** Un barrido que devuelve 0 en **todos** los detectores casi
+nunca significa "corpus limpio": significa que el comando no miró donde creías — un directorio de
+trabajo que no era el que pensabas, un glob que no expandió, una ruta mal compuesta. Es el falso
+negativo más barato de cometer y el más caro de no ver, porque **un cero roto y un cero legítimo se
+leen igual**. Antes de informar "sin hallazgos", corre el mismo patrón contra algo que **sepas** que
+casa y comprueba que sale.
+
 **Busca por palabra rara, no por frase.** Los docs llevan ajuste de línea, así que cualquier frase de
 más de tres o cuatro palabras puede tener un salto en medio — y `grep` trabaja por líneas, así que no
 la encuentra. Elige la palabra menos común del hallazgo y busca esa; si necesitas la frase entera, usa
@@ -527,14 +535,14 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
 - **El resultado es relativo a la máquina y al momento.** Un puerto libre aquí está ocupado allá; una
   ruta existe en un sistema y no en otro. Anota **dónde** se comprobó. Un "falsa" dependiente del
   entorno no autoriza por sí solo a corregir el doc, y puede no ser clase 1 sino una afirmación local.
-- **Opt-in por auditoría, y la decisión es medible antes de tomarla.** Los otros seis son `grep`
-  baratos y este no tiene por qué serlo. Lo que cuesta **no es extraer ni comprobar: es juzgar** qué
-  candidato es comprobable — y el número de juicios escala con el **recuento crudo**, no con el de
-  afirmaciones que acaban verificándose. Como el barrido es gratis, **cuéntalo primero y decide
-  después**. Medido en campo: 93 candidatos crudos dieron 14 juicios y 21 comprobaciones, trabajable;
-  el mismo barrido sobre un árbol de 66 documentos dio **940**, y ahí la fase intermedia se come la
-  auditoría entera. El umbral no está en cuántos documentos entran, sino en **cuánto ruido produce el
-  corpus**, y eso se sabe por adelantado.
+**Y es opt-in por auditoría, con la decisión medible antes de tomarla** — esto no es una cautela sobre
+cómo leer sus resultados, sino sobre **si correrlo**. Los otros seis son `grep` baratos y este no tiene
+por qué serlo. Lo que cuesta **no es extraer ni comprobar: es juzgar** qué candidato es comprobable — y
+el número de juicios escala con el **recuento crudo**, no con el de afirmaciones que acaban
+verificándose. Como el barrido es gratis, **cuéntalo primero y decide después**. Medido en campo: 93
+candidatos crudos dieron 14 juicios y 21 comprobaciones, trabajable; el mismo barrido sobre un árbol de
+66 documentos dio **940**, y ahí la fase intermedia se come la auditoría entera. El umbral no está en
+cuántos documentos entran, sino en **cuánto ruido produce el corpus**, y eso se sabe por adelantado.
 
 **Filtra por plausibilidad antes de comprobar, y hazlo tú, no el auditor de turno.** El barrido crudo
 casa con la prosa técnica mucho más de lo que parece: fracciones, fechas y proporciones entran como
@@ -627,7 +635,10 @@ pasada es más barata que la anterior porque su alcance se estrecha.
 ### Informe (forma fija)
 
 ```text
-AUDIT — sesiones 10-24 · 6 docs revisados · 24 afirmaciones comprobadas, 1 falsa
+AUDIT — sesiones 10-24 · 6 docs revisados
+  estructura y conteo:  12 comprobadas, 7 falsas
+  rutas y entorno:      21 comprobadas, 0 falsas
+  TOTAL:                33 comprobadas, 7 falsas
 
 HAY QUE CORREGIR (algo lo contradice; manda el hecho)
 1. latest.md:14 da la fase 3 por "validada en pruebas locales",
@@ -650,6 +661,14 @@ procedimiento. El contador es lo que separa *"hay deriva"* de *"hay un caso"*: e
 aportó esta regla, **24 comprobadas y 1 falsa** cambiaron el diagnóstico —no era desactualización sino
 dispersión— y con él el remedio, que pasó de corregir docs a crear un artefacto de consulta. La
 advertencia contra el "todo se ve bien" protege del falso negativo; el denominador, del falso positivo.
+
+**Y se reporta partido, no promediado.** Un solo par para toda la auditoría mezcla poblaciones que no
+se parecen en nada, y el promedio no significa nada de ninguna de las dos. Caso real: 33 comprobadas
+salían de **12 afirmaciones de estructura y conteo con 7 falsas** y **21 rutas con 0 falsas**;
+promediado da un 21% que no describe ni un grupo ni el otro. Partido dice dos cosas distintas y las dos
+útiles — que el conteo deriva, y que el renombrado quedó limpio. **El total va debajo, no en lugar de
+las partes.** Y una honestidad que solo se ve al partir: un 58% de falsas en un grupo elegido por ser
+el que más cambió **no mide el corpus, mide dónde fuiste a buscar**; dilo cuando sea el caso.
 
 **Errores contra preferencias** — la frontera es una pregunta: *¿se decide contrastando dos fuentes,
 o consultando el gusto del usuario?* Lo primero es error (hay un hecho que manda); lo segundo es
@@ -696,9 +715,10 @@ de tesis, los resultados de un laboratorio socio, la evaluación de un curso, el
 que usa tu producto. Llega **fuera de banda** —no al abrir ni al cerrar— y procesarlo cuesta, así que
 **se invoca**, como auditar.
 
-**Por qué no lo cubre ningún otro ritual.** Los siete restantes miran hacia dentro: escriben la
-documentación, mantienen el marco, o re-verifican lo ya escrito. Ninguno maneja una **entrada de
-fuera**. Es la vía de mayor consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
+**Por qué no lo cubre ningún otro ritual.** Los siete anteriores miran hacia dentro: escriben la
+documentación, mantienen el marco, o re-verifican lo ya escrito. El octavo, REMITIR, sí mira hacia
+fuera —pero es la **salida**—. Ninguno maneja una **entrada de fuera**. Es la vía de mayor
+consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
 producto y viaja a todos— y es la única que no tenía procedimiento.
 
 ### La regla central: el diagnóstico viaja, el remedio no

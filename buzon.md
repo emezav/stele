@@ -12,6 +12,16 @@
 > **Regla de curación (importante).** Este archivo es **carga pública y permanente**: viaja a cada
 > copia del kit. Por eso se poda —una pregunta contestada se retira— y el rastro queda en `git log`.
 > Mismo criterio que el resto del marco: lo histórico vive en la historia, no en el kit.
+> **Y se retira también lo que el kit ya dice en el sitio donde se lee**, aunque nadie lo haya
+> contestado: si una carta explicaba algo que ahora vive en `SKILL.md` o en una plantilla, mantenerla
+> aquí es duplicar en carga pública lo que ya se lee donde toca. El criterio **no** es "ya se leyó" —
+> eso no se puede saber— sino "ya tiene hogar".
+>
+> **Y una carta de este buzón se escribe como pregunta, no como anuncio.** Una regla nueva **llega
+> sola** con la actualización, así que anunciarla aquí no añade nada. Lo que este canal consigue y el
+> kit no es **campo**: lo que no sabemos, lo que solo puede contestar alguien que use el marco en un
+> terreno que no vemos. Si al escribir una carta no encuentras qué preguntar, probablemente no era una
+> carta.
 >
 > **Sobre nombres.** Aquí no se nombra a nadie sin su permiso: un proyecto aparece por el `remitente`
 > con el que firmó, o en anónimo. Y las cartas hablan de **ideas**, nunca de quien las tuvo.
