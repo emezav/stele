@@ -43,6 +43,29 @@ un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas".
 El patrón de numeración de `session` (`{NNN}`) vive **solo aquí**: es parte de su nombre, no un
 parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial es inmutable).
 
+## Convención de nombres: minúscula por defecto
+
+**MAYÚSCULA solo donde la impone algo externo.** Los defaults de arriba están en minúscula porque la
+mayúscula solo señala mientras es rara: cuando la lleva todo, deja de distinguir y solo queda el
+volumen. Reservada así, **vuelve a significar algo — "este nombre no lo elegimos nosotros"**.
+
+Los que la conservan, y por qué:
+
+| Nombre | Quién lo impone |
+| --- | --- |
+| `README.md`, `LICENSE` | Convención universal y las plataformas de código |
+| `CLAUDE.md` (u otro `loader`) | La herramienta lo busca por ese nombre exacto |
+| `AGENTS.md` (el `entry`) | Varios agentes lo auto-cargan de la raíz (ver `{{kit}}/GUIDE.md` → acoplamiento) |
+| `SKILL.md` | El layout `skill`: al vendorizar el kit en `.claude/skills/…`, Claude Code busca ese nombre |
+
+**`SKILL.md` es el que más fácil se cuela en un barrido de minúsculas**, porque no lo impone la
+plataforma sino un layout — y bajarlo rompe ese layout **en todo adoptante sin dar error en ningún
+sitio**.
+
+Y una consecuencia que ya mordió: **`base` no se llama como el kit.** Ver la tabla de layouts en
+`{{kit}}/SKILL.md` — un nombre que es subcadena de otro no solo confunde a las personas, hace que una
+sustitución textual corrompa en silencio.
+
 ## Triggers (enrutamiento: "necesito… → hogar")
 
 | Rol | Necesito… |
