@@ -51,9 +51,9 @@ quién manda, y las dos veces lo descubrió una persona leyendo, no el mecanismo
 ## Convención de tokens en plantillas
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
-`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}`, `{{specs_dir}}` y
-`{{artifacts_dir}}` → **rutas** de los roles contenedores; `{{budget:rol}}` → tope de líneas;
-`{{effort_unit}}` y
+`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`LATEST.md`); `{{history_dir}}`, `{{specs_dir}}`,
+`{{artifacts_dir}}` y `{{correspondence_dir}}` → **rutas** de los roles contenedores;
+`{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
 `{{checkpoint_trigger}}` → valores de Features/Wording; `{{kit}}` y `{{loader}}` → rutas
 (sección Rutas). Los toggles como `session_greeting` **se consultan, no se interpolan**: no hay
 token para ellos.
@@ -65,7 +65,7 @@ quedó cada archivo. De ahí dos reglas de composición:
 
 - `{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. **Con `kit = .` el prefijo
   colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
-- Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`, `{{artifacts_dir}}`) resuelven **con `base` delante y con `/`
+- Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`, `{{artifacts_dir}}`, `{{correspondence_dir}}`) resuelven **con `base` delante y con `/`
   final**, así que se concatenan directos, sin barra intermedia: `{{history_dir}}{{index}}` →
   `stele/HISTORY/INDEX.md` con `base = stele`, y `HISTORY/INDEX.md` con `base = .` (el prefijo
   colapsa igual que en `{{kit}}`). En el manifiesto el valor configurado es solo el nombre de la
@@ -527,6 +527,128 @@ demasiado ruidoso o demasiado callado debe ajustarlo con `config` sin sentir que
 en encontrar. Si tu barrido produce cincuenta candidatos, el problema es el barrido: acota el alcance
 antes de ponerte a verificarlos.
 
+## Ritual: CONTRASTAR (recibir un informe externo sobre tu trabajo)
+
+**Cuándo.** Llega de fuera un informe sobre lo que este proyecto produce: la revisión de un director
+de tesis, los resultados de un laboratorio socio, la evaluación de un curso, el reporte de otro equipo
+que usa tu producto. Llega **fuera de banda** —no al abrir ni al cerrar— y procesarlo cuesta, así que
+**se invoca**, como auditar.
+
+**Por qué no lo cubre ningún otro ritual.** Los siete restantes miran hacia dentro: escriben la
+documentación, mantienen el marco, o re-verifican lo ya escrito. Ninguno maneja una **entrada de
+fuera**. Es la vía de mayor consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
+producto y viaja a todos— y es la única que no tenía procedimiento.
+
+### La regla central: el diagnóstico viaja, el remedio no
+
+Quien reporta tiene el **caso** —lo que pasó de verdad en su terreno, que tú no puedes ver—. Tú tienes
+el **contexto de diseño** —por qué las piezas son como son, que él no puede ver—. Un informe llega
+como prosa terminada con las dos cosas pegadas, y la parte sólida presta credibilidad a la otra.
+
+**Acepta el diagnóstico por sus méritos y vuelve a derivar el remedio desde tu propio diseño.** No es
+desconfianza: es que cada uno tiene la mitad que al otro le falta. Es el mismo movimiento que la
+cautela 0 de AUDITAR — no te fíes del recorte, vuelve a la fuente.
+
+### Tres clases de afirmación, y no se tratan igual
+
+- **Sobre tu trabajo** — verificables aquí, y se verifican **todas** antes de aceptar nada. Un aporte
+  apoyado en una afirmación falsa sobre tu producto se cae entero por bien argumentado que esté.
+  Evidencia con `archivo:línea`, como en AUDITAR.
+- **Sobre el proyecto que reporta** — no verificables desde aquí, nunca. Se toman **bajo palabra** y
+  se **marcan como tales** al registrarlas. Está bien apoyarse en ellas; lo que no vale es olvidar que
+  no se comprobaron.
+- **Propuestas** — no son afirmaciones y no se verifican: se **deciden**, al final y por separado.
+
+### Fases
+
+1. **Clasificar** las afirmaciones del informe en las tres clases de arriba. Antes de nada.
+2. **Verificar** las de la primera clase contra tu trabajo, una a una.
+3. **Separar diagnóstico de remedio** y volver a derivar el remedio. Decide su hogar con las fronteras
+   de siempre: núcleo, módulo, instancia, o nada.
+4. **Nombrar lo que el caso NO valida** y lo que el informe no dice. Un informe describe un terreno;
+   lo que no cubre sigue sin cubrir, y darlo por probado es peor que no haberlo preguntado. Esta fase
+   cuesta un párrafo y es la que más veces ha rendido.
+5. **Aplicar** lo aceptado (con el checkpoint de siempre si toca lo interrumpible) y llevar cada
+   decisión a su hogar **con su procedencia**: de dónde vino y qué caso la respalda.
+6. **Archivar, responder y registrar**, en ese orden. La carta recibida se guarda como `letter` **si
+   la contestaste o te movió a hacer algo** — la copia del remitente puede desaparecer y entonces la
+   tuya es la única. La respuesta dice **qué entró, qué no y por qué**, y qué sigue sin poder
+   responderse; es a su vez un `letter` que sale. Luego, las filas en `correspondence`.
+
+### Responder es una fase, no cortesía
+
+Es lo primero que se degrada, porque el trabajo ya está hecho y la respuesta no le urge a nadie. Pero
+**un ritual que solo ingiere convierte a quien reporta en QA gratis**, y esa fuente se seca. Y hay algo
+que solo tú puedes darle: **en qué no se aceptó su propuesta y por qué**. Eso es lo que hace que el
+siguiente informe venga mejor calibrado — y es información que él no tiene forma de deducir.
+
+Por eso **la fila se escribe después de responder**: su existencia implica que el circuito se cerró. Y
+como la numeración de `letter` no distingue dirección, **una carta que entra sin una que salga detrás
+es una conversación abierta**, visible sin llevar ninguna lista aparte. Una respuesta redactada y sin
+enviar es un pendiente de `state`, no una columna más.
+
+### Qué NO es un informe externo
+
+Que la petición venga acompañada de un **caso**: algo que pasó en un terreno real. Una idea, una
+preferencia o una petición de funcionalidad —vengan de quien vengan— no son esto: se tratan como
+cualquier otro cambio, sin ritual. Sin esta frontera, CONTRASTAR se convierte en la puerta de entrada
+de todo y deja de proteger nada.
+
+## Ritual: REMITIR (escribir hacia fuera lo que aprendiste)
+
+**Cuándo.** Cuando encuentras algo que **no es tuyo**: un hallazgo cuyo hogar correcto está en el
+proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el archivo y el índice.
+
+### El disparador, que es la parte difícil
+
+Nadie sabe que tiene algo que contar. Los informes que existen se escribieron porque una persona se
+dio cuenta, y eso no es un mecanismo. El mecanizable sale de generalizar la **clase 7** de AUDITAR
+—*hallazgo sin hogar*— un paso más:
+
+> Esta trampa que voy a escribir en `gotchas`, ¿es sobre **mi proyecto** o sobre **la herramienta que
+> uso**?
+
+Si es sobre la herramienta, ahí no arregla nada: estorba a tus sesiones futuras y se queda donde nadie
+puede actuar. **Su hogar no es este repo.** Es el mismo defecto que ya persigue AUDITAR —un dato
+archivado donde no toca— salvo que esta vez el sitio correcto es de otro.
+
+Segundo disparador, gratis: **bajó una carta con una pregunta que puedes contestar** (ver ACTUALIZAR).
+
+Y la misma frontera que en CONTRASTAR, aplicada de emisor: **si no hay un caso, no hay carta.** Una
+idea suelta o una petición de funcionalidad no lo son. Sin eso, escribir se vuelve barato y las cartas
+dejan de valer.
+
+### Fases
+
+1. **Comprobar que hay caso**: qué pasó, en qué terreno, qué costó.
+2. **Redactar** con la plantilla `letter`. El **caso** primero; la **propuesta** es opcional y va
+   marcada como lo que es — la parte menos valiosa. No hace falta traer solución para escribir.
+3. **Rellenar "qué NO demuestra este caso".** Es el campo que más veces ha faltado y el que evita que
+   el receptor dé por probado lo que no lo está.
+4. **Tachar.** Un informe de campo va lleno de tus tripas: rutas internas, nombres de máquinas y
+   servicios, datos de personas. **El seudónimo del remitente no anonimiza el cuerpo** — esto sí. Fase
+   obligatoria, no buena práctica. Y se dice en la carta que algo va tachado.
+5. **Consentimiento y envío.** **Enviar es publicar**, y lo decide el usuario, nunca el agente por su
+   cuenta. El canal da igual y el marco no opina: pegar el texto en la sesión de otro agente, un
+   correo, un issue, un PR si el proyecto tiene git y el usuario quiere. Copiar y pegar es el suelo, y
+   funciona siempre.
+6. **Archivar y registrar**: tu copia como `letter` —la del otro lado puede desaparecer— y la fila en
+   `correspondence`.
+
+### El remitente
+
+Un seudónimo estable en `Meta` (clave `remitente`), **elegido, no derivado**. Derivarlo de la carpeta,
+la ruta o el remoto rompe el rastro en cuanto algo se renombra **y además no es anónimo**: el espacio
+de búsqueda de una ruta es minúsculo y se recorre por fuerza bruta, así que publicarías algo que
+parece protegido y no lo está.
+
+Tres cosas que conviene tener claras: **identifica, no autentica** —cualquiera podría firmar como otro,
+y es aceptable porque el cartero es una persona, pero nadie debe construir confianza encima—; **nunca
+es un secreto**, o cae bajo el PROHIBIDO de credenciales; y **la carta anónima sigue siendo posible**,
+a costa de perder el historial de la fuente, que es una renuncia de quien escribe y no del marco.
+
+Lo elige el usuario y lo propone el agente: **solo el usuario sabe qué le identifica** en su contexto.
+
 ## Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
@@ -606,6 +728,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: hay que **regenerar ese bloque** en el archivo real (loader y mapa-doc), conservando íntegro todo lo que quede fuera de las marcas — invariante 6. **Salvo que la marca de apertura diga `RICO`**: entonces no se reescribe, se **porta el delta a mano** (ver abajo) |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
 | `SKILL.md`, `GUIDE.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
+| El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido a vuestro `remitente` o alguna pregunta que este proyecto pueda contestar. Contestar es ritual REMITIR; archivar solo lo que contestéis o lo que os mueva a hacer algo |
 
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
 en medio, y confundirlas es un fallo silencioso. Una plantilla de **contenido** produjo un doc que
@@ -627,6 +750,12 @@ describe y lo lee el agente en el momento exacto en que iba a sobrescribir. Escr
 manifiesto ya falló en campo — un proyecto adoptado tenía justo esa nota, la fila de arriba disparó
 igual, y lo que evitó la pérdida fue que el agente leyera y decidiera, no el mecanismo. Un mecanismo
 que depende de que alguien recuerde una nota en otro archivo no es un mecanismo.
+
+**El canal de bajada no es maquinaria: es esta fila.** ACTUALIZAR ya se trae el árbol entero del kit,
+así que **si el kit lleva un buzón, las cartas bajan con la actualización** — sin red, sin API y sin
+credenciales, que es lo que mantiene el marco sin runtime. La subida no tiene equivalente: necesita un
+cartero humano, y por eso el marco **estandariza la carta y nunca el canal**. Y esta revisión **no va
+en ABRIR** aunque tiente: mirar el buzón en cada sesión rompería el arranque barato, que es un pilar.
 
 **Si el diff muestra cambios que no vienen de arriba sino de ediciones locales del kit, para y
 avisa**: el kit no se edita dentro de un proyecto (para eso está la config), y re-vendorizar los

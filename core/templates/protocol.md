@@ -91,6 +91,26 @@ y `## Esfuerzo equivalente` (si se usa). `NNN` con padding a 3 dígitos. No se r
 que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
 `git log --diff-filter=A -- {{history_dir}}<archivo de sesión>`.
 
+### `{{correspondence}}` + `{{letter}}` — la correspondencia (OPCIONAL, `correspondence_log`)
+
+**Misma forma que el historial**, así que no hay nada nuevo que aprender: un índice
+(`{{correspondence}}`, como `{{index}}`), un archivo por carta (`{{letter}}`, como `{{session}}`:
+inmutable, numerado, se lee con grep) y su carpeta (`{{correspondence_dir}}`). Lo crea la primera
+carta, no el bootstrap.
+
+Índice: `| # | Fecha | Dir | Corresponsal | Asunto | Desenlace |`, con `Dir` = `->` sale · `<-` entra.
+En una carta recibida, `Desenlace` dice **qué se aceptó y qué se rechazó con su razón** — eso es lo
+único que guarda este índice y no guarda ningún otro doc; el detalle de lo aceptado vive en el hogar
+que corrigió, con su procedencia.
+
+**La numeración es única para las dos direcciones**, y de ahí sale el acuse de recibo sin mecanismo:
+una carta que sale sin otra detrás es una conversación abierta. Leer 1..N es leer la conversación.
+
+**Se archiva lo que contestaste o lo que te movió a hacer algo**, no todo lo que llega: es relevancia,
+no frecuencia —cuando llega la primera carta no puedes saber si habrá más—. Misma regla que los
+artefactos de una sesión. Y guarda **tu copia de lo que envías**: los buzones se curan, así que la
+copia del otro lado puede desaparecer.
+
 ### `{{artifacts_dir}}` — artefactos por sesión (se crea con el primero, no en bootstrap)
 
 Un subdirectorio por sesión: `{{artifacts_dir}}sesion-{NNN}/`. Dentro va lo que la sesión produjo y

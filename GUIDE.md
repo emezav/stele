@@ -27,15 +27,17 @@ entero al arrancar cada sesión.
 6. **Curación.** Los documentos vivos se **podan**: una entrada obsoleta se borra (su rastro queda
    en el historial). No se acumula.
 
-## Los tres rituales base + tres de ciclo de vida + uno de mantenimiento
+## Tres rituales base + tres de ciclo de vida + uno de verificación + dos de correspondencia
 
 - **Abrir** (ponerse al día, barato) · **Checkpoint** (dejar el salto en curso a salvo antes de un
   cambio interrumpible) · **Cerrar** (dejar registro durable).
 - **Bootstrap** (instanciar el marco en un proyecto), **Actualizar** (traer una versión nueva del kit
   y reconciliar la instancia) y **Config** (adaptar nombres/parámetros).
-- **Auditar** (verificar que lo escrito sigue siendo cierto).
+- **Auditar** (verificar hacia dentro que lo escrito sigue siendo cierto).
+- **Contrastar** (recibir de fuera un informe sobre tu trabajo y decidir qué entra) y **Remitir**
+  (escribir hacia fuera lo que encontraste y no es tuyo).
 
-Detalle operativo de los siete: `SKILL.md`.
+Detalle operativo de los nueve: `SKILL.md`.
 
 **Por qué el séptimo existe.** Los seis primeros se reparten en dos grupos —los que **escriben**
 documentación y los que mantienen el **marco**— y ninguno de los dos re-verifica el **contenido** ya
@@ -51,6 +53,31 @@ frase falsa sino una **ausencia**: conocimiento que se quedó en un registro de 
 promovió al doc que se lee al abrir. Eso no se ve leyendo ningún documento; solo aparece contrastando
 dos. Por eso no puede ser un efecto secundario de otro ritual, y por eso **se invoca**: auditar es
 caro por naturaleza, y meterlo en `abrir` rompería el pilar 4 (arranque barato).
+
+**Por qué existen los dos de correspondencia.** Mismo test, otra respuesta. Los siete anteriores miran
+**hacia dentro**: escriben la documentación del proyecto, mantienen su marco, o re-verifican lo ya
+escrito. Ninguno maneja el trato con **el exterior**. Visto como flujo, la asimetría salta:
+*actualizar* es cómo un cambio del kit **baja** hasta quien lo usa, y no existía el camino de
+**vuelta** — cómo un hallazgo de quien lo usa **sube**. Y no es cosa de kits: cualquier proyecto recibe
+informes sobre su trabajo (la revisión de un director, los resultados de un socio, la evaluación de un
+curso) y encuentra cosas que pertenecen a otro.
+
+**Contrastar** es la vía de entrada de **mayor consecuencia** que tiene un proyecto: lo que pasa por
+ahí se incorpora al producto y viaja a todo el que lo use. Un mal audit cuesta una tarde; un informe
+mal integrado se publica. Por eso su regla central no es *aceptar* sino **contrastar**: el diagnóstico
+de quien reporta viaja —tiene el caso, que tú no ves—, pero el remedio hay que volver a derivarlo desde
+tu diseño —que él no ve—.
+
+**Remitir** es el espejo, y su parte difícil no es escribir sino **darse cuenta**. El disparador sale
+de generalizar la clase 7 de auditar: una trampa que estás a punto de archivar en tus gotchas y que en
+realidad habla de *la herramienta que usas* no tiene su hogar en tu repo — ahí no arregla nada.
+
+**El canal se queda fuera del marco, y es una decisión, no un olvido.** El kit estandariza **la
+carta**, nunca el transporte: así viaja por correo, por un issue, por un PR, o pegada en la sesión de
+otro agente, y **copiar y pegar es el suelo que siempre funciona**, sin pedirle a nadie que aprenda
+git. Hay una excepción que no costó nada: como *actualizar* ya se trae el árbol entero del kit, un
+buzón dentro del kit **baja solo** con la actualización. La bajada era gratis; la subida necesita
+cartero.
 
 ## Arquitectura: núcleo · módulos · config
 
@@ -237,6 +264,13 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
   (feature `audit_log`) y **no se instancia en bootstrap**: lo crea la primera auditoría, y su
   ausencia significa que el proyecto nunca se auditó. Guarda *cuándo y con qué alcance*, no los
   hallazgos: lo que perdura de una auditoría vive en el hogar que corrigió.
+- **`correspondence`/`letter`/`correspondence_dir` — el intercambio con el exterior**, con la **misma
+  forma que el historial**: un índice, un archivo por carta (inmutable, numerado) y su carpeta.
+  Opcional (feature `correspondence_log`) y **no se instancia en bootstrap**: lo crea la primera
+  carta. La numeración **no distingue dirección**, así que leer 1..N es leer la conversación y una
+  carta sin respuesta detrás es un hilo abierto. El índice guarda lo que ningún otro doc guarda: **qué
+  se rechazó y por qué** — un descarte razonado evita volver a discutirlo y le dice a quien escribió
+  cómo calibrar la próxima.
 - **`artifacts_dir` (artefactos/) — lo que la sesión produce y no es documentación:** scripts de un
   solo uso, extracciones, volcados. Un subdirectorio por sesión, y **tampoco se instancia en
   bootstrap**: lo crea el primer artefacto. Existe porque el historial guarda el *qué* y no el *cómo*,

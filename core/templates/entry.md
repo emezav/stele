@@ -72,6 +72,8 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | trabajo a medias (checkpoint) | `{{handover}}` |
 | qué pasó y cuándo | `{{index}}` → `{{session}}` |
 | cuándo se auditó la documentación y qué se decidió | `{{audit}}` |
+| qué se intercambió con fuera, qué se aceptó y qué se rechazó | `{{correspondence}}` |
+| el texto de una carta concreta, enviada o recibida | `{{correspondence_dir}}{{letter}}` |
 | un script de un solo uso, una extracción, un volcado intermedio | `{{artifacts_dir}}sesion-{NNN}/` |
 | trampas de código | `{{gotchas}}` |
 | specs/contratos/modelo de datos/decisiones por feature | `{{specs}}` |

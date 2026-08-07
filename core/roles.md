@@ -7,9 +7,10 @@
 
 ## Resolución de ruta
 
-`ruta = {base}/[<valor de history_dir> si ubicación=history]{nombre}`, donde `<valor de history_dir>`
-es el nombre de carpeta del manifiesto (`HISTORY/`). Un rol con nombre `—` en la config está
-**desactivado** (no aparece en arranque ni en el mapa).
+`ruta = {base}/[<valor del contenedor> si la ubicación nombra uno]{nombre}`, donde el valor del
+contenedor es el nombre de carpeta que da el manifiesto (`HISTORY/`, `correspondencia/`…). Ubicación
+`base` = directo bajo `base`; `history` o `correspondence_dir` = bajo esa carpeta. Un rol con nombre
+`—` en la config está **desactivado** (no aparece en arranque ni en el mapa).
 
 **No confundir el valor con el token.** El manifiesto guarda el nombre de la carpeta; el token
 `{{history_dir}}` que usan las plantillas resuelve a la ruta completa desde la raíz, **con `base` ya
@@ -33,6 +34,9 @@ un rol: se genera en la raíz. Ver `GUIDE.md` → "Las tres rutas".
 | index | INDEX.md | history | on-demand | — | Índice append-only de sesiones. Se lee con grep. |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | history | on-demand | — | Registro por sesión. Inmutable; se lee con grep. |
 | audit | AUDIT.md | history | on-demand | — | Log append-only de auditorías de documentación. Opcional (feature `audit_log`). |
+| correspondence | CORRESPONDENCIA.md | correspondence_dir | on-demand | — | Índice append-only del intercambio con el exterior, **en las dos direcciones**, con lo aceptado y **lo rechazado y por qué**. Opcional (feature `correspondence_log`). |
+| letter | carta-{NNN}-{YYYY-MM-DD}.md | correspondence_dir | on-demand | — | Una carta, enviada o recibida. Numeración **única para ambas direcciones**: leer 1..N es leer la conversación. Inmutable. |
+| correspondence_dir | correspondencia/ | base | contenedor | — | Carpeta del intercambio con el exterior. No es un doc. |
 | history_dir | HISTORY/ | base | contenedor | — | Carpeta que agrupa state/handover/index/session. No es un doc. |
 | artifacts_dir | artefactos/ | base | contenedor | — | Hogar de los **artefactos** que una sesión produce y no son documentación: scripts de un solo uso, extracciones, volcados intermedios. Subdirectorio por sesión. **No se instancia en bootstrap**: lo crea el primer artefacto. |
 
@@ -51,6 +55,8 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
 | index | qué pasó y cuándo (índice de sesiones) |
 | session | el detalle de una sesión concreta |
 | audit | cuándo se auditó la documentación, qué salió y qué se decidió no cambiar |
+| correspondence | qué se intercambió con fuera, qué se aceptó, qué se rechazó y por qué |
+| letter | el texto de una carta concreta, enviada o recibida |
 | artifacts_dir | dónde poner un script de un solo uso, una extracción o un volcado intermedio |
 
 ## Notas
@@ -60,12 +66,20 @@ parámetro aparte. Cambiarlo afecta únicamente a sesiones futuras (el historial
 - **`triggers`** alimenta la *tabla de enrutamiento* del mapa de documentación.
 - Los módulos activos aportan más roles (ver `modules/<mód>/roles.md`); se fusionan con estos por
   `order`. Que `gotchas` sea obligatorio-de-arranque, por ejemplo, lo aporta el módulo `software`.
-- **Dos roles nacen del uso y no del scaffold**, y por la misma razón: una carpeta o un log vacíos en
-  cada adopción son peso muerto, y su **ausencia es el dato**.
+- **Varios roles nacen del uso y no del scaffold**, y por la misma razón: una carpeta o un log vacíos
+  en cada adopción son peso muerto, y su **ausencia es el dato**.
   - **`audit`** lo crea la primera auditoría que corre; que no exista significa que el proyecto nunca
     se ha auditado.
+  - **`correspondence`, `letter` y `correspondence_dir`** los crea la primera carta, en cualquiera de
+    las dos direcciones; que no existan significa que este proyecto no ha intercambiado nada con
+    fuera.
   - **`artifacts_dir`** lo crea el primer artefacto; que no exista significa que ninguna sesión ha
     necesitado producir nada fuera de la documentación.
+- **La correspondencia tiene la misma forma que el historial**, y por eso no hay nada nuevo que
+  aprender: un **índice** (`correspondence`, como `index`), un **archivo por pieza** (`letter`, como
+  `session`, inmutable y numerado) y su **carpeta** (`correspondence_dir`, como `history_dir`). La
+  única diferencia real es que la numeración de `letter` **no distingue dirección**: una carta
+  enviada y su respuesta son consecutivas, así que el hilo es el orden.
 - **Los dos contenedores se comportan distinto en el enrutamiento.** `history_dir` agrupa cuatro roles
   y no tiene trigger propio: nadie pregunta dónde va `HISTORY/`, se pregunta por `state` o por
   `index`. `artifacts_dir` **sí** lo tiene, porque él mismo es el destino: no contiene roles, contiene

@@ -20,11 +20,21 @@
 | persistencia | git |
 | persistencia_cmd | — |
 | kit_origen | `https://github.com/emezav/stele` |
+| remitente | — |
 
 > `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
 > disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
 > secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
 > en el gestor de la herramienta. Ver `{{kit}}/SKILL.md` → CERRAR, paso 7.
+>
+> `remitente` = con qué nombre firma este proyecto sus cartas (ritual REMITIR), y lo que permite
+> reconocer la correspondencia dirigida a él. **Elegido, no derivado:** un valor calculado de la
+> carpeta o la ruta rompe el rastro al renombrar **y no es anónimo** —el espacio de búsqueda de una
+> ruta es diminuto—. Lo propone el agente y **lo aprueba el usuario**, que es el único que sabe qué le
+> identifica en su contexto. **Identifica, no autentica**, y por tanto **nunca es un secreto**: si
+> alguien lo convierte en prueba de identidad, pasa a ser una credencial y no puede vivir aquí. `—` =
+> este proyecto no firma; las cartas van anónimas y se pierde el historial de la fuente, que es una
+> renuncia legítima de quien escribe.
 >
 > `kit_origen` = de dónde se vendorizó el kit. Lo escribe `bootstrap` y lo lee el ritual ACTUALIZAR
 > para traer la versión nueva; sin él, actualizar se bloquea. **No es un número de versión** — eso se
@@ -59,6 +69,9 @@
 | history_dir | HISTORY/ | núcleo |
 | session | sesion-{NNN}-{YYYY-MM-DD}.md | núcleo |
 | audit | AUDIT.md | núcleo |
+| correspondence | CORRESPONDENCIA.md | núcleo |
+| letter | carta-{NNN}-{YYYY-MM-DD}.md | núcleo |
+| correspondence_dir | correspondencia/ | núcleo |
 | artifacts_dir | artefactos/ | núcleo |
 | gotchas | MEMORY.md | software |
 | specs | REQUIREMENTS.md | software |
@@ -83,6 +96,7 @@
 | session_greeting | on |
 | audit_log | on |
 | audit_every_n_sessions | 10 |
+| correspondence_log | on |
 
 > `audit_every_n_sessions` **no dispara nada**: es el umbral con el que el cierre decide si anota
 > "auditoría vencida" en los pendientes de `{{state}}`. Auditar sigue siendo un acto explícito del

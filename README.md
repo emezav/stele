@@ -60,15 +60,19 @@ las fronteras están en `.stele/GUIDE.md`. Léelos antes de escribir nada.
 ## Qué contiene esta carpeta
 
 - **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · auditar ·
-  actualizar · config*, el mapa de documentación (cómo se genera) y la convención de tokens. Léelo
-  primero.
+  contrastar · remitir · actualizar · config*, el mapa de documentación (cómo se genera) y la
+  convención de tokens. Léelo primero.
 - **`GUIDE.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
   Referencia; se lee una vez.
 - **`core/`** — `roles.md` (roles del núcleo, fuente del mapa derivado) + `templates/` (plantillas
   por rol: `entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`, `audit`,
-  `autostart`, `config`).
+  `correspondence`, `letter`, `autostart`, `config`).
 - **`modules/software/`** — `module.md` (manifiesto), `roles.md`, `conventions.md` y `templates/`
   (`specs`, `architecture`, `gotchas`, `effort`).
+- **`BUZON.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
+  actualización (no hay servicio ni cuenta: el kit se copia, y las cartas viajan con él). Contiene
+  preguntas que solo pueden responder proyectos reales. Se contesta con el ritual REMITIR, por el
+  canal que prefieras — copiar y pegar basta.
 
 Las plantillas se escriben **por rol** con tokens `{{rol}}`; bootstrap/`config` los resuelven a los
 nombres del manifiesto (los docs instanciados quedan con nombres concretos y legibles).
