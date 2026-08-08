@@ -51,6 +51,24 @@ herramientas**. `ripgrep` y muchos buscadores lo saltan por defecto; `grep -r` d
 un mismo comando de barrido da resultados distintos según qué tenga instalado quien lo corre — y por
 eso **todo comando que publiques debe acotar dónde busca** en vez de fiarse del default.
 
+**Y acotar no basta, porque hay que acordarse antes: di también CON QUÉ HERRAMIENTA obtuviste el
+cero.** Caso de campo, y el mejor que hay de esta clase: un proyecto afirmó por carta que otro no lo
+mencionaba en ninguna parte. `rg -li` daba **0** y `grep -rli`, sobre el mismo árbol y en el mismo
+momento, daba **10** — la diferencia era un directorio ignorado por git, que es donde estaba todo.
+Ningún comando falló ni avisó de que miraba menos. **El cero no salió de un razonamiento equivocado:
+salió de un default.**
+
+Las dos reglas no son la misma. *Acota dónde buscas* es una instrucción sobre el **alcance** y hay que
+recordarla **antes** de escribir el comando; *di con qué lo obtuviste* es una instrucción sobre el
+**reporte** y se ve **en la salida**, que es donde uno mira cuando ya se equivocó. Es la misma economía
+de la adyacencia: lo que salva no es acordarse, es tener el dato al lado.
+
+**Y este caso tiene un agravante que conviene no suavizar: el agente que falló había leído este párrafo
+horas antes.** Ya hay precedente —una trampa escrita en el doc de gotchas, que se lee al abrir cada
+sesión, no impidió el fallo que describía—, pero aquí la regla no solo estaba escrita: estaba
+**recién leída**. Tener una regla en contexto **no predice cumplirla**; predice, como mucho, reconocer
+el caso raro cuando aparece.
+
 ## Precedencia frente a los defaults del harness
 
 **Dónde vive lo que produces en este proyecto lo decide el marco, no la herramienta que te ejecuta.**
@@ -379,6 +397,28 @@ por ahí: el script que no encuentra su ancla devuelve el fichero intacto, el ba
 el `-c` devuelve un número. **Ninguno da un error; todos dan una respuesta con la forma correcta.** Por
 eso el control positivo no es una formalidad — es lo único que separa *una respuesta* de *una respuesta
 cierta*.
+
+**Y hay una vuelta peor, donde la respuesta con forma correcta es una métrica que tú mismo elegiste.**
+Un reemplazo en lote sobre diez documentos —escrito para rodear la herramienta de edición, que hace un
+archivo por llamada pero **protesta en voz alta cuando el ancla no existe**— imprimió su contador de
+caracteres no-ASCII antes y después: `12 -> 0`, `17 -> 0`, `3 -> 0`. Verde en los diez. Lo que había
+hecho de verdad era **convertir en la letra `b` todos los backticks de un documento** —la comilla
+invertida se le comió al escape de la shell— y, en otro, **volver falsa una frase que era cierta**:
+donde decía que el manifiesto conserva su centinela `—`, el barrido lo sustituyó por `--` y el texto
+pasó a afirmar lo contrario **de la única excepción que ese párrafo existe para proteger**. Ninguno de
+los dos archivos quedó roto: quedaron válidos y equivocados, y sobrevivieron a la revisión, al cierre y
+a dos commits.
+
+**El contador no falló: midió exactamente lo que se le pidió.** Los no-ASCII bajaron a cero, que era la
+consigna, y por eso **certificó como éxito** un documento que acababa de perder todos sus backticks. Lo
+destapó, otra vez por casualidad, una comprobación de otra cosa que **imprimía la línea resultante** en
+vez de un recuento — `- bbitacora/requirements.mdb Sec.3` se ve al instante, y un número no lo habría
+mostrado jamás.
+
+**De ahí la regla, que es de forma y no de disciplina: un reemplazo en lote sobre prosa versionada
+imprime su DIFF, no su recuento.** El recuento dice **cuánto** cambió; solo el diff dice **qué**
+cambió. Y es la misma familia de *el barrido se come el documento que describe el barrido*: el texto
+más expuesto es justo el que explica la excepción, porque para explicarla tiene que contenerla.
 
 **Y el `state` no guarda datos que puedan volverse falsos entre dos cierres: los apunta.** Es la otra
 mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
@@ -1245,6 +1285,23 @@ no vale es prometer comprobabilidad y salir sin ella.
 que se sella DESPUÉS, escrito en un artefacto que sale ANTES.** Que reaparezca en el mismo texto que
 acababa de diagnosticarla dice lo que hay que saber de esta clase de error: **no se evita habiéndolo
 entendido, se evita cambiando la forma.**
+
+**Y el marcador supone algo que no siempre es cierto: que el corresponsal está lejos.** Toda la
+columna descansa en que lo que no se publica, el otro no lo ve — y eso vale casi siempre, que es
+exactamente la condición que nadie comprueba. Caso de campo: un corresponsal contestó que **lee el
+árbol de trabajo entero**, instancia privada incluida, porque los dos proyectos viven en el mismo
+disco de la misma persona. Cuatro filas marcadas *"no, vive donde no viaja"* eran falsas **para ese
+lector**, y lo supimos porque lo dijo él.
+
+Así que la columna no es una propiedad de la afirmación: **es una propiedad del par**. Con un
+corresponsal que ve más, se marca lo que él ve, y **se le pregunta si quiere seguir viéndolo** — la
+instancia es privada y quien decide es su dueño, no la conveniencia de la verificación.
+
+**Y hay un número al que esto obliga:** si el otro puede mirar tu árbol, tus cifras dejan de ser
+comprobables por otra razón — **el árbol se mueve**. Una medida sobre un repo sin decir sobre qué
+bytes no la reproduce nadie, ni él ni tú mañana. Un mismo fichero dio 803, 862 y 763 en tres momentos
+del mismo día. **Ningún número sale de un repositorio sin su corpus fijado al lado: el identificador
+del commit y el tamaño.**
 
 **Y "viaja" quiere decir publicado, que no es lo mismo que escrito.** Entre lo uno y lo otro hay al
 menos dos estados —escrito y guardado, guardado y publicado— y **solo el último es observable por el
