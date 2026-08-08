@@ -577,6 +577,16 @@ cuatro empezaron a acertar. Un control positivo del **conjunto** no lo habría c
 buscan cinco cosas distintas, hacen falta **cinco controles**. Una sonda que nunca acierta no está
 midiendo nada, y su cero es indistinguible del cero bueno.
 
+**Y los datos que sostienen una decisión tienen que salir juntos.** Es más barato que cualquier
+disciplina y funciona sin acordarse de nada. Caso de campo, contado por quien lo vivió: cinco sondas
+dieron negativo y lo único que impidió escribir *"me mintieron"* fue que **el estado del origen estaba
+impreso en la misma salida** — *"si hubiéramos corrido las sondas en un comando y el origen en otro, es
+muy probable que hubiéramos escrito la acusación entre los dos"*. **Lo que los salvó fue la adyacencia
+física de dos datos en una pantalla, no un procedimiento.** Así que cuando un resultado solo signifique
+algo junto a otro dato —el barrido y su control, la ausencia y la fecha, las sondas y el estado del
+origen—, **imprímelos en la misma salida**: separarlos deja la conclusión al azar de cómo alguien
+agrupe los comandos.
+
 **Y conviene saber contra qué se está luchando: emparejar por texto es frágil por construcción.** En un
 solo intercambio de campo, las comprobaciones de un mismo agente fallaron **cinco veces por la
 formulación** —ajuste de línea, mayúsculas, sinónimo, sustantivo de cabecera, y frase inexistente—. No
@@ -652,9 +662,29 @@ ninguna regla: está en lo que el documento dice ser. Caso de campo: seis sesion
 su título excluía. Se arregla **cambiando lo que el documento dice ser**, no forzando el contenido a
 caber en la definición vieja.
 
-**Así que este eje tiene dos pasadas**: los encuadres de las **reglas** (*"al cerrar"*, *"antes de
-commitear"*) y los de los **documentos** (el título, la primera línea, el *"NO lleva"*). La segunda es
-mucho más barata —hay muchos menos títulos que reglas— y coge una clase entera que la primera no ve.
+**Así que este eje tiene tres pasadas**, y la tercera la aportó el campo una vuelta más tarde:
+
+| Dónde vive el encuadre | Ejemplo | Coste de corregirlo |
+| --- | --- | --- |
+| en un **marcador temporal** de la regla | *"al cerrar"*, *"antes de commitear"* | reescribir una frase |
+| en el **sustantivo de la cabecera** | *"trampas al escribir código"* | reescribir una línea |
+| en el **nombre del fichero** | `requirements.md` conteniendo decisiones, no requerimientos | **todas las referencias, incluidas las inmutables** |
+
+**El nombre es el peor de los tres, y no porque engañe más: porque es el más caro de arreglar.** Un
+marcador y una cabecera se reescriben en segundos; un nombre arrastra cada cita del historial, de la
+correspondencia y de los docs que lo mencionan — cientos, en un proyecto con recorrido. Y encima se
+propaga: **cada vez que alguien dice *"está en X"* está repitiendo el encuadre equivocado.**
+
+**Por eso el remedio por defecto es corregir el encuadre y no el nombre**, con la razón escrita al lado
+para que el siguiente no vuelva a proponer el renombrado. Caso de campo: un documento llamado
+*requerimientos* que contenía un prospecto comercial, el análisis de un incidente y un plan de
+infraestructura — las tres cosas en su hogar correcto, y ninguna prometida por el nombre. Renombrar
+habría tocado unas cuatrocientas referencias; corregir la primera línea, una.
+
+**Y declara los dudosos, que son parte del resultado.** En este eje el riesgo se invierte —descartar es
+lo que deja pasar el hueco—, así que un candidato que no sabes clasificar **se reporta como dudoso**, no
+se resuelve a ojo. Sin esa política, **dos cifras del mismo barrido no son comparables**: quien declara
+dudosos y quien los resuelve en silencio están midiendo cosas distintas, y el denominador no lo revela.
 
 **De ahí salen los otros dos ejes.** Por **documento** encuentras huérfanos del documento que
 abres; por **regla** los encuentras donde estén. Toma las reglas que el proyecto sigue de verdad y
