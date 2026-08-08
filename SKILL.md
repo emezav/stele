@@ -721,6 +721,21 @@ corpus no llegó a ejercerse"**. Y se comprueba igual que todo lo demás — **b
 debería separarlas** y viendo si de verdad las separa. Si no hay ninguno, el acuerdo no es una medida:
 es un corpus que no hace la pregunta.
 
+**Y buscar ese caso es más difícil de lo que suena, porque casi siempre es una CONJUNCIÓN.** La frase
+de arriba nombra la condición en singular y ahí se queda corta — el mismo defecto que tenía la
+formulación de los filtros. En el caso de campo hacían falta **dos** propiedades a la vez: que la valla
+escapara al filtro de vallas **y** que dentro hubiera líneas empezando por `#`. Medido sobre otro
+archivo del mismo proyecto, con las dos condiciones presentes pero **en bloques distintos**, el
+enmascaramiento fue **cero**: el bloque con los comentarios no estaba indentado, y el que sí lo estaba
+no tenía ni un comentario.
+
+> **Para comprobar que un corpus separa dos implementaciones no basta con que contenga cada
+> condición: hay que comprobar que las contiene coincidiendo.**
+
+Un corpus puede tener las dos piezas del fallo y no exhibirlo nunca, y entonces un inventario
+—*"¿tenemos vallas indentadas? sí; ¿tenemos comentarios? sí"*— **da luz verde a un corpus que no
+prueba nada**.
+
 **Y el reverso, que faltaba: un `grep -c` en verde tampoco dice QUÉ encontró.** La cautela 0 estaba
 escrita para el falso negativo —un recorte que no alcanza lo que sí está—; esto es el otro lado. Caso
 de campo, y de los buenos: alguien corrió tres sondas para comprobar tres reglas que dijimos haber
@@ -1441,16 +1456,33 @@ sabe que ese `remitente` es él. Para hablar de una idea, alcanza.
 6. **Archivar y registrar**: tu copia como `letter` —la del otro lado puede desaparecer— y la fila en
    `correspondence`, **con el estado sincero**.
 
-### Una carta saliente tiene dos estados, y el agente solo puede mover el primero
+### Una carta saliente tiene tres estados, y el agente solo puede mover dos
 
-**`redactada` -> `entregada`.** El agente escribe la fila al redactar; **solo el usuario mueve la
-segunda**, porque el cartero es él. Un agente **no puede comprobar** que una carta salió: puede saber
-que la escribió y nada más, así que anotar "enviada" al archivarla es una suposición disfrazada de
-registro — y el índice es justo el doc que no debe contenerlas.
+**`redactada` -> `publicada` -> `entregada`.** El agente escribe la fila al redactar y mueve la
+segunda; **solo el usuario mueve la tercera**, porque el cartero es él. Un agente **no puede
+comprobar** que una carta salió: puede saber que la escribió y nada más, así que anotar "enviada" al
+archivarla es una suposición disfrazada de registro — y el índice es justo el doc que no debe
+contenerlas.
 
 Ocurrió: una carta estuvo dos sesiones en el cajón mientras el índice decía "enviada", y lo descubrió
-el usuario preguntando si ya se había contestado. Con los dos estados, esa pregunta **se responde
+el usuario preguntando si ya se había contestado. Con los estados, esa pregunta **se responde
 mirando** en vez de preguntando: una fila `redactada` es una conversación que no ha salido.
+
+**El estado de en medio existe porque el fallo caro no es el de la entrega, es el del orden.** Cuando
+una carta afirma cambios en algo que al otro le llega, su identificador de publicación tiene que estar
+**dentro**; y publicar lo hace el agente mientras entregar lo hace la persona, así que **el orden entre
+los dos pasos no lo controla ninguno de los dos por separado**. Escribir *"esta carta espera al sello"*
+dentro de la carta no ata a nadie: se probó, y la carta salió igual — con esa frase dentro, ya falsa,
+en una copia que no se puede reescribir.
+
+`publicada` **es observable por el agente** —un identificador contra el servidor, no contra la copia
+local— y por eso puede exigirse. **Una fila `entregada` sin haber pasado por `publicada`, cuando la
+carta afirma cambios, es una deuda visible en el índice** en vez de un descubrimiento una carta
+después. Es el mismo mecanismo que ya justifica los otros dos estados, aplicado al paso que faltaba.
+
+**No aplica a toda carta:** una que no afirma cambios en ningún artefacto va de `redactada` a
+`entregada` y ahí se acaba. Y **las filas viejas no se reescriben** para añadirles el estado: el índice
+registra lo que pasó, y lo que pasó es que entonces no existía.
 
 **Y el valor no está en que el estado sea exacto: está en que crea una superficie de contradicción.**
 Con un solo estado no hay señal posible, porque no hay nada con lo que chocar. Con dos, un registro

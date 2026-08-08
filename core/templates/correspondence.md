@@ -16,10 +16,18 @@
 > discutirlo, y le dice a quien escribió cómo calibrar la próxima. El detalle de lo aceptado no se
 > copia aquí: vive en el hogar que corrigió, con su procedencia.
 >
-> **En una carta que sale, el desenlace empieza por su estado: `redactada` o `entregada`.** El agente
-> escribe la fila al redactar y **solo el usuario mueve el estado a entregada**, porque el cartero es
-> él: un agente no puede comprobar que una carta salió. Una fila `redactada` es una conversación que
-> no ha salido, y verla es lo que evita que alguien tenga que preguntar si ya se contestó.
+> **En una carta que sale, el desenlace empieza por su estado: `redactada`, `publicada` o
+> `entregada`.** El agente escribe la fila al redactar y mueve el estado a `publicada`; **solo el
+> usuario mueve el estado a `entregada`**, porque el cartero es él: un agente no puede comprobar que
+> una carta salió. Una fila `redactada` es una conversación que no ha salido, y verla es lo que evita
+> que alguien tenga que preguntar si ya se contestó.
+>
+> **`publicada` solo aplica a las cartas que afirman cambios en algo que al destinatario le llega**, y
+> significa que su identificador de publicación ya está **dentro** de la carta, comprobado contra el
+> sitio donde el otro va a mirar. Una fila `entregada` que nunca pasó por `publicada`, en una carta de
+> esas, es una deuda **visible aquí** en vez de un descubrimiento una carta después. Las cartas que no
+> afirman cambios van de `redactada` a `entregada` directamente. **Las filas viejas no se reescriben**
+> para añadirles el estado.
 >
 > **El acuse de recibo no necesita mecanismo.** La numeración es única para las dos direcciones, así
 > que una carta que sale y **no tiene detrás una que entra** es una conversación abierta, y se ve de
