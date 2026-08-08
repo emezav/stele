@@ -350,10 +350,17 @@ categoría entera** para el doc donde más duele.
 mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
 índice** —una carta que entra sin una que salga detrás es una conversación abierta—, así que el `state`
 llevaba una lista aparte cuyo único destino posible era desincronizarse. Cuando un pendiente tenga hogar
-propio, **nómbralo y apunta**: *"hay correspondencia sin cerrar, ver el índice"* no caduca; *"la carta
-tal está redactada"* caduca en cuanto alguien la entrega. Vale para todo lo que el `state` no pueda
-observar por sí mismo, y se nota justo aquí porque **el `state` se lee al arrancar**: lo que miente ahí
-tiñe la sesión entera antes de que nadie compruebe nada.
+propio, **nómbralo y apunta**: *"el estado de cada carta vive en el índice"* no caduca; *"la carta tal
+está redactada"* caduca en cuanto alguien la entrega. Vale para todo lo que el `state` no pueda observar
+por sí mismo, y se nota justo aquí porque **el `state` se lee al arrancar**: lo que miente ahí tiñe la
+sesión entera antes de que nadie compruebe nada.
+
+**Y el puntero no lleva adjetivo de estado**, o vuelve a ser una copia. Es la segunda iteración del
+mismo error y se cuela sola: *"hay correspondencia **sin entregar**, ver el índice"* parece un puntero y
+caduca en el instante en que alguien entrega algo. **El adjetivo es justo lo que uno añade para que la
+frase resulte informativa** —un puntero honesto se siente pobre— y por eso es el que sobrevive a la
+corrección. Nombra **dónde mirar**, no qué vas a encontrar allí. Caso propio: escrito al arreglar lo
+anterior, y descubierto al día siguiente por entregarse las cartas.
 
 **No registres un estado que no puedas observar.** Antes de escribir un hecho en un doc, pregúntate si
 puedes comprobarlo desde donde estás. Lo que ocurre fuera de tu alcance —que una carta se entregó, que
