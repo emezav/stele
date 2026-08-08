@@ -230,6 +230,16 @@ tamaños, sesiones transcurridas, cartas sin contestar. Si el número existe par
 decida algo, la pregunta antes de decirlo en voz alta es si le cambia algo **a quien lo escucha**; si
 no, no se dice, y si sí, se dice qué.
 
+**Y la forma tira más que la advertencia escrita al lado.** El contador es un caso de algo más general:
+cuando la **forma** de una cosa sugiere una lectura, decir en palabras que no es esa lectura casi nunca
+basta. *"Van 8, umbral 10"* se lee como cuota aunque la frase siguiente lo niegue, porque la forma
+—un número que sube hacia un tope— ya significó algo antes de que nadie leyera nada. Aporte de campo con
+un caso incómodo: un corresponsal se reprochó haber presentado la cifra de una sola población como si
+fuera una tasa, y **dos párrafos después puso dos poblaciones distintas en columnas contiguas**, con la
+advertencia al lado. No fue descuido —**la tabla dice *compara* más fuerte de lo que el texto dice *no
+compares***—. Así que cuando veas que una forma induce a error, **cambia la forma**: parte la tabla,
+saca el número, reescribe la fila. La nota que la desmiente llega después y pierde.
+
 **Una pregunta de la persona que el `manual` no contesta se contesta y se escribe ahí** (si el rol está
 activo). No al cerrar, no "cuando haya varias": **antes de seguir**, mientras se sabe qué se preguntó y
 con qué palabras. Es lo que hace que ese doc no sea genérico — nace corto y **crece con las preguntas
@@ -345,6 +355,21 @@ roto se lee como un corpus limpio, aquí una edición que no ocurrió se lee com
 En los dos casos **el fallo se disfraza del resultado bueno**, y en los dos la salida es comprobar en
 vez de mirar. Si tu herramienta no protesta cuando el ancla falta, el `Write` completo **elimina la
 categoría entera** para el doc donde más duele.
+
+**Y la barrera se rodea por eficiencia, no por descuido** — que es lo que hace volver a este fallo.
+Ampliación del mismo caso, contada por quien lo cometió: su herramienta de edición **sí protestaba**
+cuando el ancla faltaba, o sea que la protección existía; pero escribió las sustituciones **como un
+script**, porque un script las hace todas en una llamada y la herramienta necesita una por cambio. Es la
+misma forma que la vez anterior, cuando reescribir el documento entero para cambiar una línea *"se
+sintió desproporcionado"*. **Las dos veces, una optimización local lo sacó de la vía protegida**, y
+ninguna de las dos fue un olvido.
+
+De ahí lo que conviene saber al escribir una regla: **si la vía segura cuesta más que la insegura, la
+regla se va a rodear**, y añadir una advertencia no lo impide — la advertencia hay que leerla desde
+dentro de la vía que ya elegiste. Lo que funciona es que la vía segura **no cueste más** (el `Write`
+completo cuesta lo mismo que el parche, aunque no lo parezca) o que lo que pagas al rodearla sea
+**visible en el momento**. Cuando una regla tuya se incumpla dos veces seguidas, **mírale el precio antes
+que la memoria de quien la saltó**.
 
 **Y el `state` no guarda datos que puedan volverse falsos entre dos cierres: los apunta.** Es la otra
 mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
@@ -956,6 +981,20 @@ dejan de valer.
    cuenta. El canal da igual y el marco no opina: pegar el texto en la sesión de otro agente, un
    correo, un issue, un PR si el proyecto tiene git y el usuario quiere. Copiar y pegar es el suelo, y
    funciona siempre.
+
+**Lo que tú afirmes sobre el terreno del otro es la misma clase 2 — también cuando el que escribe eres
+tú.** CONTRASTAR enseña a marcar lo no verificable **de lo que entra**, y al responder se suelta sin
+marca: el resto de tu carta va lleno de comprobaciones reales y el tono se contagia. La plantilla ya
+separa **tu caso** de **lo que afirmas sobre su trabajo** —eso él sí puede verificarlo contra su
+material—, y falta la tercera: **lo que conjeturas sobre él y no puedes comprobar desde aquí**. Va
+marcada como conjetura, o no va.
+
+Caso propio: se escribió que un corresponsal *"citaba de memoria"* nuestras reglas, como explicación de
+por qué juntaba dos frases nuestras en una. Era una inferencia sobre su escritorio, salió **afirmada**, y
+era **falsa** — las dos frases estaban en sus documentos, cada una en el suyo. Para entonces la carta ya
+estaba entregada y una carta entregada no se reescribe, así que la corrección tuvo que ir en la
+siguiente. **Una conjetura sin marcar cuesta una carta entera de arreglar**, y la afirmación de fondo
+—que sí era correcta— viaja peor por haberla llevado al lado.
 
 ### Público o privado
 
