@@ -7,7 +7,9 @@
 > **Contrato de parseo:** los headers `##` son secciones canónicas y fijas, en este orden:
 > `Meta` · `Rutas` · `Nombres` · `Features` · `Presupuestos` · `Wording de rituales`. Se
 > referencian por posición, no por su texto. En cada tabla, col1 = clave, col2 = valor; columnas
-> y filas extra se ignoran. `—` en un nombre = rol desactivado. Fila ausente = default del
+> y filas extra se ignoran. **Un `—` (em-dash, U+2014) en un nombre = rol desactivado**; el nombre
+> va escrito al lado del carácter a propósito, para que un barrido que lo sustituya deje una
+> contradicción visible en vez de una frase coherente y falsa. Fila ausente = default del
 > rol/feature (ver `{{kit}}/core/roles.md` y `{{kit}}/modules/<mód>/`). Al aplicar un cambio,
 > `config` reescribe la tabla afectada **completa** y regenera los derivados.
 

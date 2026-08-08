@@ -420,6 +420,29 @@ imprime su DIFF, no su recuento.** El recuento dice **cuánto** cambió; solo el
 cambió. Y es la misma familia de *el barrido se come el documento que describe el barrido*: el texto
 más expuesto es justo el que explica la excepción, porque para explicarla tiene que contenerla.
 
+**Y al preguntar por qué el diff del commit tampoco lo cazó, la respuesta desmonta la pregunta: ese
+diff no se miró nunca.** Lo que hubo fue una cadena de comprobaciones que miraban **cuántos**
+—los contadores—, **cuáles** —los nombres de archivo de `git status --short`— y **dónde**, y
+**ninguna miraba qué**. Un nombre de archivo no muestra contenido, así que el carácter que cambió no
+tuvo ocasión de ser visto. Conviene tenerlo claro antes de fiarse de un techo que nadie ha medido:
+**la regla del diff no falló ahí, no llegó a ejercerse.**
+
+**El remedio que elimina la clase entera es más barato que los dos que la detectan: nombra el
+carácter en vez de contenerlo.** Un texto que dice *"conserva el centinela `—`"* es carne del barrido
+que sustituye ese carácter, y lo que queda es una frase **coherente y falsa**. Un texto que dice
+*"conserva el centinela em-dash"* es inmune. Y cuando el carácter **tiene** que aparecer —porque es
+el token que alguien debe teclear—, se escribe **con su nombre al lado**: entonces el barrido produce
+una contradicción visible (*"`--` (em-dash)"*) en vez de una mentira que se lee bien.
+
+**Aplicado aquí encontró una nuestra, en el kit y en un contrato de parseo:** la plantilla del
+manifiesto explicaba el centinela de *rol desactivado* **conteniéndolo**, así que un barrido masivo
+de no-ASCII —el que la propia documentación pide correr— habría dejado el contrato afirmando lo
+contrario de la única excepción que existe para protegerlo. Ya lleva el nombre al lado.
+
+**Y el detector propio no cubre esto**, que es lo que lo hace insustituible: un detector de no-ASCII
+mira una dirección, y esta corrupción va **hacia** ASCII. El barrido que la causa es el mismo que la
+verificación daría por limpia.
+
 **Y el `state` no guarda datos que puedan volverse falsos entre dos cierres: los apunta.** Es la otra
 mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
 índice** —una carta que entra sin una que salga detrás es una conversación abierta—, así que el `state`
@@ -664,6 +687,22 @@ control tomado de **su kit público**. El control pasaba, y no podía probar lo 
 corriéndolo cien veces**: demostraba que sabemos encontrar cosas del kit. El control de la clase
 correcta era buscar cualquier otra regla que solo viva en esa instancia; no habría aparecido ninguna, y
 **ese cero era la señal**, no el resultado.
+
+**Y un filtro de bloques falla por tres sitios, no por uno.** Un constructo de bloque —una valla de
+código, una lista, una cita— se sostiene sobre **un marcador**, **un estado** o **un nivel de
+indentación**, y un filtro escrito mirando solo el marcador falla en los otros dos. Tres ejemplares
+seguidos, dos de un corresponsal y **uno nuestro**, todos en el mismo detector:
+
+| El filtro decía | Y cubría |
+| --- | --- |
+| descarto listas | las viñetas sí, las numeradas no |
+| descarto vallas | el delimitador sí, el interior no |
+| descarto vallas | las de columna 0 sí, **las indentadas no** |
+
+El tercero es el nuestro y costó cuatro frases mal contadas: el patrón iba anclado a principio de
+línea, y una valla que vive dentro de un elemento de lista lleva sangría. **La formulación corta
+—*el filtro nombra la clase y cubre el marcador*— no predecía el eje de la indentación**, que es
+justo el que nos tocó.
 
 **Y el reverso, que faltaba: un `grep -c` en verde tampoco dice QUÉ encontró.** La cautela 0 estaba
 escrita para el falso negativo —un recorte que no alcanza lo que sí está—; esto es el otro lado. Caso
