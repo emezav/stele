@@ -1034,13 +1034,30 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    referencias que tú tengas hacia él, y esas se quedan colgando en silencio. `grep` del nombre viejo
    en `{base}` = 0 antes de dar la actualización por buena.
 4. **Aplicar:** sustituir `{kit}` por el temporal. Es seguro *aquí* porque el invariante 1 garantiza
-   que `base` no está dentro.
+   que `base` no está dentro. **A partir de esta línea el procedimiento vigente es el del kit nuevo**,
+   no el que traes en contexto: si el diff tocó `SKILL.md`, relee lo que gobierna los pasos que te
+   quedan — el informe del paso 6 incluido.
 5. **Reconciliar con CONFIG** (fase 1, drift), acotado a lo que el diff señaló: filas que le faltan
    al manifiesto, secciones nuevas, derivados a regenerar.
 6. **Informar** en pocas líneas: qué cambió, qué se reconcilió solo, y qué exige decisión del usuario
    (un rol nuevo que quizá quiera desactivar, un default que él había sobrescrito, un cambio del
    contrato de parseo).
 7. **Limpiar** el temporal.
+
+**Lo que acabas de instalar gobierna lo que te queda por hacer, y es el paso que más se salta.** Un
+agente ejecuta ACTUALIZAR con el procedimiento que cargó al abrir la sesión, así que entre el paso 4 y
+el 7 sigue operando de memoria con el kit que acaba de sustituir. El caso visible es el **informe**: es
+el primer mensaje en que el adoptante ve la versión nueva y el único que todavía obedece a la anterior.
+Si esta actualización trae una regla de **habla** —cómo se le dice un número a la persona, en qué
+registro se le explica un rol nuevo—, esa regla ya rige aquí, y **ningún paso la recuerda** porque no
+es una regla de procedimiento. Caso de campo: un informe correcto en todo lo demás soltó *"ya vamos en
+9 sesiones sin auditar"* —contador desnudo, sin consecuencia y sin qué se espera de la persona— en la
+misma actualización que traía la regla que lo prohíbe.
+
+Es la misma ley que ya conoce la tabla de zonas —*una regla que gobierna el actualizar no gobierna la
+actualización que la entrega*— aplicada un nivel más adentro: no al **qué migrar**, sino al
+**procedimiento en curso**. Una regla nueva llega tarde por construcción, y lo único que la rescata es
+releerla en el paso 4.
 
 | Zona del diff | Qué implica para esta instancia |
 | --- | --- |
@@ -1050,7 +1067,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: hay que **regenerar ese bloque** en el archivo real (loader y mapa-doc), conservando íntegro todo lo que quede fuera de las marcas — invariante 6. **Salvo que la marca de apertura diga `RICO`**: entonces no se reescribe, se **porta el delta a mano** (ver abajo) |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
-| El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo |
+| El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo. **Baja aunque `correspondence_log` esté en `off`** —viaja dentro del kit—, y entonces se puede leer pero no contestar: hace falta activar el rol y elegir `remitente`, y las dos cosas las decide la persona. No ofrezcas REMITIR sin decirlo |
 
 **Un rol nuevo es el único caso donde una plantilla de contenido sí llega a quien ya adoptó.** La fila
 de abajo dice que los docs de `base` no se regeneran jamás, y es cierto **para los que existen**: son
@@ -1058,6 +1075,19 @@ del proyecto. Pero un rol que no existía no tiene doc que respetar, así que ah
 una ausencia. Sin esta excepción, una capacidad nueva del marco solo la reciben los proyectos que
 empiecen después, y el que la necesitaba lleva sesiones sin saber que existe. **Se ofrece, no se
 crea en silencio:** el usuario puede no quererla.
+
+**Y su toggle no se escribe hasta que conteste.** Un `off` puesto por precaución y un `off` elegido son
+el mismo texto en el manifiesto, y no son la misma decisión: la próxima actualización ya no ve un rol
+nuevo, no vuelve a ofrecerlo, y la capacidad se pierde **en silencio** — que es exactamente lo que esta
+excepción existe para evitar. Si la sesión acaba sin respuesta, la pregunta va a los pendientes de
+`state`, que es el hogar de lo que queda abierto y se relee en cada arranque. Preguntar dos veces
+cuesta una línea; una oferta que nadie llegó a declinar y que ya no se repite no la recupera nadie.
+
+Caso de campo: un agente dejó dos roles nuevos en `off` *"para no cambiarte el comportamiento sin que
+lo pidas"* y preguntó **en el mismo mensaje**, con el manifiesto ya escrito. Ahí acabó bien —el usuario
+los activó—, así que lo que se documenta no es una pérdida observada sino el modo de fallo que ese
+orden habilita: con un "ahora no", o sin respuesta, el manifiesto habría quedado idéntico a si nunca se
+hubiera ofrecido nada.
 
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
 en medio, y confundirlas es un fallo silencioso. Una plantilla de **contenido** produjo un doc que
