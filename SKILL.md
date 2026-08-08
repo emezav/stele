@@ -371,6 +371,15 @@ completo cuesta lo mismo que el parche, aunque no lo parezca) o que lo que pagas
 **visible en el momento**. Cuando una regla tuya se incumpla dos veces seguidas, **mírale el precio antes
 que la memoria de quien la saltó**.
 
+**Y la vía barata casi nunca falla de frente: devuelve algo que se parece a un resultado.** Es lo que la
+hace difícil de abandonar. Tercer caso del mismo corresponsal, del mismo día: una comprobación escrita
+con `grep -c`, que cuenta **líneas con coincidencia** y no **coincidencias**, informó de *"1 forma
+peninsular"* donde no había ninguna; la vía cara era una línea más de comando. La familia se reconoce
+por ahí: el script que no encuentra su ancla devuelve el fichero intacto, el barrido roto devuelve cero,
+el `-c` devuelve un número. **Ninguno da un error; todos dan una respuesta con la forma correcta.** Por
+eso el control positivo no es una formalidad — es lo único que separa *una respuesta* de *una respuesta
+cierta*.
+
 **Y el `state` no guarda datos que puedan volverse falsos entre dos cierres: los apunta.** Es la otra
 mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
 índice** —una carta que entra sin una que salga detrás es una conversación abierta—, así que el `state`
@@ -405,6 +414,16 @@ un comando llegó a su destino, que alguien leyó algo— **no lo sabes: lo supo
 un registro es peor que una ausencia, porque se lee como hecho y nadie vuelve a comprobarla. Cuando el
 estado importe y no puedas observarlo, **regístralo por lo que sí sabes** —*redactada* en vez de
 *enviada*— y deja que lo mueva quien sí puede verlo.
+
+**Y el hueco de esa regla no está en los estados ajenos, sino en los propios.** Tal como se lee, habla
+de lo que hacen otros —una entrega, un despliegue, una notificación—, y ahí uno desconfía solo. El caso
+que muerde es el contrario: **dar por hecha una acción de uno mismo porque ya se ha decidido hacerla.**
+Entre decidir *"voy a corregir eso"* y escribir *"ya está corregido"* la distancia es tan corta que no
+se percibe, y no hay desconfianza que la cubra porque el sujeto eres tú. De ahí la versión que sí
+alcanza a los dos casos: **al escribir "ya está hecho", compruébalo — sobre todo cuando lo hecho es
+tuyo.** Caso de campo, y del peor tipo: dos frases de ese estilo salieron en una carta, se descubrieron
+al ir a registrar su entrega, y para entonces el destinatario ya había construido encima de una de
+ellas. Un estado ajeno al menos es incomprobable; este estaba a un comando de distancia.
 
 **Antes de persistir, comprueba lo que acabas de escribir contra las convenciones de texto de tu
 proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). **El marco no impone ninguna** —este
@@ -596,7 +615,22 @@ siguiente, porque nadie la va a leer estando en otra cosa. Aporte de campo con s
 un estado que no puedas observar"* vivía como la nota de un índice sobre una columna concreta, y el
 principio no estaba en ninguna parte.
 
-**De ahí sale el eje con el que barrer.** Por **documento** encuentras huérfanos del documento que
+**Hay un tercer eje, y encuentra otra cosa: barrer por *alcance*.** No *dónde vive esta regla* sino **a
+qué alcanza tal como está escrita** — leer cada regla dura y preguntar qué queda **fuera** de su
+encuadre: *"al cerrar"*, *"antes de commitear"*, *"en la primera respuesta"*. Encuentra reglas correctas
+que un marco temporal anula para el caso que importaba. Medido una vez en campo, sobre cuatro documentos
+de reglas: **15 candidatos crudos, 1 real** — y el real eran dos reglas vecinas donde una mandaba hacer
+al cerrar lo que la otra prohibía dejar para el final.
+
+**Y con él viene un detector de un segundo: la frase *"no solo en X"* dentro de una regla es la cicatriz
+de un alcance que ya falló.** No encuentra los huecos abiertos —encuentra dónde hubo uno y alguien lo
+tapó caso a caso, sin nombrarlo—, y eso dice dónde mirar. En la misma medición, dos de los catorce
+falsos positivos eran exactamente eso: alcance ya ampliado a propósito, con la ampliación escrita dentro
+del enunciado. **Un aviso sobre este eje:** aquí el riesgo se invierte respecto a lo habitual, porque
+descartar un candidato como falso positivo es lo que deja pasar un hueco real. El barrido no ve, además,
+los **encuadres implícitos**, que son los peores y para los que nadie tiene patrón.
+
+**De ahí salen los otros dos ejes.** Por **documento** encuentras huérfanos del documento que
 abres; por **regla** los encuentras donde estén. Toma las reglas que el proyecto sigue de verdad y
 pregunta dónde vive cada una — las reglas ya están enumeradas, que es lo caro. Esta clase, la del hogar
 demasiado estrecho, **solo la encuentra el barrido por regla**.
@@ -1008,6 +1042,14 @@ estaba entregada y una carta entregada no se reescribe, así que la corrección 
 siguiente. **Una conjetura sin marcar cuesta una carta entera de arreglar**, y la afirmación de fondo
 —que sí era correcta— viaja peor por haberla llevado al lado.
 
+**Y el mismo caso tiene una segunda causa, que es del otro lado y más barata de arreglar: cita diciendo
+de dónde sale cada cita.** La conjetura no nació de la nada — nació de que el corresponsal había puesto
+dos frases nuestras juntas en un párrafo **sin decir que venían de documentos distintos**. Lo señalaron
+ellos, en contra de sí mismos, para que la regla no se apoyara solo en nuestra mitad. Así que son dos, y
+conviene tener las dos: **quien conjetura, marca; quien cita, dice la fuente.** Una cita sin
+procedencia es una invitación a explicarla, y la explicación que se le ocurra a quien la lee será
+suya, no tuya.
+
 ### Público o privado
 
 **Lo privado es el modo por defecto y no hay nada que construir:** una carta que va por chat, correo o
@@ -1232,6 +1274,15 @@ los dos del `entry`— y ese bloque **sí** viaja con cada actualización. Si no
 adoptante se queda con el kit nuevo y las reglas viejas cargándose en cada sesión, sin ninguna señal
 de que algo falta. Regenerar el bloque **nunca** autoriza a tocar lo que esté fuera de las marcas
 (invariante 6).
+
+**Y hay un límite conocido, sin remedio, que conviene saber: la discrepancia entre plantilla e instancia
+es un detector gratis que se apaga al converger.** Cuando el kit corrige una plantilla de **contenido**,
+el adoptante no la recibe —su doc ya es suyo— y durante un tiempo su copia y el texto del kit **dicen
+cosas distintas**. Esa discrepancia es justo lo que hace visible el problema: aparece al comparar, y
+alguien lo arregla a mano. Pero en cuanto lo arregla, los dos textos coinciden **por caminos distintos**
+y la señal desaparece — para esa regla y para todas las que ya convergieron. Dicho crudo: **el adoptante
+más al día es el que menos aviso tiene.** Lo aporta un proyecto en campo, no trae remedio, y se escribe
+para que nadie lo descubra creyendo que es un fallo suyo.
 
 **En modo adopción el bloque generado no es un derivado puro.** Un proyecto que adoptó el marco con
 cientos de sesiones encima suele tener en su loader reglas propias que la plantilla base no contiene
