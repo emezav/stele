@@ -481,6 +481,24 @@ negativo más barato de cometer y el más caro de no ver, porque **un cero roto 
 leen igual**. Antes de informar "sin hallazgos", corre el mismo patrón contra algo que **sepas** que
 casa y comprueba que sale.
 
+**Y si lo que publicas *es* una ausencia, al cero le faltan dos cosas más.** Lo anterior protege un
+barrido intermedio; esto protege la conclusión. *"No existe en ninguna de las N ubicaciones"* descansa
+sobre una premisa que casi nunca se enuncia —**que esas N son todas**— y sobre un instante —**que
+sigue siendo cierto cuando alguien lo lea**. Probar presencia cuesta una línea y se sostiene sola;
+probar ausencia es estructuralmente más frágil, y el informe no distingue las dos.
+
+Caso propio, y caro: se cerró un hilo de correspondencia afirmando que cierto ajuste *"no existe en
+ninguna de las cuatro ubicaciones"*. Cinco sesiones después, al verificar la crítica del corresponsal:
+la enumeración se dejaba fuera **al menos dos ubicaciones reales**, y el ajuste estaba **en una de las
+cuatro que sí listamos, encendido**. No se pudo determinar si el barrido falló entonces o si el archivo
+apareció después, y esa indeterminación es parte del hallazgo: **un fichero de configuración no
+versionado cambia entre sesiones sin que nada lo registre.**
+
+Así que una ausencia se escribe con las tres: **la enumeración sobre la que descansa** —diciendo si se
+verificó completa o no—, **el control positivo** que demuestra que el detector detecta, y **la fecha**.
+Sin ellas es una afirmación sobre el mundo con la forma de un hecho comprobado, que es exactamente la
+clase que este ritual existe para cazar.
+
 **Busca por palabra rara, no por frase.** Los docs llevan ajuste de línea, así que cualquier frase de
 más de tres o cuatro palabras puede tener un salto en medio — y `grep` trabaja por líneas, así que no
 la encuentra. Elige la palabra menos común del hallazgo y busca esa; si necesitas la frase entera, usa
@@ -495,6 +513,24 @@ tocaría y léelo**. No es desconfiar del `grep`: el barrido sigue siendo el mec
 detector. Lo que se añade es un paso de verificación, el mismo que la fase 3 pide para todo lo demás.
 Caso de campo: un barrido de once hallazgos devolvió varios "sin hogar" que sí lo tenían, con otra
 redacción; el huérfano real era **uno**.
+
+**Y busca sin distinguir mayúsculas.** Tercer modo del mismo eje y el más tonto de los tres: el hogar
+escribe `se DECIDE` para enfatizar y tu barrido busca `se decide`. Aporte de campo del mismo
+corresponsal, que lo cuenta como el cuarto caso de formulación engañosa en esta correspondencia y el
+primero que no fue ni ajuste de línea ni sinónimo. Su versión operativa, que cuesta segundos: **`-i`
+siempre, y tres formulaciones distintas antes de declarar un huérfano.**
+
+**Un dato puede tener hogar y seguir huérfano, si el hogar es demasiado estrecho.** Aquí el `grep` casa
+y el doc no miente: lo que está escrito es la **instancia** —un índice explica por qué solo el usuario
+mueve cierto estado— y no el **principio** que esa instancia encarna. La instancia no protege del caso
+siguiente, porque nadie la va a leer estando en otra cosa. Aporte de campo con su caso: *"no registres
+un estado que no puedas observar"* vivía como la nota de un índice sobre una columna concreta, y el
+principio no estaba en ninguna parte.
+
+**De ahí sale el eje con el que barrer.** Por **documento** encuentras huérfanos del documento que
+abres; por **regla** los encuentras donde estén. Toma las reglas que el proyecto sigue de verdad y
+pregunta dónde vive cada una — las reglas ya están enumeradas, que es lo caro. Esta clase, la del hogar
+demasiado estrecho, **solo la encuentra el barrido por regla**.
 
 **En estos detectores el falso positivo es el lado peligroso, y conviene saberlo antes de correrlos.**
 No son simétricos: un falso **negativo** deja algo sin encontrar —malo, pero el doc queda como
@@ -580,6 +616,19 @@ tiempo** y solo el 5% referencias `archivo:línea`; en el otro, el 93% eran `arc
 eran anecdóticas. Cada proyecto acertó prediciendo el suyo y falló prediciendo el ajeno. Una lista fija
 de exclusiones heredada de otro proyecto **te hará filtrar lo que a ti no te sobra**. Cuenta primero —
 el barrido es gratis, igual que para decidir el opt-in— y excluye por lo que veas.
+
+**Y una tasa medida sobre una población acotada no es la del corpus, aunque cambies de eje.** Es el
+error que viene justo después del anterior. Dos barridos de huérfanos del mismo proyecto: uno **por
+documento** —los avisos del doc que se poda cada sesión— dio 1 de 11; otro **por regla** —las reglas
+adoptadas en una correspondencia reciente— dio 2 de 11. El segundo se corrió para escapar del sesgo del
+primero y no escapó: el doc que se poda concentra huérfanos **por construcción**, y las reglas recientes
+también, porque *reciente* es precisamente lo que todavía no se ha promovido a su hogar. **Cambiar de
+eje de muestreo no quita el sesgo si el eje nuevo correlaciona con lo mismo.**
+
+De dos barridos así no sale una estimación: sale un **límite inferior de la cuenta absoluta**, y eso es
+todo lo que se puede escribir. Vale igual para lo que le propongas a otro — ofrecerle un barrido como la
+vía para *"el número real"* promete algo que ningún barrido acotado da. Dicho, y cometido, en esta misma
+correspondencia.
 
 **Y elige el patrón según el alcance que ya decidiste, no en abstracto.** Un barrido **crudo** tiene
 **más** recall y precisión mala; uno **anclado** al revés. Medido en campo sobre 9 documentos: el
