@@ -415,6 +415,17 @@ un registro es peor que una ausencia, porque se lee como hecho y nadie vuelve a 
 estado importe y no puedas observarlo, **regístralo por lo que sí sabes** —*redactada* en vez de
 *enviada*— y deja que lo mueva quien sí puede verlo.
 
+**Y hay una tercera, la más cómoda de las tres: antes de declarar algo incomprobable, comprueba que lo
+es.** *"No se puede saber"* es una afirmación sobre el mundo como cualquier otra —dice que **no existe**
+una vía de comprobación— pero se lee como prudencia en vez de como conclusión, así que **nadie la
+audita**. Es la única del grupo que se premia por escribirla: cierra el asunto, suena honesta y nadie
+pide su evidencia.
+
+Caso propio, y de manual: se escribió *"no se ha podido comprobar si ese nombre está tomado"* y se
+archivó como incógnita declarada — **con una búsqueda web disponible todo el tiempo**. Al comprobarlo
+después, la respuesta estaba a un comando y además era útil. **Declarar algo incomprobable sin intentar
+comprobarlo cuesta lo mismo que dar por hecho lo que no se ha hecho**, y disimula mejor.
+
 **Y el hueco de esa regla no está en los estados ajenos, sino en los propios.** Tal como se lee, habla
 de lo que hacen otros —una entrega, un despliegue, una notificación—, y ahí uno desconfía solo. El caso
 que muerde es el contrario: **dar por hecha una acción de uno mismo porque ya se ha decidido hacerla.**
@@ -569,7 +580,26 @@ negativo más barato de cometer y el más caro de no ver, porque **un cero roto 
 leen igual**. Antes de informar "sin hallazgos", corre el mismo patrón contra algo que **sepas** que
 casa y comprueba que sale.
 
-**Y el control positivo prueba el detector, no el ámbito** — que es la vuelta siguiente y se nos escapó
+**Y hay una vuelta más, que es la que más veces muerde: la prueba misma necesita comprobarse.** Un
+detector sano, con su control en verde y su ámbito correcto, **no prueba nada si la prueba que lo ejerce
+está mal construida**. Medido en dos sesiones seguidas, cuatro veces:
+
+| Prueba | Por qué no probaba nada |
+| --- | --- |
+| *"esta frase cruza un salto de línea"* | no lo cruzaba: la línea de arriba estaba vacía |
+| *"este modo literal cambia el resultado"* | el patrón no tenía metacaracteres, así que los dos modos coincidían |
+| *"el comando devuelve este código de salida"* | se leyó el código **del pipe**, no del comando |
+| *"este número sale por esta razón"* | el número era correcto y **la explicación falsa** |
+
+**Antes de creerte una prueba, comprueba que puede fallar.** Es el control positivo aplicado un nivel
+más arriba: si no sabes qué resultado tendría si la hipótesis fuera falsa, lo que tienes no es una
+prueba sino una coincidencia.
+
+**Y lo que delató tres de las cuatro fue tener otro dato al lado** —`grep` junto a la herramienta, el
+valor esperado junto al obtenido—, que es exactamente por lo que los datos que sostienen una decisión se
+imprimen juntos.
+
+**Y el control positivo prueba el detector, no el ámbito** — que es la vuelta anterior y se nos escapó
 al escribir la regla de abajo. Un detector puede pasar su control **y aun así ser incapaz de encontrar
 nada** en lo que le has dado a mirar: si comprueba que cada fila de una tabla cuadra con su cabecera y
 le pasas **una sola línea**, no tiene cabecera contra la que comparar y devuelve cero **siempre**. El
