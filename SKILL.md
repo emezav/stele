@@ -569,6 +569,16 @@ negativo más barato de cometer y el más caro de no ver, porque **un cero roto 
 leen igual**. Antes de informar "sin hallazgos", corre el mismo patrón contra algo que **sepas** que
 casa y comprueba que sale.
 
+**Y el control positivo prueba el detector, no el ámbito** — que es la vuelta siguiente y se nos escapó
+al escribir la regla de abajo. Un detector puede pasar su control **y aun así ser incapaz de encontrar
+nada** en lo que le has dado a mirar: si comprueba que cada fila de una tabla cuadra con su cabecera y
+le pasas **una sola línea**, no tiene cabecera contra la que comparar y devuelve cero **siempre**. El
+control sigue en verde, porque el control se corre sobre su propia entrada de prueba.
+
+De ahí la forma correcta de acotar: **recorta lo que se REPORTA, nunca lo que el detector LEE.** Dale el
+corpus entero y filtra los hallazgos después. Recortar la entrada parece equivalente y no lo es —
+convierte un detector sano en uno muerto, sin que ninguna señal lo diga.
+
 **Y el control positivo va por detector, no por barrido** — aporte de campo, y de los caros. Alguien
 corrió cinco sondas, una por cada afirmación que quería verificar; **las cinco dieron negativo y una
 estaba rota**: buscaba una frase que no existía en el texto, así que **iba a dar negativo pasara lo que
@@ -593,6 +603,14 @@ formulación** —ajuste de línea, mayúsculas, sinónimo, sustantivo de cabece
 es una racha de descuidos: **es que el método tiene esa tasa de error y se usa como si no la tuviera.**
 De ahí que el barrido dé candidatos y no veredictos, y que el paso caro —ir al hogar y leerlo— no sea
 opcional.
+
+**Y hay uno más, peor que el ajuste de línea: el marcado inline.** El énfasis no rodea palabras, rodea
+**trozos arbitrarios**, y a menudo se lleva la puntuación dentro: un documento puede decir
+`**Regla de oro:**` con los dos puntos **entre** los asteriscos. Quien busca no tiene forma de saber
+dónde los puso quien escribió, así que la frase correcta no casa **y el fallo se lee como ausencia**.
+El ajuste de línea al menos es predecible —ocurre cada tantas columnas—; esto no. Remedio si barres a
+mano: busca **fragmentos cortos sin puntuación**, que es donde el marcado tiene menos ocasiones de
+meterse.
 
 **Y si lo que publicas *es* una ausencia, al cero le faltan dos cosas más.** Lo anterior protege un
 barrido intermedio; esto protege la conclusión. *"No existe en ninguna de las N ubicaciones"* descansa
