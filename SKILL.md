@@ -704,6 +704,23 @@ línea, y una valla que vive dentro de un elemento de lista lleva sangría. **La
 —*el filtro nombra la clase y cubre el marcador*— no predecía el eje de la indentación**, que es
 justo el que nos tocó.
 
+**Y un acuerdo entre dos comprobaciones independientes no es evidencia: dos implementaciones que
+coinciden solo prueban que el corpus no las separa.** Es la trampa más cómoda de las tres, porque un
+acuerdo se siente como una confirmación doble y nadie le pide cuentas.
+
+Caso, y es el cuarto de esta serie con una clase propia: dos extractores escritos por separado daban
+el mismo número sobre dos archivos, y de ahí se concluyó que **ninguno de los dos tenía la
+característica en disputa**. Falso — uno de ellos la tenía cuatro veces. Coincidían por una razón que
+no tenía nada que ver: **una regla escrita para otra cosa** —descartar encabezados por su `#`— estaba
+descartando de paso las líneas que habrían separado a los dos, porque eran comentarios de shell y
+empiezan igual. Aislada después, la diferencia aparecía: **43 contra 39 al quitar esa regla, 39 y 39
+con ella**.
+
+Así que un cero conjunto, o un número conjunto, no dice *"la característica no está"*: dice **"en este
+corpus no llegó a ejercerse"**. Y se comprueba igual que todo lo demás — **buscando el caso que
+debería separarlas** y viendo si de verdad las separa. Si no hay ninguno, el acuerdo no es una medida:
+es un corpus que no hace la pregunta.
+
 **Y el reverso, que faltaba: un `grep -c` en verde tampoco dice QUÉ encontró.** La cautela 0 estaba
 escrita para el falso negativo —un recorte que no alcanza lo que sí está—; esto es el otro lado. Caso
 de campo, y de los buenos: alguien corrió tres sondas para comprobar tres reglas que dijimos haber
