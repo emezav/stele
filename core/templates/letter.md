@@ -14,6 +14,13 @@
 **Dirección:** {sale | entra}
 **Responde a:** {carta y pregunta concretas, o `—` si abre tema}
 
+> **Aquí NO va el estado (`redactada`/`entregada`).** Vive en la fila de `{{correspondence}}` y en
+> ningún otro sitio. El estado cambia **después** de entregar y lo entregado no se reescribe, así que
+> un estado escrito aquí queda congelado en el instante de redactar y a partir de ahí se lee como
+> actual siendo un fósil. Caso de campo: doce cartas entregadas diciendo `redactada` en su cabecera,
+> con el índice dándolas por entregadas — el campo no lo pedía esta plantilla, lo añadió quien escribió
+> la primera y lo copiaron las once siguientes.
+>
 > **`Responde a` no es opcional.** Las cartas **se cruzan**: quien te escribe puede no tener tu última,
 > y tú puedes contestar algo que ya cambió. Lo que hace que cruzarse no rompa nada es que cada carta
 > **diga a qué contesta**, sin depender de que las dos partes compartan estado. Y como cada proyecto

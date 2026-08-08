@@ -617,6 +617,31 @@ cuatro empezaron a acertar. Un control positivo del **conjunto** no lo habría c
 buscan cinco cosas distintas, hacen falta **cinco controles**. Una sonda que nunca acierta no está
 midiendo nada, y su cero es indistinguible del cero bueno.
 
+**Y el control tiene que ser de la misma clase que la afirmación**, que es el eje perpendicular al
+anterior: uno por detector no basta si todos muestrean el sitio equivocado. Ocurrió en el mismo canal
+una vuelta después — se validó una afirmación sobre **la instancia privada** de otro proyecto con un
+control tomado de **su kit público**. El control pasaba, y no podía probar lo que se le pedía **ni
+corriéndolo cien veces**: demostraba que sabemos encontrar cosas del kit. El control de la clase
+correcta era buscar cualquier otra regla que solo viva en esa instancia; no habría aparecido ninguna, y
+**ese cero era la señal**, no el resultado.
+
+**Y el reverso, que faltaba: un `grep -c` en verde tampoco dice QUÉ encontró.** La cautela 0 estaba
+escrita para el falso negativo —un recorte que no alcanza lo que sí está—; esto es el otro lado. Caso
+de campo, y de los buenos: alguien corrió tres sondas para comprobar tres reglas que dijimos haber
+escrito, **las tres dieron positivo y las tres encontraron otra cosa** — *"antes de buscar"* casó con
+una regla de saltos de línea, *"misma clase"* con la clasificación de afirmaciones, y *"marcador"* con
+los marcadores de versión. Con tres aciertos habría escrito *"confirmado"* y habría estado mal.
+
+**De ahí la regla operativa, que es más barata que cualquier control: cuando la afirmación es "esto
+entró", lo que la comprueba es el DIFF, no el barrido.** Un barrido dice si una cadena existe; solo el
+diff dice si **llegó con este cambio**. Y la diferencia no es teórica: en ese mismo informe, la única
+fila marcada como confirmada era un falso positivo — la regla que buscaban no estaba, y lo que casó fue
+**una regla vecina, escrita antes, sobre el mismo asunto**. Un barrido no distingue *lo que pediste* de
+*lo que ya estaba*; un diff no puede confundirlos.
+
+Vale también hacia dentro: al cerrar, *"la decisión quedó escrita"* se comprueba con el diff de la
+sesión, no buscando la frase en el archivo — donde puede llevar meses.
+
 **Y los datos que sostienen una decisión tienen que salir juntos.** Es más barato que cualquier
 disciplina y funciona sin acordarse de nada. Caso de campo, contado por quien lo vivió: cinco sondas
 dieron negativo y lo único que impidió escribir *"me mintieron"* fue que **el estado del origen estaba
@@ -655,10 +680,38 @@ cuatro que sí listamos, encendido**. No se pudo determinar si el barrido falló
 apareció después, y esa indeterminación es parte del hallazgo: **un fichero de configuración no
 versionado cambia entre sesiones sin que nada lo registre.**
 
-Así que una ausencia se escribe con las tres: **la enumeración sobre la que descansa** —diciendo si se
+Así que una ausencia se escribe con todas: **la enumeración sobre la que descansa** —diciendo si se
 verificó completa o no—, **el control positivo** que demuestra que el detector detecta, y **la fecha**.
 Sin ellas es una afirmación sobre el mundo con la forma de un hecho comprobado, que es exactamente la
 clase que este ritual existe para cazar.
+
+**Y antes que ninguna de ellas va una pregunta más barata, que las vuelve innecesarias cuando la
+respuesta es que no: ¿puede el sitio donde busco contener lo que busco?** Las anteriores son
+necesarias y **no suficientes**, y el caso que lo demuestra las tenía las tres satisfechas: alguien
+buscó una regla ajena con cinco formulaciones distintas, corrió el control positivo —acertaba—, y
+clonó en el momento, así que la fecha también estaba cubierta. **La conclusión habría sido falsa.** La
+regla existía y estaba escrita, pero en la instancia privada del otro proyecto, que no se publica: el
+corpus disponible **no podía contenerla ni en principio**. Lo que lo salvó no fue el método sino que
+el listado del árbol estuviera en la misma pantalla — adyacencia otra vez, no disciplina.
+
+Cuesta una pregunta y se hace **antes** de escribir la primera sonda. Un corpus que no puede contener
+lo buscado devuelve el mismo cero que un corpus donde de verdad no está, y **ninguna de las condiciones
+de arriba distingue esos dos ceros**: todas miran el detector o el momento, ninguna mira el ámbito.
+
+**Y el falso negativo de este barrido está medido sobre este mismo kit, y es enorme.** Un proyecto
+adoptante construyó frases que cruzan un salto de línea por construcción —las últimas palabras de una
+línea pegadas a las primeras de la siguiente—, comprobó una a una que existieran en el documento
+**aplanado** (control positivo por frase, no del conjunto) y luego las buscó con `grep -F` sobre el
+archivo crudo. **De 990 frases que el control daba por presentes, `grep` encontró cero.** Se replicó
+aquí de forma independiente, sin su script: mismo resultado —cero— y el mismo `grep`, sobre el mismo
+archivo, encontrando una frase que **no** cruza el salto, para que el cero no fuera un cero roto.
+
+Lo que eso dice no es *"grep es flojo"*: es que **una parte grande de lo que este kit afirma está
+escrita donde una comprobación por texto no la alcanza**, y por tanto el barrido de un detector no
+devuelve *"no hay"* sino *"no hay en las líneas"*. Ya estaba escrito que el barrido da candidatos y no
+veredictos; lo que añade la medida es que **su falso negativo no es residual**. Con eso, el cero de un
+detector sobre prosa ajustada es la clase de cero que hay que mirar dos veces, no la clase que cierra
+un hallazgo.
 
 **Busca por palabra rara, no por frase.** Los docs llevan ajuste de línea, así que cualquier frase de
 más de tres o cuatro palabras puede tener un salto en medio — y `grep` trabaja por líneas, así que no
@@ -1053,7 +1106,15 @@ no entra — nunca puede acabar leyéndose como si viniera firmada.
    salió de ella, y para. **Distinta = es una revisión**, y entonces lo que importa es el **delta** —
    procesarla entera de nuevo es tan malo como ignorarla.
    **Y ya que estás en el archivo, comprueba el estado: si esta carta responde a una tuya, la tuya
-   tiene que figurar como `entregada`.** Si dice `redactada`, uno de los dos registros está mal —
+   tiene que figurar como `entregada`.** **Y ese estado se lee de la COLUMNA, no se busca como palabra
+   en la fila:** partir por `|`, tomar el desenlace y anclar al principio, porque la regla dice que el
+   desenlace *empieza* por el estado. Una fila lleva prosa, y su prosa menciona estados de otras
+   cartas — un `grep` de la palabra sobre la fila entera devuelve el estado equivocado sin avisar. Pasó
+   en los dos sentidos en el mismo proyecto: una entrante contada como `redactada` porque su resumen
+   decía *"llegó marcada como redactada"*, y después una saliente contada como entregada porque el suyo
+   mencionaba *"la carta ya entregada"*. **El aviso de la primera estaba escrito dos líneas más arriba
+   y no evitó la segunda, porque describía el caso y no el remedio.**
+   Si dice `redactada`, uno de los dos registros está mal —
    resuélvelo antes de seguir. Los dos estados **crean** la contradicción, pero no la miran solas: la
    primera vez que ocurrió la vio el usuario preguntando, y la segunda pasó desapercibida **en el
    mismo material que se estaba archivando**. Una señal que nadie comprueba no es una señal.
@@ -1151,6 +1212,39 @@ afirma cambios en el kit; actualiza antes de leerla o mientras"*.
 
 **Cuando el artefacto NO viaja, la afirmación se queda en palabra — y eso se dice, no se disimula.** Es
 el mismo criterio de las tres clases, aplicado a lo propio.
+
+**Y se decide por afirmación, no por carta.** Ahí es donde falla: una sola carta mezcla cambios del
+producto —que viaja— con cambios de la instancia —que no—, y la invitación de arriba solo cubre los
+primeros. Escrita como propiedad de la carta, la regla **se da por cumplida en cuanto una parte de la
+carta la cumple**, y las demás afirmaciones viajan de polizón con la credibilidad de las comprobables.
+Caso propio, devuelto por el corresponsal: una carta afirmó tres cambios al mismo nivel y encabezó con
+*"actualicen para comprobar"*; dos estaban en el kit publicado y **el tercero vivía en un directorio que
+no se distribuye**. Quien fue a comprobarlo gastó cinco formulaciones, no encontró nada, y estuvo a un
+renglón de escribir que le habíamos mentido.
+
+**No era una afirmación falsa: era una afirmación no verificable por el destinatario**, que es una
+categoría distinta — y la que un lector de buena fe confunde con la primera, porque desde su lado las
+dos se ven igual que un cero. El marcador cuesta una línea por afirmación: **junto a cada cambio que
+afirmes, si el otro puede comprobarlo.** Lo marcado como no comprobable no gasta sondas, no se lee como
+mentira y **no puede producir una acusación falsa**, que es el fallo caro de este canal.
+
+**Y el marcador tiene un tercer valor, que se descubrió fallando en su primer uso.** Una carta salió
+marcando cuatro cambios como comprobables y con el identificador de la entrega puesto en *pendiente*,
+porque aún no se había publicado. **Un "sí" sin identificador sellado no es un marcador: es una
+promesa** — y desde el otro lado una promesa se comporta **exactamente igual que la afirmación no
+verificable** que el marcador venía a distinguir, porque no se puede separar *"no lo escribieron"* de
+*"lo escribieron y aún no lo subieron"*. Peor que no marcar: **dice dónde mirar, quita la excusa de no
+mirar, y no da con qué.** El destinatario gastó las sondas igual y su resultado salió no concluyente
+por una razón de calendario.
+
+Así que los valores son tres: **sí** (y el identificador está sellado), **no** (vive donde no viaja), y
+**sí, cuando se selle**. O la carta no sale hasta que se sella, que es la otra salida honesta. Lo que
+no vale es prometer comprobabilidad y salir sin ella.
+
+**Es la misma forma que el estado en la cabecera, dos secciones más abajo del mismo documento: un dato
+que se sella DESPUÉS, escrito en un artefacto que sale ANTES.** Que reaparezca en el mismo texto que
+acababa de diagnosticarla dice lo que hay que saber de esta clase de error: **no se evita habiéndolo
+entendido, se evita cambiando la forma.**
 
 **Y "viaja" quiere decir publicado, que no es lo mismo que escrito.** Entre lo uno y lo otro hay al
 menos dos estados —escrito y guardado, guardado y publicado— y **solo el último es observable por el
@@ -1255,6 +1349,35 @@ registro, es el desacuerdo entre dos.**
 **Y la inmutabilidad empieza en la entrega, no en la escritura.** Una carta **entregada** o
 **recibida** no se reescribe jamás. Un borrador sin entregar sí se revisa — si mientras espera pasa
 algo que el destinatario debería saber, entra en la carta en vez de en la siguiente.
+
+**Por eso el estado vive en la fila y NO en la carta**, y las dos reglas de arriba lo obligan: el estado
+cambia después de entregar, y lo entregado no se reescribe. Un `redactada` escrito en la cabecera del
+`letter` **no puede actualizarse nunca sin romper la otra regla** — queda congelado en el instante de
+redactar y a partir de ahí se lee como estado actual siendo un fósil. Es un dato mutable dentro de un
+artefacto inmutable, y no hay disciplina que lo arregle: es la forma la que está mal.
+
+Se destapó barriendo el archivo propio: **doce cartas entregadas, las doce diciendo `redactada` en su
+cabecera**, y el índice dándolas por entregadas. Ninguna era falsa al escribirse y ninguna se puede
+corregir. **Y la comprobación de la fase 0 de CONTRASTAR no lo ve**, porque mira la fila —el hogar
+correcto— y la fila estaba bien: el desacuerdo solo aparece si alguien abre el fichero, que es
+justamente lo que nadie hace para comprobar un estado.
+
+**Y hay una asimetría que decide qué hacer con las que ya salieron.** Ante doce cabeceras congeladas
+caben dos salidas: dejarlas como fósiles visibles, o retocarlas para que digan la verdad. La segunda es
+la que parece correcta y es la peligrosa: **una cabecera que miente se ve y es un hallazgo esperando;
+una cabecera retocada dice la verdad y no la delata nada.** Ocurrió en campo: un proyecto con una sola
+carta afectada movió su cabecera a `entregada` al confirmarse la entrega —reescribiendo una carta ya
+entregada, contra su propia regla— **para mantener al día un campo que él mismo se había inventado el
+día anterior**. No lo notó nadie, precisamente porque el resultado era correcto. Así que la infracción
+se anota en el índice, que es el hogar mutable, y **el artefacto se queda como quedó**.
+
+**Lo instructivo es de dónde salió: la plantilla no lo pedía.** Su cabecera lleva remitente,
+destinatario, fecha, dirección y `Responde a`, y **nunca tuvo campo de estado**. Lo añadió quien
+escribió la primera carta y las once siguientes lo copiaron de la anterior, que es como se propaga un
+campo que nadie decidió. Así que la lección no es *"quita ese campo"* —no estaba— sino que **un dato
+que el índice muestra es un dato que alguien va a repetir en el artefacto**, y ahí donde se repite ya
+no se puede mantener. Una omisión en una plantilla no se defiende sola: si el campo no debe estar, hay
+que decir que no debe estar.
 
 ### El remitente, y por qué son dos claves
 
@@ -1411,11 +1534,11 @@ releerla en el paso 4.
 | El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo. **Baja aunque `correspondence_log` esté en `off`** —viaja dentro del kit—, y entonces se puede leer pero no contestar: hace falta activar el rol y elegir `remitente`, y las dos cosas las decide la persona. No ofrezcas REMITIR sin decirlo |
 
 **Un rol nuevo es el único caso donde una plantilla de contenido sí llega a quien ya adoptó.** La fila
-de abajo dice que los docs de `base` no se regeneran jamás, y es cierto **para los que existen**: son
-del proyecto. Pero un rol que no existía no tiene doc que respetar, así que ahí no hay conflicto — hay
-una ausencia. Sin esta excepción, una capacidad nueva del marco solo la reciben los proyectos que
-empiecen después, y el que la necesitaba lleva sesiones sin saber que existe. **Se ofrece, no se
-crea en silencio:** el usuario puede no quererla.
+de las plantillas de rol dice que los docs de `base` no se regeneran jamás, y es cierto **para los que
+existen**: son del proyecto. Pero un rol que no existía no tiene doc que respetar, así que ahí no hay
+conflicto — hay una ausencia. Sin esta excepción, una capacidad nueva del marco solo la reciben los
+proyectos que empiecen después, y el que la necesitaba lleva sesiones sin saber que existe. **Se
+ofrece, no se crea en silencio:** el usuario puede no quererla.
 
 **Y su toggle no se escribe hasta que conteste.** Un `off` puesto por precaución y un `off` elegido son
 el mismo texto en el manifiesto, y no son la misma decisión: la próxima actualización ya no ve un rol
@@ -1431,13 +1554,13 @@ orden habilita: con un "ahora no", o sin respuesta, el manifiesto habría quedad
 hubiera ofrecido nada.
 
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
-en medio, y confundirlas es un fallo silencioso. Una plantilla de **contenido** produjo un doc que
-desde el primer día es del proyecto: se instancia una vez y no se vuelve a tocar jamás. Una plantilla
-**generadora** produce un **bloque** que el marco sigue siendo dueño de reescribir —el del loader y
-los dos del `entry`— y ese bloque **sí** viaja con cada actualización. Si no se regenera, el
-adoptante se queda con el kit nuevo y las reglas viejas cargándose en cada sesión, sin ninguna señal
-de que algo falta. Regenerar el bloque **nunca** autoriza a tocar lo que esté fuera de las marcas
-(invariante 6).
+plantillas —la del loader con sus bloques `GENERADO`, y la de las plantillas de rol—, y confundirlas
+es un fallo silencioso. Una plantilla de **contenido** produjo un doc que desde el primer día es del
+proyecto: se instancia una vez y no se vuelve a tocar jamás. Una plantilla **generadora** produce un
+**bloque** que el marco sigue siendo dueño de reescribir —el del loader y los dos del `entry`— y ese
+bloque **sí** viaja con cada actualización. Si no se regenera, el adoptante se queda con el kit nuevo
+y las reglas viejas cargándose en cada sesión, sin ninguna señal de que algo falta. Regenerar el
+bloque **nunca** autoriza a tocar lo que esté fuera de las marcas (invariante 6).
 
 **Y hay un límite conocido, sin remedio, que conviene saber: la discrepancia entre plantilla e instancia
 es un detector gratis que se apaga al converger.** Cuando el kit corrige una plantilla de **contenido**,
@@ -1467,10 +1590,25 @@ había en vez de añadirlo aparte. Ahí el invariante 6 no protege nada, porque 
 lo propio está en la zona que la regla autoriza a reescribir entera. Caso real y documentado en campo,
 con el loader escrito a mano meses antes de la adopción.
 
-Así que al adoptar sobre un loader existente hay **tres situaciones, no dos**: generado de cero (nada
-que proteger), contenido propio fuera de las marcas (lo cubre el invariante 6), y **contenido propio
-encerrado dentro** (solo lo cubre `RICO`). La tercera es la más peligrosa y la menos evidente, porque
-desde fuera se ve igual que la primera.
+Así que al adoptar sobre un loader existente hay **más de dos situaciones**: generado de cero,
+contenido propio fuera de las marcas (lo cubre el invariante 6), y **contenido propio encerrado
+dentro** (solo lo cubre `RICO`). La tercera es la más peligrosa y la menos evidente, porque desde
+fuera se ve igual que la primera.
+
+**Y "generado de cero" no es "nada que proteger", que es como estuvo escrito aquí y era falso.** Lo
+corrigió un proyecto adoptante el mismo día de adoptar: su loader lo generó el bootstrap, sin una
+línea escrita a mano, y **quedó marcado `RICO` esa misma jornada** porque el bloque generado se apartó
+de la plantilla en reglas propias suyas —el idioma del habla frente al de los documentos, su
+convención de escritura y el bloque redactado en otro idioma que la plantilla—. **La divergencia nació
+en el bootstrap.** Sin la marca, la primera regeneración habría puesto al agente a contestar en otro
+idioma del que se le pregunta.
+
+Así que el eje no es el **origen** del contenido —preexistente contra generado— sino la **divergencia
+respecto de la plantilla**, venga de donde venga. La plantilla siempre lo dijo bien (*"si este bloque
+se enriqueció con reglas propias que la plantilla base no contiene"*); **fue esta prosa la que tradujo
+esa condición a una historia sobre archivos anteriores a la adopción**, y una vez contada así, el
+adoptante que generó de cero se da por excluido y no vuelve a mirar. Es la clase de error que no
+contradice a la regla: la estrecha.
 
 La marca vive en el bloque y no en el manifiesto **a propósito**: el dato viaja con la cosa que
 describe y lo lee el agente en el momento exacto en que iba a sobrescribir.
@@ -1478,10 +1616,10 @@ describe y lo lee el agente en el momento exacto en que iba a sobrescribir.
 **Lo que la marca no hace:** decir *qué* falta. Marca un bloque como no reescribible, pero portar el
 delta sigue exigiendo comparar la plantilla nueva contra el bloque a mano. Convierte una regeneración
 automática en una **comparación manual** — que es lo correcto, pero cuesta, y conviene no venderla como
-gratis. Escrito como prosa en el
-manifiesto ya falló en campo — un proyecto adoptado tenía justo esa nota, la fila de arriba disparó
-igual, y lo que evitó la pérdida fue que el agente leyera y decidiera, no el mecanismo. Un mecanismo
-que depende de que alguien recuerde una nota en otro archivo no es un mecanismo.
+gratis. Escrito como prosa en el manifiesto ya falló en campo — un proyecto adoptado tenía justo esa
+nota, la fila del loader disparó igual, y lo que evitó la pérdida fue que el agente leyera y decidiera,
+no el mecanismo. Un mecanismo que depende de que alguien recuerde una nota en otro archivo no es un
+mecanismo.
 
 **Una regla que gobierna el actualizar no gobierna la actualización que la entrega.** Quien actualiza
 sigue el ritual del kit **viejo**: cuando clasifica el diff, el kit nuevo todavía no está aplicado. Así

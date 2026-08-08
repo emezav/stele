@@ -99,12 +99,24 @@ generado de cero.
 Si estás en ese caso: **marca tu bloque como `STELE:INICIO RICO` ahora**, antes de la próxima
 actualización. Ahí la marca no es una comodidad — es lo único que se interpone.
 
-**Qué NO nos sirve.** Si tu loader lo generó el bootstrap desde cero y nunca escribiste nada a mano,
-tu caso no responde a ninguna de las dos. Hace falta un archivo que **preexistía**.
+**Y hay una tercera pregunta, que esta carta excluía por error hasta que alguien la contestó igual.**
+Decía aquí que un loader generado desde cero no nos servía, porque hacía falta un archivo que
+**preexistiera**. Es falso, y lo demostró un adoptante el mismo día de adoptar: su loader lo generó el
+bootstrap sin una línea escrita a mano, y **quedó `RICO` esa misma jornada**, porque el bloque generado
+se apartó de la plantilla en reglas propias suyas. **La divergencia nació en el bootstrap.** Así que va
+una pregunta más, y esta la puede contestar cualquiera que haya adoptado:
 
-**Por qué te lo pedimos a ti.** Es una pregunta que el marco no puede contestarse solo: solo la
-responde alguien que llegó con documentación propia. Y de esa respuesta depende una regla que hoy
-protege datos que no podemos ver.
+**Tercera pregunta.** ¿Tu bloque generado dice algo que la plantilla base **no** dice — porque tu
+manifiesto, tu idioma o tus convenciones lo instanciaron distinto? Si sí, **es un bloque `RICO` aunque
+nadie haya escrito nada a mano**, y la próxima regeneración se lo lleva.
+
+**Lo que aprendimos con eso**, y vale más que la respuesta: el eje no es el **origen** del contenido
+sino su **divergencia respecto de la plantilla**. La marca siempre lo dijo así; era esta carta la que
+lo traducía a una historia sobre archivos anteriores a la adopción, y contada así, **quien generó de
+cero se daba por excluido y no volvía a mirar**.
+
+**Por qué te lo pedimos a ti.** Es una pregunta que el marco no puede contestarse solo. Y de esa
+respuesta depende una regla que hoy protege datos que no podemos ver.
 
 ## Carta 3 — En AUDITAR, el falso positivo es el lado peligroso (y queremos saber si te pasa igual)
 
