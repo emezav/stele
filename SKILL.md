@@ -1048,6 +1048,23 @@ afirma cambios en el kit; actualiza antes de leerla o mientras"*.
 **Cuando el artefacto NO viaja, la afirmación se queda en palabra — y eso se dice, no se disimula.** Es
 el mismo criterio de las tres clases, aplicado a lo propio.
 
+**Y "viaja" quiere decir publicado, que no es lo mismo que escrito.** Entre lo uno y lo otro hay al
+menos dos estados —escrito y guardado, guardado y publicado— y **solo el último es observable por el
+destinatario**. Es exactamente la distinción que ya haces con una carta, `redactada` frente a
+`entregada`: el segundo estado lo mueve quien ve el envío, porque es el único que puede verlo. **Tu
+producto tiene los mismos dos estados y es fácil olvidarlo**, porque el trabajo *se siente* terminado
+cuando está guardado.
+
+Así que la regla de *"al escribir «ya está hecho», compruébalo"* necesita su segunda mitad: **compruébalo
+en el sitio donde el otro va a mirar.** Caso propio, y en el estreno del mecanismo: se entregó una carta
+que invitaba a verificar cada cambio contra el kit publicado, y el corresponsal fue a mirar y encontró
+**el repositorio sin actualizar** — ocho entregas de trabajo vivían solo en la copia local. La carta era
+cierta y el sitio estaba vacío.
+
+**El mecanismo funcionó, y por eso vale la pena contarlo así.** La carta prometía que *"lo que no cuadre
+es un hallazgo para él"*; no cuadró nada, y lo devolvió. Una verificación que en su primer uso encuentra
+un fallo de quien la propuso es una verificación que sirve.
+
 **La asimetría que esto destapa vale la pena tenerla presente:** el terreno de quien te reporta suele ser
 privado y sus casos te llegan **bajo palabra para siempre**; el tuyo, si publicas un producto, es
 **público por construcción**. No son simétricos, y la consecuencia práctica es una: **tus afirmaciones
