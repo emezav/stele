@@ -54,7 +54,9 @@ Ver `{{kit}}/guide.md` → "Roles y fronteras". Aquí solo los **formatos**.
 - {{specs}} §X — … / {{charter}} § … / tema de {{specs}}
 ```
 
-Al cerrar: reescribir COMPLETO con `Write`. Nunca `Edit` para prepend/rename de "anterior".
+**Siempre que se toque** —al cerrar y también a mitad de sesión— se reescribe COMPLETO con `Write`.
+Nunca `Edit`: una sustitución cuyo ancla ya no existe **no falla, no hace nada**, y eso se ve igual que
+"ya estaba bien". Y nunca prepend ni rename de "anterior".
 En *Pendientes operativos* no anotes "push pendiente" por el commit que lleva este mismo cierre:
 se escribe antes de commitear y quedaría obsoleto al minuto siguiente.
 **Este archivo condiciona a la sesión siguiente**, porque lo lee al arrancar: si lo que viene es una

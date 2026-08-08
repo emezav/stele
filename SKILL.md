@@ -314,7 +314,8 @@ de arranque te informa, el del salto te detiene.
    `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos.
 2. **`index`**: una fila con append de Bash — `printf '| N | … |\n' >> {history_dir}{index}`.
 3. **`effort`** (si `effort_log`): una fila con `printf >>`.
-4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla (nunca prepend). Si `audit_log`
+4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla — **nunca `Edit`, nunca prepend**.
+   Si `audit_log`
    está activo y desde la última fila de `audit` han pasado más de `audit_every_n_sessions`
    sesiones, anota **"auditoría vencida (última: sesión X)"** en *Pendientes operativos*. Es una
    comparación de dos números, no una verificación: cerrar no audita.
@@ -329,6 +330,30 @@ de arranque te informa, el del salto te detiene.
    auditable la sesión. Si no hubo artefactos, no se dice nada — no hay sección que rellenar.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
+
+**Y el `state` se reescribe entero también cuando lo tocas fuera del cierre.** La regla de arriba vive
+en un checklist de cierre, así que no se siente aplicable a las ediciones de mitad de sesión —se
+entregó una carta, se resolvió un pendiente, cambió algo de estado—, y ahí es donde entra el parche.
+Ayuda además una intuición económica que es falsa: reescribir el documento entero para cambiar una
+línea parece desproporcionado, y **cuesta lo mismo**. Caso de campo: un `state` pasó **cuatro sesiones**
+diciendo *"esperando respuesta a la carta 5"* con el hilo por la 15.
+
+**Porque una sustitución que no encuentra su ancla no falla: no hace nada.** Y *"no hizo nada"* se ve
+exactamente igual que *"ya estaba bien"* — misma pantalla, mismo estado del repositorio, misma sensación
+de tarea hecha. Es el gemelo del cero silencioso de AUDITAR, en el lado de la escritura: allí un barrido
+roto se lee como un corpus limpio, aquí una edición que no ocurrió se lee como una edición innecesaria.
+En los dos casos **el fallo se disfraza del resultado bueno**, y en los dos la salida es comprobar en
+vez de mirar. Si tu herramienta no protesta cuando el ancla falta, el `Write` completo **elimina la
+categoría entera** para el doc donde más duele.
+
+**Y el `state` no guarda datos que puedan volverse falsos entre dos cierres: los apunta.** Es la otra
+mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
+índice** —una carta que entra sin una que salga detrás es una conversación abierta—, así que el `state`
+llevaba una lista aparte cuyo único destino posible era desincronizarse. Cuando un pendiente tenga hogar
+propio, **nómbralo y apunta**: *"hay correspondencia sin cerrar, ver el índice"* no caduca; *"la carta
+tal está redactada"* caduca en cuanto alguien la entrega. Vale para todo lo que el `state` no pueda
+observar por sí mismo, y se nota justo aquí porque **el `state` se lee al arrancar**: lo que miente ahí
+tiñe la sesión entera antes de que nadie compruebe nada.
 
 **No registres un estado que no puedas observar.** Antes de escribir un hecho en un doc, pregúntate si
 puedes comprobarlo desde donde estás. Lo que ocurre fuera de tu alcance —que una carta se entregó, que
@@ -874,7 +899,10 @@ siguiente informe venga mejor calibrado — y es información que él no tiene f
 Por eso **la fila se escribe después de responder**: su existencia implica que el circuito se cerró. Y
 como la numeración de `letter` no distingue dirección, **una carta que entra sin una que salga detrás
 es una conversación abierta**, visible sin llevar ninguna lista aparte. Una respuesta redactada y sin
-enviar es un pendiente de `state`, no una columna más.
+enviar es un pendiente de `state` **que apunta aquí** — no una columna más, y tampoco el estado copiado
+en dos sitios: el índice dice cuál y en qué estado, y el `state` solo dice que hay que mirarlo. Copiarlo
+crea la lista aparte que la frase anterior acaba de declarar innecesaria, y **esa copia es la que se
+queda vieja**: caso de campo, cuatro sesiones anunciando una carta que ya había sido contestada.
 
 ### Qué NO es un informe externo
 
