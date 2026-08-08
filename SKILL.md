@@ -569,6 +569,21 @@ negativo más barato de cometer y el más caro de no ver, porque **un cero roto 
 leen igual**. Antes de informar "sin hallazgos", corre el mismo patrón contra algo que **sepas** que
 casa y comprueba que sale.
 
+**Y el control positivo va por detector, no por barrido** — aporte de campo, y de los caros. Alguien
+corrió cinco sondas, una por cada afirmación que quería verificar; **las cinco dieron negativo y una
+estaba rota**: buscaba una frase que no existía en el texto, así que **iba a dar negativo pasara lo que
+pasara**. Acertó en la primera ronda **por la razón equivocada**, y solo se destapó cuando las otras
+cuatro empezaron a acertar. Un control positivo del **conjunto** no lo habría cazado: si cinco sondas
+buscan cinco cosas distintas, hacen falta **cinco controles**. Una sonda que nunca acierta no está
+midiendo nada, y su cero es indistinguible del cero bueno.
+
+**Y conviene saber contra qué se está luchando: emparejar por texto es frágil por construcción.** En un
+solo intercambio de campo, las comprobaciones de un mismo agente fallaron **cinco veces por la
+formulación** —ajuste de línea, mayúsculas, sinónimo, sustantivo de cabecera, y frase inexistente—. No
+es una racha de descuidos: **es que el método tiene esa tasa de error y se usa como si no la tuviera.**
+De ahí que el barrido dé candidatos y no veredictos, y que el paso caro —ir al hogar y leerlo— no sea
+opcional.
+
 **Y si lo que publicas *es* una ausencia, al cero le faltan dos cosas más.** Lo anterior protege un
 barrido intermedio; esto protege la conclusión. *"No existe en ninguna de las N ubicaciones"* descansa
 sobre una premisa que casi nunca se enuncia —**que esas N son todas**— y sobre un instante —**que
@@ -627,8 +642,19 @@ de un alcance que ya falló.** No encuentra los huecos abiertos —encuentra dó
 tapó caso a caso, sin nombrarlo—, y eso dice dónde mirar. En la misma medición, dos de los catorce
 falsos positivos eran exactamente eso: alcance ya ampliado a propósito, con la ampliación escrita dentro
 del enunciado. **Un aviso sobre este eje:** aquí el riesgo se invierte respecto a lo habitual, porque
-descartar un candidato como falso positivo es lo que deja pasar un hueco real. El barrido no ve, además,
-los **encuadres implícitos**, que son los peores y para los que nadie tiene patrón.
+descartar un candidato como falso positivo es lo que deja pasar un hueco real.
+
+**Y los encuadres implícitos sí tienen forma — la aportó el mismo campo, una vuelta después: viven en
+los sustantivos de las cabeceras, no en los verbos de las reglas.** Un documento que se declara *"trampas
+al escribir código"* excluye por su propio título todo lo que no sea escribir código —método, entorno,
+cierre— y **ningún barrido de marcadores temporales lo encuentra**, porque el encuadre no está en
+ninguna regla: está en lo que el documento dice ser. Caso de campo: seis sesiones metiendo material que
+su título excluía. Se arregla **cambiando lo que el documento dice ser**, no forzando el contenido a
+caber en la definición vieja.
+
+**Así que este eje tiene dos pasadas**: los encuadres de las **reglas** (*"al cerrar"*, *"antes de
+commitear"*) y los de los **documentos** (el título, la primera línea, el *"NO lleva"*). La segunda es
+mucho más barata —hay muchos menos títulos que reglas— y coge una clase entera que la primera no ve.
 
 **De ahí salen los otros dos ejes.** Por **documento** encuentras huérfanos del documento que
 abres; por **regla** los encuentras donde estén. Toma las reglas que el proyecto sigue de verdad y
@@ -1065,6 +1091,18 @@ cierta y el sitio estaba vacío.
 es un hallazgo para él"*; no cuadró nada, y lo devolvió. Una verificación que en su primer uso encuentra
 un fallo de quien la propuso es una verificación que sirve.
 
+**Y por eso el identificador va dentro de la carta: sin él, quien verifica no distingue *no entró* de
+*no llegó*.** Es la formulación de quien lo sufrió, y es la pieza que faltaba. Al mirar y no encontrar
+nada, las dos lecturas posibles son *"me mintieron sobre lo que escribieron"* y *"lo escribieron y no lo
+publicaron"* — y **se leen igual**, con la primera mucho más fácil de creer. Con el identificador
+esperado delante, la ambigüedad se acaba: o está en la historia del artefacto, o no está. Es el control
+positivo otra vez, aplicado a la afirmación en lugar de al detector.
+
+**El remedio sirve en las dos direcciones, y eso es lo que lo hace barato:** al que escribe le obliga a
+mirar el sitio antes de citarlo —que es la mitad que se nos había escapado—, y al que recibe le da con
+qué distinguir. **Y el identificador se escribe sin adjetivo**: *"lo que te prometo está a partir de
+X"*, no *"la última entrega es X"*, que caduca en cuanto publiques otra cosa.
+
 **La asimetría que esto destapa vale la pena tenerla presente:** el terreno de quien te reporta suele ser
 privado y sus casos te llegan **bajo palabra para siempre**; el tuyo, si publicas un producto, es
 **público por construcción**. No son simétricos, y la consecuencia práctica es una: **tus afirmaciones
@@ -1244,7 +1282,8 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    `{kit}`.** Si `kit_origen` falta o está vacío, **pide la URL al usuario y escríbela en el
    manifiesto** antes de seguir: sin ella el ritual no arranca, y no se deduce del árbol.
 2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Un diff vacío tiene dos causas y se
-   leen igual:** que estés al día de verdad, o que **el origen no haya publicado lo que dice tener**.
+   leen igual:** que estés al día de verdad, o que **el origen no haya publicado lo que dice tener** —
+   dicho por quien lo vivió, *"un clone de un kit sin publicar no da error: devuelve un kit"*.
    Antes de dar por bueno el primero, mira un dato observable del origen —la fecha de su último cambio,
    el identificador de su última entrega— y compáralo con lo que esperabas encontrar. Si cuadra: dilo en
    una línea, borra el temporal y termina sin haber tocado nada. Si no, **el problema está aguas arriba**
@@ -1330,6 +1369,12 @@ alguien lo arregla a mano. Pero en cuanto lo arregla, los dos textos coinciden *
 y la señal desaparece — para esa regla y para todas las que ya convergieron. Dicho crudo: **el adoptante
 más al día es el que menos aviso tiene.** Lo aporta un proyecto en campo, no trae remedio, y se escribe
 para que nadie lo descubra creyendo que es un fallo suyo.
+
+**Observado en vivo poco después, por los dos lados a la vez:** una instancia arregló su copia a mano y
+el kit arregló su plantilla por su cuenta; **los dos textos acabaron diciendo lo mismo por caminos
+distintos y ninguno avisó al otro**. El resultado era correcto y la señal se apagó igual. **La
+convergencia y el silencio llegan juntos** — no es un fallo que se pueda arreglar, es lo que significa
+converger.
 
 **En modo adopción el bloque generado no es un derivado puro.** Un proyecto que adoptó el marco con
 cientos de sesiones encima suele tener en su loader reglas propias que la plantilla base no contiene
