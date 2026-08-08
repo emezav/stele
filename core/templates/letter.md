@@ -33,6 +33,14 @@ Separado a propósito de lo de arriba. Son dos clases de afirmación que se comp
 el receptor puede verificarlo contra su propio material; **lo de arriba** no, y lo tomará bajo palabra.
 Separarlas tú le ahorra la primera fase entera y hace la carta más honesta.
 
+**Y hay una tercera, que aparece sobre todo al responder: lo que afirmas sobre tu propio trabajo.**
+*"Entró tu hallazgo"*, *"está escrito así"*, *"lo cambiamos"*. No es el caso —tuyo y no verificable por
+él— ni una afirmación sobre su material: es una **acción tuya**, de la clase que hay que comprobar antes
+de escribirla, y que él **sí puede contrastar si tiene acceso a lo que tocaste**. Si el artefacto le
+llega —un kit que se distribuye, un repo que puede leer—, **dile dónde mirar y cuándo obtenerlo**: la
+afirmación deja de valer lo que valga tu palabra, y lo que no cuadre es un hallazgo para él. Si no le
+llega, **dilo**: queda bajo palabra, igual que el caso.
+
 ## Qué NO demuestra este caso
 
 Dónde termina tu evidencia. Un caso describe un terreno; lo que no cubre sigue sin cubrir. Este campo
@@ -77,6 +85,8 @@ segundo dice que no.
      1. Tachado: relee buscando rutas internas, nombres de máquinas y servicios, datos de personas.
         El seudónimo del remitente NO anonimiza el cuerpo.
      2. Consentimiento: enviar es publicar. Lo decide el usuario, nunca el agente por su cuenta.
-     3. Archivo: guarda tu copia aquí. La copia del otro lado puede desaparecer (los buzones se
+     3. Sincronía: si la carta afirma cambios en algo que al destinatario le llega, dile CUÁNDO
+        obtenerlo (antes de leerla, o mientras). El orden es parte de la carta, no logística.
+     4. Archivo: guarda tu copia aquí. La copia del otro lado puede desaparecer (los buzones se
         curan), y entonces esta es la única.
-     4. Índice: la fila en `{{correspondence}}`, después de enviar. -->
+     5. Índice: la fila en `{{correspondence}}`, después de enviar. -->

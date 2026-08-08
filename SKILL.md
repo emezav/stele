@@ -1026,7 +1026,33 @@ dejan de valer.
 5. **Consentimiento y envío.** **Enviar es publicar**, y lo decide el usuario, nunca el agente por su
    cuenta. El canal da igual y el marco no opina: pegar el texto en la sesión de otro agente, un
    correo, un issue, un PR si el proyecto tiene git y el usuario quiere. Copiar y pegar es el suelo, y
-   funciona siempre.
+   funciona siempre. **Y si la carta afirma cambios en algo que el destinatario puede obtener, dile
+   cuándo obtenerlo** — antes de leerla, o mientras. El orden es parte de la carta, no logística; ver
+   abajo.
+
+### Una respuesta está hecha de afirmaciones sobre acciones propias
+
+Es la parte incómoda del género y conviene verla antes de escribir una. La respuesta existe para decir
+**qué entró, qué no y por qué**, así que casi cada frase suya es *"entró"*, *"está escrito"*, *"lo
+cambiamos"* — **exactamente la clase de afirmación menos fiable que hay**, la que hay que comprobar
+antes de escribirla y que el destinatario no puede contrastar. Una carta de respuesta sin más es una
+carta que pide confianza en su totalidad.
+
+**Y muchas veces no hace falta que la pida, porque el artefacto viaja.** Si lo que afirmas haber escrito
+está en algo que el otro puede obtener —el kit que se distribuye, un repo público, un fichero que le
+llega—, **basta decírselo para que la carta pase de pedir confianza a ofrecer comprobación**. Cuesta una
+línea, convierte cada *"entró"* en verificable, y **lo que no cuadre es un hallazgo para él**, que es más
+de lo que cualquier carta ofrece normalmente. Por eso el orden de entrega se decide al escribir: *"esto
+afirma cambios en el kit; actualiza antes de leerla o mientras"*.
+
+**Cuando el artefacto NO viaja, la afirmación se queda en palabra — y eso se dice, no se disimula.** Es
+el mismo criterio de las tres clases, aplicado a lo propio.
+
+**La asimetría que esto destapa vale la pena tenerla presente:** el terreno de quien te reporta suele ser
+privado y sus casos te llegan **bajo palabra para siempre**; el tuyo, si publicas un producto, es
+**público por construcción**. No son simétricos, y la consecuencia práctica es una: **tus afirmaciones
+pueden ser comprobables y las suyas no, así que hazlas comprobables.** Es lo único que puedes devolverle
+en la misma moneda que él no tiene.
 
 **Lo que tú afirmes sobre el terreno del otro es la misma clase 2 — también cuando el que escribe eres
 tú.** CONTRASTAR enseña a marcar lo no verificable **de lo que entra**, y al responder se suelta sin
