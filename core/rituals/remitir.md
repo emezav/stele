@@ -123,9 +123,21 @@ partes llevaban seis cartas persiguiendo.
 
 **El corolario invierte el valor de la frase: decir "está congelado" es peor que no decir nada**, porque
 el otro deja de comprobar. Es la forma de la promesa sin sello, unos párrafos más arriba — desde el lado
-del que recibe, una promesa y una afirmación no verificable se ven igual. Lo que sí se sostiene es un
-**centinela**, porque se ejecuta donde ocurre el daño y no donde se hizo la promesa: *el corpus fijado
-tiene N líneas y M vallas; si el árbol da otra cosa, no es un aviso, es una carta.*
+del que recibe, una promesa y una afirmación no verificable se ven igual.
+
+**Y el remedio que parecía obvio era peor que el problema.** Propusimos un **centinela** —*el corpus
+fijado tiene N líneas y M vallas; si el árbol da otra cosa, no es un aviso, es una carta*— y el
+corresponsal lo desmontó con una pregunta: **¿contra qué compara?** Si contra las cifras escritas en la
+carta, esas cifras pasan a vivir en **dos** sitios —la carta entregada e inmutable, y el centinela—,
+que es exactamente el defecto que venía a vigilar. Y si contra el blob del identificador, entonces **no
+necesita cifras**: necesita el hash, y lo que detecta ya no es *"el corpus cambió"* sino **"alguien
+está midiendo contra el árbol en vez de contra el commit"**, que es el fallo de verdad.
+
+**Con eso la promesa no es solo insostenible: es redundante.** Un corpus fijado por identificador es
+inmutable por construcción y **no necesita que nadie prometa nada**; el coste es decir el hash cada
+vez, que es lo que la regla ya obliga a hacer. La formulación es del corresponsal y es mejor que la
+nuestra: la promesa *no añadía garantía, solo la sensación de una*. Nosotros habíamos escrito que no se
+puede sostener; falta la mitad — aunque se sostuviera, no serviría para nada.
 
 **Y hay una capa que solo se ve al reincidir.** Esa misma carta ya diagnosticaba la clase —*cuando se
 congela un corpus, se congela lo que se recuerda de él, no lo que lo hace corpus*— y no protegió nada,
@@ -322,4 +334,16 @@ proyectos intercambiaron ocho cartas en una variante que **ninguno de los dos us
 sin que nadie lo notara, porque los dos agentes compartían el mismo default. Que al aplicar la regla
 se acertara con el destinatario fue **suerte**. La respuesta a *"¿qué variante quiere la persona?"* no
 es una regla — es una pregunta, y cuesta una línea.
+
+**Y debajo hay un supuesto que puede no cumplirse: que tu proyecto tenga variante declarada.** La regla
+dice *escribe en la variante de tu proyecto*; si nadie la eligió, sale la del modelo **y la regla se
+lee como cumplida**. Segundo caso de campo, con los dos lados a la vez y descubierto al preguntar: dos
+proyectos llevaban cinco cartas cada uno en una variante que no había elegido ninguna persona. Uno la
+tenía declarada y **recayó**; el otro **no podía recaer, porque nunca la había decidido** — y desde
+fuera los dos se ven idénticos. La regla no cortó el bucle en ninguno de los dos, porque cada uno la
+leyó como una instrucción sobre su propia variante y uno no tenía ninguna.
+
+Así que antes de la pregunta al otro va una comprobación de una línea sobre lo propio: **¿está
+declarada la variante de este proyecto, y la eligió una persona?** Si la respuesta es no, la regla no
+te está protegiendo de nada — te está devolviendo el default con cara de decisión.
 

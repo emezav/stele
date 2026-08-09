@@ -37,7 +37,7 @@ auditoría, después de una migración estructural, o cuando el usuario lo quier
 
 Los `session` y el `index` **no son objeto de corrección**, solo fuente contra la que contrastar.
 
-### Las ocho clases de drift
+### Las clases de drift
 
 | # | Clase | Qué es |
 | --- | --- | --- |
@@ -50,9 +50,32 @@ Los `session` y el `index` **no son objeto de corrección**, solo fuente contra 
 | 7 | **Hallazgo sin hogar** | Conocimiento que se quedó en el registro de sesión o en un doc de detalle y **nunca se promovió** al doc que se lee al abrir |
 | 8 | Crecimiento sin revisión | Un doc pasó de legible y nadie decidió si partirlo |
 
-Las ocho son agnósticas de dominio, y por eso el ritual es del núcleo. Un módulo activo aporta
+Todas son agnósticas de dominio, y por eso el ritual es del núcleo. Un módulo activo aporta
 **detectores atados a sus roles** (el módulo de producto: el par `specs`↔`specs_dir` y los hogares
 `specs`/`architecture` — ver su `module.md`).
+
+**Y una forma de clase 1 que se fabrica sola, al escribir sobre la propia tabla: el contador.**
+Escribir *"las ocho clases"* copia en prosa un dato que ya está en la tabla —su longitud— y crea un
+segundo hogar. Añadir una clase deja la frase falsa **en el mismo cambio que la crea**, y no lo
+detecta nada. Vale para cualquier lista: *los tres hogares*, *las cinco rutas*, *ambos contenedores*.
+
+**El remedio no es acordarse de contar: es no escribir el número.** *"Las clases de drift"* dice lo
+mismo y no caduca; quien quiera el número lo cuenta en la tabla, que es su único hogar. Repasar los
+sustantivos con número sigue sirviendo para lo ya escrito — para lo que escribes hoy, la solución es
+de **forma**, no de atención.
+
+**Y el límite, que importa tanto como la regla: esto NO alcanza a los números que son parte del
+concepto.** *"Las tres rutas"* no es un contador: son tres por diseño, la cardinalidad es un invariante
+y cambiarla sería otro marco. *"Las ocho clases"* sí lo era: esa lista ya creció antes y volverá a
+crecer. **La pregunta que separa las dos no es cuántas hay, es si añadir una es un cambio previsto.**
+Aplicar esta regla a lo primero es un barrido destructivo que borra información real; el detector de
+abajo da positivo en los dos casos y por eso sus aciertos **se revisan uno a uno**, como todos.
+
+Caso propio, y lo destapó un corresponsal preguntando *dónde vive vuestra lista*, no una auditoría:
+este mismo archivo llevaba el contador en **tres** frases —el encabezado, *"las ocho son agnósticas"*
+y *"las otras siete se ven leyendo el doc"*, que además es un número **derivado** y por tanto rompe
+por dos motivos distintos— y una **cuarta** copia vivía en otro archivo y otra capa
+(`modules/producto/module.md`). Cinco sitios para un dato que solo tiene uno.
 
 **Detector del manifiesto pendiente (clase 1).** Si `módulos` vale `pendiente`, mira el árbol real: si
 el proyecto **ya tiene un producto con estructura** —un codebase, un corpus organizado, una colección
@@ -68,9 +91,9 @@ arranque. Es el mismo `ls`, puesto donde sirve.
 también acabó teniendo producto no es drift —se decidió que no— pero **sí conviene nombrarlo una vez**
 en el informe, sin insistir. Un "no" de hace cuarenta sesiones se tomó sobre otro proyecto.
 
-**La clase 7 es la que justifica el ritual.** Las otras siete se ven leyendo el doc con atención;
-esta no se ve en **ningún** doc, porque el defecto es una **ausencia**: el dato existe, pero no donde
-se lee. Solo aparece contrastando dos sitios. Es la regla "un hogar por dato" fallando en silencio.
+**La clase 7 es la que justifica el ritual.** Las demás se ven leyendo el doc con atención; esta no se
+ve en **ningún** doc, porque el defecto es una **ausencia**: el dato existe, pero no donde se lee.
+Solo aparece contrastando dos sitios. Es la regla "un hogar por dato" fallando en silencio.
 
 **Y admite dos remedios, no uno.** Promover al doc de arranque es el reflejo, pero choca con "lee poco
 al arrancar" en cuanto el dato es de **consulta** y no de **orientación**: no todo lo que falta en su
@@ -112,6 +135,14 @@ wc -l <docs vivos>
 grep -rhoE "(/[a-zA-Z0-9._-]+){2,}" {base} --include="*.md" | sort -u   # rutas
 grep -rhoE "https?://[^ )\"]+" {base} --include="*.md" | sort -u        # URLs y endpoints
 grep -rhoE "\bv?[0-9]+\.[0-9]+\.[0-9]+\b" {base} --include="*.md" | sort -u  # versiones
+
+# clase 1 — contadores en prosa, que son copias de la longitud de una lista
+grep -rniE "\b(los|las) (dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez) [a-záéíóúñ]+" {base} --include="*.md"
+grep -rniE "\b(ambos|ambas|el único|la única|los únicos|las únicas)\b" {base} --include="*.md"
+
+# clase 7 — NO lleva detector, y es deliberado: el defecto es una AUSENCIA y no hay cadena
+# que buscar. Se caza contrastando dos sitios en las fases, no barriendo uno. Esta línea
+# existe para que la falta no se lea como olvido.
 ```
 
 **Un cero se comprueba antes de creerlo.** Un barrido que devuelve 0 en **todos** los detectores casi
