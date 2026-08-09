@@ -7,7 +7,7 @@ description: >
   (ponerse al día), al CERRAR (registro durable), antes de un cambio interrumpible (checkpoint),
   para AUDITAR la documentación (verificar que lo escrito sigue siendo cierto), para INICIALIZAR el
   marco en un proyecto (bootstrap), para ACTUALIZARLO a una versión nueva del kit (actualizar), o
-  para ADAPTARLO (config: nombres, módulos, parámetros). Núcleo agnóstico + módulos (software) +
+  para ADAPTARLO (config: nombres, módulos, parámetros). Núcleo agnóstico + módulos (producto) +
   config (stele.config.md).
 ---
 
@@ -181,7 +181,7 @@ en la primera línea que ve el usuario — el sitio más caro para parecer roto.
 Deja `handover` en `EN_PROGRESO` con objetivo + alcance + verificación prevista (plantilla
 `core/templates/handover.md`) **{{checkpoint_trigger}}**. No es opcional ni depende del tamaño: una
 sesión puede cortarse en cualquier momento y el checkpoint (~20 líneas) siempre cuesta menos que
-reconstruir el contexto desde el diff. (El módulo software especializa el trigger a "antes del primer
+reconstruir el contexto desde el diff. (El módulo `producto` especializa el trigger a "antes del primer
 archivo de código".)
 
 **Exención:** cambios que SOLO tocan el **contenido** de la documentación. **No exime una migración

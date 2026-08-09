@@ -3,7 +3,7 @@
 > **Por qué `<PROYECTO>` es como es**, a gran escala. Estable, se lee para orientarse y rara vez
 > cambia. Frontera: aquí van *principios y apuestas grandes transversales*; las *specs y
 > decisiones por feature* van en `{{specs}}`; los *patrones de código* en `{{architecture}}`;
-> las *trampas de código* en `{{gotchas}}`. Tope objetivo ~200 líneas: si una decisión crece, se
+> las *trampas de trabajar aquí* en `{{gotchas}}`. Tope objetivo ~200 líneas: si una decisión crece, se
 > extrae a su tema de `{{specs}}` y aquí queda 1-3 líneas + link.
 
 ## Norte

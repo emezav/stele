@@ -6,10 +6,42 @@
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
 sobrescribir contenido; solo generar lo que falte). Pasos:
 1. Elegir `idioma`/`módulos`/`persistencia` y las **tres rutas** (`kit`/`base`/`loader`) con
-   defaults sensatos. Auto-detectar: módulo software por `Cargo.toml`/`package.json`/`src/`;
-   `persistencia = git` si hay `.git` **en la raíz del proyecto** — no vale uno anidado en un
-   subdirectorio, que deja la raíz sin versionar —, si no `ninguna` (avisando de la consecuencia).
-   Zero-question posible.
+   defaults sensatos. Auto-detectar `persistencia = git` si hay `.git` **en la raíz del proyecto** —
+   no vale uno anidado en un subdirectorio, que deja la raíz sin versionar —, si no `ninguna`
+   (avisando de la consecuencia).
+
+   **El módulo de producto NO se auto-detecta: se PREGUNTA, y son tres respuestas.** El criterio es
+   *"¿este proyecto va a tener un **producto con estructura propia y decisiones que convenga registrar
+   por tema**?"*, y se ilustra con ejemplos porque en abstracto no se puede contestar:
+
+   > *Una tesis con su corpus, un codebase, un kit de plantillas: **sí**. Un cuaderno de notas
+   > sueltas o una bitácora personal: **no**. Y si acabas de crear la carpeta y todavía no lo sabes:
+   > **todavía no**, que es una respuesta legítima y no un aplazamiento.*
+
+   | Respuesta | Qué se escribe |
+   | --- | --- |
+   | sí | `módulos = producto` |
+   | no | `módulos = —` |
+   | todavía no | `módulos = pendiente` |
+
+   **Por qué no se olfatea.** El criterio es de dominio general y el detector que había buscaba
+   `Cargo.toml`/`package.json`/`src/` — o sea, un compilador, que es justo lo que el criterio dice que
+   **no** importa. Y en greenfield cualquier olfateo es inútil por construcción: **corre en el único
+   momento en que la evidencia todavía no puede existir**. Dos proyectos reales se quedaron sin
+   `specs` ni `architecture` por eso, y uno de ellos organizó su corpus en cuatro carpetas que no
+   quedaron escritas en ningún doc.
+
+   **`pendiente` no es lo mismo que `—`, y esa es toda su razón de ser.** `—` dice *"se decidió que
+   no"*; `pendiente` dice *"falta decidirlo"*. Si los dos casos escribieran lo mismo, nadie volvería a
+   mirar nunca. Vive en el manifiesto, que **no se poda**, y no en los pendientes de `state`, que se
+   reescriben en cada cierre — ahí ya murió una trampa real de campo.
+
+   Quien vuelve a preguntar es **AUDITAR**, no ABRIR: que el manifiesto diga `pendiente` mientras el
+   árbol ya tiene un producto es drift de clase 1 de manual, y comprobarlo cada ~10 sesiones no cuesta
+   nada. ABRIR se mantiene en su tamaño.
+
+   Zero-question **ya no es posible** para el módulo: es la única pregunta que no tiene default
+   honesto. Todo lo demás sigue resolviéndose solo.
    **Desambiguación obligatoria:** una ruta suelta en la petición del usuario ("usa stele aquí, base
    stele") se interpreta como **`base`** — es lo que al usuario le importa; `kit` solo cambia si dice
    "kit" o "marco" explícitamente. **Ante duda real, ofrecer el menú de layouts** (ver "Layouts con
@@ -54,4 +86,3 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    quita es el comentario `PLANTILLA` de la cabecera, que habla del kit y no del proyecto.
 9. Validar (ver ritual CONFIG, fase 5).
 10. Confirmar + activar: reabrir el editor → el loader se auto-carga.
-

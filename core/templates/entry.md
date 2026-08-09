@@ -5,7 +5,7 @@
 > está en `{{charter}}`, el detalle de formatos en `{{protocol}}`.
 >
 > <!-- Las secciones marcadas "GENERADO" las produce bootstrap/`config` desde el manifiesto
->      (`stele.config.md`). No editarlas a mano. El ejemplo mostrado usa el módulo `software`.
+>      (`stele.config.md`). No editarlas a mano. El ejemplo mostrado usa el módulo `producto`.
 >      Una sección GENERADA está PROTEGIDA por default: ACTUALIZAR y CONFIG portan el delta a mano
 >      en vez de reescribirla. "GENERADO RICO" (marca antigua) significa lo mismo. Para autorizar la
 >      reescritura entera: "GENERADO LIMPIO", y solo tras comprobar con un diff que la sección no
@@ -36,7 +36,8 @@ ADAPTAR: directorios principales y su rol en una línea cada uno. Árbol complet
 Leer en este orden antes de responder cualquier cosa:
 
 1. `{{entry}}` — este archivo.
-2. `{{gotchas}}` — gotchas y convenciones técnicas no evidentes en el código.
+2. `{{gotchas}}` — trampas y convenciones no evidentes **al trabajar aquí**: del entorno, de las
+   herramientas, de publicar, de verificar.
 3. `{{state}}` — estado actual y próximo paso (snapshot corto).
 4. `{{handover}}` — si su `Estado` no es `SIN_TRABAJO_ACTIVO`, respetar su alcance antes de editar.
 
@@ -78,7 +79,7 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | qué se intercambió con fuera, qué se aceptó y qué se rechazó | `{{correspondence}}` |
 | el texto de una carta concreta, enviada o recibida | `{{correspondence_dir}}{{letter}}` |
 | un script de un solo uso, una extracción, un volcado intermedio | `{{artifacts_dir}}sesion-{NNN}/` |
-| trampas de código | `{{gotchas}}` |
+| una trampa no evidente de trabajar aquí (entorno, herramienta, publicación, verificación) | `{{gotchas}}` |
 | specs/contratos/modelo de datos/decisiones por feature | `{{specs}}` |
 | patrones y mapa del código | `{{architecture}}` |
 | esfuerzo equivalente | `{{effort}}` |

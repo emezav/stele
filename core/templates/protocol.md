@@ -151,8 +151,16 @@ umbral**, no en el scaffold: una carpeta vacía no documenta nada.
 
 ### `{{gotchas}}`
 
-Hogar único de gotchas de código. Se edita incrementalmente pero se **cura** (se poda lo
-obsoleto). Una sección de subsistema que supera ~150-200 líneas se extrae a un tema de `{{specs}}`.
+Hogar único de las trampas de **trabajar en este proyecto**: del entorno, de las herramientas, de
+publicar, de verificar, de dónde guardar. Se edita incrementalmente pero se **cura** — una entrada
+resuelta u obsoleta se **borra**, y su rastro queda en el historial.
+
+**Es el complemento de `{{index}}`, y por eso se lee en cada arranque y el historial no.** El
+historial es episódico, crece y es inmutable: guarda *qué pasó*. Este guarda *qué no es obvio*. Una
+lección que solo vive en un acta está enterrada en un archivo que nadie vuelve a abrir.
+
+**No la guardes en `{{handover}}`**: ese doc se poda por diseño, y ahí la trampa muere sin aviso.
+Caso real de campo.
 
 ## Acuerdos de auditoría
 

@@ -44,8 +44,9 @@ haz esto sin pedir más instrucciones:
    va el kit, clona directamente ahí — no clones en `.stele/` para mover después.
 2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** al que enruta: detecta *greenfield* vs
    *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos` y las
-   tres rutas `kit`/`base`/`loader` con defaults sensatos (auto-detecta el módulo `software` por
-   `Cargo.toml`/`package.json`/`src/`), **hace eco del layout resuelto antes de escribir**, escribe
+   tres rutas `kit`/`base`/`loader` con defaults sensatos (y **pregunta** si el proyecto tendrá un
+   producto con estructura, aceptando *"todavía no"*: el módulo no se olfatea), **hace eco del layout
+   resuelto antes de escribir**, escribe
    `stele.config.md` en la raíz, instancia las plantillas y **genera** el loader de auto-arranque
    (`CLAUDE.md`) + el mapa de documentación.
 3. **Confirma** al usuario con el saludo de arranque (1-3 líneas) y explícale que a partir de la
@@ -63,9 +64,10 @@ las fronteras están en `.stele/guide.md`. Léelos antes de escribir nada.
 
 - **Núcleo** (`core/`) — roles + rituales + principios, agnósticos. Se define sobre **ids de rol
   estables**, no sobre nombres de archivo. Roles en `core/roles.md`; plantillas en `core/templates/`.
-- **Módulos** (`modules/<nombre>/`) — paquetes de roles + disciplinas. Incluido: `software`
-  (añade `specs`/`architecture`/`gotchas`/`effort` + convenciones + la regla del checkpoint antes
-  del primer archivo de código). Un proyecto no-software no lo activa.
+- **Módulos** (`modules/<nombre>/`) — paquetes de roles + disciplinas. Incluido: `producto`
+  (añade `specs`/`architecture`/`effort` + convenciones + la regla del checkpoint antes del primer
+  archivo de código). Un proyecto sin producto con estructura no lo activa. `módulos = software`, su
+  nombre anterior, sigue siendo válido para siempre.
 - **Config** (`stele.config.md`, en la raíz del proyecto destino) — **fuente única** que enlaza
   `rol → nombre`, activa módulos, fija toggles/presupuestos/wording/idioma, declara las **tres
   rutas** — `kit` (dónde vive el marco, default `.stele`), `base` (dónde viven tus docs, default
@@ -87,10 +89,10 @@ las fronteras están en `.stele/guide.md`. Léelos antes de escribir nada.
 - **`guide.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
   Referencia; se lee una vez.
 - **`core/`** — `roles.md` (roles del núcleo, fuente del mapa derivado) + `templates/` (plantillas
-  por rol: `entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`, `audit`,
-  `correspondence`, `letter`, `manual`, `autostart`, `config`).
-- **`modules/software/`** — `module.md` (manifiesto), `roles.md`, `conventions.md` y `templates/`
-  (`specs`, `architecture`, `gotchas`, `effort`).
+  por rol: `entry`, `gotchas`, `charter`, `protocol`, `state`, `handover`, `index`, `session`,
+  `audit`, `correspondence`, `letter`, `manual`, `autostart`, `config`).
+- **`modules/producto/`** — `module.md` (manifiesto), `roles.md`, `conventions.md` y `templates/`
+  (`specs`, `architecture`, `effort`).
 - **`buzon.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
   actualización (no hay servicio ni cuenta: el kit se copia, y las cartas viajan con él). Contiene
   preguntas que solo pueden responder proyectos reales. Se contesta con el ritual REMITIR, por el

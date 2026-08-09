@@ -51,8 +51,22 @@ Los `session` y el `index` **no son objeto de corrección**, solo fuente contra 
 | 8 | Crecimiento sin revisión | Un doc pasó de legible y nadie decidió si partirlo |
 
 Las ocho son agnósticas de dominio, y por eso el ritual es del núcleo. Un módulo activo aporta
-**detectores atados a sus roles** (software: el par `specs`↔`specs_dir` y los hogares
-`gotchas`/`specs`/`architecture` — ver `modules/software/module.md`).
+**detectores atados a sus roles** (el módulo de producto: el par `specs`↔`specs_dir` y los hogares
+`specs`/`architecture` — ver su `module.md`).
+
+**Detector del manifiesto pendiente (clase 1).** Si `módulos` vale `pendiente`, mira el árbol real: si
+el proyecto **ya tiene un producto con estructura** —un codebase, un corpus organizado, una colección
+con temas—, el manifiesto afirma algo que dejó de ser cierto. No lo actives tú: **repórtalo y que lo
+decida el usuario**, porque el criterio no lo puede resolver un `ls`. Si sigue sin haber producto,
+`pendiente` sigue siendo correcto y no es un hallazgo.
+
+Este detector existe porque el olfateo del bootstrap se movió aquí. **Allí corría cuando la evidencia
+todavía no podía existir; aquí corre cuando ya apareció**, y cada ~10 sesiones en vez de en cada
+arranque. Es el mismo `ls`, puesto donde sirve.
+
+**Y el aviso simétrico, que es más fácil de pasar por alto:** un proyecto con `módulos = —` que
+también acabó teniendo producto no es drift —se decidió que no— pero **sí conviene nombrarlo una vez**
+en el informe, sin insistir. Un "no" de hace cuarenta sesiones se tomó sobre otro proyecto.
 
 **La clase 7 es la que justifica el ritual.** Las otras siete se ven leyendo el doc con atención;
 esta no se ve en **ningún** doc, porque el defecto es una **ausencia**: el dato existe, pero no donde
@@ -634,4 +648,3 @@ demasiado ruidoso o demasiado callado debe ajustarlo con `config` sin sentir que
 ~15 docs, con 8 hallazgos (7 errores, 1 preferencia) y la mayor parte del tiempo en **verificar**, no
 en encontrar. Si tu barrido produce cincuenta candidatos, el problema es el barrido: acota el alcance
 antes de ponerte a verificarlos.
-

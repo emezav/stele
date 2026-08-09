@@ -18,13 +18,25 @@
 | Parámetro | Valor |
 | --- | --- |
 | idioma | es |
-| módulos | software |
+| módulos | producto |
 | persistencia | git |
 | persistencia_cmd | — |
 | kit_origen | `https://github.com/emezav/stele` |
 | remitente | — |
 | remitente_publico | — |
 
+> `módulos` admite **tres clases de valor**, y la tercera no es un adorno: una lista de módulos
+> activos · `—` (ninguno, **decidido**) · `pendiente` (**falta decidirlo**, típico de un proyecto que
+> nace vacío). `—` y `pendiente` producen la misma instancia hoy y significan cosas distintas mañana:
+> si los dos se escribieran igual, nadie volvería a plantearse la pregunta. AUDITAR comprueba los
+> `pendiente` contra el árbol real. El em-dash `—` aquí significa *ninguno*, igual que en la tabla
+> *Nombres* significa *rol desactivado*.
+>
+> **Alias permanentes.** Un módulo que cambia de nombre **no invalida los manifiestos en campo**:
+> `software` se sigue aceptando como el nombre anterior de `producto`, indefinidamente, y no hay que
+> migrar nada. Si tu manifiesto lo lleva, déjalo. Mismo precedente que `RICO` en el bloque del loader:
+> el kit no rompe un valor que ya está escrito en un archivo que no controla.
+>
 > `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
 > disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
 > secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
@@ -73,6 +85,7 @@
 | Rol | Archivo | Origen |
 | --- | --- | --- |
 | entry | AGENTS.md | núcleo |
+| gotchas | memory.md | núcleo |
 | charter | design.md | núcleo |
 | manual | manual.md | núcleo |
 | protocol | protocol.md | núcleo |
@@ -86,11 +99,10 @@
 | letter | carta-{NNN}-{YYYY-MM-DD}.md | núcleo |
 | correspondence_dir | correspondencia/ | núcleo |
 | artifacts_dir | artefactos/ | núcleo |
-| gotchas | memory.md | software |
-| specs | requirements.md | software |
-| specs_dir | temas/ | software |
-| architecture | architecture.md | software |
-| effort | esfuerzo.md | software |
+| specs | requirements.md | producto |
+| specs_dir | temas/ | producto |
+| architecture | architecture.md | producto |
+| effort | esfuerzo.md | producto |
 
 > `artifacts_dir` es el hogar de lo que una sesión produce y **no es documentación**: scripts de un
 > solo uso, extracciones de binarios, volcados intermedios. Un subdirectorio por sesión. **No se
@@ -150,6 +162,6 @@
 | checkpoint | trigger | antes de un cambio interrumpible |
 | abrir | saludo | 1-3 líneas: última sesión + estado handover + próximo paso |
 
-> El `trigger` de arriba es el default **agnóstico** del núcleo. Si el módulo `software` está
+> El `trigger` de arriba es el default **agnóstico** del núcleo. Si el módulo `producto` está
 > activo, bootstrap escribe aquí su especialización: *antes de la primera edición de código*.
 > Un proyecto sin código lo adapta a lo que haga sus veces (ritual `config`, clase *wording*).

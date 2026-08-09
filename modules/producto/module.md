@@ -1,15 +1,23 @@
-# modules/software/module.md — Manifiesto del módulo `software`
+# modules/producto/module.md — Manifiesto del módulo `producto`
 
-> Un **módulo** empaqueta roles + disciplinas para un tipo de trabajo. Este añade lo específico de
-> desarrollo de software sobre el núcleo agnóstico. Se activa con `módulos: [software]` en
-> `stele.config.md`. El núcleo no depende de él; desactivarlo devuelve un marco agnóstico limpio.
+> Un **módulo** empaqueta roles + disciplinas para un tipo de trabajo. Este añade lo que hace falta
+> cuando el proyecto tiene un **producto con estructura y decisiones por tema** — un codebase, un
+> corpus, una tesis, un kit de plantillas. Se activa con `módulos: [producto]` en `stele.config.md`.
+> El núcleo no depende de él; desactivarlo devuelve un marco agnóstico limpio.
+>
+> **Se llamaba `software` hasta la sesión 58, y `módulos = software` sigue siendo válido para
+> siempre** (alias permanente; ver `core/templates/config.md`). El nombre viejo nombraba un **dominio**
+> mientras el criterio de activación, escrito aquí abajo desde el principio, habla de un **producto**:
+> *"no que haya un compilador"*. Un detector que buscaba `Cargo.toml`/`package.json`/`src/` dejó fuera
+> a dos proyectos reales que sí cumplían el criterio — una tesis con su corpus y una carpeta recién
+> creada. **El detector se retiró**: ahora BOOTSTRAP pregunta, y AUDITAR vigila los `pendiente`.
 
 ## Qué aporta
 
 | Aporta | Detalle |
 | --- | --- |
-| **Roles** | `gotchas`, `specs`, `specs_dir`, `architecture`, `effort` (ver `roles.md`). `gotchas` es **obligatorio de arranque** (order 20). |
-| **Templates** | `templates/{gotchas,specs,architecture,effort}.md` |
+| **Roles** | `specs`, `specs_dir`, `architecture`, `effort` (ver `roles.md`). Ninguno es de arranque: todos son `on-demand` o contenedor. |
+| **Templates** | `templates/{specs,architecture,effort}.md` |
 | **Features** | enciende `effort_log` (opcional; el rol `effort` depende de este toggle) |
 | **Convenciones** | git/test/deploy + reglas de código (ver `conventions.md`) |
 | **Regla dura** | *HANDOVER en `EN_PROGRESO` antes de editar el PRIMER archivo de código* (ver abajo) |
@@ -39,8 +47,8 @@ detección necesita saber *qué doc contradice a cuál*, y eso depende de los ro
 | Clase | Detector que habilitan estos roles |
 | --- | --- |
 | 4 — índice desincronizado | Par `specs` ↔ `specs_dir`: cada tema de `specs_dir` tiene entrada en `specs`, y cada entrada apunta a un archivo que existe. Al revés también: una sección de `specs` que ya superó ~50 líneas debería estar extraída |
-| 7 — hallazgo sin hogar | Los tres hogares de promoción del módulo: trampa técnica → `gotchas`; decisión por feature → `specs`; patrón o mapa del producto → `architecture`. Por cada sesión del rango, sus *Decisiones* deben tener eco en uno de los tres |
-| 8 — crecimiento sin revisión | Los topes del módulo: sección de `gotchas` por subsistema ~150-200 líneas; tema de `specs` ~600-800 |
+| 7 — hallazgo sin hogar | Los hogares de promoción que añade el módulo: decisión por feature → `specs`; patrón o mapa del producto → `architecture`. Se suman a los del núcleo (`gotchas`, `charter`), no los sustituyen: por cada sesión del rango, sus *Decisiones* deben tener eco en alguno |
+| 8 — crecimiento sin revisión | Los topes del módulo: tema de `specs` ~600-800 líneas |
 | 2 y 6 — estado obsoleto y bloqueo | `specs` es donde viven las fases y las preguntas abiertas por feature, y por eso es el doc que más rápido caduca cuando el producto avanza |
 | 1 — afirmación caducada | Patrones comprobables propios de software, para el detector de entorno del núcleo: puertos, unidades de servicio (`\b[a-z0-9_-]+\.service\b`), nombres de contenedor e imágenes. **Solo si el proyecto opera servicios en red** (ver abajo). Valen las cuatro cautelas del núcleo, empezando por que un candidato extraído es un **recorte** de la afirmación |
 
@@ -104,17 +112,24 @@ comprobar aquí y solo arrastrarían falsos. Es más estrecho que el módulo, y 
 vez de en un módulo aparte: **un módulo es un paquete de roles**, y esto no aporta ninguno.
 
 El hogar de promoción es lo que hace detectable la clase 7 —la más valiosa y la más invisible— y es
-justo lo que un proyecto sin este módulo no tiene: sin `gotchas` ni `specs`, un hallazgo de sesión
-solo puede promoverse a `entry` o a `charter`, y el detector se queda en eso.
+justo lo que un proyecto sin este módulo tiene más estrecho: sin `specs` ni `architecture`, un
+hallazgo sobre el **producto** solo puede promoverse a `entry` o a `charter`, y el detector se queda
+en eso. Las trampas de trabajo sí tienen hogar sin el módulo —`gotchas` es del núcleo—, y ese fue
+precisamente el arreglo de la sesión 58.
 
 ## Cuando el producto no es código
 
-Los roles de este módulo (`gotchas`, `specs`, `architecture`) describen el **objeto del trabajo**;
-los del núcleo describen el **proceso de continuidad**. Por eso viven aquí. El criterio para activar
-el módulo es que el proyecto tenga un **producto con estructura y decisiones por feature** — no que
-haya un compilador. Un kit de documentación, un corpus curado o una colección de plantillas encajan
-igual que un codebase: `architecture` mapea la estructura de ese producto, `specs` sus decisiones y
-`gotchas` las trampas al editarlo.
+Los roles de este módulo (`specs`, `architecture`) describen el **objeto del trabajo**; los del
+núcleo describen el **proceso de continuidad**. Por eso viven aquí. El criterio para activar el
+módulo es que el proyecto tenga un **producto con estructura y decisiones por feature** — no que haya
+un compilador. Un kit de documentación, un corpus curado, una tesis con su corpus o una colección de
+plantillas encajan igual que un codebase: `architecture` mapea la estructura de ese producto y
+`specs` sus decisiones.
+
+**`gotchas` estuvo aquí y se fue al núcleo en la sesión 58**, por este mismo criterio aplicado bien:
+las trampas que acababa guardando —del entorno, de publicar, de verificar, de dónde guardar— son
+**proceso**, no objeto. La descripción del rol decía *"al leer el código"* y lo que contenía no lo era.
+Un proyecto de campo perdió una trampa real por eso: vivía en el `handover`, que se poda por diseño.
 
 Lo que sí hay que ajustar en ese caso es el `checkpoint_trigger` (ver arriba): si el producto **es**
 documentación, la exención por "solo contenido de documentación" eximiría al proyecto entero y
@@ -131,13 +146,14 @@ producto con estructura y decisiones por feature.
 ```text
 módulos: [software]
 features:  effort_log = on
-nombres:   gotchas=memory.md  specs=requirements.md  specs_dir=temas/
+nombres:   specs=requirements.md  specs_dir=temas/
            architecture=architecture.md  effort=esfuerzo.md
 wording:   checkpoint.trigger = antes de la primera edición de código
 ```
 
 ## Al desactivarlo
 
-`config` retira sus filas del arranque y del mapa, pero **no borra** los docs `gotchas`/`specs`/
-`architecture`/`effort` (quedan huérfanos preservados + aviso). El usuario decide archivarlos.
+`config` retira sus filas del mapa, pero **no borra** los docs `specs`/`architecture`/`effort`
+(quedan huérfanos preservados + aviso). El usuario decide archivarlos. Ninguno era de arranque, así
+que la lista de lectura no cambia — `gotchas`, que sí lo es, no pertenece a este módulo.
 El `checkpoint_trigger` vuelve al default genérico del núcleo.

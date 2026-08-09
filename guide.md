@@ -3,7 +3,7 @@
 > Referencia. Se lee una vez. La operación diaria está en `SKILL.md`. Este archivo explica el
 > *por qué* de cada regla, para que quien adapte el marco no rompa lo que lo hace funcionar.
 > Es **agnóstico de dominio**: sirva el proyecto para software, para preparar materiales, planear
-> actividades o investigar. Lo específico de software vive en `modules/software/`.
+> actividades o investigar. Lo específico del **producto** vive en `modules/producto/`.
 
 ## El problema que resuelve
 
@@ -87,8 +87,8 @@ El marco es **modular y configurable**, en tres capas:
   **ids de rol estables** (`entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`),
   no sobre nombres de archivo. Fuente de los roles: `core/roles.md`.
 - **Módulos** (`modules/<nombre>/`) — paquetes de roles + disciplinas para un tipo de trabajo. El
-  primero es `software` (añade `specs`/`architecture`/`gotchas`/`effort` + convenciones + la regla
-  del checkpoint antes del primer archivo de código). Un proyecto no-software simplemente no lo activa.
+  primero es `producto` (añade `specs`/`architecture`/`effort` + convenciones + la regla del
+  checkpoint antes del primer archivo de código). Un proyecto sin producto con estructura no lo activa.
 - **Config** (`stele.config.md`, en la raíz del proyecto) — **fuente única** que enlaza `rol →
   nombre`, activa módulos y fija toggles/presupuestos/wording/idioma y las **tres rutas**. Todo lo
   accionable en tablas. De aquí se **generan** dos derivados: el auto-arranque y el mapa de
@@ -96,11 +96,20 @@ El marco es **modular y configurable**, en tres capas:
 
 **La frontera núcleo/módulo** es una sola pregunta: el núcleo modela el **proceso de continuidad**
 (dónde estamos, qué pasó, qué quedó a medias — agnóstico); un módulo modela el **objeto del trabajo**
-(el codebase, el corpus, el plan). Por eso `specs`, `architecture` y `gotchas` son roles de módulo
-aunque suenen universales: un proyecto de planeación los dejaría vacíos, y un documento vacío es
-peso muerto en cada adopción. El corolario práctico es que activar `software` no exige un
-compilador, sino un producto con estructura y decisiones por feature — un kit de documentación
-también lo es (ver `modules/software/module.md`).
+(el codebase, el corpus, el plan). Por eso `specs` y `architecture` son roles de módulo aunque suenen
+universales: un proyecto de notas sueltas los dejaría vacíos, y un documento vacío es peso muerto en
+cada adopción. El corolario práctico es que activar `producto` no exige un compilador, sino un
+producto con estructura y decisiones por feature — una tesis con su corpus o un kit de documentación
+también lo son (ver `modules/producto/module.md`).
+
+**`gotchas` fue el contraejemplo que corrigió la frontera** (sesión 58). Estaba en el módulo por sonar
+a código, y lo que acababa guardando —trampas del entorno, de publicar, de verificar, de dónde
+guardar— es **proceso**. Es el complemento de `history`: uno episódico que crece, otro destilado que
+se cura. Por eso bajó al núcleo, y por eso se carga en cada arranque mientras el historial no.
+
+**Y el módulo se llamaba `software`**, que era el otro síntoma del mismo error: el nombre nombraba un
+dominio mientras el criterio hablaba de un producto. `módulos = software` sigue siendo válido para
+siempre — alias permanente, mismo precedente que `RICO`.
 
 **Separar rol de nombre** es lo que hace configurable el marco: los rituales y punteros se expresan
 en roles; la config los resuelve a nombres. Renombrar es una operación del ritual `config`, no un
@@ -292,8 +301,8 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
   y un script de un solo uso escrito en el temporal privado del agente se lleva el *cómo* consigo —
   con `persistencia = ninguna`, la única reconstrucción posible. Ver `SKILL.md` → Precedencia.
 
-Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (p. ej. software:
-`gotchas`, `specs`, `architecture`, `effort`).
+Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (p. ej. `producto`:
+`specs`, `specs_dir`, `architecture`, `effort`).
 
 ## Presupuestos de tamaño (lo que mantiene barato el arranque)
 
@@ -302,10 +311,11 @@ Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (
 | `state` | ~100 líneas | Podar; es estado, no historia |
 | `handover` | ~50 líneas | Solo lo del salto activo |
 | `charter` | ~200 líneas | Extraer una decisión a un tema del módulo + link |
+| `gotchas` | ~150-200 líneas por sección | **Curar**: una entrada resuelta u obsoleta se borra |
 | `session` | sin tope | Es histórico; se lee con grep, no al arrancar |
 
 Los presupuestos son parámetros de la config (sección Presupuestos); los módulos pueden añadir los
-suyos (p. ej. software: sección de `gotchas` por subsistema ~150-200 líneas).
+suyos (p. ej. `producto`: un tema de `specs` ~600-800 líneas).
 
 ### Y el kit también tiene presupuesto, porque también se carga
 
@@ -354,7 +364,7 @@ Una sesión puede cortarse en cualquier momento (límite de uso, cierre de la he
 intervención del usuario). Si eso pasa con trabajo a medias y `handover` diciendo "sin trabajo
 activo", la siguiente sesión reconstruye el contexto desde el diff — caro y con pérdida del *por
 qué*. Escribir el checkpoint (~20 líneas) **antes** del cambio interrumpible cuesta siempre menos.
-Por eso es regla dura, no un juicio. El módulo software la especializa a "antes del primer archivo
+Por eso es regla dura, no un juicio. El módulo `producto` la especializa a "antes del primer archivo
 de código"; el núcleo usa el `checkpoint_trigger` genérico configurable.
 
 ## Adaptar el marco a un proyecto

@@ -1,4 +1,4 @@
-# modules/software/conventions.md — Convenciones de desarrollo
+# modules/producto/conventions.md — Convenciones de desarrollo
 
 > Disciplinas específicas de software que el módulo aporta. No son parte del núcleo agnóstico.
 > Adáptalas al proyecto en `{{entry}}` (sección Convenciones) y en `{{architecture}}`; este archivo

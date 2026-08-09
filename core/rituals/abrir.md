@@ -3,7 +3,7 @@
 
 ## Ritual: ABRIR sesión (ponerse al día, barato)
 
-Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo software):
+Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo de producto):
 1. `entry` · 2. `gotchas` · 3. `state` · 4. `handover` — **si su Estado ≠ `SIN_TRABAJO_ACTIVO`**,
 respétalo antes de editar. Bajo demanda (grep): `charter` (1ª vez / orientación), `protocol`,
 `specs`, `architecture`, `index`/`session`.

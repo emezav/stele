@@ -27,6 +27,26 @@
 Reglas fijas: desactivar un módulo **no** borra sus docs (huérfanos preservados + aviso); colisión
 de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el historial es inmutable).
 
+**Activar un módulo, en concreto** — y esto es tan procedimiento como desactivarlo:
+
+1. **Añadir sus filas a *Nombres*** con `Origen` = el módulo, resolviendo el nombre de cada rol
+   (default del módulo salvo que el usuario pida otro). Las filas que estaban en `—` dejan de estarlo.
+2. **Instanciar los docs que faltan** desde `modules/<mód>/templates/`, con los tokens resueltos.
+   **Nunca sobrescribir uno que ya exista**: si el módulo se desactivó antes, sus docs quedaron
+   huérfanos y siguen ahí con contenido real — se **readoptan**, no se recrean.
+3. **Crear sus contenedores** solo si el módulo los declara y su regla no dice "nace del uso".
+4. **Encender sus features** (p. ej. `effort_log`) y aplicar su `checkpoint_trigger` si lo especializa.
+5. **Regenerar la lista de arranque y el mapa-doc** si el módulo aporta algún rol `obligatorio` o
+   algún `trigger` — portando el delta a mano al bloque protegido del loader y del `entry`.
+6. **Avisar de lo que NO se hizo:** los docs nuevos nacen vacíos, y un doc vacío no es lo mismo que un
+   doc que no existe. Decirle al usuario cuáles son y que hay que llenarlos.
+
+**La asimetría era real y estaba escrita al revés.** Durante mucho tiempo aquí solo se explicaba cómo
+**desactivar**, porque desactivar da miedo —borra filas, deja huérfanos— y activar parecía trivial. No
+lo es: activar toca el manifiesto, el disco, la lista de arranque y dos bloques generados. Y con la
+respuesta `pendiente` de BOOTSTRAP, **activar deja de ser el caso raro y pasa a ser la carretera
+principal**. La dirección peligrosa se llevó las reglas y la común se quedó sin ninguna.
+
 **Cambios de ruta, en concreto:**
 
 - Mover `kit`: mover el directorio y barrer las referencias `{{kit}}` ya resueltas en los docs
@@ -39,4 +59,3 @@ de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el 
   y se avisa. Dos loaders **activos** compitiendo es peor que ninguno, pero eso lo resuelve retirar
   el bloque, no destruir el archivo. Verificar antes que el nombre nuevo no colisiona con un rol bajo
   `base`.
-

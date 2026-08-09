@@ -27,6 +27,7 @@ un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas".
 | Rol | Nombre default | Ubicación | startup | order | Propósito |
 | --- | --- | --- | --- | --- | --- |
 | entry | AGENTS.md | base | obligatorio | 10 | Cómo trabajar: proceso, estructura, convenciones, arranque. Punto de entrada único. |
+| gotchas | memory.md | base | obligatorio | 20 | Trampas y convenciones no evidentes **al trabajar en el proyecto**: del entorno, de las herramientas, de publicar, de verificar. Hogar único; se **cura**. |
 | state | latest.md | history | obligatorio | 30 | Dónde estamos y el próximo paso. Se **sobrescribe**; acotado. |
 | handover | handover.md | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado ≠ `SIN_TRABAJO_ACTIVO`. |
 | charter | design.md | base | on-demand | — | Por qué el proyecto es así: norte, principios, restricciones, decisiones grandes, glosario. |
@@ -72,6 +73,7 @@ sustitución textual corrompa en silencio.
 | Rol | Necesito… |
 | --- | --- |
 | entry | cómo trabajar, proceso, reglas operativas, arranque |
+| gotchas | una trampa no evidente de trabajar aquí: del entorno, de una herramienta, de publicar, de verificar |
 | charter | por qué: principios, decisiones grandes, restricciones, glosario |
 | manual | qué se espera de mí, qué significa este aviso, qué hace falta que yo haga |
 | protocol | formatos/reglas de documentación y registro |
@@ -90,7 +92,19 @@ sustitución textual corrompa en silencio.
   por `order`, nombre resuelto por la config). Los `on-demand` van a la nota "lee lo demás con grep".
 - **`triggers`** alimenta la *tabla de enrutamiento* del mapa de documentación.
 - Los módulos activos aportan más roles (ver `modules/<mód>/roles.md`); se fusionan con estos por
-  `order`. Que `gotchas` sea obligatorio-de-arranque, por ejemplo, lo aporta el módulo `software`.
+  `order`. Que `architecture` exista, por ejemplo, lo aporta el módulo `producto`.
+- **`gotchas` está en el núcleo, y no siempre lo estuvo.** Vivió en el módulo de producto (entonces llamado `software`) descrito como
+  *"trampas al leer el código"*, y de ahí salían dos agujeros: un proyecto no-software no tenía **hogar
+  para sus trampas**, y uno que nacía en carpeta vacía tampoco, porque la detección del módulo corría
+  cuando la evidencia todavía no existía. Bajó al núcleo en la sesión 58 por tres razones:
+  - **Es el complemento de `history`, y los dos son continuidad, no objeto del trabajo.** El historial
+    es episódico, crece y es inmutable: guarda *qué pasó*. `gotchas` es destilado y se cura: guarda
+    *qué no es obvio*. Sin el segundo, una lección aprendida solo existe dentro de un acta que nadie
+    vuelve a abrir — y por eso `gotchas` se carga en cada arranque y el historial no.
+  - **Lo que contiene es proceso, no producto.** Trampas del entorno, de una herramienta, de publicar,
+    de verificar, de dónde guardar. Nada de eso depende de que el producto sea código.
+  - **ABRIR ya lo daba por hecho.** Un ritual del núcleo llevaba `gotchas` en su lista de arranque
+    mientras el rol vivía en un módulo opcional: sin él, apuntaba a un rol inexistente.
 - **Varios roles nacen del uso y no del scaffold**, y por la misma razón: una carpeta o un log vacíos
   en cada adopción son peso muerto, y su **ausencia es el dato**.
   - **`audit`** lo crea la primera auditoría que corre; que no exista significa que el proyecto nunca

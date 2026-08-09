@@ -63,6 +63,7 @@ releerla en el paso 4.
 | `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados**. Y si el rol nuevo es un **doc**, su archivo **no existe en esta instancia**: ofrécelo al usuario e instáncialo si acepta — regenerar los derivados deja el mapa apuntando a algo que no está |
 | `core/templates/config.md` | Cambió la forma del manifiesto o el contrato de parseo: la instancia puede estar desfasada (secciones nuevas, claves nuevas) |
 | `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
+| Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/…`) que tus propios docs hayan escrito |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: **porta el delta a mano** al archivo real (loader y mapa-doc). Se conserva íntegro lo que quede fuera de las marcas —invariante 6— **y también lo de dentro**, que está protegido por default (ver abajo). Solo se regenera el bloque entero si su marca dice `LIMPIO` |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
@@ -229,3 +230,21 @@ borra. Recupéralos o descártalos con el usuario antes de seguir, nunca en sile
 cambió y dónde, que es lo único accionable, y un número habría que acordarse de subirlo en cada
 cambio. El porqué, en `guide.md` → "Alternativas descartadas".
 
+**Pero el diff tiene un punto ciego, y son los renombrados.** Un directorio que cambia de nombre
+aparece como N borrados y N añadidos: el vínculo semántico —*esto se llamaba así*— **no está en el
+diff**. Por eso los renombrados llevan su fila en la tabla de zonas de arriba, que es lo único que se
+lee justo cuando el cambio aterriza.
+
+**Y por eso el kit no rompe nombres en campo: los deja como alias permanentes.** El valor viejo de un
+manifiesto sigue siendo válido indefinidamente y nadie tiene que leer nada para no romperse. Los dos
+precedentes vivos son `RICO` (sesión 57) y `módulos = software` (sesión 58).
+
+**El aviso NO va al buzón, y la razón es su propia regla escrita.** El buzón **se poda** —una entrada
+resuelta se retira— y solo contiene *el ahora*: un adoptante que se salta tres actualizaciones recibe
+el mismo buzón que uno que se salta una, sin lo que había en medio. Un changelog sirve porque lo lees
+**entero desde donde estás**, y aquí no hay ni "desde dónde" (no hay versión) ni "entre" (se podó).
+
+> **Un aviso cuya omisión rompe algo no va en un archivo que se poda.** El buzón lleva el *porqué*,
+> dirigido a la persona; la instrucción va donde está parado el lector en el momento que importa. Y si
+> la instrucción hace falta para no romperse, el diseño está mal: **arréglalo con un alias, no con un
+> aviso.**

@@ -1,13 +1,12 @@
-# modules/software/roles.md — Roles del módulo `software`
+# modules/producto/roles.md — Roles del módulo `producto`
 
-> Roles que este módulo **añade** al núcleo cuando está activo (`módulos: [… software …]` en el
+> Roles que este módulo **añade** al núcleo cuando está activo (`módulos: [… producto …]` en el
 > manifiesto). Mismo formato y semántica que `core/roles.md`; se fusionan por `order`.
 
 ## Roles
 
 | Rol | Nombre default | Ubicación | startup | order | Propósito |
 | --- | --- | --- | --- | --- | --- |
-| gotchas | memory.md | base | obligatorio | 20 | Trampas y convenciones no evidentes al leer el código. Hogar único; se cura. |
 | specs | requirements.md | base | on-demand | — | Qué hace el producto: specs, contratos, modelo de datos, decisiones por feature. |
 | architecture | architecture.md | base† | on-demand | — | Cómo está organizado el producto (normalmente el codebase): mapa de módulos + patrones reutilizables. |
 | effort | esfuerzo.md | history | on-demand | — | Log append-only de esfuerzo-equivalente por sesión. Opcional (feature `effort_log`). |
@@ -26,7 +25,6 @@ delante y con `/` final. Cuando una decisión supera ~50 líneas se extrae a `{{
 
 | Rol | Necesito… |
 | --- | --- |
-| gotchas | convención/gotcha técnico antes de escribir código |
 | specs | specs, contratos de API, modelo de datos, decisiones de producto por feature |
 | architecture | estructura + patrones reutilizables del producto (normalmente el codebase) |
 | effort | esfuerzo-equivalente por funcionalidad |
