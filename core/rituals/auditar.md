@@ -178,6 +178,14 @@ grep -rn "<frase que nombra una lista que vive en otro fichero>" {base} --includ
 # Más ruidoso que los demás y en otra forma: sus falsos positivos son CITAS de la regla y
 # ejemplos, no referencias. Se revisan uno a uno. Corre solo sobre el alcance de arriba.
 
+# clase 1 — CITA AMBIGUA. Si un titulo de seccion existe en MAS DE UN fichero, toda cita
+# suya tiene que decir CUAL. Ojo: dos punteros que discrepan pueden ser los dos correctos
+# --dos capas declaradas, el porque y lo operativo-- asi que lo que se detecta no es la
+# discrepancia sino la AMBIGUEDAD, que es defecto siempre. Y hay lista: los encabezados
+# del kit son enumerables. Dos pasos:
+grep -rn "^#" {base} --include="*.md"     # titulos que aparecen en 2+ ficheros
+#   ...y para cada cita de uno de esos titulos, mirar si su parrafo nombra el fichero.
+
 # clase 7 — NO lleva detector, y es deliberado: el defecto es una AUSENCIA y no hay cadena
 # que buscar. Se caza contrastando dos sitios en las fases, no barriendo uno. Esta línea
 # existe para que la falta no se lea como olvido.
@@ -662,6 +670,20 @@ allá, una proporción que se apoyaba en él — lo vio el otro lado, no él.
 Alcance de la segunda pasada = **lo tocado, sus hogares y lo que dependía de ello**. Si aparece algo
 nuevo, pasa por las fases 3-5 y se repite; se termina cuando una pasada no produce nada nuevo. Cada
 pasada es más barata que la anterior porque su alcance se estrecha.
+
+**Y hay una superficie que ninguna pasada alcanza, porque nace después de todas: el cierre.** Escribir
+el registro de la sesión **genera afirmaciones nuevas** —*"se tocaron estos archivos"*, *"quedó esto
+sin persistir"*, *"esto es lo que falta"*— y son las **más frescas y las menos verificadas** que tiene
+el proyecto, precisamente porque el ritual ya se declaró terminado y las fases han pasado por encima.
+**Cuando audites, el cierre de la propia auditoría entra en el alcance.**
+
+Caso de campo, y lo que lo hace convincente es de dónde salió: un proyecto encontró en su tercera
+pasada —la que debía salir vacía— **una afirmación falsa de seis sesiones de antigüedad**, y la
+encontró porque escribir el cierre le obligó a afirmar algo comprobable: dijo que cierto fichero estaba
+entre los versionados sucios, corrió el comando para enseñar el diff, y el comando devolvió **dos**
+donde la frase implicaba **tres**. Tirando de ahí apareció que su doc de proceso llevaba seis sesiones
+diciendo que viajaban tres cosas cuando solo viajaba una — y su propio `.gitignore` lo desmentía en un
+comentario, desde el primer día.
 
 ### Informe (forma fija)
 

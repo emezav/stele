@@ -99,7 +99,9 @@
 > Tres rutas independientes, todas relativas a la raíz del proyecto y sin `/` final. `kit` es
 > maquinaria **reemplazable** (se sustituye entera con el ritual ACTUALIZAR); `base` son tus docs,
 > versionados, y nunca se tocan al actualizar. **Invariante duro: `base` nunca puede quedar dentro de
-> `kit`.** Ver `{{kit}}/guide.md` → "Las tres rutas".
+> `kit`.** Ver `{{kit}}/core/reference/rutas-y-tokens.md` → "Las tres rutas", que es donde están los
+> **invariantes numerados** y es lo que CONFIG tiene que validar. El *porqué* del modelo está en
+> `{{kit}}/guide.md`, en una sección del mismo título: **son dos capas, no dos copias.**
 
 | Ruta | Valor | Qué es |
 | --- | --- | --- |

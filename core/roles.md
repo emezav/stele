@@ -20,7 +20,9 @@ duplicaría `base`. Ver `SKILL.md` → "Convención de tokens".
 **Ningún rol vive en el kit.** `base` (docs instanciados) y `kit` (el marco) son rutas
 independientes del manifiesto: los roles se resuelven siempre bajo `base`; `{{kit}}` solo aparece
 como referencia *hacia* el marco dentro de las plantillas. El `loader` es la tercera ruta y no es
-un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas".
+un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas" — **el porqué del modelo**, que es lo
+que hace falta aquí. Si lo que buscas son los **invariantes que hay que validar**, esos están en
+`core/reference/rutas-y-tokens.md`, que es la referencia operativa.
 
 ## Roles
 
