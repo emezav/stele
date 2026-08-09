@@ -14,11 +14,20 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    **`loader` no es un archivo: es una LISTA DE PUERTAS**, y se escriben **todas**. Cada puerta lleva
    el nombre exacto que auto-carga un harness, y todas apuntan al mismo `entry`.
 
-   | Puerta | La auto-carga |
-   | --- | --- |
-   | `CLAUDE.md` | Claude Code |
-   | `AGENTS.md` | Codex y la mayoría de los demás |
-   | **la tuya** | **añádela si tu harness lee otro nombre** |
+   | Puerta | La auto-carga | Cómo se sabe |
+   | --- | --- | --- |
+   | `CLAUDE.md` | Claude Code | **corrida** — saludó al reabrir, aquí y en un adoptante |
+   | `AGENTS.md` | Codex y la mayoría de los demás | **testimonio** — nadie ha reportado una corrida |
+   | **la tuya** | **añádela si tu harness lee otro nombre** | la tuya entra como **testimonio** |
+
+   **La tercera columna no es adorno: es lo que hace falsable la fila.** Un nombre dicho no se puede
+   comprobar desde el kit, y una fila equivocada es **peor que ninguna** — hace que el bootstrap
+   escriba con confianza una puerta que nadie lee. Por eso una fila nueva entra como **testimonio**, y
+   solo pasa a **corrida** cuando alguien reabre la carpeta con ese agente y **le saluda con la última
+   sesión sin pedírselo**. Si una corrida con ese agente no saluda, **la fila se cae**.
+
+   Y mira cuál es la fila floja: la ancha. *"La mayoría de los demás"* es la afirmación **menos
+   verificada y más amplia** de la tabla, y es justo la que nadie va a dudar.
 
    **La tabla es necesaria y no suficiente, y el segundo eje lo aportó el campo.** El nombre lo impone
    el harness, pero **la ubicación la puede cambiar el proyecto**: un adoptante sacó `AGENTS.md` de la

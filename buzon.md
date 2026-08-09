@@ -2,7 +2,7 @@
 
 > **Qué es.** El buzón de salida del kit. Como ACTUALIZAR se trae el árbol entero, **estas cartas
 > bajan solas** con cada actualización: no hay servicio, ni red, ni cuenta que crear. Tu agente lo lee
-> al actualizar (tabla de zonas de impacto, `SKILL.md`) y te dice si hay algo para ti.
+> al actualizar (tabla de zonas de impacto, `core/rituals/actualizar.md`) y te dice si hay algo para ti.
 >
 > **Qué hacer con una carta.** Si te interesa, contéstala con el ritual **REMITIR** (`core/rituals/remitir.md`) y
 > mándala por donde quieras — pegarla en la sesión de tu agente, un correo, un issue. Copiar y pegar
@@ -17,8 +17,24 @@
 > aquí es duplicar en carga pública lo que ya se lee donde toca. El criterio **no** es "ya se leyó" —
 > eso no se puede saber— sino "ya tiene hogar".
 >
+> **Y hay un tercer caso, que es el que produjo la primera cosecha de verdad: la carta contestada a
+> medias.** De cinco respuestas que llegaron juntas, **tres no decidían nada**: una la contestaron con
+> *"nuestro caso no puede contestar eso"*, otra con un control negativo que quien lo mandó calificó de
+> poco valioso, y una tercera confirmó lo que ya sabíamos. Vino campo y la pregunta **sigue abierta**.
+> Esa carta **no se retira: se estrecha** — se le quita la mitad ya contestada y se deja escrito qué
+> falta, para que nadie gaste campo dos veces en lo mismo. La tentación es contarla como contestada
+> porque hubo respuesta, y **respuesta no es respuesta a la pregunta**.
+>
+> **Antes de retirar una, comprueba que su respuesta llegó a su hogar — con la línea delante.** Es la
+> comprobación que de verdad decide, y es la que se salta: al retirar una carta se borra el único sitio
+> donde constaba la pregunta, así que si la respuesta no aterrizó **no queda nada**. Aquí bloqueó una
+> retirada: una carta prometía que la respuesta entraría *"marcada como testimonio"* en la tabla de
+> BOOTSTRAP, y esa palabra daba **cero en todo el kit**. El hogar estaba nombrado y el mecanismo no
+> existía.
+>
 > **Los números no se reutilizan ni se renumeran.** Una carta retirada deja su hueco: así una copia que
-> alguien archivó como "Carta 2" sigue siendo identificable. Lo retirado vive en `git log`.
+> alguien archivó como "Carta 2" sigue siendo identificable. Lo retirado vive en `git log`. El número es
+> lo que se protege, no el texto: una carta estrechada conserva el suyo.
 >
 > **Y una carta de este buzón se escribe como pregunta, no como anuncio.** Una regla nueva **llega
 > sola** con la actualización, así que anunciarla aquí no añade nada. Lo que este canal consigue y el
@@ -47,10 +63,16 @@
 fallo real: en el primer bootstrap fuera del repo original, el ritual tomó un `CLAUDE.md` escrito a
 mano por el nombre de un derivado y lo sobrescribió entero. Se perdió el contenido.
 
-**Lo que no podemos comprobar.** Esa mitad de la regla sigue **sin probarse en campo**. Un proyecto
-que ya actualizó nos confirmó que el bloque se porta bien, pero **no tenía nada fuera de las marcas**,
-así que su caso no dice nada sobre la conservación de lo externo. Aquí tampoco podemos probarlo: este
-repo genera su propio loader.
+**Lo que no podemos comprobar.** Esa mitad de la regla sigue **sin probarse en campo**. Todos los
+proyectos que nos han contestado confirman que el bloque se porta bien, pero **ninguno tenía nada
+fuera de las marcas** que probara o refutara la conservación de lo externo: en el último, el archivo
+existía meses antes del marco y las marcas se insertaron **alrededor** de todo su texto, así que fuera
+quedó el título y nada más. Aquí tampoco podemos probarlo: este repo genera su propio loader.
+
+> **Esta carta va estrechada.** Su segunda pregunta ya recibió un **"no"** de campo, y con un matiz que
+> vale más que el no: aquel bloque divergió **antes** del bootstrap, porque el archivo era anterior al
+> marco — no hubo nunca un "día de generarse". Lo que sigue faltando es lo contrario y es lo único que
+> decide: **un sí**.
 
 **Primera pregunta.** Si tu `CLAUDE.md` o tu `AGENTS.md` estaba escrito a mano **antes** de adoptar el
 marco: ¿quedó texto tuyo **FUERA** de las marcas? ¿Sigue ahí íntegro tras el bootstrap y las
@@ -67,25 +89,6 @@ error.
 
 **Por qué te lo pedimos a ti.** Este repo genera su propio loader, así que mirarse a sí mismo no es
 evidencia de nada.
-
-## Carta 3 — En AUDITAR, ¿tu falso positivo habría corrompido algo?
-
-**De:** stele · **Para:** quien corra AUDITAR · **Fecha:** 2026-08-07
-
-**La afirmación que queremos poner a prueba.** Los dos errores de un detector **no son igual de
-malos**. Un falso negativo deja un hallazgo sin encontrar, pero el documento **queda como estaba** y
-lo que se escapa vuelve en la siguiente auditoría. Un falso positivo trae un "arreglo", y el arreglo
-**corrompe algo que ya era correcto**.
-
-**Qué NO demuestra nuestro caso.** Son **tres casos de dos proyectos** que comparten este marco y esta
-familia de detectores. Que la asimetría sea una propiedad de auditar documentación en general, y no de
-cómo están escritos *estos* detectores, **no lo sabemos**.
-
-**Lo que te pedimos, y es barato.** Si corres AUDITAR y te sale un falso positivo, mira una cosa más
-antes de seguir: **¿qué habría pasado si lo aplicas?** ¿Habrías corrompido algo que estaba bien, o solo
-perdido el rato? Con dos o tres respuestas de fuera sabremos si la regla es del marco o del mundo. Y si
-te sale al revés —un falso positivo inofensivo— **eso nos interesa más todavía**, porque es lo único
-que puede refutarla.
 
 ## Carta 4 — ¿Tienes producto con estructura y el módulo apagado?
 
@@ -112,56 +115,14 @@ Y nos interesa sobre todo la segunda mitad: **¿qué pasó con la estructura que
 escrita en algún doc, o vive solo en el sistema de archivos? En el caso que conocemos vivía solo ahí, y
 nadie lo había notado **porque desde dentro no se ve como una falta**.
 
+> **Esta carta va estrechada.** Ya llegó un control negativo —un proyecto con el módulo **activo**— y
+> quien lo mandó lo calificó él mismo de poco valioso, con razón: el detector viejo acertó con ellos
+> **por el motivo equivocado**, porque encontró el compilador y no la estructura. Un control que acierta
+> por la razón mala es justo el que no habría destapado nada. **Sigue faltando quien sí sea el caso.**
+
 **Por qué te lo pedimos a ti.** Este repo genera su propio manifiesto y siempre supo qué era, así que
 mirarse a sí mismo no es evidencia de nada. De la respuesta depende si `pendiente` basta o si el marco
 tiene que preguntar antes y con más insistencia.
-
-## Carta 5 — ¿Qué archivo lee tu agente al abrir?
-
-**De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-09
-
-**La pregunta, y son diez segundos:**
-
-> **¿Cómo se llama el archivo que tu agente carga solo al abrir el proyecto?** (`CLAUDE.md`,
-> `AGENTS.md`, otro.) Y una segunda, que es la que da la prueba: **al reabrir la carpeta, ¿te saludó
-> con la última sesión y el próximo paso, sin que se lo pidieras?**
-
-**Por qué preguntamos.** El marco escribe un archivo de auto-arranque en la raíz, y **su nombre no lo
-elige el marco: lo impone el harness que abre la sesión**. El kit lleva una tabla con los que conoce,
-y esa tabla es conocimiento del mundo exterior que **no podemos verificar, que envejece y que siempre
-estará incompleta**. Cada agente nuevo que aparece la deja corta.
-
-Delegarlo en el agente que instala tampoco basta, y esto lo sabemos por campo, no por conjetura: en
-cuatro instalaciones observadas con el mismo agente, **acertó su propio nombre dos veces de tres**. La
-vez que falló, el marco quedó **instalado perfecto y apagado** — documentación impecable, y al reabrir
-la carpeta el agente saludó en genérico, sin sesión, sin estado, y se ofreció a rehacer trabajo que ya
-estaba terminado.
-
-**Y por eso preguntamos por el nombre y no por el fallo.** Si preguntáramos *"¿te falló el arranque?"*
-no contestaría nadie: quien acertó no lo notó, y **quien falló tampoco**, porque no hay error, no
-falta ningún archivo y nada se rompe. Es un fallo mudo. El nombre, en cambio, lo puede contestar
-cualquiera sin diagnosticar nada.
-
-**La segunda pregunta es la que convierte tu respuesta en dato.** Un nombre dicho es algo que no
-podemos comprobar desde aquí, y una entrada equivocada sería **peor que ninguna**: haría que el kit
-escribiera con confianza una puerta que nadie lee. Con el saludo al lado, la respuesta trae su propia
-prueba — y queda **falsable**: si alguien dice *"mi agente lee X"* y una corrida con ese agente no
-saluda, la entrada se cae. Hasta que una corrida lo confirme, entra **marcada como testimonio**.
-
-**Dónde acaba tu respuesta.** No aquí: este buzón se poda. Va a la tabla del ritual BOOTSTRAP, que es
-lo que se consulta al instalar y no desaparece. Misma regla que el resto del marco: *un aviso cuya
-omisión rompe algo no vive en un archivo que se borra.*
-
-**Y lo que no te vamos a ocultar: a ti no te sirve.** El buzón baja con ACTUALIZAR, o sea después de
-instalar — tu bootstrap ya ocurrió, bien o mal. Lo que tu respuesta ensancha es el piso **del
-siguiente**.
-
-Que es, si lo piensas, exactamente para lo que existe este marco. Una *estela* es una piedra
-**inscrita**: alguien se detuvo a dejar dicho lo que sabía para quien viniera después. Entre sesiones
-lo hacemos con el historial. **Entre proyectos solo se puede hacer así** — a quien le falla, puede
-decidir dejar la huella para que al siguiente no le pase.
-
----
 
 ## Carta 6 — ¿En qué idioma están tus detectores de auditoría, y los tradujiste o los reescribiste?
 
@@ -195,37 +156,3 @@ preferimos una regla con una excepción escrita que una regla que solo funciona 
 
 **Lo que no te vamos a ocultar: si trabajas en el idioma del kit, esta carta no te toca.** No hay nada
 que derivar y los detectores te sirven tal cual.
-
----
-
-## Carta 7 — Abre tu registro de sesión más reciente: ¿dice en qué estado está algo?
-
-**De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-09
-
-**La pregunta, y es de mirar un archivo:**
-
-> En tu registro de la última sesión —el acta, el `session`—, **¿hay alguna frase que diga en qué
-> estado está algo que vive en otro documento?** *"La carta N sigue sin contestar"*, *"el despliegue
-> está pendiente"*, *"X quedó bloqueado"*. Y si la hay: **¿sigue siendo cierta hoy?**
-
-**Por qué preguntamos.** Un registro de sesión **no se reescribe nunca** — es historial, y el historial
-es inmutable. Así que un estado escrito ahí queda congelado en el instante de cerrar y **a partir de
-entonces se lee como actual siendo un fósil**. No da error, no falta nada, y quien lo lea dentro de
-tres meses no tiene forma de saber que caducó.
-
-Nos pasó, y por eso preguntamos: un acta nuestra decía que cierta carta estaba *"publicada y sin
-entregar"*. Se entregó unas horas después. **El acta no se corrige** —es historial— así que esa frase
-va a seguir ahí, en pasado perfecto y en presente falso, para siempre.
-
-**Lo que no sabemos es cuál es tu lista.** Nosotros escribimos un aviso en la plantilla, pero un aviso
-solo cubre lo que se nos ocurrió imaginar. **Qué estados escribe la gente de verdad en sus actas es un
-dato de campo**, y es el que decide si el aviso sirve o si nombra tres casos y deja fuera los siete que
-importan.
-
-**Y aquí va lo incómodo, que es la razón de que esta carta exista.** Ese aviso está en la plantilla del
-rol `session`, y **las plantillas de rol no regeneran los documentos que ya existen**: tu acta es tuya.
-O sea que **el arreglo no te llega**, ni actualizando. Lo único que cruza es esta pregunta — y lo que
-consigue no es arreglarte nada, sino que mires. Si al mirar encuentras uno, ya sabes más que el aviso.
-
-**Dónde acaba tu respuesta.** En la plantilla de `session` y en la tabla de zonas de ACTUALIZAR, que es
-donde se decide qué te llega y qué no. Nada de esto se queda aquí: el buzón se poda.
