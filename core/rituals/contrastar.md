@@ -63,6 +63,21 @@ Marcarla te protege hoy; el archivo es donde el dato se releerá dentro de meses
 recuerde de dónde salió. Una atribución que venga en el sobre entra **marcada como no verificada**, o
 no entra — nunca puede acabar leyéndose como si viniera firmada.
 
+**Y de ahí sale la regla que gobierna qué puede convertirse en cambio del kit:**
+
+> **No se meten errores humanos en el kit.** Antes de que un hallazgo se vuelva regla, separa un
+> defecto **del trabajo** de un defecto **de la entrega**. Si lo que chirría se explica porque el
+> cartero se saltó un paso, cortó una carta o la trajo sin contexto, **eso no es un hallazgo sobre el
+> otro proyecto**: es ruido del canal, y endurecer el kit contra él lo empeora para todos.
+
+El caso: dos hallazgos sobre la correspondencia ajena parecían apuntar a un defecto de método, y se
+disolvieron al notar que **las guardas del ritual no se habían corrido** en esa entrega. El defecto
+era del transporte. **Quien lo paró fue el humano que hacía de cartero, señalándose a sí mismo** — que
+es la única posición desde la que se ve, porque desde el texto los dos defectos se leen igual.
+
+**El coste asimétrico es lo que hace la regla obligatoria y no prudente:** una regla nacida de un
+error de canal **viaja a cada adoptante**, y allí no hay cartero ninguno al que corregir.
+
 ### Fases
 
 0. **¿Ya llegó esta carta?** Antes de leerla con atención, búscala en tu archivo. **Con cartero humano

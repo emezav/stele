@@ -186,9 +186,12 @@ grep -rn "<frase que nombra una lista que vive en otro fichero>" {base} --includ
 grep -rn "^#" {base} --include="*.md"     # titulos que aparecen en 2+ ficheros
 #   ...y para cada cita de uno de esos titulos, mirar si su parrafo nombra el fichero.
 
-# clase 7 — hoy NO lleva detector, pero la razon vieja era FALSA: si hay con que probarlo.
-# Se caza contrastando dos sitios en las fases, no barriendo uno. Lo que falta no es el
-# oraculo (ver abajo, el mutilador): es el formato de reporte de la fase 3.
+# clase 7 — sigue sin detector LEXICO, y ahora se sabe por que: se probaron tres disenos
+# y el mutilador planto el defecto y ninguno lo encontro (tabla abajo). No es calibracion:
+# el vocabulario que hace reconocible una leccion la hace indistinguible de su hogar.
+# La razon vieja -"no hay cadena que buscar"- era FALSA: oraculo si hay. Se caza
+# contrastando dos sitios en las fases, y la salida de un barrido vale como worklist,
+# nunca como dictamen.
 ```
 
 **Y la razón que esta línea daba antes era falsa, no caducada.** Decía *"no hay cadena que buscar"* y
@@ -216,6 +219,40 @@ que no puede es **reportar** en el formato que este ritual exige para que un hal
 El remedio propuesto, y es del corresponsal: el hallazgo **sí** tiene dirección, solo que no es la de
 la ausencia — es la del **dato que debió promoverse** (el registro de sesión donde se quedó) más el
 **nombre del hogar donde no está**. Dos punteros, uno de ellos a un fichero y no a una línea.
+
+**Y lo corrimos. El mutilador funciona como oráculo, y lo primero que hizo fue matar el detector.**
+
+Se construyó el detector léxico de clase 7 —lección destilada del acta que no aparece en ningún hogar
+durable— en **tres** diseños, y el mutilador **plantó el defecto y ninguno lo encontró**:
+
+| Diseño | Sobre el corpus sano | Sobre el mutilado |
+| --- | --- | --- |
+| coincidencia **literal** | 27 candidatos de 38 — **inusable** | (no se llegó a probar) |
+| solape de palabras contra el **fichero** | 1 candidato — parecía perfecto | **no lo detecta**: 83% en un hogar de 141 KB |
+| solape contra el **párrafo** | 3 candidatos | **no lo detecta**: pasa a "reformulada" |
+
+Y la razón no es de calibración, es de fondo:
+
+> **El vocabulario que hace reconocible una lección es el mismo que la hace indistinguible de su
+> hogar.** Un huérfano de clase 7 trata **del tema del sitio donde debía estar** — por eso le tocaba
+> ese sitio. Exigir literalidad da ruido de reformulación; aflojar a solape da ceguera. **No hay
+> umbral entre las dos, porque es la misma señal.**
+
+**Lo que salva es el oráculo, y salvó de verdad.** El segundo diseño daba **un** candidato sobre el
+corpus sano y se leía como un detector que funciona; sin el mutilador se habría dado por bueno. **Que
+la salida parezca razonable no es evidencia de que el detector mida algo.**
+
+**Y un modo de fallo que conviene nombrar aparte:** el diseño de ventana deslizante llegó a dar
+**menos** candidatos sobre el corpus mutilado que sobre el sano — borrar una regla hizo el informe más
+limpio. Salió de elegir la vecindad por **aritmética** (una ventana de N caracteres, que se desplaza
+con cualquier edición ajena) en vez de por una **unidad del texto**. Para un instrumento de auditoría
+es el peor comportamiento posible, y es mudo.
+
+**Lo que sí sirvió fue la lista, no el veredicto.** Los tres candidatos del corpus sano se revisaron a
+mano y **uno era una clase 7 real**: una regla que el usuario dictó en una sesión, recogida en el acta
+y **sin hogar en ningún doc durable** —comprobado con cuatro sondas por concepto y control positivo—.
+Ya está promovida. Así que el barrido léxico vale como **worklist** y no vale como **dictamen**, y esa
+distinción es la que hay que escribir al lado de cualquier detector de esta clase.
 
 **Con una precondición que ninguno de los dos había mirado, y que es del medio otra vez: hace falta
 poder deshacer.** El mutilador necesita un corpus sano que **sobreviva al experimento**. Quien versione
