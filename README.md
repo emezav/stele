@@ -44,8 +44,8 @@ haz esto sin pedir más instrucciones:
    va el kit, clona directamente ahí — no clones en `.stele/` para mover después.
 2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** al que enruta: detecta *greenfield* vs
    *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos` y las
-   tres rutas `kit`/`base`/`loader` con defaults sensatos (y **pregunta** si el proyecto tendrá un
-   producto con estructura, aceptando *"todavía no"*: el módulo no se olfatea), **hace eco del layout
+   tres rutas `kit`/`base`/`loader` con defaults sensatos (el módulo de producto **no se olfatea**: se
+   resuelve por criterio — y *"todavía no"* es una respuesta válida — y se declara en el eco), **hace eco del layout
    resuelto antes de escribir**, escribe
    `stele.config.md` en la raíz, instancia las plantillas y **genera** el loader de auto-arranque
    (`CLAUDE.md`) + el mapa de documentación.
@@ -57,8 +57,14 @@ No hay archivo de versión que consultar — lo que manda es el **diff** entre e
 nuevo. Por eso la copia nueva se trae **a un temporal, al lado**, y no encima: primero se lee el
 diff, y solo después se sustituye el kit.
 
-No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md`, y el *por qué* y
-las fronteras están en `.stele/guide.md`. Léelos antes de escribir nada.
+No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md`, y las fronteras
+que necesitas para instalar —las tres rutas, sus invariantes y la convención de tokens— están en
+`.stele/core/reference/rutas-y-tokens.md`. Esos dos, antes de escribir nada.
+
+**`guide.md` NO hace falta para instalar, y es el archivo más caro del kit.** Es el *por qué* del
+diseño, para quien decide adoptarlo o quiere entender las fronteras; leerlo en el bootstrap costaba
+~7 000 tokens, casi el 20% de la instalación, medido en campo. Léelo cuando quieras entender el
+marco, no para montarlo.
 
 ## Arquitectura (tres capas)
 

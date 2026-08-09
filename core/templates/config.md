@@ -7,11 +7,24 @@
 > **Contrato de parseo:** los headers `##` son secciones canónicas y fijas, en este orden:
 > `Meta` · `Rutas` · `Nombres` · `Features` · `Presupuestos` · `Wording de rituales`. Se
 > referencian por posición, no por su texto. En cada tabla, col1 = clave, col2 = valor; columnas
-> y filas extra se ignoran. **Un `—` (em-dash, U+2014) en un nombre = rol desactivado**; el nombre
-> va escrito al lado del carácter a propósito, para que un barrido que lo sustituya deje una
-> contradicción visible en vez de una frase coherente y falsa. Fila ausente = default del
-> rol/feature (ver `{{kit}}/core/roles.md` y `{{kit}}/modules/<mód>/`). Al aplicar un cambio,
-> `config` reescribe la tabla afectada **completa** y regenera los derivados.
+> y filas extra se ignoran.
+>
+> **Centinela de "vacío": un `—` (em-dash, U+2014) en un nombre = rol desactivado.** El nombre del
+> carácter va escrito al lado a propósito, para que un barrido que lo sustituya deje una
+> contradicción visible en vez de una frase coherente y falsa.
+>
+> **Y se aceptan también `---` y `-` como el mismo centinela, indefinidamente.** No es tolerancia a
+> la chapuza: un agente que escribe el manifiesto **genera ASCII de entrada** y nunca llega a emitir
+> el em-dash, así que la defensa de "nombrar el carácter" —que protege contra *sustituirlo*— no hace
+> nada contra *no escribirlo nunca*. Observado en campo: un bootstrap emitió `---` en tres valores de
+> *Meta*. Aceptar las tres formas **elimina la clase entera**: no se puede corromper convirtiendo a
+> ASCII algo que ya vale en ASCII. Emite `—` si puedes; si no, `---` es igual de válido.
+>
+> **Fila ausente = default del rol/feature** (ver `{{kit}}/core/roles.md` y `{{kit}}/modules/<mód>/`).
+> Por eso **un rol inactivo se escribe con el centinela y no se omite**: omitirlo dice *"déjalo en su
+> default"*, que es lo contrario de *"está apagado"*, y desde fuera se ven igual.
+>
+> Al aplicar un cambio, `config` reescribe la tabla afectada **completa** y regenera los derivados.
 
 ## Meta
 
@@ -114,15 +127,23 @@
 
 ## Features (toggles)
 
-| Feature | Valor |
-| --- | --- |
-| effort_log | on |
-| effort_unit | horas-ingeniero |
-| session_greeting | on |
-| audit_log | on |
-| audit_every_n_sessions | 10 |
-| correspondence_log | on |
-| manual_doc | on |
+| Feature | Valor | Origen |
+| --- | --- | --- |
+| session_greeting | on | núcleo |
+| audit_log | on | núcleo |
+| audit_every_n_sessions | 10 | núcleo |
+| correspondence_log | on | núcleo |
+| manual_doc | on | núcleo |
+| effort_log | on | producto |
+| effort_unit | horas-ingeniero | producto |
+
+> **La columna `Origen` importa: una feature de módulo no puede quedar encendida si su módulo no lo
+> está.** `effort_log` enciende el rol `effort`, que lo aporta `producto`; con `módulos = pendiente`
+> o `—`, dejarla en `on` promete un log que no existe. Ocurrió en campo: un bootstrap copió
+> `effort_log = on` de esta plantilla con el módulo inactivo, y no había `esfuerzo.md` en ninguna
+> parte. Al activar el módulo después, `config` las enciende con él.
+> La columna es informativa para el parseo —col1 = clave, col2 = valor— y **normativa para quien
+> escribe el manifiesto**.
 
 > `manual_doc` enciende el `manual`, el único doc dirigido a **la persona** y no al agente. Apágalo si
 > quien usa el proyecto es quien lo configuró y conoce el marco; enciéndelo en cuanto lo use alguien
