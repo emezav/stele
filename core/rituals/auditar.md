@@ -690,6 +690,17 @@ decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no ca
    el fichero** (repo o proyecto, si no es el propio), **el identificador** del commit, y el
    `archivo:línea` **como pista**, no como ancla. Lo ya escrito **no se corrige** —es registro— y por
    eso esto solo protege hacia adelante.
+
+   **Y el test de si una referencia nombra su raíz NO es "¿lleva directorio?".** Es **cuántos ficheros
+   casan con ese nombre**: uno solo = puntero válido aunque vaya abreviado; **cero o varios = no es un
+   puntero**. Importa porque la versión intuitiva sobre-marca: al construir el detector, *"sin
+   directorio = sin raíz"* dio **2,4 veces** los aciertos reales — marcaba `bootstrap.md:107`, que es
+   **único** en el árbol y resuelve solo. Con el test correcto quedan **10 de 62 (16%)**, y las diez
+   son la misma forma: **citar el fichero de OTRO proyecto sin decir que es suyo**.
+
+   **Y es el mismo test que la cita ambigua**, unas líneas más arriba: allí un título de sección, aquí
+   un nombre de fichero. **Un nombre que resuelve a cero o a más de un sitio no es un puntero**, y en
+   los dos casos hay lista contra la que comprobarlo.
 4. **Informar** con la forma fija de abajo, separando errores de preferencias, y **con el
    denominador**. Si la proporción de falsas es baja, dilo: *"la documentación está sana"* es un
    resultado válido, y **descartar la hipótesis de partida es un hallazgo**, no una auditoría fallida.
