@@ -495,6 +495,21 @@ abres; por **regla** los encuentras donde estén. Toma las reglas que el proyect
 pregunta dónde vive cada una — las reglas ya están enumeradas, que es lo caro. Esta clase, la del hogar
 demasiado estrecho, **solo la encuentra el barrido por regla**.
 
+**Y hay un corpus donde todo detector se comporta peor: los documentos que EXPLICAN lo que detecta.**
+Una regla escrita trae su caso, su ejemplo y la cita del defecto — así que el fichero que enseña a
+cazar contadores está lleno de contadores, y el que enseña a citar con raíz está lleno de citas sin
+raíz. **Son citas, no usos**, y ningún patrón las distingue.
+
+Lo caro no es el ruido: es **cuándo aparece**. Esos documentos se escriben justo **después** de
+aprender la regla, que es exactamente cuando quieres medir si la regla funciona. Caso propio, y por
+poco se publica al revés: se comparó la tasa de un defecto antes y después de escribir su regla, y
+salió **22% → 54%**. El conteo crudo decía *"la regla empeoró las cosas"*. Revisados uno a uno, **los
+siete aciertos del segundo grupo eran citas del propio defecto** y los usos nuevos eran **cero**.
+
+**De ahí la regla de método: al medir si una regla funciona, excluye del corpus los documentos que la
+enseñan** — su acta, su carta, la entrada del ritual. Si no puedes excluirlos, el número no mide la
+regla: mide cuánto has escrito sobre ella.
+
 **En estos detectores el falso positivo es el lado peligroso, y conviene saberlo antes de correrlos.**
 No son simétricos: un falso **negativo** deja algo sin encontrar —malo, pero el doc queda como
 estaba—, mientras que el falso **positivo** trae un "arreglo" que **corrompe algo que estaba bien**. Un
