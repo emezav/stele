@@ -71,6 +71,13 @@ crecer. **La pregunta que separa las dos no es cuántas hay, es si añadir una e
 Aplicar esta regla a lo primero es un barrido destructivo que borra información real; el detector de
 abajo da positivo en los dos casos y por eso sus aciertos **se revisan uno a uno**, como todos.
 
+**Ni alcanza a una medición.** *"1562 líneas"*, *"cuatro hogares"*, *"9 hallazgos, 5 falsos"* no son
+contadores: son **hechos fechados**, y su forma honesta ya la fija otra regla — van con su corpus al
+lado, el identificador y el tamaño. La diferencia no está en el número sino en que **una medición dice
+cuándo se tomó y contra qué**, así que no puede caducar en silencio: si el corpus se mueve, la medida
+sigue siendo cierta *de aquel corpus*. Un contador, en cambio, afirma un presente que ya no vigila
+nadie.
+
 Caso propio, y lo destapó un corresponsal preguntando *dónde vive vuestra lista*, no una auditoría:
 este mismo archivo llevaba el contador en **tres** frases —el encabezado, *"las ocho son agnósticas"*
 y *"las otras siete se ven leyendo el doc"*, que además es un número **derivado** y por tanto rompe

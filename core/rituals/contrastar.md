@@ -24,6 +24,19 @@ como prosa terminada con las dos cosas pegadas, y la parte sólida presta credib
 desconfianza: es que cada uno tiene la mitad que al otro le falta. Es el mismo movimiento que la
 cautela 0 de AUDITAR — no te fíes del recorte, vuelve a la fuente.
 
+**Y hay una razón por debajo, más concreta que *cada uno tiene su mitad*: el medio decide qué remedios
+existen.** Un mismo diagnóstico —*este dato tiene dos hogares*— admite remedios distintos según de qué
+esté hecho tu producto. Si es **código**, puedes generar un hogar desde el otro. Si es **prosa**, no
+puedes generar nada, pero **puedes borrar**. Y si el sitio duplicado es la portada que lee todo el que
+llega, no puedes borrar sin empeorar el producto, y lo que queda es **detectar**: una prueba que impide
+*publicar* la divergencia, asumiendo que los dos hogares siguen ahí.
+
+Caso de campo, con los dos lados a la vez: un proyecto de código y otro de documentación recibieron el
+mismo diagnóstico y salieron con remedios opuestos —**borrar** y **detectar**—, y los dos correctos.
+Lo que lo hace instructivo es que **ninguno de los dos podía haber elegido el del otro.** Por eso el
+remedio no viaja: no es que sea menos fiable que el diagnóstico, es que **está atado a un material que
+quien reporta no tiene**.
+
 ### Tres clases de afirmación, y no se tratan igual
 
 - **Sobre tu trabajo** — verificables aquí, y se verifican **todas** antes de aceptar nada. Un aporte
@@ -97,6 +110,23 @@ Es lo primero que se degrada, porque el trabajo ya está hecho y la respuesta no
 **un ritual que solo ingiere convierte a quien reporta en QA gratis**, y esa fuente se seca. Y hay algo
 que solo tú puedes darle: **en qué no se aceptó su propuesta y por qué**. Eso es lo que hace que el
 siguiente informe venga mejor calibrado — y es información que él no tiene forma de deducir.
+
+**Y tiene un gemelo oscuro, que solo aparece cuando el intercambio ya lleva tiempo: responder de
+MÁS.** Pasadas unas cuantas cartas, devolver un hallazgo deja de ser un aporte y se vuelve una
+**obligación social** — el otro te dio algo, y no dar nada se siente como no haber trabajado. Ahí es
+donde se **fabrica un hallazgo simétrico**: se busca en tu terreno el equivalente de lo que él
+encontró en el suyo, y lo que sale es ruido con forma de reciprocidad. Es peor que el silencio,
+porque viene avalado por todo lo que sí era bueno en la misma carta.
+
+**"No aplica" es una respuesta completa, y decirlo vale más que inventar el espejo.** Le dice al otro
+algo real —que su hallazgo es específico de su terreno, cosa que él no puede saber— y protege lo único
+que hace útil el canal: que un hallazgo signifique algo. La frontera de REMITIR —*si no hay caso, no
+hay carta*— es la misma regla; lo que cambia aquí es de dónde viene la presión: no de tener una idea
+suelta, sino de **deberle algo a alguien**.
+
+Lo formuló un corresponsal ejerciéndolo, que es la única forma en que esto se puede decir con
+autoridad: escribió *"preferimos decir «no aplica» a inventar un hallazgo simétrico"* **en la misma
+carta en la que podría haberlo inventado**.
 
 Por eso **la fila se escribe después de responder**: su existencia implica que el circuito se cerró. Y
 como la numeración de `letter` no distingue dirección, **una carta que entra sin una que salga detrás
