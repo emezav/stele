@@ -361,6 +361,19 @@ que el índice muestra es un dato que alguien va a repetir en el artefacto**, y 
 no se puede mantener. Una omisión en una plantilla no se defiende sola: si el campo no debe estar, hay
 que decir que no debe estar.
 
+**Y el reverso también pasó, con el mismo campo `Dirección` y coste real: seis cartas seguidas
+salieron SIN él.** La plantilla lo exige, nadie lo comprobó nunca, y el defecto durmió hasta que un
+barrido de la propia correspondencia **filtró por ese campo** y se dejó fuera una carta entera. El
+recuento equivocado salió publicado en una carta, y lo corrigió el destinatario contando.
+
+> **Los campos de la cabecera no son ceremonia: son el índice por el que se barrerá esta carta dentro
+> de un año.** La que no los lleva es invisible al barrido que existe para encontrarla, y su ausencia
+> **no da error**: da un elemento menos.
+
+Cuesta una línea comprobarlo antes de archivar —¿están los cinco campos?— y no hay forma barata de
+notarlo después. **Las que ya salieron se anotan y no se retocan**, por la asimetría de arriba: una
+cabecera incompleta es un fósil visible; una completada a posteriori no la delata nada.
+
 ### El remitente, y por qué son dos claves
 
 En `Meta`, **elegido, no derivado**. Derivarlo de la carpeta, la ruta o el remoto rompe el rastro en

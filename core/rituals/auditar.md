@@ -312,6 +312,72 @@ control positivo pasando todo el tiempo. Un control no se queda corto ruidosamen
 > referencia.** Tiene que llevar al menos **dos** de aquello que el detector empareja, y distintas
 > entre sí — si no, las dos referencias coinciden por construcción y el verde no dice nada.
 
+**Y la forma buena es más ancha, la devolvió el campo al aplicar la regla contra sí mismo:** *"al menos
+dos"* caza el defecto de la referencia y **solo ese**. La formulación que caza los tres es **una
+instancia de cada distinción que el check hace**. Preguntarse *¿qué más distingue esta comprobación?*
+—dos tablas de distinto ancho, un separador que es contenido, una valla que parece dato— produjo dos
+regresiones más que la forma estrecha no habría cubierto. **El control se deriva de las distinciones,
+no del tamaño.**
+
+### Una tasa alta de falsos positivos protege al fallo que la causa
+
+Aporte de campo, y es el más incómodo de los recibidos:
+
+> **Nadie investiga un detector que ha aprendido a saltarse.** Y era ruido **porque estaba roto**: el
+> defecto producía la condición que impedía mirarlo. Un detector lo bastante malo para ignorarse queda
+> **defendido por ser ignorado**, y correrlo más veces no ayuda — se corrió cientos.
+
+De ahí sale el límite de cualquier lector automático como garantía: **cuenta solo si alguien lee lo que
+dice.** No es una particularidad del sello: es la condición de todas.
+
+**Y el mecanismo que lo destapó no fue un disparador por calendario: fue una pasada sin hipótesis.**
+Las primeras pasadas comprueban lo que uno sospecha; la que encuentra esto es **la que se queda sin
+nada que comprobar**, y entonces lo único que hay delante es la salida que llevabas descartando. Aquí
+esa pasada existe —el ritual manda repetir hasta que una no produzca nada nuevo— y conviene saber que
+**ese es su rendimiento**, no la redundancia.
+
+### El reverso: cuánto puede callar un detector antes de que su silencio deje de informar
+
+El caso simétrico, y es nuestro: una comprobación que ha corrido **más de treinta veces sin un solo
+positivo verdadero**. Los dos extremos acaban igual — **una salida que nadie lee y una salida que nadie
+puede distinguir de un cadáver.**
+
+> Un control positivo **sintético** prueba que el detector *puede* disparar. **No** prueba que el
+> silencio sobre el corpus real signifique algo, porque no dice si el corpus llegaría a presentar la
+> condición **en la forma que el detector reconoce**.
+
+Así que hay una clase de comprobación que **nace sin poder validarse y solo se valida por suerte**: el
+día que alguien cometa el error que busca. Para esa clase la regla es no contar el silencio como
+limpio, sino **declararlo**: la salida dice cuántas veces ha corrido sin un positivo verdadero. Un cero
+con esa coletilla al lado ya no se lee como corpus limpio.
+
+### Un barrido que filtra por un campo no ve al registro que no lo tiene
+
+**Caso propio, y salió caro.** Se contaron las tablas de marcador de la correspondencia propia
+filtrando por el campo `Dirección` de la cabecera. El resultado —*"11 filas en dos cartas"*— salió **en
+una carta**, como afirmación de hecho. El corresponsal contó y eran **17 en tres**.
+
+La carta que faltaba **no tiene línea `Dirección`**, aunque la plantilla la exige. Y no está sola:
+**seis cartas seguidas** salieron sin ese campo y nadie lo notó nunca.
+
+> **El registro peor formado es exactamente el que el barrido no ve**, y su ausencia no da error: da un
+> elemento menos. Un defecto de formato **hace invisible** al defecto de contenido que lo acompaña.
+
+Antes de filtrar por un campo, **cuenta cuántos registros lo tienen** y compáralo con el total. La
+diferencia es el punto ciego, y se mide en una línea.
+
+### Y el error que te quita razón no se busca
+
+La otra mitad del mismo caso, y la aportó quien lo encontró: aquel recuento **iba en contra nuestra**
+—0 de 17 sostiene la conclusión mejor que 0 de 11—, y por eso nadie de este lado fue a revisarlo.
+
+> **Un número que te da menos razón de la que tienes se lee como prudente, y lo prudente no se
+> audita.** Un número que te favorece despierta sospecha; uno que te perjudica, no. Esa clase de fallo
+> **solo la caza el otro**.
+
+Es la misma ley que la del ámbito, un piso más arriba: allí **la visibilidad** decidía qué entraba al
+inventario; aquí **el resultado** decide qué entra a la revisión. Las dos veces, en silencio.
+
 <!-- La cifra que vivía aquí antes eran "17 hallazgos", prestada de un corresponsal y **sin corpus,
      sin fecha y sin identificador**. Cuando ese mismo detector se midió bien dio 356, y desde fuera
      no había forma de saber que la primera estaba superada. Una cifra ajena es peor que una propia:
