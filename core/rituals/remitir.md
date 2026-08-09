@@ -110,6 +110,30 @@ bytes no la reproduce nadie, ni él ni tú mañana. Un mismo fichero dio 803, 86
 del mismo día. **Ningún número sale de un repositorio sin su corpus fijado al lado: el identificador
 del commit y el tamaño.**
 
+**Fijar el corpus es lo único que puedes prometer. Congelar un fichero vivo, no.** El impulso que sigue
+al identificador es prometer además que no se toca —*"queda congelado mientras dure la comparación"*—
+y esa promesa **no la puede sostener quien la hace**: la rompe un cambio de **otro hilo de trabajo**,
+cuyo autor no sabe que ese fichero es corpus de nadie, y al que ningún recordatorio dirigido a quien
+prometió le llega. Caso propio, con la peor cronología posible: una carta salió sellada con `X`
+prometiendo congelar dos cosas, y **el hijo directo de `X`** reorganizó el kit y dejó el fichero central
+de la comparación en 250 líneas de las 1845 que tenía, **sin una sola valla de código dentro** — de seis
+delimitadores a cero. El corresponsal lee ese árbol: de haber medido, habría obtenido un **cero
+legítimo** —ni detector roto ni filtro mal escrito— indistinguible de los ceros falsos que las dos
+partes llevaban seis cartas persiguiendo.
+
+**El corolario invierte el valor de la frase: decir "está congelado" es peor que no decir nada**, porque
+el otro deja de comprobar. Es la forma de la promesa sin sello, unos párrafos más arriba — desde el lado
+del que recibe, una promesa y una afirmación no verificable se ven igual. Lo que sí se sostiene es un
+**centinela**, porque se ejecuta donde ocurre el daño y no donde se hizo la promesa: *el corpus fijado
+tiene N líneas y M vallas; si el árbol da otra cosa, no es un aviso, es una carta.*
+
+**Y hay una capa que solo se ve al reincidir.** Esa misma carta ya diagnosticaba la clase —*cuando se
+congela un corpus, se congela lo que se recuerda de él, no lo que lo hace corpus*— y no protegió nada,
+porque se escribió **sobre el fichero que se acababa de descubrir** en vez de sobre la clase: el que se
+rompió fue el otro. Y el pendiente que vigilaba el asunto nombraba también ese fichero, así que
+**cuatro sesiones de vigilancia apuntaron al fichero sano**. Una deuda anotada con el nombre equivocado
+es peor que no anotarla — cada lectura confirma que ya se sabe dónde está el riesgo.
+
 **Y "viaja" quiere decir publicado, que no es lo mismo que escrito.** Entre lo uno y lo otro hay al
 menos dos estados —escrito y guardado, guardado y publicado— y **solo el último es observable por el
 destinatario**. Es exactamente la distinción que ya haces con una carta, `redactada` frente a
