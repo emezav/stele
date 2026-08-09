@@ -104,7 +104,9 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    agente leyó *"no se auto-detecta: se PREGUNTA"*, se quedó con la mitad negativa y resolvió solo.
    Poner la decisión en un paso que ya se cumple la vuelve **visible y corregible** sin depender de
    que alguien se acuerde de preguntar. Si el usuario no dice nada, tu resolución vale.
-3. Validar los **invariantes de ruta** (ver "Las tres rutas"). Violación = abortar y re-preguntar.
+3. Validar los **invariantes de ruta** (ver `core/reference/rutas-y-tokens.md` → "Las tres rutas";
+   **no `guide.md`**, que aquí no hace falta y es el archivo más caro del kit). Violación = abortar y
+   re-preguntar.
 4. Resolver nombres (defaults de rol + módulo; override libre). **Los roles de un módulo inactivo se
    escriben igual, con el centinela `—` (o `---`) en la columna Archivo — no se omiten.** Omitir una
    fila significa *"déjala en su default"*, que es lo contrario de *"está apagada"*, y las dos se ven

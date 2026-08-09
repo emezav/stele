@@ -78,6 +78,15 @@ cuándo se tomó y contra qué**, así que no puede caducar en silencio: si el c
 sigue siendo cierta *de aquel corpus*. Un contador, en cambio, afirma un presente que ya no vigila
 nadie.
 
+**Y el remedio cambia la clase de fallo, no lo elimina — conviene saber por cuál se cambia.** Quitado
+el número, queda una frase que **exige que la lista sea alcanzable desde donde está escrita**, y si no
+lo es, *"las clases de drift"* es a la vez la forma correcta y la forma del fallo. Lo destapó un
+corresponsal aplicando nuestra propia frase a nuestro propio remedio: *un detector que busca lo que hay
+no encuentra lo que sobra* — y aquí lo que falta tampoco. Pero **el cambio es a mejor y es medible**:
+un contador **caduca en silencio** y se caza con precisión; un puntero ausente **no caduca —nace mal—**
+y se caza con el detector de abajo, más ruidoso. Se pasa de un fallo que llega solo con el tiempo a uno
+que está desde el primer día y no empeora.
+
 Caso propio, y lo destapó un corresponsal preguntando *dónde vive vuestra lista*, no una auditoría:
 este mismo archivo llevaba el contador en **tres** frases —el encabezado, *"las ocho son agnósticas"*
 y *"las otras siete se ven leyendo el doc"*, que además es un número **derivado** y por tanto rompe
@@ -151,6 +160,14 @@ grep -rhoE "\bv?[0-9]+\.[0-9]+\.[0-9]+\b" {base} --include="*.md" | sort -u  # v
 # clase 1 — contadores en prosa, que son copias de la longitud de una lista
 grep -rniE "\b(los|las) (dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez) [a-záéíóúñ]+" {base} --include="*.md"
 grep -rniE "\b(ambos|ambas|el único|la única|los únicos|las únicas)\b" {base} --include="*.md"
+
+# clase 1 — el reverso del contador: PUNTEROS AUSENTES. Al quitar el número, la forma
+# correcta y la forma del fallo son IDÉNTICAS ("las clases de drift" está bien si la lista
+# es alcanzable desde ahí, y mal si no), así que ningún barrido de números lo ve. Dos pasos:
+grep -rn "<frase que nombra una lista que vive en otro fichero>" {base} --include="*.md"
+#   ...y para cada acierto, mirar si SU PÁRRAFO lleva la ruta al fichero que la tiene.
+# Más ruidoso que los demás y en otra forma: sus falsos positivos son CITAS de la regla y
+# ejemplos, no referencias. Se revisan uno a uno. Corre solo sobre el alcance de arriba.
 
 # clase 7 — NO lleva detector, y es deliberado: el defecto es una AUSENCIA y no hay cadena
 # que buscar. Se caza contrastando dos sitios en las fases, no barriendo uno. Esta línea
