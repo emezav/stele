@@ -164,6 +164,11 @@ tuyo.** Caso de campo, y del peor tipo: dos frases de ese estilo salieron en una
 al ir a registrar su entrega, y para entonces el destinatario ya había construido encima de una de
 ellas. Un estado ajeno al menos es incomprobable; este estaba a un comando de distancia.
 
+**Y esta regla tiene dos hermanas, una antes y una después**: *antes de construir, comprobar si ya está
+construido*, y *después de un paso cuyo efecto ocurre fuera del texto, comprobar que ocurrió y decir qué
+se ve si no*. Las tres están enunciadas juntas en `SKILL.md` ("Comprobar en vez de dar por hecho"); aquí
+vive el caso de la del medio, que es la del registro.
+
 **Antes de persistir, comprueba lo que acabas de escribir contra las convenciones de texto de tu
 proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). **El marco no impone ninguna** —este
 mismo kit está escrito en prosa acentuada a propósito—: el paso se parametriza con **las tuyas**, y si
@@ -201,4 +206,3 @@ disciplina **sube**, no baja: ver `guide.md` → "Persistencia y la red de recup
 con honestidad: si falla, dilo y **no des el cierre por persistido**. El comando **nunca lleva
 secretos** — el manifiesto es markdown versionado y legible. Las credenciales viven en el entorno o
 en el gestor de la propia herramienta, nunca en un doc del marco.
-

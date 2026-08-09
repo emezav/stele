@@ -205,9 +205,23 @@ solo-ASCII, sobre lo que acabas de escribir:
 tail -n 1 {{history_dir}}{{index}} | LC_ALL=C grep -n '[^ -~]'
 # el mensaje del commit, antes de pushear
 git log -1 --format=%B | LC_ALL=C grep -n '[^ -~]'
+# CONTROL POSITIVO, en la misma tanda: el detector TIENE que encontrar esto
+printf 'a\303\251b\n' | LC_ALL=C grep -n '[^ -~]'
 ```
 
-Sin salida = limpio. Con `persistencia = git`, si el mensaje ya está commiteado pero **no pusheado y
+**Sin salida = limpio SOLO si el control positivo dio salida.** Un detector roto no da error: **da
+silencio, que es exactamente lo que esperabas ver.** Va en la misma tanda y no como advertencia aparte,
+porque una advertencia hay que leerla desde dentro de la vía que ya elegiste — así la vía segura cuesta
+lo mismo. Casos reales de este silencio: un `grep -P` que aborta por *locale* y escribe el error a
+**stderr**, un `grep` en minúscula contra un encabezado en mayúscula, y un `grep -o` con el patrón mal
+escrito. Los tres "corpus limpios" eran ceros de un comando que no llegó a mirar.
+
+El control usa `printf` con escapes **octales** y **no contiene** ningún byte no-ASCII: así el propio
+ejemplo sobrevive a un barrido que sustituya esos caracteres. Octal y no hexadecimal porque `\303\251`
+es POSIX y `\xc3\xa9` es una extensión — un control que no corre en la shell de quien lo copia devuelve
+silencio, que es el fallo que este control existe para descartar.
+
+Con `persistencia = git`, si el mensaje ya está commiteado pero **no pusheado y
 sin hash citado en ningún doc**, `--amend` lo arregla (ver reglas de `--amend` en CERRAR).
 
 ## Checklist de inicio / cierre

@@ -40,7 +40,10 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    al manifiesto, secciones nuevas, derivados a regenerar.
 6. **Informar** en pocas líneas: qué cambió, qué se reconcilió solo, y qué exige decisión del usuario
    (un rol nuevo que quizá quiera desactivar, un default que él había sobrescrito, un cambio del
-   contrato de parseo).
+   contrato de parseo). **Y si el diff tocó las puertas o el bloque `GENERADO` del `entry`, pídele que
+   reabra el editor y te salude** — el delta a esos bloques se porta **a mano** y a **cada** puerta, así
+   que es donde una copia puede quedarse atrás sin que nada lo diga: *si no te contesta con la última
+   sesión y el próximo paso, el delta no llegó a la puerta que lee tu agente.*
 7. **Limpiar** el temporal.
 
 **Lo que acabas de instalar gobierna lo que te queda por hacer, y es el paso que más se salta.** Un

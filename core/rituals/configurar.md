@@ -24,6 +24,18 @@
 5. **Validar**: `grep` del nombre (o ruta) viejo = 0; cada nombre resuelve a un archivo; ningún rol
    activo apunta a faltante; los invariantes de ruta se cumplen.
 
+   **Y si el cambio tocó una puerta o el `entry`, esa validación no alcanza: es toda textual.** Un
+   nombre de puerta equivocado pasa las cuatro comprobaciones de arriba —resuelve a un archivo, no
+   rompe ningún invariante— y deja el marco **instalado y mudo**. Acaba como BOOTSTRAP (paso 10),
+   pidiendo el único observable que hay:
+
+   > *"Reabre el editor y escríbeme cualquier cosa. Debería contestarte con la última sesión y el
+   > próximo paso. **Si te contesta en genérico, la puerta no tiene el nombre que lee tu agente**:
+   > dímelo."*
+
+   Al **quitar** una puerta el síntoma es el contrario y también se dice: *si el agente que la leía
+   deja de saludarte, era la suya.*
+
 Reglas fijas: desactivar un módulo **no** borra sus docs (huérfanos preservados + aviso); colisión
 de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el historial es inmutable).
 

@@ -212,6 +212,24 @@ solo en el checkpoint. Así que la comparación limpia no es *"doc de arranque c
 **añadirlo funciona**, no que el doc de arranque sobre. Escríbela en los dos sitios si hace falta: el
 de arranque te informa, el del salto te detiene.
 
+## Comprobar en vez de dar por hecho: tres momentos
+
+Una sola desconfianza en tres puntos del tiempo. Las tres cuestan un comando y las tres fallan **en
+silencio**, que es lo que las hace caras.
+
+- **Antes de hacerlo — ¿ya está hecho?** No construyas sin mirar si existe. Dos casos de campo: un
+  agente se ofreció a crear un entregable **que ya estaba verificado**, y otro propuso construir las
+  puertas del marco **leyendo el proyecto a través de esas puertas**.
+- **Al escribir que está hecho — ¿lo está?** Sobre todo cuando lo hecho es tuyo: entre decidir *"voy a
+  hacerlo"* y dar por hecho que se hizo no hay distancia perceptible. Desarrollado en CERRAR.
+- **Después de un paso cuyo efecto ocurre fuera del texto — ¿ocurrió, y qué se ve si no?** Un paso que
+  **afirma** un resultado que nadie mira no da error: sale igual de convincente. Se arregla con
+  comprobación **más síntoma declarado** — ver BOOTSTRAP paso 10 y el `Sello` del `handover`.
+
+**El síntoma es la parte que se olvida**, y sin él la comprobación no existe: *"comprueba que
+funcionó"* no sirve si quien mira no sabe qué aspecto tiene el fallo. Y quien mira suele ser el
+usuario, no tú — tú ya tienes el contexto que oculta la falta.
+
 ## Los rituales, y dónde vive cada uno
 
 **Este archivo no contiene los rituales: los enruta.** Cada uno vive en `core/rituals/` y **se lee
