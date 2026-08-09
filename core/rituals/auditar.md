@@ -71,6 +71,15 @@ crecer. **La pregunta que separa las dos no es cuántas hay, es si añadir una e
 Aplicar esta regla a lo primero es un barrido destructivo que borra información real; el detector de
 abajo da positivo en los dos casos y por eso sus aciertos **se revisan uno a uno**, como todos.
 
+**Y el límite tiene su propio límite: *"parte del concepto"* es a su vez una afirmación que caduca.**
+Un proyecto escribió *"las dos anclas de la raíz"* dándolo por cerrado por definición —eran el
+manifiesto y el loader— y una sesión posterior convirtió el loader en una **lista de puertas**, tantas
+como harness haya que atender. El juicio se hizo de buena fe y se volvió falso sin que nadie tocara esa
+línea. Peor: la frase que **enunciaba esta misma regla** usaba *"las dos anclas"* como su ejemplo de
+lista cerrada, así que el ejemplo falsificó el criterio. La pregunta operativa no cambia —*¿añadir uno
+es un cambio previsto?*— pero **su respuesta tiene fecha**, y por eso los ejemplos de lista cerrada son
+ellos mismos candidatos de auditoría.
+
 **Ni alcanza a una medición.** *"1562 líneas"*, *"cuatro hogares"*, *"9 hallazgos, 5 falsos"* no son
 contadores: son **hechos fechados**, y su forma honesta ya la fija otra regla — van con su corpus al
 lado, el identificador y el tamaño. La diferencia no está en el número sino en que **una medición dice
