@@ -182,9 +182,28 @@ borra.
 Un **tope de tamaño** de un rol no va aquí: es un **presupuesto** y su hogar es el manifiesto
 (sección Presupuestos, con el ritual `config`). Aquí van las excepciones de **contenido**.
 
-Si el proyecto no está en el idioma del kit, su versión traducida del **vocabulario de detectores**
-(las listas de `grep` de `{{kit}}/core/rituals/auditar.md`) también vive aquí: es una lista larga y viva,
-no un parámetro del manifiesto.
+## Detectores de auditoría
+
+**Solo si este proyecto no está en el `idioma` del kit.** Si coincide, esta sección se queda vacía y no
+hay nada que hacer: los detectores de `{{kit}}/core/rituals/auditar.md` ya sirven tal cual.
+
+Los detectores **léxicos** y **gramaticales** de AUDITAR están en el idioma del kit. Un proyecto en
+otro idioma **los deriva** —no los traduce término a término, que produce detectores malos— y guarda
+los suyos aquí. Es una lista larga y viva, no un parámetro: por eso no va al manifiesto. Y no va en
+*Acuerdos de auditoría*, que guarda decisiones con umbral y esto no lo es.
+
+| Clases | Comando | Control positivo (tiene que dar match) |
+| --- | --- | --- |
+
+**El control positivo no es opcional.** Una regex recién escrita y nunca ejercida es la mejor fuente
+de ceros falsos que hay, y aquí un cero falso se lee como *"corpus limpio"*. Un detector sin su línea
+de ejemplo no se guarda.
+
+**Un término entra con el hallazgo que lo justificó, no porque suene a que podría.** Cada término que
+se añade lo paga cada auditoría futura en ruido; si nunca cazó nada, no está ganado.
+
+**Si cambia `idioma` (ritual `config`), esta sección queda caducada entera** y la siguiente auditoría
+la vuelve a derivar. No se traduce lo que había.
 
 ## Convenciones de texto (y dónde se escapan)
 

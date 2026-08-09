@@ -113,6 +113,11 @@ del otro: no es casualidad, es dónde cae por defecto lo que aún no tiene hogar
 Un audit que devuelve "todo se ve bien" no ha auditado. Barre primero, verifica después:
 
 ```bash
+# ESTOS COMANDOS ESTAN EN EL IDIOMA DEL KIT. Si tu proyecto esta en otro, lo que se
+# copia es el COMENTARIO de cada bloque -- que se busca y por que --, no la regex:
+# se derivan, no se traducen. Ver "Los detectores no son todos iguales frente al
+# idioma", mas abajo, antes de tocarlos.
+
 # clases 1 y 3 — afirmaciones absolutas y criterios que quizá ya no valen
 grep -rniE "siempre|nunca|todos los|todas las|ningún|en ningún caso|garantiza|basta con" {base} --include="*.md"
 
@@ -563,9 +568,30 @@ haber hecho algo, y pedir artefacto por cada acción marca todas—, y **di lo q
 cambia es la práctica de las sesiones siguientes. Tampoco es una clase de drift nueva: el drift es
 documentación que se aparta de la verdad, y esto es una afirmación sin respaldo.
 
-**El vocabulario es lo único atado al idioma.** Estas listas están en el `idioma` del kit; un
-proyecto en otro idioma las traduce y guarda su versión en `protocol` (*Acuerdos de auditoría*), no
-en el manifiesto: son una lista larga y viva, no un parámetro.
+**Los detectores no son todos iguales frente al idioma, y la diferencia decide qué hay que rehacer.**
+Se reparten así:
+
+- **Estructurales** — el barrido de encabezados, `wc -l`, las rutas, URLs y versiones. **No tocan
+  idioma.** Funcionan igual en cualquier proyecto y se copian tal cual.
+- **Léxicos** — las listas de palabras (clases 1 y 3, 2 y 6, 3). Atados al **vocabulario**.
+- **Gramaticales** — el de contadores. Atado a la **gramática**: artículos, género y número. Este es
+  el que hay que mirar con cuidado, porque *parece* léxico y no lo es.
+
+**Y no se traducen: se derivan.** Traducir término a término produce detectores malos, y el de
+contadores lo demuestra solo: `(los|las) (dos|tres…)` en inglés sería `(the) (two|three…)`, que **no
+discrimina ni género ni número** y por tanto no es el mismo detector sino otro, con otra tasa de falsos
+positivos. Lo que viaja es **el comentario que encabeza cada comando** —qué se busca y por qué—; el
+comando se escribe desde cero en el idioma del proyecto.
+
+**Cada detector derivado se guarda con su control positivo, y sin eso no se guarda.** Una regex recién
+escrita y nunca ejercida es la mejor fuente de ceros falsos que existe, y un cero falso aquí se lee
+como *"corpus limpio"*. Junto al comando va **una línea de ejemplo que tiene que dar match**: si no lo
+da, el detector está roto y sus ceros no valen nada. Es la misma ley del cero de más abajo, aplicada en
+el momento de escribir el detector en vez de en el de usarlo.
+
+Su hogar es la sección *Detectores de auditoría* de `protocol`, **no el manifiesto**: son una lista
+larga y viva, no un parámetro. Y **no van en *Acuerdos de auditoría***, que es otra cosa — allí viven
+decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no cambiar nada.
 
 ### Fases
 

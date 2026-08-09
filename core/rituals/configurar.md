@@ -39,6 +39,13 @@
 Reglas fijas: desactivar un módulo **no** borra sus docs (huérfanos preservados + aviso); colisión
 de nombre aborta; cambiar el patrón `session` afecta solo sesiones futuras (el historial es inmutable).
 
+**Cambiar `idioma` no es solo cambiar una celda, y es el caso que más fácil se queda a medias.** Si el
+proyecto tenía detectores derivados en la sección *Detectores de auditoría* de `protocol`, quedan en el
+idioma anterior. **No los traduzcas** —traducir término a término produce detectores malos, y los
+gramaticales no tienen equivalente uno a uno—: **márcalos como caducados y dilo**, que la siguiente
+auditoría los vuelva a derivar. Un detector en el idioma que ya no se escribe **no da error: da cero**,
+y ese cero se lee como *"corpus limpio"*.
+
 **Activar un módulo, en concreto** — y esto es tan procedimiento como desactivarlo:
 
 1. **Añadir sus filas a *Nombres*** con `Origen` = el módulo, resolviendo el nombre de cada rol
