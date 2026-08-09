@@ -474,6 +474,26 @@ caber en la definición vieja.
 | en el **sustantivo de la cabecera** | *"trampas al escribir código"* | reescribir una línea |
 | en el **nombre del fichero** | `requirements.md` conteniendo decisiones, no requerimientos | **todas las referencias, incluidas las inmutables** |
 
+**Y la columna de coste de la segunda fila es falsa, lo aportó el campo y lo confirmamos contra
+nosotros mismos.** *"Reescribir una línea"* es lo que cuesta **dentro del documento**. El encuadre vive
+también en **cada puntero que describe el documento desde fuera** —el mapa de hogares, la lista de
+lectura de arranque, la fila de una tabla de enrutamiento—, y esos no los toca arreglar la cabecera.
+
+> **Corregir un encuadre no es corregirlo donde se lee.** El puntero es **la superficie donde se
+> decide**: nadie abre el documento para saber si su hallazgo cabe; lee la fila que lo describe.
+
+**Los dos casos son de documentos que ya se habían arreglado.** Uno ajeno: se corrigió lo que el
+documento decía ser y el mapa de hogares siguió anunciando el encuadre viejo **cuatro sesiones**, y no
+lo destapó releer sino un cambio externo. Uno propio, peor: una cabecera pasó de *"trampas al editar"*
+a *"al trabajar"* precisamente porque el sustantivo excluía método, entorno y cierre — y la fila del
+mapa que enruta hacia ese documento siguió diciendo **"al editar" treinta y tres sesiones**, en el doc
+que se lee en cada arranque. **La plantilla del kit sí se arregló; la instancia derivada de ella, no.**
+
+**Y no confundirlo con un puntero a una ubicación que se movió**, que es otra cosa y falla distinto:
+ese manda a un sitio donde no está lo que busca, y quien va **se topa con el hueco**. Este manda al
+sitio correcto con la definición equivocada: es **coherente y falso**, nadie lo verifica porque no hay
+nada roto que ver, y el lector se va convencido de que su hallazgo no cabe.
+
 **El nombre es el peor de los tres, y no porque engañe más: porque es el más caro de arreglar.** Un
 marcador y una cabecera se reescriben en segundos; un nombre arrastra cada cita del historial, de la
 correspondencia y de los docs que lo mencionan — cientos, en un proyecto con recorrido. Y encima se

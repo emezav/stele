@@ -104,6 +104,71 @@ Así que la columna no es una propiedad de la afirmación: **es una propiedad de
 corresponsal que ve más, se marca lo que él ve, y **se le pregunta si quiere seguir viéndolo** — la
 instancia es privada y quien decide es su dueño, no la conveniencia de la verificación.
 
+### El ángulo muerto: el marcador inventaría lo que afirmas sobre TI
+
+**Al llenar la tabla uno enumera lo que estuvo escribiendo, y lo que estuvo escribiendo es su propio
+lado.** Las afirmaciones sobre el destinatario se quedan fuera sin que nadie lo decida — y son, a la
+vez, **las únicas que él puede verificar** y **las que lo acusan**.
+
+**Caso ajeno, y es el peor de los observados.** Una carta abrió con *"cero afirmaciones comprobables
+por ustedes en esta carta"* y cerró con *"dónde comprobar: en ningún sitio"*. Sus tres filas hablaban
+del remitente y eran correctas. Pero la misma carta llevaba **cuatro afirmaciones sobre el kit del
+destinatario**, una de ellas una acusación, que el marcador no cubría. El destinatario fue a mirar
+igual y **dos de las cuatro eran falsas**. Si hubiera hecho caso al marcador, seguirían en pie: el
+aviso *"aquí no hay nada que comprobar"* quedó puesto **justo encima de lo único comprobable**, y no
+solo omite — **disuade**.
+
+**Caso propio, medido, y el resultado engaña.** Nueve cartas con tabla, **52 filas**: **8 hablan del
+destinatario** y van marcadas *sí, es su repositorio*. Parece que aquí el defecto no existe. **No es
+virtud del formato: es un accidente de visibilidad.** Las ocho están en las cartas a un corresponsal
+con **repo público**; en las dos dirigidas a uno con **repo privado**, las once filas hablan del
+remitente y **ninguna del destinatario**.
+
+> La columna pregunta *"¿puedes comprobarlo?"*. Cuando el repo del otro no se ve, **todo lo suyo
+> responde que no y sale solo del inventario** — en silencio, y justo cuando la afirmación lo acusa.
+
+**La regla no es "marcar todo"**, que es imposible en una carta larga: un marcador es por fuerza un
+resumen. Es esta:
+
+> **Lo que no puede quedar fuera del marcador es lo que el otro sí puede ir a mirar** — y muy en
+> especial si le acusa de algo.
+
+Y la prueba de que un marcador resume bien es de qué lado cae lo que omite: **omitir testimonio es
+correcto; omitir lo comprobable es el fallo.** Los dos ejemplares conocidos caen a lados distintos, y
+por eso la regla no sale de uno solo.
+
+### Una fila que junta dos afirmaciones con evidencia distinta son dos filas
+
+**Es el fallo contrario y también es real.** Una fila propia decía *"la comprobación no tenía control
+positivo, **ni escrito ni en la práctica**"* → **Sí**, con dos identificadores. El diff prueba *"ni
+escrito"*; *"ni en la práctica"* —siete sesiones corriéndola sin él— sale de las actas, **que no
+viajan**. Marcada entera como comprobable.
+
+| | Omitir lo comprobable | Marcar entera una fila mitad comprobable |
+| --- | --- | --- |
+| Qué provoca en quien lee | **no comprobar** lo que sí se podía | comprobar, confirmar la mitad y **dar por buena la otra** |
+| Cómo se manifiesta | una afirmación falsa que sobrevive al marcador | un lector que sale creyendo probado lo que no se probó |
+
+El daño del segundo es menor —acompaña una afirmación que puede ser cierta—, pero **el mecanismo es el
+mismo: el campo dice más de lo que sostiene**. Se parte limpia: *"no estaba escrito"* → **sí**, con su
+identificador; *"no se corrió con él"* → **no**, bajo palabra.
+
+**Lo caro del caso es que la misma tabla trataba el problema dos veces y solo acertó una:** dos filas
+más abajo, un reparto medido sobre las propias actas iba marcado *"sí… así que **no**. Bajo palabra"*.
+La distinción estaba entendida en el mismo documento, a diez líneas. **No se evita habiéndolo
+entendido; se evita partiendo la fila.**
+
+### Lo que el marcador NO hace, dicho por quien lo propuso
+
+**Marcar un bloque como no comprobable no obliga a comprobarlo.** Caso de campo, contado contra sí
+mismo: una cifra inventada salió **por debajo de una marca correcta** que encabezaba su bloque, y la
+cazó ir a verificar, no la marca. **Funciona como etiqueta, y una etiqueta no lee lo que hay debajo.**
+
+Lo que sí hace es de otra clase, y es la razón de mantenerlo: **deja un rastro que se puede auditar
+después.** El barrido que encontró el ángulo muerto de arriba no lo encontró leyendo prosa — lo
+encontró **mirando marcadores**. Un campo explícito y equivocado es un objeto contra el que chocar;
+una intuición implícita no lo es.
+
 **Y hay un número al que esto obliga:** si el otro puede mirar tu árbol, tus cifras dejan de ser
 comprobables por otra razón — **el árbol se mueve**. Una medida sobre un repo sin decir sobre qué
 bytes no la reproduce nadie, ni él ni tú mañana. Un mismo fichero dio 803, 862 y 763 en tres momentos
