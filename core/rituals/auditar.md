@@ -495,6 +495,18 @@ abres; por **regla** los encuentras donde estén. Toma las reglas que el proyect
 pregunta dónde vive cada una — las reglas ya están enumeradas, que es lo caro. Esta clase, la del hogar
 demasiado estrecho, **solo la encuentra el barrido por regla**.
 
+**Y una lista no hace falta para CONSTRUIR un detector: hace falta para PROBAR que mide algo.** Es la
+distinción que ordena todo lo anterior, y viene de un corresponsal que la aprendió construyendo —
+después de haber escrito la versión equivocada y haberla dado por buena. Un detector se escribe
+mirando lo que se quiere cazar; **lo que no se puede sin una lista es demostrar que no es decoración**,
+porque el control positivo necesita un oráculo y el oráculo es la lista.
+
+> **La enumeración no es la entrada del diseño: es el oráculo.**
+
+La consecuencia es incómoda y conviene tenerla delante: **un proyecto sin listas puede construir
+detectores todo lo que quiera; lo que no puede es saber si miden algo.** Y ahí es donde un cero deja de
+significar *"limpio"* para significar *"no lo sé"*.
+
 **Y hay un corpus donde todo detector se comporta peor: los documentos que EXPLICAN lo que detecta.**
 Una regla escrita trae su caso, su ejemplo y la cita del defecto — así que el fichero que enseña a
 cazar contadores está lleno de contadores, y el que enseña a citar con raíz está lleno de citas sin

@@ -34,14 +34,30 @@ olvida**, y este proyecto lo lleva documentado con casos propios: reglas incumpl
 que las escribía, un barrido ordenado por un ritual y no corrido en nueve sesiones, controles positivos
 que validaban el filtro y no la fuente.
 
-Contado sobre este kit: **52 pasos numerados y reglas duras que se exigen, contra 3 cosas que son
-imposibles de saltarse.** Y las tres son **prestadas** — ninguna la impone el marco:
+Contado sobre este kit: **52 pasos numerados y reglas duras que se exigen**, contra un puñado de cosas
+que no dependen de que nadie se acuerde. Todas son **prestadas** — ninguna la impone el marco:
 
-| Garantía | Quién la impone | Qué hace imposible |
+| Garantía | Quién la impone | Qué consigue |
 | --- | --- | --- |
-| Las **puertas** y sus `@`-imports | el harness, al abrir | Que el agente empiece sin el set de arranque en contexto |
-| **`.gitignore`** | `git`, en cada `add` | Que lo que no debe viajar entre en un commit |
-| El **sello** contra el servidor | el servidor de `git` | Afirmar un commit que no existe |
+| Las **puertas** y sus `@`-imports | el harness, al abrir | Que el agente **no pueda** empezar sin el set de arranque en contexto |
+| **`.gitignore`** | `git`, en cada `add` | Que lo que no debe viajar no entre por descuido (`add -f` lo salta: es contra el olvido, no contra la decisión) |
+| El **linter** de markdown | el editor | Que un error de forma se vea **al escribirlo**. Caza forma, nunca veracidad |
+| El **sello** contra el servidor | el servidor de `git` | Que exista un objeto **contra el que el otro pueda contradecirte** |
+
+> **La lista es un suelo, no un techo, y la primera versión de esta sección lo confundió.** Decía
+> *"tres"* y dejaba fuera el linter por ser *"del entorno"* — cuando el harness también lo es y sí se
+> contaba. Corregido con dato: en este proyecto el linter ha cazado errores reales **en once sesiones**,
+> y un acta lo dice con todas las letras (*"lo vio el linter, no yo"*). Lo destapó un corresponsal, y
+> su formulación es la que hay que retener: **el medio pone el techo; casi todo proyecto vive por
+> debajo del suyo**, por decisiones que nadie vuelve a mirar. La pregunta útil no es *"¿cuántas
+> garantías tengo?"* sino **"¿cuántos lectores automáticos estoy dispuesto a adoptar?"**.
+
+**Y la del sello dice menos de lo que parece, que es la corrección más fina de las dos.** `git
+ls-remote` confirma que el identificador **resuelve**, no que el commit haga lo que la carta afirma. La
+existencia la garantiza el servidor; **el contenido lo garantiza que alguien vaya a mirar**. Así que
+esa fila no describe una garantía de herramienta sino **una condición para que exista otra**: la del
+corresponsal que comprueba. Es la única de la tabla que no se puede prestar de ningún programa, y por
+eso las dos veces que se comprobó de verdad, fue la otra parte quien lo hizo.
 
 De ahí la regla que conviene tener delante al diseñar cualquier salvaguarda:
 
@@ -51,7 +67,8 @@ De ahí la regla que conviene tener delante al diseñar cualquier salvaguarda:
 Tiene tres consecuencias prácticas, y las tres ya están en el marco:
 
 - **Por eso el saludo de arranque es el único observable que distingue un marco activo de uno
-  apagado.** Es lo único que puede fallar **ruidosamente**, porque depende de la única garantía real.
+  apagado.** Descansa sobre la garantía **más fuerte** de la tabla —el harness carga la puerta quiera
+  el agente o no—, y por eso puede fallar **ruidosamente**: si no saluda, algo de esa cadena se rompió.
 - **Por eso un dato que quieras comprobable se escribe donde algo pueda leerlo**: el estado de una
   carta vive en una **columna** de una tabla, no en un párrafo, para que un comando pueda contradecirlo.
 - **Y por eso el control positivo se imprime AL LADO del resultado**, no en otra parte: mover el dato
