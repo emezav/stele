@@ -82,6 +82,20 @@
 
 ## Rutas
 
+> **`loader` es una LISTA, y un valor único sigue siendo válido para siempre** (mismo precedente que
+> `RICO` y `módulos = software`). Cada entrada es una **puerta**: un archivo en la raíz con el nombre
+> exacto que auto-carga un harness — `CLAUDE.md` en Claude Code, `AGENTS.md` en Codex y la mayoría.
+> Todas llevan el mismo bloque y apuntan al mismo `entry`: **una puerta no contiene conocimiento, solo
+> qué leer y en qué orden.**
+>
+> **Por qué varias y no una.** Con una sola, el agente que instala tiene que **adivinar quién abrirá
+> el proyecto después**, y un proyecto usado por dos agentes no se puede expresar. Falló en campo: un
+> agente instaló el marco perfecto con el nombre equivocado y **al reabrir la carpeta no arrancó**, sin
+> error y sin aviso. Con varias, **equivocarse deja de ser fatal**: otra puerta sigue abierta.
+>
+> **El kit conoce dos; añade la tuya si tu harness lee otro nombre** — esa tabla es conocimiento del
+> mundo exterior que el kit no puede verificar, y tú sí sabes cuál es el tuyo.
+>
 > Tres rutas independientes, todas relativas a la raíz del proyecto y sin `/` final. `kit` es
 > maquinaria **reemplazable** (se sustituye entera con el ritual ACTUALIZAR); `base` son tus docs,
 > versionados, y nunca se tocan al actualizar. **Invariante duro: `base` nunca puede quedar dentro de
@@ -91,13 +105,13 @@
 | --- | --- | --- |
 | kit | .stele | El marco vendorizado (`SKILL.md`, `guide.md`, `core/`, `modules/`). |
 | base | . | Raíz de los docs instanciados. `.` = raíz del proyecto. |
-| loader | CLAUDE.md | Loader de auto-arranque, siempre en la raíz. GENERADO. |
+| loader | CLAUDE.md, AGENTS.md | **Puertas** de auto-arranque, siempre en la raíz. GENERADO. Lista separada por comas. |
 
 ## Nombres (rol → archivo)
 
 | Rol | Archivo | Origen |
 | --- | --- | --- |
-| entry | AGENTS.md | núcleo |
+| entry | guia-agente.md | núcleo |
 | gotchas | memory.md | núcleo |
 | charter | design.md | núcleo |
 | manual | manual.md | núcleo |
@@ -144,7 +158,7 @@
 > parte. Al activar el módulo después, `config` las enciende con él.
 > La columna es informativa para el parseo —col1 = clave, col2 = valor— y **normativa para quien
 > escribe el manifiesto**.
-
+>
 > `manual_doc` enciende el `manual`, el único doc dirigido a **la persona** y no al agente. Apágalo si
 > quien usa el proyecto es quien lo configuró y conoce el marco; enciéndelo en cuanto lo use alguien
 > más — o el propio autor dentro de un año. **Está en `on` por defecto a propósito:** un doc que hay

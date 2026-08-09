@@ -51,7 +51,6 @@ herramientas**. `ripgrep` y muchos buscadores lo saltan por defecto; `grep -r` d
 un mismo comando de barrido da resultados distintos según qué tenga instalado quien lo corre — y por
 eso **todo comando que publiques debe acotar dónde busca** en vez de fiarse del default.
 
-
 ## Precedencia frente a los defaults del harness
 
 **Dónde vive lo que produces en este proyecto lo decide el marco, no la herramienta que te ejecuta.**
@@ -83,7 +82,7 @@ quién manda, y las dos veces lo descubrió una persona leyendo, no el mecanismo
 ## Rutas y tokens (los invariantes; la exposición está aparte)
 
 Tres rutas independientes, todas **relativas a la raíz del proyecto** y **sin `/` final**:
-`kit` (el marco, reemplazable) · `base` (tus documentos, intocables) · `loader` (el archivo de
+`kit` (el marco, reemplazable) · `base` (tus documentos, intocables) · `loader` (**las puertas** de
 auto-arranque, siempre en la raíz). **Invariante duro: `base` nunca puede quedar dentro de `kit`.**
 Los valores vivos están en el manifiesto `stele.config.md`, no aquí.
 
@@ -153,7 +152,7 @@ dejen de repetirse. Si te descubres explicando lo mismo dos veces, la primera ve
 | `handover` en `EN_PROGRESO` | quedó trabajo a medias, con su alcance anotado |
 | checkpoint | dejar guardado dónde vas, antes de algo que se puede interrumpir |
 | bootstrap | preparar el proyecto la primera vez |
-| `kit` / `base` / `loader` | el marco / tus documentos / el archivo que arranca al agente |
+| `kit` / `base` / `loader` | el marco / tus documentos / **las puertas** que arrancan al agente |
 | layout (`agrupado`, `docs`…) | dónde va cada cosa: todo el marco junto, o los docs en `docs/`… |
 | manifiesto | el archivo de configuración |
 | rol / token / derivado | (no se nombran: se dice el archivo, o "se regenera solo") |
@@ -206,7 +205,6 @@ solo en el checkpoint. Así que la comparación limpia no es *"doc de arranque c
 **"doc de arranque solo" contra "doc de arranque más checkpoint"**, y lo que muestra es que
 **añadirlo funciona**, no que el doc de arranque sobre. Escríbela en los dos sitios si hace falta: el
 de arranque te informa, el del salto te detiene.
-
 
 ## Los rituales, y dónde vive cada uno
 

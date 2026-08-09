@@ -133,7 +133,7 @@ sección Rutas del manifiesto:
 | --- | --- | --- | --- |
 | `kit` | `.stele` | El marco vendorizado: `SKILL.md`, `guide.md`, `core/`, `modules/`. | **Reemplazable**: se sustituye entero con el ritual ACTUALIZAR. |
 | `base` | `.` | Los docs instanciados (los roles) y el `history_dir`. | **Tuyo**: crece cada sesión, se versiona, no se regenera jamás. |
-| `loader` | `CLAUDE.md` | El auto-arranque en la raíz. | **Derivado por bloque**: se regenera el bloque del marco, no el archivo. |
+| `loader` | `CLAUDE.md, AGENTS.md` | Las **puertas** de auto-arranque en la raíz. Es una **lista**. | **Derivado por bloque**: se regenera el bloque del marco, no el archivo. |
 
 Por qué son tres parámetros y no uno: **`kit` y `base` tienen ciclos de vida opuestos**. Uno se tira
 y se reemplaza entero al actualizar; el otro es el trabajo acumulado del proyecto y no puede perderse
@@ -150,11 +150,17 @@ sobre el código, y no se confunden con él.
 
 `loader` es tercero porque el nombre del archivo de auto-arranque depende del **agente**, no del
 proyecto: `CLAUDE.md` para Claude Code, `AGENTS.md` para otros, `.github/copilot-instructions.md`
-para Copilot. Aislarlo mantiene agnóstico casi todo lo demás — con una excepción que conviene saber:
-si el `entry` conserva su nombre por defecto `AGENTS.md`, **también** hay agentes que lo auto-cargan
-desde la raíz. Entonces mover `base` fuera de la raíz les quita el `entry` sin romper nada visible,
-porque el loader sigue funcionando. Es un fallo silencioso; ver el aviso de `core/reference/rutas-y-tokens.md` → "Layouts con
-nombre".
+para Copilot. Aislarlo mantiene agnóstico todo lo demás.
+
+**Y es una lista, no un valor, porque un proyecto puede abrirse con más de un agente.** Con un solo
+nombre, quien instala tiene que **adivinar quién abrirá el proyecto después** — y un proyecto usado
+por dos agentes no se puede ni expresar. Cada puerta es un **adaptador**: dice *qué leer y en qué
+orden*, nunca *cómo trabajar*, que vive una sola vez en el `entry`.
+
+**El acoplamiento que había que evitar no era el del loader: era que un doc del proyecto compitiera
+por un nombre que el harness reclama.** El `entry` se llamaba `AGENTS.md`, así que con `base != .`
+esos agentes dejaban de leerlo, en silencio. Se disolvió separando las dos cosas: el `entry` es
+`guia-agente.md` y `AGENTS.md` es una puerta, que vive en la raíz pase lo que pase con `base`.
 
 **El loader es derivado en parte, no desechable.** Lo que genera el marco es el **bloque** entre
 `STELE:INICIO` y `STELE:FIN`; el **archivo** puede ser compartido, porque muchos equipos ya tenían un
@@ -169,11 +175,11 @@ distinto el primer día. Regenerar entero es la excepción y hay que declararla 
 comprobarla con un diff. El default va del lado de lo irreversible: lo del kit se recupera del kit; lo
 que el proyecto escribió en su bloque no está en ningún otro sitio.
 
-**Dos anclas fijas en la raíz** que no siguen a `base`: el `loader` y el manifiesto
-`stele.config.md`.
+**Anclas fijas en la raíz** que no siguen a `base`: **las puertas** y el manifiesto
+`stele.config.md`. El manifiesto es uno; las puertas, tantas como harness haya que atender.
 
-El **loader** porque el agente lo carga por nombre al abrir la sesión: si se moviera, no habría quién
-le dijera dónde está. El **manifiesto** porque no es un doc del proyecto, es **el resolvedor**:
+Las **puertas** porque el agente las carga **por nombre** al abrir la sesión: si se movieran, no
+habría quién le dijera dónde están. El **manifiesto** porque no es un doc del proyecto, es **el resolvedor**:
 `base` declara dónde viven los docs de los *roles*, y el manifiesto no es un rol — es lo que traduce
 roles a nombres y rutas. Guardarlo dentro de lo que él mismo resuelve es un error de categoría, la
 misma razón por la que `package.json` no vive en `src/`. Y es donde lo busca un humano, que también
@@ -266,7 +272,7 @@ gestor de esa herramienta.
 El error más común al adoptar el marco es solapar documentos. Fronteras de los roles del núcleo
 (nombres default entre paréntesis; la config puede cambiarlos):
 
-- **`entry` (AGENTS.md) — cómo trabajar.** Proceso, estructura, convenciones operativas, checklists
+- **`entry` (guia-agente.md) — cómo trabajar.** Proceso, estructura, convenciones operativas, checklists
   (como punteros). Entrada única. Incluye el *mapa de documentación* (generado). NO lleva el detalle
   de otros hogares: apunta.
 - **`charter` (design.md) — por qué el proyecto es así (a gran escala).** Norte, principios,

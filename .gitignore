@@ -26,3 +26,4 @@ tmp/
 # maquina y de esta persona, no del marco: si viajara, cada adoptante
 # heredaria ajustes que no eligio. Misma razon que todo lo de arriba.
 .claude/
+/AGENTS.md

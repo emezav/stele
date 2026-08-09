@@ -53,9 +53,15 @@ principal**. La dirección peligrosa se llevó las reglas y la común se quedó 
   instanciados (`entry`, `protocol`, `loader`). No toca ningún doc de contenido.
 - Mover `base`: mover los docs de rol (y `history_dir` completo, con su historial) y regenerar el
   loader, cuyos `@import` son relativos a la raíz. El historial se mueve entero, no se reescribe.
-- Cambiar `loader`: insertar el bloque en el archivo nuevo (creándolo o modificándolo, invariante 6)
-  y **retirar el bloque del viejo** — no borrar el archivo viejo a ciegas: puede tener contenido del
+- Cambiar `loader` es **añadir o quitar puertas**, porque el valor es una lista.
+  **Añadir** una: insertar el bloque en ese archivo —creándolo o modificándolo, invariante 6— con el
+  mismo contenido que las demás. **Varias puertas activas NO compiten: es el diseño.** Todas llevan la
+  misma lista de lectura y apuntan al mismo `entry`; lo que estaría mal es que **dijeran cosas
+  distintas**, y eso lo evita portarles el mismo delta a todas.
+  **Quitar** una: retirar su bloque, **nunca borrar el archivo a ciegas** — puede tener contenido del
   usuario. Si al quitar el bloque no queda nada más, entonces sí se borra; si queda algo, se conserva
-  y se avisa. Dos loaders **activos** compitiendo es peor que ninguno, pero eso lo resuelve retirar
-  el bloque, no destruir el archivo. Verificar antes que el nombre nuevo no colisiona con un rol bajo
-  `base`.
+  y se avisa.
+  Verificar antes que ningún nombre nuevo colisiona con un rol bajo `base`.
+  **Y avisar de lo que quitar implica:** cerrar una puerta deja mudo al agente que la lee. Si el
+  usuario trabaja con dos y se cierra una, lo notará la próxima vez que abra con ese — y lo notará
+  como un saludo genérico, no como un error.

@@ -45,6 +45,26 @@ Leer en este orden antes de responder cualquier cosa:
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
 codebase), `{{index}}`/`{{session}}` (historial).
 
+## El saludo de arranque, y por qué importa que se vea
+
+**En tu PRIMERA respuesta de la sesión, empieza con 1-3 líneas de orientación** que confirmen el
+arranque: última sesión (N + título), si quedó trabajo a medias (`{{handover}}`), y próximo paso
+propuesto — **sea cual sea el primer mensaje del usuario**. No puedes emitir nada antes de que la
+persona escriba; por eso el saludo va **al frente** de tu primera respuesta.
+*(Se omite si `session_greeting = off`.)*
+
+**Es la única señal de que el marco se activó, y por eso vale más que una cortesía.** El archivo de
+auto-arranque de la raíz solo funciona si su nombre es el que tu agente carga solo; si no lo es, todo
+esto queda escrito y **nadie lo lee**, sin error y sin aviso. El saludo es lo que distingue ese caso
+de una sesión sana: **si falta, el marco no arrancó** — y quien lo note primero es la persona, no tú.
+
+## Cómo se le habla al usuario
+
+- **En llano, y nombrando el archivo entre paréntesis.** Vale para el saludo, los informes y los
+  resúmenes; no para lo que escribes en los docs. Hablar claro **nunca** es suavizar el hecho.
+- **En el idioma del proyecto y con su ortografía natural** (en español, con acentos). Una regla de
+  "solo ASCII" gobierna **lo que se escribe a un archivo**, no la prosa que lee la persona.
+
 ## Regla dura: {{checkpoint_trigger}}
 
 `{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance y verificación prevista.

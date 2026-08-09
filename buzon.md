@@ -115,3 +115,48 @@ nadie lo había notado **porque desde dentro no se ve como una falta**.
 **Por qué te lo pedimos a ti.** Este repo genera su propio manifiesto y siempre supo qué era, así que
 mirarse a sí mismo no es evidencia de nada. De la respuesta depende si `pendiente` basta o si el marco
 tiene que preguntar antes y con más insistencia.
+
+## Carta 5 — ¿Qué archivo lee tu agente al abrir?
+
+**De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-09
+
+**La pregunta, y son diez segundos:**
+
+> **¿Cómo se llama el archivo que tu agente carga solo al abrir el proyecto?** (`CLAUDE.md`,
+> `AGENTS.md`, otro.) Y una segunda, que es la que da la prueba: **al reabrir la carpeta, ¿te saludó
+> con la última sesión y el próximo paso, sin que se lo pidieras?**
+
+**Por qué preguntamos.** El marco escribe un archivo de auto-arranque en la raíz, y **su nombre no lo
+elige el marco: lo impone el harness que abre la sesión**. El kit lleva una tabla con los que conoce,
+y esa tabla es conocimiento del mundo exterior que **no podemos verificar, que envejece y que siempre
+estará incompleta**. Cada agente nuevo que aparece la deja corta.
+
+Delegarlo en el agente que instala tampoco basta, y esto lo sabemos por campo, no por conjetura: en
+cuatro instalaciones observadas con el mismo agente, **acertó su propio nombre dos veces de tres**. La
+vez que falló, el marco quedó **instalado perfecto y apagado** — documentación impecable, y al reabrir
+la carpeta el agente saludó en genérico, sin sesión, sin estado, y se ofreció a rehacer trabajo que ya
+estaba terminado.
+
+**Y por eso preguntamos por el nombre y no por el fallo.** Si preguntáramos *"¿te falló el arranque?"*
+no contestaría nadie: quien acertó no lo notó, y **quien falló tampoco**, porque no hay error, no
+falta ningún archivo y nada se rompe. Es un fallo mudo. El nombre, en cambio, lo puede contestar
+cualquiera sin diagnosticar nada.
+
+**La segunda pregunta es la que convierte tu respuesta en dato.** Un nombre dicho es algo que no
+podemos comprobar desde aquí, y una entrada equivocada sería **peor que ninguna**: haría que el kit
+escribiera con confianza una puerta que nadie lee. Con el saludo al lado, la respuesta trae su propia
+prueba — y queda **falsable**: si alguien dice *"mi agente lee X"* y una corrida con ese agente no
+saluda, la entrada se cae. Hasta que una corrida lo confirme, entra **marcada como testimonio**.
+
+**Dónde acaba tu respuesta.** No aquí: este buzón se poda. Va a la tabla del ritual BOOTSTRAP, que es
+lo que se consulta al instalar y no desaparece. Misma regla que el resto del marco: *un aviso cuya
+omisión rompe algo no vive en un archivo que se borra.*
+
+**Y lo que no te vamos a ocultar: a ti no te sirve.** El buzón baja con ACTUALIZAR, o sea después de
+instalar — tu bootstrap ya ocurrió, bien o mal. Lo que tu respuesta ensancha es el piso **del
+siguiente**.
+
+Que es, si lo piensas, exactamente para lo que existe este marco. Una *estela* es una piedra
+**inscrita**: alguien se detuvo a dejar dicho lo que sabía para quien viniera después. Entre sesiones
+lo hacemos con el historial. **Entre proyectos solo se puede hacer así** — a quien le falla, puede
+decidir dejar la huella para que al siguiente no le pase.

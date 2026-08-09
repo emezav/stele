@@ -7,7 +7,7 @@
 | --- | --- | --- | --- |
 | `kit` | `.stele` | El marco vendorizado. Maquinaria **reemplazable**. | Ritual ACTUALIZAR |
 | `base` | `.` | Los docs instanciados (roles). Contenido **del proyecto**. | El agente, cada sesión |
-| `loader` | según el agente | Auto-arranque, siempre en la raíz. GENERADO **por bloque**. **No hay default universal:** se llama como el archivo que auto-carga el harness que abre la sesión — `CLAUDE.md` en Claude Code, `AGENTS.md` en Codex y la mayoría. Elegirlo mal deja el marco instalado y **mudo**. | `bootstrap`/`config` |
+| `loader` | `CLAUDE.md, AGENTS.md` | **Lista de PUERTAS**, siempre en la raíz. GENERADO **por bloque**. Cada una lleva el nombre exacto que auto-carga un harness. Un valor único sigue siendo válido para siempre. | `bootstrap`/`config` |
 
 **Invariantes** (validar en `bootstrap` y en `config`, antes de escribir):
 
@@ -20,9 +20,13 @@
 3. `kit` dentro de `base` (p. ej. `base = stele`, `kit = stele/.stele`) es legal pero **se avisa**:
    los `grep` del ritual de apertura empiezan a encontrar plantillas del marco como si fueran docs
    del proyecto.
-4. El `loader` vive en la raíz y no puede colisionar con el nombre de un rol resuelto bajo `base`
-   (con `base = .` y `loader = AGENTS.md` chocaría con `entry`). Colisión = abortar.
-5. `stele.config.md` y el `loader` son las **dos anclas fijas de la raíz**: no siguen a `base`.
+4. Ninguna **puerta** puede colisionar con el nombre de un rol resuelto bajo `base`. Colisión =
+   abortar. **Este invariante se quedó sin su caso habitual:** el `entry` se llamaba `AGENTS.md` y
+   chocaba con la puerta del mismo nombre siempre que `base = .`. Ahora el `entry` es
+   `guia-agente.md` **por default**, así que el choque solo aparece si alguien lo renombra a mano
+   hacia el nombre de una puerta — y entonces **gana la puerta**, cuyo nombre lo impone algo de fuera.
+5. `stele.config.md` y **las puertas** son las anclas fijas de la raíz: no siguen a `base`. El
+   manifiesto es una; las puertas, tantas como harness haya que atender.
 6. **Si el archivo del `loader` ya existe, se MODIFICA — nunca se crea de cero.** Su contenido es del
    usuario: se conserva íntegro y el bloque del marco se **inserta** entre las marcas
    `STELE:INICIO` / `STELE:FIN`. Solo ese bloque se reescribe después. Sobrescribir el archivo entero
@@ -64,11 +68,12 @@ dentro del kit creyendo que son tus docs hace que el cambio desaparezca en la pr
 sin error y sin aviso**. Un nombre distinto elimina la confusión de raíz, sin depender de que nadie
 entienda la convención del punto.
 
-**Aviso antes de elegir `agrupado` o `docs`:** si el `entry` se llama `AGENTS.md`, hay agentes
-(Codex y otros) que lo **auto-cargan desde la raíz** igual que Claude Code carga `CLAUDE.md`. Sacarlo
-de la raíz con `base != .` no rompe nada visible —el loader sigue funcionando— pero esos agentes
-dejan de leer el `entry` por su cuenta. Falla en silencio. Si trabajas con alguno de ellos, o
-`base = .`, o renombra el `entry` a algo que no sea `AGENTS.md`.
+**Este aviso se resolvió solo, y se deja escrito porque explica el diseño.** Decía que sacar el
+`entry` de la raíz con `base != .` hacía que los agentes que auto-cargan `AGENTS.md` dejaran de
+leerlo, en silencio. Ya no aplica: el `entry` se llama `guia-agente.md` y `AGENTS.md` es una
+**puerta** que vive en la raíz pase lo que pase con `base`. El acoplamiento que había que evitar era
+tener **un doc del proyecto compitiendo por un nombre que el harness reclama**; separarlos lo
+disuelve.
 
 Se usan de tres maneras:
 
@@ -102,7 +107,7 @@ quedó cada archivo. De ahí dos reglas de composición:
   colapsa igual que en `{{kit}}`). En el manifiesto el valor configurado es solo el nombre de la
   carpeta (`history/`); es el token el que le antepone `base` al resolverse.
 - **Los tokens de doc (`{{entry}}`, `{{memory}}`, `{{protocol}}`, `{{state}}`…) también llevan `base`
-  delante.** `{{entry}}` con `base = bitacora` es `bitacora/AGENTS.md`, no `AGENTS.md`. En el
+  delante.** `{{entry}}` con `base = bitacora` es `bitacora/guia-agente.md`, no `guia-agente.md`. En el
   manifiesto el valor guardado es solo el nombre del archivo, igual que en los contenedores: **valor
   configurado != token resuelto**. Esta línea existe porque faltaba, y la falta salió cara — la lista
   de arriba solo nombraba los contenedores, y un agente concluyó, con toda la lógica del mundo, que

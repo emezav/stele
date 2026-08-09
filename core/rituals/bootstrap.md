@@ -11,30 +11,31 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    no vale uno anidado en un subdirectorio, que deja la raíz sin versionar —, si no `ninguna`
    (avisando de la consecuencia).
 
-   **El `loader` se llama como el archivo que TÚ auto-cargas. No hay default universal.** El nombre
-   no lo elige el marco: lo impone el harness que abre la sesión, y **el agente que instala es
-   normalmente el mismo que va a arrancar**, así que la respuesta la tienes tú y no hace falta
-   preguntarla:
+   **`loader` no es un archivo: es una LISTA DE PUERTAS**, y se escriben **todas**. Cada puerta lleva
+   el nombre exacto que auto-carga un harness, y todas apuntan al mismo `entry`.
 
-   | Si eres… | `loader` |
+   | Puerta | La auto-carga |
    | --- | --- |
-   | Claude Code | `CLAUDE.md` |
-   | Codex y la mayoría de los demás | `AGENTS.md` |
-   | otro harness | el nombre exacto que ese harness lee de la raíz |
+   | `CLAUDE.md` | Claude Code |
+   | `AGENTS.md` | Codex y la mayoría de los demás |
+   | **la tuya** | **añádela si tu harness lee otro nombre** |
 
-   `CLAUDE.md` aparece como ejemplo en las plantillas **porque este marco nació ahí**, no porque sea
-   correcto en general. Copiarlo sin mirar deja el marco instalado y **mudo**.
+   **Escribe las dos que el kit conoce Y la tuya si es distinta.** Las dos mitades hacen falta y
+   ninguna basta sola:
 
-   **Caso de campo, y es el más caro de todos los observados:** un agente que no lee `CLAUDE.md`
-   instaló el marco entero correctamente —manifiesto, docs, bloque de arranque, todo bien— y escribió
-   el loader con ese nombre. Al reabrir la carpeta **no arrancó**: saludó en genérico, sin sesión, sin
-   estado y sin próximo paso, y se ofreció a rehacer trabajo que ya estaba terminado. **Nada falla, no
-   hay error, y el proyecto queda con la documentación perfecta y el mecanismo apagado.**
+   - *Solo la tabla* deja al kit con un registro del mundo exterior que **no puede verificar y que
+     envejece**: cada harness nuevo la deja corta.
+   - *Solo tu introspección* **reproduce el fallo**, y esto es campo y no conjetura: en cuatro
+     instalaciones observadas con el mismo agente, **acertó su propio nombre dos veces de tres**.
 
-   **Colisión con `entry`:** si `base = .`, `loader = AGENTS.md` choca con el `entry` por defecto, que
-   también es `AGENTS.md`. **Gana el `loader`** —su nombre lo impone algo de fuera y el del `entry`
-   no— y se renombra el `entry` (`guia-agente.md`, `mapa.md`, lo que encaje en el idioma del
-   proyecto). Con `base != .` no hay choque: son rutas distintas.
+   **Sumarlas es lo que hace que equivocarse deje de ser fatal:** si yerras con la tuya, otra puerta
+   sigue abierta.
+
+   **Caso de campo, el más caro de los observados:** un agente que no lee `CLAUDE.md` instaló el marco
+   entero correctamente —manifiesto, docs, bloque de arranque, todo bien— y escribió **una sola**
+   puerta, con ese nombre. Al reabrir la carpeta **no arrancó**: saludó en genérico, sin sesión, sin
+   estado y sin próximo paso, y se ofreció a rehacer trabajo ya terminado. **Nada falla, no hay error,
+   y el proyecto queda con la documentación perfecta y el mecanismo apagado.**
 
    **El módulo de producto NO se auto-detecta: se RESUELVE con criterio y se DECLARA en el eco**, y
    son tres respuestas. El criterio es
@@ -90,7 +91,7 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    layout       -> agrupado   (dónde va cada cosa; o "personalizado")
    kit          -> .stele     (el marco; se reemplaza al actualizar)
    base         -> bitacora   (tus documentos; no se tocan nunca)
-   loader       -> AGENTS.md  (el que TÚ auto-cargas; CLAUDE.md si eres Claude Code)
+   puertas      -> CLAUDE.md, AGENTS.md  (una por harness; añade la tuya si lee otro nombre)
    persistencia -> git        (cómo se guarda el trabajo al cerrar)
    módulos      -> pendiente  (¿hay producto con estructura? sí / no / todavía no)
    ```
@@ -116,11 +117,13 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
 7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío. **`audit` no se
    instancia**: lo crea la primera auditoría, y su ausencia es el dato (nunca se auditó).
-8. Generar derivados: loader de auto-arranque en la raíz, con el nombre de la ruta `loader`
-   (plantilla `autostart.md`) + mapa-doc en `entry`. **Si el loader ya existe** (`CLAUDE.md`,
-   `AGENTS.md`… escritos a mano antes de adoptar el marco), **léelo primero e inserta** el bloque
+8. Generar derivados: **una puerta por cada nombre de la ruta `loader`**, en la raíz (plantilla
+   `autostart.md`) + mapa-doc en `entry`. **Si alguna puerta ya existe** (`CLAUDE.md`, `AGENTS.md`…
+   escritos a mano antes de adoptar el marco), **léela primero e inserta** el bloque
    `STELE:INICIO`/`STELE:FIN` conservando todo lo demás — invariante 6. Igual que en adopción con
    cualquier otro doc: nunca reemplazar contenido que no escribiste.
+   **Y con varias puertas ese invariante tiene varias superficies donde fallar: compruébalo EN CADA
+   UNA.** Es la regla que ya destruyó un `CLAUDE.md` real cuando solo había una.
    **Emite la marca pelada, siempre.** El bloque queda protegido por default y tú no tienes que
    decidir nada: no escribas `LIMPIO` — esa marca la escribe quien haya comprobado con un diff que el
    bloque no dice nada que la plantilla no diga, y aquí acabas de instanciarlo, no de compararlo.
@@ -131,4 +134,16 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    no rompe nada. El comentario `PLANTILLA` de la cabecera sí sobra siempre: habla del kit, no del
    proyecto.
 9. Validar (ver ritual CONFIG, fase 5).
-10. Confirmar + activar: reabrir el editor → el loader se auto-carga.
+10. **Confirmar + COMPROBAR.** Dile al usuario que **reabra el editor y te salude**, y qué tiene que
+    ver:
+
+    > *"Reabre el editor y escríbeme cualquier cosa. Debería contestarte con la última sesión y el
+    > próximo paso, sin que se lo pidas. **Si te contesta en genérico, ninguna puerta tiene el nombre
+    > que lee tu agente**: dímelo y la añado."*
+
+    **Este paso decía antes "reabrir el editor → el loader se auto-carga", y eso AFIRMA un resultado
+    que nadie mira.** Era la única frase del ritual sobre algo que no se comprueba, y es exactamente
+    donde un fallo de campo pasó desapercibido: el marco quedó instalado perfecto y mudo, sin error.
+    **El saludo es el único observable que distingue un marco activo de uno apagado**, y quien lo ve
+    primero es la persona, no tú — tú ya tienes el contexto en esta sesión y no puedes notar su falta.
+    Por eso el síntoma va **dicho de antemano**: sin él, un saludo genérico se lee como cortesía.

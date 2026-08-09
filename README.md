@@ -47,7 +47,7 @@ haz esto sin pedir más instrucciones:
    tres rutas `kit`/`base`/`loader` con defaults sensatos (el módulo de producto **no se olfatea**: se
    resuelve por criterio — y *"todavía no"* es una respuesta válida — y se declara en el eco), **hace eco del layout
    resuelto antes de escribir**, escribe
-   `stele.config.md` en la raíz, instancia las plantillas y **genera** el loader de auto-arranque
+   `stele.config.md` en la raíz, instancia las plantillas y **genera** las puertas de auto-arranque
    (`CLAUDE.md`) + el mapa de documentación.
 3. **Confirma** al usuario con el saludo de arranque (1-3 líneas) y explícale que a partir de la
    próxima apertura del editor el marco se activa solo.
@@ -77,8 +77,8 @@ marco, no para montarlo.
 - **Config** (`stele.config.md`, en la raíz del proyecto destino) — **fuente única** que enlaza
   `rol → nombre`, activa módulos, fija toggles/presupuestos/wording/idioma, declara las **tres
   rutas** — `kit` (dónde vive el marco, default `.stele`), `base` (dónde viven tus docs, default
-  `.`) y `loader` (el auto-arranque; **se llama como el archivo que auto-carga tu agente** —
-  `CLAUDE.md` en Claude Code, `AGENTS.md` en Codex y la mayoría) — y la **persistencia** (`git` ·
+  `.`) y `loader` (**la lista de puertas** de auto-arranque — `CLAUDE.md` para Claude Code,
+  `AGENTS.md` para Codex y la mayoría, y la tuya si tu harness lee otra) — y la **persistencia** (`git` ·
   `ninguna` · `comando`: cómo se vuelve durable el trabajo al cerrar). De aquí se **generan** el
   auto-arranque y el mapa de documentación.
 
@@ -127,9 +127,11 @@ reconcilia tu instancia) — por eso **tus docs (`base`) nunca pueden vivir dent
 2. Pide al agente **"bootstrapea la stele"** (ritual BOOTSTRAP, al que enruta `.stele/SKILL.md`): detecta
    greenfield vs adopción, elige `idioma`/`módulos` y las tres rutas (con defaults), te muestra el
    layout resuelto, escribe `stele.config.md` en la raíz, instancia las plantillas bajo `base`, y
-   genera el loader de auto-arranque + el mapa-doc.
-3. El **loader** (ruta `loader`) es la activación automática, y **su nombre lo impone tu agente, no el
-   marco**: `CLAUDE.md` en Claude Code, `AGENTS.md` en Codex y la mayoría. El agente lo
+   genera las puertas de auto-arranque + el mapa-doc.
+3. Las **puertas** (ruta `loader`) son la activación automática, y **sus nombres los imponen los
+   agentes, no el marco**: `CLAUDE.md` para Claude Code, `AGENTS.md` para Codex y la mayoría. Se
+   escriben **todas**, para que el proyecto abra con cualquiera de ellos y equivocarse con una no deje
+   el marco mudo. El agente las
    carga al iniciar la sesión, hace `@`-import del set de arranque y saluda con 1-3 líneas (señal de
    que arrancó). Cámbialo si tu agente espera otro nombre (`AGENTS.md`, etc.).
 4. (Opcional, Claude Code) para que `/stele` recuerde los rituales bajo demanda, vendoriza el kit

@@ -26,7 +26,7 @@ un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas".
 
 | Rol | Nombre default | Ubicación | startup | order | Propósito |
 | --- | --- | --- | --- | --- | --- |
-| entry | AGENTS.md | base | obligatorio | 10 | Cómo trabajar: proceso, estructura, convenciones, arranque. Punto de entrada único. |
+| entry | guia-agente.md | base | obligatorio | 10 | Cómo trabajar: proceso, estructura, convenciones, arranque. Punto de entrada único. |
 | gotchas | memory.md | base | obligatorio | 20 | Trampas y convenciones no evidentes **al trabajar en el proyecto**: del entorno, de las herramientas, de publicar, de verificar. Hogar único; se **cura**. |
 | state | latest.md | history | obligatorio | 30 | Dónde estamos y el próximo paso. Se **sobrescribe**; acotado. |
 | handover | handover.md | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado ≠ `SIN_TRABAJO_ACTIVO`. |
@@ -57,7 +57,7 @@ Los que la conservan, y por qué:
 | --- | --- |
 | `README.md`, `LICENSE` | Convención universal y las plataformas de código |
 | `CLAUDE.md` (u otro `loader`) | La herramienta lo busca por ese nombre exacto |
-| `AGENTS.md` (el `entry`) | Varios agentes lo auto-cargan de la raíz (ver `{{kit}}/guide.md` → acoplamiento) |
+| `AGENTS.md`, `CLAUDE.md` (las **puertas**) | Cada harness auto-carga el suyo de la raíz, con ese nombre exacto |
 | `SKILL.md` | El layout `skill`: al vendorizar el kit en `.claude/skills/…`, Claude Code busca ese nombre |
 
 **`SKILL.md` es el que más fácil se cuela en un barrido de minúsculas**, porque no lo impone la
