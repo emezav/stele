@@ -27,6 +27,12 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
 ## Notas para retomar
 
 - ADAPTAR: lo que la siguiente sesión debe saber (gotchas del entorno, pasos pendientes, palancas).
+- **Aquí NO se copia un estado que vive en otro documento** — el de una carta, el de un proceso, el de
+  un pendiente con su propio hogar. Un `session` **no se reescribe nunca**, así que un estado escrito
+  aquí queda congelado en el instante de cerrar y a partir de ahí se lee como actual siendo un fósil.
+  Se nombra el hogar y se apunta: *"queda la carta N sin contestar — mira su fila"*, no *"la carta N
+  está sin contestar"*. Ver `{{kit}}/core/rituals/remitir.md` → las doce cabeceras: mismo defecto, otro
+  artefacto, y ahí se decidió que **una omisión en una plantilla no se defiende sola**.
 
 ## Esfuerzo equivalente (OPCIONAL)
 
