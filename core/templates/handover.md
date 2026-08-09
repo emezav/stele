@@ -36,6 +36,12 @@ Objetivo en una frase + decisiones ya tomadas que el siguiente agente debe respe
   detiene. (Ver `{{kit}}/SKILL.md` → la regla dura del checkpoint.)
 
 ## Estado intermedio
+- **Tampoco aquí se copia un estado que vive en otro documento.** Su hogar lo dice y este apunta:
+  *"hay una carta sin entregar — mírala en su índice"*, no *"la carta N está publicada"*. Un
+  `handover` se reescribe a cada checkpoint, así que la copia vive menos que en un `session` — pero
+  vive **justo el tramo en que alguien la lee para retomar**. Se decidió NO poner este aviso cuando la
+  regla entró en las otras dos plantillas, con la razón de que **no había caso**; lo hubo dos sesiones
+  después, en este mismo documento, y lo encontró la segunda pasada de una auditoría.
 - Qué quedó a medias (p. ej. "X hecho, Y pendiente -> inconsistente hasta Y").
 - Qué está sin persistir (sin commitear, si `persistencia = git`).
 
