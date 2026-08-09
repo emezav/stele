@@ -90,6 +90,14 @@ no entra — nunca puede acabar leyéndose como si viniera firmada.
    resuélvelo antes de seguir. Los dos estados **crean** la contradicción, pero no la miran solas: la
    primera vez que ocurrió la vio el usuario preguntando, y la segunda pasó desapercibida **en el
    mismo material que se estaba archivando**. Una señal que nadie comprueba no es una señal.
+
+   **Y esta lectura lleva control positivo, como cualquier otro detector.** Una fila que sabes
+   entregada tiene que leerse entregada; si no, la sonda no mide nada y su respuesta no vale. Va aquí
+   porque **es el sitio donde se olvidó**: este ritual describió durante siete sesiones **cómo** leer
+   el estado —de la columna, anclando al principio— **sin pedir el control**, y en esas siete sesiones
+   se corrió cada vez sin ponérselo, mientras se le ponía a todo lo demás. Lo preguntó el
+   corresponsal, no lo vio nadie de aquí. **Una comprobación que se describe pero no se exige acaba
+   siendo la única sin control**, precisamente porque parece demasiado simple para necesitarlo.
 1. **Clasificar** las afirmaciones del informe en las tres clases de arriba.
 2. **Verificar** las de la primera clase contra tu trabajo, una a una.
 3. **Separar diagnóstico de remedio** y volver a derivar el remedio. Decide su hogar con las fronteras

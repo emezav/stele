@@ -20,6 +20,14 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    | `AGENTS.md` | Codex y la mayoría de los demás |
    | **la tuya** | **añádela si tu harness lee otro nombre** |
 
+   **La tabla es necesaria y no suficiente, y el segundo eje lo aportó el campo.** El nombre lo impone
+   el harness, pero **la ubicación la puede cambiar el proyecto**: un adoptante sacó `AGENTS.md` de la
+   raíz a propósito, y su agente siguió funcionando porque la puerta que él lee lo importa desde ahí.
+   **Cualquier otro que auto-cargue `AGENTS.md` de la raíz allí no encuentra nada — y no lo encuentra
+   en silencio.** Así que hay dos preguntas y no una: *¿tiene la puerta el nombre que lee tu agente?* y
+   **¿sigue en el sitio donde ese agente la busca?** Un proyecto puede haberla movido por razones
+   buenas y entonces el nombre correcto apunta a un hueco.
+
    **Escribe las dos que el kit conoce Y la tuya si es distinta.** Las dos mitades hacen falta y
    ninguna basta sola:
 

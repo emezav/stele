@@ -33,6 +33,15 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   Se nombra el hogar y se apunta: *"queda la carta N sin contestar — mira su fila"*, no *"la carta N
   está sin contestar"*. Ver `{{kit}}/core/rituals/remitir.md` → las doce cabeceras: mismo defecto, otro
   artefacto, y ahí se decidió que **una omisión en una plantilla no se defiende sola**.
+- **Y el peor de todos, aparte porque no es uno más de la lista: el CONTADOR.** *"Séptima sesión
+  seguida sin desplegar"*, *"lleva once esperando"*. Un contador no solo caduca como cualquier estado:
+  **su falsedad CRECE con el tiempo**, y se sigue leyendo como urgencia vigente mucho después de que
+  el trabajo esté hecho. Es además **el que más se escribe**, porque al cerrar es el dato más expresivo
+  que uno tiene a mano — y **un contador dentro de un registro inmutable es un contador que no se
+  actualizará nunca**. Aporte de campo: un proyecto miró sus tres últimas actas, encontró tres frases
+  de estado con tres desenlaces distintos, y la que **falsa al día siguiente** era justo el contador.
+  Si el dato importa, va donde se pueda podar; aquí va la fecha y el hecho: *"al cerrar esta sesión
+  llevaba siete sin desplegar"*, que no caduca porque **dice cuándo se contó**.
 
 ## Esfuerzo equivalente (OPCIONAL)
 

@@ -522,6 +522,24 @@ siete aciertos del segundo grupo eran citas del propio defecto** y los usos nuev
 enseñan** — su acta, su carta, la entrada del ritual. Si no puedes excluirlos, el número no mide la
 regla: mide cuánto has escrito sobre ella.
 
+**Y la asimetría no es del error: es del ACTO que el error autoriza.** Aporte de campo, con caso y
+contraejemplo del mismo proyecto y el mismo día. Un falso positivo cuya salida desemboca en **escribir
+o arreglar un documento** corrompe algo correcto, y si el documento ya salió, la corrupción es
+irreversible por diseño. Uno cuya salida desemboca en **avisar a una persona** cuesta credibilidad y
+**se desmiente solo**: reportaron un servicio caído que estaba vivo, y el usuario lo desmintió en dos
+minutos abriéndolo — no tocó ni un documento.
+
+| El falso positivo desemboca en… | Qué cuesta |
+| --- | --- |
+| **escribir o arreglar** un documento | corrompe algo correcto; irreversible si ya se entregó |
+| **avisar** a una persona | credibilidad, y hay revisor humano inmediato |
+
+De ahí la regla operativa, que es mejor que una desconfianza general: **mira qué acción autoriza tu
+detector antes de decidir cuánto verificarlo.** Y explica por qué **aquí duele tanto** — la salida de
+AUDITAR desemboca, **por construcción**, en editar documentación. Con su límite dicho por quien lo
+aportó: aquel caso fue inofensivo **en parte por suerte**, porque el usuario tenía el servicio a mano;
+lo que midió el coste no fue solo el tipo de acto, también **quién estaba mirando**.
+
 **En estos detectores el falso positivo es el lado peligroso, y conviene saberlo antes de correrlos.**
 No son simétricos: un falso **negativo** deja algo sin encontrar —malo, pero el doc queda como
 estaba—, mientras que el falso **positivo** trae un "arreglo" que **corrompe algo que estaba bien**. Un
