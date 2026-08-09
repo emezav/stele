@@ -99,6 +99,16 @@ no entra — nunca puede acabar leyéndose como si viniera firmada.
    cuesta un párrafo y es la que más veces ha rendido.
 5. **Aplicar** lo aceptado (con el checkpoint de siempre si toca lo interrumpible) y llevar cada
    decisión a su hogar **con su procedencia**: de dónde vino y qué caso la respalda.
+
+   **Y aplicar no siempre es hoy: el día del hallazgo es el peor día para tocar el sitio donde vive.**
+   Formulación de un corresponsal, con dos casos y uno de cada lado. Aquí: se midió que un ritual
+   costaba 1,44 sesiones y se decidió **no** escribirle tres reglas más esa misma tarde. Allí:
+   encontraron un agujero en un tipo del núcleo de su herramienta y **no lo cambiaron el mismo día**.
+   Los dos aplazaron **con el diagnóstico escrito y publicado**, que es lo que separa esto de dejarlo
+   para nunca.
+   **La razón no es prudencia genérica: es que el hallazgo llega con su prisa puesta**, y el sitio
+   donde vive suele ser el que más cuesta deshacer. Lo que **no** se aplaza es escribirlo — el
+   diagnóstico viaja hoy aunque el remedio espere, y si no se escribe, esperar es perderlo.
 6. **Archivar, responder y registrar**, en ese orden. La carta recibida se guarda como `letter` **si
    la contestaste o te movió a hacer algo** — la copia del remitente puede desaparecer y entonces la
    tuya es la única. La respuesta dice **qué entró, qué no y por qué**, y qué sigue sin poder

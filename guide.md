@@ -27,6 +27,40 @@ entero al arrancar cada sesión.
 6. **Curación.** Los documentos vivos se **podan**: una entrada obsoleta se borra (su rastro queda
    en el historial). No se acumula.
 
+## Lo que este marco NO puede garantizar, y por qué conviene saberlo
+
+Un marco hecho de prosa **exige**; no impide. La diferencia importa porque **lo que se exige se
+olvida**, y este proyecto lo lleva documentado con casos propios: reglas incumplidas en el mismo commit
+que las escribía, un barrido ordenado por un ritual y no corrido en nueve sesiones, controles positivos
+que validaban el filtro y no la fuente.
+
+Contado sobre este kit: **52 pasos numerados y reglas duras que se exigen, contra 3 cosas que son
+imposibles de saltarse.** Y las tres son **prestadas** — ninguna la impone el marco:
+
+| Garantía | Quién la impone | Qué hace imposible |
+| --- | --- | --- |
+| Las **puertas** y sus `@`-imports | el harness, al abrir | Que el agente empiece sin el set de arranque en contexto |
+| **`.gitignore`** | `git`, en cada `add` | Que lo que no debe viajar entre en un commit |
+| El **sello** contra el servidor | el servidor de `git` | Afirmar un commit que no existe |
+
+De ahí la regla que conviene tener delante al diseñar cualquier salvaguarda:
+
+> **En prosa, una garantía necesita un lector que no sea el agente.** Mientras el único que lee la
+> regla es quien debe cumplirla, la regla es una exhortación por buena que sea su redacción.
+
+Tiene tres consecuencias prácticas, y las tres ya están en el marco:
+
+- **Por eso el saludo de arranque es el único observable que distingue un marco activo de uno
+  apagado.** Es lo único que puede fallar **ruidosamente**, porque depende de la única garantía real.
+- **Por eso un dato que quieras comprobable se escribe donde algo pueda leerlo**: el estado de una
+  carta vive en una **columna** de una tabla, no en un párrafo, para que un comando pueda contradecirlo.
+- **Y por eso el control positivo se imprime AL LADO del resultado**, no en otra parte: mover el dato
+  junto a la decisión es lo más cerca de una garantía que puede estar la prosa.
+
+Lo que **no** se sigue de esto es que dé igual escribir las reglas. Se sigue que **una regla nueva sin
+un lector que no seas tú es una deuda**, y que la pregunta al escribirla es siempre la misma: *¿qué
+tendría que mirar esto para que saltárselo fuera imposible en vez de solo incorrecto?*
+
 ## Tres rituales base + tres de ciclo de vida + uno de verificación + dos de correspondencia
 
 - **Abrir** (ponerse al día, barato) · **Checkpoint** (dejar el salto en curso a salvo antes de un
