@@ -227,6 +227,25 @@ De ahí la forma correcta de acotar: **recorta lo que se REPORTA, nunca lo que e
 corpus entero y filtra los hallazgos después. Recortar la entrada parece equivalente y no lo es —
 convierte un detector sano en uno muerto, sin que ninguna señal lo diga.
 
+**Y esa regla protege la ENTRADA; hay un segundo eje que no cubre: de qué ámbito saca el detector su
+REFERENCIA.** Aporte de campo, y es el hueco más fino que ha aparecido. Un detector de columnas recibía
+el fichero entero —cumplía la regla al pie— y aun así comparaba cada fila contra la primera fila de
+tabla **del fichero**, no de **su** tabla. Resultado: 17 hallazgos, todos la segunda y la tercera tabla
+medidas contra la cabecera de la primera. **El control positivo no puede verlo**, porque el control es
+una sola tabla y ahí las dos referencias coinciden. Es la misma familia del cero falso, un piso más
+adentro: no falla lo que el detector lee ni lo que reporta, **falla contra qué compara**.
+
+Caso propio de la misma clase, con otra forma: dos ceros falsos encadenados al medir un repositorio
+ajeno. Uno porque el patrón de no-ASCII **excluía el tabulador** y el fuente iba tabulado; otro porque
+un borrado previo se había llevado el `.git` del clon, así que el comando fallaba y **devolvía vacío**.
+Los controles pasaron las dos veces: **validaban el filtro, no la fuente.** El remedio que funcionó fue
+una **guarda sobre la fuente dentro del propio detector** —*si los objetos no existen, abortar en vez
+de reportar*—, no un control más al lado.
+
+**Así que un detector tiene tres superficies y el control positivo solo cubre una:** lo que **lee**
+(la entrada), contra qué **compara** (la referencia) y de dónde **sale** lo que lee (la fuente). Un
+verde solo dice algo de la primera.
+
 **Y el control positivo va por detector, no por barrido** — aporte de campo, y de los caros. Alguien
 corrió cinco sondas, una por cada afirmación que quería verificar; **las cinco dieron negativo y una
 estaba rota**: buscaba una frase que no existía en el texto, así que **iba a dar negativo pasara lo que
@@ -647,6 +666,30 @@ decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no ca
    con evidencia**: dos punteros que se contradicen (`archivo:línea` de la afirmación + el
    `archivo:línea`, comando o hecho que la desmiente). Sin evidencia es **sospecha** — va aparte y no
    se aplica.
+
+   **Y esa evidencia se pudre, por construcción y sin remedio posterior.** `archivo:línea` es la forma
+   correcta **y es un puntero**: el número envejece en cuanto el fichero cambia. Aquí es peor que en
+   otros sitios porque **se escribe dentro de registros inmutables** —el acta, el informe, la carta
+   entregada—, así que **no hay dónde corregirla**. Lo aportó un corresponsal con su medida (tres de
+   seis rangos ya no contenían lo señalado); medido aquí sobre 60 referencias de nuestros registros
+   inmutables, **solo el 42% resuelve todavía**. Y las que fallan lo hacen por **tres causas
+   distintas**, que conviene no mezclar:
+
+   | Causa | Qué pasó | ¿Evitable al escribir? |
+   | --- | --- | --- |
+   | **Podrida** (22%) | El fichero está, la línea ya no | Solo en parte: anclar en el identificador |
+   | **Renombrada** (7%) | El fichero cambió de nombre | Ya lo cubre la nota de equivalencia del índice |
+   | **Sin raíz** (30%) | La referencia **nunca dijo de quién era el fichero** | **Sí, entera** |
+
+   **La tercera no está podrida: nació irresoluble**, y es la mitad del problema. Casi todas eran
+   citas a ficheros de **otro proyecto** (`main.go:33`), inequívocas para quien las recibía y opacas
+   para el archivo propio desde el primer día. Es la misma forma que la **cita ambigua**: un puntero
+   sin raíz vale lo mismo que un título que vive en dos ficheros.
+
+   Así que la evidencia se escribe con **tres piezas, y las dos primeras no caducan**: **de quién es
+   el fichero** (repo o proyecto, si no es el propio), **el identificador** del commit, y el
+   `archivo:línea` **como pista**, no como ancla. Lo ya escrito **no se corrige** —es registro— y por
+   eso esto solo protege hacia adelante.
 4. **Informar** con la forma fija de abajo, separando errores de preferencias, y **con el
    denominador**. Si la proporción de falsas es baja, dilo: *"la documentación está sana"* es un
    resultado válido, y **descartar la hipótesis de partida es un hallazgo**, no una auditoría fallida.
