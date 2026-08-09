@@ -186,10 +186,42 @@ grep -rn "<frase que nombra una lista que vive en otro fichero>" {base} --includ
 grep -rn "^#" {base} --include="*.md"     # titulos que aparecen en 2+ ficheros
 #   ...y para cada cita de uno de esos titulos, mirar si su parrafo nombra el fichero.
 
-# clase 7 — NO lleva detector, y es deliberado: el defecto es una AUSENCIA y no hay cadena
-# que buscar. Se caza contrastando dos sitios en las fases, no barriendo uno. Esta línea
-# existe para que la falta no se lea como olvido.
+# clase 7 — hoy NO lleva detector, pero la razon vieja era FALSA: si hay con que probarlo.
+# Se caza contrastando dos sitios en las fases, no barriendo uno. Lo que falta no es el
+# oraculo (ver abajo, el mutilador): es el formato de reporte de la fase 3.
 ```
+
+**Y la razón que esta línea daba antes era falsa, no caducada.** Decía *"no hay cadena que buscar"* y
+de ahí se seguía que la clase 7 no era detectable **en principio**. La refutó un corresponsal, con el
+mecanismo funcionando un piso más abajo y sobre otro material:
+
+> **El oráculo de un detector de ausencias no es un corpus mutilado: es el MUTILADOR.** Una función de
+> un corpus sano a uno dañado. **No se guarda el corpus roto — se guarda la transformación**, y se
+> aplica al corpus que se tenga.
+
+Eso disuelve la objeción de *"nadie tiene un corpus con ese defecto guardado"*: **nadie necesita
+tenerlo**. Y para la clase 7 el mutilador es de una línea — **coger un dato que sí está en su hogar,
+borrarlo de ahí y dejarlo en el registro de sesión. Correr. Tiene que encontrarlo.** El corpus sano es
+el que ya se tiene.
+
+**Y el dato que lo prueba va contra la intuición que teníamos:** de los tres arreglos que trajo esa
+misma carta, el de las vallas es un fallo **de forma** y tenía **cero instancias** en 117 documentos —
+el corpus contenía la condición y no disparaba, por la casualidad de tener el mismo número de celdas.
+Para ponerlo en rojo hubo que **sintetizar la entrada**. Así que *"de forma"* no significa *"hay
+instancias"*, y el eje forma-contra-semántica no era el que decidía.
+
+**Entonces lo que bloquea la clase 7 es nuestro, no de la técnica: la fase 3 exige dos punteros
+`archivo:línea`, y una ausencia no tiene dirección.** El detector puede existir y puede probarse; lo
+que no puede es **reportar** en el formato que este ritual exige para que un hallazgo entre al informe.
+El remedio propuesto, y es del corresponsal: el hallazgo **sí** tiene dirección, solo que no es la de
+la ausencia — es la del **dato que debió promoverse** (el registro de sesión donde se quedó) más el
+**nombre del hogar donde no está**. Dos punteros, uno de ellos a un fichero y no a una línea.
+
+**Con una precondición que ninguno de los dos había mirado, y que es del medio otra vez: hace falta
+poder deshacer.** El mutilador necesita un corpus sano que **sobreviva al experimento**. Quien versione
+sus documentos lo tiene gratis; quien no —y aquí los docs de trabajo no se versionan— **no necesita
+git, necesita una copia**: el mismo `{{artifacts_dir}}` que ya existe para no destruir evidencia sirve
+de red. La condición es *poder volver*, no *tener historial*.
 
 **Un cero se comprueba antes de creerlo.** Un barrido que devuelve 0 en **todos** los detectores casi
 nunca significa "corpus limpio": significa que el comando no miró donde creías — un directorio de
@@ -230,10 +262,29 @@ convierte un detector sano en uno muerto, sin que ninguna señal lo diga.
 **Y esa regla protege la ENTRADA; hay un segundo eje que no cubre: de qué ámbito saca el detector su
 REFERENCIA.** Aporte de campo, y es el hueco más fino que ha aparecido. Un detector de columnas recibía
 el fichero entero —cumplía la regla al pie— y aun así comparaba cada fila contra la primera fila de
-tabla **del fichero**, no de **su** tabla. Resultado: 17 hallazgos, todos la segunda y la tercera tabla
-medidas contra la cabecera de la primera. **El control positivo no puede verlo**, porque el control es
+tabla **del fichero**, no de **su** tabla. **El control positivo no puede verlo**, porque el control es
 una sola tabla y ahí las dos referencias coinciden. Es la misma familia del cero falso, un piso más
 adentro: no falla lo que el detector lee ni lo que reporta, **falla contra qué compara**.
+
+**Y lo que lo vuelve enseñable no es el fallo: es cuánto duró en verde.** Medido después sobre 117
+documentos, ese detector daba **356 hallazgos de los que 354 eran ruido** —una tabla bien formada
+comparada contra otra distinta—, o sea **menos del 1% de señal durante cinco versiones**, con su
+control positivo pasando todo el tiempo. Un control no se queda corto ruidosamente: **certifica**.
+
+> **Un control positivo de una sola instancia no puede validar un detector que compara contra una
+> referencia.** Tiene que llevar al menos **dos** de aquello que el detector empareja, y distintas
+> entre sí — si no, las dos referencias coinciden por construcción y el verde no dice nada.
+
+<!-- La cifra que vivía aquí antes eran "17 hallazgos", prestada de un corresponsal y **sin corpus,
+     sin fecha y sin identificador**. Cuando ese mismo detector se midió bien dio 356, y desde fuera
+     no había forma de saber que la primera estaba superada. Una cifra ajena es peor que una propia:
+     no solo envejece, es que no se puede volver a medir. Ver "el corpus que enseña la regla". -->
+
+**Y al medirlo aparecieron otros dos del mismo detector**, que es lo que da el nombre de la clase: un
+pipe **escapado** contando como separador, y una línea dentro de una **valla** contando como fila. Los
+tres son lo mismo visto tres veces — **contar sin saber dónde empieza y acaba lo que se cuenta.**
+Reproducidos aquí sintetizando la entrada: los tres dan falso positivo en la versión vieja y limpio en
+la nueva, y un fichero realmente roto sigue saltando en las dos.
 
 Caso propio de la misma clase, con otra forma: dos ceros falsos encadenados al medir un repositorio
 ajeno. Uno porque el patrón de no-ASCII **excluía el tabulador** y el fuente iba tabulado; otro porque
