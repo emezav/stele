@@ -15,7 +15,7 @@ contenedor es el nombre de carpeta que da el manifiesto (`history/`, `correspond
 **No confundir el valor con el token.** El manifiesto guarda el nombre de la carpeta; el token
 `{{history_dir}}` que usan las plantillas resuelve a la ruta completa desde la raíz, **con `base` ya
 delante**. Por eso `{{history_dir}}{{index}}` es una ruta ejecutable y `{base}/{{history_dir}}…`
-duplicaría `base`. Ver `SKILL.md` → "Convención de tokens".
+duplicaría `base`. Ver `core/reference/rutas-y-tokens.md` → "Convención de tokens".
 
 **Ningún rol vive en el kit.** `base` (docs instanciados) y `kit` (el marco) son rutas
 independientes del manifiesto: los roles se resuelven siempre bajo `base`; `{{kit}}` solo aparece
@@ -67,7 +67,7 @@ plataforma sino un layout — y bajarlo rompe ese layout **en todo adoptante sin
 sitio**.
 
 Y una consecuencia que ya mordió: **`base` no se llama como el kit.** Ver la tabla de layouts en
-`{{kit}}/SKILL.md` — un nombre que es subcadena de otro no solo confunde a las personas, hace que una
+`{{kit}}/core/reference/rutas-y-tokens.md` — un nombre que es subcadena de otro no solo confunde a las personas, hace que una
 sustitución textual corrompa en silencio.
 
 ## Triggers (enrutamiento: "necesito… → hogar")

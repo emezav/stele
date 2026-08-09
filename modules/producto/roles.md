@@ -19,7 +19,7 @@ por área (`<área>/architecture.md`). Si el producto no es código, mapea la es
 `specs_dir` es un rol contenedor: el manifiesto guarda el nombre de la carpeta (`temas/`) y el token
 `{{specs_dir}}` de la plantilla `specs` resuelve a la ruta completa desde la raíz, con `base` ya
 delante y con `/` final. Cuando una decisión supera ~50 líneas se extrae a `{{specs_dir}}<TEMA>.md`
-(sin barra intermedia). Ver `SKILL.md` → "Convención de tokens".
+(sin barra intermedia). Ver `{{kit}}/core/reference/rutas-y-tokens.md` → "Convención de tokens".
 
 ## Triggers (enrutamiento)
 

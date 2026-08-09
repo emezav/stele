@@ -12,7 +12,7 @@
 > `Comprobadas` = cuántas **afirmaciones sobre el mundo** se extrajeron y resolvieron, y cuántas
 > resultaron falsas. Es el **denominador**: sin él, dos auditorías con los mismos hallazgos son
 > indistinguibles aunque una comprobara cinco afirmaciones y la otra quinientas. Las reglas no cuentan
-> (`{{kit}}/SKILL.md` → *separa la afirmación de la regla*). `—` si no se registró.
+> (`{{kit}}/core/rituals/auditar.md` → *separa la afirmación de la regla*). `—` si no se registró.
 > **Si el informe fue partido, la fila lleva el total y el desglose entre paréntesis** —
 > `33 (7 falsas: 12/7 conteo · 21/0 rutas)`—: promediar poblaciones distintas da un número que no
 > describe a ninguna, y la serie se compara mal cuando una fila esconde dos cosas.
