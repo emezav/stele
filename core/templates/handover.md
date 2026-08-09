@@ -15,6 +15,13 @@ No hay trabajo a medias.
 ## Estado
 EN_PROGRESO
 
+## Sello
+El commit de `HEAD` al abrir este checkpoint (si `persistencia = git`), y si el árbol estaba limpio.
+Debajo, la instrucción de compararlo: **si no coincide con el `HEAD` de ahora, este documento describe
+un pasado y manda el árbol.** Cuesta una línea y es lo único que distingue un checkpoint vigente de
+uno caducado — ver el ritual ABRIR. Sin VCS no hay sello: en su lugar, di **qué se observa en disco**
+para saber por dónde ibas (p. ej. "el paso 2 deja los dos archivos a la vez").
+
 ## Salto actual
 Objetivo en una frase + decisiones ya tomadas que el siguiente agente debe respetar.
 
@@ -36,5 +43,10 @@ Objetivo en una frase + decisiones ya tomadas que el siguiente agente debe respe
 - Paso 1 concreto para retomar...
 
 ## Si fui interrumpido
-Retomar desde: ...   No repetir: ...
+**Empieza comprobando el sello**, no leyendo esta lista: si no coincide, parte de lo de arriba ya está
+hecho y este texto no sabe cuánto. Retomar desde: ...   No repetir: ...
+
+Marca aparte **lo destructivo y lo que no se repite** (un borrado, una copia de evidencia que la
+segunda vez sobrescribiría la buena). Es lo que hace daño cuando alguien retoma con el documento
+caducado en la mano.
 ========================================================================= -->

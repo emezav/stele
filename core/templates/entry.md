@@ -39,7 +39,9 @@ Leer en este orden antes de responder cualquier cosa:
 2. `{{gotchas}}` — trampas y convenciones no evidentes **al trabajar aquí**: del entorno, de las
    herramientas, de publicar, de verificar.
 3. `{{state}}` — estado actual y próximo paso (snapshot corto).
-4. `{{handover}}` — si su `Estado` no es `SIN_TRABAJO_ACTIVO`, respetar su alcance antes de editar.
+4. `{{handover}}` — si su `Estado` no es `SIN_TRABAJO_ACTIVO`, respetar su alcance antes de editar
+   **y comprobar su `Sello`**: si no coincide con el `HEAD` de ahora, ese checkpoint caducó y **manda
+   el árbol** (detalle en el ritual ABRIR).
 
 **Bajo demanda** (grep dirigido, no leer completos): `{{charter}}` (orientación inicial),
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
@@ -67,8 +69,9 @@ de una sesión sana: **si falta, el marco no arrancó** — y quien lo note prim
 
 ## Regla dura: {{checkpoint_trigger}}
 
-`{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance y verificación prevista.
-No depende del tamaño estimado del cambio. **Exención:** cambios que SOLO tocan el **contenido** de
+`{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance, verificación prevista y **sello** —
+el `HEAD` al abrirlo, para que quien lo lea pueda saber si caducó. No depende del tamaño estimado del
+cambio. **Exención:** cambios que SOLO tocan el **contenido** de
 la documentación. No exime una **migración estructural** (mover o renombrar docs: rituales CONFIG y
 ACTUALIZAR), aunque no toque código: es justo lo que deja media instancia inconsistente si se corta.
 

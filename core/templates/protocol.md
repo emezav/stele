@@ -136,8 +136,15 @@ es la única que hay. Ése no se poda. El resto es desecho y se borra cuando el 
 ### `{{handover}}` — checkpoint de trabajo en curso (~{{budget:handover}} líneas)
 
 Estados: `SIN_TRABAJO_ACTIVO` | `EN_PROGRESO` | `COMPLETADO`. **Regla dura:** {{checkpoint_trigger}},
-`EN_PROGRESO` con objetivo/alcance/verificación. Al cerrar, siempre refrescar el puntero a la
-sesión que se cierra AHORA. Plantilla en `{{kit}}/core/templates/handover.md`.
+`EN_PROGRESO` con objetivo/alcance/verificación **y sello**. Al cerrar, siempre refrescar el puntero a
+la sesión que se cierra AHORA. Plantilla en `{{kit}}/core/templates/handover.md`.
+
+**El sello, y por qué es el cuarto y no un adorno.** Es el `HEAD` al abrir el checkpoint (con VCS) más
+la instrucción de compararlo. Existe porque este es **el único doc del set de arranque que puede estar
+caducado**: se escribe *antes* de la primera edición y no se vuelve a tocar hasta el cierre, así que en
+esa ventana afirma en presente algo que ya es pasado. **Cuando el sello y el `HEAD` discrepan, manda el
+árbol** — el `handover` no compite con el repositorio, lo indexa. La comprobación es del ritual ABRIR;
+aquí vive el formato.
 
 ### `{{specs}}` (+ temas)
 

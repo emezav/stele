@@ -26,7 +26,7 @@
 ## Regla dura: checkpoint antes del primer archivo de código
 
 Antes de tocar el primer archivo de **código** de la sesión, `handover` debe quedar en
-`EN_PROGRESO` con objetivo + alcance + verificación prevista. No depende del tamaño estimado del
+`EN_PROGRESO` con objetivo + alcance + verificación prevista + sello. No depende del tamaño estimado del
 cambio: una sesión puede cortarse en cualquier momento y el checkpoint (~20 líneas) siempre cuesta
 menos que reconstruir el contexto desde el diff. **Exención:** cambios que SOLO tocan el **contenido**
 de la documentación — no una **migración estructural** (mover o renombrar docs: rituales CONFIG y

@@ -177,7 +177,7 @@ en la primera línea que ve el usuario — el sitio más caro para parecer roto.
 
 ## Regla dura: checkpoint antes de un cambio interrumpible
 
-Deja `handover` en `EN_PROGRESO` con objetivo + alcance + verificación prevista (plantilla
+Deja `handover` en `EN_PROGRESO` con objetivo + alcance + verificación prevista + **sello** (plantilla
 `core/templates/handover.md`) **{{checkpoint_trigger}}**. No es opcional ni depende del tamaño: una
 sesión puede cortarse en cualquier momento y el checkpoint (~20 líneas) siempre cuesta menos que
 reconstruir el contexto desde el diff. (El módulo `producto` especializa el trigger a "antes del primer
@@ -191,6 +191,12 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
 **Y aquí también van las trampas de ESTE salto**, no solo el objetivo y el alcance: lo que sabes que
 puede salir mal en lo que estás a punto de hacer. No es adorno, es el sitio donde una advertencia
 llega a tiempo.
+
+**El sello es la cuarta pieza y la más barata: el `HEAD` al abrir el checkpoint, con la instrucción de
+compararlo.** Este doc se escribe *antes* de la primera edición y no se vuelve a tocar hasta el cierre,
+así que es **el único del set de arranque que puede estar caducado** — y un checkpoint caducado no falla:
+propone trabajo ya hecho, con toda la seguridad del mundo. La comprobación va en ABRIR
+(`core/rituals/abrir.md`), y la ley es que **cuando discrepan manda el árbol**.
 
 La evidencia de campo tiene los dos lados, que es raro y por eso vale. Un proyecto anotó en su
 checkpoint que una sustitución textual podía alcanzar al kit, hizo el cambio y **lo esquivó** — y

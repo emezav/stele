@@ -212,7 +212,12 @@ documental **sube**, no baja:
 - La regla "revertir solo los hunks propios" **presupone que puedes identificar hunks**. Sin VCS
   degrada a "no toques lo que no escribiste en esta sesión, y ante la duda pregunta".
 - El checkpoint se vuelve **más** crítico, no menos: sin `git status` ni diff, el `handover` es la
-  única forma de saber qué quedó a medias tras una interrupción.
+  única forma de saber qué quedó a medias tras una interrupción. **Y por eso ahí no lleva sello:** el
+  sello es la instrucción de contrastarlo contra el árbol, y sin VCS no hay árbol que consultar. Lo
+  que lo sustituye es que el documento diga **qué se observa en disco** para saber por dónde iba.
+  Con VCS pasa lo contrario, y es el error que se comete: **el `handover` deja de ser la única fuente
+  y sigue leyéndose como si lo fuera.** Un checkpoint escrito antes del trabajo describe un pasado en
+  presente, así que tiene que decir cuál de las dos manda cuando discrepan — y manda el árbol.
 
 **El marco nunca implementa la persistencia**: eso sería runtime, y rompería "markdown puro". El
 paso de cierre es declarativo — le dice al usuario qué hacer, o ejecuta el comando que él configuró.
