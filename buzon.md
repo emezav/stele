@@ -160,3 +160,72 @@ Que es, si lo piensas, exactamente para lo que existe este marco. Una *estela* e
 **inscrita**: alguien se detuvo a dejar dicho lo que sabía para quien viniera después. Entre sesiones
 lo hacemos con el historial. **Entre proyectos solo se puede hacer así** — a quien le falla, puede
 decidir dejar la huella para que al siguiente no le pase.
+
+---
+
+## Carta 6 — ¿En qué idioma están tus detectores de auditoría, y los tradujiste o los reescribiste?
+
+**De:** stele · **Para:** cualquiera que use el marco en un idioma que no sea el del kit · **Fecha:** 2026-08-09
+
+**La pregunta, y son dos:**
+
+> **¿Los detectores de AUDITAR de tu proyecto están en el idioma del kit o en el tuyo?** Y si están en
+> el tuyo: **¿los tradujiste término a término, o los volviste a escribir desde lo que el comentario
+> dice que buscan?**
+
+**Por qué preguntamos: porque aquí no lo podemos probar.** El kit dice que los detectores léxicos y
+gramaticales **se derivan, no se traducen** — que lo que viaja es el comentario que encabeza cada
+comando, y que la expresión se escribe desde cero. Lo escribimos con un razonamiento, no con un caso:
+**este proyecto está en el idioma del kit, así que aquí no hay nada que derivar.** Es un mecanismo que
+sale sin haberse corrido nunca, y lo decimos porque no queremos que se lea como algo probado.
+
+**Lo que de verdad no sabemos es si la traducción llega a ser posible.** Uno de nuestros detectores
+busca contadores en prosa, y su forma es `(los|las) (dos|tres…)`: artículo, género y número. En inglés
+el equivalente literal, `(the) (two|three…)`, **no discrimina nada** — no es el mismo detector
+traducido, es otro, con otra tasa de falsos positivos. No sabemos qué forma toma esa idea en tu idioma,
+ni si toma alguna.
+
+**Y una tercera, si llegaste hasta aquí:** el kit pide que cada detector derivado se guarde **con su
+control positivo** —una línea de ejemplo que tiene que dar match—. ¿Te sirvió, o fue ceremonia? Lo
+pusimos porque llevamos seis detectores rotos que devolvían cero, pero seis son los nuestros.
+
+**Dónde acaba tu respuesta.** No aquí: este buzón se poda. Va a `core/rituals/auditar.md`, que es lo
+que se lee al auditar. Y si resulta que derivar no es viable en algún idioma, eso también es un dato —
+preferimos una regla con una excepción escrita que una regla que solo funciona en español.
+
+**Lo que no te vamos a ocultar: si trabajas en el idioma del kit, esta carta no te toca.** No hay nada
+que derivar y los detectores te sirven tal cual.
+
+---
+
+## Carta 7 — Abre tu registro de sesión más reciente: ¿dice en qué estado está algo?
+
+**De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-09
+
+**La pregunta, y es de mirar un archivo:**
+
+> En tu registro de la última sesión —el acta, el `session`—, **¿hay alguna frase que diga en qué
+> estado está algo que vive en otro documento?** *"La carta N sigue sin contestar"*, *"el despliegue
+> está pendiente"*, *"X quedó bloqueado"*. Y si la hay: **¿sigue siendo cierta hoy?**
+
+**Por qué preguntamos.** Un registro de sesión **no se reescribe nunca** — es historial, y el historial
+es inmutable. Así que un estado escrito ahí queda congelado en el instante de cerrar y **a partir de
+entonces se lee como actual siendo un fósil**. No da error, no falta nada, y quien lo lea dentro de
+tres meses no tiene forma de saber que caducó.
+
+Nos pasó, y por eso preguntamos: un acta nuestra decía que cierta carta estaba *"publicada y sin
+entregar"*. Se entregó unas horas después. **El acta no se corrige** —es historial— así que esa frase
+va a seguir ahí, en pasado perfecto y en presente falso, para siempre.
+
+**Lo que no sabemos es cuál es tu lista.** Nosotros escribimos un aviso en la plantilla, pero un aviso
+solo cubre lo que se nos ocurrió imaginar. **Qué estados escribe la gente de verdad en sus actas es un
+dato de campo**, y es el que decide si el aviso sirve o si nombra tres casos y deja fuera los siete que
+importan.
+
+**Y aquí va lo incómodo, que es la razón de que esta carta exista.** Ese aviso está en la plantilla del
+rol `session`, y **las plantillas de rol no regeneran los documentos que ya existen**: tu acta es tuya.
+O sea que **el arreglo no te llega**, ni actualizando. Lo único que cruza es esta pregunta — y lo que
+consigue no es arreglarte nada, sino que mires. Si al mirar encuentras uno, ya sabes más que el aviso.
+
+**Dónde acaba tu respuesta.** En la plantilla de `session` y en la tabla de zonas de ACTUALIZAR, que es
+donde se decide qué te llega y qué no. Nada de esto se queda aquí: el buzón se poda.

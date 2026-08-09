@@ -68,7 +68,7 @@ releerla en el paso 4.
 | `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
 | Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/…`) que tus propios docs hayan escrito |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: **porta el delta a mano** al archivo real — **y `autostart` se instancia una vez POR PUERTA**, así que el delta va a **todas**, no solo a la primera que encuentres. Dos puertas que digan cosas distintas es el único modo en que varias puertas hacen daño. Se conserva íntegro lo que quede fuera de las marcas —invariante 6— **y también lo de dentro**, que está protegido por default (ver abajo). Solo se regenera el bloque entero si su marca dice `LIMPIO` |
-| `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer.** Los docs de `base` ya son del proyecto y no se regeneran jamás |
+| `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer** para los docs que ya existen: son del proyecto y no se regeneran jamás. **Dos excepciones, las dos por AUSENCIA y las dos abajo:** un **rol nuevo** (no hay doc que respetar) y una **sección nueva** dentro de una plantilla de rol que sí existe (el doc está, el trozo no). Las dos **se ofrecen**, no se crean en silencio |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
 | `core/rituals/*`, `core/reference/*` | **Los rituales ya no viven en `SKILL.md`, y las rutas y tokens tampoco.** Se leen, no se migran — pero **tus propios docs pueden enlazar al nombre viejo**: si alguno cita `SKILL.md -> CERRAR` o similar, ahora apunta a un enrutador y no al contenido. **Barre por el nombre viejo, no por la forma del puntero** — el patrón `SKILL.md -> RITUAL` no encuentra ni la prosa que describe qué contiene `SKILL.md` ni las citas a secciones suyas que se movieron, y las dos existían: `grep -rn "SKILL\.md" <base> --include="*.md"` y revisa cada acierto a mano. Es más ruidoso y es el único que los caza; aquí el patrón estrecho dejó tres referencias colgadas en el propio kit. |
 | El **bloque de detectores** de `core/rituals/auditar.md` | Solo importa si tu proyecto **no** está en el `idioma` del kit y por tanto tiene detectores **derivados** en la sección *Detectores de auditoría* de `protocol`. Si el kit añadió, quitó o cambió un detector, el tuyo no se entera: **es un derivado que no se regenera**, como el loader. Porta el delta a mano — y si el detector nuevo es **gramatical** y no léxico, no lo traduzcas: derívalo, y guárdalo con su control positivo. Un detector que no existe en tu sección **no da error: da cero**, y ese cero se lee como corpus limpio |
@@ -80,6 +80,19 @@ existen**: son del proyecto. Pero un rol que no existía no tiene doc que respet
 conflicto — hay una ausencia. Sin esta excepción, una capacidad nueva del marco solo la reciben los
 proyectos que empiecen después, y el que la necesitaba lleva sesiones sin saber que existe. **Se
 ofrece, no se crea en silencio:** el usuario puede no quererla.
+
+**Y una SECCIÓN nueva dentro de una plantilla de rol que ya existe cae en el mismo hueco, pero pasa
+desapercibida.** El doc del adoptante existe, así que la fila dice *"nada que hacer"* y se cumple al
+pie de la letra — mientras la sección **no aparece nunca**. Es la misma ausencia que justifica la
+excepción de arriba, en una escala en la que nadie la busca: no falta un documento, falta un trozo de
+uno que sí está, y desde fuera se ve idéntico a un doc que el proyecto decidió no usar. **Al ver un
+`##` nuevo en una plantilla de rol, ofrécelo igual que un rol nuevo**, con el mismo criterio: se
+ofrece, no se inserta en silencio.
+
+Caso propio: se añadió `## Detectores de auditoría` a la plantilla de `protocol` —el hogar de los
+detectores derivados de un proyecto que no está en el `idioma` del kit— y **solo lo habrían recibido
+los proyectos bootstrapeados después.** El adoptante al que le hacía falta era, exactamente, el que ya
+llevaba sesiones trabajando en otro idioma.
 
 **Y su toggle no se escribe hasta que conteste.** Un `off` puesto por precaución y un `off` elegido son
 el mismo texto en el manifiesto, y no son la misma decisión: la próxima actualización ya no ve un rol
