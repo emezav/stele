@@ -39,7 +39,7 @@
 >
 > **Se archiva la carta, no el sobre.** Lo que rodea a una carta al llegar —*"esto viene de tal
 > proyecto"*, *"esto lo dijo su agente"*, *"me lo pasaron por ahí"*— no forma parte de ella y **no se
-> comprobó**: es una afirmación de la segunda clase (`{{kit}}/SKILL.md` -> CONTRASTAR). Si entra al
+> comprobó**: es una afirmación de la segunda clase (`{{kit}}/core/rituals/contrastar.md`). Si entra al
 > archivo, entra **marcada como no verificada**; si no vale la pena marcarla, no entra. Lo que nunca
 > puede pasar es que una atribución del sobre se lea, meses después, como si viniera firmada — y menos
 > que alguien construya encima una conclusión de diseño. Ya ocurrió, y acabó publicado en una carta.

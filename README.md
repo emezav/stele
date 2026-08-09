@@ -6,6 +6,22 @@ evolucionó en un proyecto real a lo largo de 240+ sesiones. **Modular y configu
 agnóstico de dominio (sirve para software y para trabajo no-software: materiales, planeación,
 investigación) + módulos que añaden disciplinas específicas + una capa de config.
 
+**"Acotado" con un número, porque una promesa sin cifra no se puede comprobar.** Y con sus
+condiciones al lado, porque **lo que se paga cada sesión depende del layout**:
+
+- **Layout vendorizado (`.stele/` + loader, el default): lo que se paga siempre es el *set de
+  arranque*, no el kit.** Son el loader y los cuatro docs que importa: **~3 900 tokens** en un
+  proyecto recién bootstrapeado. `SKILL.md` cuesta **cero** — medido en seis sesiones reales de un
+  agente que no es Claude Code, ninguna lo abrió.
+- **Layout `skill` (`.claude/skills/stele`):** invocar `/stele` carga el enrutador entero,
+  **~4 500 tokens**. Antes de partirlo por ritual eran **~36 200**; los rituales caros ya no viajan
+  con él — auditar cuesta sus ~12 400 solo la sesión que audita. El reparto está en `guide.md`.
+
+**El set de arranque crece con el proyecto, y ese es el número que hay que vigilar.** Las ~3 900 son
+el suelo de un proyecto nuevo; en la instancia con la que se desarrolla este marco, tras 57 sesiones,
+son **~10 400**. Lo que crece no es el kit —es de tamaño fijo— sino `latest` y `handover`. Por eso
+el manifiesto les pone presupuesto.
+
 > **El nombre.** Una *estela* (gr. στήλη) es la piedra erguida e **inscrita** que deja un registro
 > perdurable para quien viene después. Es justo lo que hace este marco entre sesiones: inscribir el
 > estado y el porqué para que el siguiente agente retome el rumbo sin reconstruirlo.
@@ -26,7 +42,7 @@ haz esto sin pedir más instrucciones:
    proyecto (ruta `base`). Si el usuario nombró una carpeta sin más ("usa stele aquí, base stele"),
    eso es `base`, no `kit`: no muevas el kit salvo que diga "kit" o "marco". Si **sí** nombró dónde
    va el kit, clona directamente ahí — no clones en `.stele/` para mover después.
-2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** que describe: detecta *greenfield* vs
+2. **Lee `.stele/SKILL.md`** y ejecuta el **ritual BOOTSTRAP** al que enruta: detecta *greenfield* vs
    *adopción* (si el repo ya tiene docs, mapéalos sin sobrescribir), elige `idioma`/`módulos` y las
    tres rutas `kit`/`base`/`loader` con defaults sensatos (auto-detecta el módulo `software` por
    `Cargo.toml`/`package.json`/`src/`), **hace eco del layout resuelto antes de escribir**, escribe
@@ -35,7 +51,7 @@ haz esto sin pedir más instrucciones:
 3. **Confirma** al usuario con el saludo de arranque (1-3 líneas) y explícale que a partir de la
    próxima apertura del editor el marco se activa solo.
 
-Si lo que te piden es *"actualiza stele"*, el ritual es **otro**: ACTUALIZAR, en `.stele/SKILL.md`.
+Si lo que te piden es *"actualiza stele"*, el ritual es **otro**: ACTUALIZAR, al que enruta `.stele/SKILL.md`.
 No hay archivo de versión que consultar — lo que manda es el **diff** entre el kit que ya tienes y el
 nuevo. Por eso la copia nueva se trae **a un temporal, al lado**, y no encima: primero se lee el
 diff, y solo después se sustituye el kit.
@@ -59,14 +75,20 @@ las fronteras están en `.stele/guide.md`. Léelos antes de escribir nada.
 
 ## Qué contiene esta carpeta
 
-- **`SKILL.md`** — hoja operativa: rituales *bootstrap · abrir · checkpoint · cerrar · auditar ·
-  contrastar · remitir · actualizar · config*, el mapa de documentación (cómo se genera) y la
-  convención de tokens. Léelo primero.
+- **`SKILL.md`** — hoja operativa y **enrutador**: qué ritual existe, cuándo se invoca y dónde vive;
+  más lo que hace falta *antes* de elegir ritual (rutas, cómo se le habla al usuario, precedencia
+  frente al harness, la regla dura del checkpoint). Léelo primero. **Los rituales no están aquí**:
+  cada uno vive en `core/rituals/` y se lee solo cuando se invoca — es lo que mantiene acotado el
+  coste del arranque.
+- **`core/rituals/`** — un archivo por ritual: `abrir`, `cerrar`, `auditar`, `contrastar`, `remitir`,
+  `bootstrap`, `actualizar`, `configurar`.
+- **`core/reference/`** — referencia que se lee bajo demanda: `rutas-y-tokens.md` (las tres rutas,
+  los layouts con nombre y la convención de tokens de las plantillas).
 - **`guide.md`** — el *por qué*: pilares, arquitectura de capas, roles y fronteras, presupuestos.
   Referencia; se lee una vez.
 - **`core/`** — `roles.md` (roles del núcleo, fuente del mapa derivado) + `templates/` (plantillas
   por rol: `entry`, `charter`, `protocol`, `state`, `handover`, `index`, `session`, `audit`,
-  `correspondence`, `letter`, `autostart`, `config`).
+  `correspondence`, `letter`, `manual`, `autostart`, `config`).
 - **`modules/software/`** — `module.md` (manifiesto), `roles.md`, `conventions.md` y `templates/`
   (`specs`, `architecture`, `gotchas`, `effort`).
 - **`buzon.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
@@ -93,7 +115,7 @@ reconcilia tu instancia) — por eso **tus docs (`base`) nunca pueden vivir dent
    git clone --depth 1 git@github.com:emezav/stele.git /tmp/stele && mkdir -p .stele && cp -r /tmp/stele/. .stele/ && rm -rf .stele/.git
    ```
 
-2. Pide al agente **"bootstrapea la stele"** (ritual BOOTSTRAP en `.stele/SKILL.md`): detecta
+2. Pide al agente **"bootstrapea la stele"** (ritual BOOTSTRAP, al que enruta `.stele/SKILL.md`): detecta
    greenfield vs adopción, elige `idioma`/`módulos` y las tres rutas (con defaults), te muestra el
    layout resuelto, escribe `stele.config.md` en la raíz, instancia las plantillas bajo `base`, y
    genera el loader de auto-arranque + el mapa-doc.
@@ -111,7 +133,7 @@ ritual **CONFIG** (no editar los derivados a mano).
 **Layouts con nombre:** hay cuatro atajos para las combinaciones habituales de `kit` + `base` —
 `default`, `agrupado`, `docs` y `skill`. Puedes pedir uno por su nombre ("bootstrapea con layout
 agrupado"), y bootstrap te dice cuál resolvió antes de escribir nada. La tabla con los valores de
-cada uno está en `SKILL.md` → "Layouts con nombre"; no son un parámetro que se guarde, solo una
+cada uno está en `core/reference/rutas-y-tokens.md`; no son un parámetro que se guarde, solo una
 forma corta de nombrar dos rutas.
 
 > Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `guide.md`.

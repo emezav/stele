@@ -168,7 +168,7 @@ Un **tope de tamaño** de un rol no va aquí: es un **presupuesto** y su hogar e
 (sección Presupuestos, con el ritual `config`). Aquí van las excepciones de **contenido**.
 
 Si el proyecto no está en el idioma del kit, su versión traducida del **vocabulario de detectores**
-(las listas de `grep` de `{{kit}}/SKILL.md` → AUDITAR) también vive aquí: es una lista larga y viva,
+(las listas de `grep` de `{{kit}}/core/rituals/auditar.md`) también vive aquí: es una lista larga y viva,
 no un parámetro del manifiesto.
 
 ## Convenciones de texto (y dónde se escapan)
@@ -197,7 +197,7 @@ sin hash citado en ningún doc**, `--amend` lo arregla (ver reglas de `--amend` 
 
 ## Checklist de inicio / cierre
 
-Condensados en `{{kit}}/SKILL.md` (rituales ABRIR / CERRAR). Este archivo es la referencia de
+Condensados en `{{kit}}/core/rituals/` (un archivo por ritual). Este archivo es la referencia de
 formato cuando haya dudas.
 
 ## Operaciones de bajo coste (preferir)

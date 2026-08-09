@@ -88,7 +88,7 @@ Si redactaste algo —rutas internas, nombres de servicio, datos de terceros—,
 lee: no es lo mismo *"no dan el dato"* que *"el dato va tachado"*. Lo primero invita a preguntar; lo
 segundo dice que no.
 
-<!-- ANTES DE ENVIAR (ritual REMITIR, `{{kit}}/SKILL.md`):
+<!-- ANTES DE ENVIAR (ritual REMITIR, `{{kit}}/core/rituals/remitir.md`):
      1. Tachado: relee buscando rutas internas, nombres de máquinas y servicios, datos de personas.
         El seudónimo del remitente NO anonimiza el cuerpo.
      2. Consentimiento: enviar es publicar. Lo decide el usuario, nunca el agente por su cuenta.

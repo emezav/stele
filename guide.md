@@ -144,7 +144,7 @@ proyecto: `CLAUDE.md` para Claude Code, `AGENTS.md` para otros, `.github/copilot
 para Copilot. Aislarlo mantiene agnóstico casi todo lo demás — con una excepción que conviene saber:
 si el `entry` conserva su nombre por defecto `AGENTS.md`, **también** hay agentes que lo auto-cargan
 desde la raíz. Entonces mover `base` fuera de la raíz les quita el `entry` sin romper nada visible,
-porque el loader sigue funcionando. Es un fallo silencioso; ver el aviso de `SKILL.md` → "Layouts con
+porque el loader sigue funcionando. Es un fallo silencioso; ver el aviso de `core/reference/rutas-y-tokens.md` → "Layouts con
 nombre".
 
 **El loader es derivado en parte, no desechable.** Lo que genera el marco es el **bloque** entre
@@ -152,6 +152,13 @@ nombre".
 `CLAUDE.md` o un `AGENTS.md` escrito a mano antes de adoptar stele. Por eso, si existe, se modifica y
 no se crea de cero: es la misma regla de adopción que rige para cualquier doc de rol. La distinción
 no es teórica — tratarlo como puro derivado destruyó el `CLAUDE.md` de un proyecto real.
+
+**Y el bloque tampoco es puro derivado, así que por default también se conserva.** ACTUALIZAR y CONFIG
+portan a él el delta del kit en vez de reescribirlo, porque **la divergencia respecto de la plantilla
+nace en el bootstrap**: el manifiesto, el idioma y las convenciones del proyecto ya lo instancian
+distinto el primer día. Regenerar entero es la excepción y hay que declararla (`LIMPIO`), tras
+comprobarla con un diff. El default va del lado de lo irreversible: lo del kit se recupera del kit; lo
+que el proyecto escribió en su bloque no está en ningún otro sitio.
 
 **Dos anclas fijas en la raíz** que no siguen a `base`: el `loader` y el manifiesto
 `stele.config.md`.
@@ -168,7 +175,7 @@ se queda fuera?* Porque agrupar del todo es imposible — el loader nunca se mue
 pasaría de dos archivos del marco a uno. Ver "Alternativas descartadas".
 
 Las combinaciones habituales tienen **nombre** (`default`, `agrupado`, `docs`, `skill`) para poder
-pedirlas y confirmarlas de un tirón; la tabla vive en `SKILL.md` → "Layouts con nombre". Son
+pedirlas y confirmarlas de un tirón; la tabla vive en `core/reference/rutas-y-tokens.md`. Son
 vocabulario, no un cuarto parámetro: **no se guardan en el manifiesto**, porque el layout ya es
 derivable de las tres rutas y un dato con dos hogares se desincroniza. Por eso el eco del bootstrap
 lo *nombra* pero lo que se escribe son siempre las rutas.
@@ -300,6 +307,35 @@ Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (
 Los presupuestos son parámetros de la config (sección Presupuestos); los módulos pueden añadir los
 suyos (p. ej. software: sección de `gotchas` por subsistema ~150-200 líneas).
 
+### Y el kit también tiene presupuesto, porque también se carga
+
+Los topes de arriba acotan lo que **tú** escribes. Faltaba el del kit, y su ausencia costó cara: los
+nueve rituales vivían en `SKILL.md`, que creció de forma monótona —de veinticinco cambios seguidos,
+**ninguno** lo redujo— hasta **1845 líneas / ~36 200 tokens**, mientras el ritual usado *cada* sesión
+ocupaba 12 líneas y el usado *cada diez* ocupaba 615. **La masa era inversamente proporcional a la
+frecuencia de uso**, que es la forma exacta de romper *coste de tokens acotado* sin que ningún cambio
+individual parezca culpable.
+
+El corte fue por ritual: `SKILL.md` enruta, y cada ritual se lee **solo cuando se invoca**. Medido con
+tokenizador real sobre este kit:
+
+| Se carga | Tokens | Cuándo se paga |
+| --- | --- | --- |
+| `SKILL.md` (enrutador) | ~4 500 | **siempre** |
+| `core/rituals/abrir.md` | ~300 | cada sesión |
+| `core/rituals/cerrar.md` | ~4 250 | cada sesión |
+| `core/rituals/contrastar.md` · `remitir.md` | ~2 200 · ~5 600 | si hay carta |
+| `core/rituals/auditar.md` | **~12 400** | cada ~10 sesiones |
+| `core/rituals/actualizar.md` | ~4 250 | al traer kit nuevo |
+| `core/rituals/bootstrap.md` · `configurar.md` | ~1 100 · ~900 | una vez / rara |
+| `core/reference/rutas-y-tokens.md` | ~2 250 | bootstrap y config |
+
+**Sesión normal (enrutador + abrir + cerrar): ~9 100.** El total del kit subió ligeramente al partirlo
+—cabeceras y tabla de enrutado—, y eso es correcto: **no se ahorró texto, se ahorró carga.**
+
+El tope del enrutador (400 líneas) vive en la sección Presupuestos del manifiesto, junto a los tuyos. Si
+se cruza, el sitio de lo que entró es **un ritual**, no el enrutador.
+
 **Un presupuesto excedido se decide, no se recorta.** El tope es un **umbral de olor**, no un límite:
 lo que pide al cruzarse es una decisión, y hay dos salidas legítimas. Podar, si al mirarlo sobra algo
 —que es el caso corriente—. O **subirlo con `config`** para ese proyecto, si el doc de verdad necesita
@@ -323,7 +359,7 @@ de código"; el núcleo usa el `checkpoint_trigger` genérico configurable.
 
 ## Adaptar el marco a un proyecto
 
-- **Bootstrap** instancia el marco (ver `SKILL.md` → ritual BOOTSTRAP). Detecta greenfield vs
+- **Bootstrap** instancia el marco (ver `core/rituals/bootstrap.md`). Detecta greenfield vs
   adopción (si ya hay docs, los mapea sin sobrescribir), y **hace eco del layout resuelto — las tres
   rutas — antes de escribir nada**: corregir la interpretación cuesta cero antes del scaffold y caro
   después.

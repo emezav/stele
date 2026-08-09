@@ -6,8 +6,10 @@
 >
 > <!-- Las secciones marcadas "GENERADO" las produce bootstrap/`config` desde el manifiesto
 >      (`stele.config.md`). No editarlas a mano. El ejemplo mostrado usa el módulo `software`.
->      MODO ADOPCIÓN: una sección enriquecida con contenido propio que la plantilla base no tiene se
->      marca "GENERADO RICO"; ACTUALIZAR entonces porta el delta a mano en vez de reescribirla. -->
+>      Una sección GENERADA está PROTEGIDA por default: ACTUALIZAR y CONFIG portan el delta a mano
+>      en vez de reescribirla. "GENERADO RICO" (marca antigua) significa lo mismo. Para autorizar la
+>      reescritura entera: "GENERADO LIMPIO", y solo tras comprobar con un diff que la sección no
+>      dice nada que la plantilla no diga. -->
 
 ## Regla crítica: no revertir trabajo ajeno
 

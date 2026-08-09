@@ -8,13 +8,12 @@
      STELE:INICIO / STELE:FIN de abajo, y **solo eso** se reescribe al regenerar. Sobrescribir el
      archivo entero ya destruyó el `CLAUDE.md` de un proyecto real. -->
 
-<!-- STELE:INICIO — bloque GENERADO. No editar a mano: se reescribe entero en `config` y al
-     actualizar. Lo que esté FUERA de estas marcas es del proyecto y el marco no lo toca.
-
-     MODO ADOPCIÓN: si este bloque se enriqueció con reglas propias del proyecto que la plantilla
-     base no contiene, cambia la marca de apertura a `STELE:INICIO RICO`. Entonces ni ACTUALIZAR ni
-     CONFIG lo reescriben entero: portan solo el delta del kit nuevo, a mano. Sin la marca, un
-     proyecto adoptado pierde sus reglas la primera vez que alguien regenere. -->
+<!-- STELE:INICIO — bloque GENERADO y PROTEGIDO. Fuera de estas marcas el marco no toca nada; dentro
+     tampoco se reescribe entero: ACTUALIZAR y CONFIG **portan el delta a mano** y conservan lo que
+     este bloque diga de más. Es el default porque la divergencia nace en el bootstrap.
+     `STELE:INICIO RICO` (marca antigua) significa lo mismo — si la llevas, déjala.
+     Para autorizar la reescritura entera: `STELE:INICIO LIMPIO`, y solo tras comprobar con un diff
+     que este bloque es la plantilla con los tokens resueltos y nada más. Detalle en ACTUALIZAR. -->
 
 Este proyecto usa el marco **stele** (`{{kit}}/`). El agente carga este archivo al iniciar cada
 sesión, así que el ritual de apertura se ejecuta **automáticamente**: el contexto mínimo viene

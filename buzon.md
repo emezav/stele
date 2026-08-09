@@ -4,7 +4,7 @@
 > bajan solas** con cada actualización: no hay servicio, ni red, ni cuenta que crear. Tu agente lo lee
 > al actualizar (tabla de zonas de impacto, `SKILL.md`) y te dice si hay algo para ti.
 >
-> **Qué hacer con una carta.** Si te interesa, contéstala con el ritual **REMITIR** (`SKILL.md`) y
+> **Qué hacer con una carta.** Si te interesa, contéstala con el ritual **REMITIR** (`core/rituals/remitir.md`) y
 > mándala por donde quieras — pegarla en la sesión de tu agente, un correo, un issue. Copiar y pegar
 > basta; no hace falta saber git ni tener cuenta en ninguna parte. Si la contestas o te mueve a hacer
 > algo, **archiva tu copia**: este buzón se cura, y lo de aquí desaparece.
@@ -96,8 +96,10 @@ nada, porque no hay nada fuera que conservar — todo lo propio está en la zona
 a reescribir. Es la situación más peligrosa de las tres y desde fuera se ve igual que un loader
 generado de cero.
 
-Si estás en ese caso: **marca tu bloque como `STELE:INICIO RICO` ahora**, antes de la próxima
-actualización. Ahí la marca no es una comodidad — es lo único que se interpone.
+Si estás en ese caso ya no tienes que hacer nada: **desde el 2026-08-08 ese bloque está protegido por
+default** — ACTUALIZAR y CONFIG portan el delta a mano en vez de reescribirlo. Antes hacía falta
+marcarlo `RICO` a mano, y el aviso que leíste aquí antes decía justo eso. Si tu bloque ya lleva la
+marca, **déjala**: significa lo mismo y no hay que migrar nada.
 
 **Y hay una tercera pregunta, que esta carta excluía por error hasta que alguien la contestó igual.**
 Decía aquí que un loader generado desde cero no nos servía, porque hacía falta un archivo que
@@ -115,8 +117,21 @@ sino su **divergencia respecto de la plantilla**. La marca siempre lo dijo así;
 lo traducía a una historia sobre archivos anteriores a la adopción, y contada así, **quien generó de
 cero se daba por excluido y no volvía a mirar**.
 
-**Por qué te lo pedimos a ti.** Es una pregunta que el marco no puede contestarse solo. Y de esa
-respuesta depende una regla que hoy protege datos que no podemos ver.
+**Y esa tercera respuesta acabó invirtiendo el default (2026-08-08).** Si un bloque puede nacer
+divergente el día mismo de generarse, entonces "derivado puro" era el caso raro y el marco lo estaba
+tratando como el normal. Se sumó una segunda observación —dos corridas del mismo bootstrap, el mismo
+día y con el mismo agente, instanciando el loader al 19% y al 104% de la plantilla, una de ellas
+borrando de paso la instrucción de marcar— y con eso ya eran cero casos limpios observados. Ahora se
+protege por default y la reescritura entera se declara (`LIMPIO`).
+
+**Cuarta pregunta, y es la inversa de la tercera.** ¿Tu bloque generado **sí** es la plantilla con los
+tokens resueltos y nada más? Compáralo con `core/templates/autostart.md` del kit que tengas. Un solo
+sí documentado justifica que `LIMPIO` exista; **si nadie lo tiene, la marca sobra y hay que quitarla**,
+porque una opción que nunca es correcta solo sirve para que alguien la elija por error.
+
+**Por qué te lo pedimos a ti.** Son preguntas que el marco no puede contestarse solo: este repo genera
+su propio loader, así que mirarse a sí mismo no es evidencia de nada. Y de las respuestas depende una
+regla que hoy protege datos que no podemos ver.
 
 ## Carta 3 — En AUDITAR, el falso positivo es el lado peligroso (y queremos saber si te pasa igual)
 

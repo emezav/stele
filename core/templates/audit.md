@@ -1,6 +1,6 @@
 # {{audit}} — Auditorías de documentación (append-only, OPCIONAL)
 
-> Una fila por auditoría (ritual AUDITAR, `{{kit}}/SKILL.md`). Este archivo **lo crea la primera
+> Una fila por auditoría (ritual AUDITAR, `{{kit}}/core/rituals/auditar.md`). Este archivo **lo crea la primera
 > auditoría**, no el bootstrap: su ausencia significa que el proyecto nunca se ha auditado.
 > Al terminar:
 > `printf '| N | YYYY-MM-DD | A-B | alcance | C (F falsas) | E/P | desenlace |\n' >> {{history_dir}}{{audit}}`

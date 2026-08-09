@@ -32,7 +32,7 @@ reescribirlo con el ritual `config`, o la exención de documentación deja la re
 
 ## Qué aporta al ritual AUDITAR
 
-Las ocho clases de drift son del núcleo (`SKILL.md` → AUDITAR): son propiedades de cualquier
+Las ocho clases de drift son del núcleo (`core/rituals/auditar.md`): son propiedades de cualquier
 documentación, no de software. Lo que aporta este módulo son **detectores concretos**, porque una
 detección necesita saber *qué doc contradice a cuál*, y eso depende de los roles activos:
 

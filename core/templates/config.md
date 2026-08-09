@@ -28,7 +28,7 @@
 > `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
 > disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
 > secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
-> en el gestor de la herramienta. Ver `{{kit}}/SKILL.md` → CERRAR, paso 7.
+> en el gestor de la herramienta. Ver `{{kit}}/core/rituals/cerrar.md`, paso 7.
 >
 > `remitente` = con qué nombre firma este proyecto la **correspondencia privada**, y lo que permite
 > reconocer lo que va dirigido a él. **Elegido, no derivado:** un valor calculado de la carpeta o la
@@ -98,7 +98,7 @@
 > necesitado producir nada—; `—` lo desactiva del todo.
 > **Con `persistencia = git` no se versiona por defecto:** añádelo a tu `.gitignore`. Si prefieres el
 > rastro auditable dentro del repo, versiona al menos los artefactos que el `{{session}}` marca como
-> sostén de un cambio irreversible, e ignora el resto. Ver `{{kit}}/SKILL.md` → CERRAR.
+> sostén de un cambio irreversible, e ignora el resto. Ver `{{kit}}/core/rituals/cerrar.md`.
 
 ## Features (toggles)
 
@@ -120,7 +120,7 @@
 >
 > `audit_every_n_sessions` **no dispara nada**: es el umbral con el que el cierre decide si anota
 > "auditoría vencida" en los pendientes de `{{state}}`. Auditar sigue siendo un acto explícito del
-> usuario (ver `{{kit}}/SKILL.md` → AUDITAR). `—` = sin recordatorio. Con `audit_log = off` no hay
+> usuario (ver `{{kit}}/core/rituals/auditar.md`). `—` = sin recordatorio. Con `audit_log = off` no hay
 > desde cuándo contar y el recordatorio no aplica.
 >
 > **El número es del usuario, no del marco.** El default 10 es un punto de partida deliberadamente
@@ -134,6 +134,14 @@
 | --- | --- |
 | state | 100 |
 | handover | 50 |
+| SKILL.md (enrutador del kit) | 400 |
+
+> **El último no es de tu proyecto: es del kit, y está aquí porque faltaba.** El marco ponía tope a lo
+> que el adoptante escribe y ninguno a lo que él mismo distribuye. Medido: `SKILL.md` llegó a **1845
+> líneas (~37 700 tokens)** creciendo de forma monótona —de veinticinco cambios seguidos, ninguno lo
+> redujo— mientras el ritual usado **cada** sesión ocupaba 12 líneas y el usado **cada diez** ocupaba
+> 615. Al partirlo por ritual bajó a ~366. Si vuelve a pasar de 400, **el sitio correcto de lo que
+> entró es un ritual**, no el enrutador.
 
 ## Wording de rituales
 

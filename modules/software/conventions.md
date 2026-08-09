@@ -7,7 +7,7 @@
 ## Git
 
 > Esta sección presupone `persistencia = git` en el manifiesto. Con `ninguna` o `comando`, el
-> cierre se rige por el paso 7 de CERRAR (`{{kit}}/SKILL.md`) y estas reglas no aplican.
+> cierre se rige por el paso 7 de CERRAR (`{{kit}}/core/rituals/cerrar.md`) y estas reglas no aplican.
 
 - **Ramas:** `feature/<nombre>`, `fix/<descripción>` (o la convención del repo). No trabajar en la
   rama por defecto sin acordarlo.
