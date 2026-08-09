@@ -5,10 +5,36 @@
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
 sobrescribir contenido; solo generar lo que falte). Pasos:
+
 1. Elegir `idioma`/`módulos`/`persistencia` y las **tres rutas** (`kit`/`base`/`loader`) con
    defaults sensatos. Auto-detectar `persistencia = git` si hay `.git` **en la raíz del proyecto** —
    no vale uno anidado en un subdirectorio, que deja la raíz sin versionar —, si no `ninguna`
    (avisando de la consecuencia).
+
+   **El `loader` se llama como el archivo que TÚ auto-cargas. No hay default universal.** El nombre
+   no lo elige el marco: lo impone el harness que abre la sesión, y **el agente que instala es
+   normalmente el mismo que va a arrancar**, así que la respuesta la tienes tú y no hace falta
+   preguntarla:
+
+   | Si eres… | `loader` |
+   | --- | --- |
+   | Claude Code | `CLAUDE.md` |
+   | Codex y la mayoría de los demás | `AGENTS.md` |
+   | otro harness | el nombre exacto que ese harness lee de la raíz |
+
+   `CLAUDE.md` aparece como ejemplo en las plantillas **porque este marco nació ahí**, no porque sea
+   correcto en general. Copiarlo sin mirar deja el marco instalado y **mudo**.
+
+   **Caso de campo, y es el más caro de todos los observados:** un agente que no lee `CLAUDE.md`
+   instaló el marco entero correctamente —manifiesto, docs, bloque de arranque, todo bien— y escribió
+   el loader con ese nombre. Al reabrir la carpeta **no arrancó**: saludó en genérico, sin sesión, sin
+   estado y sin próximo paso, y se ofreció a rehacer trabajo que ya estaba terminado. **Nada falla, no
+   hay error, y el proyecto queda con la documentación perfecta y el mecanismo apagado.**
+
+   **Colisión con `entry`:** si `base = .`, `loader = AGENTS.md` choca con el `entry` por defecto, que
+   también es `AGENTS.md`. **Gana el `loader`** —su nombre lo impone algo de fuera y el del `entry`
+   no— y se renombra el `entry` (`guia-agente.md`, `mapa.md`, lo que encaje en el idioma del
+   proyecto). Con `base != .` no hay choque: son rutas distintas.
 
    **El módulo de producto NO se auto-detecta: se RESUELVE con criterio y se DECLARA en el eco**, y
    son tres respuestas. El criterio es
@@ -59,11 +85,12 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    sigue siendo del usuario. No hace falta prefijar nada: **una carpeta con nombre ya dice de quién es
    lo que hay dentro** — y por eso no se llama como el marco (ver la tabla de layouts).
 2. **Eco del layout resuelto ANTES de escribir nada** (siempre, incluso en zero-question):
+
    ```text
    layout       -> agrupado   (dónde va cada cosa; o "personalizado")
    kit          -> .stele     (el marco; se reemplaza al actualizar)
    base         -> bitacora   (tus documentos; no se tocan nunca)
-   loader       -> CLAUDE.md  (el archivo que arranca al agente)
+   loader       -> AGENTS.md  (el que TÚ auto-cargas; CLAUDE.md si eres Claude Code)
    persistencia -> git        (cómo se guarda el trabajo al cerrar)
    módulos      -> pendiente  (¿hay producto con estructura? sí / no / todavía no)
    ```

@@ -7,7 +7,7 @@
 | --- | --- | --- | --- |
 | `kit` | `.stele` | El marco vendorizado. Maquinaria **reemplazable**. | Ritual ACTUALIZAR |
 | `base` | `.` | Los docs instanciados (roles). Contenido **del proyecto**. | El agente, cada sesión |
-| `loader` | `CLAUDE.md` | Auto-arranque, siempre en la raíz. GENERADO **por bloque**. | `bootstrap`/`config` |
+| `loader` | según el agente | Auto-arranque, siempre en la raíz. GENERADO **por bloque**. **No hay default universal:** se llama como el archivo que auto-carga el harness que abre la sesión — `CLAUDE.md` en Claude Code, `AGENTS.md` en Codex y la mayoría. Elegirlo mal deja el marco instalado y **mudo**. | `bootstrap`/`config` |
 
 **Invariantes** (validar en `bootstrap` y en `config`, antes de escribir):
 
@@ -79,7 +79,6 @@ Se usan de tres maneras:
 - **Como entrada**: "bootstrapea con layout agrupado" o "pásame a layout docs" son peticiones
   válidas; se traducen a valores de ruta y se previsualizan como tales.
 
-
 ## Convención de tokens en plantillas
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
@@ -135,4 +134,3 @@ compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila
   en el mismo bloque — que es el caso dentro de `{{history_dir}}`, y por eso el historial se mueve
   entero y no se reescribe. Un enlace que apunte **fuera** del bloque movido sí se rompe: revísalos
   al migrar.
-
