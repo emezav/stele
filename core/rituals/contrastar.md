@@ -136,6 +136,29 @@ error de canal **viaja a cada adoptante**, y allí no hay cartero ninguno al que
    la contestaste o te movió a hacer algo** — la copia del remitente puede desaparecer y entonces la
    tuya es la única. La respuesta dice **qué entró, qué no y por qué**, y qué sigue sin poder
    responderse; es a su vez un `letter` que sale. Luego, las filas en `correspondence`.
+   **La cabecera del `letter` NO lleva estado** — ver abajo.
+
+### La cabecera de una carta archivada no lleva estado
+
+**Escribe en ella lo que no cambia** —de quién viene, su numeración, qué comprobaste al recibirla, qué
+te llamó la atención— y **nada que vaya a caducar**. El estado del intercambio vive en la fila de
+`correspondence`, que es su único hogar, y allí se mueve al procesarla.
+
+**Porque una marca de estado en la cabecera de un fichero archivado no la mueve nadie.** El momento en
+que deja de ser cierta no tiene ningún paso asociado: la carta ya está guardada y no se vuelve a abrir.
+**Caso de campo: 21 cartas marcadas *"archivada sin procesar"*, todas procesadas, algunas sesiones
+atrás** — mientras las salientes del mismo archivo, cuyo estado vive en la **columna** del índice,
+estaban al día. **La asimetría es la prueba:** el lado con un solo hogar no derivó; el que tenía dos,
+derivó entero.
+
+**Y el arreglo no es añadir un paso que mueva la marca: es quitar el segundo hogar.** Mover una marca
+en N ficheros es un remedio **O(n) que hay que mantener**, y por su forma eso no es un arreglo — crece
+con cada carta y se pudre. Quitar el hogar duplicado cuesta **O(1)** y no deja nada que mantener. Es la
+misma ley que hace que se marque *la puerta* y no cada afirmación (AUDITAR).
+
+> **Un dato que caduca solo puede vivir donde algo lo mueva.** Si vas a escribirlo en un sitio donde
+> nada lo mueve, **no es un estado: es una foto**, y entonces se escribe con su fecha y en pasado —
+> *"al archivarla, tal cosa estaba sin comprobar"*— que no caduca porque no pretende ser el presente.
 
 ## Responder es una fase, no cortesía
 
