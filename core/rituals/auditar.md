@@ -401,29 +401,48 @@ de aprenderla, la regla de que una aritmética con dos soluciones no identifica 
 Por eso *marcar la conjetura* no sirve: **no se siente conjetura**. Lo único que la caza es el paso
 mecánico y **previo** — contar cuántas soluciones admite el número **antes** de elegir una.
 
-## Nunca metas un carácter acentuado dentro de `[...]`
+## Un detector léxico depende del LOCALE, y el mismo patrón da dos respuestas
 
 **Un detector de este mismo ritual estuvo roto por esto, y era del producto.** El patrón de la clase 5
-decía `sesi[oó]n [0-9]+` y **no puede casar `sesión`**: la vocal acentuada ocupa **dos bytes**, la clase
-casa **uno**, y luego el patrón exige la `n` donde está el segundo byte. Medido sobre un corpus
-español: **22 líneas con la clase rota, 156 con la alternancia.** Se perdía el **86%**, en silencio y
-durante meses.
+decía `sesi[oó]n [0-9]+` y no casaba la forma acentuada. **La causa NO es la clase: es el locale.**
+Medido, mismo binario y mismo fichero:
 
-> **Usa alternancia —`sesi(o|ó)n`— nunca clase.** Y ojo con el caso peor, que es el que no se nota: si
-> el carácter acentuado va **al final** del patrón, la clase **sí casa** —consume el primer byte y no
-> exige nada detrás—, así que el detector *parece* funcionar. Uno de los dos patrones de aquí estaba en
-> cada caso.
+| Locale | `sesi[oó]n [0-9]+` | `sesi(o\|ó)n [0-9]+` |
+| --- | --- | --- |
+| `C` / `POSIX` | **1** — no casa la acentuada | **2** |
+| `en_US.UTF-8`, `C.UTF-8` | **2** | **2** |
 
-**Hay una tercera forma y esa sí es segura, pero por una razón que no es la que uno cree.** Una clase
-de rango con acentos **bajo cuantificador** —`[a-záéíóúñ]+`, como en el detector de contadores— sí casa
-palabras acentuadas: el `+` deja que los **dos bytes** del acento entren como **dos elementos** de la
-clase. Probado: 3 de 3, con control negativo.
+En `C` no hay caracteres, **hay bytes**: la vocal acentuada ocupa dos, la clase casa uno, y el patrón
+exige lo siguiente donde está el segundo. En UTF-8 el mismo `grep` es consciente de caracteres y la
+clase funciona perfectamente.
 
-> **La condición es el cuantificador, no la clase.** `[a-záéíóúñ]+` funciona; `[a-záéíóúñ]` a secas, o
-> seguida de algo fijo, **no**. Quien copie esa clase a un sitio sin `+` se lleva el fallo mudo sin
-> tocar nada de lo que se ve.
+> **Usa alternancia —`sesi(o|ó)n`—, que es correcta en los dos locales.** No porque la clase sea
+> inválida, sino porque **depende de una variable de entorno que nadie declara**.
 
-### Y comprueba el valor esperado del control, no solo su resultado
+**Y lo peligroso no es que falle: es que falla A VECES.** El mismo detector, el mismo corpus y el mismo
+binario dan **dos respuestas** según el locale. Un adoptante en UTF-8 que intente reproducir el fallo
+**no lo verá** y concluirá que no existe; uno en `C` lo sufre en silencio. **Una medición de cuánto
+pierde un detector así no mide el detector: mide el locale de quien midió.**
+
+> **A *¿en qué copia?* y *¿en qué herramienta?* hay que añadir *¿bajo qué locale?*.**
+
+**Y declarar la variable no basta.** Aquí `LANG` y `LC_ALL` están **vacíos**, `locale` reporta
+`LC_CTYPE="C.UTF-8"` —que funcionaría— y el `grep` sin prefijo **se comporta como `C`**. El locale
+**declarado y el efectivo no coinciden**, así que lo que se guarda en un informe de entorno no es el
+valor de la variable: es **el resultado del experimento**.
+
+```bash
+printf 'sesion 12
+sesión 12
+' > /tmp/s.txt
+grep -cE "sesi[oó]n [0-9]+" /tmp/s.txt   # 2 = tu entorno entiende caracteres; 1 = bytes
+```
+
+**Una clase acentuada bajo cuantificador —`[a-záéíóúñ]+`— sí es robusta**: da 2 en los dos locales,
+porque el `+` deja que los dos bytes entren como dos elementos. Comprobado. Pero la condición es el
+cuantificador, y quien copie esa clase a un sitio sin `+` se lleva el fallo **intermitente**.
+
+## Y comprueba el valor esperado del control, no solo su resultado
 
 **Dos veces en una misma sesión el control "falló" y lo que estaba mal era la expectativa.** Un
 `result(o|ó)` dio 2 donde se esperaban 3 —y el 2 era correcto, porque *resultado* no contiene
