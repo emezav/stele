@@ -220,6 +220,38 @@ CONTROL NEGATIVO  frase inventada -> 0
 GLOBAL            se pierden 462 de 1600 = 28.9%
 ```
 
+### Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO
+
+**Y hay que escribirla como tal: con fecha y en pasado.** El kit es un sitio donde **nada la mueve** —
+no hay ningún paso, en ningún ritual, que vuelva a correr una medición publicada dentro de un
+documento de producto. Así que una cifra medida sobre el historial, el archivo de correspondencia o
+cualquier corpus **que crece** empieza a envejecer el día que se escribe, en silencio y sin que nadie
+la contradiga.
+
+**Es la misma ley que gobierna los estados** —*un dato que caduca solo puede vivir donde algo lo
+mueva*, en CONTRASTAR— aplicada a los números, que es donde no se había mirado: un ratio parece un
+hecho y un estado parece un estado, así que a los estados se les busca dueño y a los ratios no.
+
+**Medido en una auditoría real, sobre las cifras de este mismo ritual:**
+
+```text
+"23 de 36 cartas recibidas"   -> re-medido: 27 de 39      la conclusion aguanta, la cifra no
+"10 de 62 referencias"        -> el corpus es 104 hoy
+"60 referencias" y "62"       -> el MISMO fichero da dos denominadores del MISMO corpus
+"Sin raiz (30%)" y "16%"      -> la tabla trae el test intuitivo y el texto el correcto, sin decirlo
+```
+
+Las tres formas —envejecer, contradecirse y mezclar dos métodos— **salen de lo mismo**: nadie volvió a
+correrlas porque no había dónde. Y ninguna se ve releyendo.
+
+**Lo que funciona no es re-medir cada cierre** —eso es el remedio O(n) que hay que mantener— sino
+**escribirlas de una forma que no caduque**: fecha, verbo en pasado, y de quién era el corpus. *"Medido
+el 2026-08-09 sobre 60 referencias de la instancia que lo halló"* sigue siendo cierto para siempre;
+*"medido aquí sobre 60 referencias"* deja de serlo sin avisar. **Cuesta lo mismo escribirlo bien.**
+
+**Y cuando dos cifras del mismo texto no cuadren y el corpus ya no exista, no se arbitra: se anota.**
+Inventar cuál era la buena es exactamente el fallo que estas reglas persiguen.
+
 **El identificador del corpus no es adorno, y esta tabla es la prueba.** Su primera versión se publicó
 con **semilla fija y corpus sin fijar**, y dejó de reproducirse en cuanto el corpus creció en **un**
 fichero —el acta de la sesión que la había medido—: `29,2%` pasó a `28,9%` sin que nadie tocara nada.
@@ -234,7 +266,7 @@ obtenida con una frase larga hay que publicarla diciendo con qué frase se obtuv
 
 <!-- Medido con semilla fija para que sea re-corrible; el corpus era el historial de la instancia que
      lo descubrió, así que el número concreto es suyo. Lo que viaja es el método y el orden de
-     magnitud, no el 29,2%. -->
+     magnitud, no el 28,9%. -->
 
 ### Un comando que aborta, detrás de una tubería, es un cero
 
@@ -1533,15 +1565,21 @@ decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no ca
    correcta **y es un puntero**: el número envejece en cuanto el fichero cambia. Aquí es peor que en
    otros sitios porque **se escribe dentro de registros inmutables** —el acta, el informe, la carta
    entregada—, así que **no hay dónde corregirla**. Lo aportó un corresponsal con su medida (tres de
-   seis rangos ya no contenían lo señalado); medido aquí sobre 60 referencias de nuestros registros
-   inmutables, **solo el 42% resuelve todavía**. Y las que fallan lo hacen por **tres causas
-   distintas**, que conviene no mezclar:
+   seis rangos ya no contenían lo señalado); medido el 2026-08-09 sobre 60 referencias de los registros
+   inmutables de la instancia que lo halló, **solo el 42% resolvía todavía**. Y las que fallaban lo
+   hacían por **tres causas distintas**, que conviene no mezclar:
 
    | Causa | Qué pasó | ¿Evitable al escribir? |
    | --- | --- | --- |
    | **Podrida** (22%) | El fichero está, la línea ya no | Solo en parte: anclar en el identificador |
    | **Renombrada** (7%) | El fichero cambió de nombre | Ya lo cubre la nota de equivalencia del índice |
    | **Sin raíz** (30%) | La referencia **nunca dijo de quién era el fichero** | **Sí, entera** |
+
+   <!-- OJO A ESE 30%: es del test INTUITIVO, que sobre-marca. Con el test correcto -unas lineas mas
+        abajo- la misma categoria queda en 10 de 62 (16%). Las dos cifras son de la misma medicion de
+        2026-08-09 y NO CUADRAN entre si: el denominador aparece como 60 aqui y como 62 alli. No se
+        arbitra cual vale porque el corpus de entonces ya no existe; lo que vale es el TEST, que si
+        esta explicado. Detectado por la auditoria 10 y anotado en vez de inventado. -->
 
    **La tercera no está podrida: nació irresoluble**, y es la mitad del problema. Casi todas eran
    citas a ficheros de **otro proyecto** (`main.go:33`), inequívocas para quien las recibía y opacas
@@ -1557,7 +1595,9 @@ decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no ca
    casan con ese nombre**: uno solo = puntero válido aunque vaya abreviado; **cero o varios = no es un
    puntero**. Importa porque la versión intuitiva sobre-marca: al construir el detector, *"sin
    directorio = sin raíz"* dio **2,4 veces** los aciertos reales — marcaba `bootstrap.md:107`, que es
-   **único** en el árbol y resuelve solo. Con el test correcto quedan **10 de 62 (16%)**, y las diez
+   **único** en el árbol y resuelve solo. Con el test correcto quedaron **10 de 62 (16%)** —medido el
+   2026-08-09 sobre los registros de la instancia que lo halló, que hoy son más de 100: **es una foto,
+   no un ratio vigente**—, y las diez
    son la misma forma: **citar el fichero de OTRO proyecto sin decir que es suyo**.
 
    **Y es el mismo test que la cita ambigua**, unas líneas más arriba: allí un título de sección, aquí

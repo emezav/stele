@@ -125,8 +125,9 @@ manda la fila no puede contestar la pregunta.**
 | **mal dirigido** | marca `Sí` **correctamente** y apunta a un corpus que no puede responder |
 
 **Y es el más difícil de evitar de los tres, porque la ceguera está del OTRO lado.** Quien escribe no
-puede saber cómo archiva el otro; quien archiva no sabe por qué campo barre el otro. Medido aquí
-después: **23 de 36 cartas recibidas conservan una sola cabecera —la nuestra— y no la del remitente**,
+puede saber cómo archiva el otro; quien archiva no sabe por qué campo barre el otro. Medido el
+2026-08-09 en la instancia que lo halló: **23 de 36 cartas recibidas conservaban una sola cabecera —la
+suya— y no la del remitente**,
 así que para dos tercios del corpus **nuestro archivo no puede testificar qué decía el original**. Nadie
 lo decidió; salió así.
 
