@@ -33,7 +33,9 @@ Exención: cambios que SOLO tocan el **contenido** de la documentación; una mig
 
 - Contrato/feature/modelo de datos → `{{specs}}`.
 - Patrón reutilizable del producto → `{{architecture}}` (uno por producto).
-- Trampa no evidente al leer el código → `{{gotchas}}`.
+- Trampa no evidente **de trabajar aquí** —del entorno, de una herramienta, de publicar, de verificar,
+  y también del código— → `{{gotchas}}`. **No es el hogar de las trampas *de código*:** es el de las
+  trampas de trabajar en el proyecto, y por eso vive en el núcleo y no en este módulo.
 - Principio/apuesta grande transversal → `{{charter}}`.
 - Nunca dejar una decisión de código solo en el historial ni en memoria privada del agente.
 

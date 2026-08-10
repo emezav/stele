@@ -104,6 +104,33 @@ Así que la columna no es una propiedad de la afirmación: **es una propiedad de
 corresponsal que ve más, se marca lo que él ve, y **se le pregunta si quiere seguir viéndolo** — la
 instancia es privada y quien decide es su dueño, no la conveniencia de la verificación.
 
+### El tercer modo de fallo: marcar bien y apuntar a un corpus que no puede responder
+
+Los dos primeros son de **cobertura** —el estrecho deja fuera lo comprobable, el generoso mete dentro
+lo que no lo es—. El tercero no falla en la columna: **falla en la dirección**.
+
+**Caso de campo, y es de los dos lados a la vez.** Una carta afirmó que cierta cabecera de una carta
+propia **no llevaba un campo**, lo marcó `Sí` y mandó al destinatario a comprobarlo **en su copia
+archivada**. La copia del destinatario **sí lo llevaba** — pero escrito desde su lado (`entra` en vez
+de `sale`), así que no era demostrablemente la original. Ni confirma ni desmiente: **el sitio al que
+manda la fila no puede contestar la pregunta.**
+
+| Modo | Qué hace |
+| --- | --- |
+| **estrecho** | deja fuera lo comprobable -> no se comprueba |
+| **generoso** | mete dentro lo que no lo es -> se confirma la mitad y se supone el resto |
+| **mal dirigido** | marca `Sí` **correctamente** y apunta a un corpus que no puede responder |
+
+**Y es el más difícil de evitar de los tres, porque la ceguera está del OTRO lado.** Quien escribe no
+puede saber cómo archiva el otro; quien archiva no sabe por qué campo barre el otro. Medido aquí
+después: **23 de 36 cartas recibidas conservan una sola cabecera —la nuestra— y no la del remitente**,
+así que para dos tercios del corpus **nuestro archivo no puede testificar qué decía el original**. Nadie
+lo decidió; salió así.
+
+> **No basta con preguntar *"¿puede el otro comprobarlo?"*. Falta *"¿en qué copia?"*.** Cuando la
+> evidencia es un artefacto que existe **de los dos lados**, hay que decir de cuál se habla — las dos
+> copias pueden diferir sin que ninguno lo sepa.
+
 ### El ángulo muerto: el marcador inventaría lo que afirmas sobre TI
 
 **Al llenar la tabla uno enumera lo que estuvo escribiendo, y lo que estuvo escribiendo es su propio
@@ -424,4 +451,3 @@ leyó como una instrucción sobre su propia variante y uno no tenía ninguna.
 Así que antes de la pregunta al otro va una comprobación de una línea sobre lo propio: **¿está
 declarada la variante de este proyecto, y la eligió una persona?** Si la respuesta es no, la regla no
 te está protegiendo de nada — te está devolviendo el default con cara de decisión.
-

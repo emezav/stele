@@ -260,6 +260,27 @@ sus documentos lo tiene gratis; quien no —y aquí los docs de trabajo no se ve
 git, necesita una copia**: el mismo `{{artifacts_dir}}` que ya existe para no destruir evidencia sirve
 de red. La condición es *poder volver*, no *tener historial*.
 
+**Y la salvaguarda más barata contra la sonda rota es tener el ANTES al lado del DESPUÉS.** Aporte de
+campo, funcionando solo: al comprobar si dos reglas habían entrado en un commit, dos de tres sondas
+dieron **cero antes y cero después**. Habrían dicho *"no entró"* de dos reglas que sí entraron.
+
+> **Una sonda que da cero en las dos columnas no está midiendo una ausencia: está rota.** Con una sola
+> columna, ese cero es indistinguible de un hallazgo.
+
+Es el control positivo **incorporado a la forma del barrido** en vez de puesto al lado, y no cuesta
+nada: cuando se comprueba un cambio, se mide contra los dos commits siempre.
+
+**Y hay un modo de fallo del razonamiento, no de la sonda, que este ritual no cubría:**
+
+> **Una aritmética con dos soluciones no identifica un elemento.** Faltaban seis filas de un total de
+> once, y once se descompone en 6+5 **de dos maneras** con las cartas disponibles. Se eligió la que
+> encajaba con algo que ya se venía diciendo, y se escribió **como hecho y con motivo inventado**.
+
+**Lo que lo vuelve invisible es la segunda mitad:** cuando una de las dos soluciones confirma el relato
+anterior, **deja de parecer una elección**. Es la familia de *"el diff prueba la entrada, no la
+autoría"* — había evidencia de **cuántas** faltaban y ninguna de **cuál**. Y la prueba de la ambigüedad
+estaba impresa **en la misma carta, dos párrafos antes**.
+
 **Un cero se comprueba antes de creerlo.** Un barrido que devuelve 0 en **todos** los detectores casi
 nunca significa "corpus limpio": significa que el comando no miró donde creías — un directorio de
 trabajo que no era el que pensabas, un glob que no expandió, una ruta mal compuesta. Es el falso
@@ -642,6 +663,24 @@ lo destapó releer sino un cambio externo. Uno propio, peor: una cabecera pasó 
 a *"al trabajar"* precisamente porque el sustantivo excluía método, entorno y cierre — y la fila del
 mapa que enruta hacia ese documento siguió diciendo **"al editar" treinta y tres sesiones**, en el doc
 que se lee en cada arranque. **La plantilla del kit sí se arregló; la instancia derivada de ella, no.**
+
+**Y hay que contar los punteros antes de dar la clase por cerrada, porque son más de los que nadie
+cree.** Preguntado en campo *"¿cuántos documentos suyos describen a este documento, y lo saben sin ir a
+mirar?"*, la respuesta fue **dos** y eran **siete** — con **tres** conservando el encuadre viejo,
+incluida la frase exacta que ya se había dado por corregida. Aquí, sobre el mismo rol: **19 candidatos,
+2 con el encuadre viejo**, y los dos viviendo en el módulo del que ese rol **se había sacado seis meses
+antes por ese mismo motivo**.
+
+> **Encontrar los candidatos es un `grep`; lo caro es juzgar cuál DESCRIBE y cuál solo CITA.** No hay
+> patrón que los separe: *"ver `X` → renombrar"* es una cita y *"trampas → `X`"* es una descripción, y
+> las dos son una línea con el mismo token. El coste es **un juicio por candidato**, no una búsqueda.
+
+**Y el patrón que las dos veces se repitió merece nombre, porque es de método y no de contenido:**
+
+> **Quien enseña la regla suele ser quien no la ha aplicado.** Las dos veces que esta clase se explicó
+> por escrito, quien la explicaba había corregido **un puntero de siete** y **cero de dos**
+> respectivamente, y dio la clase por cerrada. Entender la regla produce la sensación de haberla
+> aplicado — **escribirla, más todavía**.
 
 **Y no confundirlo con un puntero a una ubicación que se movió**, que es otra cosa y falla distinto:
 ese manda a un sitio donde no está lo que busca, y quien va **se topa con el hueco**. Este manda al

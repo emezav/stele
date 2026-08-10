@@ -3,7 +3,7 @@
 > **Fuente de verdad del producto**: specs, contratos de API, modelo de datos, decisiones por
 > feature, contexto de negocio detallado. Es lo que perdura y comparten todos los agentes y
 > sesiones. Frontera: los *principios y apuestas grandes transversales* van en `{{charter}}`;
-> los *patrones de código* en `{{architecture}}`; las *trampas de código* en `{{gotchas}}`.
+> los *patrones de código* en `{{architecture}}`; las *trampas de trabajar aquí* en `{{gotchas}}`.
 >
 > **Estructura:** una sección `§` por decisión o feature, **autocontenida**. Este archivo se lee con
 > `grep` y por rango, nunca entero: lo que importa es que cada sección sea corta por sí misma, no el
