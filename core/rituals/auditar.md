@@ -423,6 +423,21 @@ clase. Probado: 3 de 3, con control negativo.
 > seguida de algo fijo, **no**. Quien copie esa clase a un sitio sin `+` se lleva el fallo mudo sin
 > tocar nada de lo que se ve.
 
+### Y comprueba el valor esperado del control, no solo su resultado
+
+**Dos veces en una misma sesión el control "falló" y lo que estaba mal era la expectativa.** Un
+`result(o|ó)` dio 2 donde se esperaban 3 —y el 2 era correcto, porque *resultado* no contiene
+*resulto*—; y un barrido de comprobación dio 1 donde se esperaba 0, y el 1 era **la cita en prosa** del
+patrón roto, no el patrón.
+
+> **Un control positivo tiene dos partes y solo una se suele revisar.** El resultado se mira siempre; el
+> **número esperado** se escribe de memoria y no se comprueba contra nada. Cuando el control no cuadra,
+> **la primera hipótesis debe ser la expectativa**, no el artefacto — es la más barata de descartar y la
+> que más veces resulta ser.
+
+Y tiene un modo de fallo peor que el ruido: **una expectativa equivocada que coincide con el resultado
+deja pasar un artefacto roto en verde**, y eso no se distingue de un control que funciona.
+
 **Y esto se generaliza a cualquier kit que no esté en inglés:** un detector léxico escrito en un idioma
 con diacríticos y probado con un control **sin** diacríticos pasa en verde y no mide nada. El control
 positivo tiene que llevar **la forma acentuada**, que es la que el corpus usa de verdad.
