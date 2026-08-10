@@ -60,6 +60,25 @@ reproducible ni comparable sin eso: dos proyectos pueden diferir en cosas que ni
 entonces las observaciones no se comparan entre sí sino entre dos montajes distintos. Sin el entorno,
 una observación de comportamiento es una anécdota bien contada.
 
+**Y cuatro de esos cinco campos se rellenan preguntándole a la herramienta por sí misma**, que es la
+parte que nadie mira: versión, superficie, modelo y ajustes salen de **introspección**, y el único con
+fuente humana es lo que el usuario recuerda haber cambiado.
+
+> **Un campo obtenido por introspección no es un dato: es una afirmación de la herramienta sobre sí
+> misma**, y hereda su fiabilidad. Puede **mentir sin fallar** — sin error, sin aviso y con formato
+> correcto.
+
+**Caso de campo, y son dos.** En un proyecto, `grep --version` respondía *GNU grep 3.7* mientras el
+nombre `grep` lo servía otro binario entero. En otro, `locale` reportaba un juego de caracteres que
+funcionaría y la herramienta se comportaba como si fuera otro: **el declarado y el efectivo no
+coincidían**.
+
+> **No preguntes qué dice: mide qué hace.** Donde el campo importe, lo que se guarda no es el valor que
+> devuelve la herramienta sino **el resultado de un experimento de dos líneas** que la obligue a
+> comportarse.
+
+El **modelo** es el peor de los cuatro: quien lo declara es exactamente aquel del que se duda.
+
 **Los ajustes son la parte que más se olvida, y la que más engaña.** Herramienta y versión se
 recuerdan porque se nombran a diario; un interruptor que alguien encendió una vez se vuelve invisible
 en cuanto deja de sorprender. Di **cuál es y de qué alcance** —global o de este proyecto—, porque un
