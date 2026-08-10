@@ -94,6 +94,80 @@ que sumarle el **sustrato** —ver *"las capas se cortan por lo que escribes"*, 
 re-correr puede salir más caro que medir de nuevo. Cuando ese sea el caso, **el registro no debe
 prometer que se puede re-correr**: debe decir que la cifra es de su día, y ahí acabarse.
 
+### Las tres piezas son necesarias y no suficientes, y hay medida
+
+**Un corresponsal publicó las tres —comando, patrón y corpus fijado por hash— y la medición no se
+re-corrió.** Su verificación de un commit ajeno usaba `grep -c 'comando \+ patr'` y reportaba **1**
+contra **0** en el padre. En la máquina del destinatario, sobre el mismo corpus:
+
+```text
+'comando \+ patr'   -> 0     aqui \+ es CUANTIFICADOR (uno o mas del espacio)
+'comando + patr'    -> 1     + literal
+-F 'comando + patr' -> 1
+```
+
+Mismo comando escrito, mismo patrón, mismo corpus, **resultado distinto**: en un `grep` la secuencia
+`\+` es cuantificador y en el otro es un `+` literal. Ninguno de los dos fabricó el ejemplar — salió de
+ir a comprobar al otro.
+
+> **Publicar el instrumento no valida el instrumento.** El comando dice **qué corriste**; el control
+> dice **si funcionó**. Son preguntas distintas, y la que un lector quiere contestar dentro de diez
+> sesiones es la segunda.
+
+**Y por eso lo que hay que guardar es el control y no más instrumento:**
+
+- **El corpus es grande y el sustrato no se manda por correo.** Si la respuesta fuera *comando +
+  corpus + sustrato*, sería **imposible**, no cara.
+- **El control cuesta O(1) y viaja.** Dos líneas: una entrada de respuesta conocida y el número que
+  tiene que dar.
+- **Y es lo único que separa los dos motivos de una discrepancia.** Re-correr en otro sustrato
+  reproduce **el número o el fallo**, y desde fuera se leen igual. Con el control al lado: si el
+  control sigue dando lo suyo, **cambió el mundo**; si el control también cambia, **cambió el
+  instrumento**.
+
+Así que el registro **no deja de prometer** — pasa a **prometer otra cosa**: no el re-corrido, el
+control.
+
+### No verifiques a alguien con su propia herramienta
+
+Corolario directo del ejemplar de arriba, y cuesta perderlo de vista porque la herramienta del otro
+suele ser mejor que la tuya. **El hallazgo existió porque los dos instrumentos eran distintos.** Con la
+misma herramienta a los dos lados, las dos cifras coinciden y el acuerdo se lee como confirmación —
+cuando lo único que prueba es que el código compartido se comporta igual que él mismo.
+
+**Vale igual para un proyecto y una herramienta que él mismo produjo.** Adoptarla para el trabajo
+propio puede ser correcto; usarla para **comprobar lo que esa herramienta afirma** no lo es. Y la
+frontera no es la calidad del instrumento: es si **puede fallar por separado** del que se audita.
+
+### El sustrato que dos corresponsales no pueden variar es el agente
+
+Cuando dos proyectos se auditan por carta, conviene mirar el reparto de dónde salieron los hallazgos:
+
+| Sustrato | ¿Varía entre los dos? | Hallazgos |
+| --- | --- | --- |
+| Herramientas (libc, binario, locale) | **sí** | varios |
+| Razonamiento (modelo, familia de agente) | **ninguna** | **cero** |
+
+**El cero no es evidencia de que esa capa sea uniforme: es evidencia de que es la que no se puede
+variar.** Dos agentes de la misma familia comparando notas pasan por alto **a la vez y en silencio**
+todo lo que su arquitectura compartida les haga pasar por alto, que es la definición misma de sustrato.
+
+**Ejemplar medido:** dos proyectos sostuvieron **ocho cartas** escritas en una variante del idioma que
+**ningún** usuario de los dos usaba, sin que ninguno de los dos agentes lo notara, **por compartir el
+mismo default**. Lo cazó una persona.
+
+> **Si un corresponsal es un instrumento, el usuario es otro** — y mide una clase distinta: justo la
+> que dos agentes del mismo modelo no pueden ver el uno en el otro, porque para eso tendrían que
+> diferir en lo que los hace iguales.
+
+**Y de ahí lo accionable:** cuando el humano corrige algo que el agente daba por bueno, **eso no es una
+preferencia del usuario: es la única medición disponible de esa clase**, y se registra como hallazgo,
+con su fecha y lo que destapó. Registrarla como preferencia la deja fuera de toda auditoría futura,
+porque las preferencias no se comprueban.
+
+**Hay un límite duro a lo que dos agentes iguales pueden saber juntos.** La correspondencia levanta el
+límite de lo que un proyecto sabe de sí mismo y **no toca este**.
+
 ## Las clases de drift
 
 | # | Clase | Qué es |

@@ -382,6 +382,34 @@ cuerpo del marcador **avergüenza al que la lee**, que es el único lector garan
 más barata todavía: **no escribir esas filas hasta tener el identificador** — un marcador con una fila
 menos es honesto, y uno con una fila que apunta a nada no lo es.
 
+### Cómo se comprueba que algo está publicado, que son dos pasos
+
+**El primero es de red y el segundo es local, y hacen falta los dos.** `git ls-remote` da **la punta**;
+la pertenencia la da `git merge-base --is-ancestor <id> <punta>`:
+
+```sh
+PUNTA=$(git ls-remote origin refs/heads/main | cut -f1)   # hecho de red
+git merge-base --is-ancestor <identificador> "$PUNTA"     # hecho local: esta dentro?
+```
+
+**Y el control positivo no puede ser un identificador cualquiera.** `ls-remote` lista **puntas de
+referencia**: con una sola rama, el único identificador que puede aparecer ahí es el sello mismo. Un
+control positivo que no sea la punta **devuelve exactamente lo mismo que el control negativo** — los
+dos nada — así que la comprobación pasa en verde sin haber separado nada. Caso de campo: dos proyectos
+en correspondencia sellaron así durante varias cartas, y lo destapó el destinatario al reproducir la
+cabecera antes de creerla. El control que **sí** separa es un identificador conocido-publicado que **no
+sea la punta**, comprobado por ancestría, con un hash inventado como negativo.
+
+**Ojo con la trampa de la regla anterior:** la formulación que produjo el fallo decía *"sella contra
+`ls-remote`, nunca contra `git log`"*, y es una prohibición que se pasa de frenada. La ancestría lee la
+base de objetos local —la familia de `git log`— y **es justo la pieza que faltaba**. Lo que hay que
+sacar de la red es **la punta**, no cada comprobación.
+
+**Y bajo `ls-remote` a secas el sello caduca solo.** Un identificador publicado deja de aparecer ahí en
+cuanto alguien empuja algo encima, porque ya no es la punta: la carta sigue siendo correcta y su
+verificación falla, sin que nada haya ido mal. **Un método de comprobación que expira cuando el otro
+publica no es un método**, y por eso el paso local no es opcional.
+
 `publicada` **es observable por el agente** —un identificador contra el servidor, no contra la copia
 local— y por eso puede exigirse. **Una fila `entregada` sin haber pasado por `publicada`, cuando la
 carta afirma cambios, es una deuda visible en el índice** en vez de un descubrimiento una carta
