@@ -37,6 +37,34 @@ auditoría, después de una migración estructural, o cuando el usuario lo quier
 
 Los `session` y el `index` **no son objeto de corrección**, solo fuente contra la que contrastar.
 
+### Y esa frase concede una exención que nadie decidió: un corpus se audita cuando un hallazgo tiene dónde caer
+
+**Aporte de campo, y sale de mirar un log de auditorías en vez de la intuición.** Un proyecto llevaba
+tres auditorías: la primera tomó **la correspondencia** —17 cartas y su índice—, y las otras dos, los
+documentos hogar. **La correspondencia es un registro, es inmutable, y aun así se auditó la primera.**
+
+> Así que lo que exime a un corpus **no es ser un registro**. Si lo fuera, esa primera auditoría no
+> existiría.
+
+Lo que la hizo posible está en su resultado: **sus hallazgos se aplicaron a los hogares, no a las
+cartas.** Las cartas fueron **fuente**; el objeto corregido fue otro.
+
+> **Un corpus se audita cuando un hallazgo suyo tiene DÓNDE CAER.** Los documentos vivos son
+> corregibles. Un registro no lo es — y una auditoría cuyos hallazgos no se pueden aplicar se lee, **por
+> adelantado**, como trabajo sin consecuencia.
+
+**Y de ahí el aviso, que es sobre la frase de arriba.** Decir *"fuente y no objeto"* es correcto y
+necesario: un registro no se reescribe. Pero **se lee como permiso para no mirarlo**, y eso es otra
+cosa. Un `session` no se corrige **y sí se puede auditar**: lo que encuentre cae en el hogar que debió
+recibirlo, en `gotchas`, o en la práctica futura. **Antes de excluir un corpus, di dónde caería lo que
+encontraras** — si la respuesta existe, la exclusión era pereza; si no existe, la exclusión está
+justificada y ahora está **escrita**.
+
+**Ejemplar del lado que funciona**, y lo aporta quien trajo la regla: un barrido de sus propios
+registros estuvo nombrado dos sesiones sin correrse, y **se corrió el día que dijeron en voz alta dónde
+caería** — en su fichero de trampas y en la práctica, no en las cartas. **Nombrar el destino fue lo que
+lo desbloqueó, no la voluntad.**
+
 ## Las clases de drift
 
 | # | Clase | Qué es |
@@ -439,6 +467,39 @@ sin que la suma cambie, hay colación. Las tres situaciones se separan con dos c
 resolver.** Una capa demasiado gruesa no da error — da una discrepancia que sobrevive al aislamiento,
 y eso se lee como *"aquí hay dos capas todavía"* cuando en realidad hay una mal cortada. **Cuando
 aísles una capa y la diferencia siga viva, sospecha del corte antes que de la lista.**
+
+## Las capas se cortan por lo que ESCRIBES, y lo que no, es el SUSTRATO
+
+**Aporte de campo, y contesta por qué la lista se quedó corta sin estar mal hecha.** Las capas de
+arriba están todas cortadas por **el nombre de lo que uno teclea** —`grep` contra `/bin/grep`,
+`LC_ALL=C` contra `LC_ALL=C.UTF-8`— y no por el mecanismo que hay debajo. **No es un descuido: es la
+definición.**
+
+> **Una capa sirve si se puede VARIAR, y lo único que uno varía directamente es lo que escribe.** El
+> mecanismo no se varía: **se hereda.**
+
+De ahí lo que **no** es una capa, y que faltaba en la lista:
+
+> **El SUSTRATO** — la libc, la versión del binario, los datos de locale generados en esa máquina, el
+> sistema. **No cambia al escribir distinto: cambia al cambiar de máquina.** Las capas cazan las
+> variaciones que uno puede producir, y son **ciegas al sustrato por construcción**.
+
+**Y la consecuencia es dura: el experimento del sustrato no existe dentro de un proyecto.** Nadie
+puede variar su propia libc para ver qué pasa. Un proyecto solo, por disciplinado que sea, agota sus
+capas y se queda con una discrepancia sin explicar — que es exactamente lo que pasó aquí: se aisló la
+semántica y **la diferencia siguió viva**.
+
+**Un sustrato no se declara: se descubre.** Y se descubre cuando **otro mide lo mismo y le sale
+distinto**. Un informe de entorno no lo entrega, porque nadie escribe *"mi libc es Cygwin"* mientras no
+sepa que eso importa — y cuando ya lo sabe, el hallazgo está hecho. **Dos ejemplares, los dos de la
+misma forma:** `[ -~]` casa 6 de 32 caracteres en una máquina y 32 de 32 en otra, con el mismo patrón
+y el mismo nombre de locale; y `grep --version` responde *GNU grep 3.7* en una máquina donde el nombre
+`grep` lo sirve otro binario entero. **Ninguno de los dos lo habría visto quien midiera solo.**
+
+**Lo operativo, que es corto:** cuando una discrepancia sobreviva a variar todas tus capas, **deja de
+buscar capas y busca un segundo montaje**. Y al reportar cualquier medida de patrones, di el sustrato —
+libc y versión—, no solo el comando y el locale, porque el que lea la medida puede estar en otro sin
+saberlo.
 
 **El límite, dicho por quien trajo la regla:** estas capas no son todos los fallos. Enumerarlas no
 convierte la redundancia en un detector universal; la vuelve **barata y dirigible**. Fuera de ellas
