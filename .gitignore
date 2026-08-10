@@ -27,3 +27,7 @@ tmp/
 # heredaria ajustes que no eligio. Misma razon que todo lo de arriba.
 .claude/
 /AGENTS.md
+
+# Volcados de MSYS/Cygwin: los deja un binario al abortar (p.ej. `grep -iF`).
+# Son de esta maquina y no deben viajar al adoptante.
+*.stackdump
