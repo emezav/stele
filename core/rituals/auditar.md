@@ -238,6 +238,27 @@ Y la razón no es de calibración, es de fondo:
 > ese sitio. Exigir literalidad da ruido de reformulación; aflojar a solape da ceguera. **No hay
 > umbral entre las dos, porque es la misma señal.**
 
+**Y eso dejó de ser prosa: está medido.** Mutilando **una a una** las lecciones que sí estaban en su
+hogar —para obtener el score de una **realmente ausente**— y comparándolo con el de las **presentes
+pero reformuladas**:
+
+| Grupo | n | mín | mediana | máx |
+| --- | --- | --- | --- | --- |
+| **ausente** | 16 | 0.25 | 0.67 | **1.00** |
+| **reformulada** | 21 | 0.50 | 1.00 | 1.00 |
+
+**Los rangos se solapan enteros: no existe umbral.** Y el dato que lo cierra no es el solape sino el
+máximo: **hay lecciones realmente ausentes que puntúan 1.00** — todas sus palabras distintivas caben
+en un párrafo del hogar **que no las contiene**. No es que el umbral esté mal puesto: **es que la
+medida no distingue los dos casos ni en el extremo.**
+
+**Y no es que faltara restar.** La resta estaba: los tres diseños calculaban *"lo que el registro
+afirma menos lo que afirma algún hogar"*. Lo que falla es **el predicado de igualdad dentro de la
+resta** — decidir si dos frases dicen lo mismo. Un conjunto se resta bien solo si se sabe cuándo dos
+elementos son el mismo, y esa pregunta **no es léxica**. Así que la conclusión honesta no es *"tres
+diseños fallidos"* sino **la herramienta era del tipo equivocado**, y hay que decirlo así para que
+nadie gaste un cuarto diseño.
+
 **Lo que salva es el oráculo, y salvó de verdad.** El segundo diseño daba **un** candidato sobre el
 corpus sano y se leía como un detector que funciona; sin el mutilador se habría dado por bueno. **Que
 la salida parezca razonable no es evidencia de que el detector mida algo.**
@@ -339,6 +360,39 @@ instancia de cada distinción que el check hace**. Preguntarse *¿qué más dist
 —dos tablas de distinto ancho, un separador que es contenido, una valla que parece dato— produjo dos
 regresiones más que la forma estrecha no habría cubierto. **El control se deriva de las distinciones,
 no del tamaño.**
+
+### Las alternativas de un patrón son su lista de distinciones, y se cuentan
+
+**El patrón es el código.** Una alternación `a|b|c` lleva tres distinciones igual que tres ramas, así
+que **la cobertura de un control se puede leer también sobre un `grep`**: ¿qué alternativa de este
+patrón no ha disparado nunca sobre el corpus?
+
+> **La cobertura es un mutilador que no hay que escribir.** Dice **qué ramas alcanza** el control, no
+> cuáles notaría cambiar — así que es un **candidato**, del mismo tipo que un barrido, no un veredicto.
+> Necesaria, no suficiente, y **gratis**.
+
+**Y dice una cosa más que no se recuerda: qué parte de un detector es inalcanzable para su propio
+control.** Hay ramas que un control **no puede** ejercitar por construcción —la de rechazo de una
+comprobación de aplicabilidad, por ejemplo, porque la entrada del control tiene que ser aplicable—. Eso
+se **calcula**; recordarlo no funciona.
+
+**Con la reserva que lo limita:** la cobertura no dice nada de lo que el código **no expresa**. Una
+distinción que vive en la cabeza y nunca llegó a una rama no la lee ningún instrumento.
+
+**Y la trampa al medirla: hazlo sobre el corpus que el detector BARRE, no sobre el que tienes a mano.**
+Caso de campo, y contra quien lo aportó: enumeraron las alternativas de tres patrones nuestros y
+declararon una *"que no dispara nunca"* — cierto sobre el kit, que es lo único que ven, y **falso sobre
+el corpus real**, que es el historial y no viaja: ahí dispara 15 veces. **La técnica era buena y el
+corpus era otro.** Es el *mal dirigido* del marcador, aplicado a un detector en vez de a una carta.
+
+### Un detector no monótono no mide el defecto: mide la forma del corpus
+
+> **Si al añadirle el defecto reporta MENOS, no está midiendo lo que busca.**
+
+No es ruido ni mala precisión: es una respuesta **no monótona** en la cosa buscada, y **lo inutiliza
+incluso como worklist** — que es para lo que un detector ruidoso todavía sirve. Caso propio: un diseño
+con ventana deslizante dio menos candidatos sobre el corpus mutilado que sobre el sano. **Es el único
+resultado que descarta un instrumento entero en vez de rebajarlo.**
 
 ### Una tasa alta de falsos positivos protege al fallo que la causa
 
