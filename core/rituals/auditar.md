@@ -200,6 +200,37 @@ CONTROL NEGATIVO  fichero sin la frase                      0 en los dos
 no es aleatorio: se come justo las frases largas, que son las que expresan las clases interesantes. Una
 medición así **no da un número con error: da un suelo**, y hay que publicarlo como suelo.
 
+**Y el sesgo está medido, no estimado.** Sobre 96 documentos de prosa envuelta a ~100 columnas (1176
+párrafos multilínea), extrayendo frases **reales** del propio corpus y buscándolas por los dos modelos:
+
+```text
+ k palabras   muestras   por unidad   por linea   sesgo
+     2            200          200         186     7.0%
+     4            200          200         175    12.5%
+     6            200          200         138    31.0%
+     8            200          200         120    40.0%
+    10            200          200          94    53.0%
+    12            200          200          76    62.0%
+
+CONTROL POSITIVO  la frase sale del corpus, asi que "por unidad" DEBE dar 100%: 1600/1600
+CONTROL NEGATIVO  frase inventada -> 0
+GLOBAL            se pierden 468 de 1600 = 29.2%
+```
+
+**A doce palabras se pierden casi dos de cada tres.** Y el crecimiento es monótono con la longitud, que
+es la firma del mecanismo: cuanto más larga la frase, más probable que cruce un salto. Por eso la regla
+práctica es **buscar la parte más corta y distintiva**, no la frase entera — y por eso una cifra
+obtenida con una frase larga hay que publicarla diciendo con qué frase se obtuvo.
+
+<!-- Medido con semilla fija para que sea re-corrible; el corpus era el historial de la instancia que
+     lo descubrió, así que el número concreto es suyo. Lo que viaja es el método y el orden de
+     magnitud, no el 29,2%. -->
+
+**Ojo con el remedio, que tiene su propia trampa:** una herramienta que busca por unidad **no es un
+superconjunto** de la que busca por línea. Cambian más cosas que el modelo —el marcado, la
+normalización, qué cuenta como unidad— y puede perder algo que la otra encuentra. Si sustituyes una por
+otra, **valídalo sobre casos que la primera sí veía**, no solo sobre los que se le escapaban.
+
 Remedios, en orden de coste: buscar por **unidad** en vez de por línea; o buscar la parte más corta y
 distintiva de la frase, que cabe en una línea; o desenvolver el corpus antes de medir. Lo que **no**
 vale es afinar el patrón, porque el patrón no es el problema.
