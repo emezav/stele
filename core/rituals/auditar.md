@@ -361,6 +361,58 @@ instancia de cada distinción que el check hace**. Preguntarse *¿qué más dist
 regresiones más que la forma estrecha no habría cubierto. **El control se deriva de las distinciones,
 no del tamaño.**
 
+## No se enumeran los fallos: se enumeran las CAPAS
+
+**Aporte de campo, y cierra la pregunta que dejaba abierta la redundancia.** Medir por dos vías solo
+sirve si las dos **fallan distinto**, y eso nadie lo sabe antes de conocer el fallo. La salida no es
+adivinar el fallo: es **enumerar por dónde pasa la respuesta**. Cualquier medición sobre texto
+atraviesa unas pocas capas, y son **estructurales, no históricas** — se conocen sin haber visto
+ninguna.
+
+| Capa | Qué la varía | Qué caza |
+| --- | --- | --- |
+| **Corpus** | `grep -r` contra `git grep` | ficheros ignorados, árbol contra commit |
+| **Herramienta** | `grep` contra `/usr/bin/grep` | el binario sustituido |
+| **Semántica** | `LC_ALL=C` contra `LC_ALL=C.UTF-8` | clases, mayúsculas, orden |
+| **Patrón** | clase contra alternancia contra literal | lo que el regex no expresa |
+| **Introspección contra comportamiento** | lo que la herramienta **dice** de sí misma contra lo que **hace** | el campo que miente sin fallar |
+
+> **La lista de fallos es abierta; la de capas es corta y fija.** Por eso una se puede escribir antes
+> de medir y la otra no.
+
+**Y la condición que hace interpretable una redundancia: las dos vías tienen que diferir en UNA capa
+y coincidir en el resto.** Si difieren en dos, la discrepancia ya no dice cuál falló — deja de ser un
+diagnóstico y vuelve a ser un dato que hay que diagnosticar. `grep -r` contra `git grep` es un par
+bueno **para el corpus** y nulo para el locale, porque comparte binario, semántica y patrón: no está
+mal elegido, es que **solo cubre su capa**.
+
+**Las tres preguntas del marcador son las tres primeras capas** — *¿en qué copia?* es corpus, *¿en qué
+herramienta?* es herramienta, *¿bajo qué locale?* es semántica. Las otras dos no tienen todavía su
+pregunta, y verlo así es la ventaja de tener la lista: un hueco en una tabla se ve, y en una prosa de
+preguntas sueltas no.
+
+**La regla que sí se aplica antes de medir: varía la capa que menos podrías defender si te
+preguntaran.** Uno no sabe el fallo, pero **sí sabe cuál es su capa floja**. En un recuento que salió
+mal la capa floja era el **corpus** —*¿qué ficheros cuentan?* no tenía respuesta escrita—; en un
+detector roto era la **semántica** —diacríticos y ningún locale declarado—. Las dos veces la pregunta
+incómoda existía **antes** del fallo, y lo que faltó fue hacérsela.
+
+**La capa de introspección entró por un ejemplar y no por reflexión**, que es el dato más útil sobre
+la tabla: dice que está incompleta y **por dónde va a crecer**. Para averiguar el locale efectivo no
+se leyó la variable — se comparó lo que `locale` **dice** con lo que `grep` **hace**. De ahí la forma
+corta, **no preguntes qué dice, mide qué hace**, que es mejor que la tabla porque no depende de haber
+enumerado la capa correcta. Su aplicación al informe de entorno está en `core/templates/letter.md`.
+
+**El límite, dicho por quien trajo la regla:** estas capas no son todos los fallos. Enumerarlas no
+convierte la redundancia en un detector universal; la vuelve **barata y dirigible**. Fuera de ellas
+sigue en pie la objeción de siempre — si las dos vías se eligen sabiendo qué se busca, la redundancia
+es un detector más, con el sesgo de quien lo escribió.
+
+Las secciones que siguen son cuatro de esas capas con su caso: la **herramienta** aquí debajo, el
+**corpus** en *"Mide el producto sobre lo que se distribuye"*, la **semántica** en *"Un detector
+léxico depende del LOCALE"* y el **patrón** en *"Las alternativas de un patrón son su lista de
+distinciones"* — todas en este archivo.
+
 ## "El mismo comando" no es el mismo programa
 
 **Aporte de campo, y desmonta la premisa de todo experimento compartido.** Dos proyectos corrieron
@@ -525,6 +577,37 @@ Así que hay una clase de comprobación que **nace sin poder validarse y solo se
 día que alguien cometa el error que busca. Para esa clase la regla es no contar el silencio como
 limpio, sino **declararlo**: la salida dice cuántas veces ha corrido sin un positivo verdadero. Un cero
 con esa coletilla al lado ya no se lee como corpus limpio.
+
+## Un número sin expectativa no es información: es decoración
+
+**Aporte de campo, y explica por qué un número malo puede estar impreso durante meses sin que nadie
+lo lea.** Un proyecto publicaba una cobertura del **94,1%** en su salida, y nadie la miraba. En esa
+misma pantalla, un control imprimía `expected 1, got 1 -> MEASURES` y **ese sí se leía**. La
+diferencia no es la proximidad, ni la importancia, ni el tamaño del número: es que **uno dice contra
+qué se compara y el otro no**.
+
+> **Lo que le faltaba a ese 94,1% era una expectativa que pudiera violar.** Declarar que un check
+> espera 100 convierte un notable en un fallo **sin que nadie tenga que sospechar nada** — y es lo
+> único de esta familia que no depende de que alguien llegue ya con la sospecha.
+
+**Es la misma jugada que declarar el silencio, aquí arriba:** las dos hacen que **la salida cargue con
+lo que la haría estar mal**. Una dice contra qué se compara; la otra, cuántas veces ha corrido sin un
+positivo verdadero.
+
+**Ejemplar propio, y es el que duele:** se publicó un *22 contra 156* como propiedad de un patrón. No
+llevaba expectativa, así que no había nada que pudiera contradecirlo, y resultó que no medía el patrón
+sino **el locale de quien midió**. Se retiró — pero lo retiró **otro proyecto**, no la cifra.
+
+**Y la adyacencia es necesaria y no suficiente**, que lo aporta el mismo caso que la regla: poner el
+dato junto a la decisión **no hace que se lea, hace que se pueda leer**. Quien trajo esto llevaba diez
+cartas predicando *imprime el dato al lado de la decisión* y falló con el dato en **la misma línea** de
+su propia salida.
+
+**Queda una clase sin resolver: los números exploratorios.** Se publican precisamente porque nadie
+sabía qué esperar, así que la expectativa no existe *todavía* y exigirla los mataría. Para esos harían
+falta **dos** etiquetas y no una: no solo *contra qué se compara*, sino **si alguien decidió alguna vez
+que debería compararse**. Un número sin expectativa declarada y sin nadie que la haya buscado nunca no
+es que no se lea: es que **no hay nada que leer**. Está escrito y no está resuelto.
 
 ## Un barrido que filtra por un campo no ve al registro que no lo tiene
 

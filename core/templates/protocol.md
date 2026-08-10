@@ -224,11 +224,19 @@ solo-ASCII, sobre lo que acabas de escribir:
 tail -n 1 {{history_dir}}{{index}} | LC_ALL=C grep -n '[^ -~]'
 # el mensaje del commit, antes de pushear
 git log -1 --format=%B | LC_ALL=C grep -n '[^ -~]'
-# CONTROL POSITIVO, en la misma tanda: el detector TIENE que encontrar esto
-printf 'a\303\251b\n' | LC_ALL=C grep -n '[^ -~]'
+# CONTROL POSITIVO, en la misma tanda, CON SU NUMERO ESPERADO: tiene que dar 2
+printf 'a\303\251b\n' | LC_ALL=C grep -o '[^ -~]' | wc -l    # 2 = una acentuada, dos bytes
 ```
 
-**Sin salida = limpio SOLO si el control positivo dio salida.** Un detector roto no da error: **da
+**El control lleva un número, y no un "algo salió", porque un `>= 1` no puede fallar.** El acentuado
+del control es **un** carácter y **dos** bytes: bajo `LC_ALL=C` el detector reporta **2** y bajo un
+locale UTF-8 reporta **1**. Un control que solo exigiera salida pasaría en verde **en los dos mundos**,
+así que certificaría igual el detector sano y el detector que está casando caracteres donde tú crees
+que cuenta bytes. Con el 2 escrito al lado, el mismo comando comprueba dos cosas: que el detector
+dispara **y** que estás en la semántica que el patrón supone. Ver `{{kit}}/core/rituals/auditar.md` →
+*"Un número sin expectativa no es información: es decoración"*.
+
+**Sin salida = limpio SOLO si el control positivo dio su número.** Un detector roto no da error: **da
 silencio, que es exactamente lo que esperabas ver.** Va en la misma tanda y no como advertencia aparte,
 porque una advertencia hay que leerla desde dentro de la vía que ya elegiste — así la vía segura cuesta
 lo mismo. Casos reales de este silencio: un `grep -P` que aborta por *locale* y escribe el error a

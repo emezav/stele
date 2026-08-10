@@ -35,7 +35,10 @@ dejan de valer.
 4. **Tachar.** Un informe de campo va lleno de tus tripas: rutas internas, nombres de máquinas y
    servicios, datos de personas. **El seudónimo del remitente no anonimiza el cuerpo** — esto sí. Fase
    obligatoria, no buena práctica. Y se dice en la carta que algo va tachado.
-5. **Consentimiento y envío.** **Enviar es publicar**, y lo decide el usuario, nunca el agente por su
+5. **Pasarle el linter de markdown al archivo de la carta**, igual que a cualquier doc. Una carta es
+   un documento y su forma también se rompe — y ahí se rompe **hacia fuera**. Ver *"La forma de una
+   carta se rompe donde nadie la comprueba"*, abajo.
+6. **Consentimiento y envío.** **Enviar es publicar**, y lo decide el usuario, nunca el agente por su
    cuenta. El canal da igual y el marco no opina: pegar el texto en la sesión de otro agente, un
    correo, un issue, un PR si el proyecto tiene git y el usuario quiere. Copiar y pegar es el suelo, y
    funciona siempre. **Y si la carta afirma cambios en algo que el destinatario puede obtener, dile
@@ -184,6 +187,31 @@ identificador; *"no se corrió con él"* → **no**, bajo palabra.
 más abajo, un reparto medido sobre las propias actas iba marcado *"sí… así que **no**. Bajo palabra"*.
 La distinción estaba entendida en el mismo documento, a diez líneas. **No se evita habiéndolo
 entendido; se evita partiendo la fila.**
+
+## La forma de una carta se rompe donde nadie la comprueba
+
+**Caso propio, y en carga ya entregada.** Una carta salió con la **última fila del marcador fuera del
+bloque de cita**: perdió su `>`, así que no renderiza dentro de la tabla. Tres filas lo llevaban y esa
+no. Lo cazó el destinatario leyendo, no nosotros escribiendo.
+
+> **Y era detectable por máquina.** Una fila suelta debajo de una tabla citada queda como una tabla de
+> una fila sin línea en blanco delante —**MD058**— y el linter la marca. Comprobado con un repro
+> mínimo de dos casos: el roto marca y el mismo con su `>` sale limpio, que es lo que convierte esto
+> en un detector y no en una corazonada.
+
+**Lo que fallaba no era el detector: era el alcance.** El linter se le pasa a los docs y a una carta
+no, porque una carta **se siente correspondencia y no documentación**. Es el mismo punto ciego que
+deja sin barrer cualquier fichero que viaje sin parecer un manual: **la lista de lo que se comprueba
+es todo lo que se escribe, no todo lo que parece un doc.**
+
+**Y la fila que se cayó era la que retiraba una afirmación propia**, o sea la única del marcador que
+iba en contra nuestra. Eso no se eligió: la única prueba de que un marcador se leyó entero es que
+alguien note **qué falta**, y lo que falta se nota menos cuanto menos te favorece. Es *"el error que
+te quita razón no se busca"* —`core/rituals/auditar.md`— en la capa de la forma.
+
+**El archivo entregado no se retoca**, y no es una preferencia: lo que recibió el otro y lo que
+guardas tú tienen que ser el mismo texto, o el registro deja de servir para comprobar nada. Se anota
+al lado, marcado como posterior.
 
 ## Lo que el marcador NO hace, dicho por quien lo propuso
 
@@ -338,6 +366,21 @@ una carta afirma cambios en algo que al otro le llega, su identificador de publi
 los dos pasos no lo controla ninguno de los dos por separado**. Escribir *"esta carta espera al sello"*
 dentro de la carta no ata a nadie: se probó, y la carta salió igual — con esa frase dentro, ya falsa,
 en una copia que no se puede reescribir.
+
+**Y volvió a pasar con el mecanismo ya escrito, que es el dato que importa.** Dos cartas salieron con
+el identificador **sin rellenar**: un marcador con tres `{SELLO}` literales dentro, en las filas que
+prometían *"sí, lo pueden comprobar"*. El aviso existía y estaba **en un comentario HTML del
+archivo** — o sea invisible al renderizar, más débil todavía que la frase que este ritual ya declaraba
+insuficiente.
+
+> **Un hueco que se puede rellenar más tarde se entrega más tarde.** El estado no lo mueve el
+> documento: lo mueve quien lleva la carta, y a esa persona el archivo no le dice nada.
+
+De ahí la forma que sí aguanta: **el hueco no se escribe como hueco, se escribe como defecto visible
+para el destinatario.** Un `{SELLO}` parece plantilla y se cuela; `SIN SELLAR — no publicado` en el
+cuerpo del marcador **avergüenza al que la lee**, que es el único lector garantizado. Y la alternativa
+más barata todavía: **no escribir esas filas hasta tener el identificador** — un marcador con una fila
+menos es honesto, y uno con una fila que apunta a nada no lo es.
 
 `publicada` **es observable por el agente** —un identificador contra el servidor, no contra la copia
 local— y por eso puede exigirse. **Una fila `entregada` sin haber pasado por `publicada`, cuando la
