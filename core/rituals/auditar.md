@@ -200,22 +200,32 @@ CONTROL NEGATIVO  fichero sin la frase                      0 en los dos
 no es aleatorio: se come justo las frases largas, que son las que expresan las clases interesantes. Una
 medición así **no da un número con error: da un suelo**, y hay que publicarlo como suelo.
 
-**Y el sesgo está medido, no estimado.** Sobre 96 documentos de prosa envuelta a ~100 columnas (1176
-párrafos multilínea), extrayendo frases **reales** del propio corpus y buscándolas por los dos modelos:
+**Y el sesgo está medido, no estimado.** Sobre un corpus de prosa envuelta a ~100 columnas, extrayendo
+frases **reales** del propio corpus y buscándolas por los dos modelos:
 
 ```text
+corpus: 97 documentos, 1190 parrafos multilinea
+IDENTIFICADOR DEL CORPUS: 090f85e021ab7b11   <- sha256 de (nombre, tamano) de cada fichero
+
  k palabras   muestras   por unidad   por linea   sesgo
-     2            200          200         186     7.0%
-     4            200          200         175    12.5%
-     6            200          200         138    31.0%
-     8            200          200         120    40.0%
-    10            200          200          94    53.0%
-    12            200          200          76    62.0%
+     2            200          200         188     6.0%
+     4            200          200         174    13.0%
+     6            200          200         139    30.5%
+     8            200          200         123    38.5%
+    10            200          200          96    52.0%
+    12            200          200          75    62.5%
 
 CONTROL POSITIVO  la frase sale del corpus, asi que "por unidad" DEBE dar 100%: 1600/1600
 CONTROL NEGATIVO  frase inventada -> 0
-GLOBAL            se pierden 468 de 1600 = 29.2%
+GLOBAL            se pierden 462 de 1600 = 28.9%
 ```
+
+**El identificador del corpus no es adorno, y esta tabla es la prueba.** Su primera versión se publicó
+con **semilla fija y corpus sin fijar**, y dejó de reproducirse en cuanto el corpus creció en **un**
+fichero —el acta de la sesión que la había medido—: `29,2%` pasó a `28,9%` sin que nadie tocara nada.
+**Una semilla fija sobre un corpus móvil no es re-corrible**, y el fallo es especialmente traicionero
+porque la semilla da *sensación* de determinismo. Si la medida tiene azar dentro, **fija las dos
+cosas**, y publica un identificador que cambie cuando cambie el corpus.
 
 **A doce palabras se pierden casi dos de cada tres.** Y el crecimiento es monótono con la longitud, que
 es la firma del mecanismo: cuanto más larga la frase, más probable que cruce un salto. Por eso la regla
@@ -225,6 +235,28 @@ obtenida con una frase larga hay que publicarla diciendo con qué frase se obtuv
 <!-- Medido con semilla fija para que sea re-corrible; el corpus era el historial de la instancia que
      lo descubrió, así que el número concreto es suyo. Lo que viaja es el método y el orden de
      magnitud, no el 29,2%. -->
+
+### Un comando que aborta, detrás de una tubería, es un cero
+
+**Y el cero que produce es indistinguible del honesto.** Caso medido, con el mismo patrón y el mismo
+fichero, cambiando solo las banderas:
+
+```text
+grep -cF   'el usuario'  -> exit 0     imprime 1
+grep -icF  'el usuario'  -> exit 134   no imprime nada     SIGABRT
+grep -icF ... | wc -l    -> 0          la tuberia se traga el codigo de salida
+```
+
+El fallo era **visible** —código 134, y un fichero de volcado en el directorio— y la tubería lo
+convirtió en un `0` limpio. Quien lo midió lo publicó como *"devuelve cero en silencio"*: describió el
+síntoma que su propio comando había fabricado.
+
+> **Publica el código de salida, o mide sin tubería.** Un `| wc -l` convierte cualquier fallo en un
+> dato, y un dato no se distingue de otro dato.
+
+**Esto le pone una condición a la regla del instrumento:** si el comando publicado termina en tubería,
+**no basta con el comando** — hace falta también qué devolvió. Es la diferencia entre *no hay
+coincidencias* y *no hubo búsqueda*, que es justo la que un cero no sabe expresar.
 
 **Ojo con el remedio, que tiene su propia trampa:** una herramienta que busca por unidad **no es un
 superconjunto** de la que busca por línea. Cambian más cosas que el modelo —el marcado, la
