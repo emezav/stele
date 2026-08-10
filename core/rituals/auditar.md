@@ -209,6 +209,37 @@ los casos y el tercero no llegó a hacer falta ni una vez.
 sabemos de quién es el problema"* en *"alguien tiene un bug"*, que es accionable aunque no se sepa
 dónde vive. Saber **que** algo está roto y no **dónde** ya permite dejar de mezclarlo con los datos.
 
+### Cuando la especificación es propia, lo que la valida es su FECHA
+
+**Y si es propia hay que sospechar, porque quien la escribió es quien se beneficia de ella.** Al
+validar una herramienta B contra otra A, los desacuerdos se reparten en tres: *B es mejor*, *B es
+peor*, y *B es distinto a propósito* — y **el separador entre los dos últimos es la especificación de
+B, que escribió el autor de B**. Una especificación redactada después de ver el fallo convierte *peor*
+en *distinto a propósito* sin que nadie mienta.
+
+> **Lo que separa las dos no es qué dice la regla: es si pudo ajustarse al resultado.** Y eso lo fija
+> el reloj: **vale la diferencia declarada ANTES de correr la sonda; no vale la declarada después.**
+
+Cuesta un `git log` y da tres salidas:
+
+```text
+para cada diferencia que la sonda excluye:
+  fecha del commit que la declaro   vs   fecha de la sonda
+  anterior  -> distinto a proposito, DEMOSTRADO
+  posterior -> peor, reetiquetado
+  sin commit que la declare -> no es especificacion: es la sonda opinando
+```
+
+**Precondición, que decide si el test se puede correr siquiera: la diferencia tiene que tener un nombre
+en el código.** Se fecha con `git log -S '<identificador>'`, así que **una diferencia que vive en el
+comportamiento y no tiene nombre no tiene commit que la feche** — y caería en la tercera fila siendo
+falso. Eso hace que el test mida dos cosas a la vez, y la segunda no estorba: **un proyecto que no
+puede nombrar sus decisiones tampoco puede demostrarlas.**
+
+**Lo que este test NO hace**, y conviene decirlo con él: no distingue *distinto a propósito* de
+*distinto a propósito y además peor*. Una diferencia declarada con dos años de antelación puede seguir
+siendo una mala decisión. **Protege del reetiquetado, no del diseño.**
+
 ### Medir prosa por líneas es medir otra cosa
 
 **En un corpus de prosa envuelta, una frase de más de una palabra puede partirse entre dos líneas, y
@@ -1681,6 +1712,31 @@ allá, una proporción que se apoyaba en él — lo vio el otro lado, no él.
 Alcance de la segunda pasada = **lo tocado, sus hogares y lo que dependía de ello**. Si aparece algo
 nuevo, pasa por las fases 3-5 y se repite; se termina cuando una pasada no produce nada nuevo. Cada
 pasada es más barata que la anterior porque su alcance se estrecha.
+
+### Pero el alcance es el TECHO, y ningún número de pasadas lo sube
+
+**Una pasada relee lo que la pasada anterior decidió mirar.** Por eso convergen: no porque el corpus
+esté limpio, sino porque **el conjunto que se está releyendo se agota**. Una auditoría que termina
+—incluso tras varias pasadas y con la última en blanco— solo ha demostrado que **dentro de su alcance**
+no queda nada, y el alcance lo eligió quien audita, antes de mirar y con la información que tenía
+entonces.
+
+**Caso de campo, y es el que hace la regla:** un proyecto corrió **siete pasadas** sobre un alcance que
+**incluía** el fichero donde vivía el defecto, y ninguna lo produjo. Lo produjo **una pregunta de un
+corresponsal**, leyendo una carta. El fichero estaba dentro; lo que faltaba era la pregunta.
+
+> **Un corresponsal no es una cortesía: es el único detector que no comparte tu alcance.** Todo lo
+> demás que corres —los barridos, las pasadas, los controles— lo escribiste tú, con tus supuestos sobre
+> dónde puede haber algo.
+
+**Y de ahí lo que hay que escribir en el informe y casi nunca se escribe:** *qué quedó fuera*. No como
+disculpa —una auditoría acotada es lo correcto— sino porque **la lista de lo excluido es el único sitio
+donde un lector puede ver el techo**. Un informe que solo dice lo que miró se lee como si hubiera
+mirado todo.
+
+**Cuidado con el falso consuelo de las pasadas.** Que la segunda pasada produzca hallazgos es buena
+señal de la pasada y **no dice nada del alcance**: los dos números crecen por motivos distintos, y
+confundirlos convierte *"nuestro método funciona"* en la conclusión de un experimento que no se hizo.
 
 **Y hay una superficie que ninguna pasada alcanza, porque nace después de todas: el cierre.** Escribir
 el registro de la sesión **genera afirmaciones nuevas** —*"se tocaron estos archivos"*, *"quedó esto
