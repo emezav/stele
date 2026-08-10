@@ -6,6 +6,20 @@
 > Al terminar:
 > `printf '| N | YYYY-MM-DD | dir | corresponsal | asunto | desenlace |\n' >> {{correspondence_dir}}{{correspondence}}`
 >
+> **Y si en algún momento dos corresponsales miden lo mismo y les sale distinto, este archivo gana una
+> SECCIÓN —no una columna—** con su propia tabla: *qué se midió · su valor · el tuyo · causa*. La fila
+> **nace** con el desacuerdo y se **cierra** cuando se sabe la causa; mientras la causa esté vacía está
+> **abierta**, y esa es la que vale — es la única forma escrita de decir *aquí hay algo que ninguno de
+> los dos entiende todavía*. **La regla que la hace útil: un desacuerdo sin causa no se resuelve
+> escribiendo la causa más interesante.** Se deja abierto. Lo caro no es la fila vacía: es lo que uno
+> escribe para no dejarla vacía.
+>
+> **Sección y no columna, por dos razones y la segunda es la de diseño:** las filas viejas no tienen
+> desacuerdo que registrar, y sobre todo **un desacuerdo no es una carta** — vive *entre* dos, o entre
+> una carta y una medición posterior, y a veces se cierra tres cartas después. **Y va ANTES de la tabla
+> de cartas**, porque esa tabla se alimenta con `printf >>`: una sección al final rompería el append
+> sin dar error, dejando la fila siguiente debajo de la sección y la tabla partida.
+>
 > `Dir` = `->` sale · `<-` entra. Es lo que permite ver el intercambio como una conversación.
 > `Corresponsal` = con quién. Si escribes tú, a quién; si recibes, el **remitente** que venga en la
 > carta. Guardarlo no es burocracia: una fuente que ya acertó antes se pesa distinto que la primera

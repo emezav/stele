@@ -94,6 +94,49 @@ que sumarle el **sustrato** —ver *"las capas se cortan por lo que escribes"*, 
 re-correr puede salir más caro que medir de nuevo. Cuando ese sea el caso, **el registro no debe
 prometer que se puede re-correr**: debe decir que la cifra es de su día, y ahí acabarse.
 
+### Qué hacer con lo ya escrito: se marca la puerta, no la afirmación
+
+Al aplicar lo anterior aparece un montón de cifras viejas **sin instrumento**, que no se pueden volver
+a comprobar y tampoco se pueden borrar porque **un acta no se reescribe**. La salida no es marcarlas
+una a una:
+
+> **Un acta es fuente, nunca objeto.** No se marca la afirmación: se marca **la puerta por donde se
+> lee**.
+
+Tres razones, y la tercera es la que cierra:
+
+- **Un acta no se lee para decidir.** Una afirmación que nunca subió a un documento vivo ya está
+  inerte: nadie construye encima porque nadie la lee. Marcarla no cambia nada.
+- **Las que sí se leen son las que subieron**, y ese conjunto está acotado por los documentos vivos,
+  que se curan y no crecen solos. La pregunta que termina no es *"marco mis N"* sino **"de cada
+  afirmación que un documento vivo sostiene, ¿su fuente se re-corre?"** — que es esta auditoría.
+- **Marcarlas una a una es un remedio que hay que mantener**, y por su forma eso no es un arreglo:
+  crece con cada acta nueva y se pudre igual que un rango de líneas.
+
+**Queda un residuo, y para ese sí hay que hacer algo:** alguien de fuera que lea el acta directamente,
+sin pasar por los documentos vivos. Para eso basta **una línea, una sola vez, en la cabecera del
+índice**, diciendo que las afirmaciones anteriores a tal fecha no llevan instrumento y que cada cifra
+es de su día. Cuesta O(1) y no hay que mantenerla.
+
+<!-- Regla aceptada de un corresponsal (2026-08-10). La instancia que la recibió llevaba 16 cifras en
+     esa situación y su instinto era marcarlas una a una; lo que le faltaba no era otra solución, era
+     la razón por la que basta con la puerta. -->
+
+### Y el estado de un documento archivado no se mueve solo
+
+Un fichero que se archiva con una marca de estado —*recibido*, *sin procesar*, *pendiente*— la conserva
+**para siempre**, porque el momento en que deja de ser cierta no tiene ningún paso asociado. Es la
+clase 1 con una particularidad: **el que la escribió sabía que iba a caducar**, y aun así no dejó quién
+la moviera.
+
+**Caso de campo:** un archivo de correspondencia con **21 cartas** marcadas *"archivada sin procesar"*,
+varias procesadas sesiones atrás. Las salientes del mismo archivo sí tenían ciclo
+—`redactada -> publicada -> entregada`— y estaban al día. **La asimetría es la pista:** el lado con
+pasos definidos no derivó y el lado sin pasos derivó entero.
+
+Al auditar, la pregunta barata es: **¿qué marcas de estado hay en el corpus, y quién las mueve?** Si la
+respuesta a la segunda es *nadie*, no hace falta comprobar ninguna: ya se sabe el resultado.
+
 ### El comando no es el patrón, y confundirlos parece sustrato
 
 **Caso de campo, y las dos partes lo leyeron mal antes de leerlo bien.** Un corresponsal publicó
