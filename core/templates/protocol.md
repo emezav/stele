@@ -89,6 +89,12 @@ en el `{{session}}` de la sesión que auditó, y lo que perdura, en el hogar que
 Detalle completo: qué se hizo, decisiones, archivos tocados, verificación, notas para retomar,
 y `## Esfuerzo equivalente` (si se usa). `NNN` con padding a 3 dígitos. No se reabre; se lee con grep.
 
+**La fecha se mide, no se recuerda** — `date '+%Y-%m-%d %z'`, o `Get-Date -Format 'yyyy-MM-dd K'`. La
+que inyecta el harness suele ser **UTC** y adelanta un día durante la última franja horaria local; y
+`git log -1` **no da hoy, da el día del último commit**. Si el shell no corre en la máquina del usuario
+las dos señales fallan a la vez y coinciden, así que **se pregunta**. Detalle y sonda de zona en
+CERRAR → *De dónde sale la fecha*. Vale para toda fecha estampada, no solo la del acta.
+
 **No lleva su propio hash de commit** (con `persistencia = git`). El cierre viaja en el mismo commit
 que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
 `git log --diff-filter=A -- {{history_dir}}<archivo de sesión>`.

@@ -86,8 +86,17 @@ desapercibida.** El doc del adoptante existe, así que la fila dice *"nada que h
 pie de la letra — mientras la sección **no aparece nunca**. Es la misma ausencia que justifica la
 excepción de arriba, en una escala en la que nadie la busca: no falta un documento, falta un trozo de
 uno que sí está, y desde fuera se ve idéntico a un doc que el proyecto decidió no usar. **Al ver un
-`##` nuevo en una plantilla de rol, ofrécelo igual que un rol nuevo**, con el mismo criterio: se
+trozo nuevo en una plantilla de rol, ofrécelo igual que un rol nuevo**, con el mismo criterio: se
 ofrece, no se inserta en silencio.
+
+**Y "trozo" dice trozo a propósito, porque esta excepción se escribió diciendo `##` y el umbral era el
+error.** Un encabezado nuevo es el caso *visible* de la ausencia, no su definición: la propiedad que la
+causa —el doc del adoptante existe, así que la fila dice *"nada que hacer"* y se cumple— vale igual para
+un **párrafo** añadido dentro de una sección que ya estaba, y ahí es todavía menos visible, porque no
+hay ni un `##` que contar en el diff. Lo destapó un cambio propio: una regla nueva sobre **de dónde sale
+la fecha** entró como párrafo dentro de `### {{session}}`, ya existente, y por la letra de esta
+excepción no la habría recibido nadie. **Una excepción escrita sobre el tamaño del síntoma deja fuera
+los ejemplares pequeños de su propia causa**, y los pequeños son los frecuentes.
 
 **Y la tercera excepción es de otra familia, porque no hay nada ausente: hay algo presente y roto.**
 Cuando el kit **corrige un comando que manda correr**, el adoptante conserva el suyo y **sigue dando

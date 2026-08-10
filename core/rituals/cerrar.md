@@ -4,7 +4,8 @@
 # Ritual: CERRAR sesión (dejar registro durable)
 
 1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, notas para retomar, y
-   `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos.
+   `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos, y la fecha **medida, no
+   recordada** — ver *De dónde sale la fecha*, abajo.
 2. **`index`**: una fila con append de Bash — `printf '| N | … |\n' >> {history_dir}{index}`.
 3. **`effort`** (si `effort_log`): una fila con `printf >>`.
 4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla — **nunca `Edit`, nunca prepend**.
@@ -23,6 +24,55 @@
    auditable la sesión. Si no hubo artefactos, no se dice nada — no hay sección que rellenar.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
+
+## De dónde sale la fecha
+
+**La fuente es el reloj de la máquina, y se mide con un comando** — `date '+%Y-%m-%d %z'` en POSIX,
+`Get-Date -Format 'yyyy-MM-dd K'` en PowerShell. Vale con VCS y sin VCS. **No la pongas de memoria y
+no copies la que traiga tu contexto.**
+
+**Porque la fecha que inyecta el harness suele ser UTC, y el proyecto no vive en UTC.** Medido en una
+instancia real: el contexto decía `2026-08-10` mientras el reloj local marcaba `2026-08-10 05:45 -0500`.
+Cinco horas de desfase significan que **entre las 19:00 y la medianoche locales el agente ya está en el
+día siguiente**, y la fecha del acta es el eje del historial: dos actas de esa franja quedaron
+adelantadas un día y **no se corrigen**, porque un acta no se reescribe.
+
+**Y ojo con el sustituto que parece obvio: `git log -1` no da hoy, da el día del último commit.** Solo
+coincide si commiteaste dentro de la sesión y lo lees *después* de commitear; abierta la sesión sobre un
+commit de anteayer, devuelve anteayer con toda confianza. Git no sabe qué día es: lee el mismo reloj del
+sistema que `date` y lo estampa, así que **`git log` es `date` con un rodeo y una condición extra**.
+Aparece como regla porque fue **donde se vio el error** —las actas adelantadas se destaparon comparando
+contra él—, y de ahí se ascendió un detector a fuente. **Un detector que destapa un error no es por eso
+la fuente del dato.**
+
+**El caso que rompe las dos señales a la vez es que el shell no corra en la máquina del usuario** —
+agente remoto, contenedor, ejecución en la nube. Esos suelen ir en UTC, así que `date` da UTC **y** los
+commits que haga ese agente se estampan en UTC: las dos fuentes fallan igual y **coinciden**. Es el peor
+modo de fallo, porque la coincidencia se lee como confirmación; son dos instrumentos correlacionados
+validándose entre sí.
+
+**La sonda, si hay VCS**, es comparar tu zona con la de quien commitea:
+
+```sh
+date '+%z'                                               # la zona del shell donde corres
+git log -20 --format='%ad' --date=format:'%z' | sort -u  # la zona de quien commitea
+```
+
+Si difieren, no estás donde vive el proyecto: **pregunta la fecha**. Y **valida la sonda antes de
+creerle**, que cuesta una línea: `TZ=UTC date '+%z'` tiene que discrepar del offset de los commits. Si
+ni siquiera así discrepa, la sonda no separa y su acuerdo no vale nada.
+
+**Sin VCS no hay sonda, y no pasa nada** — la jerarquía degrada al último escalón, que siempre está.
+Son tres, en orden:
+
+1. **El reloj de la máquina.** La fuente.
+2. **El control de zona**, si hay VCS. Solo dice si la fuente es de fiar aquí.
+3. **Preguntar al usuario** — si no hay VCS, o si el control discrepa. Cuesta una línea y es la única
+   fuente con autoridad sobre qué día es donde vive el proyecto.
+
+**Vale para toda fecha que estampes**, no solo la del acta: la fila del `index`, la del `effort`, la del
+`audit`, el nombre de una carta. Y AUDITAR exige fecha en todo hallazgo por la misma razón por la que
+esto importa — **un dato fechado mal envejece como un dato cierto**.
 
 **Y el `state` se reescribe entero también cuando lo tocas fuera del cierre.** La regla de arriba vive
 en un checklist de cierre, así que no se siente aplicable a las ediciones de mitad de sesión —se
