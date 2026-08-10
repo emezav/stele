@@ -150,10 +150,10 @@ grep -rniE "siempre|nunca|todos los|todas las|ningún|en ningún caso|garantiza|
 grep -rniE "pendiente|por confirmar|validado en|en curso|en progreso|provisional|bloquea" {base} --include="*.md"
 
 # clase 3 — vocabulario de refutación en las sesiones del rango (fuente, no objeto)
-grep -rniE "en realidad|result[oó]|falso negativo|falso positivo|no funciona|descartad|corregi" {history_dir}
+grep -rniE "en realidad|result(o|ó)|falso negativo|falso positivo|no funciona|descartad|corregi" {history_dir}
 
 # clase 5 — metadatos de sesión en cabeceras, para contrastar contra {index}
-grep -rniE "sesi[oó]n [0-9]+" {base} --include="*.md"
+grep -rniE "sesi(o|ó)n [0-9]+" {base} --include="*.md"
 
 # clase 4 — secciones reales del detalle, para contrastar con su índice
 grep -n "^## " <doc de detalle>
@@ -360,6 +360,63 @@ instancia de cada distinción que el check hace**. Preguntarse *¿qué más dist
 —dos tablas de distinto ancho, un separador que es contenido, una valla que parece dato— produjo dos
 regresiones más que la forma estrecha no habría cubierto. **El control se deriva de las distinciones,
 no del tamaño.**
+
+### "El mismo comando" no es el mismo programa
+
+**Aporte de campo, y desmonta la premisa de todo experimento compartido.** Dos proyectos corrieron
+**la misma sonda literal** y obtuvieron resultados distintos. La causa no era el locale: en una de las
+máquinas `grep` **no era GNU grep** — una función de shell inyectada por la herramienta lo enrutaba a
+otro binario, con opciones propias. GNU grep estaba instalado y **no era el que respondía al nombre**.
+
+> **Antes de comparar dos mediciones, di qué binario contesta.** Es el *mal dirigido* del marcador un
+> piso más abajo: no *¿en qué copia está la evidencia?* sino **¿en qué herramienta se midió?**
+
+**Y el mismo desajuste produce filtros muertos.** Ese `grep` no imprimía el prefijo `./` en las rutas y
+el otro sí; un barrido que excluía con `^\./` **no excluyó nada y no dio error: filtró cero**. Es el
+reverso de la sonda rota — no un cero de más, sino **un cero de menos** — y el síntoma es el mismo:
+silencio. El resultado salió correcto **por accidente**, porque los aciertos eran pocos y se miraron a
+mano.
+
+### Mide el producto sobre lo que se distribuye, no sobre tu árbol
+
+**Caso propio, y contra una regla que ya teníamos escrita.** Se publicó en una carta que *"19
+documentos del kit nombran este rol"*. El corresponsal contó **18**, en cuatro commits y dos alcances.
+El de más era **el manifiesto de la instancia, que está en `.gitignore`**: la cifra se midió con `grep`
+sobre el **árbol de trabajo**, que contiene ficheros que **no son el producto**.
+
+> Cuando la cifra es **sobre el artefacto que viaja**, se mide sobre lo que git guarda (`git grep`,
+> `git cat-file`). El árbol solo vale para hablar del estado propio. **Un fichero ignorado es
+> invisible al lector y visible a tu `grep`.**
+
+**Y cómo lo trataron es la otra mitad:** tenían evidencia de **cuántos** y ninguna de **cuál** sobraba,
+enumeraron **tres** explicaciones posibles y **no eligieron ninguna** — aplicando, cuatro horas después
+de aprenderla, la regla de que una aritmética con dos soluciones no identifica un elemento.
+
+**Y su mecanismo, que refina esa regla y desactiva el remedio que le habíamos propuesto:**
+
+> **Un número no se descompone solo: se descompone en las categorías que uno ya trajo.** No hubo
+> elección entre dos lecturas — hubo **identificación primero y aritmética después**, así que el número
+> se leyó como confirmación de una clasificación que ya existía.
+
+Por eso *marcar la conjetura* no sirve: **no se siente conjetura**. Lo único que la caza es el paso
+mecánico y **previo** — contar cuántas soluciones admite el número **antes** de elegir una.
+
+### Nunca metas un carácter acentuado dentro de `[...]`
+
+**Un detector de este mismo ritual estuvo roto por esto, y era del producto.** El patrón de la clase 5
+decía `sesi[oó]n [0-9]+` y **no puede casar `sesión`**: la vocal acentuada ocupa **dos bytes**, la clase
+casa **uno**, y luego el patrón exige la `n` donde está el segundo byte. Medido sobre un corpus
+español: **22 líneas con la clase rota, 156 con la alternancia.** Se perdía el **86%**, en silencio y
+durante meses.
+
+> **Usa alternancia —`sesi(o|ó)n`— nunca clase.** Y ojo con el caso peor, que es el que no se nota: si
+> el carácter acentuado va **al final** del patrón, la clase **sí casa** —consume el primer byte y no
+> exige nada detrás—, así que el detector *parece* funcionar. Uno de los dos patrones de aquí estaba en
+> cada caso.
+
+**Y esto se generaliza a cualquier kit que no esté en inglés:** un detector léxico escrito en un idioma
+con diacríticos y probado con un control **sin** diacríticos pasa en verde y no mide nada. El control
+positivo tiene que llevar **la forma acentuada**, que es la que el corpus usa de verdad.
 
 ### Las alternativas de un patrón son su lista de distinciones, y se cuentan
 
