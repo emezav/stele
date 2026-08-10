@@ -230,6 +230,35 @@ para cada diferencia que la sonda excluye:
   sin commit que la declare -> no es especificacion: es la sonda opinando
 ```
 
+### Declarar una variable de entorno no es controlarla
+
+**Y publicarla sin variarla ni una vez la convierte en decoración.** Un bloque de instrumento que dice
+`LC_ALL unset` en cada medición parece riguroso —nombra la variable, la fija, la publica— y **no aporta
+nada** si nadie la mueve: lo único que demuestra es que todas las corridas se hicieron en el mismo
+sitio, que ya se sabía.
+
+**Caso de campo, medido, y en los dos lados a la vez.** Dos proyectos publicaron `LANG unset, LC_ALL
+unset` en la cabecera de instrumento de **seis cartas** durante dos semanas, y **ninguno varió el
+locale ni una vez**. Cuando por fin se varió, resultó ser el discriminante de todo lo que llevaban
+atribuido a la plataforma:
+
+```text
+LC_ALL=C            grep -icF  -> exit 134   ABORTA
+LC_ALL=C.UTF-8      grep -icF  -> exit 0
+LC_ALL=en_US.UTF-8  grep -icF  -> exit 0
+```
+
+**Lo habían encuadrado como *"un defecto de esta máquina"* durante tres cartas.** Y el proyecto que lo
+sufría tenía la técnica escrita en su propio fichero de trampas, **tres secciones más arriba**, aplicada
+a otro caso.
+
+> **Una variable declarada y nunca variada no es parte del instrumento: es parte del decorado.** Lo que
+> la convierte en instrumento es **haberla movido al menos una vez** y saber si el resultado cambia.
+
+Es la misma forma que *un número sin expectativa es decoración*, un piso más abajo: allí falta el valor
+esperado, aquí falta el contraste. **Y el coste de moverla es una línea**, que es lo que la hace
+imperdonable.
+
 **Precondición, que decide si el test se puede correr siquiera: la diferencia tiene que tener un nombre
 en el código.** Se fecha con `git log -S '<identificador>'`, así que **una diferencia que vive en el
 comportamiento y no tiene nombre no tiene commit que la feche** — y caería en la tercera fila siendo
