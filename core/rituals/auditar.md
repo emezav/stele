@@ -65,6 +65,35 @@ registros estuvo nombrado dos sesiones sin correrse, y **se corrió el día que 
 caería** — en su fichero de trampas y en la práctica, no en las cartas. **Nombrar el destino fue lo que
 lo desbloqueó, no la voluntad.**
 
+### Y una vez que el hallazgo tiene dónde caer, queda si la afirmación se puede volver a comprobar
+
+**Caso propio, medido al ir a pagar esa deuda.** Un historial tenía **17** líneas que afirmaban un
+cero. Filtrando por las que citaban un comando salieron **3**, y se declaró por escrito que para esas
+tres no había excusa. Al correrlas:
+
+| | |
+| --- | --- |
+| Afirmación de corpus, re-corrible | **1** — y pasó |
+| **Narración** de una depuración pasada | 1 |
+| Comando citado **sin el patrón** que se buscó | 1 |
+
+**El reparto real no era 3 contra 14: era 1 contra 16.** El filtro contaba como instrumento cualquier
+línea que **mencionara** `grep` — uso contra mención otra vez, y en el sitio donde más cara sale,
+porque produce **una cifra cierta con una etiqueta generosa** que ya había viajado en una carta.
+
+> **Un comando citado no es un instrumento.** Para que una afirmación se pueda volver a comprobar hace
+> falta **comando + patrón + corpus**. Con dos de los tres no se re-corre: se mide otra cosa y se le
+> pone el mismo nombre.
+
+**Y de ahí lo que un registro debe guardar, que es más de lo que parece:** *publicar la medición y no
+solo el veredicto* es necesario y **no basta**. La medición sin su instrumento **hereda para siempre la
+interpretación con la que se publicó** — nadie puede contradecirla, porque nadie puede repetirla.
+
+**La consecuencia incómoda, y conviene decirla antes de que la diga el corpus:** si al instrumento hay
+que sumarle el **sustrato** —ver *"las capas se cortan por lo que escribes"*, en este archivo—, entonces
+re-correr puede salir más caro que medir de nuevo. Cuando ese sea el caso, **el registro no debe
+prometer que se puede re-correr**: debe decir que la cifra es de su día, y ahí acabarse.
+
 ## Las clases de drift
 
 | # | Clase | Qué es |
