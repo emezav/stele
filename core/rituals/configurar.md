@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: CONFIG (adaptar nombres/parámetros — único renombrador sancionado)
+# Ritual: CONFIG (adaptar nombres/parámetros — único renombrador sancionado)
 
 1. **Leer + reconciliar** `stele.config.md` contra los archivos reales; reportar/arreglar drift.
 2. **Clasificar** el cambio por radio de impacto: renombrar / toggle módulo / toggle feature /

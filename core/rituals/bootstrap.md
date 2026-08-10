@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
+# Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
 sobrescribir contenido; solo generar lo que falte). Pasos:

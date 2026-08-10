@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: AUDITAR (verificar que lo escrito sigue siendo cierto)
+# Ritual: AUDITAR (verificar que lo escrito sigue siendo cierto)
 
 Se dispara con "audita la documentación" / "corre el audit". **Se invoca; nunca corre solo** —
 auditar es caro por naturaleza y choca de frente con la regla madre *lee poco al arrancar*.
@@ -21,7 +21,7 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 - **Nada se reescribe en silencio.** Los errores se aplican tras confirmación en bloque; las
   preferencias se preguntan una a una.
 
-### Alcance (qué se relee, y qué no)
+## Alcance (qué se relee, y qué no)
 
 Releer todo en cada auditoría no escala. Default = **incremental**:
 
@@ -37,7 +37,7 @@ auditoría, después de una migración estructural, o cuando el usuario lo quier
 
 Los `session` y el `index` **no son objeto de corrección**, solo fuente contra la que contrastar.
 
-### Las clases de drift
+## Las clases de drift
 
 | # | Clase | Qué es |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ previstas para retirarse). Ninguno de los tres se lee para trabajar. Dos proyect
 encontrado su huérfano en **exactamente esa constelación**, con reglas distintas y sin conocer el caso
 del otro: no es casualidad, es dónde cae por defecto lo que aún no tiene hogar. Empieza por ahí.
 
-### Detectores (sin esto, el ritual es decorativo)
+## Detectores (sin esto, el ritual es decorativo)
 
 Un audit que devuelve "todo se ve bien" no ha auditado. Barre primero, verifica después:
 
@@ -361,7 +361,7 @@ instancia de cada distinción que el check hace**. Preguntarse *¿qué más dist
 regresiones más que la forma estrecha no habría cubierto. **El control se deriva de las distinciones,
 no del tamaño.**
 
-### "El mismo comando" no es el mismo programa
+## "El mismo comando" no es el mismo programa
 
 **Aporte de campo, y desmonta la premisa de todo experimento compartido.** Dos proyectos corrieron
 **la misma sonda literal** y obtuvieron resultados distintos. La causa no era el locale: en una de las
@@ -377,7 +377,7 @@ reverso de la sonda rota — no un cero de más, sino **un cero de menos** — y
 silencio. El resultado salió correcto **por accidente**, porque los aciertos eran pocos y se miraron a
 mano.
 
-### Mide el producto sobre lo que se distribuye, no sobre tu árbol
+## Mide el producto sobre lo que se distribuye, no sobre tu árbol
 
 **Caso propio, y contra una regla que ya teníamos escrita.** Se publicó en una carta que *"19
 documentos del kit nombran este rol"*. El corresponsal contó **18**, en cuatro commits y dos alcances.
@@ -401,7 +401,7 @@ de aprenderla, la regla de que una aritmética con dos soluciones no identifica 
 Por eso *marcar la conjetura* no sirve: **no se siente conjetura**. Lo único que la caza es el paso
 mecánico y **previo** — contar cuántas soluciones admite el número **antes** de elegir una.
 
-### Nunca metas un carácter acentuado dentro de `[...]`
+## Nunca metas un carácter acentuado dentro de `[...]`
 
 **Un detector de este mismo ritual estuvo roto por esto, y era del producto.** El patrón de la clase 5
 decía `sesi[oó]n [0-9]+` y **no puede casar `sesión`**: la vocal acentuada ocupa **dos bytes**, la clase
@@ -414,11 +414,20 @@ durante meses.
 > exige nada detrás—, así que el detector *parece* funcionar. Uno de los dos patrones de aquí estaba en
 > cada caso.
 
+**Hay una tercera forma y esa sí es segura, pero por una razón que no es la que uno cree.** Una clase
+de rango con acentos **bajo cuantificador** —`[a-záéíóúñ]+`, como en el detector de contadores— sí casa
+palabras acentuadas: el `+` deja que los **dos bytes** del acento entren como **dos elementos** de la
+clase. Probado: 3 de 3, con control negativo.
+
+> **La condición es el cuantificador, no la clase.** `[a-záéíóúñ]+` funciona; `[a-záéíóúñ]` a secas, o
+> seguida de algo fijo, **no**. Quien copie esa clase a un sitio sin `+` se lleva el fallo mudo sin
+> tocar nada de lo que se ve.
+
 **Y esto se generaliza a cualquier kit que no esté en inglés:** un detector léxico escrito en un idioma
 con diacríticos y probado con un control **sin** diacríticos pasa en verde y no mide nada. El control
 positivo tiene que llevar **la forma acentuada**, que es la que el corpus usa de verdad.
 
-### Las alternativas de un patrón son su lista de distinciones, y se cuentan
+## Las alternativas de un patrón son su lista de distinciones, y se cuentan
 
 **El patrón es el código.** Una alternación `a|b|c` lleva tres distinciones igual que tres ramas, así
 que **la cobertura de un control se puede leer también sobre un `grep`**: ¿qué alternativa de este
@@ -442,7 +451,7 @@ declararon una *"que no dispara nunca"* — cierto sobre el kit, que es lo únic
 el corpus real**, que es el historial y no viaja: ahí dispara 15 veces. **La técnica era buena y el
 corpus era otro.** Es el *mal dirigido* del marcador, aplicado a un detector en vez de a una carta.
 
-### Un detector no monótono no mide el defecto: mide la forma del corpus
+## Un detector no monótono no mide el defecto: mide la forma del corpus
 
 > **Si al añadirle el defecto reporta MENOS, no está midiendo lo que busca.**
 
@@ -451,7 +460,7 @@ incluso como worklist** — que es para lo que un detector ruidoso todavía sirv
 con ventana deslizante dio menos candidatos sobre el corpus mutilado que sobre el sano. **Es el único
 resultado que descarta un instrumento entero en vez de rebajarlo.**
 
-### Una tasa alta de falsos positivos protege al fallo que la causa
+## Una tasa alta de falsos positivos protege al fallo que la causa
 
 Aporte de campo, y es el más incómodo de los recibidos:
 
@@ -468,7 +477,7 @@ nada que comprobar**, y entonces lo único que hay delante es la salida que llev
 esa pasada existe —el ritual manda repetir hasta que una no produzca nada nuevo— y conviene saber que
 **ese es su rendimiento**, no la redundancia.
 
-### El reverso: cuánto puede callar un detector antes de que su silencio deje de informar
+## El reverso: cuánto puede callar un detector antes de que su silencio deje de informar
 
 El caso simétrico, y es nuestro: una comprobación que ha corrido **más de treinta veces sin un solo
 positivo verdadero**. Los dos extremos acaban igual — **una salida que nadie lee y una salida que nadie
@@ -483,7 +492,7 @@ día que alguien cometa el error que busca. Para esa clase la regla es no contar
 limpio, sino **declararlo**: la salida dice cuántas veces ha corrido sin un positivo verdadero. Un cero
 con esa coletilla al lado ya no se lee como corpus limpio.
 
-### Un barrido que filtra por un campo no ve al registro que no lo tiene
+## Un barrido que filtra por un campo no ve al registro que no lo tiene
 
 **Caso propio, y salió caro.** Se contaron las tablas de marcador de la correspondencia propia
 filtrando por el campo `Dirección` de la cabecera. El resultado —*"11 filas en dos cartas"*— salió **en
@@ -498,7 +507,7 @@ La carta que faltaba **no tiene línea `Dirección`**, aunque la plantilla la ex
 Antes de filtrar por un campo, **cuenta cuántos registros lo tienen** y compáralo con el total. La
 diferencia es el punto ciego, y se mide en una línea.
 
-### Y el error que te quita razón no se busca
+## Y el error que te quita razón no se busca
 
 La otra mitad del mismo caso, y la aportó quien lo encontró: aquel recuento **iba en contra nuestra**
 —0 de 17 sostiene la conclusión mejor que 0 de 11—, y por eso nadie de este lado fue a revisarlo.
@@ -1022,7 +1031,7 @@ Su hogar es la sección *Detectores de auditoría* de `protocol`, **no el manifi
 larga y viva, no un parámetro. Y **no van en *Acuerdos de auditoría***, que es otra cosa — allí viven
 decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no cambiar nada.
 
-### Fases
+## Fases
 
 1. **Delimitar** el alcance y decirlo en una línea *antes* de leer nada. **El eje es el conjunto de
    documentos, no el rango de sesiones:** pasada cierta escala el rango deja de acotar —un proyecto de
@@ -1089,7 +1098,7 @@ decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no ca
 7. **Registrar**: fila en `audit`, acuerdos a su hogar, y lo aplicado contado en el `session` de la
    sesión que auditó. Lo que perdura va a su hogar, como en cualquier cierre.
 
-### Segunda pasada (obligatoria)
+## Segunda pasada (obligatoria)
 
 Después de aplicar, **re-verifica lo tocado**. No es una formalidad: en la auditoría real que originó
 este ritual, **dos de los ocho hallazgos —incluida la clase 7— aparecieron verificando los arreglos
@@ -1119,7 +1128,7 @@ donde la frase implicaba **tres**. Tirando de ahí apareció que su doc de proce
 diciendo que viajaban tres cosas cuando solo viajaba una — y su propio `.gitignore` lo desmentía en un
 comentario, desde el primer día.
 
-### Informe (forma fija)
+## Informe (forma fija)
 
 ```text
 AUDIT — sesiones 10-24 · 6 docs revisados
@@ -1166,7 +1175,7 @@ El informe **va en llano** (ver "Cómo se le habla al usuario"): es la superfici
 decide, y "clase 7" no significa nada fuera de este archivo. El número de clase va al margen, como
 etiqueta para el agente; lo que se lee es el hecho y el arreglo propuesto.
 
-### Acuerdos: cuando el usuario decide no cambiar
+## Acuerdos: cuando el usuario decide no cambiar
 
 Un "déjalo así" **se registra con su umbral**, que es lo que lo convierte en decisión en vez de en
 aplazamiento. Si no, se rediscute en cada auditoría:
@@ -1178,7 +1187,7 @@ aplazamiento. Si no, se rediscute en cada auditoría:
   sección Presupuestos del manifiesto con el ritual `config` ("déjalo entero; revisar si pasa de
   ~1000 líneas" = `specs = 1000`). Ya hay un hogar para ese dato; crear un segundo lo desincroniza.
 
-### Cadencia
+## Cadencia
 
 Manual, siempre. `audit_every_n_sessions` (Features) **no dispara nada**: es el umbral con el que el
 cierre decide si anota "auditoría vencida" en los pendientes de `state` (CERRAR, paso 4). Avisar

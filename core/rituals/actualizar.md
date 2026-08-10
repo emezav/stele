@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: ACTUALIZAR (traer una versión nueva del kit)
+# Ritual: ACTUALIZAR (traer una versión nueva del kit)
 
 Se dispara con "actualiza stele" / "trae la última versión del marco". Cambia **solo la ruta `kit`**:
 `base` no se toca nunca — esos docs son del proyecto, y una plantilla nueva **no reinstancia nada**.

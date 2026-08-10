@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: ABRIR sesión (ponerse al día, barato)
+# Ritual: ABRIR sesión (ponerse al día, barato)
 
 Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo de producto):
 

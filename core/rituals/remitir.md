@@ -1,12 +1,12 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: REMITIR (escribir hacia fuera lo que aprendiste)
+# Ritual: REMITIR (escribir hacia fuera lo que aprendiste)
 
 **Cuándo.** Cuando encuentras algo que **no es tuyo**: un hallazgo cuyo hogar correcto está en el
 proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el archivo y el índice.
 
-### El disparador, que es la parte difícil
+## El disparador, que es la parte difícil
 
 Nadie sabe que tiene algo que contar. Los informes que existen se escribieron porque una persona se
 dio cuenta, y eso no es un mecanismo. El mecanizable sale de generalizar la **clase 7** de AUDITAR
@@ -25,7 +25,7 @@ Y la misma frontera que en CONTRASTAR, aplicada de emisor: **si no hay un caso, 
 idea suelta o una petición de funcionalidad no lo son. Sin eso, escribir se vuelve barato y las cartas
 dejan de valer.
 
-### Fases
+## Fases
 
 1. **Comprobar que hay caso**: qué pasó, en qué terreno, qué costó.
 2. **Redactar** con la plantilla `letter`. El **caso** primero; la **propuesta** es opcional y va
@@ -42,7 +42,7 @@ dejan de valer.
    cuándo obtenerlo** — antes de leerla, o mientras. El orden es parte de la carta, no logística; ver
    abajo.
 
-### Una respuesta está hecha de afirmaciones sobre acciones propias
+## Una respuesta está hecha de afirmaciones sobre acciones propias
 
 Es la parte incómoda del género y conviene verla antes de escribir una. La respuesta existe para decir
 **qué entró, qué no y por qué**, así que casi cada frase suya es *"entró"*, *"está escrito"*, *"lo
@@ -104,7 +104,7 @@ Así que la columna no es una propiedad de la afirmación: **es una propiedad de
 corresponsal que ve más, se marca lo que él ve, y **se le pregunta si quiere seguir viéndolo** — la
 instancia es privada y quien decide es su dueño, no la conveniencia de la verificación.
 
-### El tercer modo de fallo: marcar bien y apuntar a un corpus que no puede responder
+## El tercer modo de fallo: marcar bien y apuntar a un corpus que no puede responder
 
 Los dos primeros son de **cobertura** —el estrecho deja fuera lo comprobable, el generoso mete dentro
 lo que no lo es—. El tercero no falla en la columna: **falla en la dirección**.
@@ -131,7 +131,7 @@ lo decidió; salió así.
 > evidencia es un artefacto que existe **de los dos lados**, hay que decir de cuál se habla — las dos
 > copias pueden diferir sin que ninguno lo sepa.
 
-### El ángulo muerto: el marcador inventaría lo que afirmas sobre TI
+## El ángulo muerto: el marcador inventaría lo que afirmas sobre TI
 
 **Al llenar la tabla uno enumera lo que estuvo escribiendo, y lo que estuvo escribiendo es su propio
 lado.** Las afirmaciones sobre el destinatario se quedan fuera sin que nadie lo decida — y son, a la
@@ -164,7 +164,7 @@ Y la prueba de que un marcador resume bien es de qué lado cae lo que omite: **o
 correcto; omitir lo comprobable es el fallo.** Los dos ejemplares conocidos caen a lados distintos, y
 por eso la regla no sale de uno solo.
 
-### Una fila que junta dos afirmaciones con evidencia distinta son dos filas
+## Una fila que junta dos afirmaciones con evidencia distinta son dos filas
 
 **Es el fallo contrario y también es real.** Una fila propia decía *"la comprobación no tenía control
 positivo, **ni escrito ni en la práctica**"* → **Sí**, con dos identificadores. El diff prueba *"ni
@@ -185,7 +185,7 @@ más abajo, un reparto medido sobre las propias actas iba marcado *"sí… así 
 La distinción estaba entendida en el mismo documento, a diez líneas. **No se evita habiéndolo
 entendido; se evita partiendo la fila.**
 
-### Lo que el marcador NO hace, dicho por quien lo propuso
+## Lo que el marcador NO hace, dicho por quien lo propuso
 
 **Marcar un bloque como no comprobable no obliga a comprobarlo.** Caso de campo, contado contra sí
 mismo: una cifra inventada salió **por debajo de una marca correcta** que encabezaba su bloque, y la
@@ -295,7 +295,7 @@ conviene tener las dos: **quien conjetura, marca; quien cita, dice la fuente.** 
 procedencia es una invitación a explicarla, y la explicación que se le ocurra a quien la lee será
 suya, no tuya.
 
-### Público o privado
+## Público o privado
 
 **Lo privado es el modo por defecto y no hay nada que construir:** una carta que va por chat, correo o
 un repo cerrado se archiva igual y no toca ningún buzón. Lo que exige criterio es lo contrario —
@@ -320,7 +320,7 @@ sabe que ese `remitente` es él. Para hablar de una idea, alcanza.
 6. **Archivar y registrar**: tu copia como `letter` —la del otro lado puede desaparecer— y la fila en
    `correspondence`, **con el estado sincero**.
 
-### Una carta saliente tiene tres estados, y el agente solo puede mover dos
+## Una carta saliente tiene tres estados, y el agente solo puede mover dos
 
 **`redactada` -> `publicada` -> `entregada`.** El agente escribe la fila al redactar y mueve la
 segunda; **solo el usuario mueve la tercera**, porque el cartero es él. Un agente **no puede
@@ -401,7 +401,7 @@ Cuesta una línea comprobarlo antes de archivar —¿están los cinco campos?—
 notarlo después. **Las que ya salieron se anotan y no se retocan**, por la asimetría de arriba: una
 cabecera incompleta es un fósil visible; una completada a posteriori no la delata nada.
 
-### El remitente, y por qué son dos claves
+## El remitente, y por qué son dos claves
 
 En `Meta`, **elegido, no derivado**. Derivarlo de la carpeta, la ruta o el remoto rompe el rastro en
 cuanto algo se renombra **y además no es anónimo**: el espacio de búsqueda de una ruta es minúsculo y
@@ -423,7 +423,7 @@ a costa de perder el historial de la fuente, que es una renuncia de quien escrib
 
 Lo elige el usuario y lo propone el agente: **solo el usuario sabe qué le identifica** en su contexto.
 
-### Espeja el registro, no el dialecto
+## Espeja el registro, no el dialecto
 
 Contestar en el **registro** de quien escribe —formalidad, densidad técnica, si tutea o no— es
 cortesía y ayuda a entenderse. **La variante de idioma es otra cosa: esa se queda como la tuya.**

@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: CONTRASTAR (recibir un informe externo sobre tu trabajo)
+# Ritual: CONTRASTAR (recibir un informe externo sobre tu trabajo)
 
 **Cuándo.** Llega de fuera un informe sobre lo que este proyecto produce: la revisión de un director
 de tesis, los resultados de un laboratorio socio, la evaluación de un curso, el reporte de otro equipo
@@ -14,7 +14,7 @@ fuera —pero es la **salida**—. Ninguno maneja una **entrada de fuera**. Es l
 consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
 producto y viaja a todos— y es la única que no tenía procedimiento.
 
-### La regla central: el diagnóstico viaja, el remedio no
+## La regla central: el diagnóstico viaja, el remedio no
 
 Quien reporta tiene el **caso** —lo que pasó de verdad en su terreno, que tú no puedes ver—. Tú tienes
 el **contexto de diseño** —por qué las piezas son como son, que él no puede ver—. Un informe llega
@@ -37,7 +37,7 @@ Lo que lo hace instructivo es que **ninguno de los dos podía haber elegido el d
 remedio no viaja: no es que sea menos fiable que el diagnóstico, es que **está atado a un material que
 quien reporta no tiene**.
 
-### Tres clases de afirmación, y no se tratan igual
+## Tres clases de afirmación, y no se tratan igual
 
 - **Sobre tu trabajo** — verificables aquí, y se verifican **todas** antes de aceptar nada. Un aporte
   apoyado en una afirmación falsa sobre tu producto se cae entero por bien argumentado que esté.
@@ -78,7 +78,7 @@ es la única posición desde la que se ve, porque desde el texto los dos defecto
 **El coste asimétrico es lo que hace la regla obligatoria y no prudente:** una regla nacida de un
 error de canal **viaja a cada adoptante**, y allí no hay cartero ninguno al que corregir.
 
-### Fases
+## Fases
 
 0. **¿Ya llegó esta carta?** Antes de leerla con atención, búscala en tu archivo. **Con cartero humano
    el reenvío es normal** —se pega dos veces, se pega una vieja creyéndola nueva, se reenvía tras una
@@ -137,7 +137,7 @@ error de canal **viaja a cada adoptante**, y allí no hay cartero ninguno al que
    tuya es la única. La respuesta dice **qué entró, qué no y por qué**, y qué sigue sin poder
    responderse; es a su vez un `letter` que sale. Luego, las filas en `correspondence`.
 
-### Responder es una fase, no cortesía
+## Responder es una fase, no cortesía
 
 Es lo primero que se degrada, porque el trabajo ya está hecho y la respuesta no le urge a nadie. Pero
 **un ritual que solo ingiere convierte a quien reporta en QA gratis**, y esa fuente se seca. Y hay algo
@@ -169,7 +169,7 @@ en dos sitios: el índice dice cuál y en qué estado, y el `state` solo dice qu
 crea la lista aparte que la frase anterior acaba de declarar innecesaria, y **esa copia es la que se
 queda vieja**: caso de campo, cuatro sesiones anunciando una carta que ya había sido contestada.
 
-### Qué NO es un informe externo
+## Qué NO es un informe externo
 
 Que la petición venga acompañada de un **caso**: algo que pasó en un terreno real. Una idea, una
 preferencia o una petición de funcionalidad —vengan de quien vengan— no son esto: se tratan como

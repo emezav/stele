@@ -1,7 +1,7 @@
 <!-- Ritual del kit stele. Se lee BAJO DEMANDA: `SKILL.md` enruta y no repite este contenido.
      Si cambias una regla de aquí, comprueba si `SKILL.md` la resume en su tabla de rituales. -->
 
-## Ritual: CERRAR sesión (dejar registro durable)
+# Ritual: CERRAR sesión (dejar registro durable)
 
 1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, notas para retomar, y
    `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos.

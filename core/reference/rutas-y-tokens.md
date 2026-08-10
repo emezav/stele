@@ -1,6 +1,8 @@
 <!-- Referencia del kit stele. Se lee BAJO DEMANDA, sobre todo desde BOOTSTRAP y CONFIG.
      `SKILL.md` guarda solo los invariantes; la exposición vive aquí. -->
 
+# Rutas y tokens — referencia
+
 ## Las tres rutas: `kit` · `base` · `loader`
 
 | Ruta | Default | Qué contiene | Quién la escribe |
