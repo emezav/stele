@@ -390,32 +390,46 @@ individual parezca culpable.
 
 El corte fue por ritual: `SKILL.md` enruta, y cada ritual se lee **solo cuando se invoca**.
 
-> **Corpus fijado: `ce7a5ca`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
+> **Corpus fijado: `00aed04`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
 > `git cat-file` y no sobre el árbol de trabajo. **Sin esas tres cosas la tabla no es una medición
-> sino un contador**, y un contador caduca en silencio: la versión anterior de esta tabla no las
-> llevaba, y siete de sus diez cifras —correctas el día que se escribieron— envejecieron entre un 2%
-> y un 170% sin que nada avisara. Si vas a rehacerla, deja el identificador dentro.
+> sino un contador**, y un contador caduca en silencio: dos versiones atrás esta tabla no las llevaba,
+> y siete de sus diez cifras —correctas el día que se escribieron— envejecieron entre un 2% y un 170%
+> sin que nada avisara. Si vas a rehacerla, deja el identificador dentro.
+>
+> **Control del método, calculado y no elegido:** de los diez ficheros, `SKILL.md` es el único que
+> **no cambió** entre el corpus anterior (`ce7a5ca`) y este, y reproduce su cifra **exacta**. Por eso
+> los deltas de los demás son crecimiento real y no deriva del tokenizador. El control no es *"no
+> cambió desde una fecha cómoda"*: es **no cambió entre los dos instantes que se comparan**, y eso se
+> calcula con `git diff --name-only`.
 
 | Se carga | Tokens | Cuándo se paga |
 | --- | --- | --- |
 | `SKILL.md` (enrutador) | 4 981 | **siempre** |
 | `core/rituals/abrir.md` | 753 | cada sesión |
 | `core/rituals/cerrar.md` | 4 349 | cada sesión |
-| `core/rituals/contrastar.md` · `remitir.md` | 2 797 · 6 627 | si hay carta |
-| `core/rituals/auditar.md` | **14 477** | cada ~10 sesiones |
-| `core/rituals/actualizar.md` | 6 205 | al traer kit nuevo |
-| `core/rituals/bootstrap.md` · `configurar.md` | 2 975 · 1 799 | una vez / rara |
-| `core/reference/rutas-y-tokens.md` | 2 843 | bootstrap y config |
+| `core/rituals/contrastar.md` · `remitir.md` | 3 443 · 9 176 | si hay carta |
+| `core/rituals/auditar.md` | **24 999** | cada ~10 sesiones |
+| `core/rituals/actualizar.md` | 6 494 | al traer kit nuevo |
+| `core/rituals/bootstrap.md` · `configurar.md` | 3 373 · 1 799 | una vez / rara |
+| `core/reference/rutas-y-tokens.md` | 2 851 | bootstrap y config |
 
 **Sesión normal (enrutador + abrir + cerrar): 10 083.** El total del kit subió al partirlo —cabeceras y
 tabla de enrutado—, y eso es correcto: **no se ahorró texto, se ahorró carga.**
 
-**La tesis sigue en pie, y ahora tiene su número:** `auditar` es hoy **1,44 veces** el coste de una
-sesión entera, y se paga **una vez cada diez** — unos 1 450 amortizados. Esa es exactamente la forma
-que el corte compró: **lo caro sigue siendo lo infrecuente, y por eso no está en el arranque.** Lo que
-el corte no hace es frenar el crecimiento: entre `92e00aa` y `ce7a5ca` ningún fichero de esta tabla
-bajó, y el que más creció —`bootstrap`, +170%— es de los que menos se leen. **El reparto protege el
-arranque; no sustituye a podar.**
+**La tesis sigue en pie y el número casi se ha duplicado:** `auditar` es **2,48 veces** el coste de una
+sesión entera, y se paga **una vez cada diez** — unos 2 500 amortizados. Era 1,44 en `ce7a5ca`. La
+forma que el corte compró aguanta —**lo caro sigue siendo lo infrecuente, y por eso no está en el
+arranque**—, pero lo que el corte no hace es frenar el crecimiento: entre `ce7a5ca` y `00aed04`
+**ningún fichero de esta tabla bajó**, y el que más creció es justo el más caro, `auditar`, **+73%**.
+La sesión normal es lo único que no se movió, y solo porque el crecimiento se fue entero a los
+rituales que no se cargan al arrancar. **El reparto protege el arranque; no sustituye a podar.**
+
+**Y hay una lección en el propio párrafo que acabas de leer.** La versión anterior decía *"`auditar`
+es **hoy** 1,44 veces"*, con la tabla ya corpus-fijada encima. La tabla no mintió —sus cifras siguen
+siendo verdad de `ce7a5ca`—, pero **la frase derivada decía *hoy* y llevaba sesiones siendo falsa**:
+el fichero había crecido un 73% sin que nada avisara. **El identificador protege la tabla, no la prosa
+que se deriva de ella.** Si escribes una cifra derivada, o le pones el mismo identificador o le quitas
+el adverbio.
 
 El tope del enrutador (400 líneas) vive en la sección Presupuestos del manifiesto, junto a los tuyos. Si
 se cruza, el sitio de lo que entró es **un ritual**, no el enrutador.
