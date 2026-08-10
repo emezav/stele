@@ -230,6 +230,42 @@ para cada diferencia que la sonda excluye:
   sin commit que la declare -> no es especificacion: es la sonda opinando
 ```
 
+### El nombre de una comprobación no es su cobertura
+
+**Y un nombre que enuncia el invariante es PEOR que uno que no dice nada**, porque se lee como si lo
+cubriera. Nadie vuelve a mirar dentro de algo que ya se llama *"comprueba siempre que…"*.
+
+**Caso de campo:** un test llamado `TestPrintMatchesAlwaysEmitsTheGrepEquivalent` ejercitaba **un
+camino de cuatro**. Decía *siempre* y probaba el caso por defecto. **Sobrevivió a cuatro auditorías**
+—las cuatro leyeron el nombre y siguieron— y el defecto que ocultaba era que dos de los otros tres
+caminos violaban el invariante **desde el primer commit**.
+
+> **Al auditar una comprobación, cuenta sus casos, no leas su nombre.** El nombre lo escribió quien
+> creía que estaba cubriendo todo; si hubiera visto el hueco, no lo habría llamado así.
+
+Vale para cualquier cosa que afirme cobertura: un test, una sección de *Verificación* en un acta, una
+tabla de controles. **La forma del fallo es siempre la misma —el rótulo promete un universal y el
+cuerpo cubre un caso— y el rótulo es lo único que se relee.**
+
+### Una justificación producida al auditar el defecto no tiene procedencia
+
+**Es la tercera fila del test de la fecha, aplicada a una justificación en vez de a una
+especificación.** Cuando se encuentra un comportamiento raro y se explica en el momento con una razón
+sensata, esa razón **no estaba antes**: se produjo para el hueco que se acababa de ver.
+
+**Caso de campo, y lo contó quien lo cometió:** al descubrir que dos caminos de salida no cumplían un
+invariante, la explicación fue *"son salida para máquinas y añadirles texto rompería a quien las
+pasa por una tubería"*. Es una buena razón. Y al buscarla: **cero commits y cero documentos** la
+declaraban. **No se rompió después: nació así, en el mismo commit que el invariante que viola.**
+
+> **La justificación no es falsa por producirse tarde — es que no puede llamarse *decisión*.** Una
+> decisión tiene fecha; una racionalización, no. Y la diferencia importa porque una decisión se puede
+> revisar contra lo que se sabía entonces, y una racionalización solo contra lo que conviene ahora.
+
+**El remedio es barato y es el mismo:** adoptarla **con la fecha de hoy**, dicho así. *"Decidido el
+2026-08-10"* es honesto y sigue siendo útil; *"siempre fue a propósito"* es lo que no se puede
+sostener.
+
 ### Declarar una variable de entorno no es controlarla
 
 **Y publicarla sin variarla ni una vez la convierte en decoración.** Un bloque de instrumento que dice
