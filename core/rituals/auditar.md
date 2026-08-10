@@ -373,7 +373,7 @@ ninguna.
 | --- | --- | --- |
 | **Corpus** | `grep -r` contra `git grep` | ficheros ignorados, árbol contra commit |
 | **Herramienta** | `grep` contra `/usr/bin/grep` | el binario sustituido |
-| **Semántica** | `LC_ALL=C` contra `LC_ALL=C.UTF-8` | clases, mayúsculas, orden |
+| **Semántica** | `LC_ALL=C` contra `LC_ALL=C.UTF-8`, **y la libc bajo ellos** | clases, mayúsculas, orden |
 | **Patrón** | clase contra alternancia contra literal | lo que el regex no expresa |
 | **Introspección contra comportamiento** | lo que la herramienta **dice** de sí misma contra lo que **hace** | el campo que miente sin fallar |
 
@@ -402,6 +402,29 @@ la tabla: dice que está incompleta y **por dónde va a crecer**. Para averiguar
 se leyó la variable — se comparó lo que `locale` **dice** con lo que `grep` **hace**. De ahí la forma
 corta, **no preguntes qué dice, mide qué hace**, que es mejor que la tabla porque no depende de haber
 enumerado la capa correcta. Su aplicación al informe de entorno está en `core/templates/letter.md`.
+
+**Y una capa mal especificada se comporta igual que un fallo no enumerado**, que es el modo de fallo
+propio de este método y salió a la primera vez que se usó. Dos proyectos midieron el mismo patrón,
+`[^ -~]`, bajo el **mismo nombre de locale**, `en_US.UTF-8`, con el mismo binario sin envolver: uno
+obtuvo **2** y el otro **28**. Se enumeraron las capas, se aisló la semántica, y la discrepancia
+siguió en pie — porque *semántica* se había escrito como *el locale*, y el locale es solo su nombre:
+
+| | Máquina A | Máquina B |
+| --- | --- | --- |
+| libc | glibc 2.35 | Cygwin/MSYS 3.4.10 |
+| `[^ -~]` bajo `en_US.UTF-8` | **28** | **2** |
+| `[a-z]` contra `B` (sonda de colación) | casa | **no casa, en ningún locale** |
+
+> **El nombre de un locale no predice su comportamiento: lo predice el nombre más la libc que lo
+> implementa.** `en_US.UTF-8` trae tabla de colación en glibc y no la trae en Cygwin, así que un rango
+> se expande en una y es literal en la otra.
+
+**Lo enseñable no es el dato de plataforma: es que la lista de capas hereda el problema que venía a
+resolver.** Una capa demasiado gruesa no da error — da una discrepancia que sobrevive al aislamiento,
+y eso se lee como *"aquí hay dos capas todavía"* cuando en realidad hay una mal cortada. **Cuando
+aísles una capa y la diferencia siga viva, sospecha del corte antes que de la lista.** La sonda que lo
+resolvió es de una línea y no medía el patrón investigado: medía **la capa** — `[a-z]` contra `B`, que
+dice si los rangos son de colación, con su control positivo (`[a-z]` contra `b`) al lado.
 
 **El límite, dicho por quien trajo la regla:** estas capas no son todos los fallos. Enumerarlas no
 convierte la redundancia en un detector universal; la vuelve **barata y dirigible**. Fuera de ellas
@@ -476,7 +499,9 @@ binario dan **dos respuestas** según el locale. Un adoptante en UTF-8 que inten
 **no lo verá** y concluirá que no existe; uno en `C` lo sufre en silencio. **Una medición de cuánto
 pierde un detector así no mide el detector: mide el locale de quien midió.**
 
-> **A *¿en qué copia?* y *¿en qué herramienta?* hay que añadir *¿bajo qué locale?*.**
+> **A *¿en qué copia?* y *¿en qué herramienta?* hay que añadir *¿bajo qué locale?*** — y el locale es
+> su **nombre más la libc que lo implementa**, que no es lo mismo. Ver *"una capa mal especificada se
+> comporta igual que un fallo no enumerado"*, más arriba en este archivo.
 
 **Y declarar la variable no basta.** Aquí `LANG` y `LC_ALL` están **vacíos**, `locale` reporta
 `LC_CTYPE="C.UTF-8"` —que funcionaría— y el `grep` sin prefijo **se comporta como `C`**. El locale
