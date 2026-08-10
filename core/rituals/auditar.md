@@ -290,10 +290,23 @@ síntoma que su propio comando había fabricado.
 **no basta con el comando** — hace falta también qué devolvió. Es la diferencia entre *no hay
 coincidencias* y *no hubo búsqueda*, que es justo la que un cero no sabe expresar.
 
-**Ojo con el remedio, que tiene su propia trampa:** una herramienta que busca por unidad **no es un
-superconjunto** de la que busca por línea. Cambian más cosas que el modelo —el marcado, la
-normalización, qué cuenta como unidad— y puede perder algo que la otra encuentra. Si sustituyes una por
-otra, **valídalo sobre casos que la primera sí veía**, no solo sobre los que se le escapaban.
+**Ojo con el remedio:** al cambiar de herramienta cambian más cosas que el modelo —el marcado, la
+normalización, qué cuenta como unidad—, así que **valida sobre casos que la primera sí veía**, no solo
+sobre los que se le escapaban. Es higiene barata y se pide por precaución.
+
+<!-- HONESTIDAD SOBRE ESTA REGLA: aquí decía que la herramienta de unidad "puede perder algo que la
+     otra encuentra", y el único ejemplar que lo sostenía RESULTO FALSO -1 de 8 frases, y el fallo
+     estaba en el pipeline de quien medía, que corrompió la frase entre procesos-. El corresponsal
+     re-midió 394 frases y la de unidad las encontró TODAS. Así que la precaución se queda y la
+     afirmación de hecho se retira: **no tenemos ningún caso** de que la de unidad pierda algo. La
+     regla vale por lo que ahorra si pasa, no por haberlo visto pasar. -->
+
+**Y el propio caso deja una trampa más barata de sufrir que todo lo anterior:** al comparar dos
+herramientas, **el corpus tiene que llegar intacto a las dos**. La frase de aquel 1 de 8 viajó de un
+proceso a otro por un fichero temporal y llegó con bytes rotos, así que **ninguna de las dos podía
+encontrarla** — y el resultado se leyó como *"la segunda falla"* en vez de *"mi tubería rompe el
+corpus"*. **Cuando las dos den cero, sospecha del transporte antes que de las herramientas**: es la
+única hipótesis que explica un cero doble sin que nada más falle.
 
 Remedios, en orden de coste: buscar por **unidad** en vez de por línea; o buscar la parte más corta y
 distintiva de la frase, que cabe en una línea; o desenvolver el corpus antes de medir. Lo que **no**
