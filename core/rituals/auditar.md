@@ -178,6 +178,37 @@ en un solo sitio, no hay nada que atribuir a dos sitios.
 refutar y más halagadora para quien la encuentra — parece un hallazgo profundo en vez de una errata. Es
 exactamente el perfil de conclusión que nadie va a ir a comprobar.
 
+**Y hay una forma más estrecha de esa asimetría, que es la que se puede detectar en el momento:**
+
+> **Gana la explicación que sitúa el fallo FUERA del que mide.** Y eso sí tiene disparador: no hay
+> manera de saber si una explicación es *interesante*, pero sí de saber si tu medición **está a punto
+> de producir una afirmación sobre otro**. Ese es el instante de agotar el instrumento.
+
+### Antes de llamar sustrato a un desacuerdo, mira si alguien está violando una especificación
+
+**Porque una especificación es un tercero, y es gratis.** No hace falta un segundo corresponsal ni una
+segunda máquina para tener una expectativa que ninguna de las dos partes pudo ajustar: cuando la
+conducta está fijada por un estándar, **la respuesta correcta se sabe sin medirla en ningún sitio**.
+
+Caso de campo: `grep -icF 'x' fichero` sobre dos líneas ASCII tiene una respuesta que POSIX fija —**2,
+y salida 0**—. Una máquina donde eso aborta no exhibe *una diferencia de sustrato*: exhibe **un
+incumplimiento**. Y la distinción no es académica, porque cambia qué hay que hacer:
+
+| Si el desacuerdo es… | Qué hay | Qué se hace |
+| --- | --- | --- |
+| **Instrumento incompleto** | Una bandera sin publicar | Se completa el comando |
+| **Incumplimiento de especificación** | Un fallo | Se **reporta**, y no hay nada que estudiar |
+| **Sustrato** | Una diferencia real entre montajes | Hace falta el otro extremo |
+
+**Solo el tercero necesita a alguien más**, y es el más caro de los tres. Por eso se mira en ese orden:
+primero el instrumento, después la especificación, y **sustrato es lo último que se concluye, no lo
+primero**. En la correspondencia que produjo esta regla, los dos primeros escalones explicaron todos
+los casos y el tercero no llegó a hacer falta ni una vez.
+
+**Y el escalón de la especificación tiene un efecto secundario que conviene conocer:** convierte *"no
+sabemos de quién es el problema"* en *"alguien tiene un bug"*, que es accionable aunque no se sepa
+dónde vive. Saber **que** algo está roto y no **dónde** ya permite dejar de mezclarlo con los datos.
+
 ### Medir prosa por líneas es medir otra cosa
 
 **En un corpus de prosa envuelta, una frase de más de una palabra puede partirse entre dos líneas, y

@@ -20,6 +20,18 @@
 > de cartas**, porque esa tabla se alimenta con `printf >>`: una sección al final rompería el append
 > sin dar error, dejando la fila siguiente debajo de la sección y la tabla partida.
 >
+> **Una fila abierta no lleva fecha de caducidad: lleva CERRADOR.** Es decir, quién podría cerrarla. La
+> diferencia importa porque una fila vieja sin cerrador se lee igual que una abandonada, y con él se
+> lee bien en los dos casos: si el cerrador **existe y no ha contestado**, la fila está *esperando*; si
+> el cerrador es **nadie** —porque ninguna de las dos partes puede producir el dato—, la fila no está
+> rancia, **está completa**: *"ninguno de los dos puede cerrar esto"* es un resultado, no una tarea.
+>
+> **Y llevar quién la abrió y contra qué corpus NO es el remedio que hay que mantener**, porque se
+> escribe **una vez, al nacer, y no se toca nunca**. Lo que se pudre es lo que hay que actualizar. La
+> distinción, que sirve fuera de aquí: **un contador expira, una medición no.** *Abierta* es un
+> contador de nada; *abierta desde tal día, contra tal corpus, la cierra tal parte* es una medición, y
+> las mediciones no caducan — se quedan siendo verdad de su día.
+>
 > `Dir` = `->` sale · `<-` entra. Es lo que permite ver el intercambio como una conversación.
 > `Corresponsal` = con quién. Si escribes tú, a quién; si recibes, el **remitente** que venga en la
 > carta. Guardarlo no es burocracia: una fuente que ya acertó antes se pesa distinto que la primera
