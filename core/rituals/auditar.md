@@ -409,22 +409,36 @@ propio de este método y salió a la primera vez que se usó. Dos proyectos midi
 obtuvo **2** y el otro **28**. Se enumeraron las capas, se aisló la semántica, y la discrepancia
 siguió en pie — porque *semántica* se había escrito como *el locale*, y el locale es solo su nombre:
 
-| | Máquina A | Máquina B |
+Sobre la línea *"una línea con dos acentuadas: café"* — **34 caracteres, 32 ASCII y 2 acentuadas**:
+
+| Bajo `en_US.UTF-8` | Máquina A (glibc 2.35) | Máquina B (Cygwin/MSYS 3.4.10) |
 | --- | --- | --- |
-| libc | glibc 2.35 | Cygwin/MSYS 3.4.10 |
-| `[^ -~]` bajo `en_US.UTF-8` | **28** | **2** |
-| `[a-z]` contra `B` (sonda de colación) | casa | **no casa, en ningún locale** |
+| `[ -~]` — la clase **positiva** | **6** de 32 | **32** de 32 |
+| `[^ -~]` — la negada | **28** | **2** |
+| suma | 34 | 34 |
 
 > **El nombre de un locale no predice su comportamiento: lo predice el nombre más la libc que lo
-> implementa.** `en_US.UTF-8` trae tabla de colación en glibc y no la trae en Cygwin, así que un rango
-> se expande en una y es literal en la otra.
+> implementa.** `en_US.UTF-8` trae tabla de colación en glibc y no la trae en Cygwin. Y lo que se rompe
+> no es la negación: **es el rango**. `[ -~]` no significa *ASCII imprimible* sino *lo que cae entre el
+> espacio y la virgulilla **en orden de colación***, que en glibc son 6 caracteres de 32.
+
+**Y la sonda importa tanto como el hallazgo, porque la primera que se usó aquí no servía.** Se probó
+con `[a-z]` contra `B` —*"¿colaciona este locale?"*— y da **0 en los tres locales en las DOS
+máquinas**: verde a los dos lados de una diferencia real. La conclusión que sostenía era correcta y la
+evidencia no, que es la peor combinación porque no se distingue de estar en lo cierto.
+
+> **Una sonda mal cortada pasa en verde a los dos lados.** Es el mismo defecto que la capa mal cortada,
+> un piso más abajo: se preguntó por el mecanismo (*¿hay colación?*) mirando **un** síntoma elegido a
+> ojo, en vez de medir **la cosa que el patrón investigado usa** — el rango mismo.
+
+**La sonda buena mide la clase positiva y suma.** `[ -~]` más `[^ -~]` tiene que dar el número de
+caracteres de la línea; si da los **bytes**, estás en semántica de bytes, y si el positivo se desploma
+sin que la suma cambie, hay colación. Las tres situaciones se separan con dos comandos.
 
 **Lo enseñable no es el dato de plataforma: es que la lista de capas hereda el problema que venía a
 resolver.** Una capa demasiado gruesa no da error — da una discrepancia que sobrevive al aislamiento,
 y eso se lee como *"aquí hay dos capas todavía"* cuando en realidad hay una mal cortada. **Cuando
-aísles una capa y la diferencia siga viva, sospecha del corte antes que de la lista.** La sonda que lo
-resolvió es de una línea y no medía el patrón investigado: medía **la capa** — `[a-z]` contra `B`, que
-dice si los rangos son de colación, con su control positivo (`[a-z]` contra `b`) al lado.
+aísles una capa y la diferencia siga viva, sospecha del corte antes que de la lista.**
 
 **El límite, dicho por quien trajo la regla:** estas capas no son todos los fallos. Enumerarlas no
 convierte la redundancia en un detector universal; la vuelve **barata y dirigible**. Fuera de ellas
