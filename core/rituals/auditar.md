@@ -94,21 +94,72 @@ que sumarle el **sustrato** —ver *"las capas se cortan por lo que escribes"*, 
 re-correr puede salir más caro que medir de nuevo. Cuando ese sea el caso, **el registro no debe
 prometer que se puede re-correr**: debe decir que la cifra es de su día, y ahí acabarse.
 
-### Las tres piezas son necesarias y no suficientes, y hay medida
+### El comando no es el patrón, y confundirlos parece sustrato
 
-**Un corresponsal publicó las tres —comando, patrón y corpus fijado por hash— y la medición no se
-re-corrió.** Su verificación de un commit ajeno usaba `grep -c 'comando \+ patr'` y reportaba **1**
-contra **0** en el padre. En la máquina del destinatario, sobre el mismo corpus:
+**Caso de campo, y las dos partes lo leyeron mal antes de leerlo bien.** Un corresponsal publicó
+patrón y corpus fijado por hash de su verificación, y reportó **1**. El destinatario lo corrió y obtuvo
+**0**. Los dos concluyeron **diferencia de sustrato**. Era falso:
 
 ```text
-'comando \+ patr'   -> 0     aqui \+ es CUANTIFICADOR (uno o mas del espacio)
-'comando + patr'    -> 1     + literal
--F 'comando + patr' -> 1
+substrate: grep (GNU grep) 3.0        <- EL MISMO BINARIO A LOS DOS LADOS
+corpus:    <commit>:<fichero>
+
+grep -c   'comando \+ patr'   -> 0     BRE: \+ es el CUANTIFICADOR uno-o-mas
+grep -cE  'comando \+ patr'   -> 1     ERE: \+ es un + escapado, o sea literal
+grep -cF  'comando + patr'    -> 1
+CONTROL   grep -c 'corpus'    -> 56 / 53 en las dos revisiones, en las dos maquinas
 ```
 
-Mismo comando escrito, mismo patrón, mismo corpus, **resultado distinto**: en un `grep` la secuencia
-`\+` es cuantificador y en el otro es un `+` literal. Ninguno de los dos fabricó el ejemplar — salió de
-ir a comprobar al otro.
+**Las dos cifras salen en la misma máquina.** Lo que las separa es `-E`, una bandera que el bloque
+publicado no llevaba: decía `patron:` y decía la verdad. **No faltaba una cuarta pieza — falló la
+primera.** Si el comando hubiera viajado entero, la medición se re-corre.
+
+De ahí que la regla de tres salga **más fuerte y no matizada**, con una precisión sobre su primera
+pieza:
+
+> **El comando es el binario, sus banderas y su versión — no la línea del patrón.** `grep` y `grep -E`
+> son dos instrumentos distintos con el mismo nombre, y publicar el patrón sin la bandera es publicar
+> medio comando y llamarlo instrumento.
+
+### Un desacuerdo demuestra que algo difiere; nunca demuestra QUÉ
+
+**La ley general del caso de arriba, y es la parte que hay que recordar.** Al ver `0` contra `1` los
+dos lados saltaron a la explicación **cara** —el sustrato, que obliga a una pieza que no se puede
+mandar por correo— cuando la **barata** estaba a un `-E` de distancia. Ninguno de los dos la miró.
+
+**Antes de atribuir un desacuerdo al sustrato hay que agotar el instrumento**, y agotarlo tiene una
+forma concreta y barata: **correr las dos variantes en la misma máquina**. Si las dos cifras aparecen
+en un solo sitio, no hay nada que atribuir a dos sitios.
+
+**Y la asimetría que lo hace peligroso:** la explicación de sustrato es más interesante, más difícil de
+refutar y más halagadora para quien la encuentra — parece un hallazgo profundo en vez de una errata. Es
+exactamente el perfil de conclusión que nadie va a ir a comprobar.
+
+### Medir prosa por líneas es medir otra cosa
+
+**En un corpus de prosa envuelta, una frase de más de una palabra puede partirse entre dos líneas, y
+entonces `grep` no puede verla.** No es un fallo del patrón ni del locale: el modelo de `grep` es la
+línea, y la unidad de la prosa es el párrafo.
+
+```text
+corpus real, un acta envuelta a ~100 columnas:
+  l.18   ...La primera, en la sesión 27, la cazó el
+  l.19   usuario preguntando.
+
+buscando 'la cazó el usuario':
+  grep      -> 0     no puede casar a traves del salto
+  por unidad-> 1
+CONTROL POSITIVO  fichero fabricado con la frase partida    grep 0 / por unidad 1
+CONTROL NEGATIVO  fichero sin la frase                      0 en los dos
+```
+
+**Toda medición de frases multi-palabra sobre prosa envuelta subcuenta por construcción**, y el sesgo
+no es aleatorio: se come justo las frases largas, que son las que expresan las clases interesantes. Una
+medición así **no da un número con error: da un suelo**, y hay que publicarlo como suelo.
+
+Remedios, en orden de coste: buscar por **unidad** en vez de por línea; o buscar la parte más corta y
+distintiva de la frase, que cabe en una línea; o desenvolver el corpus antes de medir. Lo que **no**
+vale es afinar el patrón, porque el patrón no es el problema.
 
 > **Publicar el instrumento no valida el instrumento.** El comando dice **qué corriste**; el control
 > dice **si funcionó**. Son preguntas distintas, y la que un lector quiere contestar dentro de diez
@@ -138,6 +189,13 @@ cuando lo único que prueba es que el código compartido se comporta igual que �
 **Vale igual para un proyecto y una herramienta que él mismo produjo.** Adoptarla para el trabajo
 propio puede ser correcto; usarla para **comprobar lo que esa herramienta afirma** no lo es. Y la
 frontera no es la calidad del instrumento: es si **puede fallar por separado** del que se audita.
+
+**Y "el mismo instrumento" se decide en la invocación, no en el binario** — lo corrigió el corresponsal
+al que se le aplicó la regla. Con la misma herramienta a los dos lados no hay hallazgo posible, cierto;
+pero con el mismo binario y **la misma bandera** tampoco, y ahí el binario no era el problema. `grep` y
+`grep -E` fallan por separado; `grep -E` y `grep -E` no. **La independencia que sirve es la de la
+invocación completa**, y por eso el remedio no es tener dos herramientas: es que las dos corridas sean
+reproducibles hasta la bandera.
 
 ### El sustrato que dos corresponsales no pueden variar es el agente
 
