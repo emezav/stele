@@ -228,7 +228,8 @@ donde se escapa siempre: **las filas append-only** y **el mensaje de commit**. S
 momentos del cierre en que se redacta **prosa narrativa hacia un archivo**, con el mismo impulso con el
 que se le habla al usuario — y ahí el registro equivocado se cuela sin que nadie lo note, porque el
 resto de lo que se escribe son identificadores y rutas, donde el error salta solo. Compruébalo con un
-comando, no releyendo: es lo que hace la diferencia entre una regla escrita y una regla aplicada.
+comando, no releyendo: es lo que hace la diferencia entre una regla escrita y una regla aplicada. **Y
+esa diferencia se puede medir** — ver *Escribir la comprobación no la corre*, al final.
 
 **`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
 sesión, no en uno aparte. Dile al usuario el `git push` exacto (o hazlo si lo autoriza). Reglas,
@@ -256,3 +257,51 @@ disciplina **sube**, no baja: ver `guide.md` → "Persistencia y la red de recup
 con honestidad: si falla, dilo y **no des el cierre por persistido**. El comando **nunca lleva
 secretos** — el manifiesto es markdown versionado y legible. Las credenciales viven en el entorno o
 en el gestor de la propia herramienta, nunca en un doc del marco.
+
+## Escribir la comprobación no la corre
+
+**Una comprobación que hay que acordarse de hacer se hace a veces.** No es una afirmación sobre la
+disciplina de nadie: es lo que sale al medirlo. Cada vez que un cierre falla en algo, el reflejo es
+escribir la comprobación que lo habría cazado — en el ritual, en el protocolo, en el doc de trampas —
+y darlo por resuelto. **Lo que queda escrito es la intención; lo que se corre es otra cosa.**
+
+**La firma que las separa es la CURVA, no el nivel.** Si una comprobación se corriera por estar
+escrita, saltaría a casi todas las sesiones **en la siguiente a su decisión**: el día que se decide, se
+sabe. Si en cambio sube despacio a lo largo de decenas de sesiones y se estanca sin llegar al total, lo
+que la sostiene no es la regla — es la costumbre de quien estaba delante. Y una costumbre tiene techo.
+
+**Mídelo sobre tu propio historial, que ya tiene los datos.** Es un procedimiento y no una opinión:
+
+1. Toma las comprobaciones que tu proyecto decidió **tras un fallo concreto** — las que tienen fecha de
+   nacimiento. Sin esa fecha no hay antes ni después y no se puede medir nada.
+2. Para cada una, cuenta en qué fracción de las sesiones **posteriores a su decisión** queda registro
+   de que se corrió.
+3. **Control obligatorio:** la misma fracción en las sesiones **anteriores** a su decisión. Si no sube,
+   tu detector está midiendo otra cosa y la cifra no vale.
+4. Mira la forma, no solo el número: dónde salta y dónde repta.
+
+**Lo que mide es MENCIÓN, no ejecución, y eso lo convierte en un suelo.** Una comprobación puede
+haberse corrido sin dejar rastro en el acta. Pero el suelo sigue informando, porque el registro es
+justo lo que queda: si no está escrita, **quien lea el acta no puede saber que se corrió**, y desde
+fuera *no se hizo* y *se hizo sin decirlo* son el mismo documento.
+
+> **FOTO — corpus propio de este kit, 100 actas, medido el 2026-08-11.** Cuatro comprobaciones, cada
+> una nacida de un fallo real y escrita en su documento (texto no-ASCII, columnas de una fila
+> append-only, publicación del sello, fecha medida): se registran en el **66-70%** de las sesiones
+> posteriores a su decisión. **Ninguna llega al 100%.** Las cuatro suben en el control. La más antigua
+> tardó **más de 40 sesiones** en pasar del 90%.
+> **Es una foto, no una constante:** un solo proyecto, un solo equipo de agentes, y un detector con
+> falsos negativos conocidos. Lo transferible es el método y la forma de la curva; **el número de tu
+> proyecto es tuyo y sale del paso 2.**
+
+**El remedio no es insistir: es cambiar dónde vive la comprobación.** Una comprobación **a la vista**
+—en una lista, en un párrafo, en un recordatorio— depende de que alguien la recuerde en el momento
+exacto. Una comprobación **en el camino** se corre porque no hay forma de dar el paso sin darla: el
+control positivo **dentro** del mismo bloque de comandos que la medición, el valor esperado escrito al
+lado del comando que lo produce, el chequeo pegado al `printf` que escribe la fila. **La diferencia no
+es la visibilidad, son los pasos** — y la vía segura tiene que costar lo mismo que la insegura, o se
+paga la diferencia en olvidos.
+
+**Al añadir una comprobación al cierre, la pregunta no es dónde escribirla sino de qué paso colgarla**
+— y si no cuelga de ninguno, dilo al escribirla, para que el siguiente sepa que lo que tiene es un
+recordatorio y no una garantía.

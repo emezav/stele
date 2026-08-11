@@ -247,6 +247,14 @@ Vale para cualquier cosa que afirme cobertura: un test, una sección de *Verific
 tabla de controles. **La forma del fallo es siempre la misma —el rótulo promete un universal y el
 cuerpo cubre un caso— y el rótulo es lo único que se relee.**
 
+**Pero al ir a buscarlo, la forma cambia con el sujeto — y conviene saberlo antes de gastar la
+pasada.** Esa extensión se comprobó donde más barato salía, las secciones de *Verificación* de 100
+actas propias (medido el 2026-08-11), y **el defecto no estaba ahí**: ningún cuerpo vacío, ningún
+rótulo universal tapando un caso suelto. Lo que hay en un acta es **intermitencia** — comprobaciones
+reales que unas veces se registran y otras no. No refuta la regla; delimita dónde buscar: **en un
+registro escrito a mano, mide la intermitencia y no el rótulo.** Para ese caso la regla es otra —
+`cerrar.md` → *Escribir la comprobación no la corre* — y el detector, también.
+
 ### Una justificación producida al auditar el defecto no tiene procedencia
 
 **Es la tercera fila del test de la fecha, aplicada a una justificación en vez de a una
@@ -1147,6 +1155,38 @@ sabía qué esperar, así que la expectativa no existe *todavía* y exigirla los
 falta **dos** etiquetas y no una: no solo *contra qué se compara*, sino **si alguien decidió alguna vez
 que debería compararse**. Un número sin expectativa declarada y sin nadie que la haya buscado nunca no
 es que no se lea: es que **no hay nada que leer**. Está escrito y no está resuelto.
+
+## Una ausencia y una no-aplicabilidad dan la misma cifra
+
+**Un 0% de cobertura tiene dos causas y solo una es defecto:** que nadie corriera la comprobación, o
+que no hubiera nada que comprobar. **El corpus no las distingue** — las dos dejan exactamente el mismo
+hueco, y el hueco es lo que mide el detector.
+
+Es la forma de fallo del **puntero ausente**, aplicada a una cobertura: la forma correcta y la forma
+del defecto son idénticas, así que ningún barrido las separa. La diferencia no está en el corpus, está
+en una condición que hay que ir a buscar **fuera** de él.
+
+**Caso propio, y a un paso de publicarse.** Midiendo qué comprueba de verdad la sección de
+*Verificación* de las actas propias, dos comprobaciones de la especificación salieron desplomadas:
+*referencias colgadas* del 52% al 11%, y *rol -> plantilla* extinguida al **0%** en las últimas 27.
+Con esas dos cifras ya escrita la conclusión —*el rigor se erosiona*— faltaba el paso barato: mirar
+**en cuántas de esas 27 aplicaba**. En ninguna. Los dos únicos commits del tramo que tocaban el
+fichero de roles cambiaban **prosa y punteros**, no la tabla; y la única sesión donde la comprobación
+aplicó de verdad —un renombrado masivo— **corrió las dos, con control positivo**. Las dos cifras eran
+ciertas. La conclusión era falsa.
+
+> **El denominador de una cobertura son los casos donde la condición SE DIO, no las ocasiones en que
+> pudo darse.** Contar ocasiones mide con qué frecuencia aparece el caso, no con qué disciplina se
+> atiende — y las dos cosas se publican con la misma frase.
+
+**El paso que lo separa es enumerable y barato:** antes de leer una ausencia como omisión, lista los
+casos donde la comprobación tenía algo que hacer. Si la lista está vacía, el 0% es correcto y no hay
+hallazgo. Si no lo está, **ahí sí** empieza la medida, y ahora con el denominador que la sostiene.
+
+**Y el sesgo va en una sola dirección, que es lo que la hace peligrosa.** Una comprobación se vuelve
+inaplicable justo cuando su trabajo escasea —nadie renombra, nadie añade roles—, así que **la cobertura
+cae sola en los tramos tranquilos** y el gráfico dibuja una erosión que nadie cometió. El relato sale
+coherente, encaja con lo que uno teme de sí mismo, y por eso no se audita.
 
 ## Un barrido que filtra por un campo no ve al registro que no lo tiene
 

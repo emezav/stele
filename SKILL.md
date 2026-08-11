@@ -175,6 +175,36 @@ herramienta vaya a parsear. El habla no es eso: es prosa dirigida a una persona,
 eje no es qué idioma, sino **a dónde va**. Un saludo sin acentos se lee como un fallo de codificación
 en la primera línea que ve el usuario — el sitio más caro para parecer roto.
 
+## Lo que llega al lector es el texto, no el razonamiento que lo produjo
+
+**Dudar de los propios argumentos es parte de razonar; publicar esa duda no lo es.** Al escribir se
+sopesa, se concede, se anticipa la objeción — y todo eso es trabajo legítimo que ocurre **antes** del
+texto. El lector no estaba ahí: no ve la deliberación, ve la frase. Una salvedad que existía para
+tranquilizar a quien escribía llega a destino convertida en **contenido**, y con el mismo peso que lo
+demás.
+
+**La forma del fallo es el párrafo final que se desdice.** Se enuncia una regla, se sostiene con su
+caso, y en la última línea se añade la concesión que se sintió al escribirla — *"aunque esto también
+vale para este mismo documento"*, *"aunque quizá sea otra cosa"*. Quien lo escribe lo vive como
+honestidad. Quien lo lee recibe una regla que se desautoriza sola, sin nada que hacer con esa
+información.
+
+> **La distinción que salva la regla, y hay que hacerla bien: NO se trata de esconder incertidumbre.**
+> La del **contenido** —*es un suelo y no una cifra*, *es una foto de un solo corpus*, *esto no se
+> midió*— **se publica siempre**, porque le dice al lector qué puede y qué no puede hacer con lo que
+> tiene. La que sobra es la del **autor sobre su propio texto**, que solo informa de cómo se sentía
+> quien lo escribió.
+
+**La prueba es de una línea:** ¿esta salvedad le permite al lector hacer algo distinto —recalcular,
+desconfiar de un número, ir a medirlo— o solo le cuenta que quien escribía no las tenía todas consigo?
+Lo primero es contenido y se queda. Lo segundo va al registro de decisiones **con su fecha**, donde
+alguien puede retomarlo; **borrarlo sería la otra forma de perderlo.**
+
+**Caso de campo, propio:** dos reglas nuevas salieron con su concesión pegada al final —una admitía
+que el techo que describía alcanzaba al propio ritual, la otra explicaba con una teoría no medida por
+qué el resultado salió así—. Las dos eran ciertas y ninguna publicable. **Lo cazó el usuario leyendo,
+no un detector.**
+
 ## Regla dura: checkpoint antes de un cambio interrumpible
 
 Deja `handover` en `EN_PROGRESO` con objetivo + alcance + verificación prevista + **sello** (plantilla
