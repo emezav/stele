@@ -390,39 +390,45 @@ individual parezca culpable.
 
 El corte fue por ritual: `SKILL.md` enruta, y cada ritual se lee **solo cuando se invoca**.
 
-> **Corpus fijado: `00aed04`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
+> **Corpus fijado: `72347d8`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
 > `git cat-file` y no sobre el árbol de trabajo. **Sin esas tres cosas la tabla no es una medición
 > sino un contador**, y un contador caduca en silencio: dos versiones atrás esta tabla no las llevaba,
 > y siete de sus diez cifras —correctas el día que se escribieron— envejecieron entre un 2% y un 170%
 > sin que nada avisara. Si vas a rehacerla, deja el identificador dentro.
 >
-> **Control del método, calculado y no elegido:** de los diez ficheros, `SKILL.md` es el único que
-> **no cambió** entre el corpus anterior (`ce7a5ca`) y este, y reproduce su cifra **exacta**. Por eso
+> **Control del método, calculado y no elegido:** entre el corpus anterior (`00aed04`) y este,
+> **cuatro ficheros no cambiaron** —`abrir`, `bootstrap`, `configurar` y `rutas-y-tokens`— y los cuatro
+> reproducen su cifra **exacta**. Por eso
 > los deltas de los demás son crecimiento real y no deriva del tokenizador. El control no es *"no
 > cambió desde una fecha cómoda"*: es **no cambió entre los dos instantes que se comparan**, y eso se
 > calcula con `git diff --name-only`.
 
 | Se carga | Tokens | Cuándo se paga |
 | --- | --- | --- |
-| `SKILL.md` (enrutador) | 4 981 | **siempre** |
+| `SKILL.md` (enrutador) | 5 703 | **siempre** |
 | `core/rituals/abrir.md` | 753 | cada sesión |
-| `core/rituals/cerrar.md` | 4 349 | cada sesión |
-| `core/rituals/contrastar.md` · `remitir.md` | 3 443 · 9 176 | si hay carta |
-| `core/rituals/auditar.md` | **24 999** | cada ~10 sesiones |
-| `core/rituals/actualizar.md` | 6 494 | al traer kit nuevo |
+| `core/rituals/cerrar.md` | 6 243 | cada sesión |
+| `core/rituals/contrastar.md` · `remitir.md` | 3 869 · 9 662 | si hay carta |
+| `core/rituals/auditar.md` | 16 291 | cada ~10 sesiones |
+| `core/reference/verificar.md` | **21 667** | al medir o publicar una cifra |
+| `core/rituals/actualizar.md` | 6 933 | al traer kit nuevo |
 | `core/rituals/bootstrap.md` · `configurar.md` | 3 373 · 1 799 | una vez / rara |
 | `core/reference/rutas-y-tokens.md` | 2 851 | bootstrap y config |
 
-**Sesión normal (enrutador + abrir + cerrar): 10 083.** El total del kit subió al partirlo —cabeceras y
-tabla de enrutado—, y eso es correcto: **no se ahorró texto, se ahorró carga.**
+**Sesión normal (enrutador + abrir + cerrar): 12 699**, un **+26%** sobre `00aed04`. El corte de este
+corpus fue por **destinatario** y no por ritual: las leyes de verificación salieron de `auditar` a
+`verificar`, porque las necesita igual quien cierra una sesión o contesta una carta.
 
-**La tesis sigue en pie y el número casi se ha duplicado:** `auditar` es **2,48 veces** el coste de una
-sesión entera, y se paga **una vez cada diez** — unos 2 500 amortizados. Era 1,44 en `ce7a5ca`. La
-forma que el corte compró aguanta —**lo caro sigue siendo lo infrecuente, y por eso no está en el
-arranque**—, pero lo que el corte no hace es frenar el crecimiento: entre `ce7a5ca` y `00aed04`
-**ningún fichero de esta tabla bajó**, y el que más creció es justo el más caro, `auditar`, **+73%**.
-La sesión normal es lo único que no se movió, y solo porque el crecimiento se fue entero a los
-rituales que no se cargan al arrancar. **El reparto protege el arranque; no sustituye a podar.**
+**Y conviene leer el resultado sin adornos, porque el titular es incómodo.** Auditar de verdad cuesta
+`auditar` **más** `verificar` —lo que se lee al auditar son las dos— y eso son **37 958**, o sea **2,99
+veces** una sesión normal. Antes del corte eran 24 999 en un solo fichero. **El corte no abarató el
+coste: lo repartió**, y a cambio puso las leyes al alcance de los demás rituales, que era el problema
+que venía a resolver.
+
+**Lo que sí subió, y es lo que hay que vigilar, es el arranque:** +2 616 tokens que se pagan en **cada**
+sesión de **cada** adoptante. Parte es contenido nuevo y parte son las cabeceras y el enrutado que el
+propio corte añadió. **Un reparto protege la estructura; no sustituye a podar** — y esta tabla lleva dos
+corpus consecutivos sin que el arranque baje ni una vez.
 
 **Y hay una lección en el propio párrafo que acabas de leer.** La versión anterior decía *"`auditar`
 es **hoy** 1,44 veces"*, con la tabla ya corpus-fijada encima. La tabla no mintió —sus cifras siguen
