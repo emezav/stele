@@ -143,6 +143,13 @@ respuesta a la segunda es *nadie*, no hace falta comprobar ninguna: ya se sabe e
 auditar; allí, las leyes que gobiernan cualquier comprobación. **La lista va entera a propósito: un
 título que se muda deja de ser encontrable por barrido desde donde estaba.**
 
+> **Esta lista es una COPIA y se desincroniza — mantenerla es parte de añadir una ley.** Al escribir una
+> nueva en `verificar.md`, su título entra aquí en el mismo cambio. Se comprueba contando: los
+> encabezados de nivel 2 de `verificar.md` y los items de esta lista dan **el mismo número**, y cada uno
+> tiene que existir
+> en el otro lado. **Se descuadró en la primera ley que se añadió tras crearla**, que es lo que hay que
+> esperar de cualquier contador escrito a mano.
+
 - *El comando no es el patrón, y confundirlos parece sustrato*
 - *Un desacuerdo demuestra que algo difiere; nunca demuestra QUÉ*
 - *Antes de llamar sustrato a un desacuerdo, mira si alguien está violando una especificación*
@@ -160,6 +167,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *"El mismo comando" no es el mismo programa*
 - *Mide el producto sobre lo que se distribuye, no sobre tu árbol*
 - *Un detector léxico depende del LOCALE, y el mismo patrón da dos respuestas*
+- *Un control negativo deja de separar cuando su cadena entra al corpus*
+- *`git log` no data un proyecto: data un repositorio*
 - *Y comprueba el valor esperado del control, no solo su resultado*
 - *Las alternativas de un patrón son su lista de distinciones, y se cuentan*
 - *Un detector no monótono no mide el defecto: mide la forma del corpus*

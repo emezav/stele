@@ -595,6 +595,60 @@ grep -cE "sesi[oó]n [0-9]+" /tmp/s.txt   # 2 = tu entorno entiende caracteres; 
 porque el `+` deja que los dos bytes entren como dos elementos. Comprobado. Pero la condición es el
 cuantificador, y quien copie esa clase a un sitio sin `+` se lleva el fallo **intermitente**.
 
+## Un control negativo deja de separar cuando su cadena entra al corpus
+
+**Un control negativo es una cadena que NO debe estar, y su valor es que dé cero.** El problema es que
+esa cadena hay que escribirla en algún sitio — y el sitio natural es el registro de la comprobación: el
+acta, el informe, la carta. **Si ese registro forma parte del corpus que barres, el control se
+autodestruye:** a partir de la sesión siguiente aparece, y el cero se convierte en uno.
+
+**Caso propio, en vivo y en la sesión que documentaba la trampa.** Un barrido sobre el historial usó
+`zzqqxx` como control negativo y devolvió **1** en vez de 0. No había ningún fallo en el detector: el
+acta de la sesión anterior **contenía esa cadena, escrita ahí precisamente como control**. La disciplina
+de registrar el control es lo que lo invalidó.
+
+> **La contaminación es de dirección única y de efecto retardado:** el control funciona el día que se
+> escribe y falla después, cuando ya nadie recuerda de dónde salió la cadena. Y falla **hacia el lado
+> ruidoso** —da un positivo espurio—, así que se lee como *"el detector está roto"* y lo que está roto
+> es el control.
+
+**Es el pariente exacto de *el barrido se come el documento que describe el barrido*, un piso más
+abajo:** allí el objeto medido contiene su propia descripción; aquí el corpus contiene el instrumento
+que lo mide.
+
+**Remedios, en orden de coste:**
+
+- **Genera la cadena, no la elijas** — deriva el control del contexto (una permutación del patrón real,
+  un identificador con la fecha) para que sea distinta cada vez.
+- **Si la escribes, no la reutilices.** Un control negativo es de un solo uso en cuanto queda registrado.
+- **Y cuando un control negativo dé un valor raro, mira dónde casó antes de tocar el detector.** Si casó
+  en tu propio registro, el detector estaba bien y el control estaba quemado.
+
+## `git log` no data un proyecto: data un repositorio
+
+**La fecha del primer commit es la del primer commit, y nada más.** Es tentadora porque parece un
+origen objetivo —está en el repo, es verificable, nadie la puede discutir— y por eso se publica sin
+pensarla. Pero mide **cuándo empezó a haber commits**, que casi nunca es cuándo empezó el trabajo: antes
+hubo prototipos, notas, otros repos, o una idea cociéndose en otro proyecto.
+
+**Caso propio.** Se publicó que el proyecto *"dura 12 días"*, con su cálculo al lado —primer commit,
+último commit, sesiones por día—. La aritmética era correcta y la afirmación falsa: eran doce días **de
+consolidación**, y toda la gestación anterior no está en ningún corpus legible. Lo corrigió la única
+persona que conocía la fecha real; **ningún control lo habría encontrado**, porque el instrumento
+funcionaba perfectamente.
+
+> **El fallo no es de medida: es de ETIQUETA.** Se le puso a un instrumento el nombre de otro. Y esa
+> clase no la detecta ningún control positivo, porque el detector no está roto — está contestando bien
+> a otra pregunta.
+
+**La regla operativa es de una línea:** al publicar una cifra derivada del repositorio, **di que es del
+repositorio**. *"El repo tiene N días"* es cierto y comprobable; *"el proyecto tiene N días"* es una
+afirmación sobre el mundo que el repo no puede sostener.
+
+**Y hay un corolario para cualquier registro:** lo que un corpus no contiene, no lo contiene **en
+silencio**. Un historial que empieza en una fecha no dice *"aquí empieza todo"*, dice *"aquí empieza lo
+que guardé"* — y desde dentro las dos frases se ven igual.
+
 ## Y comprueba el valor esperado del control, no solo su resultado
 
 **Dos veces en una misma sesión el control "falló" y lo que estaba mal era la expectativa.** Un
