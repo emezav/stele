@@ -239,7 +239,7 @@ del control es **un** carácter y **dos** bytes: bajo `LC_ALL=C` el detector rep
 locale UTF-8 reporta **1**. Un control que solo exigiera salida pasaría en verde **en los dos mundos**,
 así que certificaría igual el detector sano y el detector que está casando caracteres donde tú crees
 que cuenta bytes. Con el 2 escrito al lado, el mismo comando comprueba dos cosas: que el detector
-dispara **y** que estás en la semántica que el patrón supone. Ver `{{kit}}/core/rituals/auditar.md` →
+dispara **y** que estás en la semántica que el patrón supone. Ver `{{kit}}/core/reference/verificar.md` →
 *"Un número sin expectativa no es información: es decoración"*.
 
 **Sin salida = limpio SOLO si el control positivo dio su número.** Un detector roto no da error: **da

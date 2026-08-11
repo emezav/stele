@@ -283,6 +283,19 @@ y eso contradice el principio del marco: *coste de tokens acotado*.
 **El checkpoint no está en la tabla porque no es un ritual: es una regla dura**, y por eso vive arriba,
 en este archivo, donde se lee sin invocar nada.
 
+**Y hay un tercer tipo de archivo, que no es enrutador ni ritual: la REFERENCIA.** Un ritual lo invoca
+un **momento** del trabajo; una referencia la abre una **pregunta**, y puede hacerlo desde dentro de
+cualquier ritual. Se leen por secciones, nunca enteras.
+
+| Referencia | Cuándo se abre | Dónde |
+| --- | --- | --- |
+| **cómo se verifica cualquier cosa** | vas a medir, comprobar o publicar un número | `core/reference/verificar.md` |
+| **rutas y tokens** | instanciar, renombrar o componer una ruta | `core/reference/rutas-y-tokens.md` |
+
+**Una ley de verificación no es de AUDITAR aunque se use ahí**: la necesita igual quien cierra una
+sesión, contesta una carta o publica una cifra. Si dudas de si algo es ritual o referencia, la pregunta
+es **quién más lo va a necesitar**.
+
 **Lo que queda aquí es lo que se necesita sin haber invocado nada:** las rutas, la convención de
 tokens, cómo se le habla al usuario, la precedencia frente al harness y el checkpoint. Si al escribir
 una regla dudas de si va aquí o en un ritual, la pregunta no es de qué trata sino **cuándo hay que

@@ -208,7 +208,7 @@ es todo lo que se escribe, no todo lo que parece un doc.**
 **Y la fila que se cayó era la que retiraba una afirmación propia**, o sea la única del marcador que
 iba en contra nuestra. Eso no se eligió: la única prueba de que un marcador se leyó entero es que
 alguien note **qué falta**, y lo que falta se nota menos cuanto menos te favorece. Es *"el error que
-te quita razón no se busca"* —`core/rituals/auditar.md`— en la capa de la forma.
+te quita razón no se busca"* —`core/reference/verificar.md`— en la capa de la forma.
 
 **El archivo entregado no se retoca**, y no es una preferencia: lo que recibió el otro y lo que
 guardas tú tienen que ser el mismo texto, o el registro deja de servir para comprobar nada. Se anota

@@ -74,6 +74,8 @@ Son tres, en orden:
 `audit`, el nombre de una carta. Y AUDITAR exige fecha en todo hallazgo por la misma razón por la que
 esto importa — **un dato fechado mal envejece como un dato cierto**.
 
+## El `state` se reescribe entero, también fuera del cierre
+
 **Y el `state` se reescribe entero también cuando lo tocas fuera del cierre.** La regla de arriba vive
 en un checklist de cierre, así que no se siente aplicable a las ediciones de mitad de sesión —se
 entregó una carta, se resolvió un pendiente, cambió algo de estado—, y ahí es donde entra el parche.
@@ -88,6 +90,8 @@ roto se lee como un corpus limpio, aquí una edición que no ocurrió se lee com
 En los dos casos **el fallo se disfraza del resultado bueno**, y en los dos la salida es comprobar en
 vez de mirar. Si tu herramienta no protesta cuando el ancla falta, el `Write` completo **elimina la
 categoría entera** para el doc donde más duele.
+
+## La barrera se rodea por eficiencia, no por descuido
 
 **Y la barrera se rodea por eficiencia, no por descuido** — que es lo que hace volver a este fallo.
 Ampliación del mismo caso, contada por quien lo cometió: su herramienta de edición **sí protestaba**
@@ -112,6 +116,8 @@ por ahí: el script que no encuentra su ancla devuelve el fichero intacto, el ba
 el `-c` devuelve un número. **Ninguno da un error; todos dan una respuesta con la forma correcta.** Por
 eso el control positivo no es una formalidad — es lo único que separa *una respuesta* de *una respuesta
 cierta*.
+
+## Un reemplazo en lote imprime su diff, no su recuento
 
 **Y hay una vuelta peor, donde la respuesta con forma correcta es una métrica que tú mismo elegiste.**
 Un reemplazo en lote sobre diez documentos —escrito para rodear la herramienta de edición, que hace un
@@ -158,6 +164,8 @@ contrario de la única excepción que existe para protegerlo. Ya lleva el nombre
 mira una dirección, y esta corrupción va **hacia** ASCII. El barrido que la causa es el mismo que la
 verificación daría por limpia.
 
+## El `state` apunta a lo que caduca, no lo copia
+
 **Y el `state` no guarda datos que puedan volverse falsos entre dos cierres: los apunta.** Es la otra
 mitad del mismo caso y la más barata. Ese *"esperando respuesta a la carta 5"* **ya se derivaba del
 índice** —una carta que entra sin una que salga detrás es una conversación abierta—, así que el `state`
@@ -185,6 +193,8 @@ La segunda columna es **más útil, no solo más correcta**: dice qué hacer y c
 lector venía a buscar, y no depende de un estado que alguien puede mover mientras nadie mira. Escrito
 tras la tercera iteración del mismo error en tres días — las dos primeras se corrigieron prohibiendo, y
 solo la tercera preguntó por qué costaba.
+
+## No registres un estado que no puedas observar
 
 **No registres un estado que no puedas observar.** Antes de escribir un hecho en un doc, pregúntate si
 puedes comprobarlo desde donde estás. Lo que ocurre fuera de tu alcance —que una carta se entregó, que
@@ -219,6 +229,8 @@ construido*, y *después de un paso cuyo efecto ocurre fuera del texto, comproba
 se ve si no*. Las tres están enunciadas juntas en `SKILL.md` ("Comprobar en vez de dar por hecho"); aquí
 vive el caso de la del medio, que es la del registro.
 
+## Antes de persistir, comprueba lo que acabas de escribir
+
 **Antes de persistir, comprueba lo que acabas de escribir contra las convenciones de texto de tu
 proyecto** (si las tiene: solo-ASCII, terminología, lo que sea). **El marco no impone ninguna** —este
 mismo kit está escrito en prosa acentuada a propósito—: el paso se parametriza con **las tuyas**, y si
@@ -230,6 +242,8 @@ que se le habla al usuario — y ahí el registro equivocado se cuela sin que na
 resto de lo que se escribe son identificadores y rutas, donde el error salta solo. Compruébalo con un
 comando, no releyendo: es lo que hace la diferencia entre una regla escrita y una regla aplicada. **Y
 esa diferencia se puede medir** — ver *Escribir la comprobación no la corre*, al final.
+
+## Persistir el cierre, según el modo
 
 **`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
 sesión, no en uno aparte. Dile al usuario el `git push` exacto (o hazlo si lo autoriza). Reglas,
