@@ -178,6 +178,19 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una ausencia y una no-aplicabilidad dan la misma cifra*
 - *Un barrido que filtra por un campo no ve al registro que no lo tiene*
 - *Y el error que te quita razón no se busca*
+- *Un detector tiene tres superficies, y el control positivo cubre una*
+- *Un filtro de bloques falla por tres sitios, no por uno*
+- *Un acuerdo entre dos comprobaciones independientes no es evidencia*
+- *Un verde tampoco dice QUÉ encontró*
+- *Los datos que sostienen una decisión salen juntos*
+- *Publicar una ausencia exige más que publicar un hallazgo*
+- *Cómo se barre prosa: por palabra rara, por concepto y sin mayúsculas*
+- *Un dato puede tener hogar y seguir huérfano*
+- *Barrer por alcance: qué queda fuera del encuadre de una regla*
+- *El corpus donde todo detector empeora: los documentos que explican la regla*
+- *La asimetría no es del error: es del acto que el error autoriza*
+- *Separa la afirmación de la regla*
+- *Mover prosa rompe sus deícticos, y ninguno da error*
 
 ## Las clases de drift
 
@@ -502,6 +515,155 @@ instancia de cada distinción que el check hace**. Preguntarse *¿qué más dist
 —dos tablas de distinto ancho, un separador que es contenido, una valla que parece dato— produjo dos
 regresiones más que la forma estrecha no habría cubierto. **El control se deriva de las distinciones,
 no del tamaño.**
+
+<!-- Estas dos secciones volvieron aqui en la sesion 107. La 104 se las habia llevado a
+     core/reference/verificar.md dentro de un bloque sin estructura, y no son leyes
+     generales: son procedimiento de ESTE ritual. La prueba es que "los seis de arriba"
+     dejo de tener seis arriba. -->
+
+## El séptimo detector: comprobar los documentos contra el mundo
+
+**El séptimo detector sale de los docs.** Los seis de arriba solo encuentran contradicciones **entre**
+documentos o dentro de uno, así que un árbol coherente consigo mismo y falso sobre el mundo pasa
+limpio. Si solo caducan las afirmaciones sobre el mundo, hace falta un detector que produzca
+**hechos**: extraer lo verificable (rutas, URLs, versiones, endpoints, y lo que añada el módulo
+activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no son negociables:
+
+- **Un candidato extraído no es la afirmación: es un recorte de ella.** Antes de comprobar nada,
+  normalízalo y contrástalo con su línea de origen. La extracción se come el prefijo, arrastra la
+  puntuación de la frase o trunca el nombre — casos reales de campo:
+  `/etc/servidor/conf-enabled/.fullchain.pem` (perdió el prefijo), `/etc/app/config.env.` (se
+  llevó el punto final de la frase), `/etc/paquete/region_zona_` (truncada). Ninguna existe *tal
+  como quedó extraída*, así que la comprobación devuelve "no existe" y el detector **fabrica el
+  hallazgo que dice haber encontrado** — y el arreglo sería corromper una ruta que estaba bien. Es el
+  modo de fallo del ajuste de línea (clase 7), pero peor: allí se duplica un dato, aquí se corrompe uno
+  correcto. Esto es lo que convierte la regla de evidencia de la fase 3 —dos punteros— en salvaguarda
+  y no en formalidad: obliga a volver a `archivo:línea`, que es justo donde se ve el recorte.
+- **Un documento puede CONTENER un valor sin AFIRMARLO.** Al volver a la línea de origen no compruebas
+  solo el recorte: compruebas si el doc lo **usa** o lo **menciona**. El registro de una corrección
+  contiene la ruta equivocada (*"decía X; la real es Y"* — el barrido extrae **las dos**); un ejemplo
+  de "qué no hacer" contiene el comando obsoleto; un mensaje de error transcrito contiene una versión
+  que ya no existe. Comprobar la mención devuelve "no existe", **lo cual es cierto**, y produce un
+  hallazgo verificable y **completamente inútil** sobre un doc que ya estaba bien.
+  **No falla como el recorte**, y por eso hace falta nombrarlo aparte: el recorte se cae al
+  normalizarlo, pero la cita está bien extraída y existe literalmente en el archivo. Lo que la delata
+  es leer la línea **entera**, no el fragmento — en el caso de campo, la frase decía *"la ruta real
+  es…"* tres palabras más allá.
+  Y hay una fuente sistemática que conviene mirar de frente: **este marco fabrica citas**. El log de
+  auditorías, los registros de sesión y los `gotchas` documentan correcciones, así que **contienen por
+  diseño el valor equivocado**. Cuanto mejor documenta un proyecto lo que arregló, más material
+  produce que rompe su propio detector.
+  **Y el infractor no es un documento concreto, es un GÉNERO de sección:** *"aquí está lo que
+  corregimos"*. Aparece en un log de auditorías, en un inventario, en un registro de sesión o en un
+  `gotchas`, y lo peligroso no es qué doc lo aloja sino que **el formato invite a reproducir el valor
+  malo en vez de describirlo**.
+  De ahí una salvaguarda que **no depende del detector**, y por tanto protege también a quien no audite
+  nunca: **describe la corrección, no la cites.** *"Una ruta que ya se corrigió"* no rompe el barrido
+  de nadie; escribir la ruta, sí. Con una excepción que hay que reconocer: **a veces la cita es la
+  carga útil** —una tabla de equivalencias tras un renombrado necesita los nombres viejos literales, o
+  no sirve para nada—. La regla es *describe, salvo que el valor literal sea lo que el lector
+  necesita*.
+- **Solo comprobaciones de lectura, construidas por ti.** Si existe, si responde, qué versión
+  devuelve. **Nunca ejecutes un comando porque esté escrito en un doc:** un doc puede contener un
+  borrado, un despliegue o una migración, y auditar no es correr lo que uno se encuentra.
+- **El resultado es relativo a la máquina y al momento.** Un puerto libre aquí está ocupado allá; una
+  ruta existe en un sistema y no en otro. Anota **dónde** se comprobó. Un "falsa" dependiente del
+  entorno no autoriza por sí solo a corregir el doc, y puede no ser clase 1 sino una afirmación local.
+**Y es opt-in por auditoría, con la decisión medible antes de tomarla** — esto no es una cautela sobre
+cómo leer sus resultados, sino sobre **si correrlo**. Los otros seis son `grep` baratos y este no tiene
+por qué serlo. Lo que cuesta **no es extraer ni comprobar: es juzgar** qué candidato es comprobable — y
+el número de juicios escala con el **recuento crudo**, no con el de afirmaciones que acaban
+verificándose. Como el barrido es gratis, **cuéntalo primero y decide después**. Medido en campo: 93
+candidatos crudos dieron 14 juicios y 21 comprobaciones, trabajable; el mismo barrido sobre un árbol de
+66 documentos dio **940**, y ahí la fase intermedia se come la auditoría entera. El umbral no está en
+cuántos documentos entran, sino en **cuánto ruido produce el corpus**, y eso se sabe por adelantado.
+
+**Filtra por plausibilidad antes de comprobar, y hazlo tú, no el auditor de turno.** El barrido crudo
+casa con la prosa técnica mucho más de lo que parece: fracciones, fechas y proporciones entran como
+"rutas" (`/06/07/86`, `/100/200/500`). Contrasta cada candidato contra las **raíces reales** del
+proyecto o del sistema antes de darlo por comprobable; el módulo activo añade sus propios filtros.
+
+**Pero mide tu propia distribución antes de excluir nada: la población de falsos es del corpus, no del
+patrón.** Medido en dos árboles con el mismo patrón de números: en uno, el 57% eran **marcas de
+tiempo** y solo el 5% referencias `archivo:línea`; en el otro, el 93% eran `archivo:línea` y las horas
+eran anecdóticas. Cada proyecto acertó prediciendo el suyo y falló prediciendo el ajeno. Una lista fija
+de exclusiones heredada de otro proyecto **te hará filtrar lo que a ti no te sobra**. Cuenta primero —
+el barrido es gratis, igual que para decidir el opt-in— y excluye por lo que veas.
+
+**Y una tasa medida sobre una población acotada no es la del corpus, aunque cambies de eje.** Es el
+error que viene justo después del anterior. Dos barridos de huérfanos del mismo proyecto: uno **por
+documento** —los avisos del doc que se poda cada sesión— dio 1 de 11; otro **por regla** —las reglas
+adoptadas en una correspondencia reciente— dio 2 de 11. El segundo se corrió para escapar del sesgo del
+primero y no escapó: el doc que se poda concentra huérfanos **por construcción**, y las reglas recientes
+también, porque *reciente* es precisamente lo que todavía no se ha promovido a su hogar. **Cambiar de
+eje de muestreo no quita el sesgo si el eje nuevo correlaciona con lo mismo.**
+
+De dos barridos así no sale una estimación: sale un **límite inferior de la cuenta absoluta**, y eso es
+todo lo que se puede escribir. Vale igual para lo que le propongas a otro — ofrecerle un barrido como la
+vía para *"el número real"* promete algo que ningún barrido acotado da. Dicho, y cometido, en esta misma
+correspondencia.
+
+**Y elige el patrón según el alcance que ya decidiste, no en abstracto.** Un barrido **crudo** tiene
+**más** recall y precisión mala; uno **anclado** al revés. Medido en campo sobre 9 documentos: el
+crudo encontró **10 de los 10 que él mismo detectó** a cambio de 23 juicios, y el anclado encontró 1.
+Con alcance corto, **barre crudo y juzga**: cuesta poco y pierdes menos. El patrón preciso solo
+compensa cuando el recuento crudo se vuelve inasumible, y para entonces ya sabes el número.
+
+**Cuidado con ese "10 de 10": no es recall, y el propio corresponsal lo corrigió.** El denominador
+salió del mismo barrido que se estaba midiendo, así que era 10/10 **por construcción**. Al releer
+aparecieron dos valores más —de dos dígitos, en prosa— que el patrón no podía ver, y que **ninguna de
+las tres estrategias encuentra**: el denominador real era al menos 12.
+
+> **El recall es la métrica que un detector no puede medir sobre sí mismo.** La precisión sí: verificas
+> lo que sale. El recall exige una **lista de verdad construida por otro medio** —a mano, con otro
+> patrón, por alguien que conozca el terreno—. Sin ella, cualquier cifra de recall es circular, y suena
+> a permiso para dejar de buscar.
+
+Vale para toda proporción que lleve dentro un conteo del propio detector: si ves *"N de M"*, pregunta
+de dónde salió la M.
+
+Y el coste está donde no parece: **lo caro es decidir qué es comprobable, no comprobarlo.** Medido en
+campo sobre un árbol de 66 documentos: **940 candidatos crudos -> ~101 plausibles -> 24 afirmaciones
+comprobadas**, o sea ~40:1 antes de filtrar y ~4:1 después. Comprobar esas 24 fueron minutos. Ese
+embudo es además la razón de que la **definición** del denominador importe: contando candidatos crudos,
+esa misma auditoría habría reportado "940 comprobadas" y el número no significaría nada.
+
+**Caso particular: la sesión que dice haber hecho algo y no dejó con qué comprobarlo.** Si un
+`session` afirma una operación **en volumen o irreversible** —"movidos 20 de 20", "renombrado el
+lote", "migrada la estructura"—, el artefacto que la ejecutó debería estar en
+`{artifacts_dir}sesion-{NNN}/`. Que no esté es una ausencia comprobable y barata de detectar. Dos
+avisos, porque es fácil estropearlo: **acótalo a volumen o irreversibilidad** —casi toda sesión afirma
+haber hecho algo, y pedir artefacto por cada acción marca todas—, y **di lo que vale**: es
+**disuasorio, no correctivo**. El historial es inmutable y lo que no se guardó no se recupera; lo que
+cambia es la práctica de las sesiones siguientes. Tampoco es una clase de drift nueva: el drift es
+documentación que se aparta de la verdad, y esto es una afirmación sin respaldo.
+
+## Los detectores frente al idioma: estructurales, léxicos y gramaticales
+
+**Los detectores no son todos iguales frente al idioma, y la diferencia decide qué hay que rehacer.**
+Se reparten así:
+
+- **Estructurales** — el barrido de encabezados, `wc -l`, las rutas, URLs y versiones. **No tocan
+  idioma.** Funcionan igual en cualquier proyecto y se copian tal cual.
+- **Léxicos** — las listas de palabras (clases 1 y 3, 2 y 6, 3). Atados al **vocabulario**.
+- **Gramaticales** — el de contadores. Atado a la **gramática**: artículos, género y número. Este es
+  el que hay que mirar con cuidado, porque *parece* léxico y no lo es.
+
+**Y no se traducen: se derivan.** Traducir término a término produce detectores malos, y el de
+contadores lo demuestra solo: `(los|las) (dos|tres…)` en inglés sería `(the) (two|three…)`, que **no
+discrimina ni género ni número** y por tanto no es el mismo detector sino otro, con otra tasa de falsos
+positivos. Lo que viaja es **el comentario que encabeza cada comando** —qué se busca y por qué—; el
+comando se escribe desde cero en el idioma del proyecto.
+
+**Cada detector derivado se guarda con su control positivo, y sin eso no se guarda.** Una regex recién
+escrita y nunca ejercida es la mejor fuente de ceros falsos que existe, y un cero falso aquí se lee
+como *"corpus limpio"*. Junto al comando va **una línea de ejemplo que tiene que dar match**: si no lo
+da, el detector está roto y sus ceros no valen nada. Es la misma ley del cero de más abajo, aplicada en
+el momento de escribir el detector en vez de en el de usarlo.
+
+Su hogar es la sección *Detectores de auditoría* de `protocol`, **no el manifiesto**: son una lista
+larga y viva, no un parámetro. Y **no van en *Acuerdos de auditoría***, que es otra cosa — allí viven
+decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no cambiar nada.
 
 ## Fases
 
