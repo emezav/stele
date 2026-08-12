@@ -200,8 +200,8 @@
 > al arrancar**.
 >
 > **El último no es de tu proyecto: es del kit, y está aquí porque faltaba.** El marco ponía tope a lo
-> que el adoptante escribe y ninguno a lo que él mismo distribuye. Medido: `SKILL.md` llegó a **1845
-> líneas (~37 700 tokens)** creciendo de forma monótona —de veinticinco cambios seguidos, ninguno lo
+> que el adoptante escribe y ninguno a lo que él mismo distribuye. Medido en `27a41bd`: `SKILL.md`
+> llegó a **1845 líneas / 36 242 tokens** creciendo de forma monótona —de veinticinco cambios seguidos, ninguno lo
 > redujo— mientras el ritual usado **cada** sesión ocupaba 12 líneas y el usado **cada diez** ocupaba
 > 615. Al partirlo por ritual bajó a ~366. Si vuelve a pasar de 400, **el sitio correcto de lo que
 > entró es un ritual**, no el enrutador.

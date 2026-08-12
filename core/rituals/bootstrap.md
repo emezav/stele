@@ -122,7 +122,7 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    Poner la decisión en un paso que ya se cumple la vuelve **visible y corregible** sin depender de
    que alguien se acuerde de preguntar. Si el usuario no dice nada, tu resolución vale.
 3. Validar los **invariantes de ruta** (ver `core/reference/rutas-y-tokens.md` → "Las tres rutas";
-   **no `guide.md`**, que aquí no hace falta y es el archivo más caro del kit). Violación = abortar y
+   **no `guide.md`**, que aquí no hace falta y pesa más que toda la instalación). Violación = abortar y
    re-preguntar.
 4. Resolver nombres (defaults de rol + módulo; override libre). **Los roles de un módulo inactivo se
    escriben igual, con el centinela `—` (o `---`) en la columna Archivo — no se omiten.** Omitir una

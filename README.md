@@ -99,10 +99,24 @@ No improvises la estructura: la fuente de verdad de rituales es `.stele/SKILL.md
 que necesitas para instalar —las tres rutas, sus invariantes y la convención de tokens— están en
 `.stele/core/reference/rutas-y-tokens.md`. Esos dos, antes de escribir nada.
 
-**`guide.md` NO hace falta para instalar, y es el archivo más caro del kit.** Es el *por qué* del
-diseño, para quien decide adoptarlo o quiere entender las fronteras; leerlo en el bootstrap costaba
-~7 000 tokens, casi el 20% de la instalación, medido en campo. Léelo cuando quieras entender el
+**`guide.md` NO hace falta para instalar, y es de los caros.** Es el *por qué* del diseño, para quien
+decide adoptarlo o quiere entender las fronteras; **pesa más que la instalación entera**
+—`bootstrap.md` + `rutas-y-tokens.md`, que son 6 224 tokens fijos—, así que leerlo en el
+bootstrap **multiplica por más de dos y medio** lo que hay que leer. Léelo cuando quieras entender el
 marco, no para montarlo.
+
+> **Este párrafo decía *"el archivo más caro del kit"* y *"~7 000 tokens"*, y las dos eran falsas.**
+> Medido en `aac632b`: es el **tercero** —`verificar.md` 22 245 y `auditar.md` 16 314 van delante— y
+> pesa **10 466**, un +50% sobre lo publicado. Las dos fueron ciertas el día que se escribieron:
+> entonces los rituales vivían dentro del enrutador. **Un superlativo es un contador con otra forma**
+> —afirma una posición en una lista que sigue moviéndose— y por eso caduca igual, sin que nadie lo
+> toque. Lo destapó la auditoría 12, a **dos líneas** de un párrafo corregido el día antes.
+>
+> **Y arriba va en proporción y no en cifra exacta por una razón medida en esta misma corrección:** el
+> primer borrador decía *"son 10 466 tokens"* y **la propia edición que lo escribía hizo crecer
+> `guide.md` 108 tokens**. Una cifra exacta sobre un fichero que el mismo cambio está tocando nace
+> falsa. Se sella el hecho que no se mueve (`6 224` de instalación, y el orden de magnitud) y se deja
+> el resto en la tabla de `guide.md`, que sí lleva corpus.
 
 ## Arquitectura (tres capas)
 

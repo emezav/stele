@@ -264,7 +264,7 @@ usuario, no tú — tú ya tienes el contexto que oculta la falta.
 
 **Este archivo no contiene los rituales: los enruta.** Cada uno vive en `core/rituals/` y **se lee
 solo cuando se invoca**. Es deliberado y tiene una medida detrás: cuando los nueve vivían aquí, este
-archivo pesaba **1845 líneas (~37 700 tokens)** y crecía de forma monótona —de veinticinco cambios
+archivo pesaba **1845 líneas / 36 242 tokens** (medido en `27a41bd`) y crecía de forma monótona —de veinticinco cambios
 seguidos, **ninguno** lo redujo—, mientras el ritual que se usa **cada** sesión ocupaba 12 líneas y el
 que se usa **cada diez** ocupaba 615. **La masa era inversamente proporcional a la frecuencia de uso**,
 y eso contradice el principio del marco: *coste de tokens acotado*.

@@ -401,7 +401,7 @@ de entradas. **Un presupuesto que solo mira las partes certifica un total que na
 
 Los topes de arriba acotan lo que **tú** escribes. Faltaba el del kit, y su ausencia costó cara: los
 nueve rituales vivían en `SKILL.md`, que creció de forma monótona —de veinticinco cambios seguidos,
-**ninguno** lo redujo— hasta **1845 líneas / ~36 200 tokens**, mientras el ritual usado *cada* sesión
+**ninguno** lo redujo— hasta **1845 líneas / 36 242 tokens** (medido en `27a41bd`), mientras el ritual usado *cada* sesión
 ocupaba 12 líneas y el usado *cada diez* ocupaba 615. **La masa era inversamente proporcional a la
 frecuencia de uso**, que es la forma exacta de romper *coste de tokens acotado* sin que ningún cambio
 individual parezca culpable.
@@ -471,7 +471,11 @@ cierre —lo que este documento venía proponiendo— no bajaría el arranque ni
      Misma ley que "mover prosa rompe sus deícticos", por inserción en vez de por movimiento. Por eso
      ahora las filas se nombran y no se numeran. -->
 
-**Lo que sí lo baja es curar el `gotchas`**, que en este repo es el 60% del total. Por eso la tabla de
+**Lo que sí lo baja es curar el `gotchas`**, que en este repo pesa **más que todo lo demás del set de
+arranque junto** —medido al cerrar la sesión 108: 9 562 contra 6 451—. Va en proporción y no en porcentaje fijo a
+propósito: el denominador lleva dentro `state` y `handover`, que **fluctúan dentro de una misma
+sesión** (un checkpoint abierto multiplica el `handover` por cinco), así que cualquier tanto por ciento
+que se escriba aquí envejece sin que nadie lo toque. Por eso la tabla de
 presupuestos de más arriba ganó una columna y un tope: el arranque no se abarata donde es cómodo
 medirlo, sino donde está la masa.
 
