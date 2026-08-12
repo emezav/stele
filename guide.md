@@ -408,37 +408,35 @@ individual parezca culpable.
 
 El corte fue por ritual: `SKILL.md` enruta, y cada ritual se lee **solo cuando se invoca**.
 
-> **Corpus fijado: `72347d8`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
+> **Corpus fijado: `7ce11a9`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
 > `git cat-file` y no sobre el árbol de trabajo. **Sin esas tres cosas la tabla no es una medición
 > sino un contador**, y un contador caduca en silencio: dos versiones atrás esta tabla no las llevaba,
 > y siete de sus diez cifras —correctas el día que se escribieron— envejecieron entre un 2% y un 170%
 > sin que nada avisara. Si vas a rehacerla, deja el identificador dentro.
 >
-> **Control del método, calculado y no elegido:** entre el corpus anterior (`00aed04`) y este,
-> **cuatro ficheros no cambiaron** —`abrir`, `bootstrap`, `configurar` y `rutas-y-tokens`— y los cuatro
-> reproducen su cifra **exacta**. Por eso
-> los deltas de los demás son crecimiento real y no deriva del tokenizador. El control no es *"no
-> cambió desde una fecha cómoda"*: es **no cambió entre los dos instantes que se comparan**, y eso se
-> calcula con `git diff --name-only`.
+> **Control del método, calculado y no elegido:** entre el corpus anterior (`72347d8`) y este,
+> **nueve de los once ficheros no cambiaron** —`git diff --name-only`— y los nueve reproducen su cifra
+> **exacta**. Por eso los dos deltas de abajo son crecimiento real y no deriva del tokenizador. El
+> control no es *"no cambió desde una fecha cómoda"*: es **no cambió entre los dos instantes que se
+> comparan**.
 
 | Se carga | Tokens | Cuándo se paga |
 | --- | --- | --- |
-| `SKILL.md` (enrutador) | 5 703 | **siempre** |
-| `core/rituals/abrir.md` | 753 | cada sesión |
-| `core/rituals/cerrar.md` | 6 243 | cada sesión |
+| `SKILL.md` (enrutador) | 5 703 | siempre que se enruta — **no al arrancar** |
+| `core/rituals/abrir.md` | 753 | cada sesión, bajo demanda |
+| `core/rituals/cerrar.md` | 6 243 | cada cierre |
 | `core/rituals/contrastar.md` · `remitir.md` | 3 869 · 9 662 | si hay carta |
-| `core/rituals/auditar.md` | 16 291 | cada ~10 sesiones |
-| `core/reference/verificar.md` | **21 667** | al medir o publicar una cifra |
+| `core/rituals/auditar.md` | 16 314 | cada ~10 sesiones |
+| `core/reference/verificar.md` | **22 245** | al medir o publicar una cifra |
 | `core/rituals/actualizar.md` | 6 933 | al traer kit nuevo |
 | `core/rituals/bootstrap.md` · `configurar.md` | 3 373 · 1 799 | una vez / rara |
 | `core/reference/rutas-y-tokens.md` | 2 851 | bootstrap y config |
 
-**Sesión normal (enrutador + abrir + cerrar): 12 699**, un **+26%** sobre `00aed04`. El corte de este
-corpus fue por **destinatario** y no por ritual: las leyes de verificación salieron de `auditar` a
-`verificar`, porque las necesita igual quien cierra una sesión o contesta una carta.
+**Sesión normal (enrutador + abrir + cerrar): 12 699.** Sin cambio en este corpus. **Y ojo con lo que
+esa suma NO es** — la sección siguiente: ninguno de esos tres ficheros lo carga la puerta.
 
 **Y conviene leer el resultado sin adornos, porque el titular es incómodo.** Auditar de verdad cuesta
-`auditar` **más** `verificar` —lo que se lee al auditar son las dos— y eso son **37 958**, o sea **2,99
+`auditar` **más** `verificar` —lo que se lee al auditar son las dos— y eso son **38 559**, o sea **3,04
 veces** una sesión normal. Antes del corte eran 24 999 en un solo fichero. **El corte no abarató el
 coste: lo repartió**, y a cambio puso las leyes al alcance de los demás rituales, que era el problema
 que venía a resolver.
@@ -451,8 +449,8 @@ con el mismo tokenizador, comprobando primero que reproduce las tres cifras sell
 
 | Conjunto | Qué es | Tokens | Corpus |
 | --- | --- | --- | --- |
-| lo que mide la tabla | `SKILL.md` + `abrir` + `cerrar` | 12 699 | `72347d8` |
-| lo que impone el kit al adoptar | la puerta + las 4 plantillas del set de arranque | 4 781 | `6817448` |
+| lo que mide la tabla | `SKILL.md` + `abrir` + `cerrar` | 12 699 | `7ce11a9` |
+| lo que impone el kit al adoptar | la puerta + las 4 plantillas del set de arranque | 4 781 | `7ce11a9` |
 | el arranque real de un proyecto vivo | los 4 imports de la puerta, en este repo | **16 660** | **sin sellar** |
 
 **La tercera fila no se puede sellar, y eso es parte del hallazgo.** Sus cuatro ficheros son los docs de
