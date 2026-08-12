@@ -6,63 +6,38 @@ evolucionó en un proyecto real a lo largo de 240+ sesiones. **Modular y configu
 agnóstico de dominio (sirve para software y para trabajo no-software: materiales, planeación,
 investigación) + módulos que añaden disciplinas específicas + una capa de config.
 
-**"Acotado" con un número, porque una promesa sin cifra no se puede comprobar.** Y con sus
-condiciones al lado, porque **lo que se paga cada sesión depende del layout**. Todo lo de abajo está
-medido contra **`77db161`** con `tiktoken`/`o200k_base` sobre `git cat-file`; sin ese identificador
-estas cifras serían un contador, no una medición.
-
-- **Layout vendorizado (`.stele/` + loader, el default): lo que se paga siempre es el *set de
-  arranque*, no el kit.** Son el loader y los cuatro docs que importa: **~3 200 tokens** en un
-  proyecto recién bootstrapeado — las plantillas pesan 4 781, de los que **1 614 son comentarios de
-  instrucción que bootstrap consume** y no deja en disco. `SKILL.md` cuesta **cero**, y desde 2026-08-12
-  se sabe **por qué**: la puerta importa `entry`, `gotchas`, `state` y `handover`, y **no lo nombra**.
-  Antes era una observación de campo —seis sesiones reales de un agente que no es Claude Code, ninguna
-  lo abrió—; ahora es una propiedad de la plantilla.
-- **Layout `skill` (`.claude/skills/stele`):** invocar `/stele` carga el enrutador entero,
-  **5 703 tokens**. Antes de partirlo por ritual eran **~36 200**; los rituales caros ya no viajan con
-  él — auditar cuesta **38 559** y solo los paga la sesión que audita (`auditar.md` son 16 314 de esos;
-  el resto es `verificar.md`, que se lee con él). El reparto está en `guide.md`.
-
-> **Y una cifra de aquí engañaba, así que va con su corrección dentro.** Este párrafo decía que auditar
-> cuesta *"sus ~12 400"*, y **auditar de verdad son 38 559**: lo que se lee al auditar son `auditar.md`
-> **y** `verificar.md`, porque las leyes de comprobación viven aparte desde que se midió que las
-> necesitaba igual quien cierra una sesión o contesta una carta. La cifra vieja no estaba solo
-> caducada —que también, un +32%—: **nombraba un fichero donde la operación usa dos**, y eso es un
-> tercio del coste real. Es la clase que este marco llama *el sello de una cifra certifica que sigue
-> viva, no que sea la cifra de lo que dices*.
-
-**El set de arranque crece con el proyecto, y ese es el número que hay que vigilar.** Las ~3 200 son
-el suelo de un proyecto nuevo; en la instancia con la que se desarrolla este marco eran **~10 400 tras
-57 sesiones** y son **16 013 tras 108**. El kit no crece —es de tamaño fijo—; crecen los docs de la
-instancia.
-
-**Y este párrafo decía que los que crecían eran `latest` y `handover`, *"por eso el manifiesto les pone
-presupuesto"*. Era falso, y el presupuesto salió de ahí.** Repartido ese arranque, **medido al cerrar
-la sesión 108 el 2026-08-12**:
-
-```text
-gotchas    9 562   60%   sin tope total hasta esa sesion
-entry      3 291   21%   sin tope hasta esa sesion
-state      2 314   14%   con tope desde el principio
-handover     341    2%   con tope desde el principio
-puerta       505    3%   generada
-```
-
-**Los dos que llevaban presupuesto son el 17% del total.** Se acotó lo que era fácil de acotar —dos
-docs de formato fijo, que se sobrescriben y por eso no crecen— y quedó libre justo el que crece por
-acumulación. No fue un descuido de cifras: **la frase que justificaba el presupuesto nombraba mal a su
-sujeto**, y mientras siguiera en pie nadie iba a buscar el tope que faltaba. Corregido: `gotchas` y
-`entry` tienen tope en `guide.md`, y su tabla marca cuáles importa la puerta.
-
-**Este bloque lleva instante y no solo fecha, y es por un fallo propio.** Su primera versión se
-escribió a mitad de la sesión 108 con `gotchas` en 10 690, y **la misma sesión podó ese fichero una
-hora después**: nació caducado. `state` y `handover` además **fluctúan dentro de una sesión** —un
-checkpoint abierto multiplica el `handover` por cinco—, así que un reparto exacto aquí volverá a
-envejecer. Lo que no envejece es la **proporción**: el que no tenía tope es el que domina.
-
 > **El nombre.** Una *estela* (gr. στήλη) es la piedra erguida e **inscrita** que deja un registro
 > perdurable para quien viene después. Es justo lo que hace este marco entre sesiones: inscribir el
 > estado y el porqué para que el siguiente agente retome el rumbo sin reconstruirlo.
+
+**"Acotado" con un número, porque una promesa sin cifra no se puede comprobar.** Medido contra
+`4256a96` con `tiktoken`/`o200k_base` sobre `git cat-file`:
+
+| Lo que pagas | Cuánto | Cuándo se paga |
+| --- | --- | --- |
+| El **set de arranque** — layout vendorizado, el default | **~3 200** | **cada sesión** |
+| El **enrutador** — solo en layout `skill` | 5 714 | al invocar `/stele` |
+| **Auditar** (`auditar.md` + `verificar.md`, se leen juntos) | 39 221 | cada ~10 sesiones |
+| El kit entero | ~125 000 | **nunca de una vez** |
+
+**Lo único que se paga siempre es el set de arranque**: el loader más los documentos que importa
+—`entry`, `gotchas`, `state` y `handover`—. `SKILL.md` cuesta **cero** en el layout vendorizado, y no
+por suerte: la puerta **no lo nombra**.
+
+**Ese set crece con TU proyecto, no con el kit.** El kit es de tamaño fijo; lo que engorda son tus
+propios documentos. En la instancia con la que se desarrolla este marco eran **~10 400 tras 57
+sesiones** y **16 013 tras 108**, repartidos así al cerrar la sesión 108:
+
+```text
+gotchas    9 562   60%   trampas del proyecto      <- el que crece
+entry      3 291   21%   como se trabaja aqui
+state      2 314   14%   donde estamos
+handover     341    2%   trabajo a medias
+puerta       505    3%   generada
+```
+
+**Por eso el marco le pone presupuesto a cada uno de ellos**, y el que domina es el que acumula. Los
+topes y qué hacer cuando se cruzan están en `guide.md`.
 
 ## 🤖 ¿Eres un agente de IA? Instala stele por tu cuenta
 
@@ -104,19 +79,6 @@ decide adoptarlo o quiere entender las fronteras; **pesa más que la instalació
 —`bootstrap.md` + `rutas-y-tokens.md`, que son 6 224 tokens fijos—, así que leerlo en el
 bootstrap **multiplica por más de dos y medio** lo que hay que leer. Léelo cuando quieras entender el
 marco, no para montarlo.
-
-> **Este párrafo decía *"el archivo más caro del kit"* y *"~7 000 tokens"*, y las dos eran falsas.**
-> Medido en `aac632b`: es el **tercero** —`verificar.md` 22 245 y `auditar.md` 16 314 van delante— y
-> pesa **10 466**, un +50% sobre lo publicado. Las dos fueron ciertas el día que se escribieron:
-> entonces los rituales vivían dentro del enrutador. **Un superlativo es un contador con otra forma**
-> —afirma una posición en una lista que sigue moviéndose— y por eso caduca igual, sin que nadie lo
-> toque. Lo destapó la auditoría 12, a **dos líneas** de un párrafo corregido el día antes.
->
-> **Y arriba va en proporción y no en cifra exacta por una razón medida en esta misma corrección:** el
-> primer borrador decía *"son 10 466 tokens"* y **la propia edición que lo escribía hizo crecer
-> `guide.md` 108 tokens**. Una cifra exacta sobre un fichero que el mismo cambio está tocando nace
-> falsa. Se sella el hecho que no se mueve (`6 224` de instalación, y el orden de magnitud) y se deja
-> el resto en la tabla de `guide.md`, que sí lleva corpus.
 
 ## Arquitectura (tres capas)
 
@@ -213,3 +175,46 @@ forma corta de nombrar dos rutas.
 > Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `guide.md`.
 > El historial de diseño del marco vive en `git log`, no en el kit: todo lo que se vendoriza es lo
 > que un agente necesita para trabajar.
+
+## Cómo se corrigieron las cifras de arriba
+
+**Todas estuvieron mal publicadas en este mismo archivo**, y van aquí porque son la única evidencia
+honesta de que el método funciona: un marco que promete detectar documentación que envejece debería
+poder enseñar la suya envejeciendo. Ninguna la encontró un lector — las encontró el ritual de
+auditoría del propio kit.
+
+**1 · La cifra que nombraba mal a su sujeto.** Decía que auditar cuesta *"~12 400"*. Auditar lee
+`auditar.md` **y** `verificar.md`, así que el número real es casi el triple. No estaba solo
+caducada: **nombraba un fichero donde la operación usa dos**, y contra eso no protege ningún sello
+—certifica que la cifra sigue viva, no que sea la cifra de lo que dices—.
+
+**2 · El presupuesto que acotaba lo que no crecía.** Este archivo decía que los documentos que
+crecen son `state` y `handover`, *"por eso el manifiesto les pone presupuesto"*. Son el 17% del
+total. Se había acotado **lo que se sobrescribe** —y por construcción no crece— dejando libre **lo
+que se acumula**, que es el 60%. El fallo no estaba en las cifras: **la frase que justificaba el
+presupuesto nombraba mal a su sujeto**, y mientras siguiera en pie nadie iba a buscar el tope que
+faltaba.
+
+**3 · El superlativo.** Este archivo llamaba a `guide.md` *"el archivo más caro del kit"*, con
+*"~7 000 tokens"*. Medido en `aac632b`: es el **tercero** —`verificar.md` 22 245 y `auditar.md`
+16 314 van delante— y pesa **10 466**, un +50% sobre lo publicado. Las dos afirmaciones fueron
+ciertas el día que se escribieron; después se partió otro fichero en dos y **el mismo cambio hecho
+para mejorar el marco las volvió falsas**, sin que nadie tocara esa línea. Un superlativo no lleva
+cifra, así que ningún barrido de números lo ve — y sin embargo afirma lo mismo que un contador:
+**una posición en una lista que sigue moviéndose**.
+
+**Y su corrección tropezó con lo mismo que corregía:** el primer borrador decía *"son 10 466
+tokens"* y **la propia edición que lo escribía hizo crecer `guide.md` 108 tokens**. Una cifra exacta
+sobre un fichero que el mismo cambio está tocando **nace falsa**. Por eso arriba se sella lo que no
+se mueve —los 6 224 de la instalación— y el resto se deja en la tabla de `guide.md`, que lleva su
+corpus.
+
+**4 · El reparto que nació caducado.** El bloque de tokens de arriba se escribió a mitad de una
+sesión y **esa misma sesión podó uno de los ficheros que medía, una hora después**. Además `state`
+y `handover` fluctúan **dentro** de una sesión: un checkpoint abierto multiplica el `handover` por
+cinco. Por eso ese bloque lleva el instante en que se midió, y por eso lo que se afirma en prosa es
+la **proporción** y no el porcentaje exacto.
+
+> **La regla que sale de las cuatro, y que este proyecto paga cada vez que la olvida:** una cifra
+> sobre tu propio corpus es una **foto**. Si la publicas sin decir de cuándo es y contra qué se
+> midió, no envejece mal: envejece **en silencio**, que es peor.
