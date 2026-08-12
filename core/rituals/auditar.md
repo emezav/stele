@@ -153,6 +153,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *El comando no es el patrón, y confundirlos parece sustrato*
 - *Un desacuerdo demuestra que algo difiere; nunca demuestra QUÉ*
 - *Antes de llamar sustrato a un desacuerdo, mira si alguien está violando una especificación*
+- *Una especificación también dice dónde se CALLA, y ahí la divergencia está anunciada*
 - *Cuando la especificación es propia, lo que la valida es su FECHA*
 - *El nombre de una comprobación no es su cobertura*
 - *El sello de una cifra certifica que sigue viva, no que sea la cifra de lo que dices*

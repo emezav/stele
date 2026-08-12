@@ -87,6 +87,44 @@ los casos y el tercero no llegó a hacer falta ni una vez.
 sabemos de quién es el problema"* en *"alguien tiene un bug"*, que es accionable aunque no se sepa
 dónde vive. Saber **que** algo está roto y no **dónde** ya permite dejar de mezclarlo con los datos.
 
+## Una especificación también dice dónde se CALLA, y ahí la divergencia está anunciada
+
+**El escalón de la especificación se escribió con una sola salida —*alguien incumple*— y tiene dos.**
+Una especificación no solo fija la conducta correcta: **delimita dónde hay conducta correcta**. Donde
+se declara a sí misma no especificada, dos montajes pueden discrepar sin que ninguno tenga un fallo — y
+eso **se sabe leyéndola, sin el segundo montaje**.
+
+| Si la especificación… | Qué hay | Qué se hace |
+| --- | --- | --- |
+| **fija la conducta y alguien se desvía** | Un fallo | Se reporta |
+| **declara la zona no especificada** | Una divergencia permitida | No se publica ahí un detector; y si se mide, se declara el montaje |
+
+**Caso de campo, y es propio y caro.** Se comparó `[ -~]` sobre el mismo corpus de 34 caracteres en dos
+máquinas —Cygwin contra glibc 2.35— y salió `6 + 28` allá contra `32 + 2` aquí bajo `en_US.UTF-8`. Se
+concluyó **sustrato**, la libc, y la medición es correcta. Lo que no se miró son las otras dos filas de
+la misma tabla, que ya estaban publicadas a los dos lados:
+
+```text
+                      aquí (Cygwin)   allá (glibc 2.35)
+LC_ALL=C               32 + 4 = 36     32 + 4 = 36     <- POSIX FIJA esta fila: coinciden
+LC_ALL=C.UTF-8         32 + 2 = 34     32 + 2 = 34     <- coinciden también
+LC_ALL=en_US.UTF-8     32 + 2 = 34      6 + 28 = 34    <- SOLO esta diverge
+```
+
+**Divergía un locale de tres**, y es justo aquel sobre el que POSIX (XBD 9.3.5, *RE Bracket
+Expression*) declara la interpretación de un rango **no especificada fuera del locale POSIX**. Donde la
+especificación manda, las dos máquinas daban lo mismo: **todo el desacuerdo vivía en la zona donde se
+calla**, que es la única fila que se publicó como hallazgo.
+
+> **Una especificación no te dice qué hace la otra máquina: te dice que no tienes derecho a esperar
+> nada.** Y para lo que casi siempre se está decidiendo —*¿puedo publicar este patrón como detector?*—
+> eso basta, y es gratis.
+
+**Y el coste de saltarse esta cara del escalón se mide en lo que se gastó**: el hallazgo necesitó un
+corresponsal, su máquina y varias cartas, y su parte accionable estaba en una frase de un documento
+público. La medición no se cae —dice qué hace **esta** máquina, y eso solo se sabe midiendo—; lo que no
+hacía falta era **descubrirlo**.
+
 ## Cuando la especificación es propia, lo que la valida es su FECHA
 
 **Y si es propia hay que sospechar, porque quien la escribió es quien se beneficia de ella.** Al
@@ -484,6 +522,12 @@ Sobre la línea *"una línea con dos acentuadas: café"* — **34 caracteres, 32
 > implementa.** `en_US.UTF-8` trae tabla de colación en glibc y no la trae en Cygwin. Y lo que se rompe
 > no es la negación: **es el rango**. `[ -~]` no significa *ASCII imprimible* sino *lo que cae entre el
 > espacio y la virgulilla **en orden de colación***, que en glibc son 6 caracteres de 32.
+
+**Esa tabla tiene dos filas más que no se enseñaron aquí, y estrechan lo que se puede concluir:** bajo
+`LC_ALL=C` las dos máquinas dan `32 + 4 = 36`, y bajo `C.UTF-8` las dos dan `32 + 2 = 34`. **Diverge un
+locale de tres**, y es el único que POSIX deja sin especificar — ver *una especificación también dice
+dónde se calla*. La ley de arriba se sostiene; lo que cambia es su radio: no es que el nombre de un
+locale no prediga nada, es que **deja de predecir justo donde la especificación dejó de mandar**.
 
 **Y la sonda importa tanto como el hallazgo, porque la primera que se usó aquí no servía.** Se probó
 con `[a-z]` contra `B` —*"¿colaciona este locale?"*— y da **0 en los tres locales en las DOS
