@@ -133,6 +133,40 @@ reales que unas veces se registran y otras no. No refuta la regla; delimita dón
 registro escrito a mano, mide la intermitencia y no el rótulo.** Para ese caso la regla es otra —
 `cerrar.md` → *Escribir la comprobación no la corre* — y el detector, también.
 
+## El sello de una cifra certifica que sigue viva, no que sea la cifra de lo que dices
+
+**Un identificador de corpus responde *¿este número sigue valiendo?* y no responde *¿es este el número
+de lo que estoy afirmando?*** Son dos preguntas distintas y solo la primera tiene mecanismo. Por eso
+una tabla puede estar sellada, ser reproducible al token, y sostener una frase falsa **sin que ninguna
+de sus cifras esté mal**.
+
+**Caso de campo, en este mismo kit.** Una tabla de tamaños medía tres ficheros —el enrutador y dos
+rituales— y sumaba `12 699`. La prosa de debajo llamaba a esa suma *"el arranque"*, y sobre esa palabra
+se decidió durante dos corpus qué había que podar. Medido después: lo que la **puerta** importa de
+verdad son otros cuatro ficheros, y
+
+```text
+ficheros en comun entre el conjunto medido y el conjunto cargado al arrancar : 0
+```
+
+**Disjuntos.** Podar cualquiera de los tres ficheros medidos habría bajado el arranque en **cero**
+tokens. La tabla nunca mintió; la palabra que la resumía apuntaba a otro sitio.
+
+> **Nómbrale a una cifra su corpus por sus FICHEROS, no por lo que hace.** *"`SKILL.md` + `abrir` +
+> `cerrar`"* se puede contar y contradecir; *"el arranque"* no se puede contradecir porque no se puede
+> contar. Un nombre funcional es una afirmación sobre el mundo disfrazada de etiqueta.
+
+**Es la misma forma que *el nombre de una comprobación no es su cobertura*, con el sujeto cambiado:**
+allí el rótulo prometía un universal y el cuerpo cubría un caso; aquí el rótulo promete un corpus y el
+cuerpo mide otro. En los dos, **el rótulo es lo único que se relee** — y aquí además va firmado, que es
+peor: el sello invita a dar por revisado todo el párrafo.
+
+**El detector es barato y no es leer.** Enumera los ficheros que tu cifra dice cubrir, enumera los que
+de verdad se cargan —en el arranque, leyendo qué importa la puerta; en un ritual, qué abre— e
+**intersécalos**. Si la intersección no es lo que esperabas, el defecto no está en el número.
+**Y espera un valor antes de mirar**: una intersección vacía y una total se leen igual de tranquilas
+cuando no habías declarado cuál tocaba.
+
 ## Una justificación producida al auditar el defecto no tiene procedencia
 
 **Es la tercera fila del test de la fecha, aplicada a una justificación en vez de a una

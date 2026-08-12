@@ -18,9 +18,26 @@ condiciones al lado, porque **lo que se paga cada sesión depende del layout**:
   con él — auditar cuesta sus ~12 400 solo la sesión que audita. El reparto está en `guide.md`.
 
 **El set de arranque crece con el proyecto, y ese es el número que hay que vigilar.** Las ~3 900 son
-el suelo de un proyecto nuevo; en la instancia con la que se desarrolla este marco, tras 57 sesiones,
-son **~10 400**. Lo que crece no es el kit —es de tamaño fijo— sino `latest` y `handover`. Por eso
-el manifiesto les pone presupuesto.
+el suelo de un proyecto nuevo; en la instancia con la que se desarrolla este marco eran **~10 400 tras
+57 sesiones** y son **16 660 tras 108** (medido el 2026-08-12). El kit no crece —es de tamaño fijo—;
+crecen los docs de la instancia.
+
+**Y este párrafo decía que los que crecían eran `latest` y `handover`, *"por eso el manifiesto les pone
+presupuesto"*. Era falso, y el presupuesto salió de ahí.** Repartido ese mismo arranque de 16 660:
+
+```text
+gotchas   10 690   64%   sin tope total hasta hoy
+entry      3 291   20%   sin tope hasta hoy
+state      1 964   12%   con tope desde el principio
+handover     210    1%   con tope desde el principio
+puerta       505    3%   generada
+```
+
+**Los dos que llevaban presupuesto son el 13% del total.** Se acotó lo que era fácil de acotar —dos
+docs de formato fijo, que se sobrescriben y por eso no crecen— y quedó libre justo el que crece por
+acumulación. No fue un descuido de cifras: **la frase que justificaba el presupuesto nombraba mal a su
+sujeto**, y mientras siguiera en pie nadie iba a buscar el tope que faltaba. Corregido: `gotchas` y
+`entry` tienen tope en `guide.md`, y su tabla marca cuáles importa la puerta.
 
 > **El nombre.** Una *estela* (gr. στήλη) es la piedra erguida e **inscrita** que deja un registro
 > perdurable para quien viene después. Es justo lo que hace este marco entre sesiones: inscribir el

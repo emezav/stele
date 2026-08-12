@@ -368,16 +368,34 @@ Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (
 
 ## Presupuestos de tamaño (lo que mantiene barato el arranque)
 
-| Rol | Tope objetivo | Al superarlo |
-| --- | --- | --- |
-| `state` | ~100 líneas | Podar; es estado, no historia |
-| `handover` | ~50 líneas | Solo lo del salto activo |
-| `charter` | ~200 líneas | Extraer una decisión a un tema del módulo + link |
-| `gotchas` | ~150-200 líneas por sección | **Curar**: una entrada resuelta u obsoleta se borra |
-| `session` | sin tope | Es histórico; se lee con grep, no al arrancar |
+| Rol | Tope objetivo | ¿Lo importa la puerta? | Al superarlo |
+| --- | --- | --- | --- |
+| `entry` | ~200 líneas | **sí** | Es el *cómo se trabaja*; lo demás va a su hogar y se apunta |
+| `gotchas` | ~150-200 líneas por sección **y ~400 en total** | **sí** | **Curar**: una entrada resuelta u obsoleta se borra |
+| `state` | ~100 líneas | **sí** | Podar; es estado, no historia |
+| `handover` | ~50 líneas | **sí** | Solo lo del salto activo |
+| `charter` | ~200 líneas | no, bajo demanda | Extraer una decisión a un tema del módulo + link |
+| `session` | sin tope | no | Es histórico; se lee con grep, no al arrancar |
 
 Los presupuestos son parámetros de la config (sección Presupuestos); los módulos pueden añadir los
 suyos (p. ej. `producto`: un tema de `specs` ~600-800 líneas).
+
+**La tercera columna es la que hace útil a esta tabla, y faltaba.** Los cuatro primeros roles son
+*exactamente* lo que la puerta importa: son el arranque, y su suma es lo que todo agente paga en toda
+sesión antes de hacer nada. Los otros dos no se cargan nunca solos. Un tope sin esa distinción se lee
+como higiene; con ella se lee como lo que es, **el presupuesto del pilar 4**.
+
+**Dos de esas filas son nuevas y conviene decirlo:** `entry` no tenía tope —el documento que se lee
+**primero** en cada sesión era el único del set de apertura sin presupuesto— y el total de `gotchas`
+tampoco existía. Las dos ausencias son del mismo tipo: **el set que el pilar 4 promete acotar tenía la
+mitad de sus miembros sin acotar**, y ninguna de las dos daba error.
+
+**Y `gotchas` lleva ahora un tope TOTAL además del de sección, porque el de sección no puede verlo
+crecer.** Medido el **2026-08-12** sobre el `gotchas` de este propio repo: **487 líneas en 13 secciones,
+y ninguna pasaba de 122** — cumplía el presupuesto en todas, en todo momento, mientras se convertía en
+**el 64% del arranque**. Un doc que crece **añadiendo secciones** nunca viola un tope por sección; el tope por
+sección acota el desorden dentro de una entrada, y el crecimiento real de un `gotchas` es por número
+de entradas. **Un presupuesto que solo mira las partes certifica un total que nadie acotó.**
 
 ### Y el kit también tiene presupuesto, porque también se carga
 
@@ -425,17 +443,47 @@ veces** una sesión normal. Antes del corte eran 24 999 en un solo fichero. **El
 coste: lo repartió**, y a cambio puso las leyes al alcance de los demás rituales, que era el problema
 que venía a resolver.
 
-**Lo que sí subió, y es lo que hay que vigilar, es el arranque:** +2 616 tokens que se pagan en **cada**
-sesión de **cada** adoptante. Parte es contenido nuevo y parte son las cabeceras y el enrutado que el
-propio corte añadió. **Un reparto protege la estructura; no sustituye a podar** — y esta tabla lleva dos
-corpus consecutivos sin que el arranque baje ni una vez.
+### Esta tabla NO mide el arranque, y lo dijo durante dos corpus
 
-**Y hay una lección en el propio párrafo que acabas de leer.** La versión anterior decía *"`auditar`
-es **hoy** 1,44 veces"*, con la tabla ya corpus-fijada encima. La tabla no mintió —sus cifras siguen
-siendo verdad de `ce7a5ca`—, pero **la frase derivada decía *hoy* y llevaba sesiones siendo falsa**:
-el fichero había crecido un 73% sin que nada avisara. **El identificador protege la tabla, no la prosa
-que se deriva de ella.** Si escribes una cifra derivada, o le pones el mismo identificador o le quitas
-el adverbio.
+Los 12 699 de arriba son **los ficheros del kit que toca una sesión completa**. Se presentaron como *el
+arranque*, y el arranque es otra cosa: lo que la **puerta** importa antes de que el agente hable. Medido
+con el mismo tokenizador, comprobando primero que reproduce las tres cifras selladas de arriba:
+
+| Conjunto | Qué es | Tokens | Corpus |
+| --- | --- | --- | --- |
+| lo que mide la tabla | `SKILL.md` + `abrir` + `cerrar` | 12 699 | `72347d8` |
+| lo que impone el kit al adoptar | la puerta + las 4 plantillas del set de arranque | 4 781 | `6817448` |
+| el arranque real de un proyecto vivo | los 4 imports de la puerta, en este repo | **16 660** | **sin sellar** |
+
+**La tercera fila no se puede sellar, y eso es parte del hallazgo.** Sus cuatro ficheros son los docs de
+trabajo de la instancia, que **no están versionados**: no hay commit que los identifique, así que la
+cifra es de un día y no de un estado —medida el **2026-08-12**, sobre este repo, y envejecerá sin que
+nada avise. Es exactamente lo que la hacía invisible: **el corpus caro es el que ninguna herramienta
+puede fijar**, y por eso la tabla acabó midiendo el barato.
+
+**Ficheros en común entre el primero y el tercero: cero.** No se solapan poco: son conjuntos
+**disjuntos**. La puerta importa `entry`, `gotchas`, `state` y `handover`; `abrir.md` declara en su
+primera línea que se lee bajo demanda; y ni la plantilla de la puerta ni la del `entry` nombran
+`SKILL.md` una sola vez. La consecuencia práctica es la que duele: **podar el enrutador o el ritual de
+cierre —lo que este documento venía proponiendo— no bajaría el arranque ni un token.**
+
+**Lo que sí lo baja es curar el `gotchas`**, que en este repo es el 64% del total. Por eso la tabla de
+presupuestos de más arriba ganó una columna y un tope: el arranque no se abarata donde es cómodo
+medirlo, sino donde está la masa.
+
+**Y hay una lección en las dos frases anteriores de esta misma sección**, que es peor que el error.
+Una versión decía *"`auditar` es **hoy** 1,44 veces"*, con la tabla ya corpus-fijada encima: la tabla no
+mintió —sus cifras siguen siendo verdad de `ce7a5ca`— pero **la frase derivada decía *hoy* y llevaba
+sesiones siendo falsa**, porque el fichero había crecido un 73% sin que nada avisara. De ahí salió la
+regla: **el identificador protege la tabla, no la prosa que se deriva de ella.** La siguiente versión
+—esta— la escribió, la dejó tres párrafos más abajo… y **volvió a fallar en el mismo sitio con la otra
+mitad de la frase**: ya no era el adverbio, era el **sujeto**. *Arranque* nombraba un corpus que la
+tabla nunca midió, y ninguna cifra estaba mal.
+
+**Una cifra derivada hereda dos cosas de su tabla, y el sello solo cubre una.** El identificador
+responde *¿sigue valiendo este número?*; no responde *¿es este el número de lo que estoy diciendo?*
+Cuando escribas una cifra derivada, nómbrale el corpus **por sus ficheros**, no por lo que hace: los
+ficheros se pueden contar, y *"el arranque"* no.
 
 El tope del enrutador (400 líneas) vive en la sección Presupuestos del manifiesto, junto a los tuyos. Si
 se cruza, el sitio de lo que entró es **un ritual**, no el enrutador.

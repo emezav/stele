@@ -181,10 +181,23 @@
 
 | Doc (rol) | Máx. líneas |
 | --- | --- |
+| entry | 200 |
+| gotchas | 400 |
 | state | 100 |
 | handover | 50 |
 | SKILL.md (enrutador del kit) | 400 |
 
+> **Las cuatro primeras filas son el set de arranque, y en ese orden lo importa la puerta.** Las dos
+> últimas de ese bloque llevaban tope desde el principio y las dos primeras no llevaban ninguno —y son
+> el 84% de lo que se carga. Se había acotado lo que se sobrescribe, que por eso no crece.
+>
+> **`gotchas` lleva tope TOTAL, y es nuevo.** El manual le ponía ~150-200 líneas **por sección** y
+> nada al conjunto, así que un doc podía crecer **añadiendo secciones** sin violarlo jamás. Medido el
+> **2026-08-12** en el repo del propio marco: **487 líneas en 13 secciones, ninguna por encima de 122**
+> —conforme en todas— y aun así **el 64% de todo lo que se carga al arrancar**. Los tres primeros roles de esta
+> tabla los importa la puerta: **su suma es el precio de cada sesión**, y es el único sitio donde
+> podar abarata algo.
+>
 > **El último no es de tu proyecto: es del kit, y está aquí porque faltaba.** El marco ponía tope a lo
 > que el adoptante escribe y ninguno a lo que él mismo distribuye. Medido: `SKILL.md` llegó a **1845
 > líneas (~37 700 tokens)** creciendo de forma monótona —de veinticinco cambios seguidos, ninguno lo
