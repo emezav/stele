@@ -450,22 +450,28 @@ con el mismo tokenizador, comprobando primero que reproduce las tres cifras sell
 | Conjunto | Qué es | Tokens | Corpus |
 | --- | --- | --- | --- |
 | lo que mide la tabla | `SKILL.md` + `abrir` + `cerrar` | 12 699 | `7ce11a9` |
-| lo que impone el kit al adoptar | la puerta + las 4 plantillas del set de arranque | 4 781 | `7ce11a9` |
-| el arranque real de un proyecto vivo | los 4 imports de la puerta, en este repo | **16 660** | **sin sellar** |
+| lo que **pesan** las plantillas del set de arranque | la puerta + las 4, tal como se distribuyen | 4 781 | `7ce11a9` |
+| lo que el adoptante **paga** al bootstrapear | esas mismas, sin los comentarios de instrucción | **3 167** | `7ce11a9` |
+| el arranque real de un proyecto vivo | los 4 imports de la puerta, en este repo | **16 013** | **sin sellar** |
 
-**La tercera fila no se puede sellar, y eso es parte del hallazgo.** Sus cuatro ficheros son los docs de
-trabajo de la instancia, que **no están versionados**: no hay commit que los identifique, así que la
-cifra es de un día y no de un estado —medida el **2026-08-12**, sobre este repo, y envejecerá sin que
-nada avise. Es exactamente lo que la hacía invisible: **el corpus caro es el que ninguna herramienta
-puede fijar**, y por eso la tabla acabó midiendo el barato.
+**La fila del arranque real no se puede sellar, y eso es parte del hallazgo.** Sus cuatro ficheros son
+los docs de trabajo de la instancia, que **no están versionados**: no hay commit que los identifique,
+así que la cifra es de un instante y no de un estado —medida **al cerrar la sesión 108, el
+2026-08-12**— y envejecerá sin que nada avise. Es exactamente lo que la hacía invisible: **el corpus
+caro es el que ninguna herramienta puede fijar**, y por eso la tabla acabó midiendo el barato.
 
-**Ficheros en común entre el primero y el tercero: cero.** No se solapan poco: son conjuntos
-**disjuntos**. La puerta importa `entry`, `gotchas`, `state` y `handover`; `abrir.md` declara en su
-primera línea que se lee bajo demanda; y ni la plantilla de la puerta ni la del `entry` nombran
+**Ficheros en común entre la fila de la tabla y la del arranque real: cero.** No se solapan poco: son
+conjuntos **disjuntos**. La puerta importa `entry`, `gotchas`, `state` y `handover`; `abrir.md` declara
+en su primera línea que se lee bajo demanda; y ni la plantilla de la puerta ni la del `entry` nombran
 `SKILL.md` una sola vez. La consecuencia práctica es la que duele: **podar el enrutador o el ritual de
 cierre —lo que este documento venía proponiendo— no bajaría el arranque ni un token.**
 
-**Lo que sí lo baja es curar el `gotchas`**, que en este repo es el 64% del total. Por eso la tabla de
+<!-- Las dos frases de arriba decían "la tercera fila" y "el primero y el tercero", y las rompió
+     AÑADIR una fila a la tabla en la sesión 109: los ordinales pasaron a apuntar a la fila nueva.
+     Misma ley que "mover prosa rompe sus deícticos", por inserción en vez de por movimiento. Por eso
+     ahora las filas se nombran y no se numeran. -->
+
+**Lo que sí lo baja es curar el `gotchas`**, que en este repo es el 60% del total. Por eso la tabla de
 presupuestos de más arriba ganó una columna y un tope: el arranque no se abarata donde es cómodo
 medirlo, sino donde está la masa.
 

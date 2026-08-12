@@ -7,37 +7,58 @@ agnóstico de dominio (sirve para software y para trabajo no-software: materiale
 investigación) + módulos que añaden disciplinas específicas + una capa de config.
 
 **"Acotado" con un número, porque una promesa sin cifra no se puede comprobar.** Y con sus
-condiciones al lado, porque **lo que se paga cada sesión depende del layout**:
+condiciones al lado, porque **lo que se paga cada sesión depende del layout**. Todo lo de abajo está
+medido contra **`77db161`** con `tiktoken`/`o200k_base` sobre `git cat-file`; sin ese identificador
+estas cifras serían un contador, no una medición.
 
 - **Layout vendorizado (`.stele/` + loader, el default): lo que se paga siempre es el *set de
-  arranque*, no el kit.** Son el loader y los cuatro docs que importa: **~3 900 tokens** en un
-  proyecto recién bootstrapeado. `SKILL.md` cuesta **cero** — medido en seis sesiones reales de un
-  agente que no es Claude Code, ninguna lo abrió.
+  arranque*, no el kit.** Son el loader y los cuatro docs que importa: **~3 200 tokens** en un
+  proyecto recién bootstrapeado — las plantillas pesan 4 781, de los que **1 614 son comentarios de
+  instrucción que bootstrap consume** y no deja en disco. `SKILL.md` cuesta **cero**, y desde 2026-08-12
+  se sabe **por qué**: la puerta importa `entry`, `gotchas`, `state` y `handover`, y **no lo nombra**.
+  Antes era una observación de campo —seis sesiones reales de un agente que no es Claude Code, ninguna
+  lo abrió—; ahora es una propiedad de la plantilla.
 - **Layout `skill` (`.claude/skills/stele`):** invocar `/stele` carga el enrutador entero,
-  **~4 500 tokens**. Antes de partirlo por ritual eran **~36 200**; los rituales caros ya no viajan
-  con él — auditar cuesta sus ~12 400 solo la sesión que audita. El reparto está en `guide.md`.
+  **5 703 tokens**. Antes de partirlo por ritual eran **~36 200**; los rituales caros ya no viajan con
+  él — auditar cuesta **38 559** y solo los paga la sesión que audita (`auditar.md` son 16 314 de esos;
+  el resto es `verificar.md`, que se lee con él). El reparto está en `guide.md`.
 
-**El set de arranque crece con el proyecto, y ese es el número que hay que vigilar.** Las ~3 900 son
+> **Y una cifra de aquí engañaba, así que va con su corrección dentro.** Este párrafo decía que auditar
+> cuesta *"sus ~12 400"*, y **auditar de verdad son 38 559**: lo que se lee al auditar son `auditar.md`
+> **y** `verificar.md`, porque las leyes de comprobación viven aparte desde que se midió que las
+> necesitaba igual quien cierra una sesión o contesta una carta. La cifra vieja no estaba solo
+> caducada —que también, un +32%—: **nombraba un fichero donde la operación usa dos**, y eso es un
+> tercio del coste real. Es la clase que este marco llama *el sello de una cifra certifica que sigue
+> viva, no que sea la cifra de lo que dices*.
+
+**El set de arranque crece con el proyecto, y ese es el número que hay que vigilar.** Las ~3 200 son
 el suelo de un proyecto nuevo; en la instancia con la que se desarrolla este marco eran **~10 400 tras
-57 sesiones** y son **16 660 tras 108** (medido el 2026-08-12). El kit no crece —es de tamaño fijo—;
-crecen los docs de la instancia.
+57 sesiones** y son **16 013 tras 108**. El kit no crece —es de tamaño fijo—; crecen los docs de la
+instancia.
 
 **Y este párrafo decía que los que crecían eran `latest` y `handover`, *"por eso el manifiesto les pone
-presupuesto"*. Era falso, y el presupuesto salió de ahí.** Repartido ese mismo arranque de 16 660:
+presupuesto"*. Era falso, y el presupuesto salió de ahí.** Repartido ese arranque, **medido al cerrar
+la sesión 108 el 2026-08-12**:
 
 ```text
-gotchas   10 690   64%   sin tope total hasta hoy
-entry      3 291   20%   sin tope hasta hoy
-state      1 964   12%   con tope desde el principio
-handover     210    1%   con tope desde el principio
+gotchas    9 562   60%   sin tope total hasta esa sesion
+entry      3 291   21%   sin tope hasta esa sesion
+state      2 314   14%   con tope desde el principio
+handover     341    2%   con tope desde el principio
 puerta       505    3%   generada
 ```
 
-**Los dos que llevaban presupuesto son el 13% del total.** Se acotó lo que era fácil de acotar —dos
+**Los dos que llevaban presupuesto son el 17% del total.** Se acotó lo que era fácil de acotar —dos
 docs de formato fijo, que se sobrescriben y por eso no crecen— y quedó libre justo el que crece por
 acumulación. No fue un descuido de cifras: **la frase que justificaba el presupuesto nombraba mal a su
 sujeto**, y mientras siguiera en pie nadie iba a buscar el tope que faltaba. Corregido: `gotchas` y
 `entry` tienen tope en `guide.md`, y su tabla marca cuáles importa la puerta.
+
+**Este bloque lleva instante y no solo fecha, y es por un fallo propio.** Su primera versión se
+escribió a mitad de la sesión 108 con `gotchas` en 10 690, y **la misma sesión podó ese fichero una
+hora después**: nació caducado. `state` y `handover` además **fluctúan dentro de una sesión** —un
+checkpoint abierto multiplica el `handover` por cinco—, así que un reparto exacto aquí volverá a
+envejecer. Lo que no envejece es la **proporción**: el que no tenía tope es el que domina.
 
 > **El nombre.** Una *estela* (gr. στήλη) es la piedra erguida e **inscrita** que deja un registro
 > perdurable para quien viene después. Es justo lo que hace este marco entre sesiones: inscribir el
