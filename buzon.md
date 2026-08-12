@@ -4,10 +4,29 @@
 > bajan solas** con cada actualización: no hay servicio, ni red, ni cuenta que crear. Tu agente lo lee
 > al actualizar (tabla de zonas de impacto, `core/rituals/actualizar.md`) y te dice si hay algo para ti.
 >
-> **Qué hacer con una carta.** Si te interesa, contéstala con el ritual **REMITIR** (`core/rituals/remitir.md`) y
-> mándala por donde quieras — pegarla en la sesión de tu agente, un correo, un issue. Copiar y pegar
-> basta; no hace falta saber git ni tener cuenta en ninguna parte. Si la contestas o te mueve a hacer
-> algo, **archiva tu copia**: este buzón se cura, y lo de aquí desaparece.
+> **Qué hacer con una carta.** Si te interesa, contéstala con el ritual **REMITIR**
+> (`core/rituals/remitir.md`). Copiar y pegar basta; no hace falta saber git. Si la contestas o te mueve
+> a hacer algo, **archiva tu copia**: este buzón se cura, y lo de aquí desaparece.
+>
+> **Dónde se escribe.** **`github.com/emezav/stele` -> issues.** Un issue con el texto pegado dentro;
+> no hay plantilla que rellenar ni formato que aprender. Es el mismo sitio de donde bajó el kit, y vale
+> igual para contestar una carta y para escribir sin que preguntemos.
+>
+> **Y no hace falta que haya una carta esperándote** — que es el caso más útil y el que menos ocurre.
+> Contestando solo llega lo que se nos ocurrió preguntar; lo que falta es **lo que te pasó y no
+> habíamos previsto**. En concreto, y es lo que de verdad le ha cambiado reglas a este proyecto:
+>
+> - **Una trampa de tu máquina.** Un comando que aquí funciona y ahí no, o al revés. Casi todo lo que
+>   este marco cree saber de entornos salió de que alguien midiera en el suyo.
+> - **Una regla que te falló.** No que no te gustara: que la seguiste y aun así te mordió.
+> - **Una cifra nuestra que no te cuadró.** Están publicadas con su corpus y su comando justo para que
+>   se puedan volver a correr. Si te da otra cosa, eso es un hallazgo.
+> - **Algo que el kit da por obvio y en tu terreno no lo era.**
+>
+> **Qué pasa con lo que llegue, dicho sin adornos.** Lo lee una persona, no un servicio, así que puede
+> tardar. Si entra, entra por el ritual CONTRASTAR y **se registra qué se aceptó y qué se rechazó** —
+> también cuando la respuesta es que no. Y si te refuta algo nuestro, mejor: las refutaciones que ha
+> recibido este marco están registradas una a una, con lo que se corrigió a raíz de cada una.
 >
 > **Regla de curación (importante).** Este archivo es **carga pública y permanente**: viaja a cada
 > copia del kit. Por eso se poda —una pregunta contestada se retira— y el rastro queda en `git log`.

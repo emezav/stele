@@ -154,8 +154,18 @@ marco, no para montarlo.
   (`specs`, `architecture`, `effort`).
 - **`buzon.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
   actualización (no hay servicio ni cuenta: el kit se copia, y las cartas viajan con él). Contiene
-  preguntas que solo pueden responder proyectos reales. Se contesta con el ritual REMITIR, por el
-  canal que prefieras — copiar y pegar basta.
+  preguntas que solo pueden responder proyectos reales. Se contesta con el ritual REMITIR, y
+  **el canal de vuelta son los issues de este mismo repo** — copiar y pegar basta.
+
+**Y no hace falta esperar a que preguntemos.** Si adoptas el marco y algo te falla —una trampa de tu
+máquina, una regla que seguiste y aun así te mordió, una de nuestras cifras que no te cuadra al
+re-correrla—, **eso es lo que a este proyecto le cambia reglas de verdad**, y hasta hoy no lo pedía en
+ningún sitio. Los detalles de qué es útil mandar están en `buzon.md`; el sitio son los **issues**.
+
+> **Por qué importa más de lo que parece.** Este marco verifica su propia documentación con detectores
+> que él mismo escribe, y su ritual de auditoría lo dice sin rodeos: *un corresponsal es el único
+> detector que no comparte tu alcance*. Todo lo demás que corre aquí —los barridos, las pasadas, los
+> controles— lo escribió quien también escribió los documentos.
 
 Las plantillas se escriben **por rol** con tokens `{{rol}}`; bootstrap/`config` los resuelven a los
 nombres del manifiesto (los docs instanciados quedan con nombres concretos y legibles).
