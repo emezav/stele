@@ -220,6 +220,25 @@ mismo y no caduca; quien quiera el número lo cuenta en la tabla, que es su úni
 sustantivos con número sigue sirviendo para lo ya escrito — para lo que escribes hoy, la solución es
 de **forma**, no de atención.
 
+**Y el contador tiene un hermano que ningún barrido de números encuentra: el SUPERLATIVO.** *"El
+archivo más caro"*, *"el único que hace X"*, *"el más largo"* **no llevan cifra**, así que los patrones
+de arriba pasan de largo — y sin embargo afirman exactamente lo mismo: **una posición en una lista que
+sigue moviéndose**. Un contador caduca cuando la lista crece; un superlativo caduca cuando **cualquier
+elemento cambia de tamaño**, que pasa mucho más a menudo y sin tocar la lista.
+
+**Caso propio, y el más barato de reconocer:** un `README` afirmaba que cierto documento era *"el
+archivo más caro del kit"*. Era cierto el día que se escribió; después se partió otro fichero en dos y
+el afirmado pasó a ser **el tercero**, sin que nadie tocara esa línea ni esa lista tuviera un número en
+ningún sitio. **El mismo cambio que lo volvió falso es el que se hizo para mejorar el marco.**
+
+> **Un superlativo es un contador con otra forma: sustitúyelo por la comparación que lo sostiene.**
+> *"Pesa más que la instalación entera"* se comprueba con dos números y sigue siendo cierto o
+> visiblemente falso; *"el más caro"* exige recorrer una lista que nadie recorre.
+
+Su detector va abajo, con los de contadores, y es igual de ruidoso: sus falsos positivos son
+superlativos **sobre cosas que no son listas** (*"el caso más incómodo"*, *"el paso más caro"*), así
+que sus aciertos se revisan uno a uno como los demás.
+
 **Y el límite, que importa tanto como la regla: esto NO alcanza a los números que son parte del
 concepto.** *"Las tres rutas"* no es un contador: son tres por diseño, la cardinalidad es un invariante
 y cambiarla sería otro marco. *"Las ocho clases"* sí lo era: esa lista ya creció antes y volverá a
@@ -325,6 +344,20 @@ grep -rhoE "\bv?[0-9]+\.[0-9]+\.[0-9]+\b" {base} --include="*.md" | sort -u  # v
 # clase 1 — contadores en prosa, que son copias de la longitud de una lista
 grep -rniE "\b(los|las) (dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez) [a-záéíóúñ]+" {base} --include="*.md"
 grep -rniE "\b(ambos|ambas|el único|la única|los únicos|las únicas)\b" {base} --include="*.md"
+
+# clase 1 — el SUPERLATIVO, hermano del contador y sin cifra que buscar. Afirma una
+# posición en una lista y caduca cuando cualquier elemento cambia de tamaño, no solo
+# cuando la lista crece.
+# EL GRUPO OPCIONAL DEL MEDIO NO SOBRA, y su ausencia rompió la primera versión de
+# este detector: el caso que lo motivó es "el ARCHIVO más caro del kit", con un
+# sustantivo entre el artículo y el "más", y sin ese grupo daba CERO sobre su propio
+# caso de campo. Lo cazó el control positivo, que es exactamente su oficio.
+# CONTROLES, con su valor esperado: "el archivo más caro del kit" -> 1;
+#   "el más caro de los tres" -> 1;  "esto no lleva superlativo" -> 0.
+grep -rniE "\b(el|la|los|las)( [a-zá-úñ]+)? m(a|á)s [a-zá-úñ]+ (de|del) " {base} --include="*.md"
+#   ...y para cada acierto, preguntar si el sustantivo es un elemento de una LISTA
+#   (fichero, ritual, doc) o de algo que no lo es ("el caso más incómodo"). Solo lo
+#   primero es candidato; lo segundo es el ruido esperado.
 
 # clase 1 — el reverso del contador: PUNTEROS AUSENTES. Al quitar el número, la forma
 # correcta y la forma del fallo son IDÉNTICAS ("las clases de drift" está bien si la lista
