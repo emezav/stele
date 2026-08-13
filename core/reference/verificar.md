@@ -31,6 +31,14 @@ grep -cF  'comando + patr'    -> 1
 CONTROL   grep -c 'corpus'    -> 56 / 53 en las dos revisiones, en las dos maquinas
 ```
 
+> **AVISO AL BARRIDO: el bloque de arriba cita el patrón erróneo LITERAL, a propósito** — la lección
+> consiste en ver la misma cadena dar 0 y 1 según la bandera, así que describirla en vez de citarla la
+> destruye. Si un detector tuyo busca ese patrón, lo encontrará **aquí, dentro de la sección que lo
+> desmiente**: es un hallazgo cierto e inútil, y esta línea existe para que lo descartes en un segundo.
+> **Y ojo al buscarlo: `grep` sin `-F` usa el patrón malo para buscar el patrón malo y devuelve CERO.**
+> Lo aportó `plataforma_iot` (*describe la corrección, no la cites*); aquí se re-derivó a **declararlo**,
+> porque en prosa no se puede generar un hogar desde otro, pero sí avisar.
+
 **Las dos cifras salen en la misma máquina.** Lo que las separa es `-E`, una bandera que el bloque
 publicado no llevaba: decía `patron:` y decía la verdad. **No faltaba una cuarta pieza — falló la
 primera.** Si el comando hubiera viajado entero, la medición se re-corre.
