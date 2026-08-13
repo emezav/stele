@@ -746,6 +746,49 @@ deja pasar un artefacto roto en verde**, y eso no se distingue de un control que
 con diacríticos y probado con un control **sin** diacríticos pasa en verde y no mide nada. El control
 positivo tiene que llevar **la forma acentuada**, que es la que el corpus usa de verdad.
 
+## Un control corre sobre el PRODUCTO de un instrumento, así que puede acusar al trabajo
+
+**La ley de arriba dice que dudes de la expectativa. Esta dice que dudes del material.** Un control de
+integridad no compara el trabajo con la realidad: compara **lo que la tubería le entrega** con lo que
+esperaba. Si alguna etapa de esa tubería altera el material, el control salta — y lo que señala es el
+trabajo, que estaba bien.
+
+**Caso de campo, y costó diecinueve sesiones.** Había que mover un bloque de secciones dentro de un
+documento. Se hizo con `sed`, y se verificó con un control bueno: la firma del multiconjunto de líneas
+—`md5(sort)`— tiene que ser idéntica, porque mover un bloque **reordena** y no cambia nada más. Dio
+distinto, con líneas que aparecían solo en el original. Se leyó como *contenido perdido*, se abortó el
+cambio, y se dejó escrito en el propio documento que **se intentó y el control lo paró**.
+
+No se había perdido nada. El fichero estaba en CRLF y aquel `sed` **entrega las líneas sin el `\r`**:
+
+```text
+diferencia: 1 833 bytes sobre 1 833 lineas  =  exactamente un byte por linea
+```
+
+**El control era correcto y el instrumento que lo alimentaba, no.**
+
+> **Y esta es la asimetría que la hace cara: un cero falso parece un éxito, pero un falso positivo
+> parece DILIGENCIA.** Nadie audita un control que saltó — saltar es lo que se le pide. Peor: deja un
+> registro escrito —*"se intentó y falló"*— que es exactamente lo que impide que el siguiente lo
+> reintente. Un cero falso te deja creyendo que terminaste; un falso positivo te deja **creyendo que te
+> salvaste**, y encima documentado.
+
+**Lo accionable es una corrida más, y es barata: la IDENTIDAD.** Pasa el material por la **misma
+tubería** sin hacer el cambio, y comprueba que el control da verde:
+
+| Corrida | Qué dice si falla |
+| --- | --- |
+| **identidad** — misma tubería, cambio nulo | La tubería altera el material. **No es tu trabajo** |
+| **el cambio real** — con la identidad ya en verde | Ahora sí: el fallo es del trabajo |
+
+En el caso de arriba, la corrida identidad habría fallado igual, y el diagnóstico habría costado un
+minuto en vez de diecinueve sesiones.
+
+**Y hay un atajo de lectura, para el momento en que el control ya saltó: mira la DIFERENCIA antes que
+el trabajo.** Una diferencia que es un múltiplo exacto del número de líneas, de unidades o de ficheros
+no es pérdida de contenido: es una **transformación por unidad**, y las transformaciones por unidad las
+hace la tubería, no el cambio que estabas haciendo.
+
 ## Las alternativas de un patrón son su lista de distinciones, y se cuentan
 
 **El patrón es el código.** Una alternación `a|b|c` lleva tres distinciones igual que tres ramas, así

@@ -172,6 +172,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un control negativo deja de separar cuando su cadena entra al corpus*
 - *`git log` no data un proyecto: data un repositorio*
 - *Y comprueba el valor esperado del control, no solo su resultado*
+- *Un control corre sobre el PRODUCTO de un instrumento, así que puede acusar al trabajo*
 - *Las alternativas de un patrón son su lista de distinciones, y se cuentan*
 - *Un detector no monótono no mide el defecto: mide la forma del corpus*
 - *Una tasa alta de falsos positivos protege al fallo que la causa*
