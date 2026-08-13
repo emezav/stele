@@ -21,6 +21,50 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 - **Nada se reescribe en silencio.** Los errores se aplican tras confirmación en bloque; las
   preferencias se preguntan una a una.
 
+## Lo mínimo para ejecutarlo
+
+> **Contrato de este bloque: si solo lees esto, auditas sin cometer ninguno de los fallos que el resto
+> del ritual documenta.** Si uno se te escapa habiéndolo leído, **el que está mal cortado es el bloque**.
+> Este es el ritual más caro del kit: lo de abajo se abre **por pregunta**, nunca entero.
+
+**Los seis pasos:**
+
+1. **Delimitar el alcance y decirlo en una línea ANTES de leer nada.** El eje es **qué documentos**
+   entran, no qué rango de sesiones — el rango describe **cobertura temporal**, y sirve para saber qué
+   quedó fuera, no para acotar el trabajo. Si sale caro, el momento de acotar es **ese**.
+2. **Barrer** con los detectores. Lo que sale es un **candidato**, no un hallazgo.
+3. **Verificar** cada candidato. Aquí se va el grueso. Un hallazgo entra al informe **solo con
+   evidencia**: dos punteros que se contradicen. Sin evidencia es **sospecha**, va aparte y **no se
+   aplica**.
+4. **Clasificar** por clase de drift.
+5. **Aplicar** lo aceptado, cada cosa en su hogar y **con su procedencia**.
+6. **Segunda pasada, obligatoria** — y **registrar la fila** con su denominador.
+
+**Las siete que se saltan.** Cada una tiene su cadáver abajo:
+
+| Situación | La regla |
+| --- | --- |
+| Vas a escribir `archivo:línea` en un registro **inmutable** | **Di de quién es el fichero.** El 30% de las referencias podridas nunca dijo su raíz, y eso sí es evitable entero |
+| Un detector devuelve **cero** | No vale nada **sin su control positivo**, y el control lleva su **valor esperado** escrito |
+| Vas a corregir una afirmación en un doc **ya archivado** | **Se marca la puerta, no la afirmación.** Es O(1); marcar cada una es O(n) y se pudre |
+| El barrido dio muchos candidatos | El alcance es el **TECHO**: ninguna segunda pasada lo sube. Lo que quedó fuera **se dice en la fila** |
+| Vas a poner una cifra en el informe | `Comprobadas` es el **denominador**. Sin él, dos auditorías con los mismos hallazgos son indistinguibles |
+| El usuario decide **no** cambiar algo | Es un **acuerdo**, no un pendiente. Se registra como tal y no se vuelve a proponer |
+| Vas a fiarte del recorte que te trajo aquí | **Cautela 0: vuelve a la fuente.** El recorte no es el corpus |
+
+**Dónde está el resto.** Se abre por **pregunta**, nunca entero:
+
+| Si te preguntas… | Sección |
+| --- | --- |
+| ¿Qué entra y qué queda fuera? | *Alcance* |
+| ¿Cómo se comprueba algo? | **No está aquí**: `core/reference/verificar.md`, y su lista de títulos en *Las leyes de verificación viven aparte* |
+| ¿De qué clase es este defecto? | *Las clases de drift* |
+| ¿Con qué barro? | *Detectores* — y *El séptimo detector* para comprobar contra el mundo |
+| ¿Mi detector sirve en otro idioma? | *Los detectores frente al idioma* |
+| ¿Por qué una segunda pasada? | *Segunda pasada (obligatoria)* |
+| ¿Qué forma tiene el informe? | *Informe (forma fija)* |
+| ¿Cuándo toca auditar? | *Cadencia* |
+
 ## Alcance (qué se relee, y qué no)
 
 Releer todo en cada auditoría no escala. Default = **incremental**:
@@ -701,80 +745,63 @@ Su hogar es la sección *Detectores de auditoría* de `protocol`, **no el manifi
 larga y viva, no un parámetro. Y **no van en *Acuerdos de auditoría***, que es otra cosa — allí viven
 decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no cambiar nada.
 
-## Fases
+## Lo que cada fase esconde
 
-1. **Delimitar** el alcance y decirlo en una línea *antes* de leer nada. **El eje es el conjunto de
-   documentos, no el rango de sesiones:** pasada cierta escala el rango deja de acotar —un proyecto de
-   265 sesiones puede tener una lista de arranque de seis docs— y lo que hace tratable la auditoría es
-   elegir *qué documentos* entran (los de superficie comprobable, los que más rápido caducan). El
-   rango describe **cobertura temporal**: sirve para saber qué quedó fuera, no para acotar el trabajo.
-   Si sale caro, el momento de acotar es ese, no después.
-2. **Barrer** con los detectores. Lo que sale es un **candidato**, no un hallazgo.
-3. **Verificar** cada candidato. Aquí se va el grueso del coste. Un hallazgo entra al informe **solo
-   con evidencia**: dos punteros que se contradicen (`archivo:línea` de la afirmación + el
-   `archivo:línea`, comando o hecho que la desmiente). Sin evidencia es **sospecha** — va aparte y no
-   se aplica.
+**Las fases están arriba y no se repiten aquí.** Esto es lo que el imperativo no cabe decir.
 
-   **Y esa evidencia se pudre, por construcción y sin remedio posterior.** `archivo:línea` es la forma
-   correcta **y es un puntero**: el número envejece en cuanto el fichero cambia. Aquí es peor que en
-   otros sitios porque **se escribe dentro de registros inmutables** —el acta, el informe, la carta
-   entregada—, así que **no hay dónde corregirla**. Lo aportó un corresponsal con su medida (tres de
-   seis rangos ya no contenían lo señalado); medido el 2026-08-09 sobre 60 referencias de los registros
-   inmutables de la instancia que lo halló, **solo el 42% resolvía todavía**. Y las que fallaban lo
-   hacían por **tres causas distintas**, que conviene no mezclar:
+**Y esa evidencia se pudre, por construcción y sin remedio posterior.** `archivo:línea` es la forma
+correcta **y es un puntero**: el número envejece en cuanto el fichero cambia. Aquí es peor que en
+otros sitios porque **se escribe dentro de registros inmutables** —el acta, el informe, la carta
+entregada—, así que **no hay dónde corregirla**. Lo aportó un corresponsal con su medida (tres de
+seis rangos ya no contenían lo señalado); medido el 2026-08-09 sobre 60 referencias de los registros
+inmutables de la instancia que lo halló, **solo el 42% resolvía todavía**. Y las que fallaban lo
+hacían por **tres causas distintas**, que conviene no mezclar:
 
-   | Causa | Qué pasó | ¿Evitable al escribir? |
-   | --- | --- | --- |
-   | **Podrida** (22%) | El fichero está, la línea ya no | Solo en parte: anclar en el identificador |
-   | **Renombrada** (7%) | El fichero cambió de nombre | Ya lo cubre la nota de equivalencia del índice |
-   | **Sin raíz** (30%) | La referencia **nunca dijo de quién era el fichero** | **Sí, entera** |
+| Causa | Qué pasó | ¿Evitable al escribir? |
+| --- | --- | --- |
+| **Podrida** (22%) | El fichero está, la línea ya no | Solo en parte: anclar en el identificador |
+| **Renombrada** (7%) | El fichero cambió de nombre | Ya lo cubre la nota de equivalencia del índice |
+| **Sin raíz** (30%) | La referencia **nunca dijo de quién era el fichero** | **Sí, entera** |
 
-   <!-- OJO A ESE 30%: es del test INTUITIVO, que sobre-marca. Con el test correcto -unas lineas mas
+<!-- OJO A ESE 30%: es del test INTUITIVO, que sobre-marca. Con el test correcto -unas lineas mas
         abajo- la misma categoria queda en 10 de 62 (16%). Las dos cifras son de la misma medicion de
         2026-08-09 y NO CUADRAN entre si: el denominador aparece como 60 aqui y como 62 alli. No se
         arbitra cual vale porque el corpus de entonces ya no existe; lo que vale es el TEST, que si
         esta explicado. Detectado por la auditoria 10 y anotado en vez de inventado. -->
 
-   **La tercera no está podrida: nació irresoluble**, y es la mitad del problema. Casi todas eran
-   citas a ficheros de **otro proyecto** (`main.go:33`), inequívocas para quien las recibía y opacas
-   para el archivo propio desde el primer día. Es la misma forma que la **cita ambigua**: un puntero
-   sin raíz vale lo mismo que un título que vive en dos ficheros.
+**La tercera no está podrida: nació irresoluble**, y es la mitad del problema. Casi todas eran
+citas a ficheros de **otro proyecto** (`main.go:33`), inequívocas para quien las recibía y opacas
+para el archivo propio desde el primer día. Es la misma forma que la **cita ambigua**: un puntero
+sin raíz vale lo mismo que un título que vive en dos ficheros.
 
-   Así que la evidencia se escribe con **tres piezas, y las dos primeras no caducan**: **de quién es
-   el fichero** (repo o proyecto, si no es el propio), **el identificador** del commit, y el
-   `archivo:línea` **como pista**, no como ancla. Lo ya escrito **no se corrige** —es registro— y por
-   eso esto solo protege hacia adelante.
+Así que la evidencia se escribe con **tres piezas, y las dos primeras no caducan**: **de quién es
+el fichero** (repo o proyecto, si no es el propio), **el identificador** del commit, y el
+`archivo:línea` **como pista**, no como ancla. Lo ya escrito **no se corrige** —es registro— y por
+eso esto solo protege hacia adelante.
 
-   **Y el test de si una referencia nombra su raíz NO es "¿lleva directorio?".** Es **cuántos ficheros
-   casan con ese nombre**: uno solo = puntero válido aunque vaya abreviado; **cero o varios = no es un
-   puntero**. Importa porque la versión intuitiva sobre-marca: al construir el detector, *"sin
-   directorio = sin raíz"* dio **2,4 veces** los aciertos reales — marcaba `bootstrap.md:107`, que es
-   **único** en el árbol y resuelve solo. Con el test correcto quedaron **10 de 62 (16%)** —medido el
-   2026-08-09 sobre los registros de la instancia que lo halló, que hoy son más de 100: **es una foto,
-   no un ratio vigente**—, y las diez
-   son la misma forma: **citar el fichero de OTRO proyecto sin decir que es suyo**.
+**Y el test de si una referencia nombra su raíz NO es "¿lleva directorio?".** Es **cuántos ficheros
+casan con ese nombre**: uno solo = puntero válido aunque vaya abreviado; **cero o varios = no es un
+puntero**. Importa porque la versión intuitiva sobre-marca: al construir el detector, *"sin
+directorio = sin raíz"* dio **2,4 veces** los aciertos reales — marcaba `bootstrap.md:107`, que es
+**único** en el árbol y resuelve solo. Con el test correcto quedaron **10 de 62 (16%)** —medido el
+2026-08-09 sobre los registros de la instancia que lo halló, que hoy son más de 100: **es una foto,
+no un ratio vigente**—, y las diez
+son la misma forma: **citar el fichero de OTRO proyecto sin decir que es suyo**.
 
-   **Y es el mismo test que la cita ambigua**, unas líneas más arriba: allí un título de sección, aquí
-   un nombre de fichero. **Un nombre que resuelve a cero o a más de un sitio no es un puntero**, y en
-   los dos casos hay lista contra la que comprobarlo.
+**Y es el mismo test que la cita ambigua**, unas líneas más arriba: allí un título de sección, aquí
+un nombre de fichero. **Un nombre que resuelve a cero o a más de un sitio no es un puntero**, y en
+los dos casos hay lista contra la que comprobarlo.
 
-   **Y hay un tercer eje, que lo cierra: la REVISIÓN.** Si un título puede vivir en más de un fichero y
-   un nombre en más de un sitio, **una línea vive en más de una revisión — y todas lo hacen**. Aporte
-   de campo, y con el caso encima: una carta citaba *"el em-dash está en `main.go:18`"* dentro del
-   párrafo que fijaba que el defecto venía de la **primera** versión, donde esa línea es la **12**. No
-   era falso: era **ambiguo**, y cada mitad correcta por separado.
+**Y hay un tercer eje, que lo cierra: la REVISIÓN.** Si un título puede vivir en más de un fichero y
+un nombre en más de un sitio, **una línea vive en más de una revisión — y todas lo hacen**. Aporte
+de campo, y con el caso encima: una carta citaba *"el em-dash está en `main.go:18`"* dentro del
+párrafo que fijaba que el defecto venía de la **primera** versión, donde esa línea es la **12**. No
+era falso: era **ambiguo**, y cada mitad correcta por separado.
 
-   Eso reencuadra lo de arriba y conviene decirlo así: **una cita sin revisión no envejece, nace sin
-   decir de qué habla.** Solo *parece* envejecer porque el fichero se mueve debajo. Por eso el ancla es
-   el identificador y el número es la pista — no como mitigación del paso del tiempo, sino porque **sin
-   revisión la referencia nunca señaló nada en concreto**.
-4. **Informar** con la forma fija de abajo, separando errores de preferencias, y **con el
-   denominador**. Si la proporción de falsas es baja, dilo: *"la documentación está sana"* es un
-   resultado válido, y **descartar la hipótesis de partida es un hallazgo**, no una auditoría fallida.
-5. **Aplicar** tras confirmación: los errores en bloque, las preferencias una a una.
-6. **Segunda pasada** (obligatoria, ver abajo).
-7. **Registrar**: fila en `audit`, acuerdos a su hogar, y lo aplicado contado en el `session` de la
-   sesión que auditó. Lo que perdura va a su hogar, como en cualquier cierre.
+Eso reencuadra lo de arriba y conviene decirlo así: **una cita sin revisión no envejece, nace sin
+decir de qué habla.** Solo *parece* envejecer porque el fichero se mueve debajo. Por eso el ancla es
+el identificador y el número es la pista — no como mitigación del paso del tiempo, sino porque **sin
+revisión la referencia nunca señaló nada en concreto**.
 
 ## Segunda pasada (obligatoria)
 

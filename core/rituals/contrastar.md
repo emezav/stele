@@ -14,6 +14,60 @@ fuera —pero es la **salida**—. Ninguno maneja una **entrada de fuera**. Es l
 consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
 producto y viaja a todos— y es la única que no tenía procedimiento.
 
+## Lo mínimo para ejecutarlo
+
+> **Contrato de este bloque: si solo lees esto, procesas la carta sin cometer ninguno de los fallos que
+> el resto del ritual documenta.** Si uno se te escapa habiéndolo leído, **el que está mal cortado es el
+> bloque**. Lo de abajo es el **porqué**, y se abre por pregunta.
+
+**Antes de leerla con atención:** ¿es un **informe externo**? Hace falta un **caso** —algo que pasó en un
+terreno real—. Una idea, una preferencia o una petición de funcionalidad **no lo son**.
+
+**Fase 0, la que se salta y sale cara:**
+
+- **¿Ya llegó?** Búscala por un **token distintivo** —un número raro, un comando literal—, **nunca por
+  su número de carta**: cada proyecto numera el suyo. Si aparece, **diffea**: idéntica = ya procesada,
+  párate; distinta = procesa **el delta**.
+- **¿Está al día el estado de la tuya?** Si esta carta responde a una tuya, la tuya tiene que figurar
+  **entregada**. Y ese estado se lee **de la COLUMNA**, partiendo por `|` y anclando al principio —
+  **nunca buscando la palabra en la fila**, cuya prosa menciona estados de otras cartas.
+- **Y esa lectura lleva control positivo**, como cualquier detector: una fila que sabes entregada tiene
+  que leerse entregada. Sin él, la sonda no mide nada.
+
+**Después, en orden:**
+
+1. **Clasificar** cada afirmación en tres, porque no se tratan igual: **sobre tu trabajo** (se verifican
+   **todas**, con `archivo:línea`), **sobre el proyecto que reporta** (bajo palabra, y **se marcan como
+   tales**), y **propuestas** (no se verifican: se deciden, al final).
+2. **Verificar** las de la primera clase, una a una. Un aporte apoyado en una afirmación falsa sobre tu
+   producto **se cae entero**, por bien argumentado que esté.
+3. **Separar diagnóstico de remedio, y volver a derivar el remedio desde tu diseño.** El diagnóstico
+   viaja; el remedio no, porque **el medio decide qué remedios existen**.
+4. **Nombrar lo que el caso NO valida.** Cuesta un párrafo y es la fase que más ha rendido.
+5. **Aplicar** — y **aplicar no siempre es hoy**: el día del hallazgo es el peor día para tocar el sitio
+   donde vive. Lo que **no** se aplaza es escribir el diagnóstico.
+6. **Archivar, responder y registrar, en ese orden.** La fila va **después** de responder, porque su
+   existencia implica que el circuito se cerró.
+
+**Las cuatro que se saltan:**
+
+| Situación | La regla |
+| --- | --- |
+| Lo que dice **quien trae la carta** (*"esto viene de tal proyecto"*) | Es **una afirmación más**, de la segunda clase. Se marca, y no se construye diseño encima |
+| Algo chirría y se explica porque **el cartero se saltó un paso** | **No es un hallazgo: es ruido del canal.** No se mete en el kit |
+| La cabecera de la carta archivada | **No lleva estado.** Se escribe lo que no cambia, y lo que sí, en pasado y con su fecha |
+| No tienes nada que devolver | **"No aplica" es una respuesta completa.** Fabricar un hallazgo simétrico es peor que el silencio |
+
+**Dónde está el resto.** Se abre por **pregunta**, nunca entero:
+
+| Si te preguntas… | Sección |
+| --- | --- |
+| ¿Por qué no aplico su remedio tal cual? | *La regla central: el diagnóstico viaja, el remedio no* |
+| ¿Esta afirmación de qué clase es? | *Tres clases de afirmación* |
+| ¿Por qué la cabecera no lleva estado? | *La cabecera de una carta archivada no lleva estado* |
+| ¿Tengo que contestar? ¿Y si no tengo nada? | *Responder es una fase, no cortesía* |
+| ¿Esto es un informe o una petición? | *Qué NO es un informe externo* |
+
 ## La regla central: el diagnóstico viaja, el remedio no
 
 Quien reporta tiene el **caso** —lo que pasó de verdad en su terreno, que tú no puedes ver—. Tú tienes
@@ -78,65 +132,45 @@ es la única posición desde la que se ve, porque desde el texto los dos defecto
 **El coste asimétrico es lo que hace la regla obligatoria y no prudente:** una regla nacida de un
 error de canal **viaja a cada adoptante**, y allí no hay cartero ninguno al que corregir.
 
-## Fases
+## Lo que cada fase esconde
 
-0. **¿Ya llegó esta carta?** Antes de leerla con atención, búscala en tu archivo. **Con cartero humano
-   el reenvío es normal** —se pega dos veces, se pega una vieja creyéndola nueva, se reenvía tras una
-   interrupción— y no detectarlo sale caro: reprocesas, **reaplicas hallazgos ya aplicados**, escribes
-   una fila duplicada y, en el peor caso, "descubres" lo mismo dos veces y lo registras como nuevo.
-   Detectarlo cuesta un `grep`.
-   **Busca por un token distintivo —un número raro, un comando literal—, nunca por el número de
-   carta.** Cada proyecto numera **su propio** archivo, así que la "carta 5" de quien escribe puede ser
-   tu carta 8: buscar por número da un falso negativo y te hace reprocesarla entera. Y por token y no
-   por frase, por lo de siempre: los docs llevan ajuste de línea y una oración puede partirse en dos.
-   **Si aparece, diffea antes de decidir.** Idéntica = ya procesada: di dónde está archivada y qué
-   salió de ella, y para. **Distinta = es una revisión**, y entonces lo que importa es el **delta** —
-   procesarla entera de nuevo es tan malo como ignorarla.
-   **Y ya que estás en el archivo, comprueba el estado: si esta carta responde a una tuya, la tuya
-   tiene que figurar como `entregada`.** **Y ese estado se lee de la COLUMNA, no se busca como palabra
-   en la fila:** partir por `|`, tomar el desenlace y anclar al principio, porque la regla dice que el
-   desenlace *empieza* por el estado. Una fila lleva prosa, y su prosa menciona estados de otras
-   cartas — un `grep` de la palabra sobre la fila entera devuelve el estado equivocado sin avisar. Pasó
-   en los dos sentidos en el mismo proyecto: una entrante contada como `redactada` porque su resumen
-   decía *"llegó marcada como redactada"*, y después una saliente contada como entregada porque el suyo
-   mencionaba *"la carta ya entregada"*. **El aviso de la primera estaba escrito dos líneas más arriba
-   y no evitó la segunda, porque describía el caso y no el remedio.**
-   Si dice `redactada`, uno de los dos registros está mal —
-   resuélvelo antes de seguir. Los dos estados **crean** la contradicción, pero no la miran solas: la
-   primera vez que ocurrió la vio el usuario preguntando, y la segunda pasó desapercibida **en el
-   mismo material que se estaba archivando**. Una señal que nadie comprueba no es una señal.
+**Las fases están arriba y no se repiten aquí.** Esto es lo que el imperativo no cabe decir: los
+cadáveres que produjeron cada regla.
 
-   **Y esta lectura lleva control positivo, como cualquier otro detector.** Una fila que sabes
-   entregada tiene que leerse entregada; si no, la sonda no mide nada y su respuesta no vale. Va aquí
-   porque **es el sitio donde se olvidó**: este ritual describió durante siete sesiones **cómo** leer
-   el estado —de la columna, anclando al principio— **sin pedir el control**, y en esas siete sesiones
-   se corrió cada vez sin ponérselo, mientras se le ponía a todo lo demás. Lo preguntó el
-   corresponsal, no lo vio nadie de aquí. **Una comprobación que se describe pero no se exige acaba
-   siendo la única sin control**, precisamente porque parece demasiado simple para necesitarlo.
-1. **Clasificar** las afirmaciones del informe en las tres clases de arriba.
-2. **Verificar** las de la primera clase contra tu trabajo, una a una.
-3. **Separar diagnóstico de remedio** y volver a derivar el remedio. Decide su hogar con las fronteras
-   de siempre: núcleo, módulo, instancia, o nada.
-4. **Nombrar lo que el caso NO valida** y lo que el informe no dice. Un informe describe un terreno;
-   lo que no cubre sigue sin cubrir, y darlo por probado es peor que no haberlo preguntado. Esta fase
-   cuesta un párrafo y es la que más veces ha rendido.
-5. **Aplicar** lo aceptado (con el checkpoint de siempre si toca lo interrumpible) y llevar cada
-   decisión a su hogar **con su procedencia**: de dónde vino y qué caso la respalda.
+**Fase 0, el reenvío.** Con cartero humano el reenvío es normal —se pega dos veces, se pega una vieja
+creyéndola nueva, se reenvía tras una interrupción— y no detectarlo sale caro: reprocesas, **reaplicas
+hallazgos ya aplicados**, escribes una fila duplicada y, en el peor caso, "descubres" lo mismo dos veces
+y lo registras como nuevo. Y se busca por token y no por frase porque los docs llevan ajuste de línea y
+una oración puede partirse en dos.
 
-   **Y aplicar no siempre es hoy: el día del hallazgo es el peor día para tocar el sitio donde vive.**
-   Formulación de un corresponsal, con dos casos y uno de cada lado. Aquí: se midió que un ritual
-   costaba 1,44 sesiones y se decidió **no** escribirle tres reglas más esa misma tarde. Allí:
-   encontraron un agujero en un tipo del núcleo de su herramienta y **no lo cambiaron el mismo día**.
-   Los dos aplazaron **con el diagnóstico escrito y publicado**, que es lo que separa esto de dejarlo
-   para nunca.
-   **La razón no es prudencia genérica: es que el hallazgo llega con su prisa puesta**, y el sitio
-   donde vive suele ser el que más cuesta deshacer. Lo que **no** se aplaza es escribirlo — el
-   diagnóstico viaja hoy aunque el remedio espere, y si no se escribe, esperar es perderlo.
-6. **Archivar, responder y registrar**, en ese orden. La carta recibida se guarda como `letter` **si
-   la contestaste o te movió a hacer algo** — la copia del remitente puede desaparecer y entonces la
-   tuya es la única. La respuesta dice **qué entró, qué no y por qué**, y qué sigue sin poder
-   responderse; es a su vez un `letter` que sale. Luego, las filas en `correspondence`.
-   **La cabecera del `letter` NO lleva estado** — ver abajo.
+**Fase 0, el estado leído de la columna.** Una fila lleva prosa, y su prosa menciona estados de otras
+cartas: un `grep` de la palabra sobre la fila entera devuelve el estado equivocado sin avisar. **Pasó en
+los dos sentidos en el mismo proyecto** — una entrante contada como `redactada` porque su resumen decía
+*"llegó marcada como redactada"*, y después una saliente contada como entregada porque el suyo
+mencionaba *"la carta ya entregada"*. **El aviso de la primera estaba escrito dos líneas más arriba y no
+evitó la segunda, porque describía el caso y no el remedio.**
+
+Si dice `redactada`, uno de los dos registros está mal — resuélvelo antes de seguir. Los dos estados
+**crean** la contradicción, pero no la miran solas: la primera vez la vio el usuario preguntando, y la
+segunda pasó desapercibida **en el mismo material que se estaba archivando**. Una señal que nadie
+comprueba no es una señal.
+
+**Y por qué el control positivo de esa lectura está escrito arriba y no aquí:** este ritual describió
+durante **siete sesiones** *cómo* leer el estado —de la columna, anclando al principio— **sin pedir el
+control**, y en esas siete se corrió cada vez sin ponérselo, mientras se le ponía a todo lo demás. Lo
+preguntó el corresponsal; no lo vio nadie de aquí. **Una comprobación que se describe pero no se exige
+acaba siendo la única sin control**, precisamente porque parece demasiado simple para necesitarlo.
+
+**Fase 5, aplazar.** Formulación de un corresponsal, con dos casos y uno de cada lado. Aquí: se midió
+que un ritual costaba 1,44 sesiones y se decidió **no** escribirle tres reglas más esa misma tarde.
+Allí: encontraron un agujero en un tipo del núcleo de su herramienta y **no lo cambiaron el mismo día**.
+Los dos aplazaron **con el diagnóstico escrito y publicado**, que es lo que separa esto de dejarlo para
+nunca. **La razón no es prudencia genérica: el hallazgo llega con su prisa puesta**, y el sitio donde
+vive suele ser el que más cuesta deshacer.
+
+**Fase 6, archivar.** La carta recibida se guarda como `letter` **si la contestaste o te movió a hacer
+algo** — la copia del remitente puede desaparecer y entonces la tuya es la única. La respuesta dice
+**qué entró, qué no y por qué**, y qué sigue sin poder responderse.
 
 ### La cabecera de una carta archivada no lleva estado
 
@@ -198,4 +232,3 @@ Que la petición venga acompañada de un **caso**: algo que pasó en un terreno 
 preferencia o una petición de funcionalidad —vengan de quien vengan— no son esto: se tratan como
 cualquier otro cambio, sin ritual. Sin esta frontera, CONTRASTAR se convierte en la puerta de entrada
 de todo y deja de proteger nada.
-

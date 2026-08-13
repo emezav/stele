@@ -6,6 +6,49 @@
 **Cuándo.** Cuando encuentras algo que **no es tuyo**: un hallazgo cuyo hogar correcto está en el
 proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el archivo y el índice.
 
+## Lo mínimo para ejecutarlo
+
+> **Contrato de este bloque: si solo lees esto, escribes la carta sin cometer ninguno de los fallos que
+> el resto del ritual documenta.** Si uno se te escapa habiéndolo leído, **el que está mal cortado es el
+> bloque**, no tú. Lo de abajo no es lectura previa: es el **porqué** de cada línea de aquí, y se abre
+> por pregunta.
+
+**Antes de nada:** ¿hay **caso** —algo que pasó, en un terreno, con un coste? Sin caso no hay carta.
+
+1. **Comprobar que hay caso.**
+2. **Redactar con la plantilla `letter`.** El **caso primero**; la propuesta es opcional y va marcada
+   como lo que es: la parte menos valiosa.
+3. **Rellenar "qué NO demuestra este caso".** Es el campo que más veces ha faltado.
+4. **Tachar** rutas internas, nombres de máquinas y datos de personas — y **decir en la carta** que algo
+   va tachado. Fase obligatoria, no buena práctica.
+5. **Pasarle el linter de markdown** al fichero de la carta.
+6. **Enviar lo decide el usuario, nunca tú.**
+
+**Y las cinco del marcador, que son las que se saltan.** Cada una tiene su cadáver documentado abajo:
+
+| Situación | La regla |
+| --- | --- |
+| Una afirmación que el otro **puede ir a mirar** | **Ni se omite ni se marca *no***, y menos si le acusa. Mira dónde vive **su copia**, no dónde vive el dato |
+| Una fila con **dos afirmaciones de evidencia distinta** | Son **dos filas** |
+| Una fila que dice *sí* y apunta a un sello **que aún no existe** | **No se escribe**: o se sella antes, o dice `SIN SELLAR` en el cuerpo |
+| Una fila que manda a comprobar a **una copia que no puede responder** | Di **en qué copia** |
+| El estado (`redactada`/`publicada`/`entregada`) | **No va en la carta.** Vive en la fila del índice, y solo el usuario mueve la tercera |
+
+**Dónde está el resto.** Se abre por **pregunta**, nunca entero:
+
+| Si te preguntas… | Sección |
+| --- | --- |
+| ¿Esto es siquiera para otro proyecto? | *El disparador* |
+| ¿Cómo digo que algo lo cambié yo? | *Una respuesta está hecha de afirmaciones sobre acciones propias* |
+| ¿A qué copia le mando a mirar? | *El tercer modo de fallo* |
+| ¿Y lo que afirmo sobre ÉL? | *El ángulo muerto* |
+| ¿Parto esta fila? | *Una fila que junta dos afirmaciones* |
+| ¿Por qué linter, si es prosa? | *La forma de una carta se rompe donde nadie la comprueba* |
+| ¿Qué NO me da el marcador? | *Lo que el marcador NO hace* |
+| ¿Va con nombre o anónima? | *Público o privado* · *El remitente* |
+| ¿Cuándo pasa a entregada? | *Una carta saliente tiene tres estados* |
+| ¿Le copio su forma de hablar? | *Espeja el registro, no el dialecto* |
+
 ## El disparador, que es la parte difícil
 
 Nadie sabe que tiene algo que contar. Los informes que existen se escribieron porque una persona se
@@ -25,25 +68,22 @@ Y la misma frontera que en CONTRASTAR, aplicada de emisor: **si no hay un caso, 
 idea suelta o una petición de funcionalidad no lo son. Sin eso, escribir se vuelve barato y las cartas
 dejan de valer.
 
-## Fases
+## Lo que cada paso esconde
 
-1. **Comprobar que hay caso**: qué pasó, en qué terreno, qué costó.
-2. **Redactar** con la plantilla `letter`. El **caso** primero; la **propuesta** es opcional y va
-   marcada como lo que es — la parte menos valiosa. No hace falta traer solución para escribir.
-3. **Rellenar "qué NO demuestra este caso".** Es el campo que más veces ha faltado y el que evita que
-   el receptor dé por probado lo que no lo está.
-4. **Tachar.** Un informe de campo va lleno de tus tripas: rutas internas, nombres de máquinas y
-   servicios, datos de personas. **El seudónimo del remitente no anonimiza el cuerpo** — esto sí. Fase
-   obligatoria, no buena práctica. Y se dice en la carta que algo va tachado.
-5. **Pasarle el linter de markdown al archivo de la carta**, igual que a cualquier doc. Una carta es
-   un documento y su forma también se rompe — y ahí se rompe **hacia fuera**. Ver *"La forma de una
-   carta se rompe donde nadie la comprueba"*, abajo.
-6. **Consentimiento y envío.** **Enviar es publicar**, y lo decide el usuario, nunca el agente por su
-   cuenta. El canal da igual y el marco no opina: pegar el texto en la sesión de otro agente, un
-   correo, un issue, un PR si el proyecto tiene git y el usuario quiere. Copiar y pegar es el suelo, y
-   funciona siempre. **Y si la carta afirma cambios en algo que el destinatario puede obtener, dile
-   cuándo obtenerlo** — antes de leerla, o mientras. El orden es parte de la carta, no logística; ver
-   abajo.
+**Los pasos están arriba y no se repiten aquí** — repetirlos sería el segundo hogar que este kit
+persigue en todas partes. Aquí va **solo lo que el imperativo no cabe decir**:
+
+- **Paso 2, la propuesta.** No hace falta traer solución para escribir. Una carta con caso y sin
+  propuesta vale; una con propuesta y sin caso, no.
+- **Paso 4, tachar.** **El seudónimo del remitente no anonimiza el cuerpo** — un informe de campo va
+  lleno de tus tripas: rutas, nombres de máquinas y servicios, datos de personas. Por eso es fase y no
+  buena práctica.
+- **Paso 5, el linter.** Una carta es un documento y su forma también se rompe — y ahí se rompe **hacia
+  fuera**. El porqué, en *"La forma de una carta se rompe donde nadie la comprueba"*.
+- **Paso 6, el canal y el ORDEN.** El canal da igual y el marco no opina: pegar el texto en la sesión
+  de otro agente, un correo, un issue, un PR. Copiar y pegar es el suelo y funciona siempre. **Lo que
+  sí importa es el orden: si la carta afirma cambios en algo que el destinatario puede obtener, dile
+  cuándo obtenerlo** — antes de leerla, o mientras. Eso es parte de la carta, no logística.
 
 ## Una respuesta está hecha de afirmaciones sobre acciones propias
 
