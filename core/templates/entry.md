@@ -4,8 +4,11 @@
 > cada sesión" antes de responder otra cosa. Define **cómo trabajar**; el *por qué* del proyecto
 > está en `{{charter}}`, el detalle de formatos en `{{protocol}}`.
 >
-> <!-- Las secciones marcadas "GENERADO" las produce bootstrap/`config` desde el manifiesto
->      (`stele.config.md`). No editarlas a mano. El ejemplo mostrado usa el módulo `producto`.
+> <!-- Las secciones marcadas "GENERADO" NO son contenido de tu proyecto: las produce el marco desde
+>      una fuente suya, y no se editan a mano. Las fuentes son dos y se comportan distinto: el
+>      MANIFIESTO (`stele.config.md`), que las genera bootstrap/`config`; y el KIT mismo, para reglas
+>      del marco que tienen que estar en el arranque y por eso viven en este fichero — esas las porta
+>      ACTUALIZAR. El ejemplo mostrado usa el módulo `producto`.
 >      Una sección GENERADA está PROTEGIDA por default: ACTUALIZAR y CONFIG portan el delta a mano
 >      en vez de reescribirla. "GENERADO RICO" (marca antigua) significa lo mismo. Para autorizar la
 >      reescritura entera: "GENERADO LIMPIO", y solo tras comprobar con un diff que la sección no
@@ -46,6 +49,10 @@ Leer en este orden antes de responder cualquier cosa:
 **Bajo demanda** (grep dirigido, no leer completos): `{{charter}}` (orientación inicial),
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
 codebase), `{{index}}`/`{{session}}` (historial).
+
+<!-- GENERADO: derivado del KIT (`{{kit}}/core/rituals/`), no del manifiesto. Es una regla del marco,
+     no contenido de tu proyecto: vive aquí solo porque el arranque no garantiza ningún otro fichero.
+     Al actualizar el kit, porta el delta — con el mismo criterio que los demás bloques GENERADO. -->
 
 ## Los rituales: qué te hace abrir cada uno
 

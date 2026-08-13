@@ -257,6 +257,60 @@ silencio, que es el fallo que este control existe para descartar.
 Con `persistencia = git`, si el mensaje ya está commiteado pero **no pusheado y
 sin hash citado en ningún doc**, `--amend` lo arregla (ver reglas de `--amend` en CERRAR).
 
+## Topes del set de arranque: se comprueban, no se recuerdan
+
+**Obligatorio en el cierre, igual que el barrido de arriba.** Un tope que nadie mide no es un tope, es
+una intención — y a diferencia del texto, este no falla al escribirlo: falla **creciendo**, un poco por
+sesión, sin que ninguna sesión lo note.
+
+**El bloque lee las cifras del manifiesto y no lleva las suyas.** Si las copiara sería un segundo hogar,
+y el segundo hogar es el que se queda viejo justo cuando alguien sube un tope con el ritual `config`:
+
+```bash
+sed -n '/^## Presupuestos/,/^## [^P]/p' stele.config.md | grep '^| [a-z]' |
+while IFS='|' read -r _ rol tope _; do
+  rol=$(echo "$rol" | tr -d ' '); tope=$(echo "$tope" | tr -dc 0-9)
+  case "$rol" in
+    entry) f={{entry}} ;;    gotchas)  f={{gotchas}} ;;
+    state) f={{state}} ;;    handover) f={{handover}} ;;
+    *) continue ;;
+  esac
+  n=$(wc -l < "$f")
+  [ "$n" -le "$tope" ] && e=OK || e="PASADO por $((n-tope))"
+  printf '  %-9s %4s / %-4s %s\n' "$rol" "$n" "$tope" "$e"
+done
+printf '  CONTROL   6 / 5    %s   (esperado PASADO)\n' "$([ 6 -le 5 ] && echo OK || echo PASADO)"
+printf '  CONTROL   4 / 5    %s   (esperado OK)\n'     "$([ 4 -le 5 ] && echo OK || echo PASADO)"
+```
+
+**El `case` filtra a propósito, y por eso lleva su `continue`.** La sección *Presupuestos* puede tener
+filas que no son docs de tu proyecto —el kit se pone tope a sí mismo ahí— y una fila cuyo rol no
+reconoces no es un error: es una fila que no te toca. Sin el `continue`, `wc -l` va contra un fichero
+que no existe y el cierre se para en algo que no era un problema.
+
+**Los dos controles van dentro del bloque y con su valor esperado.** Uno solo no separa: un detector
+que siempre dijera `PASADO` pasaría el control positivo, y uno que siempre dijera `OK` pasaría el
+negativo. Hacen falta los dos porque lo que se comprueba no es que el comando hable, es que
+**discrimine**. Es la misma exigencia que el `2` del control de no-ASCII —*un número sin expectativa no
+es información: es decoración*, `{{kit}}/core/reference/verificar.md`— aplicada a un detector que
+responde con una palabra en vez de con una cifra.
+
+> **Por qué existe, medido en el repo del propio marco antes de escribirlo:** de los cuatro topes del
+> arranque, **dos estaban rotos y nadie lo había mirado nunca**. El único que se cumplía no era el
+> mejor puesto: era **el único que alguien tecleaba a mano cada sesión**. Lo que hacía cumplirse a ese
+> tope no era el tope, era el hábito de mirarlo.
+
+**Y no lo pongas detrás de una tubería si vas a mirar su código de salida** — con `| tee` el código que
+ves es el de `tee`. Es la ley *un comando que aborta detrás de una tubería es un cero*, aplicada al
+bloque que la cita.
+
+**Lo que este detector NO acota son los tokens**, y conviene saberlo antes de fiarse: cuenta líneas
+porque las líneas son lo que el manifiesto presupuesta, pero lo que cuesta cargar el arranque son
+tokens, y una línea de prosa envuelta a 100 columnas no vale lo que una de tabla. Un doc puede estar
+conforme en las cuatro filas y seguir siendo caro. Para el precio real hay que medirlo con un
+tokenizador, y eso no es un paso de cierre: es una medición, con su fecha (ver *una cifra sobre tu
+corpus es una FOTO*).
+
 ## Checklist de inicio / cierre
 
 Condensados en `{{kit}}/core/rituals/` (un archivo por ritual). Este archivo es la referencia de

@@ -28,6 +28,25 @@
 > asunto o la pregunta. Con contacto en tiempo real esto no se nota; en cuanto haya días de latencia,
 > es lo único que sostiene el hilo.
 
+**Corpus fijado:** {en qué copia se comprueba lo de abajo, y qué queda bajo palabra}
+
+| Lo que afirmo | ¿Lo puedes comprobar? |
+| --- | --- |
+| {una afirmación por fila} | **Sí** — {dónde, en SU copia} |
+| {otra} | **No** — {por qué; y entonces el dato va dentro de la carta} |
+
+> **El marcador va arriba y como tabla normal — NO dentro de un bloque de cita.** Arriba porque es un
+> índice de comprobabilidad y sirve **antes** de leer el cuerpo, no como resumen al final. Y sin citar
+> porque una tabla citada exige la marca `>` **en cada línea**: perder una no da error, saca esa fila de
+> la tabla y la deja debajo como un párrafo suelto que se lee como prosa. Caso de campo, en carga ya
+> entregada: una carta salió con su **última** fila fuera del bloque, y **la fila que se cayó era la que
+> retiraba una afirmación propia** — lo que falta se nota menos cuanto menos te favorece. Sin cita esa
+> clase de fallo no existe, porque no hay marca por línea que perder.
+>
+> **Lo que decide una fila es dónde vive la copia del OTRO, no dónde vive el dato.** Y una fila que
+> junta dos afirmaciones de evidencia distinta son **dos filas**. El resto de las reglas del marcador
+> —y sus cadáveres— están en `{{kit}}/core/rituals/remitir.md`.
+
 ## El caso
 
 Qué hiciste, qué pasó y qué costó, en tu terreno. **Es la carga útil de la carta**: lo único que quien

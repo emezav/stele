@@ -237,6 +237,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *La asimetría no es del error: es del acto que el error autoriza*
 - *Separa la afirmación de la regla*
 - *Mover prosa rompe sus deícticos, y ninguno da error*
+- *Un documento sí ejecuta: se renderiza*
+- *Quién ve el rojo, y en qué papel*
 
 ## Las clases de drift
 

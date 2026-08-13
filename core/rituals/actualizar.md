@@ -42,7 +42,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    al manifiesto, secciones nuevas, derivados a regenerar.
 6. **Informar** en pocas líneas: qué cambió, qué se reconcilió solo, y qué exige decisión del usuario
    (un rol nuevo que quizá quiera desactivar, un default que él había sobrescrito, un cambio del
-   contrato de parseo). **Y si el diff tocó las puertas o el bloque `GENERADO` del `entry`, pídele que
+   contrato de parseo). **Y si el diff tocó las puertas o algún bloque `GENERADO` del `entry`, pídele que
    reabra el editor y te salude** — el delta a esos bloques se porta **a mano** y a **cada** puerta, así
    que es donde una copia puede quedarse atrás sin que nada lo diga: *si no te contesta con la última
    sesión y el próximo paso, el delta no llegó a la puerta que lee tu agente.*
@@ -98,7 +98,7 @@ releerla en el paso 4.
 | Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/…`) que tus propios docs hayan escrito |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: **porta el delta a mano** al archivo real — **y `autostart` se instancia una vez POR PUERTA**, así que el delta va a **todas**, no solo a la primera que encuentres. Dos puertas que digan cosas distintas es el único modo en que varias puertas hacen daño. Se conserva íntegro lo que quede fuera de las marcas —invariante 6— **y también lo de dentro**, que está protegido por default (ver abajo). Solo se regenera el bloque entero si su marca dice `LIMPIO` |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer** para los docs que ya existen: son del proyecto y no se regeneran jamás. **Con excepciones, abajo, en dos familias.** Por AUSENCIA —un **rol nuevo**, o una **sección nueva** dentro de una plantilla que sí existe: no hay doc ni trozo que respetar—. Y por PRESENCIA ROTA —una **comprobación corregida**, un comando que el kit manda correr y estaba mal—, donde el adoptante no tiene un hueco sino **una copia rota que pasa en verde**. Todas **se ofrecen**, no se aplican en silencio |
-| **La tabla de disparadores de rituales de `core/templates/entry.md`** (nueva en la sesión 119) | **Esta SÍ se porta**, aunque la fila de las plantillas de contenido diga que no: no es contenido tuyo, es una **regla del kit** que vive ahí porque el `entry` es lo único garantizado en el arranque. Cópiala a tu `entry` resolviendo los tokens. Sin ella, tu agente puede trabajar cientos de sesiones sin saber que un ritual existe — pasó, y está medido |
+| **La tabla de disparadores de rituales de `core/templates/entry.md`** (nueva en la sesión 119) | **Esta SÍ se porta**, aunque la fila de las plantillas de contenido diga que no: no es contenido tuyo, es una **regla del kit** que vive ahí porque el `entry` es lo único garantizado en el arranque. Cópiala a tu `entry` resolviendo los tokens. Sin ella, tu agente puede trabajar cientos de sesiones sin saber que un ritual existe — pasó, y está medido. **Desde entonces la tabla lleva marca `GENERADO`**, así que la fila de derivados ya la cubriría; esta fila sigue aquí para **quien adoptó antes de la marca**, que en su `entry` no la tiene |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran. **Ojo con `SKILL.md` desde la 119:** ya no lleva la tabla de rituales, así que si tu `entry` no la tiene, no la tiene nadie |
 | **Las leyes de verificación salieron de `core/rituals/auditar.md` a `core/reference/verificar.md`** | Eran el 65% de ese ritual. **El contenido no cambió: cambió de fichero**, y por eso ningún barrido de texto lo detecta como pérdida. Lo que rompe son **tus punteros**: si algún doc tuyo cita `auditar.md` para una ley —*el error que te quita razón*, *una cifra sobre tu corpus es una FOTO*, *un número sin expectativa*, *el valor esperado del control*— ahora apunta a un fichero donde esa sección **ya no está**, y la cita se lee igual de bien. `grep -rn "auditar\.md" <base> --include="*.md"` y revisa cada acierto: los que citen el **procedimiento** (alcance, clases de drift, detectores, fases, informe, cadencia) siguen correctos y no se tocan. La lista completa de lo que se movió está en el propio `auditar.md`, en *Las leyes de verificación viven aparte* |
 | `core/rituals/*`, `core/reference/*` | **Los rituales ya no viven en `SKILL.md`, y las rutas y tokens tampoco.** Se leen, no se migran — pero **tus propios docs pueden enlazar al nombre viejo**: si alguno cita `SKILL.md -> CERRAR` o similar, ahora apunta a un enrutador y no al contenido. **Barre por el nombre viejo, no por la forma del puntero** — el patrón `SKILL.md -> RITUAL` no encuentra ni la prosa que describe qué contiene `SKILL.md` ni las citas a secciones suyas que se movieron, y las dos existían: `grep -rn "SKILL\.md" <base> --include="*.md"` y revisa cada acierto a mano. Es más ruidoso y es el único que los caza; aquí el patrón estrecho dejó tres referencias colgadas en el propio kit. |
@@ -128,7 +128,24 @@ fuera es que un agente trabaje cientos de sesiones sin enterarse de que un ritua
 > **Y esto destapa una tensión que el marco tenía sin nombrar:** lo que hace falta **en el arranque**
 > vive en documentos del proyecto, que no se migran; y lo que **se migra** no se carga en el arranque.
 > Mientras las dos condiciones no coincidan en un mismo artefacto, cada regla que necesite las dos
-> tendrá que entrar por una fila explícita como esta. **Es deuda de diseño, anotada y no resuelta.**
+> tendrá que entrar por una fila explícita como esta.
+
+**Acotada, y con el mecanismo que ya existía: la marca.** La tensión no se resuelve moviendo la regla
+—el arranque solo garantiza el `entry`—, sino **declarando que ese trozo no es del proyecto**. Desde
+esta sesión, la tabla de disparadores del `entry` lleva su marca `GENERADO`, y con ella la fila
+genérica de derivados —*porta el delta a mano*— la cubre sin necesidad de fila propia. La marca ya
+significaba *"esto lo produce el marco, no lo edites"*; lo único que se amplió es **de dónde** puede
+venir: del manifiesto, como siempre, **o del kit**.
+
+**Lo que la marca no arregla, y hay que decirlo: quien adoptó antes de tenerla no la tiene.** Su `entry`
+lleva la tabla como si fuera contenido suyo, o no la lleva en absoluto, y desde fuera las dos se ven
+igual que un proyecto que decidió no usarla. Por eso la fila explícita de la 119 **se queda**: no es
+redundante, cubre a los que no pueden beneficiarse del mecanismo. Lo que deja de pasar es que la tabla
+crezca una fila por cada regla nueva de esta clase.
+
+> **Y esto se reabre si aparece una regla del marco que tenga que estar en el arranque y NO quepa en el
+> `entry`** — porque entonces el problema ya no es la marca, es que un fichero se ha vuelto el hogar de
+> todo lo que no tiene hogar.
 
 **Por ausencia, y es la que pasa desapercibida: una SECCIÓN nueva dentro de una plantilla de rol que
 ya existe.** El doc del adoptante existe, así que la fila dice *"nada que hacer"* y se cumple al

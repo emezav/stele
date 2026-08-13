@@ -1391,3 +1391,71 @@ uno**. Es una lista corta porque el alcance es el bloque, no el corpus.
 **solo uno estaba roto**: dos se referían al documento de otro proyecto, uno era metafórico —*"un piso
 más arriba"*— y otro citaba una frase que seguía estando antes. **Un deíctico dentro de texto movido es
 un candidato, no un defecto**, y tratarlo como defecto produce correcciones que estropean prosa correcta.
+
+## Un documento sí ejecuta: se renderiza
+
+**Es tentador creer que un falsador es cosa del software y que la prosa solo se puede releer.** Un
+párrafo, efectivamente, no ejecuta nada delante de quien lo lee. **Pero el documento sí ejecuta: se
+renderiza** — y el renderizado corre **en el camino del lector**, sin pasos, sin permiso y sin que nadie
+haya leído ninguna regla. Es el único falsador que no protege al autor.
+
+**Viene de un corresponsal, contra su propio material, y con tres casos de una sola semana.** En dos de
+ellos las comprobaciones estructurales pasaron en verde y el fallo lo cazó el renderizador o su linter,
+sesiones después:
+
+- Una migración añadió dos columnas y escribió 39 celdas vacías con espacio doble. **Tres aserciones
+  pasaron** —longitud, contenido preservado, cuenta de separadores— porque una celda vacía es correcta
+  en las tres.
+- Una barra vertical dentro de un span de código partió una celda. El barrido de texto, la cuenta de
+  filas y la longitud pasaron.
+- Una fila con un separador de más. Esta la cazó una sonda **antes** de que nadie abriera el fichero —
+  camino del autor, y por eso es la que no cuenta como ejemplo de esta ley.
+
+> **El falsador de lectura existe exactamente donde el artefacto habla un idioma que algo ya lee.** Una
+> tabla es ese idioma. Una lista numerada lo es. Un enlace lo es. **Una frase no.**
+
+**De ahí lo operativo, que es lo único que hay que llevarse: una afirmación que tiene que sobrevivir se
+empuja al idioma comprobable.** Convertir *"cada carta tiene su fila"* de prosa en una propiedad
+derivable de los nombres de fichero deja de depender de que alguien se acuerde. Lo que no se puede
+empujar se queda en prosa **sabiendo** que ahí no hay falsador.
+
+**Y el renderizador no solo revela defectos: los FABRICA.** Un número seguido de punto que cae al
+principio de línea **es** un item de lista numerada, aunque en la frase original fuera una fecha o una
+versión — y a principio de línea lo pone el ajuste de párrafo, no quien escribió. Es el mismo mecanismo
+leído al revés: si el documento se ejecuta al leerse, entonces **editar el envoltorio es editar el
+programa**, y ese es el único defecto que aparece *después* de escribir.
+
+**El reverso, y cuesta caro: cuando el que se calla es el renderizador.** Una herramienta de
+comprobación devolvió *no aplica — no hay tabla* sobre ficheros que tenían una **dentro de un bloque de
+cita**: para ella, citada, no era una tabla. No fue un cero falso sino **una no-aplicabilidad falsa, que
+se lee más tranquila todavía** —18 documentos propios llevaban el detector ciego entero sin que nadie lo
+notara—. Antes de fiarte de un falsador de lectura, comprueba **qué le parece tabla** con un fixture de
+dos casos: el plano y el citado.
+
+## Quién ve el rojo, y en qué papel
+
+**Un artefacto que comprueba su propia predicción no deja de predecir: cambia de clase, y el separador
+no es quién escribe la comprobación sino quién se entera cuando falla.**
+
+- **Si el rojo lo ve el autor** —un test en su suite— es una **regresión**. Protege de romperlo mañana,
+  que es valioso, y no es una predicción: el único público es quien ya lo sabía.
+- **Si el rojo lo ve quien está usando el artefacto** —el programa comprueba y avisa ahí mismo— **sigue
+  siendo una predicción**, porque el testigo es ajeno y no eligió mirar.
+
+**Lo que hace utilizable la distinción es que se pregunta en voz alta y tiene una sola respuesta:** *si
+esto falla, ¿quién se entera?* No admite matices: o el nombre de quien se entera está en tu equipo, o no.
+
+**Y le falta una corrección que llegó del corresponsal a quien se le propuso: la misma persona puede ser
+las dos, así que el eje es el PAPEL y no el nombre.** El linter de un autor le caza a él — pero le caza
+**como primer lector de su propio fichero**, no como autor. La pregunta sobrevive con un añadido corto:
+*si esto falla, ¿quién se entera, **y en qué papel**?*
+
+> **El uso honesto de esta ley es contra uno mismo, y suele doler.** Aplicada a un inventario de
+> comprobaciones propias —controles, sondas, filas abiertas, tests de fecha— la respuesta puede ser que
+> **todas** corran en el camino del autor: ninguna protege a quien lee. Eso no las invalida; dice que el
+> proyecto no tiene todavía ninguna predicción comprobada por un tercero, y **saberlo es distinto de
+> creer que sí**.
+
+**Es pareja de la ley anterior, y por eso van juntas.** El renderizado es el caso raro en que un falsador
+corre en el camino del lector sin que el autor haya hecho nada, así que es la vía más barata que hay para
+mover una comprobación del primer lado al segundo.

@@ -16,7 +16,8 @@ proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el arc
 3. **Rellenar "qué NO demuestra este caso".** Es el campo que más veces ha faltado.
 4. **Tachar** rutas internas, nombres de máquinas y datos de personas — y **decir en la carta** que algo
    va tachado. Fase obligatoria, no buena práctica.
-5. **Pasarle el linter de markdown** al fichero de la carta.
+5. **Pasarle el linter de markdown** al fichero de la carta — y **el marcador va arriba y sin citar**:
+   dentro de un bloque de cita, perder un `>` saca una fila de la tabla y **no da error**.
 6. **Enviar lo decide el usuario, nunca tú.**
 
 **Y las cinco del marcador, que son las que se saltan.** Cada una tiene su cadáver documentado abajo:
@@ -244,6 +245,17 @@ es todo lo que se escribe, no todo lo que parece un doc.**
 iba en contra nuestra. Eso no se eligió: la única prueba de que un marcador se leyó entero es que
 alguien note **qué falta**, y lo que falta se nota menos cuanto menos te favorece. Es *"el error que
 te quita razón no se busca"* —`core/reference/verificar.md`— en la capa de la forma.
+
+**Y el remedio no es el linter: es que la tabla no vaya citada.** El linter es la red que caza el fallo
+después de escribirlo; lo que lo hace imposible es quitarle la marca por línea. Una tabla dentro de un
+bloque de cita solo se sostiene si **cada** línea lleva su `>`, así que su forma depende de una marca
+que se repite tantas veces como filas haya y que no falla en voz alta al perderse. Fuera de la cita esa
+clase de fallo no existe. **Va en la plantilla `letter` desde este caso** — el marcador arriba y sin
+citar — y las cartas anteriores **no se tocan**: están entregadas o recibidas.
+
+**Lo que no cambia es el alcance, que era el defecto de fondo.** Aunque la forma ya no se rompa por ahí,
+el linter sigue siendo paso del ritual: lo que fallaba no era el detector sino a qué se le pasaba, y una
+carta seguirá sin parecer documentación el día que se rompa por otro sitio.
 
 **El archivo entregado no se retoca**, y no es una preferencia: lo que recibió el otro y lo que
 guardas tú tienen que ser el mismo texto, o el registro deja de servir para comprobar nada. Se anota
