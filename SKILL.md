@@ -269,16 +269,20 @@ seguidos, **ninguno** lo redujo—, mientras el ritual que se usa **cada** sesi�
 que se usa **cada diez** ocupaba 615. **La masa era inversamente proporcional a la frecuencia de uso**,
 y eso contradice el principio del marco: *coste de tokens acotado*.
 
-| Ritual | Cuándo | Dónde |
-| --- | --- | --- |
-| **ABRIR** | al iniciar sesión — ponerse al día, barato | `core/rituals/abrir.md` |
-| **CERRAR** | al terminar — dejar registro durable | `core/rituals/cerrar.md` |
-| **AUDITAR** | se invoca; verificar que lo escrito sigue siendo cierto | `core/rituals/auditar.md` |
-| **CONTRASTAR** | llega un informe externo sobre tu trabajo | `core/rituals/contrastar.md` |
-| **REMITIR** | escribir hacia fuera lo que aprendiste | `core/rituals/remitir.md` |
-| **BOOTSTRAP** | una vez: instanciar el marco en un proyecto | `core/rituals/bootstrap.md` |
-| **ACTUALIZAR** | traer una versión nueva del kit | `core/rituals/actualizar.md` |
-| **CONFIG** | adaptar nombres/parámetros — único renombrador sancionado | `core/rituals/configurar.md` |
+**La tabla de disparadores —qué te hace abrir cada uno, y en qué fichero está— vive en el `entry`, no
+aquí.** Se movió allí en la sesión 119 y el motivo es medible: este archivo **no está garantizado en el
+arranque**. Solo lo auto-carga el harness en el layout `skill`; en cualquier otro, lo único que se lee
+sin invocar nada es la puerta y lo que ella importa — y el `entry` es lo único de esa lista que puede
+llevar la tabla, porque la puerta es un adaptador.
+
+**El defecto que lo destapó, medido en este mismo repo:** los cuatro documentos de arranque nombraban
+**cero** rituales, y la plantilla del `entry` también. Un agente podía trabajar 118 sesiones sin
+enterarse de que un ritual existía — y pasó: un hallazgo que era para el corresponsal con más cartas del
+proyecto se archivó como nota interna, porque nada en el arranque decía que REMITIR estuviera en juego.
+
+**Aquí no se repite la lista ni su número.** Una copia de la tabla en dos ficheros es el desincronizado
+que este kit ya tiene medido en otro sitio; un contador escrito a mano es peor, porque caduca solo. Si
+quieres verlos, abre el `entry`.
 
 **El checkpoint no está en la tabla porque no es un ritual: es una regla dura**, y por eso vive arriba,
 en este archivo, donde se lee sin invocar nada.

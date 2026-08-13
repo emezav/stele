@@ -69,18 +69,32 @@ releerla en el paso 4.
 | Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/…`) que tus propios docs hayan escrito |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: **porta el delta a mano** al archivo real — **y `autostart` se instancia una vez POR PUERTA**, así que el delta va a **todas**, no solo a la primera que encuentres. Dos puertas que digan cosas distintas es el único modo en que varias puertas hacen daño. Se conserva íntegro lo que quede fuera de las marcas —invariante 6— **y también lo de dentro**, que está protegido por default (ver abajo). Solo se regenera el bloque entero si su marca dice `LIMPIO` |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer** para los docs que ya existen: son del proyecto y no se regeneran jamás. **Tres excepciones, y las tres abajo.** Dos son por AUSENCIA: un **rol nuevo** (no hay doc que respetar) y una **sección nueva** dentro de una plantilla de rol que sí existe (el doc está, el trozo no). La tercera no: una **comprobación corregida** —un comando que el kit manda correr y que estaba mal—, donde el adoptante no tiene una ausencia sino **una copia rota que pasa en verde**. Las tres **se ofrecen**, no se aplican en silencio |
-| `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran |
+| **La tabla de disparadores de rituales de `core/templates/entry.md`** (nueva en la sesión 119) | **Esta SÍ se porta**, aunque la fila de las plantillas de contenido diga que no: no es contenido tuyo, es una **regla del kit** que vive ahí porque el `entry` es lo único garantizado en el arranque. Cópiala a tu `entry` resolviendo los tokens. Sin ella, tu agente puede trabajar cientos de sesiones sin saber que un ritual existe — pasó, y está medido |
+| `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran. **Ojo con `SKILL.md` desde la 119:** ya no lleva la tabla de rituales, así que si tu `entry` no la tiene, no la tiene nadie |
 | **Las leyes de verificación salieron de `core/rituals/auditar.md` a `core/reference/verificar.md`** | Eran el 65% de ese ritual. **El contenido no cambió: cambió de fichero**, y por eso ningún barrido de texto lo detecta como pérdida. Lo que rompe son **tus punteros**: si algún doc tuyo cita `auditar.md` para una ley —*el error que te quita razón*, *una cifra sobre tu corpus es una FOTO*, *un número sin expectativa*, *el valor esperado del control*— ahora apunta a un fichero donde esa sección **ya no está**, y la cita se lee igual de bien. `grep -rn "auditar\.md" <base> --include="*.md"` y revisa cada acierto: los que citen el **procedimiento** (alcance, clases de drift, detectores, fases, informe, cadencia) siguen correctos y no se tocan. La lista completa de lo que se movió está en el propio `auditar.md`, en *Las leyes de verificación viven aparte* |
 | `core/rituals/*`, `core/reference/*` | **Los rituales ya no viven en `SKILL.md`, y las rutas y tokens tampoco.** Se leen, no se migran — pero **tus propios docs pueden enlazar al nombre viejo**: si alguno cita `SKILL.md -> CERRAR` o similar, ahora apunta a un enrutador y no al contenido. **Barre por el nombre viejo, no por la forma del puntero** — el patrón `SKILL.md -> RITUAL` no encuentra ni la prosa que describe qué contiene `SKILL.md` ni las citas a secciones suyas que se movieron, y las dos existían: `grep -rn "SKILL\.md" <base> --include="*.md"` y revisa cada acierto a mano. Es más ruidoso y es el único que los caza; aquí el patrón estrecho dejó tres referencias colgadas en el propio kit. |
 | El **bloque de detectores** de `core/rituals/auditar.md` | Solo importa si tu proyecto **no** está en el `idioma` del kit y por tanto tiene detectores **derivados** en la sección *Detectores de auditoría* de `protocol`. Si el kit añadió, quitó o cambió un detector, el tuyo no se entera: **es un derivado que no se regenera**, como el loader. Porta el delta a mano — y si el detector nuevo es **gramatical** y no léxico, no lo traduzcas: derívalo, y guárdalo con su control positivo. Un detector que no existe en tu sección **no da error: da cero**, y ese cero se lee como corpus limpio |
 | El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo. **Baja aunque `correspondence_log` esté en `off`** —viaja dentro del kit—, y entonces se puede leer pero no contestar: hace falta activar el rol y elegir `remitente`, y las dos cosas las decide la persona. No ofrezcas REMITIR sin decirlo |
 
-**Un rol nuevo es el único caso donde una plantilla de contenido sí llega a quien ya adoptó.** La fila
-de las plantillas de rol dice que los docs de `base` no se regeneran jamás, y es cierto **para los que
-existen**: son del proyecto. Pero un rol que no existía no tiene doc que respetar, así que ahí no hay
-conflicto — hay una ausencia. Sin esta excepción, una capacidad nueva del marco solo la reciben los
-proyectos que empiecen después, y el que la necesitaba lleva sesiones sin saber que existe. **Se
-ofrece, no se crea en silencio:** el usuario puede no quererla.
+**Hay DOS casos donde una plantilla de contenido sí llega a quien ya adoptó** —eran uno hasta la sesión
+119— y conviene ver por qué son excepciones distintas.
+
+**El primero: un rol nuevo.** La fila de las plantillas de rol dice que los docs de `base` no se
+regeneran jamás, y es cierto **para los que existen**: son del proyecto. Pero un rol que no existía no
+tiene doc que respetar, así que ahí no hay conflicto — hay una ausencia. Sin esta excepción, una
+capacidad nueva del marco solo la reciben los proyectos que empiecen después, y el que la necesitaba
+lleva sesiones sin saber que existe. **Se ofrece, no se crea en silencio:** el usuario puede no quererla.
+
+**El segundo: una REGLA DEL MARCO que viaja dentro de una plantilla de contenido.** Es el caso de la
+tabla de disparadores de rituales, que entró al `entry` en la sesión 119. No es contenido del proyecto:
+es del kit, y está ahí **solo porque el `entry` es lo único garantizado en el arranque**. La regla
+general —*las plantillas de contenido no se migran*— la dejaría fuera, y el efecto medido de dejarla
+fuera es que un agente trabaje cientos de sesiones sin enterarse de que un ritual existe.
+
+> **Y esto destapa una tensión que el marco tenía sin nombrar:** lo que hace falta **en el arranque**
+> vive en documentos del proyecto, que no se migran; y lo que **se migra** no se carga en el arranque.
+> Mientras las dos condiciones no coincidan en un mismo artefacto, cada regla que necesite las dos
+> tendrá que entrar por una fila explícita como esta. **Es deuda de diseño, anotada y no resuelta.**
 
 **Y una SECCIÓN nueva dentro de una plantilla de rol que ya existe cae en el mismo hueco, pero pasa
 desapercibida.** El doc del adoptante existe, así que la fila dice *"nada que hacer"* y se cumple al

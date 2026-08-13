@@ -47,6 +47,34 @@ Leer en este orden antes de responder cualquier cosa:
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
 codebase), `{{index}}`/`{{session}}` (historial).
 
+## Los rituales: qué te hace abrir cada uno
+
+**Aquí no están los rituales: está lo que te hace ir a buscarlos.** Cada uno vive en
+`{{kit}}/core/rituals/<nombre>.md` y **se lee solo cuando se invoca**, nunca entero de antemano. Esta
+tabla es lo **único** de ellos que se carga en cada sesión, y por eso su columna del medio dice **qué
+estás haciendo cuando toca**, no qué es el ritual: un enunciado descriptivo solo lo reconoce quien ya
+encuadró su trabajo, que es justo quien no necesitaba la tabla.
+
+| Ritual | Qué te hace abrirlo | Fichero |
+| --- | --- | --- |
+| **ABRIR** | Empiezas sesión | `abrir.md` |
+| **CERRAR** | Vas a terminar, o el usuario se despide | `cerrar.md` |
+| **AUDITAR** | Vas a fiarte de algo escrito hace tiempo, o toca por cadencia | `auditar.md` |
+| **CONTRASTAR** | Te llega texto de fuera que habla de tu trabajo | `contrastar.md` |
+| **REMITIR** | **La trampa que ibas a escribir es sobre una herramienta que usas, no sobre tu proyecto.** O te bajó una pregunta que sabes contestar | `remitir.md` |
+| **BOOTSTRAP** | El proyecto todavía no tiene el marco | `bootstrap.md` |
+| **ACTUALIZAR** | Vas a traer una versión nueva del kit | `actualizar.md` |
+| **CONFIG** | Vas a renombrar un doc o cambiar un parámetro del manifiesto | `configurar.md` |
+
+> **REMITIR va en negrita porque es el único que no se reconoce solo.** A los demás los dispara un
+> momento visible —abres, cierras, te llega algo, vas a tocar el manifiesto—. A ese lo dispara **una
+> frase que ibas a escribir en otro sitio**, así que sin la pregunta escrita aquí no salta nunca: se
+> queda como una trampa más en `{{gotchas}}`, donde no arregla nada y estorba en cada arranque.
+
+**Y por eso esta tabla vive aquí y no con los rituales.** Un disparador que hay que ir a buscar no es un
+disparador. Lo demás sobre ellos —por qué viven aparte, qué es ritual y qué es referencia— está en
+`{{kit}}/SKILL.md`, que se lee cuando ya sabes que vas a enrutar.
+
 ## El saludo de arranque, y por qué importa que se vea
 
 **En tu PRIMERA respuesta de la sesión, empieza con 1-3 líneas de orientación** que confirmen el
