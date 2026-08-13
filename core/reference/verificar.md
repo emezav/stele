@@ -784,6 +784,24 @@ tubería** sin hacer el cambio, y comprueba que el control da verde:
 En el caso de arriba, la corrida identidad habría fallado igual, y el diagnóstico habría costado un
 minuto en vez de diecinueve sesiones.
 
+**Pero la identidad hereda la trampa de cualquier control positivo, y esto se descubrió ejerciéndola:**
+
+> **Una corrida identidad en verde solo informa si sabes que sabría fallar.** Una tubería byte-exacta
+> pasa la identidad **por construcción** — su verde está garantizado antes de correrla, y un verde
+> garantizado no distingue nada.
+
+**Así que la identidad se corre en PAR:** la tubería que vas a usar, y **otra que sepas que estropea el
+material**. Medido al estrenar esta ley, sobre el mismo fichero y el mismo cambio nulo:
+
+```text
+identidad en la tuberia buena (binaria)  -> VERDE
+identidad en una tuberia que mutila      -> FALLA, 1.000 bytes por linea
+```
+
+**Sin la segunda mitad, el verde de la primera es decoración**, y decoración es exactamente lo que esta
+referencia llama *una variable declarada y nunca variada*. La segunda mitad no cuesta nada: la tubería
+mala ya la tienes, porque suele ser la que ibas a usar antes de saber esto.
+
 **Y hay un atajo de lectura, para el momento en que el control ya saltó: mira la DIFERENCIA antes que
 el trabajo.** Una diferencia que es un múltiplo exacto del número de líneas, de unidades o de ficheros
 no es pérdida de contenido: es una **transformación por unidad**, y las transformaciones por unidad las
