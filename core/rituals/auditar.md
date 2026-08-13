@@ -23,9 +23,8 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 
 ## Lo mínimo para ejecutarlo
 
-> **Contrato de este bloque: si solo lees esto, auditas sin cometer ninguno de los fallos que el resto
-> del ritual documenta.** Si uno se te escapa habiéndolo leído, **el que está mal cortado es el bloque**.
-> Este es el ritual más caro del kit: lo de abajo se abre **por pregunta**, nunca entero.
+> **Este es el ritual más caro del kit** (~19 000 tokens): lo de abajo se abre por pregunta, nunca
+> entero.
 
 **Los seis pasos:**
 

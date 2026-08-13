@@ -16,10 +16,6 @@ producto y viaja a todos— y es la única que no tenía procedimiento.
 
 ## Lo mínimo para ejecutarlo
 
-> **Contrato de este bloque: si solo lees esto, procesas la carta sin cometer ninguno de los fallos que
-> el resto del ritual documenta.** Si uno se te escapa habiéndolo leído, **el que está mal cortado es el
-> bloque**. Lo de abajo es el **porqué**, y se abre por pregunta.
-
 **Antes de leerla con atención:** ¿es un **informe externo**? Hace falta un **caso** —algo que pasó en un
 terreno real—. Una idea, una preferencia o una petición de funcionalidad **no lo son**.
 

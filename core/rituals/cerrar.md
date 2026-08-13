@@ -3,6 +3,10 @@
 
 # Ritual: CERRAR sesión (dejar registro durable)
 
+## Lo mínimo para ejecutarlo
+
+> **Este ritual se ejecuta CADA sesión**, así que un bloque mal cortado se paga a diario.
+
 1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, notas para retomar, y
    `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos, y la fecha **medida, no
    recordada** — ver *De dónde sale la fecha*, abajo.
@@ -24,6 +28,30 @@
    auditable la sesión. Si no hubo artefactos, no se dice nada — no hay sección que rellenar.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
+
+**Las siete que se saltan.** Cada una tiene su cadáver documentado abajo:
+
+| Situación | La regla |
+| --- | --- |
+| Vas a poner la fecha | **Se mide con un comando**, no se recuerda ni se copia del contexto. Dos actas de este proyecto llevan un día de más |
+| Vas a actualizar el `state` | **Se reescribe ENTERO con `Write`.** Nunca `Edit`, nunca prepend |
+| Vas a hacer un reemplazo en lote | **Imprime su diff, no su recuento.** Un recuento correcto acompaña a un reemplazo equivocado sin decir nada |
+| Vas a copiar en el `state` algo que vive en otro doc | **Apunta, no copies.** Lo copiado es lo que se queda viejo |
+| Vas a registrar un estado | Solo si **puedes observarlo**. *"Enviada"* no lo es: eso lo sabe el usuario, no tú |
+| Terminaste de escribir el cierre | **Comprueba lo que acabas de escribir** antes de persistir: **su contenido Y su destino**. Un `printf >>` con la ruta mal compuesta **crea el fichero que falta** y no da error |
+| Escribiste la comprobación en el doc | **Escribirla no la corre.** El paso es correrla, y su cero no vale sin control positivo |
+
+**Dónde está el resto.** Se abre por **pregunta**, nunca entero:
+
+| Si te preguntas… | Sección |
+| --- | --- |
+| ¿De dónde saco la fecha, y por qué no de `git log`? | *De dónde sale la fecha* |
+| ¿Por qué entero y no un `Edit`? | *El `state` se reescribe entero* |
+| Voy a saltarme un paso por eficiencia | *La barrera se rodea por eficiencia, no por descuido* |
+| ¿Cómo verifico un reemplazo masivo? | *Un reemplazo en lote imprime su diff* |
+| ¿Qué va en el `state` y qué no? | *El `state` apunta a lo que caduca* · *No registres un estado que no puedas observar* |
+| ¿Qué compruebo antes de commitear? | *Antes de persistir, comprueba lo que acabas de escribir* |
+| ¿Y si no hay git? | *Persistir el cierre, según el modo* |
 
 ## De dónde sale la fecha
 

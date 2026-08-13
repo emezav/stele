@@ -8,11 +8,6 @@ proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el arc
 
 ## Lo mínimo para ejecutarlo
 
-> **Contrato de este bloque: si solo lees esto, escribes la carta sin cometer ninguno de los fallos que
-> el resto del ritual documenta.** Si uno se te escapa habiéndolo leído, **el que está mal cortado es el
-> bloque**, no tú. Lo de abajo no es lectura previa: es el **porqué** de cada línea de aquí, y se abre
-> por pregunta.
-
 **Antes de nada:** ¿hay **caso** —algo que pasó, en un terreno, con un coste? Sin caso no hay carta.
 
 1. **Comprobar que hay caso.**

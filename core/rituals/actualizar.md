@@ -7,6 +7,8 @@ Se dispara con "actualiza stele" / "trae la última versión del marco". Cambia 
 `base` no se toca nunca — esos docs son del proyecto, y una plantilla nueva **no reinstancia nada**.
 No aplica en modo auto-hospedado (`kit = .`): ahí el marco se desarrolla en sitio, no se vendoriza.
 
+## Lo mínimo para ejecutarlo
+
 **Regla dura: no toques el kit hasta haber leído el diff.** La versión nueva se trae **al lado**, a
 un temporal, nunca encima de la que ya tienes. Así el diff existe siempre — sin depender de que el
 adoptante haya versionado el kit ni de acordarse de respaldarlo — y una actualización que se aborta a
@@ -46,6 +48,31 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    sesión y el próximo paso, el delta no llegó a la puerta que lee tu agente.*
 7. **Limpiar** el temporal.
 
+**Las siete que se saltan.** Cada una tiene su cadáver documentado abajo:
+
+| Situación | La regla |
+| --- | --- |
+| El diff sale **vacío** | Tiene **dos causas y se leen igual**: estás al día, o **el origen no publicó lo que dice tener**. Mira un dato observable del origen antes de dar por bueno el primero |
+| El diff trae un archivo **NUEVO** | **Léelo entero**, esté o no en la tabla: un archivo que no existía **no puede tener fila**, porque la fila viajaría en el mismo kit que lo trae |
+| El diff **renombra o elimina** algo del kit | La tabla te dice qué hacer con el contenido, **no con tus referencias hacia él**. `grep` del nombre viejo en `{base}` = 0 antes de dar por buena la actualización |
+| Pasaste el paso 4 | **A partir de ahí manda el kit NUEVO**, no el que traes en contexto. Si el diff tocó el enrutador, relee lo que gobierna los pasos que te quedan |
+| El diff tocó una **puerta** o un bloque `GENERADO` | El delta **se porta a mano y a CADA puerta**. Dos puertas que digan cosas distintas es el único modo en que varias hacen daño |
+| Vas a regenerar un bloque `GENERADO` | **Está protegido por default.** Solo se reescribe entero si su marca dice `LIMPIO`; si no, se porta el delta conservando lo que diga de más |
+| Una plantilla de contenido cambió | **Casi nunca hay nada que hacer** — salvo las excepciones por **ausencia** y por **presencia rota**, que **se ofrecen**, nunca se aplican en silencio |
+
+**Dónde está el resto.** Se abre por **pregunta**, nunca entero:
+
+| Si te preguntas… | Sección |
+| --- | --- |
+| ¿Qué implica lo que cambió? | *La tabla de zonas de impacto* |
+| ¿Esto le llega a quien ya adoptó? | *Cuándo una plantilla de contenido SÍ llega* |
+| ¿Es plantilla de contenido o generadora? | *Plantilla de contenido contra plantilla generadora* |
+| ¿Reescribo el bloque o porto el delta? | *Las marcas del bloque generado* |
+| ¿Por qué la regla nueva no me alcanzó? | *Una regla nueva llega tarde por construcción* |
+| ¿Cómo baja el kit, y qué no ve el diff? | *El canal de bajada, el diff y los renombrados* |
+
+## El kit nuevo gobierna lo que te queda por hacer
+
 **Lo que acabas de instalar gobierna lo que te queda por hacer, y es el paso que más se salta.** Un
 agente ejecuta ACTUALIZAR con el procedimiento que cargó al abrir la sesión, así que entre el paso 4 y
 el 7 sigue operando de memoria con el kit que acaba de sustituir. El caso visible es el **informe**: es
@@ -61,6 +88,8 @@ actualización que la entrega*— aplicada un nivel más adentro: no al **qué m
 **procedimiento en curso**. Una regla nueva llega tarde por construcción, y lo único que la rescata es
 releerla en el paso 4.
 
+## La tabla de zonas de impacto
+
 | Zona del diff | Qué implica para esta instancia |
 | --- | --- |
 | `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados**. Y si el rol nuevo es un **doc**, su archivo **no existe en esta instancia**: ofrécelo al usuario e instáncialo si acepta — regenerar los derivados deja el mapa apuntando a algo que no está |
@@ -68,7 +97,7 @@ releerla en el paso 4.
 | `modules/<mód>/module.md` | Cambió lo que aporta un módulo activo: features, defaults o su regla dura |
 | Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/…`) que tus propios docs hayan escrito |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: **porta el delta a mano** al archivo real — **y `autostart` se instancia una vez POR PUERTA**, así que el delta va a **todas**, no solo a la primera que encuentres. Dos puertas que digan cosas distintas es el único modo en que varias puertas hacen daño. Se conserva íntegro lo que quede fuera de las marcas —invariante 6— **y también lo de dentro**, que está protegido por default (ver abajo). Solo se regenera el bloque entero si su marca dice `LIMPIO` |
-| `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer** para los docs que ya existen: son del proyecto y no se regeneran jamás. **Tres excepciones, y las tres abajo.** Dos son por AUSENCIA: un **rol nuevo** (no hay doc que respetar) y una **sección nueva** dentro de una plantilla de rol que sí existe (el doc está, el trozo no). La tercera no: una **comprobación corregida** —un comando que el kit manda correr y que estaba mal—, donde el adoptante no tiene una ausencia sino **una copia rota que pasa en verde**. Las tres **se ofrecen**, no se aplican en silencio |
+| `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer** para los docs que ya existen: son del proyecto y no se regeneran jamás. **Con excepciones, abajo, en dos familias.** Por AUSENCIA —un **rol nuevo**, o una **sección nueva** dentro de una plantilla que sí existe: no hay doc ni trozo que respetar—. Y por PRESENCIA ROTA —una **comprobación corregida**, un comando que el kit manda correr y estaba mal—, donde el adoptante no tiene un hueco sino **una copia rota que pasa en verde**. Todas **se ofrecen**, no se aplican en silencio |
 | **La tabla de disparadores de rituales de `core/templates/entry.md`** (nueva en la sesión 119) | **Esta SÍ se porta**, aunque la fila de las plantillas de contenido diga que no: no es contenido tuyo, es una **regla del kit** que vive ahí porque el `entry` es lo único garantizado en el arranque. Cópiala a tu `entry` resolviendo los tokens. Sin ella, tu agente puede trabajar cientos de sesiones sin saber que un ritual existe — pasó, y está medido |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran. **Ojo con `SKILL.md` desde la 119:** ya no lleva la tabla de rituales, así que si tu `entry` no la tiene, no la tiene nadie |
 | **Las leyes de verificación salieron de `core/rituals/auditar.md` a `core/reference/verificar.md`** | Eran el 65% de ese ritual. **El contenido no cambió: cambió de fichero**, y por eso ningún barrido de texto lo detecta como pérdida. Lo que rompe son **tus punteros**: si algún doc tuyo cita `auditar.md` para una ley —*el error que te quita razón*, *una cifra sobre tu corpus es una FOTO*, *un número sin expectativa*, *el valor esperado del control*— ahora apunta a un fichero donde esa sección **ya no está**, y la cita se lee igual de bien. `grep -rn "auditar\.md" <base> --include="*.md"` y revisa cada acierto: los que citen el **procedimiento** (alcance, clases de drift, detectores, fases, informe, cadencia) siguen correctos y no se tocan. La lista completa de lo que se movió está en el propio `auditar.md`, en *Las leyes de verificación viven aparte* |
@@ -76,16 +105,21 @@ releerla en el paso 4.
 | El **bloque de detectores** de `core/rituals/auditar.md` | Solo importa si tu proyecto **no** está en el `idioma` del kit y por tanto tiene detectores **derivados** en la sección *Detectores de auditoría* de `protocol`. Si el kit añadió, quitó o cambió un detector, el tuyo no se entera: **es un derivado que no se regenera**, como el loader. Porta el delta a mano — y si el detector nuevo es **gramatical** y no léxico, no lo traduzcas: derívalo, y guárdalo con su control positivo. Un detector que no existe en tu sección **no da error: da cero**, y ese cero se lee como corpus limpio |
 | El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo. **Baja aunque `correspondence_log` esté en `off`** —viaja dentro del kit—, y entonces se puede leer pero no contestar: hace falta activar el rol y elegir `remitente`, y las dos cosas las decide la persona. No ofrezcas REMITIR sin decirlo |
 
-**Hay DOS casos donde una plantilla de contenido sí llega a quien ya adoptó** —eran uno hasta la sesión
-119— y conviene ver por qué son excepciones distintas.
+## Cuándo una plantilla de contenido SÍ llega a quien ya adoptó
 
-**El primero: un rol nuevo.** La fila de las plantillas de rol dice que los docs de `base` no se
+**Una plantilla de contenido SÍ llega a quien ya adoptó en varios casos, y se agrupan en dos familias:
+por AUSENCIA —falta algo y por eso no hay nada del proyecto que respetar— y por PRESENCIA ROTA —está,
+y está mal—.** Aquí van uno a uno, y **sin contarlos en la frase**: el número creció dos veces en este
+mismo documento y las dos dejó descolgada alguna referencia. Lo que hay que reconocer es la **forma**,
+no la posición en una lista.
+
+**Por ausencia: un rol nuevo.** La fila de las plantillas de rol dice que los docs de `base` no se
 regeneran jamás, y es cierto **para los que existen**: son del proyecto. Pero un rol que no existía no
 tiene doc que respetar, así que ahí no hay conflicto — hay una ausencia. Sin esta excepción, una
 capacidad nueva del marco solo la reciben los proyectos que empiecen después, y el que la necesitaba
 lleva sesiones sin saber que existe. **Se ofrece, no se crea en silencio:** el usuario puede no quererla.
 
-**El segundo: una REGLA DEL MARCO que viaja dentro de una plantilla de contenido.** Es el caso de la
+**Por ausencia: una REGLA DEL MARCO que viaja dentro de una plantilla de contenido.** Es el caso de la
 tabla de disparadores de rituales, que entró al `entry` en la sesión 119. No es contenido del proyecto:
 es del kit, y está ahí **solo porque el `entry` es lo único garantizado en el arranque**. La regla
 general —*las plantillas de contenido no se migran*— la dejaría fuera, y el efecto medido de dejarla
@@ -96,8 +130,8 @@ fuera es que un agente trabaje cientos de sesiones sin enterarse de que un ritua
 > Mientras las dos condiciones no coincidan en un mismo artefacto, cada regla que necesite las dos
 > tendrá que entrar por una fila explícita como esta. **Es deuda de diseño, anotada y no resuelta.**
 
-**Y una SECCIÓN nueva dentro de una plantilla de rol que ya existe cae en el mismo hueco, pero pasa
-desapercibida.** El doc del adoptante existe, así que la fila dice *"nada que hacer"* y se cumple al
+**Por ausencia, y es la que pasa desapercibida: una SECCIÓN nueva dentro de una plantilla de rol que
+ya existe.** El doc del adoptante existe, así que la fila dice *"nada que hacer"* y se cumple al
 pie de la letra — mientras la sección **no aparece nunca**. Es la misma ausencia que justifica la
 excepción de arriba, en una escala en la que nadie la busca: no falta un documento, falta un trozo de
 uno que sí está, y desde fuera se ve idéntico a un doc que el proyecto decidió no usar. **Al ver un
@@ -113,9 +147,9 @@ la fecha** entró como párrafo dentro de `### {{session}}`, ya existente, y por
 excepción no la habría recibido nadie. **Una excepción escrita sobre el tamaño del síntoma deja fuera
 los ejemplares pequeños de su propia causa**, y los pequeños son los frecuentes.
 
-**Y la tercera excepción es de otra familia, porque no hay nada ausente: hay algo presente y roto.**
+**Por presencia rota, que es la otra familia entera: no falta nada, hay algo presente y roto.**
 Cuando el kit **corrige un comando que manda correr**, el adoptante conserva el suyo y **sigue dando
-verde** — que es peor que no tenerlo, porque un hueco se nota y un verde falso no. Las dos anteriores
+verde** — que es peor que no tenerlo, porque un hueco se nota y un verde falso no. Las anteriores
 se detectan mirando qué falta; esta no se detecta mirando nada, porque el doc del adoptante está
 completo, bien formado y **contesta lo que se le pregunta**. **Al ver que cambió un comando dentro de
 una plantilla de rol, mira si el viejo podía fallar** — si no podía, el adoptante lleva un certificador.
@@ -143,6 +177,8 @@ los activó—, así que lo que se documenta no es una pérdida observada sino e
 orden habilita: con un "ahora no", o sin respuesta, el manifiesto habría quedado idéntico a si nunca se
 hubiera ofrecido nada.
 
+## Plantilla de contenido contra plantilla generadora
+
 **Plantilla de contenido contra plantilla generadora.** Es la distinción que decide las dos filas de
 plantillas —la del loader con sus bloques `GENERADO`, y la de las plantillas de rol—, y confundirlas
 es un fallo silencioso. Una plantilla de **contenido** produjo un doc que desde el primer día es del
@@ -166,6 +202,8 @@ el kit arregló su plantilla por su cuenta; **los dos textos acabaron diciendo l
 distintos y ninguno avisó al otro**. El resultado era correcto y la señal se apagó igual. **La
 convergencia y el silencio llegan juntos** — no es un fallo que se pueda arreglar, es lo que significa
 converger.
+
+## Las marcas del bloque generado, y por qué el default protege
 
 **El bloque generado casi nunca es un derivado puro, así que el default lo protege.** Un proyecto que
 adoptó el marco con cientos de sesiones encima suele tener en su loader reglas propias que la plantilla
@@ -253,6 +291,8 @@ nota, la fila del loader disparó igual, y lo que evitó la pérdida fue que el 
 no el mecanismo. Un mecanismo que depende de que alguien recuerde una nota en otro archivo no es un
 mecanismo.
 
+## Una regla nueva llega tarde por construcción
+
 **Una regla que gobierna el actualizar no gobierna la actualización que la entrega.** Quien actualiza
 sigue el ritual del kit **viejo**: cuando clasifica el diff, el kit nuevo todavía no está aplicado. Así
 que **cualquier fila que se añada a esta tabla es invisible durante la actualización que la introduce**,
@@ -268,6 +308,8 @@ Detectado en campo: un proyecto recibió el buzón y su agente lo leyó, pero **
 existía en su kit— sino porque `diff -rq` imprimió `Only in <temporal>: buzon.md` y la fase de
 clasificar le llevó a abrirlo. **Funcionó porque el diff obliga a mirar**, que es más robusto que
 cualquier fila: no depende de que el destinatario ya tenga la versión que se lo dice.
+
+## El canal de bajada, el diff y los renombrados
 
 **El canal de bajada no es maquinaria: es esta fila.** ACTUALIZAR ya se trae el árbol entero del kit,
 así que **si el kit lleva un buzón, las cartas bajan con la actualización** — sin red, sin API y sin

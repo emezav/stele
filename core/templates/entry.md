@@ -71,6 +71,11 @@ encuadró su trabajo, que es justo quien no necesitaba la tabla.
 > frase que ibas a escribir en otro sitio**, así que sin la pregunta escrita aquí no salta nunca: se
 > queda como una trampa más en `{{gotchas}}`, donde no arregla nada y estorba en cada arranque.
 
+**Y todos abren igual: con un bloque `## Lo mínimo para ejecutarlo`.** Su contrato es que **si solo lees
+ese bloque ejecutas el ritual sin cometer ninguno de los fallos que su cuerpo documenta**; si uno se te
+escapa habiéndolo leído, el que está mal cortado es el bloque, no tú. El resto del fichero es el
+**porqué**, y se abre por pregunta.
+
 **Y por eso esta tabla vive aquí y no con los rituales.** Un disparador que hay que ir a buscar no es un
 disparador. Lo demás sobre ellos —por qué viven aparte, qué es ritual y qué es referencia— está en
 `{{kit}}/SKILL.md`, que se lee cuando ya sabes que vas a enrutar.
