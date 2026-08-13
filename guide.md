@@ -408,51 +408,78 @@ individual parezca culpable.
 
 El corte fue por ritual: `SKILL.md` enruta, y cada ritual se lee **solo cuando se invoca**.
 
-> **Corpus fijado: `7ce11a9`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
+> **Corpus fijado: `639b7fe`.** Tokenizador `tiktoken`, codificación `o200k_base`, medido sobre
 > `git cat-file` y no sobre el árbol de trabajo. **Sin esas tres cosas la tabla no es una medición
 > sino un contador**, y un contador caduca en silencio: dos versiones atrás esta tabla no las llevaba,
 > y siete de sus diez cifras —correctas el día que se escribieron— envejecieron entre un 2% y un 170%
 > sin que nada avisara. Si vas a rehacerla, deja el identificador dentro.
 >
-> **Control del método, calculado y no elegido:** entre el corpus anterior (`72347d8`) y este,
-> **nueve de los once ficheros no cambiaron** —`git diff --name-only`— y los nueve reproducen su cifra
-> **exacta**. Por eso los dos deltas de abajo son crecimiento real y no deriva del tokenizador. El
+> **Control del método, calculado y no elegido:** entre el corpus anterior (`7ce11a9`) y este,
+> **tres de los once ficheros no cambiaron** —`git diff --name-only`— y los tres reproducen su cifra
+> **exacta**. Por eso los deltas de abajo son crecimiento real y no deriva del tokenizador. El
 > control no es *"no cambió desde una fecha cómoda"*: es **no cambió entre los dos instantes que se
 > comparan**.
+>
+> **Y el control encogió de nueve a tres, que es un dato sobre el kit y no sobre el método.** En el
+> corpus anterior nueve ficheros de once estaban quietos; en este solo tres. **Ocho de los once
+> crecieron a la vez**, entre un 1% y un 22%, en las veintiuna sesiones que separan los dos corpus. Un
+> control que adelgaza avisa de dos cosas opuestas —que el kit se está moviendo mucho, o que quedan
+> pocos testigos para detectar una deriva de tokenizador— y **las dos piden lo mismo: volver a medir
+> antes, no después**.
 
 | Se carga | Tokens | Cuándo se paga |
 | --- | --- | --- |
-| `SKILL.md` (enrutador) | 5 703 | siempre que se enruta — **no al arrancar** |
+| `SKILL.md` (enrutador) | 5 767 | siempre que se enruta — **no al arrancar** |
 | `core/rituals/abrir.md` | 753 | cada sesión, bajo demanda |
-| `core/rituals/cerrar.md` | 6 243 | cada cierre |
-| `core/rituals/contrastar.md` · `remitir.md` | 3 869 · 9 662 | si hay carta |
-| `core/rituals/auditar.md` | 16 314 | cada ~10 sesiones |
-| `core/reference/verificar.md` | **22 245** | al medir o publicar una cifra |
-| `core/rituals/actualizar.md` | 6 933 | al traer kit nuevo |
-| `core/rituals/bootstrap.md` · `configurar.md` | 3 373 · 1 799 | una vez / rara |
+| `core/rituals/cerrar.md` | 6 837 | cada cierre |
+| `core/rituals/contrastar.md` · `remitir.md` | 4 200 · 10 492 | si hay carta |
+| `core/rituals/auditar.md` | 17 372 | cada ~10 sesiones |
+| `core/reference/verificar.md` | **25 378** | al medir o publicar una cifra |
+| `core/rituals/actualizar.md` | 8 427 | al traer kit nuevo |
+| `core/rituals/bootstrap.md` · `configurar.md` | 3 372 · 1 799 | una vez / rara |
 | `core/reference/rutas-y-tokens.md` | 2 851 | bootstrap y config |
 
-**Sesión normal (enrutador + abrir + cerrar): 12 699.** Sin cambio en este corpus. **Y ojo con lo que
-esa suma NO es** — la sección siguiente: ninguno de esos tres ficheros lo carga la puerta.
+**Sesión normal (enrutador + abrir + cerrar): 13 357.** Creció 658 desde el corpus anterior, casi todo
+en `cerrar`. **Y ojo con lo que esa suma NO es** — la sección siguiente: ninguno de esos tres ficheros
+lo carga la puerta.
 
 **Y conviene leer el resultado sin adornos, porque el titular es incómodo.** Auditar de verdad cuesta
-`auditar` **más** `verificar` —lo que se lee al auditar son las dos— y eso son **38 559**, o sea **3,04
+`auditar` **más** `verificar` —lo que se lee al auditar son las dos— y eso son **42 750**, o sea **3,20
 veces** una sesión normal. Antes del corte eran 24 999 en un solo fichero. **El corte no abarató el
 coste: lo repartió**, y a cambio puso las leyes al alcance de los demás rituales, que era el problema
 que venía a resolver.
 
+**Los dos números de arriba subieron, y su causa está identificada:** entre los dos corpus se construyó
+el índice de leyes, que engordó `verificar` en 3 133 y `auditar` en 1 058. **Auditar de verdad cuesta
+hoy un 11% más que hace veintiuna sesiones**, y ese gasto es real y está donde se decidió ponerlo. Lo
+que conviene no perder de vista es la otra mitad: **ese mismo trabajo no encareció el arranque ni un
+token**, porque ninguno de esos dos ficheros se carga al arrancar. Cuál de los dos costes te importa
+depende de qué estés a punto de podar — y por eso la sección siguiente separa los dos conjuntos.
+
 ### Esta tabla NO mide el arranque, y lo dijo durante dos corpus
 
-Los 12 699 de arriba son **los ficheros del kit que toca una sesión completa**. Se presentaron como *el
+Los 13 357 de arriba son **los ficheros del kit que toca una sesión completa**. Se presentaron como *el
 arranque*, y el arranque es otra cosa: lo que la **puerta** importa antes de que el agente hable. Medido
-con el mismo tokenizador, comprobando primero que reproduce las tres cifras selladas de arriba:
+con el mismo tokenizador, comprobando primero que reproduce las cifras selladas de arriba:
 
 | Conjunto | Qué es | Tokens | Corpus |
 | --- | --- | --- | --- |
-| lo que mide la tabla | `SKILL.md` + `abrir` + `cerrar` | 12 699 | `7ce11a9` |
-| lo que **pesan** las plantillas del set de arranque | la puerta + las 4, tal como se distribuyen | 4 781 | `7ce11a9` |
-| lo que el adoptante **paga** al bootstrapear | esas mismas, sin los comentarios de instrucción | **3 167** | `7ce11a9` |
-| el arranque real de un proyecto vivo | los 4 imports de la puerta, en este repo | **16 013** | **sin sellar** |
+| lo que mide la tabla | `SKILL.md` + `abrir` + `cerrar` | 13 357 | `639b7fe` |
+| lo que **pesan** las plantillas del set de arranque | la puerta + las 4, tal como se distribuyen | 5 576 | `639b7fe` |
+| lo que el adoptante **paga** al bootstrapear | esas mismas, sin los comentarios de instrucción | **3 814** | `639b7fe` |
+| el arranque real de un proyecto vivo | **la puerta + los 4 imports**, en este repo | **16 213** | **sin sellar** |
+
+<!-- La última fila decía "los 4 imports de la puerta" y era FALSO: la cifra incluye la puerta.
+     Lo destapó la sesión 130 con dos fuentes independientes -- el desglose de README.md, que solo
+     suma si se cuenta la puerta, y el sumando "6 451 del resto", igual. El número llevaba dos
+     corpus bien; el que envejeció mal fue su NOMBRE, y comparar contra él da el signo cambiado
+     (-1,9% en vez de +1,2%). Es la misma ley de tres párrafos más abajo, cometida en la fila que
+     la ilustra. -->
+
+**Las dos filas de plantillas crecieron un 17% y un 20%** desde el corpus anterior, todo por `entry.md`.
+Se miden con receta y no con lista de ficheros —qué entra y qué cuenta como comentario de instrucción—,
+así que al rehacerlas se comprueba primero que **la receta reproduce las cifras viejas en el corpus
+viejo**. Si no reproduce, lo que tienes no es una actualización: es otra medida con el mismo nombre.
 
 **La fila del arranque real no se puede sellar, y eso es parte del hallazgo.** Sus cuatro ficheros son
 los docs de trabajo de la instancia, que **no están versionados**: no hay commit que los identifique,
@@ -466,18 +493,57 @@ en su primera línea que se lee bajo demanda; y ni la plantilla de la puerta ni 
 `SKILL.md` una sola vez. La consecuencia práctica es la que duele: **podar el enrutador o el ritual de
 cierre —lo que este documento venía proponiendo— no bajaría el arranque ni un token.**
 
+#### Y no son dos conjuntos: son dos costes de dueños distintos
+
+Decir que son disjuntos describe los ficheros y **no dice de quién es cada factura**, que es lo que hace
+falta para decidir. Son dos:
+
+| | **El coste del kit** | **El coste de tu instancia** |
+| --- | --- | --- |
+| Qué es | `SKILL.md`, los rituales, las referencias | tus `entry`, `gotchas`, `state`, `handover` |
+| De quién | **del marco** — igual para todo adoptante | **tuyo** — no se parece al de nadie |
+| Viaja al adoptante | sí, es el producto | no, son tus documentos |
+| Se puede sellar | **sí**, contra un commit | **no**, no están versionados |
+| Cuándo se paga | **bajo demanda**, al invocar el ritual | **siempre**, en cada arranque |
+| Lo baja | podar el kit | curar tus docs |
+
+**El kit es de tamaño fijo y tu instancia crece contigo.** Por eso las dos mitades de esta sección no
+compiten: una la arregla quien desarrolla el marco, la otra la arreglas tú, y **ninguna de las dos
+palancas mueve la cifra de la otra**.
+
+**Esta distinción no es teórica y no se sostiene sola.** Al rehacer estas cifras, la sesión 130 puso las
+dos tablas seguidas en un informe sin marcar de quién era cada una, y **confundió al lector y a quien
+escribía** — con este documento abierto por esta misma sección. Si al citar una cifra de coste no dices
+**de cuál de las dos columnas sale**, la frase se lee como si hablara de la otra.
+
 <!-- Las dos frases de arriba decían "la tercera fila" y "el primero y el tercero", y las rompió
      AÑADIR una fila a la tabla en la sesión 109: los ordinales pasaron a apuntar a la fila nueva.
      Misma ley que "mover prosa rompe sus deícticos", por inserción en vez de por movimiento. Por eso
      ahora las filas se nombran y no se numeran. -->
 
 **Lo que sí lo baja es curar el `gotchas`**, que en este repo pesa **más que todo lo demás del set de
-arranque junto** —medido al cerrar la sesión 108: 9 562 contra 6 451—. Va en proporción y no en porcentaje fijo a
+arranque junto** —medido el 2026-08-13: 9 155 contra 7 058—. Va en proporción y no en porcentaje fijo a
 propósito: el denominador lleva dentro `state` y `handover`, que **fluctúan dentro de una misma
 sesión** (un checkpoint abierto multiplica el `handover` por cinco), así que cualquier tanto por ciento
 que se escriba aquí envejece sin que nadie lo toque. Por eso la tabla de
 presupuestos de más arriba ganó una columna y un tope: el arranque no se abarata donde es cómodo
 medirlo, sino donde está la masa.
+
+**Pero curarlo tampoco basta solo, y hay medida.** Entre la sesión 108 y la 130 se podó el `gotchas`
+—**-407**— y el arranque **subió +200**, porque el `entry` creció 281 y el `handover` **dobló**: de 341
+a 691. Los dos crecimientos juntos, **+631**, se comieron el recorte y sobró. Y el `handover` no
+engordó por tener trabajo a medias: estaba en `SIN_TRABAJO_ACTIVO` las dos veces.
+
+**Y lo que hace útil al dato es que ningún tope se violó.** Los cuatro roles del arranque tienen
+presupuesto —la tabla de más arriba— y el día de la medida los cuatro estaban **dentro del suyo**: en el
+repo donde se midió, 204/210, 400/400, 117/150 y 86/100. **Cuatro presupuestos cumplidos, y la suma
+subió igual.**
+
+Es la misma forma del defecto que obligó a ponerle a `gotchas` un tope **total** además del de sección,
+un piso más arriba: **un presupuesto que solo mira las partes certifica un total que nadie acotó.**
+Ahí las partes eran las secciones de un fichero; aquí son los cuatro ficheros del conjunto. Si lo que
+quieres acotar es el arranque, el tope tiene que estar sobre **la suma** — mientras esté solo sobre cada
+miembro, el crecimiento se muda al miembro con más margen y **todos los indicadores siguen en verde**.
 
 **Y hay una lección en las dos frases anteriores de esta misma sección**, que es peor que el error.
 Una versión decía *"`auditar` es **hoy** 1,44 veces"*, con la tabla ya corpus-fijada encima: la tabla no
