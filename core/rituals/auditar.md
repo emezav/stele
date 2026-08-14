@@ -187,11 +187,23 @@ auditar; allí, las leyes que gobiernan cualquier comprobación. **La lista va e
 título que se muda deja de ser encontrable por barrido desde donde estaba.**
 
 > **Esta lista es una COPIA y se desincroniza — mantenerla es parte de añadir una ley.** Al escribir una
-> nueva en `verificar.md`, su título entra aquí en el mismo cambio. Se comprueba contando: los
-> encabezados de nivel 2 de `verificar.md` y los items de esta lista dan **el mismo número**, y cada uno
-> tiene que existir
-> en el otro lado. **Se descuadró en la primera ley que se añadió tras crearla**, que es lo que hay que
-> esperar de cualquier contador escrito a mano.
+> nueva en `verificar.md`, su título entra aquí en el mismo cambio. **Se descuadró en la primera ley que
+> se añadió tras crearla**, que es lo que hay que esperar de cualquier copia mantenida a mano.
+>
+> **Y NO se comprueba contando: se comprueba con `comm`**, que es una biyección y no un número. Contar
+> da un solo bit —cuadra o no— y **el conteo mismo puede fallar**: un patrón que recoja una línea de más
+> del bloque de alrededor da un descuadre inventado, y eso ya ocurrió aquí. `comm` dice **cuál** falta y
+> **de qué lado**, que es lo único accionable:
+>
+> ```bash
+> grep '^## ' {kit}/core/reference/verificar.md | sed 's/^## //' | sort > /tmp/leyes
+> sed -n '/^## Las leyes/,/^## [^L]/p' {kit}/core/rituals/auditar.md \
+>   | grep -E '^- \*' | sed 's/^- \*//; s/\*$//' | sort > /tmp/indice
+> comm -23 /tmp/leyes /tmp/indice   # ley sin entrada en el indice
+> comm -13 /tmp/leyes /tmp/indice   # entrada sin ley
+> # CONTROL POSITIVO: anade una linea inventada a /tmp/leyes y comprueba que sale reportada.
+> # Sin el, dos ficheros vacios tambien dan "sin diferencias".
+> ```
 
 - *El comando no es el patrón, y confundirlos parece sustrato*
 - *Un desacuerdo demuestra que algo difiere; nunca demuestra QUÉ*
@@ -239,6 +251,9 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Mover prosa rompe sus deícticos, y ninguno da error*
 - *Un documento sí ejecuta: se renderiza*
 - *Quién ve el rojo, y en qué papel*
+- *Prohibir una observación no basta: hace falta que algo obligue a hacerla*
+- *Una contradicción interna que sobrevive mide cuántas veces el documento se cargó sin leerse*
+- *Cuando un fichero admite dos lecturas por patrón, el control es un invariante y no un patrón mejor*
 
 ## Las clases de drift
 

@@ -29,6 +29,12 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
   **nunca buscando la palabra en la fila**, cuya prosa menciona estados de otras cartas.
 - **Y esa lectura lleva control positivo**, como cualquier detector: una fila que sabes entregada tiene
   que leerse entregada. Sin él, la sonda no mide nada.
+- **Y el índice se cuenta con un invariante, no con un patrón:** el **número de cartas** tiene que
+  coincidir con el **último número de carta**. Ese fichero puede llevar más de una tabla numerada —los
+  desacuerdos, por ejemplo— y entonces contar filas por patrón da de más **sin dar error**. Ocurrió a
+  dos proyectos el mismo día, con instrumentos distintos, sobre el mismo archivo: `126` donde había
+  `123`. La ley y el caso, en `{{kit}}/core/reference/verificar.md` → *Cuando un fichero admite dos
+  lecturas por patrón, el control es un invariante y no un patrón mejor*.
 
 **Después, en orden:**
 

@@ -1459,3 +1459,123 @@ las dos, así que el eje es el PAPEL y no el nombre.** El linter de un autor le 
 **Es pareja de la ley anterior, y por eso van juntas.** El renderizado es el caso raro en que un falsador
 corre en el camino del lector sin que el autor haya hecho nada, así que es la vía más barata que hay para
 mover una comprobación del primer lado al segundo.
+
+## Prohibir una observación no basta: hace falta que algo obligue a hacerla
+
+**Una afirmación es comprobable cuando prohíbe una observación** — si nada podría contradecirla, no dice
+nada del mundo y envejecer no la cambia. Eso reparte bien lo comprobable de lo que no. Y **no basta**,
+porque entre *poder comprobarse* y *comprobarse* hay un paso que nadie da.
+
+**Caso de campo, y es el más barato imaginable.** El documento de estado de un proyecto publicaba, en
+**una sola línea**:
+
+```text
+"123 cartas -- 58 con un corresponsal, 47 con el otro"
+                58 + 47 = 105
+```
+
+La frase prohibía una observación: que la suma diera el total escrito a su lado. Los dos sumandos
+estaban **a catorce caracteres uno de otro**, en el documento que se carga entero al abrir cada sesión.
+**Sobrevivió quince cargas.** El reparto real era otro, y además faltaba un tercer corresponsal que la
+frase no mencionaba.
+
+> **La baratura de la observación no la dispara.** La comprobación más barata que ese proyecto había
+> publicado nunca —sumar dos números contiguos— aguantó quince pasadas por delante de los ojos que
+> podían hacerla.
+
+**Qué la disparó, cuando por fin ocurrió: necesitar el mismo dato para otra cosa.** Nadie sospechó de la
+frase ni fue a buscar su contradicción. El ritual de auditar **exige un denominador**, y para escribirlo
+hubo que contar esos mismos elementos por categoría. El número nuevo apareció al lado del viejo y se
+delató solo.
+
+**De ahí lo accionable, que se puede aplicar al escribir aunque la detección no:**
+
+> **Si quieres que una afirmación se compruebe alguna vez, haz que su dato sea insumo obligatorio de
+> otra rutina.** No que sea comprobable —eso ya lo era, y no bastó—: que **algo que haces igualmente**
+> no se pueda terminar sin recalcularlo.
+
+Es más débil que un detector y tiene la ventaja de que **no depende de acordarse**. Un denominador de
+auditoría no existe para cazar frases; caza frases porque obliga a contar. La consecuencia incómoda es
+que la cobertura real de un proyecto no la decide su rigor, sino **cuántas rutinas distintas tocan el
+mismo dato**: uno que no alimenta ninguna es incomprobable en la práctica aunque sea comprobable en
+principio — y esos son justo los que suenan a conclusión, y por eso los que más se citan.
+
+*(Aporte de un corresponsal, que formuló la mitad de la ley —lo que prohíbe algo contra lo que no— y
+recibió de vuelta el contraejemplo que la acota.)*
+
+## Una contradicción interna que sobrevive mide cuántas veces el documento se cargó sin leerse
+
+*"¿Está escrito?"* se comprueba con un `grep`. *"¿Se abrió?"* lo dice la herramienta. **Lo que no tenía
+medida es si se leyó**, y en un proyecto con documentos que se releen en cada sesión esa es la pregunta
+que decide si escribirlos sirve de algo. Hay sonda:
+
+> **Una contradicción INTERNA y BARATA que sobrevive N cargas mide, con N, cuántas veces el documento se
+> cargó sin leerse.**
+
+Las tres palabras hacen trabajo:
+
+- **Interna** — resoluble sin salir del documento. Si hay que abrir otro fichero, la sonda mide la
+  disponibilidad del dato y no la lectura.
+- **Barata** — si verla cuesta trabajo, un no-hallazgo se explica por el coste y la medida no dice nada.
+- **Sobrevive** — la N sale de contar cargas entre que la contradicción entró y que alguien la vio, que
+  en un proyecto con bitácora es **una resta de dos fechas**.
+
+**Medido en un proyecto real, sobre sus documentos de arranque: 15 y 21 cargas.** La primera era una
+suma de dos números contiguos; la segunda, una cifra citada en presente veintiuna sesiones después de
+medirse.
+
+**Y lo mejor de la sonda es que no hay que plantarla**, que además sería sabotear el documento que se
+quiere medir: **el historial ya las tiene**. Cada corrección de una contradicción interna que el
+proyecto haya hecho trae consigo su fecha de entrada, y la resta es la medida. No hay que diseñar nada:
+hay que mirar las correcciones ya hechas y preguntarles cuánto llevaban ahí.
+
+**Tres límites, y el segundo es el que importa:**
+
+- **Mide una línea, no un documento.** Dice que *esa* línea no se leyó; el resto del fichero pudo leerse
+  entero cada vez.
+- **Es retrospectiva, así que está sesgada a la baja.** Solo cuenta las contradicciones **que alguien
+  acabó viendo**. Las que siguen dentro son, por construcción, las de N más alto — y no entran.
+- **N cuenta cargas, no lecturas humanas.** Donde el que carga es un agente y el documento se inyecta
+  entero, N es exacto; en un equipo de personas mide otra cosa.
+
+**Y hay un defecto hermano que esta sonda no ve, dicho aquí para que no se confíe en ella de más:** un
+documento **correcto y completo** que nadie abre no tiene ninguna contradicción interna que pueda
+sobrevivir. La incorrección se delata sola con el tiempo; **la corrección no deja rastro de haber sido
+consultada.**
+
+*(Nació de la pregunta de un corresponsal — cuántas veces un documento de arranque se lee de verdad
+frente a cuántas se da por leído — que declaró no saber por dónde empezar a medirlo.)*
+
+## Cuando un fichero admite dos lecturas por patrón, el control es un invariante y no un patrón mejor
+
+**Caso de campo, y lo que lo hace concluyente es que ocurrió dos veces el mismo día.** Un índice de
+correspondencia se contó con `grep` sobre las filas numeradas y dio **126**. Las cartas eran **123**: el
+fichero tiene una **segunda tabla** —de desacuerdos— que también numera sus filas, y el patrón no las
+distingue.
+
+Ese mismo día, un corresponsal midió **el mismo fichero** con **otro instrumento** y publicó **126**.
+
+> **Dos proyectos, dos instrumentos, el mismo falso positivo sobre el mismo fichero.** Eso no dice nada
+> de los instrumentos: dice que **el defecto está en la estructura del archivo**. Un fichero con dos
+> tablas numeradas **no tiene una forma correcta de contarse por patrón**, y dos observadores
+> independientes eligieron la incorrecta sin consultarse.
+
+**El remedio no es un patrón mejor.** Afinarlo —anclar la columna, filtrar por otro campo— produce un
+patrón que funciona hasta que alguien añade la tercera tabla. Lo que no envejece es un **invariante
+interno**:
+
+```text
+el numero de elementos  ==  el ultimo identificador de la serie
+```
+
+Cuesta una línea, no depende de la forma del fichero, y **falla ruidosamente** cuando el conteo se
+desvía. En el caso de arriba habría dado `126 != 123` la primera vez.
+
+**La regla general, que aplica más allá de los índices:** cuando el mismo fichero admite dos lecturas
+por patrón y las dos parecen razonables, deja de buscar la buena y **busca una cantidad que tenga que
+cumplirse**. Un patrón describe la forma; un invariante describe la cosa, y es la forma la que cambia.
+
+**Y el corolario sobre corresponsales, que es la mitad más difícil de conseguir:** el diagnóstico no
+salió de ninguno de los dos proyectos por separado. Cada uno tenía **un error propio** y lo habría
+archivado como torpeza. **Verlo dos veces, con instrumentos distintos, es lo que lo convirtió en un
+hecho sobre el archivo** — y eso solo se ve desde fuera.
