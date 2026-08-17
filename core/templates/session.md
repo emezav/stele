@@ -40,6 +40,15 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   la inventaron **por separado y sin acordarlo**: uno con nombre estable, el otro en **17 de sus últimas
   20 actas y con un título distinto cada vez**. Ninguno de los dos la tenía escrita, y uno se la
   atribuía al kit. **Ese 17 de 20 no se pudo contar hasta que alguien lo buscó por otra razón.**
+- **Di QUIÉN lo cazó, y es el campo que más rinde.** Un comando, un control con su valor esperado, el
+  usuario, un corresponsal — o **nadie, hasta que fue tarde**. Una línea por tropiezo.
+- **Por qué ese campo y no otro:** es lo único que permite contestar, con el tiempo, *qué impide de
+  verdad un error* frente a *qué solo lo explica después*. Sin él, un proyecto puede tener cien
+  tropiezos registrados y **seguir sin saber si sus reglas sirven**.
+- **Caso de campo, y nace de un fracaso.** Se intentó clasificar quién había cazado los tropiezos de las
+  doce últimas actas de un proyecto **que sí los registraba**: el clasificador dejó **cinco de ocho sin
+  clasificar**, porque las secciones contaban el error y **no decían quién lo encontró**. La pregunta
+  llegó de un corresponsal, no había datos para contestarla, y este campo salió de ahí.
 - **Si no hubo ninguno, dilo en una línea.** *"Sin tropiezos"* es información: distingue una sesión
   limpia de una en la que nadie miró.
 
