@@ -156,6 +156,15 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    no hay forma de escribir la exclusión sin escribir al lado su consecuencia (ver CERRAR → *a la vista*
    contra *en el camino*).
 
+   **Y esa línea cuesta DOS cosas, no una.** La segunda no se ve y muerde a diario: **el buscador de tu
+   agente respeta el `.gitignore`**, así que a partir de aquí **no encuentra ni una palabra de los
+   documentos que él mismo carga enteros al arrancar**. Un barrido sobre tu propia documentación
+   devuelve **cero**, sin error y sin aviso, y ese cero es indistinguible de un corpus limpio. Se
+   trabaja con `grep` de shell o con la bandera que incluye ignorados; el buscador integrado queda para
+   el código, que sí está versionado. La ley y su caso, en
+   `{{kit}}/core/reference/verificar.md` → *Un directorio ignorado es invisible a tu buscador y visible
+   en tu contexto*.
+
    **`RESPALDO: ninguno` es una respuesta válida** y a menudo la correcta al principio. Lo que no es
    válido es **no responder**: una ventana sin red declarada se puede vigilar, y una que nadie escribió
    solo se descubre cuando ya se perdió algo.

@@ -638,6 +638,44 @@ de aprenderla, la regla de que una aritmética con dos soluciones no identifica 
 Por eso *marcar la conjetura* no sirve: **no se siente conjetura**. Lo único que la caza es el paso
 mecánico y **previo** — contar cuántas soluciones admite el número **antes** de elegir una.
 
+## Un directorio ignorado es invisible a tu buscador y visible en tu contexto
+
+**Es el reverso exacto de la ley anterior, y hace falta escribirlo aparte porque el fallo va en la otra
+dirección.** Allí tu `grep` veía **de más** —contaba ficheros que no viajan— y la cifra salía inflada.
+Aquí tu buscador ve **de menos**, y lo que sale es **cero**.
+
+**El mecanismo es un default de las herramientas modernas de búsqueda:** `ripgrep`, y con él la mayoría
+de los buscadores integrados en agentes y editores, **respetan `.gitignore` por defecto**. Si la
+documentación de trabajo está excluida —que es lo normal, y lo que este marco recomienda—, entonces
+**el buscador del agente no encuentra ni una palabra de los documentos que ese mismo agente acaba de
+leer enteros al arrancar**.
+
+```text
+buscador que respeta el ignore, sobre una frase de base/   ->  0
+grep de shell, misma frase, mismo instante                 ->  5
+```
+
+**Caso de campo, y el cero llegó a un informe.** Se barrió una cifra publicada para rastrear su origen,
+salió **0**, y por unos minutos la conclusión fue *"esa frase no existe en el proyecto"*. Aparecía
+**cinco veces**, en los dos documentos que se leen en cada sesión.
+
+**Lo que hace esta clase peor que un cero falso normal son dos cosas:**
+
+- **El cero es indistinguible de un corpus limpio**, como siempre — pero aquí además **coincide con lo
+  que uno querría creer** cuando busca confirmar que algo ya no está.
+- **Contradice tu propio contexto y gana el buscador.** El agente tiene esos documentos delante, los ha
+  cargado enteros; y aun así, cuando la herramienta dice `0`, el `0` pesa más que el recuerdo. La
+  herramienta parece el dato y la memoria parece la impresión.
+
+**El remedio es de una línea y hay que saberlo antes**: buscar la documentación de trabajo con una
+herramienta que **no** filtre por el ignore —`grep` de shell, o la bandera que incluye ignorados de tu
+buscador— y reservar el buscador integrado para el código, que sí está versionado.
+
+> **Y la consecuencia de diseño, para quien monte un marco así:** excluir del control de versiones el
+> directorio donde vive la documentación tiene **dos** precios, no uno. El conocido es que **no hay
+> diff que recupere nada**. El que no se ve es que **el buscador de tu agente deja de encontrar tu
+> propia documentación**, sin error y sin aviso, exactamente en el corpus que más se relee.
+
 ## Un detector léxico depende del LOCALE, y el mismo patrón da dos respuestas
 
 **Un detector de este mismo ritual estuvo roto por esto, y era del producto.** El patrón de la clase 5
