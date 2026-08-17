@@ -134,8 +134,44 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    el único momento en que se sabe con certeza, y sin ella ACTUALIZAR no puede correr después.
 6. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
-7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío. **`audit` no se
-   instancia**: lo crea la primera auditoría, y su ausencia es el dato (nunca se auditó).
+7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío, y **`effort` vacío si
+   `effort_log = on`** — si el toggle está encendido y el fichero no existe, el primer cierre escribe
+   una fila en un archivo que nadie creó. **`audit` no se instancia**: lo crea la primera auditoría, y
+   su ausencia es el dato (nunca se auditó).
+
+   **Y aquí se decide si `base` viaja o no, que es lo que decide si existe.** Si el proyecto usa un VCS
+   y `base` **no** se versiona —opción legítima y la que toma el propio kit—, la línea que lo ignora
+   **no se escribe sola**: va con **la declaración de qué respaldo tiene**, en el mismo comentario.
+
+   ```text
+   # La documentacion de trabajo NO se versiona: vive solo en disco.
+   # RESPALDO: <ninguno | repo propio con remoto en X | copia periodica a Y>
+   # Sin respaldo declarado, esta linea deja el trabajo del proyecto sin red.
+   base/
+   ```
+
+   **Las dos mitades van juntas o no van.** Ignorar `base` es correcto y no se discute; lo que no puede
+   quedarse sin decidir es dónde está su copia — y el sitio donde se decide es **la línea que lo
+   causa**, no un aviso en otro documento. Un aviso está *a la vista*; esto está *en el camino*, porque
+   no hay forma de escribir la exclusión sin escribir al lado su consecuencia (ver CERRAR → *a la vista*
+   contra *en el camino*).
+
+   **`RESPALDO: ninguno` es una respuesta válida** y a menudo la correcta al principio. Lo que no es
+   válido es **no responder**: una ventana sin red declarada se puede vigilar, y una que nadie escribió
+   solo se descubre cuando ya se perdió algo.
+
+   > **Por qué esto es declarativo y no ejecutivo, a propósito.** Sería fácil hacer que el ritual
+   > corriera un `git init`, y sería un error: el kit es **markdown puro y sin runtime**, y
+   > `persistencia` admite `ninguna` y `comando`. Un ritual que ejecuta operaciones de VCS deja de ser
+   > texto y amarra el marco a una herramienta concreta. **La obligación es escribir la decisión, no
+   > tomarla por el usuario.**
+
+   **Caso de campo, y es de la peor clase — la que no da error.** Un proyecto recibió el marco de otro
+   (ver *siembra*, abajo) y heredó su `.gitignore` con `base/` dentro. Durante horas, `base/` fue **lo
+   único que existía en el proyecto**: doce documentos, ningún repositorio todavía, ninguna copia — y
+   una importación masiva de otro árbol prevista encima. La convención heredada era sana, la práctica de
+   *documentación primero* también, y **juntas producen una ventana en la que el proyecto entero cabe en
+   un directorio sin red**. Nadie se equivocó en ningún paso.
 8. Generar derivados: **una puerta por cada nombre de la ruta `loader`**, en la raíz (plantilla
    `autostart.md`) + mapa-doc en `entry`. **Si alguna puerta ya existe** (`CLAUDE.md`, `AGENTS.md`…
    escritos a mano antes de adoptar el marco), **léela primero e inserta** el bloque
@@ -166,3 +202,38 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
     **El saludo es el único observable que distingue un marco activo de uno apagado**, y quien lo ve
     primero es la persona, no tú — tú ya tienes el contexto en esta sesión y no puedes notar su falta.
     Por eso el síntoma va **dicho de antemano**: sin él, un saludo genérico se lee como cortesía.
+
+## Siembra: cuando el marco lo instala OTRO proyecto, desde fuera
+
+Los diez pasos de arriba se leen **desde dentro** del proyecto que arranca. Hay un caso que no es ese y
+que ocurre en campo: **un proyecto que ya usa el marco le monta la bitácora a un proyecto hermano**, con
+su código y sus trampas delante, antes de que el hermano tenga una línea de código. El hermano no
+ejecuta BOOTSTRAP: **se lo ejecutan**.
+
+No es un modo distinto ni cambia los pasos. Lo que cambia es que **cuatro campos suponen un pasado que
+todavía no existe**, y quien siembra los tiene que resolver solo si esto no está escrito:
+
+| Campo | Qué pasa al sembrar | Qué se escribe |
+| --- | --- | --- |
+| `persistencia` | El proyecto **va a** usar VCS, pero el repositorio aún no existe | El valor **de destino** (`git`), y en `state` **el primer paso de la sesión 1**: crear el repositorio. No se pone `ninguna` para "arreglarlo" luego: se documenta la ventana |
+| `Sello` del `handover` | Sus dos formas suponen trabajo a medias; aquí no hay trabajo a medias, hay un proyecto que no empieza | Su tercera forma: **qué ficheros existen ya y no deben pisarse**. Es lo que el que retoma necesita, y aquí *"por dónde ibas"* no significa nada |
+| Saludo de ABRIR (`N + título`) | No hay sesión previa ni acta que citar | *"Ninguna: el marco lo sembró `<proyecto>` el `<fecha>`"*, **y por qué**. El saludo sigue siendo el observable de que el marco arrancó, así que **no se omite** |
+| `index` y `effort` | Nacen con **cero filas**, y no por ser nuevos | Una línea dentro de cada uno diciendo que **el trabajo que los llenaría ocurrió en otro proyecto**. Sin ella, un lector los toma por un proyecto que no ha hecho nada |
+
+**El respaldo de `base` es más agudo aquí que en cualquier otra adopción, y por eso vale releer el paso
+7.** Al sembrar, `base` es **lo primero que existe** — durante horas es lo **único** que existe. Si
+además se ignora y el repositorio todavía no está, el proyecto entero vive sin red justo cuando va a
+recibir una importación masiva de otro árbol encima. **Declara el respaldo en la misma línea que la
+exclusión.**
+
+**Lo que NO cambia, y conviene decirlo:** los invariantes de ruta, la protección de las puertas
+existentes y el eco del layout antes de escribir. Sembrar no relaja ninguna comprobación; **relaja la
+suposición de que hay alguien dentro con historia.**
+
+> **Y una advertencia sobre lo que la siembra no demuestra.** Que la bitácora quede escrita no dice que
+> el marco vaya a arrancar allí: eso lo dice **la primera sesión del hermano**, con su saludo. Hasta que
+> alguien la abra, lo sembrado es una hipótesis bien redactada — el mismo paso 10, aplicado a un
+> proyecto que todavía no ha hablado.
+
+*(Caso de campo aportado por un proyecto que sembró a su hermano y escribió antes de saber si funciona,
+que es la parte difícil de reportar.)*

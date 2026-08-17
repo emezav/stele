@@ -143,6 +143,27 @@ Así que la columna no es una propiedad de la afirmación: **es una propiedad de
 corresponsal que ve más, se marca lo que él ve, y **se le pregunta si quiere seguir viéndolo** — la
 instancia es privada y quien decide es su dueño, no la conveniencia de la verificación.
 
+**Y hay una forma de escribirlo que no caduca cuando el par cambia: meter la condición DENTRO de la
+fila.** Un `Sí` pelado es verdad para ese lector y mentira para cualquier otro, así que el día que la
+carta se publique, se reenvíe o el par deje de compartir disco, la columna pasa a ser falsa **sin que
+nadie la toque**. Cuesta cinco palabras evitarlo:
+
+```text
+| lo que afirmo | ¿lo puedes comprobar? |
+| ...           | Si -- su repo publico                              |  <- vale para cualquiera
+| ...           | Si, SI LEES el arbol privado D:\...\Proyecto       |  <- vale, y dice para quien
+| ...           | No -- vive en un repo privado. Bajo palabra        |  <- vale para cualquiera
+```
+
+**La fila del medio es la que se suele escribir mal**, y las dos formas equivocadas fallan en
+direcciones opuestas: `Sí` a secas **promete a un lector futuro algo que no podrá hacer**, y `No` a
+secas **le niega a este lector una comprobación que sí puede hacer hoy**. La condición escrita conserva
+la riqueza del par sin heredarle la mentira a nadie.
+
+**Y una consecuencia práctica: escribir la condición obliga a nombrar la ruta**, que es justo lo que
+hace la fila resoluble. Una fila que dice *"sí, en tu copia"* sin decir cuál no manda a ningún sitio —
+ver el tercer modo de fallo, más abajo.
+
 ## El tercer modo de fallo: marcar bien y apuntar a un corpus que no puede responder
 
 Los dos primeros son de **cobertura** —el estrecho deja fuera lo comprobable, el generoso mete dentro
