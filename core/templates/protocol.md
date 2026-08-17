@@ -311,6 +311,38 @@ conforme en las cuatro filas y seguir siendo caro. Para el precio real hay que m
 tokenizador, y eso no es un paso de cierre: es una medición, con su fecha (ver *una cifra sobre tu
 corpus es una FOTO*).
 
+## El respaldo declarado: se comprueba que alguien contestó, no que exista
+
+**Va en el cierre, colgado de un paso que ya se da**, por la misma razón que los topes: un recordatorio
+*a la vista* no se corre y una comprobación *en el camino* sí. Solo aplica si `base` está excluido del
+control de versiones (BOOTSTRAP, paso 7).
+
+```sh
+grep -c '^# RESPALDO:' .gitignore      # esperado: 1
+grep -c '^# RESPALDO:' /dev/null       # CONTROL NEGATIVO: 0
+```
+
+**Lo que comprueba y lo que no, dicho para que nadie se confíe.** No comprueba que el respaldo
+**exista** —eso no se puede saber desde el texto, y ningún detector lo sabrá—: comprueba que **alguien
+contestó la pregunta**. Es exactamente lo que la convención pide, y es menos de lo que parece.
+
+**Y el control negativo no sobra aunque parezca tonto.** Sin él, un `1` no distingue *"la línea está"*
+de *"el patrón casa con cualquier cosa"*, y este detector es de los que caen en eso: si alguien escribe
+el patrón sin el ancla `^`, empieza a contar la palabra dentro de la prosa de otros comentarios.
+
+> **Por qué el valor va enumerado y no en prosa** — el caso está en BOOTSTRAP, paso 7: un `.gitignore`
+> decía *"su respaldo es aparte del de este repo"*, que **no declara nada y suena a decisión tomada**, y
+> nadie lo miró en 39 sesiones. Este detector **habría dado 0 ahí**, que es precisamente su oficio: la
+> prosa tranquilizadora no casa con `^# RESPALDO:`.
+
+**Aporte de un adoptante**, que lo propuso después de aplicar la convención a un fichero real.
+
+**Sin VCS este bloque no aplica y el hueco es real.** Con `persistencia = ninguna` no hay `.gitignore`
+donde poner la declaración. El sitio que ha funcionado en campo es el **`Sello` del `handover`**, que
+sin VCS ya dice *qué se observa en disco*: ahí cabe **qué existe y qué no tiene copia**. No está
+resuelto como convención — se dice para que quien llegue a ese caso sepa que es un hueco conocido y no
+un olvido suyo.
+
 ## Checklist de inicio / cierre
 
 Condensados en `{{kit}}/core/rituals/` (un archivo por ritual). Este archivo es la referencia de

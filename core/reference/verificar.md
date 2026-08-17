@@ -638,6 +638,69 @@ de aprenderla, la regla de que una aritmética con dos soluciones no identifica 
 Por eso *marcar la conjetura* no sirve: **no se siente conjetura**. Lo único que la caza es el paso
 mecánico y **previo** — contar cuántas soluciones admite el número **antes** de elegir una.
 
+## Una cifra sin su comando no es comprobable, aunque el corpus esté delante
+
+**Es hermana de *El comando no es el patrón* y no es la misma.** Allí el instrumento se publicaba
+**incompleto** —el patrón sin las banderas— y dos partes leían un desacuerdo como sustrato. Aquí el
+instrumento **no se publica en absoluto**: viaja el resultado y nada más.
+
+**Caso propio, y el sitio donde falló lo agrava.** Se publicó que un directorio ajeno seguía intacto,
+con la prueba puesta en un hash: `60429a57…`, repetido en cuatro documentos, **uno de ellos una carta**.
+El corresponsal tenía el directorio delante, quiso reproducirlo y **no pudo**: nada decía si era
+`md5sum` de la concatenación, la suma de sumas, con qué orden de ficheros, incluyendo o no rutas. Lo
+dijo con precisión — *"no pudimos reproducirlo porque no sabemos con qué lo calcularon"*.
+
+```text
+find <dir> -type f | sort | xargs md5sum | md5sum
+```
+
+Esa línea —que no viajaba— es la diferencia entre una prueba y una afirmación.
+
+> **Lo grave no es el olvido: es que el marcador dijo que sí.** La fila iba marcada *"sí, si lees el
+> árbol"*, y el árbol **sí** se podía leer. Lo que faltaba no era acceso al corpus sino **el
+> instrumento**, y por eso la fila pasó los dos filtros de siempre: el corpus existía y el lector podía
+> verlo. **Una fila comprobable exige las dos mitades, y la que se olvida es la segunda.**
+
+**Y un hash es el caso extremo, porque no se puede adivinar.** Un `grep` publicado sin banderas al menos
+se puede intentar de tres formas y ver cuál cuadra; un hash de un conjunto de ficheros admite tantas
+recetas que **el receptor no puede ni empezar**. Cuanto más compacta es la evidencia, más pesa su
+instrumento.
+
+**Regla operativa, y cuesta una línea:** cuando publiques una cifra que alguien pueda querer reproducir
+—y con más razón si la marcas comprobable— **pega el comando que la produce, entero, en el mismo sitio
+donde vive la cifra**. No en el fichero de al lado ni en el registro de la sesión: **junto a la cifra**,
+porque es lo que viaja con ella.
+
+## Documentar un experimento en curso puede contaminarlo, porque su ejecutor lee lo mismo que tú
+
+**Aporte de un corresponsal, sobre un experimento nuestro y desde el único sitio donde se ve.**
+
+Se dejó a propósito un defecto sin arreglar en el proyecto de otro —una declaración que faltaba— para
+observar si su siguiente sesión lo detectaba sola. El diseño era correcto: **un observable limpio, con
+su valor esperado y sin avisar a nadie**.
+
+Y entonces se escribió una carta contándolo. Y otra contestándola. Y las dos quedaron archivadas **en el
+mismo disco donde vive el proyecto observado**.
+
+> **El experimento sigue en pie solo mientras su ejecutor no comparta contexto con quien lo diseñó.** Si
+> la primera sesión del proyecto observado la abre la misma conversación que acaba de leer la carta, el
+> resultado no es `0` ni `1`: es **un falso positivo indistinguible del bueno**, porque el agente
+> detectaría el defecto **por haberlo leído**, no por haber seguido el ritual.
+
+**Lo que hace esta clase difícil es que la contaminación viaja por el canal que documenta la calidad.**
+No la produce el descuido: la produce **hacer bien las dos cosas a la vez** —dejar el observable limpio
+y escribir lo que se hizo—. Y no la ve quien diseñó el experimento, porque desde su lado todo está
+correcto: **solo la puede reportar quien está contaminado**, que fue lo que ocurrió.
+
+**Remedio, y es de procedimiento, no de detector:** cuando un experimento dependa de que el ejecutor **no
+sepa** algo, escríbelo **como restricción junto al observable**, no como nota al final — *"esta sesión no
+la puede abrir quien haya leído X"*. Y si la restricción ya se rompió, **dilo en el resultado**: un dato
+contaminado y declarado sigue sirviendo; uno contaminado y silencioso envenena la comparación entre
+proyectos, que es justo donde más se usa.
+
+**Hermana de *Quién ve el rojo, y en qué papel*.** Aquella pregunta **quién se entera** de un fallo; esta
+pregunta **qué sabía ya** el que mira. Las dos van sobre el observador y no sobre la comprobación.
+
 ## Un directorio ignorado es invisible a tu buscador y visible en tu contexto
 
 **Es el reverso exacto de la ley anterior, y hace falta escribirlo aparte porque el fallo va en la otra

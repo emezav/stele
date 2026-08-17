@@ -38,7 +38,7 @@
 | Vas a hacer un reemplazo en lote | **Imprime su diff, no su recuento.** Un recuento correcto acompaña a un reemplazo equivocado sin decir nada |
 | Vas a copiar en el `state` algo que vive en otro doc | **Apunta, no copies.** Lo copiado es lo que se queda viejo |
 | Vas a registrar un estado | Solo si **puedes observarlo**. *"Enviada"* no lo es: eso lo sabe el usuario, no tú |
-| Terminaste de escribir el cierre | **Comprueba lo que acabas de escribir** antes de persistir: **su contenido, su destino y su tamaño**. Un `printf >>` con la ruta mal compuesta **crea el fichero que falta** y no da error; y los topes del set de arranque **se miden, no se recuerdan** — el bloque está en `protocol`, y la primera vez que se corrió, **dos de los cuatro llevaban rotos desde siempre** |
+| Terminaste de escribir el cierre | **Comprueba lo que acabas de escribir** antes de persistir: **su contenido, su destino y su tamaño**. Un `printf >>` con la ruta mal compuesta **crea el fichero que falta** y no da error; y los topes del set de arranque **se miden, no se recuerdan** — el bloque está en `protocol`, y la primera vez que se corrió, **dos de los cuatro llevaban rotos desde siempre**. En el mismo sitio y en la misma tanda va **el respaldo declarado de `base`**, si está excluido del control de versiones: comprueba que **alguien contestó**, no que exista |
 | Escribiste la comprobación en el doc | **Escribirla no la corre.** El paso es correrla, y su cero no vale sin control positivo |
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:

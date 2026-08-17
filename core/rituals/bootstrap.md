@@ -169,6 +169,20 @@ sobrescribir contenido; solo generar lo que falte). Pasos:
    válido es **no responder**: una ventana sin red declarada se puede vigilar, y una que nadie escribió
    solo se descubre cuando ya se perdió algo.
 
+   **Y es un TOKEN con valor enumerado, no una frase — la diferencia es el remedio entero.** Caso de
+   campo, de un proyecto que aplicó esta convención a un `.gitignore` que ya existía: la línea **no
+   estaba vacía**, decía *"su respaldo es aparte del de este repo"*. Eso **no declara nada** —no dice
+   dónde, ni quién, ni cada cuánto— y sin embargo **suena a decisión ya tomada**, así que nadie la
+   comprobó en **39 sesiones**. No había ninguna copia, en ninguna parte.
+
+   > **Un hueco se ve; una frase tranquilizadora, no.** Y las dos producen el mismo estado del mundo:
+   > cero copias. Si el remedio fuera *"explica en el comentario qué respaldo tienes"*, ese `.gitignore`
+   > **ya cumplía**.
+
+   **`RESPALDO: ninguno` funciona porque es incómodo de escribir**: obliga a elegir un valor de una
+   lista corta y a mirar si es verdad. La prosa libre es cómoda, y por eso sobrevive sin que nadie la
+   lea.
+
    > **Por qué esto es declarativo y no ejecutivo, a propósito.** Sería fácil hacer que el ritual
    > corriera un `git init`, y sería un error: el kit es **markdown puro y sin runtime**, y
    > `persistencia` admite `ninguna` y `comando`. Un ritual que ejecuta operaciones de VCS deja de ser
