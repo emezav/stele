@@ -86,8 +86,9 @@ en el `{{session}}` de la sesión que auditó, y lo que perdura, en el hogar que
 
 ### `{{session}}` — uno por sesión
 
-Detalle completo: qué se hizo, decisiones, archivos tocados, verificación, notas para retomar,
-y `## Esfuerzo equivalente` (si se usa). `NNN` con padding a 3 dígitos. No se reabre; se lee con grep.
+Detalle completo: qué se hizo, decisiones, archivos tocados, verificación, **tropiezos**, notas para
+retomar, y `## Esfuerzo equivalente` (si se usa). `NNN` con padding a 3 dígitos. No se reabre; se lee
+con grep.
 
 **La fecha se mide, no se recuerda** — `date '+%Y-%m-%d %z'`, o `Get-Date -Format 'yyyy-MM-dd K'`. La
 que inyecta el harness suele ser **UTC** y adelanta un día durante la última franja horaria local; y
