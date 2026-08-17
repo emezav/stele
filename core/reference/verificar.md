@@ -15,48 +15,6 @@ la que necesites. Si vas a publicar una cifra, el mínimo son tres: *una cifra s
 es una FOTO*, *y comprueba el valor esperado del control*, y *un número sin expectativa no es
 información*.
 
-### Al escribir una ley aquí: di si trae comando, o di que no puede traerlo
-
-**Una ley conocida no impide su caso.** Es la observación más incómoda que ha producido este documento y
-la trajo un adoptante con su propio registro: incumplió **tres veces en un día** una ley que tenía
-instalada, y **las dos últimas después de haberla aceptado por escrito**. Lo que paró la tercera no fue
-recordarla — fue **tener el comando en la mano**.
-
-**Medido sobre este mismo fichero**, para no discutirlo en abstracto:
-
-```text
-leyes                  : 54
-CON comando ejecutable :  9   (17%)
-SIN comando            : 45   (83%)
-
-metodo: una ley "trae comando" si su cuerpo tiene al menos una linea que EMPIEZA por
-        una invocacion ejecutable (grep, git, find, awk, printf, python...).
-        Un bloque de SALIDA no cuenta: cuenta la invocacion.
-control +: "El comando no es el patron"    -> sale CON comando
-control -: "La asimetria no es del error"  -> sale SIN comando
-```
-
-> **Una ley con comando puede impedir un error; una ley sin comando solo puede explicarlo después.** No
-> son la misma herramienta y **no se debe confundir cuál se tiene delante**.
-
-**Y lo que esto NO significa, porque el 83% es fácil de leer mal.** *Sin comando* **no es «inútil»: es
-«no ejecutable»**. Hay leyes que **no pueden** tener comando por su naturaleza — *una producción se
-puede forzar; una precondición negativa solo se puede declarar* trata precisamente de lo que no se
-puede forzar, y ninguna herramienta la va a ejercer. Esas cambian **dónde mira uno**, que es un efecto
-real y más lento.
-
-**La convención, entonces, es de honestidad y no de jerarquía:**
-
-- **Si la ley tiene un comando que la ejerce, ESCRÍBELO en su cuerpo**, con su control y su valor
-  esperado. No en el fichero de al lado: **junto a la ley**, porque es lo que se lee cuando hace falta.
-- **Si no puede tenerlo, dilo y di por qué.** Una ley que se presenta como regla y solo puede funcionar
-  como posdata **promete algo que no cumple**, y su incumplimiento se lee como descuido cuando es
-  estructura.
-
-**La consecuencia dura, para un kit que es markdown puro y sin runtime:** la mayor parte de lo que aquí
-se escribe **no puede impedir nada por sí sola**. Conviene saber cuál parte es — y esa es toda la razón
-de esta sección.
-
 ## El comando no es el patrón, y confundirlos parece sustrato
 
 **Caso de campo, y las dos partes lo leyeron mal antes de leerlo bien.** Un corresponsal publicó
@@ -1777,6 +1735,21 @@ Las tres palabras hacen trabajo:
 - **Barata** — si verla cuesta trabajo, un no-hallazgo se explica por el coste y la medida no dice nada.
 - **Sobrevive** — la N sale de contar cargas entre que la contradicción entró y que alguien la vio, que
   en un proyecto con bitácora es **una resta de dos fechas**.
+
+**Y define la unidad antes de publicar la N, porque la resta admite dos lecturas.** ¿Cuenta la carga en
+la que se detectó, o solo las que pasaron sin verla? Las dos son defendibles y **dan números distintos**:
+una contradicción que entró al cerrar la sesión 109 y se vio en la 131 sobrevivió **21 cargas ciegas** y
+fue cazada en la **22ª**.
+
+> **Aquí se cuenta la carga en la que se detectó, y el número es 22.** No porque sea mejor, sino porque
+> **es la resta directa de las dos fechas** y no exige acordarse de restar uno. Lo que no vale es
+> publicar la N sin decirlo: **dos proyectos con la misma sonda medirían distinto y creerían estar
+> comparando**.
+
+**Caso propio y reciente:** se publicaron *"15 y 21 cargas"* sin declarar la unidad. Con la definición
+de arriba serían **16 y 22**. Las cifras no eran falsas — **su unidad no existía**, que es la forma de
+error que esta misma referencia llama *un número sin expectativa*, aplicada al denominador en vez de al
+resultado.
 
 **Medido en un proyecto real, sobre sus documentos de arranque: 15 y 21 cargas.** La primera era una
 suma de dos números contiguos; la segunda, una cifra citada en presente veintiuna sesiones después de

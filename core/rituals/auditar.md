@@ -260,6 +260,48 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Documentar un experimento en curso puede contaminarlo, porque su ejecutor lee lo mismo que tú*
 - *Un directorio ignorado es invisible a tu buscador y visible en tu contexto*
 
+## Al escribir una ley: di si trae comando, o di que no puede traerlo
+
+**Una ley conocida no impide su caso.** Es la observación más incómoda que ha producido este documento y
+la trajo un adoptante con su propio registro: incumplió **tres veces en un día** una ley que tenía
+instalada, y **las dos últimas después de haberla aceptado por escrito**. Lo que paró la tercera no fue
+recordarla — fue **tener el comando en la mano**.
+
+**Medido sobre este mismo fichero**, para no discutirlo en abstracto:
+
+```text
+leyes                  : 54
+CON comando ejecutable :  9   (17%)
+SIN comando            : 45   (83%)
+
+metodo: una ley "trae comando" si su cuerpo tiene al menos una linea que EMPIEZA por
+        una invocacion ejecutable (grep, git, find, awk, printf, python...).
+        Un bloque de SALIDA no cuenta: cuenta la invocacion.
+control +: "El comando no es el patron"    -> sale CON comando
+control -: "La asimetria no es del error"  -> sale SIN comando
+```
+
+> **Una ley con comando puede impedir un error; una ley sin comando solo puede explicarlo después.** No
+> son la misma herramienta y **no se debe confundir cuál se tiene delante**.
+
+**Y lo que esto NO significa, porque el 83% es fácil de leer mal.** *Sin comando* **no es «inútil»: es
+«no ejecutable»**. Hay leyes que **no pueden** tener comando por su naturaleza — *una producción se
+puede forzar; una precondición negativa solo se puede declarar* trata precisamente de lo que no se
+puede forzar, y ninguna herramienta la va a ejercer. Esas cambian **dónde mira uno**, que es un efecto
+real y más lento.
+
+**La convención, entonces, es de honestidad y no de jerarquía:**
+
+- **Si la ley tiene un comando que la ejerce, ESCRÍBELO en su cuerpo**, con su control y su valor
+  esperado. No en el fichero de al lado: **junto a la ley**, porque es lo que se lee cuando hace falta.
+- **Si no puede tenerlo, dilo y di por qué.** Una ley que se presenta como regla y solo puede funcionar
+  como posdata **promete algo que no cumple**, y su incumplimiento se lee como descuido cuando es
+  estructura.
+
+**La consecuencia dura, para un kit que es markdown puro y sin runtime:** la mayor parte de lo que aquí
+se escribe **no puede impedir nada por sí sola**. Conviene saber cuál parte es — y esa es toda la razón
+de esta sección.
+
 ## Las clases de drift
 
 | # | Clase | Qué es |

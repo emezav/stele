@@ -37,9 +37,18 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   cada acta titula distinto —*"un fallo propio"*, *"dos defectos de contador"*, *"lo que el detector
   enseñó"*— **no se puede barrer, ni contar, ni auditar**: existe y es invisible.
 - **Convergencia medida, y es la razón de que esté en la plantilla.** Dos proyectos que usan este marco
-  la inventaron **por separado y sin acordarlo**: uno con nombre estable, el otro en **17 de sus últimas
-  20 actas y con un título distinto cada vez**. Ninguno de los dos la tenía escrita, y uno se la
-  atribuía al kit. **Ese 17 de 20 no se pudo contar hasta que alguien lo buscó por otra razón.**
+  la inventaron **por separado y sin acordarlo**, y ninguno la tenía escrita — uno se la atribuía al
+  kit. Uno la titulaba de forma **estable**; el otro contó **17 de sus últimas 20 actas** con un título
+  distinto cada vez.
+  **Ese 17 salió de un patrón con las palabras que a su autor se le ocurrieron** (*fallo*, *tropiezo*,
+  *detector*…), así que es **un suelo y no un número**: nadie lo contó a mano.
+- **Y el nombre estable tampoco basta, que es la mitad contraintuitiva.** En el proyecto que sí lo tenía
+  estable, su primer barrido dio **6** y el número real era **11** — contado a mano, porque **ningún
+  patrón las encontraba**. No fallaba la estabilidad del título: fallaba que **ningún documento
+  declaraba que la sección existía**, así que no había por dónde saber qué buscar.
+  > **Un nombre estable que nadie ha escrito es tan invisible como uno variable.** Por eso la sección va
+  > en la plantilla y no solo en la costumbre: lo que la hace contable no es el nombre, es **estar
+  > declarada en un sitio donde alguien pueda leerla**.
 - **Di QUIÉN lo cazó, y es el campo que más rinde.** Un comando, un control con su valor esperado, el
   usuario, un corresponsal — o **nadie, hasta que fue tarde**. Una línea por tropiezo.
 - **Por qué ese campo y no otro:** es lo único que permite contestar, con el tiempo, *qué impide de
