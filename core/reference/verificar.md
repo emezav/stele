@@ -638,6 +638,87 @@ de aprenderla, la regla de que una aritmética con dos soluciones no identifica 
 Por eso *marcar la conjetura* no sirve: **no se siente conjetura**. Lo único que la caza es el paso
 mecánico y **previo** — contar cuántas soluciones admite el número **antes** de elegir una.
 
+## El identificador de una acción es el del instante en que ocurrió, no el de cuando la cuentas
+
+**Caso propio, y lo destapó el receptor con nuestras propias horas.** Se copió un kit al proyecto de un
+corresponsal y, un rato después, se le escribió una carta diciendo qué versión se le había puesto. La
+carta nombró **el commit que existía al redactarla**. Entre la copia y la carta hubo trabajo, y un
+commit nuevo.
+
+```text
+12:04:28   se copia el kit             HEAD era bc970f2
+12:15:42   se commitea 8806d8f
+  (mas tarde)  la carta dice: "le sembramos 8806d8f"     <- FALSO por once minutos
+```
+
+**El receptor lo cazó sin ningún hash, solo con dos horas**: no se puede haber copiado once minutos
+antes el contenido de un commit que todavía no existía.
+
+> **Un identificador se toma en el instante de la acción y viaja con ella.** Al contarla después, lo
+> que se tiene delante es el estado de **ahora**, y ese es el que se escribe si no se anotó el otro.
+> No hace falta descuido: basta con que entre la acción y el relato haya pasado algo.
+
+**Es hermana de *el estado del futuro* y va en la otra dirección.** Aquella escribe cifras que serán
+ciertas al cerrar y son falsas mientras tanto; esta escribe una cifra **cierta ahora** sobre un hecho
+**de antes**. Las dos salen del mismo sitio: **el instante en que se redacta no es el instante del que
+se habla**.
+
+**Lo caro es cuando el identificador es la variable independiente de algo.** Aquí lo era: el kit
+copiado es lo que un experimento en curso iba a leer, así que nombrarlo mal **dejaba el experimento sin
+poder atribuir su resultado a ninguna versión**. Y no lo arregla medir después: lo arregla **anotarlo al
+copiar**, que cuesta una línea.
+
+**Coda, y la aporta el mismo caso: el receptor probó los dos extremos y no el del medio.** Concluyó que
+lo copiado *"no tiene identificador"* porque no coincidía con ninguno de los dos commits nombrados —
+difería en 3 de uno y en 5 del otro—. Era un commit perfectamente identificable, el que había **entre**
+los dos, y **su propia prueba lo señalaba**: la hora que usó para descartar era, al segundo, la fecha
+del commit correcto.
+
+> **Cuando algo no coincide con ninguno de los candidatos que probaste, la conclusión no es que no
+> exista: es que tu lista estaba incompleta.** Y el dato que descarta una hipótesis suele contener la
+> buena, si se lee hacia adelante en vez de solo hacia atrás.
+
+## No se pone la medición en el camino: se pone la predicción
+
+**El problema, que es real y no tenía respuesta.** Una comprobación *en el camino* se corre porque no
+hay forma de dar el paso sin darla. Pero **una medición que ocurre en el futuro** no tiene ningún paso
+donde colgarse: lo único que se puede dejar escrito hoy es un recordatorio, y un recordatorio es *a la
+vista*.
+
+**La salida, aportada por un adoptante:** no se fuerza la medición — **se fuerza la predicción**.
+
+En vez de pedirle a la sesión futura que mida lo que hizo, se hace que **la lista con la que trabaja
+sea la predicción**. Entonces el resultado no es una medición posterior sino **el residuo de haber
+trabajado**: al terminar, la lista dice sola qué se cumplió, qué no existía y qué hubo que añadir a
+mano.
+
+> **La contabilidad que el ejecutor necesita para sí mismo es la medición.** Es la familia de *que el
+> paso que se va a dar de todos modos no se pueda completar sin producir el número*, aplicada al único
+> paso que ninguna sesión de arranque puede saltarse: **hacer el trabajo**.
+
+**Tres condiciones, y las tres hacen falta:**
+
+1. **El paso futuro tiene que ser inevitable** — sin él no hay proyecto.
+2. **Tiene que ser largo.** Tres filas se hacen de memoria y no dejan rastro; cuarenta, no.
+3. **Tiene que estar itemizado de antemano.** Si la lista la escribe el ejecutor, mide **su memoria**,
+   no la predicción de nadie.
+
+**Y el límite, que es la mitad que importa: esto sirve para lo que alguien PRODUCE y no sirve para lo
+que alguien SABÍA.** Una restricción del tipo *"esta sesión no la abre quien haya leído X"* es una
+**precondición negativa sobre el estado mental del ejecutor**, y no hay artefacto que su cumplimiento
+produzca: **hacer bien el trabajo y hacerlo contaminado dejan exactamente el mismo rastro**.
+
+> **Una producción se puede forzar; una precondición negativa solo se puede declarar.** Lo único que
+> queda ahí es que el ejecutor diga qué traía leído — y funciona, aunque parezca débil, porque es lo que
+> ocurre en campo: **el contaminado lo reporta**. La declaración no evita la contaminación: evita que
+> sea silenciosa.
+
+**Y una advertencia sobre el propio remedio, del caso que lo produjo:** convertir la predicción en orden
+de trabajo hay que hacerlo **antes** de que arranque la sesión que la va a ejecutar. Quien lo propuso no
+pudo aplicarlo — su sesión arrancó mientras escribía la carta, y tocar la lista debajo del que la está
+ejecutando habría contaminado el experimento **y** cambiado el trabajo. *Una regla nueva llega tarde por
+construcción*, en su forma más incómoda: **la vieron venir y aun así llegaron tarde.**
+
 ## Una cifra sin su comando no es comprobable, aunque el corpus esté delante
 
 **Es hermana de *El comando no es el patrón* y no es la misma.** Allí el instrumento se publicaba

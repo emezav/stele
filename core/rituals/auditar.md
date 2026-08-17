@@ -254,6 +254,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Prohibir una observación no basta: hace falta que algo obligue a hacerla*
 - *Una contradicción interna que sobrevive mide cuántas veces el documento se cargó sin leerse*
 - *Cuando un fichero admite dos lecturas por patrón, el control es un invariante y no un patrón mejor*
+- *El identificador de una acción es el del instante en que ocurrió, no el de cuando la cuentas*
+- *No se pone la medición en el camino: se pone la predicción*
 - *Una cifra sin su comando no es comprobable, aunque el corpus esté delante*
 - *Documentar un experimento en curso puede contaminarlo, porque su ejecutor lee lo mismo que tú*
 - *Un directorio ignorado es invisible a tu buscador y visible en tu contexto*

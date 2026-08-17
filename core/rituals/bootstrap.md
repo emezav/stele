@@ -249,6 +249,18 @@ además se ignora y el repositorio todavía no está, el proyecto entero vive si
 recibir una importación masiva de otro árbol encima. **Declara el respaldo en la misma línea que la
 exclusión.**
 
+**Y una obligación que solo existe al sembrar: DECLARA QUÉ VERSIÓN DEL KIT ESTÁS COPIANDO, en el
+momento de copiarla.** El identificador va al `state` del proyecto sembrado, no a la memoria de quien
+siembra: **entre la copia y el momento de contarlo puede haber trabajo**, y entonces se cuenta el
+identificador de *ahora* en vez del de *entonces*. Ocurrió en campo y lo destapó el receptor con dos
+horas: se le dijo que tenía una versión y tenía la anterior, por once minutos.
+
+**Importa más de lo que parece cuando el proyecto sembrado es el sujeto de algo.** Si alguien va a
+observar cómo se comporta ese proyecto —y sembrarlo suele venir con esa intención—, **el kit que lleva
+es la variable independiente**, y sin su identificador ningún resultado se puede atribuir. La ley, en
+`{{kit}}/core/reference/verificar.md` → *El identificador de una acción es el del instante en que
+ocurrió, no el de cuando la cuentas*.
+
 **Lo que NO cambia, y conviene decirlo:** los invariantes de ruta, la protección de las puertas
 existentes y el eco del layout antes de escribir. Sembrar no relaja ninguna comprobación; **relaja la
 suposición de que hay alguien dentro con historia.**
