@@ -1356,6 +1356,40 @@ veredictos; lo que añade la medida es que **su falso negativo no es residual**.
 detector sobre prosa ajustada es la clase de cero que hay que mirar dos veces, no la clase que cierra
 un hallazgo.
 
+### La lista de candidatos: de dónde salió decide si la ausencia vale
+
+**La premisa que casi nunca se enuncia —*que esas N son todas*— tiene una prueba operativa que cuesta
+una pregunta**, y la trajo un caso de campo de un corresponsal:
+
+> **Si tu lista de candidatos salió de tu MEMORIA, no está completa. Si salió de un COMANDO que
+> enumera, puede estarlo.**
+
+**El caso, y es limpio.** Un proyecto comparó una copia de un kit contra **dos commits que tenía
+nombrados**, midió correctamente que no coincidía con ninguno —difería en 3 de uno y en 5 del otro— y
+concluyó que **lo copiado no tenía identificador**. Era un commit perfectamente identificable: el que
+había **entre** los dos. **Nunca preguntó si existía un commit intermedio**, porque la lista la había
+producido su memoria de qué commits se habían nombrado en la correspondencia, no un `git log` del rango.
+
+**Lo que hace peligrosa esta forma es que no da ninguna señal.** Dos comparaciones limpias, dos
+resultados coherentes, y una conclusión falsa **que se lee como un hallazgo**. No hay cero sospechoso ni
+detector roto: el método fue correcto y el universo estaba mal delimitado.
+
+**Y la mitad que salva, aportada por el mismo corresponsal al retirarlo:**
+
+> **Una prueba de exclusión que funciona por igualdad también identifica.** El dato que descarta un
+> candidato suele contener al bueno, y la diferencia está **en la dirección en que se lee**, no en el
+> dato.
+
+En ese caso la evidencia era una hora: se usó para decir *"no puede ser aquel, es posterior"* —correcto—
+y no para preguntar *"¿de quién es esta hora?"*. **La firma del commit correcto estaba dentro de la
+prueba que lo descartaba**, escrita en la carta del propio autor.
+
+**Caso propio de la misma clase, para no leer esto como ajeno.** Se publicó que una cifra heredada
+*"no era el número de nada"* tras probar **tres conjuntos elegidos de memoria**. La conclusión resultó
+correcta, pero **no por la razón que se dio**: lo que la sostiene es que el corpus de entonces **no
+existe** —esos ficheros no están versionados—, no que tres candidatos fallaran. **Acertar con el
+argumento equivocado deja la afirmación en pie y el método roto**, que es peor que fallar con el bueno.
+
 ## Cómo se barre prosa: por palabra rara, por concepto y sin mayúsculas
 
 **Busca por palabra rara, no por frase.** Los docs llevan ajuste de línea, así que cualquier frase de

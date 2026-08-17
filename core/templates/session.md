@@ -24,6 +24,25 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
 - ADAPTAR: qué se probó y con qué resultado (tests, build, E2E, verificación en vivo). Ser
   honesto: si algo quedó sin probar o falló, decirlo.
 
+## Tropiezos
+
+- ADAPTAR: **qué salió mal en el camino** — lo que se intentó y no estaba, lo que costó tres intentos,
+  el detector propio que falló, la conclusión que hubo que retirar. **No los defectos del producto: los
+  del trabajo de esta sesión.**
+- **Va aquí y no en *Qué se hizo* porque es la única dimensión que ningún artefacto reconstruye.** El
+  árbol final, el diff y el commit dicen **qué** quedó hecho; **ninguno dice qué costó**. A posteriori
+  no se distingue *"no estaba en la lista y era obvio"* de *"no estaba en la lista y costó una hora de
+  tanteo"*. Si no se escribe al cerrar, **se pierde entero**.
+- **El nombre de la sección es fijo a propósito, y esa es la mitad que se subestima.** Una sección que
+  cada acta titula distinto —*"un fallo propio"*, *"dos defectos de contador"*, *"lo que el detector
+  enseñó"*— **no se puede barrer, ni contar, ni auditar**: existe y es invisible.
+- **Convergencia medida, y es la razón de que esté en la plantilla.** Dos proyectos que usan este marco
+  la inventaron **por separado y sin acordarlo**: uno con nombre estable, el otro en **17 de sus últimas
+  20 actas y con un título distinto cada vez**. Ninguno de los dos la tenía escrita, y uno se la
+  atribuía al kit. **Ese 17 de 20 no se pudo contar hasta que alguien lo buscó por otra razón.**
+- **Si no hubo ninguno, dilo en una línea.** *"Sin tropiezos"* es información: distingue una sesión
+  limpia de una en la que nadie miró.
+
 ## Notas para retomar
 
 - ADAPTAR: lo que la siguiente sesión debe saber (gotchas del entorno, pasos pendientes, palancas).

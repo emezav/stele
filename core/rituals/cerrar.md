@@ -7,9 +7,11 @@
 
 > **Este ritual se ejecuta CADA sesión**, así que un bloque mal cortado se paga a diario.
 
-1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, notas para retomar, y
-   `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos, y la fecha **medida, no
-   recordada** — ver *De dónde sale la fecha*, abajo.
+1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, **tropiezos**, notas para
+   retomar, y `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos, y la fecha
+   **medida, no recordada** — ver *De dónde sale la fecha*, abajo.
+   **`Tropiezos` es la que se salta y la única que no se puede reconstruir después:** el diff dice qué
+   quedó hecho y **nunca** qué costó. Si no hubo, se escribe *"sin tropiezos"* — que también informa.
 2. **`index`**: una fila con append de Bash — `printf '| N | … |\n' >> {history_dir}{index}`.
 3. **`effort`** (si `effort_log`): una fila con `printf >>`.
 4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla — **nunca `Edit`, nunca prepend**.
