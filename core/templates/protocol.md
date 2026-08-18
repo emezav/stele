@@ -27,7 +27,24 @@ Dos clases, y no se resuelven igual:
   que es como lo resuelve cualquier visor.
 
 El `printf >>` del cierre es el que más vigilar: si la ruta está mal, **no da error** — crea el
-archivo que falta y el bueno se queda sin la fila. Si hay más de una copia del comando en los docs,
+archivo que falta y el bueno se queda sin la fila.
+
+**Y contar las columnas de la fila no basta: cuenta separadores, no valida celdas.** Una fila con las
+columnas **permutadas** —la descripción donde van las horas, las horas donde va la descripción— tiene
+el número correcto de `|` y **pasa el control en verde**. Ocurrió dos veces seguidas en el log de
+esfuerzo de este mismo proyecto, y lo destapó una **suma**, no el control: las dos filas quedaron fuera
+del total sin que nada avisara.
+
+```bash
+# columnas: necesario, no suficiente
+tail -n 1 FILA | awk -F'|' '{print NF-2}'          # tiene que dar las de la cabecera
+# y ANCLA una celda por su FORMA, la que tenga forma reconocible:
+tail -n 1 FILA | awk -F'|' '{print ($4 ~ /^ *[0-9.,-]+ *$/) ? "OK" : "PERMUTADA"}'
+```
+
+> **Un control de forma que solo cuenta piezas no distingue una fila bien puesta de una barajada.**
+> Basta con anclar **una** celda de formato reconocible —una cifra, una fecha, una flecha— para que la
+> permutación deje de pasar. Si hay más de una copia del comando en los docs,
 todas deben decir lo mismo; mejor aún, que solo una lo deletree y las demás lo nombren en prosa.
 
 Al mover `base`, los enlaces relativos sobreviven si su destino viaja en el mismo bloque (es el caso
