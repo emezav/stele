@@ -270,9 +270,10 @@ recordarla — fue **tener el comando en la mano**.
 **Medido sobre este mismo fichero**, para no discutirlo en abstracto:
 
 ```text
-leyes                  : 54
-CON comando ejecutable :  9   (17%)
-SIN comando            : 45   (83%)
+leyes                    : 54
+CON comando ejecutable   :  7   (13%)
+SIN comando              : 47   (87%)
+CON COMANDO **Y** PERCHA :  1
 
 metodo: una ley "trae comando" si su cuerpo tiene al menos una linea que EMPIEZA por
         una invocacion ejecutable (grep, git, find, awk, printf, python...).
@@ -280,6 +281,55 @@ metodo: una ley "trae comando" si su cuerpo tiene al menos una linea que EMPIEZA
 control +: "El comando no es el patron"    -> sale CON comando
 control -: "La asimetria no es del error"  -> sale SIN comando
 ```
+
+**La primera cifra publicada fue 9, y eran dos de más.** La remidió un adoptante con su propia lista
+de herramientas, dio **7**, y al ir a mirar **cuáles** —que él no hizo y nosotros sí— las dos de
+diferencia resultaron **falsos positivos nuestros**: contaban porque el ajuste a 100 columnas había
+dejado la palabra `locale` al principio de una línea de **prosa**, y el patrón ancla al inicio.
+
+> **Un detector de invocaciones anclado a principio de línea cuenta prosa envuelta.** Es *el ajuste de
+> línea fabrica sintaxis que nadie escribió* aplicado a los comandos en vez de a las listas — el reflow
+> no solo crea items numerados: también crea invocaciones.
+
+**Y lo que permitió corregirlo fue el método publicado, no la cifra.** Con el método dentro, su 7 llegó
+como **réplica**; sin él habría llegado como contradicción, y se habría discutido cuál número era el
+bueno en vez de mirar las dos leyes.
+
+## Y una segunda cifra, peor que la primera: cuántas leyes tienen DÓNDE engancharse
+
+**Una ley con comando y sin percha está igual de sola que una sin comando** — la formulación es de un
+adoptante, y la medición salió de su pregunta: *si el kit solo puede ejercer sus leyes donde ya obliga a
+hacer algo, ¿cuántas están enganchadas ahí?*
+
+```text
+leyes                              : 54
+con PERCHA (citadas desde un paso
+            de un ritual, no desde
+            el indice)             :  5   (9%)
+con comando Y percha               :  1
+
+metodo: se busca el titulo de cada ley en los rituales y en las plantillas que un
+        paso obligatorio lee, EXCLUYENDO la seccion del indice de auditar.md.
+control: sin esa exclusion el resultado da 54 de 54 -- el indice las cita todas,
+         y medir el indice no es medir la percha.
+```
+
+**Una sola ley de 54 puede ejercerse de verdad**, y es la más reciente de todas.
+
+> **La escalera de lo que dispara**, aportada por el mismo adoptante y ordenada por lo que de verdad
+> funciona: **(1)** algo que **se niega a seguir** —un tipo, un parámetro obligatorio, un build que
+> falla— donde el ejecutor no participa; **(2)** un comando que **cuelga de un paso obligatorio**;
+> **(3)** escarmiento reciente, que caza la tercera repetición y **nunca la primera**; **(4)** memoria,
+> que no corre.
+
+**Y la consecuencia dura para un kit que es markdown puro: el nivel 1 le está vedado por construcción.**
+Un documento no puede negarse a seguir. **Su techo es el 2**, así que la pregunta de diseño de una ley
+nueva no es cómo redactarla sino **de qué paso obligatorio cuelga** — y si no cuelga de ninguno, decirlo.
+
+**El corolario incomoda y es de diseño, no de redacción:** el nivel 1 no se escribe, **se compra
+cambiando el medio**. Cuando una regla importe de verdad, la pregunta útil puede no ser *"cómo la
+escribo"* sino **"qué artefacto del proyecto puede negarse a seguir sin ella"** — un `.gitignore` no
+puede; un test, sí; un parámetro obligatorio, sí.
 
 > **Una ley con comando puede impedir un error; una ley sin comando solo puede explicarlo después.** No
 > son la misma herramienta y **no se debe confundir cuál se tiene delante**.
