@@ -748,6 +748,40 @@ pudo aplicarlo — su sesión arrancó mientras escribía la carta, y tocar la l
 ejecutando habría contaminado el experimento **y** cambiado el trabajo. *Una regla nueva llega tarde por
 construcción*, en su forma más incómoda: **la vieron venir y aun así llegaron tarde.**
 
+
+**Y hay una variante que audita algo que no se puede auditar de otro modo: la predicción NEGATIVA sobre
+un paso obligatorio.** El problema que resuelve es este: un paso que **no obliga** y aun así se cumple,
+porque quien lo ejecuta es competente, **produce exactamente el mismo registro** que uno que obliga.
+Los dos dejan el trabajo hecho, y ninguno deja rastro de la diferencia. Esperar al ejecutor con prisa
+es el único caso negativo natural, y llega cuando llega.
+
+**Se fabrica escribiendo, antes, que el paso NO se va a cumplir:**
+
+```text
+prediccion: "esto NO llegara al adoptante"
+  se cumple  -> el paso no obliga, y ya lo sabes sin que nadie haya fallado
+  FALLA      -> algo lo hizo llegar, y hay que ir a mirar QUE
+                    |
+                    +-- lo mandaba el ritual  -> el paso obliga: probado
+                    +-- no lo mandaba nadie   -> el ejecutor fue cuidadoso: sin ejercer
+```
+
+> **Una predicción negativa fallada es una auditoría gratis del paso**, y es el único modo de
+> distinguir *funciona* de *ha tenido ejecutores cuidadosos* sin esperar a que alguien lo haga mal.
+
+**Lo que la convierte en método y no en suerte es el orden, y una obligación incómoda: resolverla
+aunque salga bien.** Un desenlace bueno sin predicción previa **no se investiga jamás** —nadie audita
+un éxito— así que el defecto se queda dentro con cara de funcionar. Con la predicción escrita delante,
+**el éxito es una anomalía que hay que explicar**.
+
+**Caso medido, de campo:** un adoptante recibió una pieza que el ritual **no** mandaba portar. La
+predicción decía que no le llegaría; **falló**; se fue a mirar por qué y apareció que **no había fila
+en la tabla de zonas**. Sin la predicción escrita, el registro habría dicho *"el ritual funciona"* y la
+fila seguiría faltando.
+
+**Su coste, que hay que decir:** solo funciona **sobre pasos que uno ya sospecha flojos**, así que
+sigue dependiendo de a qué se apunte. **No cubre el paso que nadie sospecha** — y ese sigue sin
+método.
 ## Una cifra sin su comando no es comprobable, aunque el corpus esté delante
 
 **Es hermana de *El comando no es el patrón* y no es la misma.** Allí el instrumento se publicaba
