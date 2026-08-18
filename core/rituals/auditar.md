@@ -38,6 +38,14 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 4. **Clasificar** por clase de drift.
 5. **Aplicar** lo aceptado, cada cosa en su hogar y **con su procedencia**.
 6. **Segunda pasada, obligatoria** — y **registrar la fila** con su denominador.
+7. **Correr la cola de citas del propio cuerpo de reglas y anotar la fracción**, que es una línea en la
+   fila: cuántas reglas se citan en 2+ actas, en 1 sola y en ninguna. Es la ley
+   *La cola de citas: un cuerpo de reglas no se satura de golpe, y su síntoma no es el que se sospecha*,
+   y **se pone aquí porque una serie solo dice algo si tiene puntos**: medida una vez es una foto,
+   medida cada auditoría es la única señal de que el corpus dejó de consultarse.
+   <!-- El titulo va ENTERO en una linea a proposito, aunque pase de 100 columnas: el detector de
+        perchas busca el titulo con grep, y un titulo partido por el ajuste de linea es invisible
+        para el. Es "medir prosa por lineas es medir otra cosa", aplicado a la propia percha. -->
 
 **Las siete que se saltan.** Cada una tiene su cadáver abajo:
 
@@ -258,6 +266,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *No se pone la medición en el camino: se pone la predicción*
 - *Una cifra sin su comando no es comprobable, aunque el corpus esté delante*
 - *Documentar un experimento en curso puede contaminarlo, porque su ejecutor lee lo mismo que tú*
+- *La redundancia de un cuerpo de reglas vive en el USO, no en las palabras*
+- *La cola de citas: un cuerpo de reglas no se satura de golpe, y su síntoma no es el que se sospecha*
 - *La primera señal de que una comprobación sobra no es el silencio: es el ruido*
 - *Un directorio ignorado es invisible a tu buscador y visible en tu contexto*
 
@@ -271,22 +281,34 @@ recordarla — fue **tener el comando en la mano**.
 **Medido sobre este mismo fichero**, para no discutirlo en abstracto:
 
 ```text
-leyes                    : 54
-CON comando ejecutable   :  7   (13%)
-SIN comando              : 47   (87%)
-CON COMANDO **Y** PERCHA :  1
+leyes                    : 57
+CON comando ejecutable   :  8   (14%)
+SIN comando              : 49   (86%)
+CON COMANDO **Y** PERCHA :  3
 
-metodo: una ley "trae comando" si su cuerpo tiene al menos una linea que EMPIEZA por
-        una invocacion ejecutable (grep, git, find, awk, printf, python...).
-        Un bloque de SALIDA no cuenta: cuenta la invocacion.
+metodo: una ley "trae comando" si tiene al menos una linea que EMPIEZA por una
+        invocacion ejecutable (grep, git, find, awk, printf, python...) **DENTRO
+        DE UN BLOQUE DE CODIGO**. Un bloque de SALIDA no cuenta: cuenta la invocacion.
 control +: "El comando no es el patron"    -> sale CON comando
 control -: "La asimetria no es del error"  -> sale SIN comando
+control de encuadre: SIN restringir a bloques da 11 en vez de 8, y las tres de mas
+        son prosa envuelta que empieza por "locale" (x2) y por "diff" (x1).
 ```
 
 **La primera cifra publicada fue 9, y eran dos de más.** La remidió un adoptante con su propia lista
 de herramientas, dio **7**, y al ir a mirar **cuáles** —que él no hizo y nosotros sí— las dos de
 diferencia resultaron **falsos positivos nuestros**: contaban porque el ajuste a 100 columnas había
 dejado la palabra `locale` al principio de una línea de **prosa**, y el patrón ancla al inicio.
+
+**Y el 7 tampoco era el número: había un tercero, con otra palabra.** Una línea de prosa que empezaba
+por `diff` colaba una ley más, y **la remedición ajena no lo encontró** porque su lista de herramientas
+no era la nuestra. Solo apareció al cambiar el **encuadre** del detector —contar únicamente dentro de
+bloques de código—, no al repasar la lista de casos.
+
+> **Corregir un detector por la lista de sus fallos lo deja fallando por el mismo sitio.** Los dos
+> `locale` y el `diff` son el mismo defecto, y quitar los dos primeros a mano dejó el tercero vivo y la
+> cifra con cara de corregida. **Lo que arregla un detector es cambiar lo que MIRA, no tachar lo que
+> encontró.**
 
 > **Un detector de invocaciones anclado a principio de línea cuenta prosa envuelta.** Es *el ajuste de
 > línea fabrica sintaxis que nadie escribió* aplicado a los comandos en vez de a las listas — el reflow
@@ -303,19 +325,33 @@ adoptante, y la medición salió de su pregunta: *si el kit solo puede ejercer s
 hacer algo, ¿cuántas están enganchadas ahí?*
 
 ```text
-leyes                              : 54
+leyes                              : 57
 con PERCHA (citadas desde un paso
             de un ritual, no desde
-            el indice)             :  5   (9%)
-con comando Y percha               :  1
+            el indice)             :  7   (12%)
+con comando Y percha               :  3
 
-metodo: se busca el titulo de cada ley en los rituales y en las plantillas que un
-        paso obligatorio lee, EXCLUYENDO la seccion del indice de auditar.md.
-control: sin esa exclusion el resultado da 54 de 54 -- el indice las cita todas,
-         y medir el indice no es medir la percha.
+corpus: core/rituals/*.md + core/templates/*.md + modules/*/templates/*.md,
+        EXCLUYENDO la seccion del indice y el propio fichero de leyes.
+control 1: sin excluir el indice da 57 de 57 -- el indice las cita todas.
+control 2: sin excluir el fichero de leyes da 57 de 57 tambien, por la misma
+           razon y con otro culpable: ahi es donde viven los titulos.
 ```
 
-**Una sola ley de 54 puede ejercerse de verdad**, y es la más reciente de todas.
+**El 5 que publicamos antes no se sustituye en silencio: no declaraba su corpus.** Decía *"los rituales
+y las plantillas que un paso obligatorio lee"*, que no es una lista — y una cifra cuyo corpus se
+describe en prosa **no se puede replicar**, ni siquiera por quien la escribió. La de arriba trae la
+lista de globs; **la anterior no es refutable, es irrepetible**.
+
+**Y el denominador está mal, lo corrigió el mismo adoptante que pidió la cifra.** Medir *cuántas tienen
+percha* **sobre el total castiga a una clase entera por existir**: las leyes que se aplican **cuando
+alguien está a punto de concluir** no tienen paso del que colgar, y eso no es un defecto de colocación
+sino su naturaleza. La cifra honesta no es *5 de 55*: es **5 de las que podrían tenerla**, y ese
+denominador **nadie lo ha contado todavía** — cuenta como deuda declarada, no como cifra pendiente de
+pulir.
+
+> **Un porcentaje cuyo denominador incluye lo que no puede estar en el numerador no mide cobertura:
+> mide composición.** Y se lee como cobertura, que es lo que lo hace caro.
 
 > **La escalera de lo que dispara**, aportada por el mismo adoptante y ordenada por lo que de verdad
 > funciona: **(1)** algo que **se niega a seguir** —un tipo, un parámetro obligatorio, un build que

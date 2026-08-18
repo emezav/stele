@@ -782,6 +782,125 @@ proyectos, que es justo donde más se usa.
 **Hermana de *Quién ve el rojo, y en qué papel*.** Aquella pregunta **quién se entera** de un fallo; esta
 pregunta **qué sabía ya** el que mira. Las dos van sobre el observador y no sobre la comprobación.
 
+## La redundancia de un cuerpo de reglas vive en el USO, no en las palabras
+
+**Cuando un cuerpo de reglas crece, la primera sospecha es que dos digan lo mismo.** Y el primer
+instrumento que se le ocurre a cualquiera es comparar sus textos. **Ese instrumento casi no encuentra
+nada, y su cero no significa lo que parece.**
+
+**Medido sobre 55 leyes —el corpus de antes de escribir esta y la siguiente— con dos pasadas léxicas
+y sus 1 485 pares posibles:**
+
+```bash
+# pasada 1: titulos. palabras de contenido (>=5 letras, SIN stopwords), pares con >=2 comunes
+# pasada 2: la primera frase en negrita del cuerpo, pares con >=3 comunes
+#   -> 2 pares en titulos, y NINGUNO era duplicado: compartian dominio, no tesis
+#   -> 0 pares en afirmaciones
+# CONTROL de la pasada 1: sin excluir stopwords da 4 pares, y los dos de mas casan
+#   por "sobre" y "cuando". Si tu numero no baja al filtrar, no estas filtrando.
+```
+
+**Un cero léxico en un corpus del mismo dominio no es *no hay duplicados*: es *nadie está reutilizando
+sus propias palabras*.** Que es información —el corpus está activamente diferenciado— pero **no es la
+que se buscaba**, porque la duplicación que importa no tiene por qué ser léxica.
+
+**El caso, con dos leyes reales de este fichero:**
+
+```text
+"Un documento si ejecuta: se renderiza"
+"Quien ve el rojo, y en que papel"
+palabras de contenido compartidas: NINGUNA
+relacion real: la primera es un CASO PARTICULAR de la segunda -- el renderizador
+               es un falsador cuyo rojo lo ve un tercero, que es el separador
+               con el que la segunda organiza todo
+```
+
+**Ningún barrido de textos las junta.** Las juntó otro instrumento, aportado por un adoptante: **cruzar
+la tabla de citas consigo misma.**
+
+```bash
+# 1. cada acta se APLANA a UNA LINEA -- sin esto, un titulo partido por el ajuste
+#    de linea no se encuentra y el detector devuelve un suelo con cara de cifra
+for f in "$ACTAS"/sesion-*.md; do tr '
+' ' ' < "$f" | tr -s ' '; echo; done > plano.txt
+# 2. firma de cada regla = las actas que la citan; dos firmas iguales son candidatas
+grep '^## ' "$LEYES" | sed 's/^## //' | while IFS= read -r t; do
+  firma=$(LC_ALL=C.UTF-8 grep -niF "$t" plano.txt | cut -d: -f1 | tr '
+' ',')
+  case "$firma" in *,*,*) printf '%s	%s
+' "$firma" "$t";; esac   # solo 2+ actas
+done | sort | awk -F'	' '{if($1==p){print "  ["p"] "q"
+  ["p"] "$2} p=$1; q=$2}'
+```
+
+**Sobre este corpus da UN grupo** de 1 485 pares posibles, y es el de arriba. **Los dos controles:**
+`wc -l plano.txt` tiene que dar el número de actas —si da 1, el aplanado se comió los saltos y todo
+casa con todo—; y **si salen muchos grupos, estás midiendo actas que citan muchas reglas**, no
+afinidad. El `-iF` va con `LC_ALL=C.UTF-8` a propósito: en algunos locales de un solo byte **aborta**,
+y un comando que aborta detrás de una tubería se lee como un cero.
+
+> **La redundancia vive en el uso, no en las palabras.** Dos reglas que dicen lo mismo se **aplican en
+> los mismos sitios**, aunque estén escritas con vocabularios disjuntos — y el registro de dónde se
+> aplicaron suele existir ya, sin que haga falta corpus nuevo.
+
+**Y el desenlace del caso no fue borrar ninguna:** no eran duplicados, era una relación de
+**particular a general** que **no estaba escrita en ninguna de las dos**. Lo que el instrumento produce
+no es una lista de bajas: es una lista de **enlaces que faltan**.
+
+## La cola de citas: un cuerpo de reglas no se satura de golpe, y su síntoma no es el que se sospecha
+
+**La sospecha natural, cuando un cuerpo de reglas se hace grande, es que empiece a repetirse sin darse
+cuenta.** Eso es lo que le pasa a un corpus **descuidado**. A uno disciplinado le pasa algo más difícil
+de ver: sigue creciendo, sigue siendo distinto, y **simplemente deja de consultarse**. Eso no deja
+rastro en el texto — deja rastro en **cuántas veces se cita cada regla**.
+
+**Las tres cifras que hacen falta, y ya existen en cualquier proyecto que registre sus sesiones:**
+
+```bash
+# mismo plano.txt de arriba: una linea por acta, asi que una linea encontrada = un acta
+grep '^## ' "$LEYES" | sed 's/^## //' | while IFS= read -r t; do
+  LC_ALL=C.UTF-8 grep -ciF "$t" plano.txt
+done | awk '{if($1==0)a++; else if($1==1)b++; else c++}
+            END{printf "0 citas: %d  1 cita: %d  2+: %d  fraccion: %.1f%%
+",a,b,c,100*b/(a+b+c)}'
+# CONTROL POSITIVO: una regla que sepas citada en dos actas tiene que dar 2
+# CONTROL NEGATIVO: una frase inventada tiene que dar 0
+```
+
+**Corrido sobre este marco da `0 citas: 27   1 cita: 23   2+: 7   fracción: 40,4%`** — con sus dos
+controles en 2 y en 0. **Y una medida equivalente con clave parcial** —las últimas seis palabras del
+título en vez del título entero— **da 49,1%**: la diferencia entre las dos cifras **es el ancho de la
+clave**, no el corpus. Las dos coinciden en lo único que importa aquí, que es la **dirección**.
+
+**La fracción que importa es la del medio, y no la de cero citas** — las de cero están contaminadas por
+las recién escritas, que no han tenido tiempo. **Una regla citada exactamente una vez, el día que se
+escribió, es una regla que su autor no ha vuelto a necesitar.** No caducó, no se duplicó, no falló:
+**nadie volvió.**
+
+> **El límite no se cruza con un chasquido: se cruza cuando la fracción de reglas citadas UNA SOLA VEZ
+> deja de bajar.** Es una serie, no un umbral, y se mide con lo que ya está escrito.
+
+**Serie medida sobre este marco, por cortes de sesión** (denominador: reglas vivas en el corte):
+
+```text
+corte    reglas   0 citas   1 cita   2+     1 cita
+s110       46       24        18      4     39,1%
+s120       46       20        21      5     45,7%
+s130       49       23        18      8     36,7%
+s140       55       22        25      8     45,5%
+s143       55       19        27      9     49,1%     <- no baja
+```
+
+**Y sus dos límites, que hay que declarar con la serie:** la fecha de nacimiento se toma del primer
+commit donde aparece el título, así que **una consolidación comprime las fechas** —aquí 46 reglas
+aparecen el mismo día, cuando salieron de otro fichero—; y la cita es **textual**, así que una regla
+aplicada sin nombrarla no cuenta. **Las dos sesgan hacia abajo la fracción real.**
+
+**Qué hacer cuando la serie no baja, y no es dejar de escribir reglas:** es dejar de escribirlas **como
+si el problema fuera enunciarlas**. Una regla nueva en un corpus que ya no se consulta hereda el
+destino del corpus. La pregunta previa a redactarla es la de la percha — *de qué paso obligatorio
+cuelga* — y si no cuelga de ninguno, **la serie predice qué va a pasar con ella**.
+
 ## La primera señal de que una comprobación sobra no es el silencio: es el ruido
 
 **El estado terminal se conoce y es silencioso:** una comprobación que se corre y cuyo resultado nadie
@@ -1638,6 +1757,10 @@ un candidato, no un defecto**, y tratarlo como defecto produce correcciones que 
 
 ## Un documento sí ejecuta: se renderiza
 
+<!-- Caso particular de *Quien ve el rojo, y en que papel*: el renderizador es un falsador cuyo rojo
+     lo ve un tercero. El enlace lo encontro la cola de citas -- las dos se citan en las mismas dos
+     actas y no comparten UNA SOLA palabra de contenido--, no un barrido de texto. -->
+
 **Es tentador creer que un falsador es cosa del software y que la prosa solo se puede releer.** Un
 párrafo, efectivamente, no ejecuta nada delante de quien lo lee. **Pero el documento sí ejecuta: se
 renderiza** — y el renderizado corre **en el camino del lector**, sin pasos, sin permiso y sin que nadie
@@ -1677,6 +1800,9 @@ notara—. Antes de fiarte de un falsador de lectura, comprueba **qué le parece
 dos casos: el plano y el citado.
 
 ## Quién ve el rojo, y en qué papel
+
+<!-- *Un documento si ejecuta: se renderiza* es el caso particular de esta ley donde el artefacto es
+     prosa: el renderizado corre en el camino del lector, o sea que el rojo lo ve un tercero. -->
 
 **Un artefacto que comprueba su propia predicción no deja de predecir: cambia de clase, y el separador
 no es quién escribe la comprobación sino quién se entera cuando falla.**
