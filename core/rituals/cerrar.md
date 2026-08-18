@@ -106,6 +106,27 @@ esto importa — **un dato fechado mal envejece como un dato cierto**.
 
 ## El `state` se reescribe entero, también fuera del cierre
 
+**Y esta regla compra un efecto que su justificación no declara, medido en dos proyectos.** El texto
+dice *"un parche acierta en lo que toca y no ve lo que deja al lado"*, que es cierto. **El efecto
+grande es otro: reescribir entero obliga a RELEER entero.**
+
+```text
+documento que se REESCRIBE  -> la contradiccion interna se ve en 1 sesion
+documento que se PARCHEA    -> se ha medido en 4 y en 8
+```
+
+**Los dos casos, uno por proyecto:** un corresponsal midió esa separación en su corpus —N pequeño donde
+se reescribe, N grande donde se parchea— y aquí se confirmó por el lado malo: **cuatro sesiones
+parcheando el `state`** dejaron dentro pasos ya hechos y una cifra de leyes falsa, y **lo destapó un
+`grep` de control, no una relectura** — porque nunca hubo relectura.
+
+> **Una regla de escritura puede ser, sin proponérselo, un mecanismo de lectura.** Y eso importa el día
+> que alguien la relaje por coste: **va a pesar el precio contra el beneficio equivocado**, porque el
+> beneficio grande no está escrito en ninguna parte.
+
+**No lo generalizamos a otras reglas todavía:** son **dos** casos y **los dos son de esta misma regla**.
+Como patrón general es una predicción falsable, no un resultado.
+
 **Y el `state` se reescribe entero también cuando lo tocas fuera del cierre.** La regla de arriba vive
 en un checklist de cierre, así que no se siente aplicable a las ediciones de mitad de sesión —se
 entregó una carta, se resolvió un pendiente, cambió algo de estado—, y ahí es donde entra el parche.

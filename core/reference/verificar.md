@@ -449,6 +449,52 @@ o dos distintas, y el total no lo dice.
 práctica nueva. Quien lleva 151 cartas parecerá siempre peor que quien lleva 23 en cualquier cosa que
 haya empezado a hacer hace poco — **no porque lo haga menos, sino porque tiene más pasado que promediar.**
 
+## Una comprobación puede CADUCAR sin fallar, y ningún control lo cubre
+
+**Los dos controles hablan del detector; ninguno habla del momento.** El positivo dice que dispara
+cuando debe, el negativo que no casa lo que no debe, y **los dos pueden estar en verde sobre una
+afirmación que ya es falsa**. No falló nada: **cambió el mundo**.
+
+**Caso de campo, y lo aporta quien lo sufrió.** Un corresponsal escribió una carta con esta fila
+comprobable:
+
+```text
+2026-08-13   git cat-file -t 639b7fe -> commit    (la punta publica del otro)
+             git cat-file -t af98e4a -> fatal: Not a valid object name
+             CONTROL NEGATIVO 000...000 -> fatal
+```
+
+**Exacta el día que se escribió.** La carta salió **cinco días después**, y para entonces el otro
+proyecto había publicado ese commit: la misma línea decía lo contrario. **Ni el detector falló ni el
+control mintió — el corpus se movió.**
+
+> **La ventana de una afirmación sobre un corpus AJENO Y VIVO es más corta que la de una sobre el
+> propio, porque no la controla quien escribe.** Una cifra sobre tu repo sobrevive hasta que tú lo
+> toques; una sobre el repo de otro sobrevive hasta que **él** haga `push`, y eso no lo puedes
+> programar.
+
+**El remedio cuesta lo que la comprobación y va en el momento de entregar, no en el de escribir:**
+
+```bash
+# antes de entregar cualquier documento que afirme algo sobre un corpus ajeno,
+# se RE-CORREN sus filas comprobables. No se revisan: se corren.
+git cat-file -t "$SELLO_AJENO" 2>&1     # y su control negativo, en la misma tanda
+git cat-file -t 0000000       2>&1      # tiene que dar "Not a valid object name"
+```
+
+**Y lo que salva la afirmación caducada no es el control: es haber avisado.** En ese mismo caso, el
+proyecto observado había advertido por escrito *"esto todavía no está publicado"* **antes** de que el
+otro fuera a mirar. Sin ese aviso, un `fatal: Not a valid object name` se lee como **un sello roto** y
+nadie vuelve; con él, se lee como **un estado transitorio** y alguien re-comprueba.
+
+> **El aviso no evita que una comprobación caduque: evita que caduque en silencio.** Es la diferencia
+> entre un dato compartido y una acusación.
+
+**El caso simétrico, que conviene ver junto:** una ventana de retirada se suele medir sobre **errores**
+—cuánto tarda en retirarse algo falso—. Esta es la otra dirección y casi nadie la mide: **cuánto tarda
+un acierto en dejar de serlo.** Aquí fueron cinco días, y la causa no fue el descuido de nadie sino
+**el trabajo normal del otro proyecto**.
+
 ## Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO
 
 **Y hay que escribirla como tal: con fecha y en pasado.** El kit es un sitio donde **nada la mueve** —

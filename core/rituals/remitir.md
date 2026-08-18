@@ -18,7 +18,13 @@ proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el arc
    va tachado. Fase obligatoria, no buena práctica.
 5. **Pasarle el linter de markdown** al fichero de la carta — y **el marcador va arriba y sin citar**:
    dentro de un bloque de cita, perder un `>` saca una fila de la tabla y **no da error**.
-6. **Enviar lo decide el usuario, nunca tú.**
+6. **RE-CORRER las filas comprobables, ya con la carta escrita y justo antes de entregarla.** No
+   revisarlas: **correrlas**. Es *Una comprobación puede CADUCAR sin fallar, y ningún control lo cubre*:
+   los dos controles hablan del detector y **ninguno habla del momento**, así que una fila exacta el día
+   que se redactó puede ser falsa el día que sale. **La ventana es más corta cuando la afirmación es
+   sobre un corpus ajeno**, porque la mueve el otro y no tú. Caso medido: una carta redactada el 13 y
+   enviada el 18 llevaba dentro un `no existe` que para entonces **sí existía**.
+7. **Enviar lo decide el usuario, nunca tú.**
 
 **Y las cinco del marcador, que son las que se saltan.** Cada una tiene su cadáver documentado abajo:
 
