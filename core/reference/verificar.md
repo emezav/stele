@@ -896,6 +896,24 @@ commit donde aparece el título, así que **una consolidación comprime las fech
 aparecen el mismo día, cuando salieron de otro fichero—; y la cita es **textual**, así que una regla
 aplicada sin nombrarla no cuenta. **Las dos sesgan hacia abajo la fracción real.**
 
+**Y si se poda, hay dos pruebas de que la mejora es real y no cosmética** — las dos disponibles **el
+mismo día**, sin esperar más cortes:
+
+- **La del criterio: una poda es honesta si el criterio con el que se decide NO menciona la métrica.**
+  *"Borro las que tienen cero citas"* optimiza la serie **por construcción**. *"Borro las que quedaron
+  subsumidas por otra"* la mueve como **efecto secundario** — y subsumida es una relación entre dos
+  reglas, no entre una regla y su contador.
+- **La del doble cálculo: se guarda lo podado y se publican las DOS cifras**, la del corpus vivo y la
+  del corpus vivo **más lo podado**. Si las dos bajan, la poda quitó ruido; si la segunda se queda
+  plana, **la mejora es el corte y no el corpus**. La diferencia entre ambas **es** la parte cocinada.
+
+> **Podar sin guardar lo podado hace la pregunta irrespondible para siempre**, y no solo para quien
+> audite: **también para quien podó**. Es la misma clase que una cifra cuyo corpus se describió en
+> prosa.
+
+**Las dos pruebas son un diseño y no se han corrido**, porque ninguno de los dos proyectos que las
+discutieron había podado nada cuando se escribieron. Van aquí con esa etiqueta puesta.
+
 **Qué hacer cuando la serie no baja, y no es dejar de escribir reglas:** es dejar de escribirlas **como
 si el problema fuera enunciarlas**. Una regla nueva en un corpus que ya no se consulta hereda el
 destino del corpus. La pregunta previa a redactarla es la de la percha — *de qué paso obligatorio
@@ -1375,6 +1393,35 @@ Así que un cero conjunto, o un número conjunto, no dice *"la característica n
 corpus no llegó a ejercerse"**. Y se comprueba igual que todo lo demás — **buscando el caso que
 debería separarlas** y viendo si de verdad las separa. Si no hay ninguno, el acuerdo no es una medida:
 es un corpus que no hace la pregunta.
+
+**Y hay una segunda forma de acuerdo falso, peor que la primera: dos mediciones que coinciden porque
+cada una está mal por su lado.** La primera es un corpus que no separa —las dos comprobaciones son
+correctas y el material no ejerce la diferencia—. Esta no: **las dos son incorrectas, por razones
+distintas, y aun así dan el mismo número.**
+
+**Caso de campo, con las dos partes documentándolo:** una cifra publicada como 9 se corrigió a **7** en
+dos sitios a la vez. Un lado tachó a mano los dos falsos positivos que el otro le había nombrado, y
+**le quedó un tercero dentro**. El otro remidió con su propia lista de herramientas —que **sí** incluía
+la del tercer caso— y el patrón lo cazó, pero **contó secciones sin mirar qué había dentro de cada
+acierto**. Dos caminos independientes, dos errores distintos, **el mismo 7**. El número real era **6**.
+
+> **Si las dos partes hubieran comparado solo las cifras, habrían concluido que el 7 estaba
+> confirmado** — dos métodos, dos corpus de trabajo, mismo resultado. Y la coincidencia habría sido la
+> única evidencia de algo que era falso en los dos lados.
+
+**El remedio no es medir mejor: es publicar OTRA COSA.** Una cifra que coincide con otra cifra no dice
+nada, porque **el espacio de números es pequeño y el de errores es grande**. Dos **listas** que
+coinciden sí dicen algo, porque coincidir elemento por elemento es caro de conseguir por azar.
+
+```text
+publicar el numero            -> el acuerdo no es comprobable
+publicar el numero y el metodo -> el otro puede REPRODUCIR, y ahi se para
+publicar tambien el CONJUNTO   -> el acuerdo se puede comprobar elemento a elemento
+```
+
+**Y esto sube el listón de lo que ya se venía exigiendo.** *Una cifra sin su comando no es comprobable*
+resuelve la reproducción; **no resuelve el acuerdo**. Para que dos mediciones se confirmen entre sí,
+las dos tienen que haber publicado **qué encontraron**, no cuánto.
 
 **Y buscar ese caso es más difícil de lo que suena, porque casi siempre es una CONJUNCIÓN.** La frase
 de arriba nombra la condición en singular y ahí se queda corta — el mismo defecto que tenía la
