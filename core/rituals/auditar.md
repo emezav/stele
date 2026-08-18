@@ -223,6 +223,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una justificación producida al auditar el defecto no tiene procedencia*
 - *Declarar una variable de entorno no es controlarla*
 - *Medir prosa por líneas es medir otra cosa*
+- *Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador*
 - *Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO*
 - *Un comando que aborta, detrás de una tubería, es un cero*
 - *No verifiques a alguien con su propia herramienta*
@@ -346,6 +347,23 @@ prueba es cualitativa y no una cifra.
 comprueba en el mismo cambio— y **cualquier documento ajeno que citara el título viejo queda citando
 algo que ya no existe**. Los registros inmutables **no se reescriben**: se anota la equivalencia una
 vez, donde vive el índice.
+
+**Y los dos renombres posibles NO cuestan lo mismo, que es lo que decide si la tabla hace falta:**
+
+```text
+si el titulo nuevo CONTIENE al viejo (solo se anadio)
+   -> grep del viejo encuentra la ley misma. La cita ajena se resuelve sola
+si se reescribio la CABEZA
+   -> grep del viejo encuentra SOLO la fila de equivalencia. Es el unico puente
+```
+
+**Medido sobre los dos de esta instancia:** el que solo añadió da **3 aciertos, dos de ellos la ley
+misma**; el que cambió la cabeza da **1, y es la fila de la tabla**. **Si esa fila se borra, toda cita
+entregada muere en silencio** — quien la busca no encuentra nada y concluye que la ley se retiró.
+
+> **Y los dos hechos se juntan al revés de lo cómodo: los renombres que más falta hacen son los que
+> rompen las citas.** Aquí hubo que reescribir la cabeza **precisamente porque la cabeza era lo que
+> engañaba**. Aporte de un adoptante, que midió los cuatro literales.
 
 **Equivalencias de esta instancia** (2026-08-17, tras la primera aplicación de la prueba):
 

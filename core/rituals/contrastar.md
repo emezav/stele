@@ -43,12 +43,18 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
    tales**), y **propuestas** (no se verifican: se deciden, al final).
 2. **Verificar** las de la primera clase, una a una. Un aporte apoyado en una afirmación falsa sobre tu
    producto **se cae entero**, por bien argumentado que esté.
-3. **Separar diagnóstico de remedio, y volver a derivar el remedio desde tu diseño.** El diagnóstico
+3. **Si la carta compara una TASA suya con una tuya, desglósala por tramos antes de discutirla.** Es
+   *Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador*: dos
+   archivos de distinta longitud dan cifras distintas para **la misma práctica**, porque el más largo
+   arrastra la época en que la práctica no existía. **Medido aquí: 21% global contra 62% en el último
+   tramo, frente a un 35% ajeno** — la lectura cambia de *"ellos lo hacen más"* a *"la práctica reciente
+   coincide"*, con los mismos números.
+4. **Separar diagnóstico de remedio, y volver a derivar el remedio desde tu diseño.** El diagnóstico
    viaja; el remedio no, porque **el medio decide qué remedios existen**.
-4. **Nombrar lo que el caso NO valida.** Cuesta un párrafo y es la fase que más ha rendido.
-5. **Aplicar** — y **aplicar no siempre es hoy**: el día del hallazgo es el peor día para tocar el sitio
+5. **Nombrar lo que el caso NO valida.** Cuesta un párrafo y es la fase que más ha rendido.
+6. **Aplicar** — y **aplicar no siempre es hoy**: el día del hallazgo es el peor día para tocar el sitio
    donde vive. Lo que **no** se aplaza es escribir el diagnóstico.
-6. **Archivar, responder y registrar, en ese orden.** La fila va **después** de responder, porque su
+7. **Archivar, responder y registrar, en ese orden.** La fila va **después** de responder, porque su
    existencia implica que el circuito se cerró.
 
 **Las cuatro que se saltan:**

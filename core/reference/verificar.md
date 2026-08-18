@@ -342,6 +342,54 @@ CONTROL NEGATIVO  frase inventada -> 0
 GLOBAL            se pierden 462 de 1600 = 28.9%
 ```
 
+## Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador
+
+**Dos proyectos midieron la misma cosa sobre sus propios archivos y les dio 21% y 35%.** El primer
+reflejo es discutir el patrón; el segundo, el corpus. **Los dos estaban bien.** La diferencia era que
+un archivo tenía **151 elementos y el otro 23**, y la práctica que se estaba midiendo **no existía
+cuando se escribieron los primeros cuarenta**.
+
+```bash
+# no publiques la tasa global de una practica: publica su DESGLOSE POR TRAMOS.
+# ejemplo sobre un indice append-only cuya primera columna es el numero de fila:
+awk -F'|' '$2+0>0 && $4 ~ /->/ { t=int(($2-1)/25); n[t]++;
+      if (tolower($0) ~ /contest[^.]*su pregunta/) k[t]++ }
+   END { for (i=0;i<=t;i++) if (n[i]) printf "tramo %3d-%3d : %2d de %2d = %3.0f%%\n",
+                                             i*25+1, i*25+25, k[i], n[i], 100*k[i]/n[i] }' "$INDICE"
+# CONTROL: si la serie sale plana, la tasa global valia y el desglose no costo nada
+```
+
+**Corrido sobre este archivo de correspondencia**, con el patrón de *contestar la pregunta de cierre*:
+
+```text
+tramo   1- 25 : 10%   (1 de 10)      tramo  76-100 : 17%   (2 de 12)
+tramo  26- 50 : 23%   (3 de 13)      tramo 101-125 : 38%   (5 de 13)
+tramo  51- 75 : 36%   (4 de 11)      tramo 126-150 : 38%   (5 de 13)   <- la practica de HOY
+```
+
+**Y el primer intento de esta misma serie salió distinto** —`36` y `38` eran `64` y `62`— porque las
+cifras venían de un script y el comando publicado era otro: **dos implementaciones del mismo patrón**,
+que es la ley de al lado mordiendo dentro de esta. **Manda el comando publicado**, y la conclusión no
+cambia: la serie sube.
+
+> **Una tasa sobre un corpus que crece mide dos cosas a la vez: la práctica y desde cuándo se
+> practica.** Y cuando se compara con la de otro, **la diferencia de edad entra en el resultado sin
+> aparecer en ninguna columna.**
+
+**El error que evita no es de cálculo, es de conclusión.** Con **21% contra 35%** delante, la lectura
+natural es *"ellos lo hacen más"*; con el desglose, la práctica reciente del corpus largo es **38%** y
+la lectura correcta es **que las dos coinciden**. **Son dos afirmaciones opuestas sobre los mismos
+números**, y la que sale del total es la falsa.
+
+**Qué hacer, y es barato:** cuando compares una tasa con la de otro proyecto, **compara tramos
+comparables** —los últimos N, o desde que la práctica existe en los dos— y **di cuál elegiste antes de
+verlo**. Igualar denominadores no arregla nada: un 8 de 23 y un 31 de 151 pueden ser la misma práctica
+o dos distintas, y el total no lo dice.
+
+**Y el caso simétrico, que es el que muerde al que lleva más tiempo:** un corpus largo **diluye** toda
+práctica nueva. Quien lleva 151 cartas parecerá siempre peor que quien lleva 23 en cualquier cosa que
+haya empezado a hacer hace poco — **no porque lo haga menos, sino porque tiene más pasado que promediar.**
+
 ## Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO
 
 **Y hay que escribirla como tal: con fecha y en pasado.** El kit es un sitio donde **nada la mueve** —
