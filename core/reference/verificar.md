@@ -369,9 +369,17 @@ tramo  51- 75 : 36%   (4 de 11)      tramo 126-150 : 38%   (5 de 13)   <- la pra
 
 **Y el primer intento de esta misma serie salió distinto** —`36` y `38` eran `64` y `62`— porque las
 cifras venían de un script y el comando publicado era otro: **dos implementaciones del mismo patrón**,
-que es la ley de al lado mordiendo dentro de esta. **Manda el comando publicado**, y la conclusión no
-cambia: la serie sube.
+que es la ley de al lado mordiendo dentro de esta. **Manda el comando publicado.**
 
+**Pero la corrección se dejó a medias, y eso salió más caro que el error.** Se arregló la serie **y se
+dejó el total viejo en el titular**: la tabla sumaba `20` y al lado se publicaba un `31` que venía del
+script descartado. **Lo cazó el corresponsal sumando seis números impresos en la propia carta**, sin
+acceso a ningún corpus.
+
+> **Cuando descartes una implementación, descarta TODAS sus cifras.** Una corrección parcial deja dos
+> números incompatibles firmados por el mismo autor **en el mismo texto**, y eso no lo detecta ningún
+> control: lo detecta una suma que cualquiera puede hacer.
+>
 > **Una tasa sobre un corpus que crece mide dos cosas a la vez: la práctica y desde cuándo se
 > practica.** Y cuando se compara con la de otro, **la diferencia de edad entra en el resultado sin
 > aparecer en ninguna columna.**
@@ -796,7 +804,6 @@ pudo aplicarlo — su sesión arrancó mientras escribía la carta, y tocar la l
 ejecutando habría contaminado el experimento **y** cambiado el trabajo. *Una regla nueva llega tarde por
 construcción*, en su forma más incómoda: **la vieron venir y aun así llegaron tarde.**
 
-
 **Y hay una variante que audita algo que no se puede auditar de otro modo: la predicción NEGATIVA sobre
 un paso obligatorio.** El problema que resuelve es este: un paso que **no obliga** y aun así se cumple,
 porque quien lo ejecuta es competente, **produce exactamente el mismo registro** que uno que obliga.
@@ -830,6 +837,7 @@ fila seguiría faltando.
 **Su coste, que hay que decir:** solo funciona **sobre pasos que uno ya sospecha flojos**, así que
 sigue dependiendo de a qué se apunte. **No cubre el paso que nadie sospecha** — y ese sigue sin
 método.
+
 ## Una cifra sin su comando no es comprobable, aunque el corpus esté delante
 
 **Es hermana de *El comando no es el patrón* y no es la misma.** Allí el instrumento se publicaba
@@ -932,16 +940,13 @@ la tabla de citas consigo misma.**
 ```bash
 # 1. cada acta se APLANA a UNA LINEA -- sin esto, un titulo partido por el ajuste
 #    de linea no se encuentra y el detector devuelve un suelo con cara de cifra
-for f in "$ACTAS"/sesion-*.md; do tr '
-' ' ' < "$f" | tr -s ' '; echo; done > plano.txt
+for f in "$ACTAS"/sesion-*.md; do tr '\n' ' ' < "$f" | tr -s ' '; echo; done > plano.txt
 # 2. firma de cada regla = las actas que la citan; dos firmas iguales son candidatas
 grep '^## ' "$LEYES" | sed 's/^## //' | while IFS= read -r t; do
-  firma=$(LC_ALL=C.UTF-8 grep -niF "$t" plano.txt | cut -d: -f1 | tr '
-' ',')
-  case "$firma" in *,*,*) printf '%s	%s
-' "$firma" "$t";; esac   # solo 2+ actas
-done | sort | awk -F'	' '{if($1==p){print "  ["p"] "q"
-  ["p"] "$2} p=$1; q=$2}'
+  firma=$(LC_ALL=C.UTF-8 grep -niF "$t" plano.txt | cut -d: -f1 | tr '\n' ',')
+  case "$firma" in *,*,*) printf '%s\t%s\n' "$firma" "$t";; esac   # solo 2+ actas
+done | sort | awk -F'\t' '{ if ($1==p) printf "  [%s] %s\n  [%s] %s\n", p, q, p, $2
+                            p=$1; q=$2 }'
 ```
 
 **Sobre este corpus da UN grupo** de 1 485 pares posibles, y es el de arriba. **Los dos controles:**
@@ -1369,7 +1374,6 @@ falta **dos** etiquetas y no una: no solo *contra qué se compara*, sino **si al
 que debería compararse**. Un número sin expectativa declarada y sin nadie que la haya buscado nunca no
 es que no se lea: es que **no hay nada que leer**. Está escrito y no está resuelto.
 
-
 **Y el caso más incómodo es el del número que produce quien acaba de definir el detector.** Un proyecto
 propuso, por escrito, un síntoma para saber si su cuerpo de reglas estaba creciendo mal: *"una regla que
 acumula casos sin que su enunciado cambie nunca"*. **En la frase siguiente escribió que sus tres
@@ -1394,6 +1398,7 @@ se corrió, dio positivo y se leyó como tranquilidad*.
 mismo corresponsal a *"¿el enunciado habría permitido PREDECIR el caso nuevo?"* y aplicado a las tres,
 **dos fallaron** y hubo que cambiarles el título. **El síntoma no era falso: era ilegible sin
 expectativa, y luego resultó ser real en dos de tres.**
+
 ## Una ausencia y una no-aplicabilidad dan la misma cifra
 
 **Un 0% de cobertura tiene dos causas y solo una es defecto:** que nadie corriera la comprobación, o
@@ -1563,6 +1568,14 @@ de implementación invisible en el patrón publicado.
 
 > **La diferencia entre un desacuerdo con procedimiento de cierre y uno sin él es el conjunto.** Con
 > cifras, un desacuerdo se aparca con un párrafo de matices; con conjuntos, **se resta**.
+
+**Y publicar el conjunto no es escribirlo: es ponerlo DONDE lo alcance quien verifica.** Dos proyectos
+publicaron sus conjuntos el mismo día **apuntando cada uno a un directorio de su árbol privado**, que
+el otro no puede abrir. Los dos punteros se leían como *"esto es comprobable"* y **ninguno lo era**.
+
+> **Un puntero a un árbol privado tiene el mismo valor probatorio que la cifra sola, y encima parece
+> que no.** El conjunto viaja **dentro** del documento que hace la afirmación; el artefacto local sirve
+> para rehacer la medición, no para que el otro la compruebe.
 
 **Y esto sube el listón de lo que ya se venía exigiendo.** *Una cifra sin su comando no es comprobable*
 resuelve la reproducción; **no resuelve el acuerdo**. Para que dos mediciones se confirmen entre sí,

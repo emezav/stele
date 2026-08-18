@@ -310,7 +310,7 @@ bloques de código—, no al repasar la lista de casos.
 > `locale` y el `diff` son el mismo defecto, y quitar los dos primeros a mano dejó el tercero vivo y la
 > cifra con cara de corregida. **Lo que arregla un detector es cambiar lo que MIRA, no tachar lo que
 > encontró.**
-
+>
 > **Un detector de invocaciones anclado a principio de línea cuenta prosa envuelta.** Es *el ajuste de
 > línea fabrica sintaxis que nadie escribió* aplicado a los comandos en vez de a las listas — el reflow
 > no solo crea items numerados: también crea invocaciones.
@@ -406,7 +406,7 @@ pulir.
 
 > **Un porcentaje cuyo denominador incluye lo que no puede estar en el numerador no mide cobertura:
 > mide composición.** Y se lee como cobertura, que es lo que lo hace caro.
-
+>
 > **La escalera de lo que dispara**, aportada por el mismo adoptante y ordenada por lo que de verdad
 > funciona: **(1)** algo que **se niega a seguir** —un tipo, un parámetro obligatorio, un build que
 > falla— donde el ejecutor no participa; **(2)** un comando que **cuelga de un paso obligatorio**;

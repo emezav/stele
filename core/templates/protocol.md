@@ -63,10 +63,13 @@ Ver `{{kit}}/guide.md` → "Roles y fronteras". Aquí solo los **formatos**.
 
 ## Dónde estamos
 - (3-8 bullets del estado REAL, no histórico)
+
 ## Próximo paso inmediato
 - (lo que haría la siguiente sesión; reemplaza, no acumula)
+
 ## Pendientes operativos
 - Procesos en background / decisiones abiertas / trabajo sin persistir
+
 ## Referencias
 - {{specs}} §X — … / {{charter}} § … / tema de {{specs}}
 ```

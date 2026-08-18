@@ -374,6 +374,21 @@ hacer**, y su
 conjunto son cuatro hashes que se pueden abrir uno a uno. **Una variante más laxa del patrón daba `5`**
 —colaba un commit por la palabra *amplía*, que no es lo mismo que no hacer—, y **eso solo se ve
 publicando la lista y no la cifra**.
+**Y no todo campo obligatorio produce: el criterio es qué hace falta para cumplirlo honestamente.**
+Aporte de un adoptante, que comparó dos campos suyos con meses de uso:
+
+```text
+la columna de un MARCADOR   -> no se puede rellenar sin CORRER algo.  Cazo seis cifras inventadas
+la seccion de TROPIEZOS     -> se puede rellenar escribiendo "sin tropiezos"
+```
+
+> **Un campo obligatorio produce cuando cumplirlo honestamente exige una acción que NO es escribir.**
+> El que solo exige recordar depende entero de quien lo rellena, y por eso uno caza y el otro no.
+
+**Su consecuencia incómoda, que aceptamos:** una **pregunta de cierre** —*"¿qué queda que no sepas
+contestar?"*— **cae del lado malo**. Cumplirla no exige más que escribir, y el autor es el único juez
+de si sabe la respuesta. **Hacerla obligatoria probablemente la degradaría**, así que aquí no lo es.
+
 > **Si la decisión fue no hacer algo, dilo en el mensaje del commit.** Es la única forma barata de que
 > un acierto sea recuperable: **el commit ya se escribe, y se escribe justo cuando la decisión se
 > toma.**
