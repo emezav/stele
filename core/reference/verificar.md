@@ -15,7 +15,7 @@ la que necesites. Si vas a publicar una cifra, el mínimo son tres: *una cifra s
 es una FOTO*, *y comprueba el valor esperado del control*, y *un número sin expectativa no es
 información*.
 
-## El comando no es el patrón, y confundirlos parece sustrato
+## Ni el comando ni su implementación son el patrón, y confundirlos parece sustrato
 
 **Caso de campo, y las dos partes lo leyeron mal antes de leerlo bien.** Un corresponsal publicó
 patrón y corpus fijado por hash de su verificación, y reportó **1**. El destinatario lo corrió y obtuvo
@@ -707,7 +707,7 @@ del commit correcto.
 > exista: es que tu lista estaba incompleta.** Y el dato que descarta una hipótesis suele contener la
 > buena, si se lee hacia adelante en vez de solo hacia atrás.
 
-## No se pone la medición en el camino: se pone la predicción
+## No se pone la medición en el camino: se pone la predicción, también sobre lo que va a salir bien
 
 **El problema, que es real y no tenía respuesta.** Una comprobación *en el camino* se corre porque no
 hay forma de dar el paso sin darla. Pero **una medición que ocurre en el futuro** no tiene ningún paso
@@ -1321,6 +1321,31 @@ falta **dos** etiquetas y no una: no solo *contra qué se compara*, sino **si al
 que debería compararse**. Un número sin expectativa declarada y sin nadie que la haya buscado nunca no
 es que no se lea: es que **no hay nada que leer**. Está escrito y no está resuelto.
 
+
+**Y el caso más incómodo es el del número que produce quien acaba de definir el detector.** Un proyecto
+propuso, por escrito, un síntoma para saber si su cuerpo de reglas estaba creciendo mal: *"una regla que
+acumula casos sin que su enunciado cambie nunca"*. **En la frase siguiente escribió que sus tres
+ampliaciones de esa semana no habían tocado ningún título** — que es exactamente el positivo del
+detector que acababa de definir — **y lo escribió como tranquilidad**.
+
+```text
+detector definido  : "el enunciado no cambia nunca" -> sintoma de resta comoda
+resultado obtenido : 3 de 3 ampliaciones sin tocar el titulo
+expectativa declarada : NINGUNA
+lectura que se le dio : "esto si se puede mirar"     <- se leyo como color
+```
+
+**Lo destapó el corresponsal, en la carta siguiente**, y su formulación es la que se queda: *el detector
+se corrió, dio positivo y se leyó como tranquilidad*.
+
+> **Cuando propongas un detector, declara su expectativa EN LA MISMA FRASE.** Sin eso, su primer
+> resultado no llega como veredicto sino como dato de color — y el peor momento para no tener
+> expectativa es justo el estreno, porque es cuando nadie ha visto todavía cómo se ve un positivo.
+
+**Y el desenlace conviene contarlo, porque el detector era además demasiado débil.** Afilado por el
+mismo corresponsal a *"¿el enunciado habría permitido PREDECIR el caso nuevo?"* y aplicado a las tres,
+**dos fallaron** y hubo que cambiarles el título. **El síntoma no era falso: era ilegible sin
+expectativa, y luego resultó ser real en dos de tres.**
 ## Una ausencia y una no-aplicabilidad dan la misma cifra
 
 **Un 0% de cobertura tiene dos causas y solo una es defecto:** que nadie corriera la comprobación, o

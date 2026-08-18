@@ -213,7 +213,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 > # Sin el, dos ficheros vacios tambien dan "sin diferencias".
 > ```
 
-- *El comando no es el patrón, y confundirlos parece sustrato*
+- *Ni el comando ni su implementación son el patrón, y confundirlos parece sustrato*
 - *Un desacuerdo demuestra que algo difiere; nunca demuestra QUÉ*
 - *Antes de llamar sustrato a un desacuerdo, mira si alguien está violando una especificación*
 - *Una especificación también dice dónde se CALLA, y ahí la divergencia está anunciada*
@@ -263,7 +263,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una contradicción interna que sobrevive mide cuántas veces el documento se cargó sin leerse*
 - *Cuando un fichero admite dos lecturas por patrón, el control es un invariante y no un patrón mejor*
 - *El identificador de una acción es el del instante en que ocurrió, no el de cuando la cuentas*
-- *No se pone la medición en el camino: se pone la predicción*
+- *No se pone la medición en el camino: se pone la predicción, también sobre lo que va a salir bien*
 - *Una cifra sin su comando no es comprobable, aunque el corpus esté delante*
 - *Documentar un experimento en curso puede contaminarlo, porque su ejecutor lee lo mismo que tú*
 - *La redundancia de un cuerpo de reglas vive en el USO, no en las palabras*
@@ -317,6 +317,42 @@ bloques de código—, no al repasar la lista de casos.
 **Y lo que permitió corregirlo fue el método publicado, no la cifra.** Con el método dentro, su 7 llegó
 como **réplica**; sin él habría llegado como contradicción, y se habría discutido cuál número era el
 bueno en vez de mirar las dos leyes.
+
+## Ampliar una ley o escribir otra: la prueba es el ENUNCIADO
+
+**Ampliar es siempre más barato que añadir**, y por eso hace falta una prueba: si no, un cuerpo de
+reglas deja de crecer **no porque esté completo, sino porque ampliar da menos trabajo** — y eso se ve
+igual que la disciplina.
+
+**La prueba, por caso, antes de ampliar:** que alguien que lea **solo el enunciado** diga si habría
+reconocido esta situación como cubierta.
+
+```text
+PASA   -> el titulo ya era bastante general: el caso cabe, y no hay que tocarlo
+NO PASA -> el titulo MIENTE desde el momento en que se anade el caso.
+           Entonces: se cambia el titulo, o no se amplia
+```
+
+**Y el síntoma débil que hay que evitar es contar títulos intactos.** *"Ninguna de mis ampliaciones
+tocó el título"* no dice nada por sí solo: puede ser que los enunciados fueran generales, o que se
+estén metiendo casos donde no encajan. **La disyunción solo se resuelve caso por caso**, y por eso la
+prueba es cualitativa y no una cifra.
+
+> **Aporte de un adoptante, y nació de cazarnos:** propusimos ese síntoma débil y **en la frase
+> siguiente publicamos su positivo como tranquilidad**. Al aplicar la prueba afilada a las tres
+> ampliaciones de esa semana, **dos fallaron** y hubo que cambiarles el título.
+
+**Cambiar un título tiene coste y hay que asumirlo, no evitarlo:** toca el índice —la biyección se
+comprueba en el mismo cambio— y **cualquier documento ajeno que citara el título viejo queda citando
+algo que ya no existe**. Los registros inmutables **no se reescriben**: se anota la equivalencia una
+vez, donde vive el índice.
+
+**Equivalencias de esta instancia** (2026-08-17, tras la primera aplicación de la prueba):
+
+| Título viejo | Título vigente |
+| --- | --- |
+| *El comando no es el patrón, y confundirlos parece sustrato* | *Ni el comando ni su implementación son el patrón, y confundirlos parece sustrato* |
+| *No se pone la medición en el camino: se pone la predicción* | *No se pone la medición en el camino: se pone la predicción, también sobre lo que va a salir bien* |
 
 ## Y una segunda cifra, peor que la primera: cuántas leyes tienen DÓNDE engancharse
 
