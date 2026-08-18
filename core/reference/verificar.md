@@ -342,6 +342,57 @@ CONTROL NEGATIVO  frase inventada -> 0
 GLOBAL            se pierden 462 de 1600 = 28.9%
 ```
 
+## Un comando publicado tiene tantas sintaxis como lenguajes anida, y comprobar la de fuera no dice nada de las de dentro
+
+**Un producto hecho de texto publica comandos que nadie vuelve a ejecutar.** Se corren el día que se
+escriben y **nunca más**: el documento no falla, no da error, y un comando roto se lee exactamente
+igual que uno sano. **La primera pregunta no es cómo arreglarlos: es cómo enterarse.**
+
+**Y hay tres escalones, cada uno más caro y con un techo distinto:**
+
+```text
+0. NADA               el estado por defecto. Un comando roto vive hasta que alguien lo copie
+1. sintaxis del shell  bash -n sobre cada bloque. Barato, no ejecuta nada... y NO BASTA
+2. EJECUTARLOS         el unico que caza el fallo en el lenguaje ANIDADO
+```
+
+**El caso que lo midió, y es el que separa el escalón 1 del 2.** Un bloque llevaba dos sesiones
+publicado con un salto de línea real dentro de una cadena de `awk` — puesto ahí por la herramienta que
+escribió el fichero, no por su autor:
+
+```text
+bash -n  sobre el bloque roto  -> exit 0    "la sintaxis es valida"
+ejecutarlo                     -> awk: unterminated string
+```
+
+> **La sintaxis del contenedor era correcta y la del contenido no.** `bash` acepta un salto de línea
+> dentro de comillas simples; `awk` no lo acepta dentro de las suyas. **Un bloque de shell con `awk`,
+> `sed`, `python` o `jq` dentro tiene dos gramáticas, y la barata solo mira una.**
+
+**Antes de ejecutar nada hay que clasificar, y son dos ejes distintos:**
+
+```bash
+# eje 1 -- LITERAL o PLANTILLA: una plantilla con huecos NO es un comando roto.
+#          Sin este filtro, "<doc de detalle>" se lee como redireccion y cuenta como fallo.
+grep -qE '\{\{?[a-z_]+\}?\}|<[a-zA-Z][^>]*>' "$b" && clase=PLANTILLA
+# eje 2 -- SOLO-LEE o ESCRIBE: hay bloques con rm, git commit y printf >> a un
+#          indice append-only. Los que escriben se corren en un directorio desechable.
+grep -v '^#' "$b" | grep -qE '[^-=0-9&]>[>]?[[:space:]]*[A-Za-z"$./]' && riesgo=ESCRIBE
+# CONTROL de cada clasificador: un bloque fabricado de cada clase tiene que caer donde toca
+```
+
+**Medido sobre este kit:** 49 bloques, **15 ejecutables**, 6 plantillas y 9 literales. El escalón 1 dio
+**15 de 15 en verde**; el escalón 2 encontró **uno roto de verdad** — y era **el vecino del que se había
+arreglado la víspera**, en la misma ley.
+
+**Y el marcador de hueco tiene que ser uno solo.** Aquí había tres formas —`{{token}}`, `<hueco>` y una
+palabra en mayúsculas— y la tercera hacía que un comprobador tomara la plantilla por un fallo. **Un
+hueco que no se distingue de un identificador convierte cada comprobación en una discusión.**
+
+**Lo que este escalón NO puede dar, y conviene decirlo:** ejecutar prueba que el comando **corre**, no
+que **mida lo que dice medir**. Un comando que corre y devuelve el número equivocado sale en verde por
+los tres escalones. Para eso sigue haciendo falta **el valor esperado escrito al lado**.
+
 ## Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador
 
 **Dos proyectos midieron la misma cosa sobre sus propios archivos y les dio 21% y 35%.** El primer
@@ -976,9 +1027,9 @@ rastro en el texto — deja rastro en **cuántas veces se cita cada regla**.
 # mismo plano.txt de arriba: una linea por acta, asi que una linea encontrada = un acta
 grep '^## ' "$LEYES" | sed 's/^## //' | while IFS= read -r t; do
   LC_ALL=C.UTF-8 grep -ciF "$t" plano.txt
-done | awk '{if($1==0)a++; else if($1==1)b++; else c++}
-            END{printf "0 citas: %d  1 cita: %d  2+: %d  fraccion: %.1f%%
-",a,b,c,100*b/(a+b+c)}'
+done | awk '{ if ($1==0) a++; else if ($1==1) b++; else c++ }
+            END { printf "0 citas: %d  1 cita: %d  2+: %d  fraccion: %.1f%%\n",
+                         a, b, c, 100*b/(a+b+c) }'
 # CONTROL POSITIVO: una regla que sepas citada en dos actas tiene que dar 2
 # CONTROL NEGATIVO: una frase inventada tiene que dar 0
 ```

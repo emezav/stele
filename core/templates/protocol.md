@@ -37,9 +37,9 @@ del total sin que nada avisara.
 
 ```bash
 # columnas: necesario, no suficiente
-tail -n 1 FILA | awk -F'|' '{print NF-2}'          # tiene que dar las de la cabecera
+tail -n 1 "$FILA" | awk -F'|' '{print NF-2}'          # tiene que dar las de la cabecera
 # y ANCLA una celda por su FORMA, la que tenga forma reconocible:
-tail -n 1 FILA | awk -F'|' '{print ($4 ~ /^ *[0-9.,-]+ *$/) ? "OK" : "PERMUTADA"}'
+tail -n 1 "$FILA" | awk -F'|' '{print ($4 ~ /^ *[0-9.,-]+ *$/) ? "OK" : "PERMUTADA"}'
 ```
 
 > **Un control de forma que solo cuenta piezas no distingue una fila bien puesta de una barajada.**

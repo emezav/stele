@@ -46,6 +46,12 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
    <!-- El titulo va ENTERO en una linea a proposito, aunque pase de 100 columnas: el detector de
         perchas busca el titulo con grep, y un titulo partido por el ajuste de linea es invisible
         para el. Es "medir prosa por lineas es medir otra cosa", aplicado a la propia percha. -->
+8. **Ejecutar los comandos que el propio proyecto publica**, si el entorno puede: extraer cada bloque
+   ejecutable, clasificarlo —literal o plantilla, solo-lee o escribe— y **correr los literales**. Es
+   *Un comando publicado tiene tantas sintaxis como lenguajes anida, y comprobar la de fuera no dice nada de las de dentro*.
+   **La comprobación barata no vale aquí**: un bloque con `awk` o `python` dentro puede pasar `bash -n`
+   y reventar al correrlo. **Si el entorno no puede ejecutar, se dice en la fila** — un paso que no se
+   pudo dar no es un paso limpio.
 
 **Las siete que se saltan.** Cada una tiene su cadáver abajo:
 
@@ -223,6 +229,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una justificación producida al auditar el defecto no tiene procedencia*
 - *Declarar una variable de entorno no es controlarla*
 - *Medir prosa por líneas es medir otra cosa*
+- *Un comando publicado tiene tantas sintaxis como lenguajes anida, y comprobar la de fuera no dice nada de las de dentro*
 - *Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador*
 - *Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO*
 - *Un comando que aborta, detrás de una tubería, es un cero*
