@@ -27,7 +27,8 @@ Dos clases, y no se resuelven igual:
   que es como lo resuelve cualquier visor.
 
 El `printf >>` del cierre es el que más vigilar: si la ruta está mal, **no da error** — crea el
-archivo que falta y el bueno se queda sin la fila.
+archivo que falta y el bueno se queda sin la fila. Si hay más de una copia del comando en los docs,
+todas deben decir lo mismo; mejor aún, que solo una lo deletree y las demás lo nombren en prosa.
 
 **Y contar las columnas de la fila no basta: cuenta separadores, no valida celdas.** Una fila con las
 columnas **permutadas** —la descripción donde van las horas, las horas donde va la descripción— tiene
@@ -44,8 +45,7 @@ tail -n 1 "$FILA" | awk -F'|' '{print ($4 ~ /^ *[0-9.,-]+ *$/) ? "OK" : "PERMUTA
 
 > **Un control de forma que solo cuenta piezas no distingue una fila bien puesta de una barajada.**
 > Basta con anclar **una** celda de formato reconocible —una cifra, una fecha, una flecha— para que la
-> permutación deje de pasar. Si hay más de una copia del comando en los docs,
-todas deben decir lo mismo; mejor aún, que solo una lo deletree y las demás lo nombren en prosa.
+> permutación deje de pasar.
 
 Al mover `base`, los enlaces relativos sobreviven si su destino viaja en el mismo bloque (es el caso
 dentro de `{{history_dir}}`); los que apuntan fuera del bloque se rompen y hay que revisarlos.
@@ -363,6 +363,37 @@ donde poner la declaración. El sitio que ha funcionado en campo es el **`Sello`
 sin VCS ya dice *qué se observa en disco*: ahí cabe **qué existe y qué no tiene copia**. No está
 resuelto como convención — se dice para que quien llegue a ese caso sepa que es un hueco conocido y no
 un olvido suyo.
+
+## Párrafos partidos: la prosa que se rompe al insertar algo en medio
+
+**Editar un documento largo insertando bloques parte párrafos, y el linter no lo ve.** El resultado es
+una frase que empieza en minúscula colgando debajo de una cita o de un bloque de código, y **la mitad
+de arriba se queda dentro de la cita afirmando algo que no le toca**.
+
+```bash
+# prosa en MINUSCULA que sigue a algo que NO es prosa: blanco, cita, tabla o cierre de bloque
+awk '/^```/ { code=!code; prev="CODE"; next }
+     NR>1 && !code && (prev=="" || prev ~ /^>/ || prev ~ /^\|/ || prev=="CODE") &&
+     $0 ~ /^[a-z]/ && $0 !~ /^(https?:|www\.)/ { print FILENAME ":" NR }
+     { prev=$0 }' *.md
+# CONTROL POSITIVO: una cita seguida de una linea en minuscula -> 1
+# CONTROL NEGATIVO: prosa sana con parrafos en negrita          -> 0
+```
+
+**Dos avisos sobre el patrón, los dos aprendidos fallando:**
+
+- **La clase de caracteres no puede incluir `*` ni `` ` ``** — casi todo párrafo abre en negrita, y el
+  detector devuelve el fichero entero.
+- **Y la versión que solo mira «tras línea en blanco» NO caza el caso que la produjo**, porque el
+  huérfano suele quedar **pegado** a la cita que lo partió. Hay que mirar también qué había antes.
+
+**En su primera corrida sobre este kit encontró dos**, y el segundo era de contenido y no de forma:
+media frase se había quedado **dentro de una cita**, que pasaba así a afirmar algo ajeno. Llevaba
+cinco sesiones ahí.
+
+> **Un párrafo partido no rompe nada que un linter mire**: la sintaxis es válida, los bloques cierran
+> y las tablas cuadran. **Lo único que se rompe es la frase**, y eso solo lo ve quien la lea entera —
+> que es justo lo que nadie hace en un documento que solo se parchea.
 
 ## Cada comprobación del cierre anota cuándo disparó por última vez
 
