@@ -375,7 +375,7 @@ de arriba se queda dentro de la cita afirmando algo que no le toca**.
 awk '/^```/ { code=!code; prev="CODE"; next }
      NR>1 && !code && (prev=="" || prev ~ /^>/ || prev ~ /^\|/ || prev=="CODE") &&
      $0 ~ /^[a-z]/ && $0 !~ /^(https?:|www\.)/ { print FILENAME ":" NR }
-     { prev=$0 }' *.md
+     { prev=$0 }' "$DOCS"/*.md
 # CONTROL POSITIVO: una cita seguida de una linea en minuscula -> 1
 # CONTROL NEGATIVO: prosa sana con parrafos en negrita          -> 0
 ```
