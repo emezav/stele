@@ -782,6 +782,34 @@ proyectos, que es justo donde más se usa.
 **Hermana de *Quién ve el rojo, y en qué papel*.** Aquella pregunta **quién se entera** de un fallo; esta
 pregunta **qué sabía ya** el que mira. Las dos van sobre el observador y no sobre la comprobación.
 
+## La primera señal de que una comprobación sobra no es el silencio: es el ruido
+
+**El estado terminal se conoce y es silencioso:** una comprobación que se corre y cuyo resultado nadie
+lee ya no es una comprobación — es un gesto. Y **desde dentro se ve exactamente igual** que una que sí
+se lee, porque las dos producen la misma línea de salida.
+
+**Lo que faltaba es el camino hasta ahí, y sí es observable: el ruido.** Antes de que nadie decida no
+mirar una comprobación, esa comprobación **empieza a avisar en falso**. Y un aviso falso no se ignora
+por decisión: **enseña a hojear la salida**, que es lo mismo pero sin que nadie lo haya elegido.
+
+**Caso de campo, de un adoptante con cinco comprobaciones en su cierre.** Un detector de renglones
+largos, escrito ese mismo día con el umbral en **100**, escupió **16 aciertos sobre líneas normales** de
+un fichero que envuelve exactamente a esa anchura. Hubo que recalibrarlo y darle control positivo en
+otro fichero.
+
+> **Un umbral igual a la constante del corpus no mide: acusa.** Y su forma de fallar es la peor de
+> todas, porque **el ruido es indistinguible del rigor** mientras no se mire cada acierto.
+
+**La asimetría que hace útil esta ley:** el gesto silencioso **no se puede detectar desde dentro** —un
+cero sin lector se ve igual que un cero leído—, pero **dieciséis falsos positivos se ven**. Así que la
+saturación de un momento obligatorio tiene un síntoma temprano y barato, y es el único que llega a
+tiempo.
+
+**Qué hacer cuando aparece**, y no es quitar la comprobación: **recalibrar y darle control positivo en
+otro corpus**. Una comprobación ruidosa retirada deja el hueco donde estaba; recalibrada, sigue
+cubriendo. Lo que no se puede es dejarla gritando: **cada falso positivo que sobrevive gasta la atención
+de todos los que vengan después**, incluidos los verdaderos.
+
 ## Un directorio ignorado es invisible a tu buscador y visible en tu contexto
 
 **Es el reverso exacto de la ley anterior, y hace falta escribirlo aparte porque el fallo va en la otra

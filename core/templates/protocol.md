@@ -344,6 +344,33 @@ sin VCS ya dice *qué se observa en disco*: ahí cabe **qué existe y qué no ti
 resuelto como convención — se dice para que quien llegue a ese caso sepa que es un hueco conocido y no
 un olvido suyo.
 
+## Cada comprobación del cierre anota cuándo disparó por última vez
+
+**Un bloque de comprobaciones no se degrada de golpe: se degrada por una.** Y el problema es que una
+comprobación que lleva sesiones sin decir nada **se ve igual** en los dos casos posibles — que el
+proyecto esté limpio, o que nadie esté leyendo su salida.
+
+> **Una comprobación que lleva N sesiones sin disparar no está probada inútil, pero sí está probada
+> NO-OBSERVADA.** Es *un cero no vale sin control positivo* aplicado al **tiempo** en vez de al comando.
+
+**Cuesta una columna**, al lado del valor esperado:
+
+```text
+comprobacion            esperado   ultimo disparo
+  no-ASCII de la fila      0         sesion 138 (una enye)
+  columnas de la fila      6 y 6     sesion 132 (cuatro filas de 7)
+  topes del arranque       4 OK      sesion 128 (dos rotos)
+  respaldo declarado       1         nunca -- anadida en la 134
+```
+
+**Qué hacer con un `nunca` o con un número viejo**, y no es quitarla: **es correrla contra un caso
+fabricado**. Si no dispara ni con el caso plantado, está rota; si dispara, está viva y el proyecto
+estaba limpio. **Las dos respuestas valen; lo que no vale es no saberlo.**
+
+**Aporte de un adoptante**, que lo propuso tras medir su propio bloque y encontrar que de sus
+comprobaciones **ninguna figuraba** como origen de un tropiezo registrado — no porque no dispararan,
+sino porque sus disparos **no llegaban a la sección donde se cuentan**.
+
 ## Checklist de inicio / cierre
 
 Condensados en `{{kit}}/core/rituals/` (un archivo por ritual). Este archivo es la referencia de

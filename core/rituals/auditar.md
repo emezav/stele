@@ -258,6 +258,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *No se pone la medición en el camino: se pone la predicción*
 - *Una cifra sin su comando no es comprobable, aunque el corpus esté delante*
 - *Documentar un experimento en curso puede contaminarlo, porque su ejecutor lee lo mismo que tú*
+- *La primera señal de que una comprobación sobra no es el silencio: es el ruido*
 - *Un directorio ignorado es invisible a tu buscador y visible en tu contexto*
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo

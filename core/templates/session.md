@@ -51,6 +51,12 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   > declarada en un sitio donde alguien pueda leerla**.
 - **Di QUIÉN lo cazó, y es el campo que más rinde.** Un comando, un control con su valor esperado, el
   usuario, un corresponsal — o **nadie, hasta que fue tarde**. Una línea por tropiezo.
+- **Y cuenta también lo que encontró el CIERRE, no solo lo que rompió el trabajo.** Es el defecto que
+  este campo tuvo en sus dos primeras semanas de uso, en dos proyectos a la vez: un acento cazado por el
+  barrido, una fila descuadrada por el control de columnas, **se corrigen en el momento y no llegan a
+  esta sección**, porque uno los vive como parte del cierre y no como un tropiezo del trabajo. Con esa
+  omisión, el campo mide **la mitad que uno recuerda** y deja fuera justo la que contestaría si las
+  comprobaciones sirven.
 - **Por qué ese campo y no otro:** es lo único que permite contestar, con el tiempo, *qué impide de
   verdad un error* frente a *qué solo lo explica después*. Sin él, un proyecto puede tener cien
   tropiezos registrados y **seguir sin saber si sus reglas sirven**.
