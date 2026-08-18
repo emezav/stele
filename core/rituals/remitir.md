@@ -18,12 +18,21 @@ proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el arc
    va tachado. Fase obligatoria, no buena práctica.
 5. **Pasarle el linter de markdown** al fichero de la carta — y **el marcador va arriba y sin citar**:
    dentro de un bloque de cita, perder un `>` saca una fila de la tabla y **no da error**.
-6. **RE-CORRER las filas comprobables, ya con la carta escrita y justo antes de entregarla.** No
+6. **RE-CORRER, afirmación por afirmación, ya con la carta escrita y justo antes de entregarla.** No
    revisarlas: **correrlas**. Es *Una comprobación puede CADUCAR sin fallar, y ningún control lo cubre*:
    los dos controles hablan del detector y **ninguno habla del momento**, así que una fila exacta el día
    que se redactó puede ser falsa el día que sale. **La ventana es más corta cuando la afirmación es
    sobre un corpus ajeno**, porque la mueve el otro y no tú. Caso medido: una carta redactada el 13 y
    enviada el 18 llevaba dentro un `no existe` que para entonces **sí existía**.
+   **Y la unidad es la AFIRMACIÓN, no la fila** — lo aprendimos fallando el estreno: una fila con dos
+   cifras salió con **la primera corregida y la segunda caducada**, porque *re-correr la fila* no está
+   definido cuando la fila afirma dos cosas. **De ahí la condición**, que un corresponsal ya tenía
+   escrita para otro defecto: **si una fila junta dos afirmaciones y solo una tiene evidencia, son dos
+   filas.** Sin eso, este paso hereda la granularidad de quien escribió la fila.
+   **Y ninguna fila se ancla a `HEAD`, a `main` ni a «hoy»: se ancla a un SELLO.** Un nombre móvil
+   **finge no moverse**, así que una fila anclada a él nace caducando en silencio; una fecha al menos
+   es honesta sobre su momento. Aquí la mitad que sobrevivió a la corrección fue justo la anclada a
+   `HEAD`, **tres líneas debajo del párrafo que decía que había que dejar de hacerlo**.
 7. **Enviar lo decide el usuario, nunca tú.**
 
 **Y las cinco del marcador, que son las que se saltan.** Cada una tiene su cadáver documentado abajo:
