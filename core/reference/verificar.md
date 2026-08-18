@@ -31,6 +31,35 @@ grep -cF  'comando + patr'    -> 1
 CONTROL   grep -c 'corpus'    -> 56 / 53 en las dos revisiones, en las dos maquinas
 ```
 
+**Y hay una capa más adentro, que aparece cuando ya se han fijado todas las demás.** Dos partes
+acordaron **corpus** (un commit), **regla** (contar solo dentro de bloques de código) y **lista de
+herramientas**, publicaron sus cifras — **8 y 9** — y la diferencia sobrevivió **tres cartas** leyéndose
+como *"medimos cosas distintas"*. No era ninguna de las tres:
+
+```text
+la linea en disputa, dentro de un bloque:
+  "LC_ALL=C            grep -icF  -> exit 134"
+                ^^^^^^^^^^^ espacios de ALINEACION de una tabla
+
+primera palabra tras el prefijo de entorno:
+  split(" ")  -> ""      <- cae en el hueco entre dos espacios: NO cuenta
+  split()     -> "grep"  <- cuenta
+CONTROL: con un solo espacio, las dos implementaciones coinciden
+```
+
+**La cuarta variable es cómo está IMPLEMENTADO el patrón**, y no se ve porque no se escribe en ninguna
+parte: el patrón publicado —*"invocación al inicio de línea"*— era idéntico en los dos lados. **Lo que
+diverge es el código que decide qué es «la primera palabra».**
+
+> **Fijar corpus, regla y herramientas no hace comparables dos cifras.** Queda la implementación, y esa
+> **solo se puede comparar por sus resultados** — porque describirla con más precisión es escribir el
+> programa otra vez.
+
+**Y lo que la destapó no fue medir mejor: fue publicar el CONJUNTO.** Con las dos listas de títulos
+delante, la resta dio el elemento sobrante en un minuto y la línea culpable se leyó a simple vista.
+**Es la primera aplicación real de que un acuerdo entre mediciones exige publicar qué se encontró, no
+cuánto** — y funcionó sobre una discrepancia que llevaba tres cartas sin resolverse.
+
 > **AVISO AL BARRIDO: el bloque de arriba cita el patrón erróneo LITERAL, a propósito** — la lección
 > consiste en ver la misma cadena dar 0 y 1 según la bandera, así que describirla en vez de citarla la
 > destruye. Si un detector tuyo busca ese patrón, lo encontrará **aquí, dentro de la sección que lo
@@ -1418,6 +1447,15 @@ publicar el numero            -> el acuerdo no es comprobable
 publicar el numero y el metodo -> el otro puede REPRODUCIR, y ahi se para
 publicar tambien el CONJUNTO   -> el acuerdo se puede comprobar elemento a elemento
 ```
+
+**Aplicado por primera vez, y resolvió en un minuto una discrepancia de tres cartas.** Dos partes
+publicaron **8** y **9** sobre el mismo corpus con la misma regla, y llevaban tres intercambios
+escribiendo *"nuestras cifras miden cosas distintas"* — que es verdad y no es un desenlace. Al publicar
+las **dos listas de títulos**, la resta dio el elemento sobrante de inmediato y su causa era un detalle
+de implementación invisible en el patrón publicado.
+
+> **La diferencia entre un desacuerdo con procedimiento de cierre y uno sin él es el conjunto.** Con
+> cifras, un desacuerdo se aparca con un párrafo de matices; con conjuntos, **se resta**.
 
 **Y esto sube el listón de lo que ya se venía exigiendo.** *Una cifra sin su comando no es comprobable*
 resuelve la reproducción; **no resuelve el acuerdo**. Para que dos mediciones se confirmen entre sí,

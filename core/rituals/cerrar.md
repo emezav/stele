@@ -346,6 +346,41 @@ lado del comando que lo produce, el chequeo pegado al `printf` que escribe la fi
 es la visibilidad, son los pasos** — y la vía segura tiene que costar lo mismo que la insegura, o se
 paga la diferencia en olvidos.
 
+## El acierto no tiene sección, y sí tiene artefacto: el mensaje del commit
+
+**Todo el registro de este marco está construido para que un ERROR deje rastro** — la sección de
+tropiezos, el campo *quién lo cazó*, la fecha del último disparo. **Para lo contrario no hay nada.** La
+vez que alguien miró antes de escribir, o decidió que una regla nueva no hacía falta porque ya había
+una, **no aparece en ningún sitio donde se busque**: no es un tropiezo y no es una adición.
+
+**Y el motivo es estructural, no un olvido:** un error tiene un **momento** —el instante en que se
+descubre— y este tipo de acierto **consiste en que no pasa nada**. Lo que no pasa no dispara ningún
+registro.
+
+**Pero sí hay un artefacto que se produce en el instante de decidir, y es el único: el mensaje del
+commit.** Es inmutable, va fechado, y se busca con un comando:
+
+```bash
+# un acierto de este tipo no tiene seccion, pero SI tiene rastro: el mensaje
+git log --format='%H' | while read h; do
+  git log -1 --format='%B' "$h" | grep -qiE 'no entra|no se anade|se descarta|no hacia falta' &&
+  git log -1 --format='%h %s' "$h"
+done
+# CONTROL: el commit de la resta mas reciente tiene que salir en la lista
+```
+
+**Medido sobre el repo de este kit en `4e52bae`: `4` de `156` commits registran una decisión de no
+hacer**, y su
+conjunto son cuatro hashes que se pueden abrir uno a uno. **Una variante más laxa del patrón daba `5`**
+—colaba un commit por la palabra *amplía*, que no es lo mismo que no hacer—, y **eso solo se ve
+publicando la lista y no la cifra**.
+> **Si la decisión fue no hacer algo, dilo en el mensaje del commit.** Es la única forma barata de que
+> un acierto sea recuperable: **el commit ya se escribe, y se escribe justo cuando la decisión se
+> toma.**
+
+**Sigue siendo un suelo léxico** —depende de las palabras que se le ocurrieron a quien lo midió— y
+sirve igual para lo que importa: **el rastro existe y no hubo que inventar ningún sitio nuevo**.
+
 **Al añadir una comprobación al cierre, la pregunta no es dónde escribirla sino de qué paso colgarla**
 — y si no cuelga de ninguno, dilo al escribirla, para que el siguiente sepa que lo que tiene es un
 recordatorio y no una garantía.
