@@ -9,6 +9,12 @@
 # Coste aceptado: la continuidad no viaja al clonar este repo en otra maquina.
 # Si hace falta portabilidad, `stele/` puede ser a su vez un repo git propio
 # con su remoto privado.
+#
+# RESPALDO: ninguno -- el disco local de esta maquina es el unico registro.
+# Declarado en la sesion 143, nueve despues de que el kit lo exigiera: el
+# comentario de arriba CONTESTABA la pregunta en condicional ("puede ser") y
+# eso no es una declaracion. El detector tenia razon y nadie lo habia corrido
+# contra este repo.
 stele/
 
 # Anclas de la raiz: son derivados que apuntan a `stele/`. Si se commitearan,
