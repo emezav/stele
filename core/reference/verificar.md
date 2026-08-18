@@ -1034,7 +1034,8 @@ done | awk '{ if ($1==0) a++; else if ($1==1) b++; else c++ }
 # CONTROL NEGATIVO: una frase inventada tiene que dar 0
 ```
 
-**Corrido sobre este marco da `0 citas: 27   1 cita: 23   2+: 7   fracción: 40,4%`** — con sus dos
+**Corrido sobre este marco da `0 citas: 29   1 cita: 21   2+: 9   fracción: 35,6%`** (sellado en
+`b91ce4c`; la corrida anterior, sobre 57 leyes, dio `27 / 23 / 7` y **40,4%**) — con sus dos
 controles en 2 y en 0. **Y una medida equivalente con clave parcial** —las últimas seis palabras del
 título en vez del título entero— **da 49,1%**: la diferencia entre las dos cifras **es el ancho de la
 clave**, no el corpus. Las dos coinciden en lo único que importa aquí, que es la **dirección**.

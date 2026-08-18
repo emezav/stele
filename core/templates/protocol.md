@@ -377,10 +377,10 @@ proyecto esté limpio, o que nadie esté leyendo su salida.
 
 ```text
 comprobacion            esperado   ultimo disparo
-  no-ASCII de la fila      0         sesion 138 (una enye)
-  columnas de la fila      6 y 6     sesion 132 (cuatro filas de 7)
-  topes del arranque       4 OK      sesion 128 (dos rotos)
-  respaldo declarado       1         nunca -- anadida en la 134
+  no-ASCII de la fila      0         sesion N   (disparo: una letra acentuada)
+  columnas de la fila      6 y 6     sesion N-6 (disparo: cuatro filas con una columna de mas)
+  topes del arranque       4 OK      sesion N-10
+  respaldo declarado       1         nunca -- anadida en la sesion N-12
 ```
 
 **Qué hacer con un `nunca` o con un número viejo**, y no es quitarla: **es correrla contra un caso

@@ -289,10 +289,10 @@ recordarla — fue **tener el comando en la mano**.
 **Medido sobre este mismo fichero**, para no discutirlo en abstracto:
 
 ```text
-leyes                    : 57
-CON comando ejecutable   :  8   (14%)
-SIN comando              : 49   (86%)
-CON COMANDO **Y** PERCHA :  3
+leyes                    : 59        (medido en b91ce4c, 2026-08-17)
+CON comando ejecutable   : 11   (19%)
+SIN comando              : 48   (81%)
+CON COMANDO **Y** PERCHA :  6
 
 metodo: una ley "trae comando" si tiene al menos una linea que EMPIEZA por una
         invocacion ejecutable (grep, git, find, awk, printf, python...) **DENTRO
@@ -386,16 +386,16 @@ adoptante, y la medición salió de su pregunta: *si el kit solo puede ejercer s
 hacer algo, ¿cuántas están enganchadas ahí?*
 
 ```text
-leyes                              : 57
+leyes                              : 59   (medido en b91ce4c)
 con PERCHA (citadas desde un paso
             de un ritual, no desde
-            el indice)             :  7   (12%)
-con comando Y percha               :  3
+            el indice)             : 11   (19%)
+con comando Y percha               :  6
 
 corpus: core/rituals/*.md + core/templates/*.md + modules/*/templates/*.md,
         EXCLUYENDO la seccion del indice y el propio fichero de leyes.
-control 1: sin excluir el indice da 57 de 57 -- el indice las cita todas.
-control 2: sin excluir el fichero de leyes da 57 de 57 tambien, por la misma
+control 1: sin excluir el indice da 59 de 59 -- el indice las cita todas.
+control 2: sin excluir el fichero de leyes da 59 de 59 tambien, por la misma
            razon y con otro culpable: ahi es donde viven los titulos.
 ```
 

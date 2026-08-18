@@ -46,9 +46,10 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
 3. **Si la carta compara una TASA suya con una tuya, desglósala por tramos antes de discutirla.** Es
    *Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador*: dos
    archivos de distinta longitud dan cifras distintas para **la misma práctica**, porque el más largo
-   arrastra la época en que la práctica no existía. **Medido aquí: 21% global contra 62% en el último
-   tramo, frente a un 35% ajeno** — la lectura cambia de *"ellos lo hacen más"* a *"la práctica reciente
-   coincide"*, con los mismos números.
+   arrastra la época en que la práctica no existía. **Medido aquí: 27% global contra 38% en el último
+   tramo, frente a un 50% ajeno** — la lectura cambia de *"ellos lo hacen el doble"* a *"la brecha
+   se reduce a la mitad"*, con los mismos números. **Reducirse no es desaparecer**: el resto es
+   práctica de verdad, y confundir las dos cosas fue el error que produjo esta ley.
 4. **Separar diagnóstico de remedio, y volver a derivar el remedio desde tu diseño.** El diagnóstico
    viaja; el remedio no, porque **el medio decide qué remedios existen**.
 5. **Nombrar lo que el caso NO valida.** Cuesta un párrafo y es la fase que más ha rendido.
