@@ -9,6 +9,17 @@ SIN_TRABAJO_ACTIVO
 Sesión `N` (`YYYY-MM-DD`) — título. Ver el archivo de esa sesión en `{{history_dir}}`.
 No hay trabajo a medias.
 
+## Lo que espera al usuario
+
+<!-- Lo que NADIE puede hacer salvo el usuario: entregar algo, decidir algo, aprobar algo.
+     Va en tabla porque se ejecuta de una pasada; en prosa hay que reconstruirla.
+     Se lee en el saludo de la sesión siguiente (ver el ritual ABRIR). Si no hay nada,
+     se deja la sección con "Nada pendiente" -- borrarla la vuelve invisible. -->
+
+| Qué | Detalle |
+| --- | --- |
+| **...** | ... |
+
 <!-- =========================================================================
      Cuando arranca un cambio interrumpible, SOBRESCRIBIR con la forma EN_PROGRESO:
 

@@ -37,3 +37,41 @@ así que la confirmación va **al frente de tu PRIMERA respuesta** — 1-3 líne
 (N + título), si quedó trabajo a medias, próximo paso propuesto. En llano, nombrando los archivos
 (ver "Cómo se le habla al usuario"). Sin esto, el arranque silencioso es
 indistinguible de uno que no corrió. (Se omite si `session_greeting = off`.)
+
+## Y si el proyecto tiene correspondencia, dila en el saludo
+
+**Solo si `correspondence_dir` está activo.** Un proyecto sin corresponsales se salta esta sección
+entera.
+
+**Lo que hay que decir son dos listas, y las dos las tiene ya el `handover`:**
+
+| Lista | De dónde sale |
+| --- | --- |
+| **Sin entregar** — cartas escritas que el usuario aún no ha hecho llegar | la tabla *Lo que espera al usuario* del `handover` |
+| **Esperando respuesta** — corresponsales cuya última carta del hilo es nuestra | el índice de correspondencia, con un comando |
+
+**No cuesta contexto**, que es lo que hace que quepa: el `handover` ya está cargado, y la segunda lista
+sale de un comando cuya **salida** son unas pocas líneas aunque el índice pese cientos de kilobytes.
+
+```bash
+# ultima carta de cada hilo; si la direccion es la de salida, esperamos respuesta
+awk -F'|' '/^\| *[0-9]+ *\|/{n=$2;d=$4;c=$5;gsub(/ /,"",n);gsub(/ /,"",d);
+  gsub(/^ +| +$/,"",c); if(d=="->"||d=="<-"){ult[c]=d; num[c]=n; f[c]=$3}}
+  END{for(k in ult) if(ult[k]=="->") printf "  %-32s nuestra %s (%s)\n", k, num[k], f[k]}' "$INDICE"
+```
+
+**Y la regla que decide cómo se dice: enumera, no diagnostiques.**
+
+> **«Esperando» no es «tardan».** Los días desde que salió la nuestra **no miden al corresponsal**:
+> miden el canal, que casi siempre es una persona que copia y pega, y que ninguno de los dos lados
+> puede observar.
+
+**El cadáver es propio y reciente.** Un proyecto midió el silencio de un corresponsal —seis días contra
+un máximo histórico de uno—, lo escribió en su estado **como el único dato que no encajaba**, y sacó de
+ahí una conclusión sobre el otro proyecto. La carta llegó fechada **seis días antes**: existía desde el
+primer día. **La medida era correcta y la inferencia falsa**, y lo que la delató fue que aquella carta
+llevaba **fecha de redacción** y las propias no.
+
+**De ahí sale la otra mitad, barata:** que las cartas propias lleven **fecha de redacción** además de la
+de entrega. Sin ella, *"días desde que salió"* y *"días que llevan sin contestar"* son indistinguibles,
+y el segundo es el que uno escribe sin darse cuenta.
