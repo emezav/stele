@@ -495,6 +495,36 @@ nadie vuelve; con él, se lee como **un estado transitorio** y alguien re-compru
 un acierto en dejar de serlo.** Aquí fueron cinco días, y la causa no fue el descuido de nadie sino
 **el trabajo normal del otro proyecto**.
 
+## Antes de borrar un temporal: ¿lo que voy a borrar existe en otra parte?
+
+**Y la respuesta reparte dos cosas que se llaman igual y no lo son.** Una copia de algo que está
+versionado en otro sitio **no es un registro: es una caché**. Borrarla **encarece la próxima consulta y
+no destruye nada**. Una copia de algo que no existe en ningún otro sitio **sí es el registro**, y ahí
+borrar es destruir.
+
+```text
+existe en otra parte  -> CACHE    borrar cuesta un `clone` la proxima vez
+no existe en ninguna  -> REGISTRO borrar es definitivo
+```
+
+**Caso de campo, y viene de deshacer una pregunta nuestra.** Habíamos escrito que *la limpieza y la
+auditabilidad son el mismo eje en direcciones opuestas*, porque un temporal sin limpiar había
+permitido datar un defecto que dos proyectos daban por indecidible. **Era falso**: el corpus datado
+era un **repositorio público**, así que el clon superviviente **hizo la comprobación barata, no
+posible**. Con el temporal limpio, la datación habría costado un `clone` en vez de un `grep`.
+
+> **La pregunta sustituye a la teoría.** No hace falta decidir si limpiar es higiene o amnesia: hace
+> falta preguntar si lo que se borra existe en otra parte, y eso **se contesta con un comando**.
+
+**Y explica de paso por qué una clasificación anterior estaba bien hecha sin saber por qué:** 16
+ficheros de un temporal se llamaron *desecho* porque *su contenido final está commiteado* — que es esta
+pregunta contestada con un sí, formulada sin enunciarla.
+
+**El límite, y hay que decirlo:** *existe en otra parte* **depende de que se pueda llegar a esa otra
+parte**. Sin red, un repositorio público remoto no está disponible, y la respuesta honesta es *"hoy no
+puedo comprobarlo"* — **no** *"es indecidible"*, que es una afirmación mucho más fuerte y casi siempre
+falsa.
+
 ## Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO
 
 **Y hay que escribirla como tal: con fecha y en pasado.** El kit es un sitio donde **nada la mueve** —
@@ -2265,6 +2295,30 @@ principio — y esos son justo los que suenan a conclusión, y por eso los que m
 
 *(Aporte de un corresponsal, que formuló la mitad de la ley —lo que prohíbe algo contra lo que no— y
 recibió de vuelta el contraejemplo que la acota.)*
+
+**Y el corresponsal que la propuso la retiró en su forma fuerte al ver el caso.** Su enunciado decía
+que *un encuadre tiene segundo acto exactamente cuando prohíbe una observación*; el caso lo parte en
+dos: **prohibirla es necesario y no suficiente — falta que alguien la HAGA, y la baratura no lo
+dispara**.
+
+> **La observación más barata que existe es la que menos se hace, porque nada la convoca.** Una suma de
+> dos sumandos contiguos no se pide sola; un `wc -l` tampoco. **Lo que las convoca es otra cosa** — y
+> esa otra cosa es lo que hay que diseñar, no la facilidad.
+
+**Y hay una medición de campo que cierra el mecanismo, sobre un registro ajeno de cuarenta sesiones:**
+
+```text
+datos que ALIMENTAN una rutina (se recalculan en cada cierre o entrega) : 7
+   de esos, alguno publicado falso alguna vez                           : 0
+datos que no alimentan nada
+   de esos, los que hubo que tachar : TODOS los falsos registrados del proyecto
+```
+
+**La partición es completa en las dos direcciones**, y esa es su fuerza: no es que los datos
+consumidos se cuiden más — es que **tres rutinas no pueden terminar sin recalcularlos**.
+
+> **La cobertura de un proyecto no la decide su rigor, sino cuántas rutinas tocan el mismo dato.** Y
+> el conjunto huérfano tiene una forma reconocible: **son los que suenan a conclusión.**
 
 ## Una contradicción interna que sobrevive mide cuántas veces el documento se cargó sin leerse
 

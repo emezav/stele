@@ -427,6 +427,12 @@ done
 
 - **La raíz depende del harness.** Un proyecto que no conozca la convención de su agente no puede
   escribir el `find`, y ahí la señal indirecta es la que hay. **Por eso `RAICES` es configuración.**
+- **Una raíz COMPARTIDA no se puede enumerar sin criterio de pertenencia, y el criterio se DECLARA en
+  la salida.** Un filtro no declarado se lee como *"esto es todo lo que había"*. Y no es higiene: en
+  una raíz compartida por muchos proyectos, **el criterio es lo único que impide que el detector de uno
+  se lleve —y registre como propia— la evidencia de otro**. Medido: bajo esa raíz había **51 proyectos
+  y 267 ficheros**, y nuestra recuperación fallida se trajo 37 que no eran nuestros. **Saber cuáles
+  eran míos fue memoria del agente, no un criterio** — y la memoria no es un criterio.
 - **Una raíz COMPARTIDA no se puede enumerar sin criterio de pertenencia.** Corrido aquí, el
   scratchpad por proyecto estaba **limpio** y la fuga real estaba en `/tmp`… que tiene **5 934**
   ficheros de otros programas. **Enumerarla sin filtro se trae basura ajena**: hace falta acotar por

@@ -46,7 +46,12 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    reabra el editor y te salude** — el delta a esos bloques se porta **a mano** y a **cada** puerta, así
    que es donde una copia puede quedarse atrás sin que nada lo diga: *si no te contesta con la última
    sesión y el próximo paso, el delta no llegó a la puerta que lee tu agente.*
-7. **Limpiar** el temporal.
+7. **Limpiar el temporal — pero antes, una pregunta que decide sola: ¿lo que voy a borrar existe en
+   otra parte?** Si sí, lo que hay ahí es una **caché** y borrarla solo encarece la próxima consulta.
+   Si no, **no es un temporal: es el registro**, y borrarlo es definitivo. Es la ley
+   *Antes de borrar un temporal: ¿lo que voy a borrar existe en otra parte?*
+   — y sustituye a cualquier advertencia sobre
+   trazabilidad, porque **se contesta con un comando** en vez de con un criterio.
 
 **Las siete que se saltan.** Cada una tiene su cadáver documentado abajo:
 

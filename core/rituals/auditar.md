@@ -237,6 +237,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un comando publicado tiene tantas sintaxis como lenguajes anida, y comprobar la de fuera no dice nada de las de dentro*
 - *Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador*
 - *Una comprobación puede CADUCAR sin fallar, y ningún control lo cubre*
+- *Antes de borrar un temporal: ¿lo que voy a borrar existe en otra parte?*
 - *Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO*
 - *Un comando que aborta, detrás de una tubería, es un cero*
 - *No verifiques a alguien con su propia herramienta*
