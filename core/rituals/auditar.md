@@ -289,6 +289,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un directorio ignorado es invisible a tu buscador y visible en tu contexto*
 - *Un patrón de ruta es un criterio de pertenencia disfrazado de ubicación*
 - *Una cifra necesita su INSTANTE, no solo su instrumento*
+- *Un defecto escrito donde solo llegas DESPUÉS de decidir no es un defecto: es una nota*
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo
 

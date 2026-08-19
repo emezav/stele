@@ -8,7 +8,23 @@ proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el arc
 
 ## Lo mínimo para ejecutarlo
 
-**Antes de nada:** ¿hay **caso** —algo que pasó, en un terreno, con un coste? Sin caso no hay carta.
+**Antes de nada, dos preguntas, y la segunda se le hace AL USUARIO:**
+
+- ¿hay **caso** —algo que pasó, en un terreno, con un coste? Sin caso no hay carta.
+- **¿esta carta es pública o privada?** O en las palabras con las que se pregunta de verdad:
+  **¿va como issue, o va por chat?** **Por defecto es PRIVADA**, y la decisión **no es del agente**.
+
+**Esto va aquí arriba porque un adoptante se estrelló justo aquí.** Al pedirle su primera carta a otro
+proyecto, el usuario no dijo que fuera privada — y el agente **se puso a crear un issue**. No incumplió
+nada: el ritual dice que privado es el defecto **440 líneas más abajo**, y dice que *publicar lo hace el
+agente*. **Un defecto escrito donde solo llegas después de decidir no es un defecto: es una nota.**
+
+> **Y muerde en la PRIMERA carta**, que es cuando no hay precedente que copiar. De la segunda en
+> adelante el agente imita el canal de la anterior y la pregunta no vuelve a hacer falta — por eso el
+> hueco puede sobrevivir a un proyecto entero sin volver a aparecer.
+
+**Publicar es irreversible y la relación es del usuario, no tuya.** Una vez decidido el canal, publicar
+sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que no le toca es **elegirlo**.
 
 1. **Comprobar que hay caso.**
 2. **Redactar con la plantilla `letter`.** El **caso primero**; la propuesta es opcional y va marcada
@@ -56,6 +72,7 @@ proyecto de otro. Es el espejo de CONTRASTAR y comparte con él la carta, el arc
 | ¿Parto esta fila? | *Una fila que junta dos afirmaciones* |
 | ¿Por qué linter, si es prosa? | *La forma de una carta se rompe donde nadie la comprueba* |
 | ¿Qué NO me da el marcador? | *Lo que el marcador NO hace* |
+| **¿Va como issue o por chat?** | *Público o privado* — **se pregunta al usuario, y por defecto es privada** |
 | ¿Va con nombre o anónima? | *Público o privado* · *El remitente* |
 | ¿Cuándo pasa a entregada? | *Una carta saliente tiene tres estados* |
 | ¿Le copio su forma de hablar? | *Espeja el registro, no el dialecto* |

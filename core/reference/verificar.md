@@ -2488,3 +2488,41 @@ printf '%s  %s\n' "$(date '+%Y-%m-%d %H:%M %z')" "$($MEDIDA)"
 > las dos cosas el corpus se movió —tres veces, en el caso medido— **la cabecera describe algo que ya
 > no existe cuando el lector va a mirar**. El instante no lo arregla; lo hace **visible**, que es todo
 > lo que se puede pedir.
+
+## Un defecto escrito donde solo llegas DESPUÉS de decidir no es un defecto: es una nota
+
+**Un valor por defecto solo funciona si es legible en el instante de la decisión.** Escrito más
+adelante en el mismo documento, describe con exactitud lo que el lector ya hizo mal.
+
+**Caso de campo, en un adoptante.** Su usuario le pidió la primera carta a otro proyecto y no dijo por
+qué canal iba; el agente **se puso a crear un issue** — o sea, a publicar. El ritual **sí** decía que lo
+privado es el modo por defecto: lo decía **440 líneas más abajo**, en una sección a la que solo llega
+quien ya se preguntó por el canal. Y decía, arriba, que *publicar lo hace el agente*.
+
+> **El agente no incumplió nada.** Hizo lo que el documento autoriza, sin llegar nunca a la línea que lo
+> corregía. **Un defecto no es una regla más débil: es una regla que se aplica sola, y una que hay que ir
+> a buscar no se aplica nunca.**
+
+**Y hay un agravante de calendario que lo esconde: muerde en la PRIMERA vez.** Después hay precedente
+que copiar —el canal de la carta anterior—, así que la pregunta no vuelve a hacer falta y el hueco
+**puede sobrevivir a un proyecto entero sin reaparecer**. Un fallo que solo ocurre una vez por proyecto
+no se acumula en el registro de nadie.
+
+**El control es de posición, no de contenido, y se puede correr sobre cualquier ritual:**
+
+```bash
+# donde esta escrito el defecto, contra donde esta el bloque que se ejecuta
+grep -n 'por defecto\|modo por defecto' "$RITUAL"
+grep -n '^## Lo mínimo para ejecutarlo' "$RITUAL"
+# si el primero es MAYOR que el segundo, el defecto vive fuera del bloque ejecutable
+```
+
+**Es un CRIBADOR, no un veredicto, y lo dice su primera corrida.** Sobre los ocho rituales de este kit
+señaló dos: el de este caso, y un *"dónde cae por defecto lo que aún no tiene hogar"* que es prosa
+sobre datos huérfanos y no decide nada. **La cadena `por defecto` no distingue un valor por defecto de
+la locución**, así que cada acierto se lee. Lo que reduce el trabajo a nada es el filtro de la percha:
+solo sube lo que decide algo **irreversible o hacia fuera**.
+
+**Percha:** todo defecto que decida algo **irreversible o hacia fuera** —publicar, enviar, borrar—
+sube a `Lo mínimo para ejecutarlo` **como pregunta**, no como afirmación. Y se le hace al usuario: lo
+irreversible y lo que sale del proyecto no lo elige el agente.
