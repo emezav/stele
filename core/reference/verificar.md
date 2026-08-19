@@ -1271,6 +1271,53 @@ que lo mide.
 - **Y cuando un control negativo dé un valor raro, mira dónde casó antes de tocar el detector.** Si casó
   en tu propio registro, el detector estaba bien y el control estaba quemado.
 
+## Un instrumento que data el TEXTO no data un defecto que no cambió el texto
+
+**Y falla en la dirección peor: devuelve una fecha, no un error.** `git log -S` encuentra cuándo entró
+o salió una cadena. Si el defecto **no es la cadena** sino lo que la rodea —una cita cuyo borde se
+movió por encima de ella, un encabezado que cambió de nivel, un bloque que se abrió antes— **el texto
+nunca se tocó**, y el instrumento contesta con la fecha del texto **como si fuera la del defecto**.
+
+**Caso de campo, con dieciséis días de diferencia sobre la misma línea:**
+
+```text
+git log -S "<la frase>" -- <fichero>        -> 2026-08-01   cuando entro EL TEXTO
+reconstruccion commit a commit del fichero  -> 2026-08-17   cuando entro EL DEFECTO
+CONTROL NEGATIVO: git log -S "<cadena inexistente>" -> 0 commits
+```
+
+**El comando que sí lo data es reconstruir y evaluar el predicado del defecto en cada versión:**
+
+```bash
+for c in $(git rev-list --reverse "$DESDE".."$HASTA" -- "$F"); do
+  r=$(git show "$c:$F" | awk '/<la marca del defecto>/ { print (prev ~ /^>/) ? "MAL" : "ok"; exit }
+                              { prev=$0 }')
+  printf '%s %s %s\n' "$c" "$(git log -1 --format=%ad --date=short "$c")" "$r"
+done
+# CONTROL: empieza el rango en un commit que SEPAS sano. Si el primero de la lista ya
+# sale MAL, el defecto es anterior y hay que ampliar hacia atras -- ojo, "A..B" EXCLUYE A,
+# asi que el commit sano de referencia no aparece en la salida y no sirve de control.
+```
+
+> **El instrumento hay que elegirlo por la NATURALEZA del defecto, no por la comodidad de la
+> búsqueda.** Un defecto de contenedor, de encuadre, de puntero que se quedó viejo o de cifra que
+> caducó **no cambia el texto que lo contiene**, así que ninguno tiene la fecha que un buscador de
+> cadenas le asigna.
+
+**Y la consecuencia alcanza a todo lo que se calcule con esas fechas.** Una ventana de retirada, una
+edad de defecto, una tasa por tramos: **si una parte de las fechas es la del texto y no la del defecto,
+las ventanas publicadas no miden lo que dicen** — y ni siquiera se sabe en qué dirección, porque el
+texto puede ser anterior **o** posterior al defecto.
+
+**El caso propio, que salió peor al medirlo bien:** publicamos que un defecto llevaba *"cinco
+sesiones"* citando el `-S` como evidencia. El `-S` apuntaba a otra fecha, y al datarlo por
+reconstrucción resultaron ser **once**. **La cifra era falsa y su respaldo también, cada uno por una
+razón distinta.**
+
+**Su límite, que lo declara quien aportó el método:** el predicado de la reconstrucción **lo escribe
+uno**, y es tosco por construcción — *"la línea anterior empieza por `>`"* no ve una cita que empiece
+de otra forma. **Data mejor que el buscador de cadenas y sigue siendo un suelo.**
+
 ## `git log` no data un proyecto: data un repositorio
 
 **La fecha del primer commit es la del primer commit, y nada más.** Es tentadora porque parece un

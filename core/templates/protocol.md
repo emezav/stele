@@ -388,8 +388,9 @@ awk '/^```/ { code=!code; prev="CODE"; next }
   huérfano suele quedar **pegado** a la cita que lo partió. Hay que mirar también qué había antes.
 
 **En su primera corrida sobre este kit encontró dos**, y el segundo era de contenido y no de forma:
-media frase se había quedado **dentro de una cita**, que pasaba así a afirmar algo ajeno. Llevaba
-cinco sesiones ahí.
+media frase se había quedado **dentro de una cita**, que pasaba así a afirmar algo ajeno. **Llevaba
+once sesiones ahí** — y esa cifra costó dos correcciones: la primera dijo *cinco* apoyándose en un
+`git log -S`, que **data el texto y no el defecto** (ver *Un instrumento que data el TEXTO…*).
 
 > **Un párrafo partido no rompe nada que un linter mire**: la sintaxis es válida, los bloques cierran
 > y las tablas cuadran. **Lo único que se rompe es la frase**, y eso solo lo ve quien la lea entera —

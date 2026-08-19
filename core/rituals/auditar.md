@@ -35,7 +35,12 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 3. **Verificar** cada candidato. Aquí se va el grueso. Un hallazgo entra al informe **solo con
    evidencia**: dos punteros que se contradicen. Sin evidencia es **sospecha**, va aparte y **no se
    aplica**.
-4. **Clasificar** por clase de drift.
+4. **Clasificar** por clase de drift — y **si el hallazgo lleva fecha, datarlo con el instrumento que
+   corresponde a su naturaleza**. Es *Un instrumento que data el TEXTO no data un defecto que no cambió el texto*:
+   un buscador de cadenas fecha cuándo entró el **texto**, y un defecto de contenedor, de encuadre o de
+   cifra caducada **no cambia el texto que lo contiene**. **Falla dando una fecha, no un error**, así
+   que nadie sospecha. Caso medido: 16 días de diferencia sobre la misma línea, y una edad publicada
+   como *cinco sesiones* que eran **once**.
 5. **Aplicar** lo aceptado, cada cosa en su hogar y **con su procedencia**.
 6. **Segunda pasada, obligatoria** — y **registrar la fila** con su denominador.
 7. **Correr la cola de citas del propio cuerpo de reglas y anotar la fracción**, que es una línea en la
@@ -242,6 +247,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Mide el producto sobre lo que se distribuye, no sobre tu árbol*
 - *Un detector léxico depende del LOCALE, y el mismo patrón da dos respuestas*
 - *Un control negativo deja de separar cuando su cadena entra al corpus*
+- *Un instrumento que data el TEXTO no data un defecto que no cambió el texto*
 - *`git log` no data un proyecto: data un repositorio*
 - *Y comprueba el valor esperado del control, no solo su resultado*
 - *Un control corre sobre el PRODUCTO de un instrumento, así que puede acusar al trabajo*
