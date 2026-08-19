@@ -76,3 +76,21 @@
 
 | # | Fecha | Dir | Corresponsal | Asunto | Desenlace |
 | --- | --- | --- | --- | --- | --- |
+
+<!-- LEY:INICIO ancla="la tardanza va DENTRO de la fila" -->
+
+> **La `Fecha` es la de REDACCIÓN. Cuando el estado pase a `entregada`, escribe también CUÁNDO se
+> entregó** — y si no coinciden, **la tardanza va dentro de la fila, no escondida por ella**.
+>
+> **Esto no es contabilidad: es el único dato que permite leer un silencio.** Medido en un proyecto de
+> campo: **31 de sus 32 filas salientes decían `entregada == escrita`**, porque al cerrar se estampaba
+> la fecha de la sesión en lugar de la de la entrega. **Su archivo no podía mostrar tardanza por
+> construcción** — y el día que un corresponsal midió *"seis días de silencio"* y sacó una conclusión
+> sobre ellos, el dato que la habría desmentido estaba en esa celda, puesto a cero por defecto.
+>
+> **Una espera tiene dos tramos** —la carta escrita y sin entregar, y el tránsito— y **el primero solo
+> lo ve quien la escribió**. Sin esta columna, quien mide desde fuera atribuye al corresponsal una
+> suma que incluye un tramo ajeno.
+
+<!-- LEY:FIN -->
+
