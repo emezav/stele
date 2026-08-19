@@ -1486,6 +1486,20 @@ incluso como worklist** — que es para lo que un detector ruidoso todavía sirv
 con ventana deslizante dio menos candidatos sobre el corpus mutilado que sobre el sano. **Es el único
 resultado que descarta un instrumento entero en vez de rebajarlo.**
 
+**Y la misma ley pega en el tiempo, no solo sobre un corpus mutilado — ahí es donde no se ve venir.**
+Aporte de campo: una sonda clasificaba un defecto por **sangría** —dentro de la guarda 6 espacios,
+fuera 4—, fue correcta durante los 46 commits del historial, y dio `MAL` **sobre el commit que lo
+arreglaba**, porque el arreglo **reestructuró en vez de anidar más hondo**.
+
+> **El detector no se rompió: el corpus cambió de forma debajo de él.** Codificaba el defecto a través
+> de un **proxy** —la sangría— que el arreglo disolvió. Un detector correcto puede **dejar de medir su
+> defecto sin dejar de funcionar**.
+
+**Y el sitio donde aparece el falso positivo es el peor posible: la PUNTA.** El control positivo sigue
+en verde por detrás, así que nada avisa; y el fallo cae justo en el commit reciente, **que es donde
+menos se mira, porque *eso lo acabamos de arreglar***. La pregunta que lo caza es una sola: **¿mi
+detector busca el defecto, o busca una forma que el defecto suele tener?**
+
 ## Una tasa alta de falsos positivos protege al fallo que la causa
 
 Aporte de campo, y es el más incómodo de los recibidos:
@@ -2436,16 +2450,25 @@ Re-corrido por el otro proyecto, el glob casaba **cuatro raíces**, y solo una e
 nombrado. **El criterio de pertenencia era el glob, y nadie lo leyó como un criterio porque parecía una
 ruta.**
 
-**Y sale más caro de lo que parece, porque las dos lecturas divergen sin avisar.** Medido el mismo día
-en la misma máquina:
+**Y sale más caro de lo que parece, porque el glob reparte donde la prosa agrega.** Corrido por raíz,
+el mismo día en la misma máquina:
 
 ```text
-find /tmp/claude -type f            (las 51 raices)  -> 304
-find /tmp/claude/*stele* -type f    (4 raices)       ->   3
+find /tmp/claude/*stele* -type f -> 0, 0, 0 y 3, una por raiz -- NUNCA una cifra
 ```
 
-Dos órdenes de magnitud entre lo que decía la prosa y lo que hacía el comando, **con la misma cifra
-citada para las dos**.
+**Tres de los cuatro conteos son de directorios cuyo dueño ninguna de las dos partes sabe.**
+
+> **CORRECCIÓN, y es la parte que hay que leer.** Este caso se publicó primero con un argumento
+> equivocado: se comparó `find /tmp/claude` (304, las 51 raíces) contra el glob (3) y se llamó a eso
+> *"las dos lecturas de la misma cifra"*. **Son dos instrumentos distintos, así que esta misma ley dice
+> que no son comparables** — el autor incumplió la ley en el párrafo que la estrenaba. Lo devolvió el
+> corresponsal, con la salida del comando delante.
+>
+> **Y peor: la etiqueta acusada era del acusador.** La fila mal rotulada —`ficheros bajo esa raíz`
+> para una cifra del árbol entero— **la escribió primero quien luego la reportó como defecto ajeno**,
+> y el otro proyecto la había copiado de ahí. **La ley se sostiene; el caso con el que se publicó era
+> un espejo.**
 
 **El control cuesta una línea y va ANTES del conteo: expande el glob y cuenta cuántas cosas casó.**
 
@@ -2611,3 +2634,29 @@ nadie escribía es **la de ENTREGA**.
 **Percha:** antes de publicar cualquier latencia medida a través de una frontera, **descomponla en
 tramos y pregunta de quién es cada uno**. Si un tramo cae del otro lado, la cifra no es sobre el otro
 proyecto: **es sobre el canal, y la etiqueta va ahí.**
+
+## Una declaración estrecha se lee como completa, y por eso engaña más que una omisión
+
+**Omitir una acción deja un hueco; declarar una parte de ella lo TAPA.** El lector que ve *"hice X"* no
+se pregunta si además hubo Y: la declaración le certifica que ya sabe lo que pasó.
+
+**Caso de campo, y lo aporta quien lo cometió, estrenando su propia regla.** Un proyecto declaró por
+iniciativa propia haber enumerado **una** raíz temporal ajena. Su comando había casado **cuatro**, y de
+tres no sabía de quién eran. Declaró la observación que le incomodaba y **omitió, sin darse cuenta, que
+había mirado otras tres**.
+
+> **La regla que él mismo acababa de proponer —*la fila obliga a declarar la acción*— no le obligó a
+> declarar TODA la acción.** Un formulario recoge lo que el autor sabe que hizo, y el autor sabía lo
+> que quiso mirar, no lo que su comodín tocó.
+
+**El remedio no está en el formulario: está en el registro de lo que se ejecutó.**
+
+```bash
+# lo enumerado (del registro de comandos) contra lo declarado (de la carta o el acta)
+# lo que este en la primera lista y no en la segunda es observacion NO declarada
+comm -23 <(sort enumerado.txt) <(sort declarado.txt)
+```
+
+**Su virtud es que no depende de acordarse:** el registro existe porque el comando corrió, no porque
+alguien lo recordara. **Su límite, declarado por quien lo propone:** solo alcanza a las observaciones
+que dejan rastro en una herramienta que registra — **abrir un fichero en un editor no lo deja**.

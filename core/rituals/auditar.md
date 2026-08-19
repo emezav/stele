@@ -292,6 +292,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un defecto escrito donde solo llegas DESPUÉS de decidir no es un defecto: es una nota*
 - *Un barrido mecánico gasta la ocasión sin producir atención, y blanquea la edad del fichero*
 - *Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe*
+- *Una declaración estrecha se lee como completa, y por eso engaña más que una omisión*
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo
 
