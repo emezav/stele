@@ -293,6 +293,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un barrido mecánico gasta la ocasión sin producir atención, y blanquea la edad del fichero*
 - *Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe*
 - *Una declaración estrecha se lee como completa, y por eso engaña más que una omisión*
+- *Una confesión que enumera sus instancias por número omite justo la que sobrevive*
+- *Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia*
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo
 

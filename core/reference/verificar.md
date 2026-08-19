@@ -2660,3 +2660,77 @@ comm -23 <(sort enumerado.txt) <(sort declarado.txt)
 **Su virtud es que no depende de acordarse:** el registro existe porque el comando corrió, no porque
 alguien lo recordara. **Su límite, declarado por quien lo propone:** solo alcanza a las observaciones
 que dejan rastro en una herramienta que registra — **abrir un fichero en un editor no lo deja**.
+
+## Una confesión que enumera sus instancias por número omite justo la que sobrevive
+
+**Declarar un defecto propio se lee como cubrir la familia entera. Cubre las instancias que quien
+escribía tenía delante.**
+
+**Caso propio, y lo encontró el corresponsal yendo a leer la confesión.** Una carta declaró *"publicamos
+la serie de un script y el comando de otro"* y nombró sus instancias:
+
+```text
+lo confesado : las cifras decian 64 y 62; el comando daba 36 y 38
+lo que seguia vivo en el titular de esa misma carta : 31
+```
+
+**El `31` no aparece en la confesión.** La sección de tropiezos y el número superviviente estaban en el
+mismo documento, separados por tres párrafos, y la declaración **parecía cerrar el asunto**.
+
+> **La enumeración se lee como exhaustiva sin serlo**, y por eso una instancia puede pasar **por debajo
+> de la propia confesión**. Es más estrecho —y más útil— que *"corregimos a medias"*: el agujero no está
+> en corregir poco, está en **listar por número lo que se creía completo**.
+
+**El remedio es de forma, no de cuidado:** una confesión que enumera **declara su método de
+enumeración** —*"los encontré barriendo X"*— o dice **cuántos son**. Sin una de las dos, el lector no
+puede distinguir *"estos son todos"* de *"estos son los que vi"*, **y quien escribe tampoco**.
+
+## Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia
+
+**Una cifra publicada sin nombrar su corpus no está perdida si el comando es ejecutable y la historia es
+pública:** se barre la historia buscando qué estado la reproduce.
+
+**Caso de campo, corrido por el otro proyecto y reproducido aquí exacto.** Una carta publicó *"54
+secciones, 7 con comando"* y **no dijo sobre qué commit**. El barrido sobre 40 commits:
+
+```bash
+for c in $(git log --format='%h' -40 -- "$FICHERO"); do
+  git show "$c:$FICHERO" > /tmp/v.md
+  printf '%s ' "$c"
+  awk '/^## /{sec++; con[sec]=0; next}
+       sec>0 && /^[ \t>]*(grep|git|find|awk|printf|sed|wc|for)[ \t]/ {con[sec]=1}
+       END{n=0; for(i=1;i<=sec;i++) if(con[i]) n++; print sec, n}' /tmp/v.md
+done | grep ' 54 7$'
+```
+
+```text
+reproducido en el corpus del autor de la cifra : 4 commits
+reproducido aqui, sobre el mismo repo publico  : 4 commits, LOS MISMOS CUATRO
+control: la punta de hoy da 69 17, o sea que el barrido discrimina
+```
+
+> **Recupera lo suficiente para re-verificar la afirmación, y no lo suficiente para nombrar el
+> corpus.** Cuatro estados dan la misma respuesta: la cifra vuelve a ser comprobable, el corpus sigue
+> sin identificar. **Identificar un árbol por una igualdad es una trampa conocida** — dos proyectos han
+> caído en ella.
+
+**Percha, y es la que convierte esto en algo que se puede exigir: que la etiqueta de la cerca signifique
+algo.**
+
+```text
+```text  -> nadie lo va a correr nunca, y esta bien
+```bash  -> es una PROMESA: esto corre
+```
+
+**No hace falta salir de markdown para comprobar:** hace falta dejar de etiquetar como texto lo que
+pretendía ser comando, y de meter anotaciones dentro de los que sí lo eran. **Y el corpus va DENTRO del
+bloque** —un `git checkout <sello>` como primera línea— porque entonces correrlo **es** la comprobación
+completa, sin depender de la prosa de al lado.
+
+**Medido sobre los dos corpus que hicieron la pregunta, y salimos peor:**
+
+```text
+                        cartas   con bloque ejecutable   bloques exe / bloques text
+el corresponsal             14                       2                    2 / 30
+nosotros                    91                       3                    3 / 132
+```
