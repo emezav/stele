@@ -2308,14 +2308,21 @@ dispara**.
 **Y hay una medición de campo que cierra el mecanismo, sobre un registro ajeno de cuarenta sesiones:**
 
 ```text
-datos que ALIMENTAN una rutina (se recalculan en cada cierre o entrega) : 7
-   de esos, alguno publicado falso alguna vez                           : 0
+datos que ALIMENTAN una rutina (se recalculan en cada cierre o entrega)
+   de esos, alguno publicado falso alguna vez : 0
 datos que no alimentan nada
    de esos, los que hubo que tachar : TODOS los falsos registrados del proyecto
 ```
 
 **La partición es completa en las dos direcciones**, y esa es su fuerza: no es que los datos
 consumidos se cuiden más — es que **tres rutinas no pueden terminar sin recalcularlos**.
+
+> **Y el cardinal se retiró de este bloque, que es la parte que hay que contar.** La medición original
+> decía **siete**, y su propia lista da **6 u 9** según cuente *"los cuatro campos derivables"* como un
+> dato o como cuatro: **el 7 es inalcanzable con los dos granos, y el grano nunca se declaró.** Lo
+> encontró el autor de la medición, releyendo su frase, **después** de que este kit lo publicara.
+> **Publicamos un cardinal ajeno que no podíamos comprobar, en el bloque que trata de comprobar.** La
+> partición se sostiene sin él; el número no tenía apoyo.
 
 > **La cobertura de un proyecto no la decide su rigor, sino cuántas rutinas tocan el mismo dato.** Y
 > el conjunto huérfano tiene una forma reconocible: **son los que suenan a conclusión.**
@@ -2526,3 +2533,81 @@ solo sube lo que decide algo **irreversible o hacia fuera**.
 **Percha:** todo defecto que decida algo **irreversible o hacia fuera** —publicar, enviar, borrar—
 sube a `Lo mínimo para ejecutarlo` **como pregunta**, no como afirmación. Y se le hace al usuario: lo
 irreversible y lo que sale del proyecto no lo elige el agente.
+
+## Un barrido mecánico gasta la ocasión sin producir atención, y blanquea la edad del fichero
+
+**Aporte de campo, y refuta una variable que este kit había propuesto.** La propuesta era medir *cuánto
+código lleva sin releerse*, con el argumento de que `git log` la da gratis. **No la da.**
+
+```text
+26 commits  (la llamada no existia)      <- CONTROL POSITIVO por delante
+b039d6a  2025-10-09  primer MAL          <- entra el defecto
+   ...   19 commits pasan por encima sin verlo
+dafea44  2026-07-13  MAL                 <- barrido mecanico: 19 ficheros, 77 ocurrencias
+                                            RENOMBRA ESA MISMA LINEA
+fcc68cf  2026-08-19  arreglado           <- 314 dias
+```
+
+**`dafea44` no introdujo el defecto: pasó por encima de él.** Editó **esa línea exacta** —le cambió el
+nombre a la función que la ocupa— sin ver que su argumento estaba fuera de la guarda que lo protege,
+tres caracteres más allá. **No fue un descuido: allí no había nadie leyendo, había un patrón casando.**
+
+> **Un barrido mecánico visita el código sin verlo, y en `git log` esa visita es indistinguible de una
+> lectura.** Así que automatizar no solo reduce las ocasiones de mirar: **falsifica el libro de
+> ocasiones.**
+
+**La consecuencia operativa es la que mata la métrica:** después de un barrido, los ficheros tocados
+figuran **recientes**, así que cualquier heurística de *"qué no hemos mirado en mucho tiempo"* **los
+salta justamente a ellos**. El barrido **blanquea la edad**, y lo hace en bloque.
+
+**Las visitas de máquina son identificables por su forma**, que es lo que hace el remedio barato:
+
+```bash
+# un commit que toca muchos ficheros con un solo patron es una VISITA DE MAQUINA
+git log --format='%h %s' --numstat | awk '/^[0-9a-f]{7} /{h=$0; next} /^[0-9]+\t/{n[h]++}
+  END{for(k in n) if(n[k]>=8) print n[k], k}' | sort -rn
+```
+
+> **Y el discriminador no es el conteo de ocasiones: es el rendimiento POR ocasión**, con las visitas
+> de máquina **restadas** del denominador. *"Menos hallazgos"* y *"el código está más limpio"* producen
+> la misma serie mientras no se haga esa resta.
+
+**Corrido sobre otro corpus, el detector de arriba da falsos positivos, y su causa importa.** Sobre un
+repo de documentación marcó **15 de 175 commits (9%)** — y los tres primeros son **una auditoría, otra
+auditoría y el commit inicial**. Una auditoría toca muchos ficheros **y es atención pura**: es lo
+contrario de un barrido.
+
+> **«Muchos ficheros» no es la forma de una visita de máquina: la forma es *muchos ficheros* Y *un
+> solo patrón*.** El segundo término es el que discrimina, y es el que se cae al implementar el
+> detector, porque el número de ficheros lo da `git` y el patrón no. **Un detector al que se le cae el
+> término discriminante sigue devolviendo una lista plausible.**
+
+## Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe
+
+**Medir *"días desde que salió la mía"* y leerlo como *"días que llevan sin contestar"* es atribuir al
+corresponsal una suma que incluye un tramo suyo.** Los dos tramos son la carta **escrita y sin
+entregar** en el lado del que responde, y el **tránsito**.
+
+**Caso propio, y es una inferencia falsa encima de otra.** Medimos seis días de silencio de un
+corresponsal y concluimos algo sobre él: **falso**. Nos llegó su carta fechada seis días antes y
+concluimos que era **tránsito del canal**: **falso otra vez**. Era su carta esperando en `redactada`,
+un estado que su propio índice registra con ese nombre.
+
+> **El primer tramo no es inobservable: es inobservable DESDE FUERA**, que es otra cosa y tiene
+> remedio. Lo tiene el otro proyecto, en una celda, y lo llevaba **poniendo a cero por defecto**: 31 de
+> sus 32 filas salientes decían *entregada == escrita*. **Su archivo no podía mostrar tardanza por
+> construcción.**
+
+**Y el remedio no es el que se propone primero.** Nosotros propusimos *que las cartas lleven fecha de
+redacción* — y las llevaban ya: **86 de 86** de las nuestras y 33 de 33 de las suyas. La fecha que
+nadie escribía es **la de ENTREGA**.
+
+```bash
+# la tardanza va DENTRO de la fila, no escondida por ella
+#   escrita | entregada | tardanza
+# si tu indice no puede expresar "entregada != escrita", no mide esperas: las borra
+```
+
+**Percha:** antes de publicar cualquier latencia medida a través de una frontera, **descomponla en
+tramos y pregunta de quién es cada uno**. Si un tramo cae del otro lado, la cifra no es sobre el otro
+proyecto: **es sobre el canal, y la etiqueta va ahí.**
