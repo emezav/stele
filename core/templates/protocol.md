@@ -400,6 +400,43 @@ con el presupuesto ajustado**. Un adoptante que portó el `PROHIBIDO` de los art
 248 líneas contra un tope de 240** que acababa de subir de 200. **Portar una ley puede obligar a subir
 un presupuesto**, y es mejor saberlo al portarla que al medir los topes.
 
+## Lo que se escapó fuera del proyecto: se enumera, no se pregunta
+
+**El control hermano del anterior.** Aquel comprueba *lo que debía estar dentro y no está*; este,
+**lo que está fuera y debería estar dentro** — y es el único de los dos que **devuelve el fichero**.
+
+**No hace falta creerle nada al agente.** El harness abre un directorio por sesión bajo una raíz
+temporal, esa raíz está fuera del proyecto pero **no fuera de la máquina**, y el cierre es un comando
+que corre en la máquina:
+
+```bash
+# RAICES es configuracion del proyecto, no un supuesto del kit: cada harness usa la suya
+for raiz in $RAICES; do
+  [ -d "$raiz" ] && find "$raiz" -type f -newermt "$DESDE" -printf '%TY-%Tm-%Td %8s %p
+'
+done
+# CONTROL POSITIVO: escribe un fichero ahi a proposito y tiene que aparecer
+```
+
+> **La señal indirecta detecta que falta algo; la directa devuelve el fichero.** En el caso que la
+> aportó, ese fichero —un clon del kit olvidado en el temporal— **resolvió una pregunta que las dos
+> partes habían dado por indecidible** y que estaba escrita bajo *"qué NO demuestra"* en las dos
+> cartas.
+
+**Y tiene dos límites, los dos medidos:**
+
+- **La raíz depende del harness.** Un proyecto que no conozca la convención de su agente no puede
+  escribir el `find`, y ahí la señal indirecta es la que hay. **Por eso `RAICES` es configuración.**
+- **Una raíz COMPARTIDA no se puede enumerar sin criterio de pertenencia.** Corrido aquí, el
+  scratchpad por proyecto estaba **limpio** y la fuga real estaba en `/tmp`… que tiene **5 934**
+  ficheros de otros programas. **Enumerarla sin filtro se trae basura ajena**: hace falta acotar por
+  fecha, por nombre o por contenido, y decir cuál se usó.
+
+**El caso de campo es propio y va entero:** 16 ficheros de este proyecto —borradores de cartas y
+trozos de prosa que acabaron en el kit— vivían en `/tmp` desde hacía nueve sesiones. **Ninguna
+comprobación los miraba**, porque la única raíz que teníamos en la cabeza era la que el harness
+declara.
+
 ## Párrafos partidos: la prosa que se rompe al insertar algo en medio
 
 **Editar un documento largo insertando bloques parte párrafos, y el linter no lo ve.** El resultado es
