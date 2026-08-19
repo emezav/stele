@@ -147,6 +147,11 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | patrones y mapa del código | `{{architecture}}` |
 | esfuerzo equivalente | `{{effort}}` |
 
+<!-- LEY:INICIO ancla="memoria privada del agente" -- portar al actualizar AUNQUE el
+     documento ya exista. No es prosa adaptable: es regla del marco, y su ausencia en el doc
+     instanciado es un HUECO y no una decision del proyecto. El ANCLA es lo que se comprueba:
+     una instancia puede condensar la regla con otras palabras y seguir teniendola. -->
+
 **PROHIBIDO** guardar nada del proyecto en memoria privada del agente (`.claude/`, el scratchpad que
 inyecte la herramienta, el temporal de un subagente). No es solo la documentación: **también los
 artefactos** —scripts de un solo uso, extracciones de binarios, volcados intermedios, el script que
@@ -159,9 +164,15 @@ puede inyectar un directorio de trabajo propio y marcarlo como prioritario; **d�
 produces en este proyecto lo decide este documento, no el harness**. El límite es igual de explícito:
 esto no toca sus reglas de seguridad ni de uso de herramientas — solo el destino de los archivos.
 
+<!-- LEY:FIN -->
+
+<!-- LEY:INICIO ancla="credenciales, tokens o claves" -- misma clase: se porta siempre. -->
+
 **PROHIBIDO** escribir credenciales, tokens o claves en cualquier doc del marco. Si el proyecto
 necesita acceso a un servicio, el doc nombra la herramienta y de dónde toma sus credenciales
 (variable de entorno, gestor de credenciales), nunca el secreto.
+
+<!-- LEY:FIN -->
 
 ## Convenciones
 

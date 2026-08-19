@@ -7,6 +7,8 @@
 
 ## Principios
 
+<!-- LEY:INICIO ancla="por encima de cualquier default" -- misma clase: se porta siempre. -->
+
 1. Los archivos de **estado** no crecen: se **sobrescriben** (formato fijo + tope).
 2. El **historial** vive en archivos por sesión y **no se reabre** (se referencia por link).
 3. Los **apéndices de una línea** usan `printf '...' >> archivo`, no `Read`+`Edit`.
@@ -16,6 +18,8 @@
    —scripts de un solo uso, extracciones, volcados—: su hogar es `{{artifacts_dir}}sesion-{NNN}/`, y
    esa regla vale por encima de cualquier default del harness (`{{kit}}/SKILL.md` → Precedencia).
 6. **Un hogar por dato** (mapa en `{{kit}}/SKILL.md` y en `{{entry}}`).
+
+<!-- LEY:FIN -->
 
 ## Rutas: comando contra enlace
 
@@ -363,6 +367,38 @@ donde poner la declaración. El sitio que ha funcionado en campo es el **`Sello`
 sin VCS ya dice *qué se observa en disco*: ahí cabe **qué existe y qué no tiene copia**. No está
 resuelto como convención — se dice para que quien llegue a ese caso sepa que es un hueco conocido y no
 un olvido suyo.
+
+## Los bloques de LEY del kit están en tus documentos, o falta uno
+
+**Una plantilla de rol mezcla dos clases de prosa**: la que tu proyecto puede haber reescrito
+legítimamente —y que por eso no se pisa al actualizar— y la que es **ley del marco** y tiene que
+llegar aunque el documento ya exista. La segunda va marcada `LEY:INICIO` … `LEY:FIN`.
+
+**Y esta comprobación es la única que caza el hueco en un proyecto que YA lo tiene**, porque no mira el
+diff de una actualización: mira el estado de hoy.
+
+```bash
+# cada marca declara el ANCLA que hay que encontrar. Se comprueba el ancla y NO el texto,
+# porque una instancia puede condensar la regla con otras palabras y seguir teniendola:
+# comparar la linea entera da FALTA sobre reglas que si estan.
+# Y el doc se APLANA antes de buscar, porque plantilla e instancia envuelven distinto.
+grep -o 'LEY:INICIO ancla="[^"]*"' "$KIT/core/templates/entry.md" |
+  sed 's/.*ancla="//; s/"$//' |
+  while IFS= read -r ancla; do
+    tr '\n' ' ' < "$ENTRY" | tr -s ' ' | grep -qF "$ancla" || echo "FALTA en $ENTRY: $ancla"
+  done
+# CONTROL POSITIVO: borra el bloque de una copia del doc y tiene que decir FALTA
+# CONTROL NEGATIVO: sobre el doc intacto no puede decir nada
+```
+
+> **Su ausencia es un hueco, no una decisión.** Si el bloque no está, no es que tu proyecto lo haya
+> descartado: es que **nunca llegó** — y el diff de la actualización no lo señaló, porque el fichero
+> ya existía.
+
+**Y hay un coste que conviene saber antes de portarlo:** estos bloques **no caben gratis en un `entry`
+con el presupuesto ajustado**. Un adoptante que portó el `PROHIBIDO` de los artefactos pasó de **237 a
+248 líneas contra un tope de 240** que acababa de subir de 200. **Portar una ley puede obligar a subir
+un presupuesto**, y es mejor saberlo al portarla que al medir los topes.
 
 ## Párrafos partidos: la prosa que se rompe al insertar algo en medio
 
