@@ -259,6 +259,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una ausencia y una no-aplicabilidad dan la misma cifra*
 - *Un barrido que filtra por un campo no ve al registro que no lo tiene*
 - *Y el error que te quita razón no se busca*
+- *Un detector roto sale caro cuando su salida es PLAUSIBLE, y ahí es donde hace falta el control*
 - *Un detector tiene tres superficies, y el control positivo cubre una*
 - *Un filtro de bloques falla por tres sitios, no por uno*
 - *Un acuerdo entre dos comprobaciones independientes no es evidencia*

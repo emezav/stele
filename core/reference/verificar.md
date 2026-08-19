@@ -1621,6 +1621,49 @@ Los controles pasaron las dos veces: **validaban el filtro, no la fuente.** El r
 una **guarda sobre la fuente dentro del propio detector** —*si los objetos no existen, abortar en vez
 de reportar*—, no un control más al lado.
 
+## Un detector roto sale caro cuando su salida es PLAUSIBLE, y ahí es donde hace falta el control
+
+**Todos los detectores se rompen igual —el patrón no describe el corpus— y cuestan cosas muy
+distintas.** Lo que separa un error barato de uno caro **no es el error: es dónde cae su salida**.
+
+**Tres detectores rotos la misma noche, del mismo modo, en un solo proyecto:**
+
+```text
+A  contar leyes con '### ' cuando son '## '   -> 1    donde iban 61   GRITA
+B  buscar una percha por el COMANDO
+   cuando el documento la cita por su NOMBRE  -> 0    donde habia 1   PASA
+C  `git ls-tree -d` para decir que hay
+   en un arbol -- solo lista directorios      -> 2    donde hay 8     PASA
+```
+
+**El A se cazó solo**: `1` donde iban `61` está fuera del rango de cualquier respuesta verdadera y
+**nadie lo lee como un resultado**. El B estuvo a punto de salir en una carta como *"su fila no se
+sostiene"* — **una acusación falsa contra el otro proyecto**, porque `0` donde iba `1` **es exactamente
+la forma que tiene «la afirmación es falsa»**.
+
+> **Un detector roto cuya salida cae dentro del rango plausible no se lee como avería: se lee como
+> hallazgo.** Y cuanto más plausible, más caro — el techo es acusar a otro de algo que no hizo.
+
+**De ahí la regla operativa, que es la que decide dónde gastar el control:**
+
+> **Todo detector cuyo «no encontré nada» sea una respuesta con significado necesita control positivo,
+> porque el cero siempre es plausible.** Un contador puede pasar sin él —su absurdo grita—; una
+> búsqueda de existencia, no.
+
+**Y el C es el peor de los tres, porque el error estaba en el instrumento y no en el patrón.** La
+bandera `-d` **filtra a directorios**, y ese filtro **se metió dentro de la afirmación sin declararse**:
+la frase publicada decía *"el árbol tiene dos entradas"* cuando tiene ocho. **La salida era plausible**
+—un kit con dos directorios no tiene nada de raro— así que mirarla no bastaba.
+
+**Lo cazó volver a correrlo variando el instrumento** —quitar el `-d`— al re-correr afirmación por
+afirmación antes de entregar. **No lo habría cazado un control positivo del patrón**, porque el patrón
+estaba bien.
+
+**Es la ley de la datación girada un cuarto de vuelta.** Aquella dice que un instrumento equivocado
+**falla dando una fecha, no un error**; esta dice **de qué depende** ese modo de fallo: de si la salida
+falsa es distinguible de una verdadera. Cuando no lo es, **ninguna lectura del resultado la separa** —
+hay que variar el instrumento o tener el control.
+
 ## Un detector tiene tres superficies, y el control positivo cubre una
 
 **Así que un detector tiene tres superficies y el control positivo solo cubre una:** lo que **lee**
