@@ -51,6 +51,27 @@ tail -n 1 "$FILA" | awk -F'|' '{print ($4 ~ /^ *[0-9.,-]+ *$/) ? "OK" : "PERMUTA
 > Basta con anclar **una** celda de formato reconocible —una cifra, una fecha, una flecha— para que la
 > permutación deje de pasar.
 
+**Y en el mismo bloque va un conteo de ESTADO, no de forma: cuántas filas siguen sin cerrar.**
+
+```bash
+# lo que quedo a medias, esperado en CERO
+grep -cE '<el estado abierto>' "$INDICE"     # tiene que dar 0
+{ cat "$INDICE"; echo '| 999 | fila | fabricada |'; } | grep -cE '<el estado abierto>'   # CONTROL: 1
+```
+
+**No es cosmético: es el único control del cierre que mira si algo se quedó a medias.** Los de forma
+—columnas, celda ancla, no-ASCII— comprueban lo que **sí** se escribió; ninguno ve **la fila que
+debería haberse movido y no se movió**.
+
+> **Y falla siempre por el mismo sitio: una confirmación de una línea llega en el mismo mensaje que un
+> trabajo grande, y el trabajo se la come.** Caso propio, dos veces, misma causa: *"entregada 175"* y
+> una carta de trescientas líneas en el mismo turno. **Solo una de las dos pide trabajo, y la otra se
+> pierde sin dejar hueco visible.**
+
+**Trampa al escribirlo, y ocurrió al anotar el caso:** si la nota que explica el fallo **cita el patrón
+del control**, el conteo se dispara sobre la propia nota y **el cero deja de alcanzarse**. Se ancla el
+patrón a la tabla —`^\|`— o se describe el estado sin escribirlo.
+
 Al mover `base`, los enlaces relativos sobreviven si su destino viaja en el mismo bloque (es el caso
 dentro de `{{history_dir}}`); los que apuntan fuera del bloque se rompen y hay que revisarlos.
 

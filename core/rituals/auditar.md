@@ -295,6 +295,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una declaración estrecha se lee como completa, y por eso engaña más que una omisión*
 - *Una confesión que enumera sus instancias por número omite justo la que sobrevive*
 - *Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia*
+- *Lo que solo pide un apunte se pierde cuando llega junto a lo que pide trabajo*
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo
 

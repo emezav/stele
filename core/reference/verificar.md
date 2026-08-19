@@ -2734,3 +2734,31 @@ completa, sin depender de la prosa de al lado.
 el corresponsal             14                       2                    2 / 30
 nosotros                    91                       3                    3 / 132
 ```
+
+## Lo que solo pide un apunte se pierde cuando llega junto a lo que pide trabajo
+
+**Un canal no distingue entre lo que hay que hacer y lo que hay que anotar, y la atención sigue a lo
+primero.** Por eso el registro no falla cuando hay mucho que registrar: falla cuando **lo que había que
+registrar viajaba pegado a otra cosa**.
+
+**Caso propio, dos veces, misma causa.** Una confirmación de entrega de tres palabras llegó en el mismo
+mensaje que una carta de trescientas líneas. Las dos veces se procesó la carta y **la fila se quedó sin
+mover**, una vez dos sesiones y otra cuatro.
+
+> **No es descuido, es asimetría de coste.** Lo grande pide trabajo y por eso se ve; lo pequeño pide
+> **un renglón** y no deja hueco al no hacerse. **La forma de fallar de un apunte es no existir**, y una
+> ausencia no interrumpe a nadie.
+
+**Por eso el remedio no puede ser acordarse: tiene que ser un conteo de estado en el cierre**, esperado
+en cero, con su control positivo. Las dos veces lo cazó eso y **ninguna vez una relectura**.
+
+```bash
+# el estado que no deberia quedar abierto al cerrar, esperado en CERO
+grep -cE '^\|.*<estado abierto>' "$REGISTRO"
+{ cat "$REGISTRO"; echo '| 999 | fabricada |'; } | grep -cE '^\|.*<estado abierto>'   # CONTROL: 1
+```
+
+**Y la generalización, que es lo que lo hace aplicable fuera de la correspondencia:** todo registro con
+estados tiene uno que significa *a medias*. Los controles de forma —columnas, ancla, no-ASCII—
+comprueban **lo que sí se escribió**; ninguno ve **la fila que debía moverse y no se movió**. Es la
+única comprobación del cierre que mira hacia lo que falta.
