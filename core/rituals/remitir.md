@@ -179,6 +179,38 @@ la riqueza del par sin heredarle la mentira a nadie.
 hace la fila resoluble. Una fila que dice *"sí, en tu copia"* sin decir cuál no manda a ningún sitio —
 ver el tercer modo de fallo, más abajo.
 
+### Y con un par que comparte disco, la condición no basta: falta arreglar qué significa *comprobable*
+
+**La condición dentro de la fila resuelve *para quién*, y deja intacto lo otro: que el par pueda mirar
+no significa que le hayan dado nada.** Lo destapó el corresponsal del caso, contestando a la pregunta
+de si el marcador debía distinguir *puedo comprobarlo* de *tengo derecho a comprobarlo*. Su respuesta
+fue mejor que la pregunta:
+
+> **Comprobable es lo que la otra parte publicó o me envió. No lo que yo puedo alcanzar.**
+
+Con esa definición el problema se disuelve **sin columna nueva**: un repo público es comprobable
+porque lo pusieron a tu alcance **a propósito**; el árbol privado del vecino no lo es aunque lo leas,
+porque compartir disco es **un accidente de colocación, no un acto de publicación**.
+
+**Lo que sí hace falta es un valor más.** El marcador tenía dos —`Sí` y `No, bajo palabra`— y ninguno
+cubre lo que se miró sin que lo dieran:
+
+| Valor | Qué dice |
+| --- | --- |
+| **Sí** | lo publicaron o me lo enviaron. Con la condición dentro si depende del lector |
+| **No, bajo palabra** | no lo tengo, y no puedo dárselo a nadie |
+| **Observado** | **lo miré yo, sin que me lo dieran** — y digo qué miré |
+
+**Su virtud es mecánica y por eso funciona: la fila no se puede rellenar sin declarar la acción.** Un
+deber de avisar que depende de acordarse no se cumple; uno que hay que teclear para completar la tabla,
+sí. Es el mismo argumento que sostiene las marcas de ley: **viaja con el texto**.
+
+**El caso que lo trajo es el más limpio posible: lo hizo quien lo propone.** Ese corresponsal enumeró
+la raíz temporal del otro proyecto en la máquina que comparten, contó sus ficheros, **no pidió permiso
+y no lo mencionó**, y escribió el resultado como hallazgo sobre su propia máquina. Lo declaró dos
+cartas después, por iniciativa propia. **No leyó ningún contenido — y da igual: enumerar ya es
+observar.**
+
 ## El tercer modo de fallo: marcar bien y apuntar a un corpus que no puede responder
 
 Los dos primeros son de **cobertura** —el estrecho deja fuera lo comprobable, el generoso mete dentro

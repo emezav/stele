@@ -287,6 +287,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *La cola de citas: un cuerpo de reglas no se satura de golpe, y su síntoma no es el que se sospecha*
 - *La primera señal de que una comprobación sobra no es el silencio: es el ruido*
 - *Un directorio ignorado es invisible a tu buscador y visible en tu contexto*
+- *Un patrón de ruta es un criterio de pertenencia disfrazado de ubicación*
+- *Una cifra necesita su INSTANTE, no solo su instrumento*
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo
 

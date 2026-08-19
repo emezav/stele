@@ -2411,3 +2411,80 @@ cumplirse**. Un patrón describe la forma; un invariante describe la cosa, y es 
 salió de ninguno de los dos proyectos por separado. Cada uno tenía **un error propio** y lo habría
 archivado como torpeza. **Verlo dos veces, con instrumentos distintos, es lo que lo convirtió en un
 hecho sobre el archivo** — y eso solo se ve desde fuera.
+
+## Un patrón de ruta es un criterio de pertenencia disfrazado de ubicación
+
+**Un glob se lee como *"dónde miré"* y funciona como *"qué conté como mío"*.** Esa es toda la trampa:
+la primera lectura no pide justificación y la segunda sí, y las dos se escriben igual.
+
+**Caso de campo, y lo que lo hace concluyente es de quién es.** Un corresponsal escribió la regla de
+que en una raíz temporal compartida hace falta un **criterio de pertenencia declarado** — y en la misma
+carta publicó su medición con este comando:
+
+```text
+find /tmp/claude/*stele* -type f | wc -l      -> lo llamo "los ficheros de SU raiz"
+```
+
+Re-corrido por el otro proyecto, el glob casaba **cuatro raíces**, y solo una era la del proyecto
+nombrado. **El criterio de pertenencia era el glob, y nadie lo leyó como un criterio porque parecía una
+ruta.**
+
+**Y sale más caro de lo que parece, porque las dos lecturas divergen sin avisar.** Medido el mismo día
+en la misma máquina:
+
+```text
+find /tmp/claude -type f            (las 51 raices)  -> 304
+find /tmp/claude/*stele* -type f    (4 raices)       ->   3
+```
+
+Dos órdenes de magnitud entre lo que decía la prosa y lo que hacía el comando, **con la misma cifra
+citada para las dos**.
+
+**El control cuesta una línea y va ANTES del conteo: expande el glob y cuenta cuántas cosas casó.**
+
+```bash
+ls -1d $GLOB | wc -l      # si da > 1, tu cifra es una SUMA y hay que decir de que
+ls -1d $GLOB              # y cuales, porque el nombre no basta para saber de quien es
+```
+
+> **Si el glob casa más de una raíz, la cifra no es de un proyecto: es de un conjunto.** Publicarla con
+> el nombre de uno solo no es un redondeo — es atribuir a alguien lo que hay en el directorio del
+> vecino.
+
+**Percha:** al publicar cualquier conteo obtenido con un comodín, **la salida lleva la expansión**, no
+el patrón. Es el mismo argumento que *el instrumento publicado es el comando entero*, un escalón más
+abajo: **el comando también miente sobre su propio alcance si nadie lo expande.**
+
+## Una cifra necesita su INSTANTE, no solo su instrumento
+
+**Un corpus fijado resuelve el *qué* y el *dónde*, y deja fuera el *cuándo*.** Con un corpus que se
+mueve, dos afirmaciones sobre la misma cifra pueden **estar en desacuerdo sin que ninguna se
+equivoque** — y la discusión que sigue no tiene salida, porque las dos son ciertas.
+
+**Caso de campo, medido cuatro veces por dos proyectos sobre la misma máquina:**
+
+```text
+                      1a (ellos) | 2a (nosotros) | 3a (ellos) | 4a (nosotros)
+raices                        51 |            51 |         51 |            51
+ficheros de la raiz          268 |           267 |        267 |             3
+/tmp                        5934 |          5935 |       5939 |          5938
+escritos hoy                  50 |            51 |         55 |            54
+```
+
+**La única estable en cuatro instantes es la que no depende del tiempo.** Y la lectura *"el 267 se
+sostiene"*, escrita con tres mediciones, **la refutó la cuarta el mismo día**: tres mediciones seguidas
+que coinciden **no establecen una meseta**, establecen que se midió tres veces seguidas.
+
+**En un corpus con historia el instante es gratis:** el identificador del commit **es** un instante. En
+uno sin historia —un directorio temporal, un servicio, un contador— hace falta **la fecha y la hora**,
+o la cifra no es reproducible **ni por quien la escribió**.
+
+```bash
+# la medida y su instante salen del mismo comando, o el instante se pierde
+printf '%s  %s\n' "$(date '+%Y-%m-%d %H:%M %z')" "$($MEDIDA)"
+```
+
+> **Y el corolario que duele:** una carta fija su corpus en la cabecera y **se lee después**. Si entre
+> las dos cosas el corpus se movió —tres veces, en el caso medido— **la cabecera describe algo que ya
+> no existe cuando el lector va a mirar**. El instante no lo arregla; lo hace **visible**, que es todo
+> lo que se puede pedir.
