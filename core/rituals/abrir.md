@@ -38,6 +38,16 @@ así que la confirmación va **al frente de tu PRIMERA respuesta** — 1-3 líne
 (ver "Cómo se le habla al usuario"). Sin esto, el arranque silencioso es
 indistinguible de uno que no corrió. (Se omite si `session_greeting = off`.)
 
+**Y si el próximo paso es PLURAL, va como lista, y las líneas cuentan lo que la precede — no lo que la
+compone.** El contrato dice *próximo paso* en singular y muchas veces no lo es: cuatro decisiones que
+bloquean son cuatro renglones que el usuario va a leer para actuar, no prosa que tú resumes. Es
+*cuando el usuario tenga que actuar sobre una lista, dásela como lista* (`{{kit}}/SKILL.md`).
+
+> **Medido en campo, dos veces:** los dos agentes que ejecutaron esto expandieron el saludo **por el
+> mismo motivo** —el próximo paso era una lista de cuatro— y **los dos acertaron sin que el ritual se
+> lo dijera**. El número no era el problema: un saludo de tres líneas con las tres piezas **cabe**. Lo
+> que faltaba era esta línea.
+
 ## Y si el proyecto tiene correspondencia, dila en el saludo
 
 **Solo si `correspondence_dir` está activo.** Un proyecto sin corresponsales se salta esta sección

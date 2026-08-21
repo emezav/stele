@@ -99,6 +99,15 @@ disparador. Lo demás sobre ellos —por qué viven aparte, qué es ritual y qu�
 
 ## El saludo de arranque, y por qué importa que se vea
 
+<!-- LEY:INICIO ancla="va como lista" -- regla del marco, no prosa que tu proyecto pueda haber
+     reescrito: se porta al actualizar aunque el diff no la senale. Lo demas de esta seccion SI es
+     adaptable -- el numero de lineas, el idioma, que se nombra -- y por eso la marca cubre solo esto. -->
+
+**Si el próximo paso es una lista sobre la que el usuario tiene que actuar, va como lista** — las
+líneas cuentan lo que la precede, no lo que la compone.
+
+<!-- LEY:FIN -->
+
 **En tu PRIMERA respuesta de la sesión, empieza con 1-3 líneas de orientación** que confirmen el
 arranque: última sesión (N + título), si quedó trabajo a medias (`{{handover}}`), y próximo paso
 propuesto — **sea cual sea el primer mensaje del usuario**. No puedes emitir nada antes de que la

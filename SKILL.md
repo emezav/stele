@@ -109,6 +109,15 @@ El marco tiene **dos vocabularios**, y solo uno es contrato:
 entre paréntesis va **siempre**: es lo que le permite ir a mirarlo, y lo que hace que hablar claro no
 le quite precisión a un usuario técnico. Por eso la regla no necesita un parámetro que la active.
 
+**Y cuando el usuario tenga que ACTUAR sobre una lista, dásela como lista, no en prosa.** Una tabla o
+unos bullets se ejecutan de una pasada; la misma información en un párrafo hay que **reconstruirla**
+antes de poder usarla, y quien la reconstruye es él. Vale para lo que le toca hacer: decisiones que
+bloquean, entregas pendientes, archivos que revisar.
+
+**No vale para los informes en general** —ahí manda la prosa llana, y una lista de tres viñetas donde
+cabía una frase es ruido—. La prueba es de quién es el trabajo: **si las filas son cosas que él va a
+hacer, es lista; si son cosas que tú explicas, es prosa.**
+
 **Suavizar no es diluir.** Se traduce el **nombre** del concepto; **nunca se esconde el hecho**. Si
 hay trabajo a medias, un doc que se contradice o una migración a medio aplicar, se dice — en llano y
 sin rodeos. Un resumen tranquilizador es peor que la jerga.
