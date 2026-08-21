@@ -78,10 +78,20 @@ encuadró su trabajo, que es justo quien no necesitaba la tabla.
 > frase que ibas a escribir en otro sitio**, así que sin la pregunta escrita aquí no salta nunca: se
 > queda como una trampa más en `{{gotchas}}`, donde no arregla nada y estorba en cada arranque.
 
-**Y todos abren igual: con un bloque `## Lo mínimo para ejecutarlo`.** Su contrato es que **si solo lees
+**Y los largos abren con un bloque `## Lo mínimo para ejecutarlo`.** Su contrato es que **si solo lees
 ese bloque ejecutas el ritual sin cometer ninguno de los fallos que su cuerpo documenta**; si uno se te
 escapa habiéndolo leído, el que está mal cortado es el bloque, no tú. El resto del fichero es el
 **porqué**, y se abre por pregunta.
+
+**El criterio de cuáles lo llevan no es el tamaño: es si el fichero se puede leer entero EN EL MOMENTO
+de ejecutarlo.** Los que se abren cada sesión son cortos y **se leen enteros**, así que un bloque ahí
+sería un resumen de sí mismo. Los que cuestan una lectura cara —o los que se ejecutan **una sola vez y
+sin ningún precedente que copiar**— lo necesitan, y ese segundo caso es el que se olvida: el ritual de
+instalación es **el único que ejecuta un agente que acaba de conocer el marco**.
+
+<!-- Esto decia "todos abren igual" y era FALSO: eran cinco de ocho, y el que faltaba era justo el de
+     instalar. Lo destapo una prueba de campo en la que el agente dejo la instalacion a medias. Un
+     universal se escribe solo y no se comprueba nunca; un criterio dice que esperar en cada caso. -->
 
 **Y por eso esta tabla vive aquí y no con los rituales.** Un disparador que hay que ir a buscar no es un
 disparador. Lo demás sobre ellos —por qué viven aparte, qué es ritual y qué es referencia— está en

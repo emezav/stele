@@ -148,10 +148,11 @@ reconcilia tu instancia) — por eso **tus docs (`base`) nunca pueden vivir dent
    git clone --depth 1 git@github.com:emezav/stele.git /tmp/stele && mkdir -p .stele && cp -r /tmp/stele/. .stele/ && rm -rf .stele/.git
    ```
 
-2. Pide al agente **"bootstrapea la stele"** (ritual BOOTSTRAP, al que enruta `.stele/SKILL.md`): detecta
-   greenfield vs adopción, elige `idioma`/`módulos` y las tres rutas (con defaults), te muestra el
-   layout resuelto, escribe `stele.config.md` en la raíz, instancia las plantillas bajo `base`, y
-   genera las puertas de auto-arranque + el mapa-doc.
+2. **No tienes que pedir nada.** El agente lee `.stele/SKILL.md`, ejecuta el ritual BOOTSTRAP y te lo
+   deja listo: detecta si el proyecto empieza de cero o ya tiene docs, resuelve `idioma`, `módulos` y
+   las tres rutas con defaults sensatos, **te enseña el resultado antes de escribir nada**, escribe
+   `stele.config.md` en la raíz, instancia las plantillas bajo `base` y genera las puertas de
+   auto-arranque + el mapa-doc. Si tu agente se queda a medias, dile que **continúe la instalación**.
 3. Las **puertas** (ruta `loader`) son la activación automática, y **sus nombres los imponen los
    agentes, no el marco**: `CLAUDE.md` para Claude Code, `AGENTS.md` para Codex y la mayoría. Se
    escriben **todas**, para que el proyecto abra con cualquiera de ellos y equivocarse con una no deje

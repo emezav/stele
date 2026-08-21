@@ -4,7 +4,45 @@
 # Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
 **Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
-sobrescribir contenido; solo generar lo que falte). Pasos:
+sobrescribir contenido; solo generar lo que falte).
+
+## Lo mínimo para ejecutarlo
+
+> **Este ritual lo ejecuta un agente que acaba de conocer el marco, una sola vez y sin ningún
+> precedente que copiar.** Por eso el bloque va aquí arriba: en los demás rituales ahorra lectura; en
+> este es lo único que hay.
+
+**Antes de nada: no pares a preguntar.** El usuario pidió instalar; **instalar es el ritual entero, no
+traer el kit.** Lo que se decide aquí tiene defaults, y lo que no los tiene **se declara en el eco**,
+donde el usuario lo ve y lo corrige si quiere. **Un bootstrap que termina pidiendo una frase mágica no
+terminó.**
+
+**Los diez pasos:**
+
+1. **Resolver** `idioma`/`módulos`/`persistencia` y las tres rutas `kit`/`base`/`loader`, con defaults.
+   `persistencia = git` solo si hay `.git` **en la raíz** — uno anidado deja la raíz sin versionar.
+2. **Eco del layout ANTES de escribir nada**, siempre, incluso si no preguntaste nada.
+3. **Validar los invariantes de ruta** (`core/reference/rutas-y-tokens.md` → *Las tres rutas*).
+4. **Resolver nombres** por rol y módulo. Los roles de un módulo inactivo van desactivados, no fuera.
+5. **Escribir `stele.config.md`** en la raíz.
+6. **Instanciar cada plantilla** por rol bajo `base`, resolviendo los tokens.
+7. **Sembrar** `state` y `handover` (`SIN_TRABAJO_ACTIVO`), `index` vacío.
+8. **Generar UNA PUERTA POR CADA NOMBRE de `loader`**, en la raíz. `loader` es una **lista**, no un
+   archivo.
+9. **Validar** (ritual CONFIG, fase 5).
+10. **Confirmar y COMPROBAR**: pídele que reabra el editor y te salude, **y dile de antemano qué verá
+    si falla**. Este paso no afirma un resultado: lo comprueba.
+
+**Las cuatro que se saltan.** Cada una tiene su cadáver en el cuerpo:
+
+| Situación | La regla |
+| --- | --- |
+| Vas a preguntar el módulo de producto | **No se olfatea y tampoco se bloquea:** se resuelve con criterio y **se declara en el eco**. Medido: la instrucción de *preguntar* se ignoró dos veces de dos, porque **preguntar se percibe como un coste** |
+| Vas a escribir una puerta | Se escriben **todas** las de la lista. Una fila nueva entra como **testimonio**, y solo pasa a **corrida** cuando alguien reabre con ese agente y **le saludan sin pedirlo** |
+| Vas a decirle algo al usuario | **En sus palabras, no en las del marco.** `base` es *dónde te dejo los documentos*; `kit`, `loader` y *greenfield* **no se preguntan**: son detalles internos que resuelves tú |
+| Vas a dar el paso 10 por hecho | **El saludo es el único observable que distingue un marco activo de uno apagado**, y quien lo ve primero es la persona: tú ya tienes el contexto y no puedes notar su falta |
+
+**Pasos:**
 
 1. Elegir `idioma`/`módulos`/`persistencia` y las **tres rutas** (`kit`/`base`/`loader`) con
    defaults sensatos. Auto-detectar `persistencia = git` si hay `.git` **en la raíz del proyecto** —
