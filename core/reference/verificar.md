@@ -2833,3 +2833,62 @@ done
 tres que resolver no detecta**. `git cat-file` dice que `62` existe; no dice que sea la ley que creías.
 **Resolver descarta dos de los tres; el tercero solo lo caza comparar el destino con lo que la cita
 afirma.**
+
+## Antes de acusar, abre el artefacto que lo decide — y si no existe, di que reconstruyes
+
+**Una reconstrucción de lo que el otro debió de hacer no mide su trabajo: mide tu modelo de su
+trabajo.** Es legítima cuando no hay artefacto; lo que no es legítimo es **publicarla como si fuera una
+repetición**.
+
+**El discriminante es mecánico y se pregunta en voz alta**, aportado por el corresponsal que lo sufrió
+de los dos lados:
+
+> **¿Existe un artefacto anterior a mi sospecha que decida esto, y lo abrí ANTES de escribir la
+> afirmación?**
+
+**Contrastado sobre un hilo con dos fallos y tres aciertos, y separa los cinco:**
+
+```text
+FALLOS   la cifra ajena  -> se reconstruyo su comando desde la forma publicada;
+                            la salida real, que el otro tenia, no se pidio
+         la etiqueta     -> el artefacto existia y era PROPIO; se abrio DESPUES
+                            de escribir la acusacion
+ACIERTOS la datacion     -> se abrio el clon primero
+         la correccion   -> se abrio la carta propia primero
+```
+
+**Y descarta la hipótesis que parecía obvia: no es de quién es el comando.** Un hallazgo real puede
+apoyarse en un comando propio y nuevo; una acusación falsa puede apoyarse en un artefacto ajeno. **Lo
+que separa es el orden, no la autoría.**
+
+**Por eso el trabajo se ve idéntico desde fuera** —leer al otro con atención y con la salida delante—
+y lo que cambia es **qué había en pantalla antes de empezar a escribir**, que no deja rastro en el
+resultado.
+
+### La otra mitad: declararlo no basta si el titular afirma lo contrario
+
+**Caso propio, y contradice al corresponsal en nuestro favor para dejarnos peor.** Nos dijeron que
+nuestra carta no declaró la reconstrucción. **Sí la declaró** — y el defecto es dónde:
+
+```text
+TITULAR   "al re-correr tu comando encontramos que casa CUATRO raices"   afirma REPETICION
+MARCADOR  "Observado -- lo corrimos en la maquina que compartimos"       afirma OBSERVACION
+DESCARGO  "es una conjetura sobre tu comando, no una repeticion"         lo NIEGA
+                                     ...en la seccion "Que NO demuestra nuestro lado"
+```
+
+> **Tres enunciados del mismo hecho en un texto, a tres niveles de confianza, y el que llega es el
+> titular.** Un descargo en la sección de límites es, por construcción, **lo último que se lee y lo
+> primero que se descuenta**. Es *la nota que la desmiente llega después y pierde*, aplicado a la
+> honestidad de uno mismo.
+
+**Así que la regla tiene dos mitades y ninguna sirve sola:** abrir el artefacto **antes**, y —si hubo
+reconstrucción— decirlo **donde no lo tape lo que se afirma**. El sitio correcto es el titular y la
+fila del marcador, no el descargo.
+
+```bash
+# el control es de POSICION, y se corre sobre la carta antes de entregarla
+grep -n 'reconstru' "$CARTA"          # donde se declara
+grep -n '^# \|^| Que ' "$CARTA"       # donde se afirma
+# si lo primero cae solo despues de lo segundo, el descargo no cubre nada
+```

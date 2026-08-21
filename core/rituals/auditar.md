@@ -318,6 +318,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia*
 - *Lo que solo pide un apunte se pierde cuando llega junto a lo que pide trabajo*
 - *Un identificador no se valida por su forma: se valida resolviéndolo*
+- *Antes de acusar, abre el artefacto que lo decide — y si no existe, di que reconstruyes*
 
 ## Por qué las leyes se citan por título y no por número
 
