@@ -146,7 +146,7 @@ dos se ven igual que un cero. El marcador cuesta una línea por afirmación: **j
 afirmes, si el otro puede comprobarlo.** Lo marcado como no comprobable no gasta sondas, no se lee como
 mentira y **no puede producir una acusación falsa**, que es el fallo caro de este canal.
 
-**Y el marcador tiene un tercer valor, que se descubrió fallando en su primer uso.** Una carta salió
+**Y al marcador le falta un valor, que se descubrió fallando en su primer uso.** Una carta salió
 marcando cuatro cambios como comprobables y con el identificador de la entrega puesto en *pendiente*,
 porque aún no se había publicado. **Un "sí" sin identificador sellado no es un marcador: es una
 promesa** — y desde el otro lado una promesa se comporta **exactamente igual que la afirmación no
@@ -155,9 +155,11 @@ verificable** que el marcador venía a distinguir, porque no se puede separar *"
 mirar, y no da con qué.** El destinatario gastó las sondas igual y su resultado salió no concluyente
 por una razón de calendario.
 
-Así que los valores son tres: **sí** (y el identificador está sellado), **no** (vive donde no viaja), y
-**sí, cuando se selle**. O la carta no sale hasta que se sella, que es la otra salida honesta. Lo que
-no vale es prometer comprobabilidad y salir sin ella.
+Así que hace falta un valor más: **sí, cuando se selle**. O la carta no sale hasta que se sella, que es
+la otra salida honesta. Lo que no vale es prometer comprobabilidad y salir sin ella.
+
+**La lista completa de valores vive en UN solo sitio, la tabla de más abajo** (*Y con un par que
+comparte disco…*). Aquí no se enumera a propósito: este párrafo añade uno, no cierra el conjunto.
 
 **Es la misma forma que el estado en la cabecera, dos secciones más abajo del mismo documento: un dato
 que se sella DESPUÉS, escrito en un artefacto que sale ANTES.** Que reaparezca en el mismo texto que
@@ -209,14 +211,21 @@ Con esa definición el problema se disuelve **sin columna nueva**: un repo públ
 porque lo pusieron a tu alcance **a propósito**; el árbol privado del vecino no lo es aunque lo leas,
 porque compartir disco es **un accidente de colocación, no un acto de publicación**.
 
-**Lo que sí hace falta es un valor más.** El marcador tenía dos —`Sí` y `No, bajo palabra`— y ninguno
-cubre lo que se miró sin que lo dieran:
+**Lo que sí hace falta es un valor más**, y ninguno de los que había cubre lo que se miró sin que lo
+dieran. **Esta tabla es el hogar único del conjunto: si añades un valor, se añade aquí.**
 
 | Valor | Qué dice |
 | --- | --- |
 | **Sí** | lo publicaron o me lo enviaron. Con la condición dentro si depende del lector |
+| **Sí, cuando se selle** | lo será, y aún no: la carta no sale sin el identificador, o lo dice |
 | **No, bajo palabra** | no lo tengo, y no puedo dárselo a nadie |
 | **Observado** | **lo miré yo, sin que me lo dieran** — y digo qué miré |
+
+> **Aquí decía «el marcador tenía dos», y eran tres:** el tercero —*sí, cuando se selle*— estaba
+> sesenta líneas más arriba, en este mismo fichero, con su propio *"así que los valores son tres"*.
+> **Dos enumeraciones cerradas del mismo conjunto, las dos diciendo «tres», y ninguna igual a la
+> otra.** Lo cazó una auditoría, no una relectura. **Por eso el conjunto tiene ahora un hogar y los
+> demás párrafos añaden sin cerrar.**
 
 **Su virtud es mecánica y por eso funciona: la fila no se puede rellenar sin declarar la acción.** Un
 deber de avisar que depende de acordarse no se cumple; uno que hay que teclear para completar la tabla,

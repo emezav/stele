@@ -1116,6 +1116,28 @@ controles en 2 y en 0. **Y una medida equivalente con clave parcial** —las úl
 título en vez del título entero— **da 49,1%**: la diferencia entre las dos cifras **es el ancho de la
 clave**, no el corpus. Las dos coinciden en lo único que importa aquí, que es la **dirección**.
 
+> **CORRECCIÓN de la auditoría siguiente, y toca al instrumento, no a la cifra.** Con clave de título
+> **entero**, el detector mide la **longitud del título**, no el uso. Medido sobre 72 leyes:
+>
+> ```text
+> 0 citas : 40 leyes, titulo medio 74 caracteres
+> 1 cita  : 24 leyes, titulo medio 69
+> 2+      :  8 leyes, titulo medio 46      <- gradiente monotono
+> ```
+>
+> **La misma ley da 0 con su título entero y 1 con su mitad**, porque las actas citan **recortando y en
+> minúscula**. Y hay una vía entera que el detector no ve: **la cita por número** —34 menciones sobre 10
+> leyes— que no contiene ni una palabra del título.
+>
+> **Por eso la clave es PARCIAL y el conteo suma las dos vías.** Con el instrumento corregido, hoy:
+> `0: 32 · 1: 29 · 2+: 11 · fracción 40,3%`. **Los puntos anteriores de la serie se midieron con clave
+> entera, así que no son comparables con este**: la serie empieza aquí.
+
+**Y el control positivo tiene que ser el caso DIFÍCIL, que aquí es el título más largo.** El publicado
+—*"una regla que sepas citada en dos actas"*— pasa con cualquier regla de título corto **y por eso no
+detectó nada durante dos corridas**. Un control positivo elegido por comodidad certifica el detector
+sobre el caso que no falla.
+
 **La fracción que importa es la del medio, y no la de cero citas** — las de cero están contaminadas por
 las recién escritas, que no han tenido tiempo. **Una regla citada exactamente una vez, el día que se
 escribió, es una regla que su autor no ha vuelto a necesitar.** No caducó, no se duplicó, no falló:
@@ -2454,10 +2476,17 @@ ruta.**
 el mismo día en la misma máquina:
 
 ```text
+2026-08-19 08:25 -0500
 find /tmp/claude/*stele* -type f -> 0, 0, 0 y 3, una por raiz -- NUNCA una cifra
+2026-08-21 08:35 -0500
+                                 -> 0, 0, 0 y 4      <- dos dias despues
 ```
 
 **Tres de los cuatro conteos son de directorios cuyo dueño ninguna de las dos partes sabe.**
+
+> **El instante va porque esta cifra ya caducó, y lo destapó la auditoría siguiente.** Se publicó sin
+> él —en el fichero cuya ley siguiente es *una cifra necesita su INSTANTE*— y dos días después el
+> cuarto conteo era otro. **La ley de al lado se incumplió en el caso de esta.**
 
 > **CORRECCIÓN, y es la parte que hay que leer.** Este caso se publicó primero con un argumento
 > equivocado: se comparó `find /tmp/claude` (304, las 51 raíces) contra el glob (3) y se llamó a eso
@@ -2548,10 +2577,16 @@ grep -n '^## Lo mínimo para ejecutarlo' "$RITUAL"
 ```
 
 **Es un CRIBADOR, no un veredicto, y lo dice su primera corrida.** Sobre los ocho rituales de este kit
-señaló dos: el de este caso, y un *"dónde cae por defecto lo que aún no tiene hogar"* que es prosa
-sobre datos huérfanos y no decide nada. **La cadena `por defecto` no distingue un valor por defecto de
-la locución**, así que cada acierto se lee. Lo que reduce el trabajo a nada es el filtro de la percha:
+señala **uno**: un *"dónde cae por defecto lo que aún no tiene hogar"* que es prosa sobre datos
+huérfanos y no decide nada. **La cadena `por defecto` no distingue un valor por defecto de la
+locución**, así que cada acierto se lee. Lo que reduce el trabajo a nada es el filtro de la percha:
 solo sube lo que decide algo **irreversible o hacia fuera**.
+
+> **Aquí decía «señaló dos», y es una corrección que vale más que el número.** El segundo acierto era
+> *el caso de esta ley* — y al correr el cribador **el arreglo ya estaba aplicado**, así que no salía.
+> Se escribió lo que el detector **habría** marcado antes del arreglo que el mismo commit hacía, y se
+> presentó como *su primera corrida*. **Un detector corrido después del arreglo no puede reportar el
+> defecto que el arreglo quitó**, y el número que sí devolvió estaba en pantalla.
 
 **Percha:** todo defecto que decida algo **irreversible o hacia fuera** —publicar, enviar, borrar—
 sube a `Lo mínimo para ejecutarlo` **como pregunta**, no como afirmación. Y se le hace al usuario: lo
@@ -2596,7 +2631,7 @@ git log --format='%h %s' --numstat | awk '/^[0-9a-f]{7} /{h=$0; next} /^[0-9]+\t
 > la misma serie mientras no se haga esa resta.
 
 **Corrido sobre otro corpus, el detector de arriba da falsos positivos, y su causa importa.** Sobre un
-repo de documentación marcó **15 de 175 commits (9%)** — y los tres primeros son **una auditoría, otra
+repo de documentación marcó **15 de 175 commits (9%), sellado en `4e5cbbf`** — y los tres primeros son **una auditoría, otra
 auditoría y el commit inicial**. Una auditoría toca muchos ficheros **y es atención pura**: es lo
 contrario de un barrido.
 
