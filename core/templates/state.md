@@ -1,6 +1,13 @@
 # Estado actual
 
 > Última sesión: Sesión `N` (`YYYY-MM-DD`) — ver su archivo en `{{history_dir}}`
+> <!-- RECIÉN INSTALADO, y esta es la forma que hay que usar hasta el primer cierre:
+>      "Última sesión: **ninguna cerrada todavía** — el marco se instaló el `YYYY-MM-DD`
+>      y la primera acta se escribirá al cerrar esta."
+>      La línea de arriba describe el ESTADO PERMANENTE; esta, el arranque. Todo bootstrap
+>      nace aquí y ninguna plantilla lo decía: dos agentes de campo lo resolvieron bien
+>      improvisando, que es como un hueco se queda abierto. Al cerrar la primera sesión,
+>      esta nota se borra. -->
 > Índice completo de sesiones: [{{index}}](./{{index}})
 > Protocolo de documentación: [{{protocol}}](../{{protocol}})
 

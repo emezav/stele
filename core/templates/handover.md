@@ -9,6 +9,11 @@ SIN_TRABAJO_ACTIVO
 Sesión `N` (`YYYY-MM-DD`) — título. Ver el archivo de esa sesión en `{{history_dir}}`.
 No hay trabajo a medias.
 
+<!-- RECIÉN INSTALADO: aquí no va una sesión inventada. La forma es
+     "**Ninguna.** El marco se instaló el `YYYY-MM-DD` y todavía no se ha cerrado ninguna
+     sesión, así que no hay acta que citar en `{{history_dir}}`. No hay trabajo a medias."
+     Se sustituye por la forma normal al cerrar la primera. -->
+
 ## Lo que espera al usuario
 
 <!-- Lo que NADIE puede hacer salvo el usuario: entregar algo, decidir algo, aprobar algo.

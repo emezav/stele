@@ -26,20 +26,23 @@ terminó.**
 4. **Resolver nombres** por rol y módulo. Los roles de un módulo inactivo van desactivados, no fuera.
 5. **Escribir `stele.config.md`** en la raíz.
 6. **Instanciar cada plantilla** por rol bajo `base`, resolviendo los tokens.
-7. **Sembrar** `state` y `handover` (`SIN_TRABAJO_ACTIVO`), `index` vacío.
+7. **Sembrar** `state` y `handover` (`SIN_TRABAJO_ACTIVO`), `index` vacío — **con la FORMA VACÍA que
+    traen las dos plantillas**, no con una sesión inventada. *Ninguna cerrada todavía* es el estado
+    real de todo proyecto recién instalado, y es el único que ninguna plantilla decía.
 8. **Generar UNA PUERTA POR CADA NOMBRE de `loader`**, en la raíz. `loader` es una **lista**, no un
    archivo.
 9. **Validar** (ritual CONFIG, fase 5).
 10. **Confirmar y COMPROBAR**: pídele que reabra el editor y te salude, **y dile de antemano qué verá
     si falla**. Este paso no afirma un resultado: lo comprueba.
 
-**Las cuatro que se saltan.** Cada una tiene su cadáver en el cuerpo:
+**Las cinco que se saltan.** Cada una tiene su cadáver en el cuerpo:
 
 | Situación | La regla |
 | --- | --- |
 | Vas a preguntar el módulo de producto | **No se olfatea y tampoco se bloquea:** se resuelve con criterio y **se declara en el eco**. Medido: la instrucción de *preguntar* se ignoró dos veces de dos, porque **preguntar se percibe como un coste** |
 | Vas a escribir una puerta | Se escriben **todas** las de la lista. Una fila nueva entra como **testimonio**, y solo pasa a **corrida** cuando alguien reabre con ese agente y **le saludan sin pedirlo** |
 | Vas a decirle algo al usuario | **En sus palabras, no en las del marco.** `base` es *dónde te dejo los documentos*; `kit`, `loader` y *greenfield* **no se preguntan**: son detalles internos que resuelves tú |
+| Vas a sembrar `state` y `handover` | **No inventes una sesión anterior.** Usa la forma vacía de la plantilla: *ninguna cerrada todavía*. Es el estado en que nace **todo** bootstrap, y estuvo sin escribir hasta que dos agentes de campo lo improvisaron bien — que es como un hueco se queda abierto |
 | Vas a dar el paso 10 por hecho | **El saludo es el único observable que distingue un marco activo de uno apagado**, y quien lo ve primero es la persona: tú ya tienes el contexto y no puedes notar su falta |
 
 **Pasos:**
