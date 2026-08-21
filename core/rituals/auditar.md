@@ -205,6 +205,10 @@ respuesta a la segunda es *nadie*, no hace falta comprobar ninguna: ya se sabe e
 auditar; allí, las leyes que gobiernan cualquier comprobación. **La lista va entera a propósito: un
 título que se muda deja de ser encontrable por barrido desde donde estaba.**
 
+> **Y las leyes NO tienen número: se citan por su título.** Es la clave de la biyección de abajo, y es
+> lo único que resuelve contra el fichero. Un número no lo hace, y el intento salió caro — abajo está el
+> caso, con la tabla de lo que llegó a publicarse con él.
+
 > **Esta lista es una COPIA y se desincroniza — mantenerla es parte de añadir una ley.** Al escribir una
 > nueva en `verificar.md`, su título entra aquí en el mismo cambio. **Se descuadró en la primera ley que
 > se añadió tras crearla**, que es lo que hay que esperar de cualquier copia mantenida a mano.
@@ -296,6 +300,68 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una confesión que enumera sus instancias por número omite justo la que sobrevive*
 - *Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia*
 - *Lo que solo pide un apunte se pierde cuando llega junto a lo que pide trabajo*
+
+## Por qué las leyes se citan por título y no por número
+
+**Se intentó numerarlas y el número no resolvía contra nada.** Es un caso propio, lo destapó una
+auditoría, y el remedio es no tener número: **el título ya es un identificador**, es la clave con la que
+se comprueba la biyección, y no depende de dónde caiga la ley en el fichero.
+
+**Qué pasó, medido:** las actas y las cartas llamaban *ley 62* a una ley que estaba en la **posición
+45**. De las catorce citadas por número hacia fuera, **las de la 57 a la 63 apuntaban todas a otra**:
+
+```text
+ley 57 -> posicion 28      ley 61 -> posicion 33
+ley 58 -> posicion 12      ley 62 -> posicion 45
+ley 59 -> posicion 11      ley 63 -> posicion 14
+ley 60 -> posicion 13      ley 64 en adelante -> coinciden
+```
+
+> **Y el corte en la 64 explica la trampa entera: el número NUNCA fue posicional — se volvió posicional
+> por accidente**, cuando las últimas leyes se empezaron a añadir al final en vez de intercalarse. Un
+> identificador que coincide con la posición **durante un tramo** es peor que uno que no coincide nunca:
+> el tramo bueno enseña a confiar en él.
+
+**Tres cosas más que hay que saber antes de intentarlo otra vez:**
+
+- **El número no estaba definido en ninguna parte.** Se usaba en prosa y no lo anclaba nada — ni el
+  fichero, ni el índice, ni una tabla.
+- **El índice de esta sección iba en un tercer orden**, distinto del fichero y del número.
+- **Reconstruir el orden de nacimiento desde el control de versiones no funciona** si algún título se
+  ha renombrado: cada renombre añade un título histórico que **desplaza todo lo posterior**. En el caso
+  medido, 72 leyes vivas habían producido **74** títulos.
+
+### Tabla de equivalencia: los números que llegaron a publicarse
+
+**Existe porque lo publicado no se reescribe.** Catorce números salieron en 54 menciones de cartas
+entregadas y en mensajes de commit que ya están en el remoto; **un tercero que vaya a resolverlos
+necesita esto**. No se amplía: nada nuevo entra con número.
+
+| Se publicó como | La ley es |
+| --- | --- |
+| ley 57 | *La cola de citas: un cuerpo de reglas no se satura de golpe, y su síntoma no es el que se sospecha* |
+| ley 58 | *Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan sin la edad* |
+| ley 59 | *Un comando publicado tiene tantas sintaxis como lenguajes anida* |
+| ley 60 | *Una comprobación puede CADUCAR sin fallar, y ningún control lo cubre* |
+| ley 61 | *Un instrumento que data el TEXTO no data un defecto que no cambió el texto* |
+| ley 62 | *Un detector roto sale caro cuando su salida es PLAUSIBLE, y ahí es donde hace falta el control* |
+| ley 63 | *Antes de borrar un temporal: ¿lo que voy a borrar existe en otra parte?* |
+| ley 64 | *Un patrón de ruta es un criterio de pertenencia disfrazado de ubicación* |
+| ley 65 | *Una cifra necesita su INSTANTE, no solo su instrumento* |
+| ley 67 | *Un barrido mecánico gasta la ocasión sin producir atención, y blanquea la edad del fichero* |
+| ley 68 | *Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe* |
+| ley 69 | *Una declaración estrecha se lee como completa, y por eso engaña más que una omisión* |
+| ley 70 | *Una confesión que enumera sus instancias por número omite justo la que sobrevive* |
+| ley 71 | *Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia* |
+
+**Cómo se construyó, que es lo que la hace comprobable:** cada fila sale del **mensaje del commit que
+anunció la ley**, no de su posición de hoy. Los mensajes son inmutables y públicos, así que la tabla se
+puede rehacer entera desde fuera.
+
+**Y una corrección al conteo que la motivó:** la auditoría dijo *15 leyes en 66 menciones*. Al separar
+lo propio de lo ajeno —el corresponsal también numera las suyas, y sus *"su ley NN"* entraban en el
+barrido— quedan **14 leyes en 54 menciones** de cartas salientes. **Un barrido de identificadores no
+distingue de quién es el identificador**, y esa es la clase completa del defecto.
 
 ## Al escribir una ley: di si trae comando, o di que no puede traerlo
 
