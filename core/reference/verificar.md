@@ -2797,3 +2797,39 @@ grep -cE '^\|.*<estado abierto>' "$REGISTRO"
 estados tiene uno que significa *a medias*. Los controles de forma —columnas, ancla, no-ASCII—
 comprueban **lo que sí se escribió**; ninguno ve **la fila que debía moverse y no se movió**. Es la
 única comprobación del cierre que mira hacia lo que falta.
+
+## Un identificador no se valida por su forma: se valida resolviéndolo
+
+**La forma de un identificador es lo único que un barrido puede ver, y es justo lo que no lo
+identifica.** Un patrón encuentra cosas con la pinta correcta; que **apunten a algo**, y a lo que dicen
+apuntar, es otra pregunta y hay que hacerla aparte.
+
+**Tres casos propios, y los tres pasaban el barrido:**
+
+```text
+"ley 62"    forma correcta -> apuntaba a OTRA ley (la 62 estaba en la posicion 45)
+"acababa"   forma correcta -> no es un hash: siete letras que son digitos hex
+26 sellos   forma correcta -> son AJENOS, y resolverlos en el repo propio no dice nada
+```
+
+**El del medio es el que mejor enseña la clase**, porque no hay malicia ni deriva: `[0-9a-f]{7}` casa
+una palabra castellana corriente, y un barrido de hashes sobre prosa española la cuenta como
+identificador. **Un identificador de forma libre no tiene forma propia.**
+
+```bash
+# no cuentes los que casan: RESUELVE cada uno, y di que hiciste con los que no
+for h in $(grep -hoE '\b[0-9a-f]{7}\b' "$CORPUS" | sort -u); do
+  git cat-file -t "$h" >/dev/null 2>&1 || echo "$h no resuelve"
+done
+# y de los que no resuelven, separa AJENO de ROTO antes de llamarlo hallazgo
+```
+
+> **De los tres desenlaces posibles —resuelve, es de otro, no existe— el barrido no distingue
+> ninguno.** Por eso un conteo de identificadores es una cota superior de identificadores, y **un
+> conteo de los que fallan es siempre una cota superior de fallos**: lleva dentro los ajenos y los
+> falsos positivos léxicos.
+
+**Y la vuelta que lo hace accionable:** el caso caro —el que apunta a otra cosa— **es el único de los
+tres que resolver no detecta**. `git cat-file` dice que `62` existe; no dice que sea la ley que creías.
+**Resolver descarta dos de los tres; el tercero solo lo caza comparar el destino con lo que la cita
+afirma.**

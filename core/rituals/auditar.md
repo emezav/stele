@@ -300,6 +300,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una confesión que enumera sus instancias por número omite justo la que sobrevive*
 - *Un comando ejecutable recupera su corpus perdido, pero solo hasta una clase de equivalencia*
 - *Lo que solo pide un apunte se pierde cuando llega junto a lo que pide trabajo*
+- *Un identificador no se valida por su forma: se valida resolviéndolo*
 
 ## Por qué las leyes se citan por título y no por número
 

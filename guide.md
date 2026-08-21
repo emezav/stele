@@ -400,7 +400,7 @@ de entradas. **Un presupuesto que solo mira las partes certifica un total que na
 ### Y el kit también tiene presupuesto, porque también se carga
 
 Los topes de arriba acotan lo que **tú** escribes. Faltaba el del kit, y su ausencia costó cara: los
-nueve rituales vivían en `SKILL.md`, que creció de forma monótona —de veinticinco cambios seguidos,
+ocho rituales vivían en `SKILL.md`, que creció de forma monótona —de veinticinco cambios seguidos,
 **ninguno** lo redujo— hasta **1845 líneas / 36 242 tokens** (medido en `27a41bd`), mientras el ritual usado *cada* sesión
 ocupaba 12 líneas y el usado *cada diez* ocupaba 615. **La masa era inversamente proporcional a la
 frecuencia de uso**, que es la forma exacta de romper *coste de tokens acotado* sin que ningún cambio
