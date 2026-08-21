@@ -58,6 +58,23 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
    y reventar al correrlo. **Si el entorno no puede ejecutar, se dice en la fila** — un paso que no se
    pudo dar no es un paso limpio.
 
+   **Y el resultado se publica con su DENOMINADOR: cuántos bloques había, no cuántos pasaron.** Sin él,
+   *"17 en verde"* y *"no encontré ninguno"* se escriben igual, y el segundo es un fallo de extracción
+   disfrazado de éxito. **Cuenta el corpus ANTES de recorrerlo**, y si sale cero, eso no es un verde ni
+   un rojo: es **nada que comprobar**, y se dice así.
+
+   ```bash
+   N=$(ls "$DIR"/bloque_*.sh 2>/dev/null | wc -l)
+   [ "$N" -eq 0 ] && echo "NADA QUE COMPROBAR: la extraccion no produjo bloques" && exit
+   echo "bloques a comprobar: $N"
+   ```
+
+   **Caso propio y en el mismo turno que se escribió esto:** un `for b in <glob>` sobre cero
+   coincidencias **no itera cero veces — itera una, con el patrón literal**, así que `bash -n` falló
+   sobre un fichero inexistente y el harness reportó *"0 ok, 1 fallos"*. Sonaba a bloque roto y
+   significaba *no hay bloques*. Es la hermana de *un comando que aborta detrás de una tubería es un
+   cero*, por el otro lado.
+
 **Las siete que se saltan.** Cada una tiene su cadáver abajo:
 
 | Situación | La regla |
@@ -673,10 +690,10 @@ grep -rniE "en realidad|result(o|ó)|falso negativo|falso positivo|no funciona|d
 grep -rniE "sesi(o|ó)n [0-9]+" {base} --include="*.md"
 
 # clase 4 — secciones reales del detalle, para contrastar con su índice
-grep -n "^## " <doc de detalle>
+grep -n "^## " "$DOC_DE_DETALLE"
 
 # clase 8 — tamaño contra presupuesto
-wc -l <docs vivos>
+wc -l $DOCS_VIVOS
 
 # clase 1 — afirmaciones sobre el mundo, para comprobarlas FUERA de los docs (opt-in, ver abajo)
 grep -rhoE "(/[a-zA-Z0-9._-]+){2,}" {base} --include="*.md" | sort -u   # rutas
@@ -704,7 +721,7 @@ grep -rniE "\b(el|la|los|las)( [a-zá-úñ]+)? m(a|á)s [a-zá-úñ]+ (de|del) "
 # clase 1 — el reverso del contador: PUNTEROS AUSENTES. Al quitar el número, la forma
 # correcta y la forma del fallo son IDÉNTICAS ("las clases de drift" está bien si la lista
 # es alcanzable desde ahí, y mal si no), así que ningún barrido de números lo ve. Dos pasos:
-grep -rn "<frase que nombra una lista que vive en otro fichero>" {base} --include="*.md"
+grep -rn "$FRASE_QUE_NOMBRA_UNA_LISTA_DE_OTRO_FICHERO" {base} --include="*.md"
 #   ...y para cada acierto, mirar si SU PÁRRAFO lleva la ruta al fichero que la tiene.
 # Más ruidoso que los demás y en otra forma: sus falsos positivos son CITAS de la regla y
 # ejemplos, no referencias. Se revisan uno a uno. Corre solo sobre el alcance de arriba.
