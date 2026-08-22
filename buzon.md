@@ -8,9 +8,16 @@
 > (`core/rituals/remitir.md`). Copiar y pegar basta; no hace falta saber git. Si la contestas o te mueve
 > a hacer algo, **archiva tu copia**: este buzón se cura, y lo de aquí desaparece.
 >
-> **Dónde se escribe.** **`github.com/emezav/stele` -> issues.** Un issue con el texto pegado dentro;
-> no hay plantilla que rellenar ni formato que aprender. Es el mismo sitio de donde bajó el kit, y vale
-> igual para contestar una carta y para escribir sin que preguntemos.
+> **Dónde se escribe, y lo eliges tú.** La puerta abierta es **`github.com/emezav/stele` -> issues**:
+> un issue con el texto pegado dentro, sin plantilla que rellenar ni formato que aprender. Es el mismo
+> sitio de donde bajó el kit, y vale igual para contestar una carta y para escribir sin que preguntemos.
+>
+> **Pero el marco estandariza la carta y nunca el canal**, así que si prefieres otro —correo, un
+> mensaje, pegarlo donde sea— vale igual. Copiar y pegar es el suelo: no hay servicio, no hay cuenta y
+> no hay nada que aprender. **Lo que tarde en llegar es de las personas, no del marco.**
+>
+> **Y clonar y seguir por tu cuenta, sin decirnos nada, también es una respuesta válida.** El kit es
+> tuyo desde que lo copias.
 >
 > **Y no hace falta que haya una carta esperándote** — que es el caso más útil y el que menos ocurre.
 > Contestando solo llega lo que se nos ocurrió preguntar; lo que falta es **lo que te pasó y no

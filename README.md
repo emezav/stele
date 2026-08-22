@@ -117,7 +117,8 @@ marco, no para montarlo.
 - **`buzon.md`** — correspondencia de stele hacia quien usa el marco. **Baja sola** con cada
   actualización (no hay servicio ni cuenta: el kit se copia, y las cartas viajan con él). Contiene
   preguntas que solo pueden responder proyectos reales. Se contesta con el ritual REMITIR, y
-  **el canal de vuelta son los issues de este mismo repo** — copiar y pegar basta.
+  **el canal de vuelta lo eliges tú**: un issue de este repo, o por donde te sirva. El marco
+  estandariza la carta y nunca el canal — copiar y pegar basta.
 
 **Y no hace falta esperar a que preguntemos.** Si adoptas el marco y algo te falla —una trampa de tu
 máquina, una regla que seguiste y aun así te mordió, una de nuestras cifras que no te cuadra al
@@ -199,7 +200,16 @@ decía**, y las veces que un instrumento falló, **el instrumento era nuestro**.
 
 Así que trátalo como lo que es: **una marca dejada para quien venga después.** Síguela si te sirve,
 **adáptala** si tu proyecto pide otra cosa, y deja la tuya. Lo que te agradecemos de vuelta no son
-elogios: es **el caso que te mordió** — está en `buzon.md`, y el canal son los issues de este repo.
+elogios: es **el caso que te mordió**. Qué es útil mandar está en `buzon.md`.
+
+**Hay tres formas de que esto siga y las tres valen.** Un **issue** en este repo, que es la puerta si
+no nos conoces de nada. Una **correspondencia** por donde te sirva —pegada a mano, por correo, como
+sea—: el marco **estandariza la carta y nunca el canal**, así que copiar y pegar basta y no hay que
+aprender nada ni darse de alta en nada. O **clonar y seguir por tu cuenta**, sin decirnos nada: el kit
+es tuyo desde que lo copias.
+
+**De dónde ha salido lo que hay aquí: 185 cartas y ningún issue.** Eso dice de dónde vino, no de dónde
+vendrá. **Cuál funciona mejor no lo sabemos**, y lo diremos cuando haya con qué compararlo.
 
 ## Cómo se corrigieron las cifras de arriba
 
