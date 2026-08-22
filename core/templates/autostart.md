@@ -1,4 +1,4 @@
-# Auto-arranque de la stele ({{loader}})
+# Auto-arranque de stele ({{loader}})
 
 <!-- PLANTILLA de PUERTA. Bootstrap/`config` la resuelven a nombres concretos.
 
