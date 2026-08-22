@@ -559,3 +559,16 @@ done
 **Y el margen no es opinión: se mide contra el instanciado real**, no contra la plantilla. Un `entry`
 instanciado en campo pesó **222** donde la plantilla pesa 206 — el proyecto añade lo suyo, y el tope
 tiene que caber los dos.
+
+**Con una excepción que el comando de arriba no sabe, y que hay que mirar a mano: las plantillas que
+llevan FORMAS ALTERNATIVAS.** La del `handover` trae las dos —`SIN_TRABAJO_ACTIVO` y el bloque
+comentado de `EN_PROGRESO`— y **una instancia nunca lleva las dos a la vez**. Su recuento como fichero
+es un **superconjunto**, así que comparado con el tope da un falso positivo o un margen falso, según
+por dónde caiga.
+
+> **Un detector de tamaño no sabe que un documento puede tener modos.** Donde los haya, el número que
+> vale es **el de la forma más pesada**, no el del fichero: 82 líneas de plantilla producen instancias
+> de 66 y 67 en campo.
+
+**La regla sigue siendo la misma** —una plantilla no puede hacer imposible su tope— pero la medida es
+la forma que se instancia, no la suma de todas.

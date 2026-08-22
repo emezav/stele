@@ -198,7 +198,7 @@
 | entry | 250 |
 | gotchas | 400 |
 | state | 100 |
-| handover | 150 |
+| handover | 90 |
 | SKILL.md (enrutador del kit) | 400 |
 
 <!-- POR QUE ESTOS NUMEROS, para que nadie los baje "por higiene" dentro de seis meses.
@@ -214,13 +214,18 @@
      LOS DOS MARGENES SON DE DISTINTA CLASE Y CONVIENE SABERLO:
        entry 250    ~1,1x el instanciado real medido en campo (222). Es holgura AJUSTADA:
                     puede dispararse, y cuando lo haga significara algo.
-       handover 150 ~2,2x el maximo observado nunca (66, 67, 74). Es holgura DELIBERADA, no
-                    una medicion: se eligio errar por alto porque un aviso que no llega cuesta
-                    menos que un documento que nace en rojo. Como contrapartida, es un tope que
-                    probablemente NO se dispare, y un numero que no puede fallar informa poco.
+       handover 90   cabe la plantilla (74) con margen y NADA MAS. Se subio solo lo necesario
+                    para que deje de nacer en rojo, no lo que haria falta para un salto grande.
 
-     Si algun dia un handover real se acerca a 150, ese numero vuelve a tener sentido y conviene
-     mirarlo. Hasta entonces, es una red y no una medida. -->
+     PORQUE 90 Y NO MAS, y esto ya estaba decidido antes: subir el tope cada vez que alguien lo
+     excede lo convierte en decoracion y la senal se pierde. Un handover que no cabe casi nunca
+     significa que hace falta mas sitio -- significa que lleva VARIOS FRENTES en un documento
+     disenado para UNO.
+
+     LO QUE NO CABE SE APUNTA, NO SE ENGORDA. El detalle va a un artefacto y en el handover queda
+     el puntero. El criterio no es cuanto cabe: es QUIEN LO PAGA. Este documento se lee en CADA
+     sesion, tambien cuando no hay trabajo a medias; el artefacto lo paga solo quien retome ese
+     salto. -->
 
 > **Las cuatro primeras filas son el set de arranque, y en ese orden lo importa la puerta: su suma es
 > el precio de cada sesión, y es el único sitio donde podar abarata algo.** De esas cuatro, `state` y

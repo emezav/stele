@@ -246,6 +246,17 @@ manifiesto ya declara otro y los comandos de cierre apuntan a donde no hay nada.
 puede salir mal en lo que estás a punto de hacer. No es adorno, es el sitio donde una advertencia
 llega a tiempo.
 
+**Si el salto no cabe en el presupuesto, se APUNTA — no se engorda el documento.** El detalle va a un
+artefacto (`{artifacts_dir}sesion-{NNN}/`, que es su hogar: *un volcado intermedio*) y en el `handover`
+queda el puntero más las tres líneas que hacen falta para no romper nada al retomar.
+
+> **El criterio no es cuánto cabe: es quién lo paga.** El `handover` se lee en **cada** sesión, también
+> cuando no hay trabajo a medias — lo que metas ahí lo paga cada arranque, para siempre; lo que pongas
+> en el artefacto lo paga **solo quien retome ese salto**.
+
+**Y un `handover` que no cabe casi nunca pide más sitio: pide darse cuenta de que lleva varios saltos
+en un documento diseñado para uno.**
+
 **El sello es la cuarta pieza y la más barata: el `HEAD` al abrir el checkpoint, con la instrucción de
 compararlo.** Este doc se escribe *antes* de la primera edición y no se vuelve a tocar hasta el cierre,
 así que es **el único del set de arranque que puede estar caducado** — y un checkpoint caducado no falla:

@@ -51,6 +51,14 @@ Objetivo en una frase + decisiones ya tomadas que el siguiente agente debe respe
 - Es el sitio donde una advertencia llega a tiempo: un doc que se lee al arrancar informa; esto
   detiene. (Ver `{{kit}}/SKILL.md` → la regla dura del checkpoint.)
 
+<!-- SI EL SALTO NO CABE, SE APUNTA -- NO SE ENGORDA ESTE DOCUMENTO. El detalle va a
+     `{{artifacts_dir}}sesion-NNN/checkpoint.md` y aqui queda el puntero mas las tres lineas que
+     hacen falta para no romper nada al retomar.
+     EL CRITERIO NO ES CUANTO CABE: ES QUIEN LO PAGA. Esto se lee en CADA sesion, tambien cuando no
+     hay trabajo a medias; el artefacto lo paga solo quien retome el salto. Y un handover que no
+     cabe casi nunca pide mas sitio: pide ver que lleva VARIOS saltos en un doc disenado para UNO.
+     El porque entero, en {{kit}}/SKILL.md -> regla dura del checkpoint. -->
+
 ## Estado intermedio
 - **Tampoco aquí se copia un estado que vive en otro documento.** Su hogar lo dice y este apunta:
   *"hay una carta sin entregar — mírala en su índice"*, no *"la carta N está publicada"*. Un
