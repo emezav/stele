@@ -195,11 +195,32 @@
 
 | Doc (rol) | Máx. líneas |
 | --- | --- |
-| entry | 200 |
+| entry | 250 |
 | gotchas | 400 |
 | state | 100 |
-| handover | 50 |
+| handover | 150 |
 | SKILL.md (enrutador del kit) | 400 |
+
+<!-- POR QUE ESTOS NUMEROS, para que nadie los baje "por higiene" dentro de seis meses.
+
+     entry 250 y handover 150 salieron de un defecto de campo: LAS PLANTILLAS DE ESTE KIT NACIAN
+     POR ENCIMA DE SU PROPIO TOPE --206 contra 200, y 74 contra 50--, asi que todo adoptante
+     empezaba en rojo sin haber escrito una linea. Lo encontro el agente de un adoptante, que ademas
+     lo diagnostico bien: "lo que sobra es prosa del marco y no contenido tuyo".
+
+     Un tope que la plantilla incumple al nacer no es un tope: es un deseo, y no habia sido cumplido
+     ni una sola vez por nadie.
+
+     LOS DOS MARGENES SON DE DISTINTA CLASE Y CONVIENE SABERLO:
+       entry 250    ~1,1x el instanciado real medido en campo (222). Es holgura AJUSTADA:
+                    puede dispararse, y cuando lo haga significara algo.
+       handover 150 ~2,2x el maximo observado nunca (66, 67, 74). Es holgura DELIBERADA, no
+                    una medicion: se eligio errar por alto porque un aviso que no llega cuesta
+                    menos que un documento que nace en rojo. Como contrapartida, es un tope que
+                    probablemente NO se dispare, y un numero que no puede fallar informa poco.
+
+     Si algun dia un handover real se acerca a 150, ese numero vuelve a tener sentido y conviene
+     mirarlo. Hasta entonces, es una red y no una medida. -->
 
 > **Las cuatro primeras filas son el set de arranque, y en ese orden lo importa la puerta: su suma es
 > el precio de cada sesión, y es el único sitio donde podar abarata algo.** De esas cuatro, `state` y

@@ -535,3 +535,27 @@ formato cuando haya dudas.
 - Buscar en archivo grande → `grep -n` + lectura por rango.
 - Si vas a EDITAR, léelo con el tool `Read` (no `cat`/`sed`) o el `Edit` se bloquea.
 - Volumen mecánico grande → delegar a un subagente.
+
+## Ninguna plantilla puede nacer por encima de su propio tope
+
+**Un tope que la plantilla incumple al instanciarse no es un tope: es un deseo**, y el adoptante
+empieza en rojo sin haber escrito una línea suya. Nadie lo había corrido nunca — lo encontró el agente
+de un adoptante, en un bootstrap real, y su diagnóstico fue el correcto: *lo que sobra es prosa del
+marco y no contenido tuyo*.
+
+```bash
+# cada plantilla de un rol con presupuesto, contra el tope que el manifiesto declara
+sed -n '/^## Presupuestos/,/^## [^P]/p' "$MANIFIESTO" | grep -E '^\| [a-z_]+ \|' |
+while IFS='|' read -r _ rol tope _; do
+  rol=$(echo "$rol" | tr -d ' '); tope=$(echo "$tope" | tr -dc 0-9)
+  f="$KIT/core/templates/$rol.md"; [ -f "$f" ] || continue
+  n=$(wc -l < "$f")
+  [ "$n" -le "$tope" ] && printf '  %-10s %4s / %-4s OK\n' "$rol" "$n" "$tope" \
+                       || printf '  %-10s %4s / %-4s NACE PASADA por %s\n' "$rol" "$n" "$tope" "$((n-tope))"
+done
+# CONTROL POSITIVO: baja un tope a 1 y comprueba que esa fila sale NACE PASADA
+```
+
+**Y el margen no es opinión: se mide contra el instanciado real**, no contra la plantilla. Un `entry`
+instanciado en campo pesó **222** donde la plantilla pesa 206 — el proyecto añade lo suyo, y el tope
+tiene que caber los dos.
