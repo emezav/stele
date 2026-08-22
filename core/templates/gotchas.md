@@ -63,3 +63,23 @@
 
 - Reglas no negociables del proyecto: nunca escribir secretos en un doc, qué no sale de aquí, qué
   hace falta validar antes de confiar en un dato externo.
+
+<!-- ARRANCA VACÍO Y ESO ESTÁ BIEN, y esta nota existe porque no estaba escrito.
+
+     Un proyecto recién instalado **no tiene trampas**: se descubren trabajando. Un archivo con la
+     cabecera y las secciones vacías el primer día es CORRECTO y significa exactamente lo que parece.
+     Añade una sección cuando tengas al menos una entrada real que meter en ella — y bórrala cuando
+     se quede sin ninguna.
+
+     ASÍ SE VE UNA ENTRADA DE VERDAD, para que sepas cuándo tienes una y cuándo no:
+
+       ## Entorno
+
+       - **`npm test` pasa en local y falla en CI**, y la diferencia es la versión de Node: CI usa la
+         del `.nvmrc` y local la del sistema. Comprobar con `node -v` antes de dar un verde por bueno.
+
+     Lo que la hace entrada: **pasó**, tiene un coste, y no se deduce leyendo el repo. Una regla que
+     te acabas de inventar no es una trampa; una que te mordió, sí.
+
+     Redacción tomada de un agente de campo que resolvió esto solo, en un bootstrap real: la escribió
+     bien sin que ninguna plantilla se lo dijera, que es justo como un hueco se queda abierto. -->
