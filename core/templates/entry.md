@@ -104,7 +104,8 @@ disparador. Lo demás sobre ellos —por qué viven aparte, qué es ritual y qu�
      adaptable -- el numero de lineas, el idioma, que se nombra -- y por eso la marca cubre solo esto. -->
 
 **Si el próximo paso es una lista sobre la que el usuario tiene que actuar, va como lista** — las
-líneas cuentan lo que la precede, no lo que la compone.
+líneas cuentan lo que la precede, no lo que la compone. **Y en lo que se DICE va como viñetas, no como
+tabla**: lo dicho se copia, y una tabla pierde sus `|` al pegarse fuera de la terminal.
 
 <!-- LEY:FIN -->
 

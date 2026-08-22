@@ -43,6 +43,10 @@ compone.** El contrato dice *próximo paso* en singular y muchas veces no lo es:
 bloquean son cuatro renglones que el usuario va a leer para actuar, no prosa que tú resumes. Es
 *cuando el usuario tenga que actuar sobre una lista, dásela como lista* (`{{kit}}/SKILL.md`).
 
+**En el saludo la lista va como VIÑETAS, no como tabla**, y no es estilo: el saludo **se dice**, y lo
+dicho se copia. Una tabla pierde sus `|` al pegarse fuera de la terminal y llega como texto corrido —
+medido en campo. La tabla se reserva para lo que se escribe a un archivo.
+
 > **Medido en campo, dos veces:** los dos agentes que ejecutaron esto expandieron el saludo **por el
 > mismo motivo** —el próximo paso era una lista de cuatro— y **los dos acertaron sin que el ritual se
 > lo dijera**. El número no era el problema: un saludo de tres líneas con las tres piezas **cabe**. Lo

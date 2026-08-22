@@ -118,6 +118,21 @@ bloquean, entregas pendientes, archivos que revisar.
 cabía una frase es ruido—. La prueba es de quién es el trabajo: **si las filas son cosas que él va a
 hacer, es lista; si son cosas que tú explicas, es prosa.**
 
+**Y la FORMA de la lista la decide su destino, no su contenido: tabla en lo que va a un archivo,
+viñetas en lo que le dices.** Una tabla vive mientras la renderiza algo; **lo que se dice en el chat se
+copia**, y al copiarse los `|` desaparecen — quedan tabulaciones y la estructura se pierde. Unas
+viñetas con la primera parte en negrita se escanean igual de rápido y **sobreviven al pegado**.
+
+> **Caso de campo, medido en los bytes.** Un bootstrap cerró con una tabla de *lo que te toca a ti*,
+> impecable en la terminal. El usuario la copió para compartirla y llegó como texto corrido: los `|`
+> no estaban. **La tabla del mismo proyecto en su archivo seguía intacta** — así que no era el
+> contenido, era el destino. Y lo produjo esta misma regla, **el día después de escribirla**: dice
+> *dásela como lista* y no decía en qué forma.
+
+**Es *un documento sí ejecuta: se renderiza*, aplicado a la salida.** Antes de elegir tabla, pregunta
+dónde va a acabar eso: si el sitio tiene renderizador garantizado, tabla; si puede acabar pegado en un
+correo, viñetas.
+
 **Suavizar no es diluir.** Se traduce el **nombre** del concepto; **nunca se esconde el hecho**. Si
 hay trabajo a medias, un doc que se contradice o una migración a medio aplicar, se dice — en llano y
 sin rodeos. Un resumen tranquilizador es peor que la jerga.
