@@ -177,6 +177,30 @@ forma corta de nombrar dos rutas.
 > El historial de diseño del marco vive en `git log`, no en el kit: todo lo que se vendoriza es lo
 > que un agente necesita para trabajar.
 
+## Qué es esto y qué no: escribimos los casos, no las instrucciones
+
+**Este kit no está aquí para decirle a tu agente cómo trabajar.** Un agente competente deriva solo casi
+todo lo que hay dentro — que un archivo recién creado esté vacío es correcto, que una cifra necesite su
+fecha, que conviene anotar dónde ibas antes de parar.
+
+**Lo que no puede derivar es lo que le pasó a otro.** Que un defecto vivió 314 días sin que nadie lo
+viera. Que `grep -iF` aborta bajo cierto locale y su fallo se lee como un cero. Que dos agentes
+distintos tropezaron con lo mismo en semanas distintas. **Eso solo se sabe estando, y por eso está
+escrito aquí y no en tu cabeza.**
+
+> **Cada regla de este kit tiene un cadáver detrás**, y las que no lo tenían se han ido retirando una
+> tras otra. Cuando leas una que te parezca obvia, lo interesante no es la regla: es que alguien pagó
+> por descubrirla.
+
+**Y hay una asimetría que conviene decir, porque decide cómo se lee el resto.** Este proyecto desconfía
+de su propia memoria —esa es su razón de existir— y **no desconfía de ti ni de tu agente**. Medido en
+cuatro instalaciones de campo: **ocho veces un agente adoptante resolvió bien algo que este kit no
+decía**, y las veces que un instrumento falló, **el instrumento era nuestro**.
+
+Así que trátalo como lo que es: **una marca dejada para quien venga después.** Síguela si te sirve,
+**adáptala** si tu proyecto pide otra cosa, y deja la tuya. Lo que te agradecemos de vuelta no son
+elogios: es **el caso que te mordió** — está en `buzon.md`, y el canal son los issues de este repo.
+
 ## Cómo se corrigieron las cifras de arriba
 
 **Todas estuvieron mal publicadas en este mismo archivo**, y van aquí porque son la única evidencia
