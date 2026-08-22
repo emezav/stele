@@ -35,6 +35,7 @@
 | persistencia | git |
 | persistencia_cmd | — |
 | kit_origen | `https://github.com/emezav/stele` |
+| kit_sello | `<hash del commit vendorizado>` |
 | remitente | — |
 | remitente_publico | — |
 
@@ -79,6 +80,19 @@
 > contrario, no hay nada en el árbol de donde deducirla, y el `README` del kit no sirve porque
 > apuntaría al upstream aunque tú vendorizaras de un fork. `—` si el kit no se vendoriza (modo
 > auto-hospedado). Es una URL o ruta pública: **nunca** con credenciales embebidas.
+>
+> `kit_sello` = **qué commit del kit tienes.** Lo captura `bootstrap` con `git rev-parse` **antes de
+> borrar `.git`**, que es el único instante en que existe. `—` si tu copia no vino de un repositorio.
+>
+> **Y aquí se corrige el razonamiento de arriba, que era falso.** La versión se había descartado *"por
+> derivable"* — y la propia instalación hace `rm -rf .stele/.git`, así que **no queda nada en el árbol
+> de donde derivarla**: ni metadatos, ni fichero de versión. Comparar tu copia contra la historia del
+> repo devuelve **un conjunto de commits posibles, no uno** — es *un comando ejecutable recupera su
+> corpus perdido, pero solo hasta una clase de equivalencia*.
+>
+> **Lo que compra tenerlo:** ACTUALIZAR saca un diff **exacto** en vez de aproximarlo, y cualquier
+> medición hecha sobre este proyecto **se data sola** — sin depender de que alguien recuerde con qué
+> versión trabajaba.
 
 ## Rutas
 

@@ -24,7 +24,9 @@ terminó.**
 2. **Eco del layout ANTES de escribir nada**, siempre, incluso si no preguntaste nada.
 3. **Validar los invariantes de ruta** (`core/reference/rutas-y-tokens.md` → *Las tres rutas*).
 4. **Resolver nombres** por rol y módulo. Los roles de un módulo inactivo van desactivados, no fuera.
-5. **Escribir `stele.config.md`** en la raíz.
+5. **Escribir `stele.config.md`** en la raíz — con `kit_origen` **y `kit_sello`**, el commit que
+   vendorizaste. Se captura con `git rev-parse` **antes** de borrar `.git`; después no hay de dónde
+   sacarlo.
 6. **Instanciar cada plantilla** por rol bajo `base`, resolviendo los tokens.
 7. **Sembrar** `state` y `handover` (`SIN_TRABAJO_ACTIVO`), `index` vacío — **con la FORMA VACÍA que
     traen las dos plantillas**, no con una sesión inventada. *Ninguna cerrada todavía* es el estado

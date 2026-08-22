@@ -47,9 +47,17 @@ haz esto sin pedir más instrucciones:
 1. **Vendoriza el kit** en la raíz del proyecto, en `.stele/` (elige la que funcione en tu entorno):
 
    ```bash
-   git clone --depth 1 https://github.com/emezav/stele .stele && rm -rf .stele/.git
-   # alternativa con Node: npx degit emezav/stele .stele
+   git clone --depth 1 https://github.com/emezav/stele .stele
+   git -C .stele rev-parse HEAD          # ANOTA ESTO: es el unico momento en que existe
+   rm -rf .stele/.git
+   # alternativa con Node: npx degit emezav/stele .stele  (no deja .git: pide el sello aparte)
    ```
+
+   **El `rev-parse` va antes del `rm -rf` y no es opcional.** Después de borrar `.git` **no queda nada
+   en el árbol de donde deducir qué versión del kit tienes**: ni fichero de versión, ni metadatos.
+   Comparar tu copia contra la historia del repo te devuelve **un conjunto de commits posibles, no
+   uno**. Ese valor va al manifiesto en el paso siguiente, y es lo que permite que ACTUALIZAR saque un
+   diff exacto en vez de aproximarlo.
 
    `.stele/` es el default de la ruta **`kit`**, y es **independiente** de dónde vayan los docs del
    proyecto (ruta `base`). Si el usuario nombró una carpeta sin más ("usa stele aquí, base stele"),

@@ -19,7 +19,12 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    **`kit_origen`** (manifiesto → Meta); con el mismo `degit`/`clone` de la instalación. **Nunca sobre
    `{kit}`.** Si `kit_origen` falta o está vacío, **pide la URL al usuario y escríbela en el
    manifiesto** antes de seguir: sin ella el ritual no arranca, y no se deduce del árbol.
-2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Un diff vacío tiene dos causas y se
+   **Y al terminar, actualiza `kit_sello`** con el commit que acabas de traer — mismo motivo: es el
+   único momento en que existe.
+2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Y si el manifiesto trae
+   `kit_sello`, el diff se puede pedir exacto** —`git diff <kit_sello>..HEAD` en el temporal— en vez de
+   compararlo contra un árbol sin historia: dice **qué cambió y por qué**, con los mensajes de commit
+   dentro. Sin él, `diff -r` es lo que hay y sigue funcionando; con él, dejas de adivinar. **Un diff vacío tiene dos causas y se
    leen igual:** que estés al día de verdad, o que **el origen no haya publicado lo que dice tener** —
    dicho por quien lo vivió, *"un clone de un kit sin publicar no da error: devuelve un kit"*.
    Antes de dar por bueno el primero, mira un dato observable del origen —la fecha de su último cambio,
