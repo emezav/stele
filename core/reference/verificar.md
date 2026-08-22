@@ -1117,7 +1117,8 @@ título en vez del título entero— **da 49,1%**: la diferencia entre las dos c
 clave**, no el corpus. Las dos coinciden en lo único que importa aquí, que es la **dirección**.
 
 > **CORRECCIÓN de la auditoría siguiente, y toca al instrumento, no a la cifra.** Con clave de título
-> **entero**, el detector mide la **longitud del título**, no el uso. Medido sobre 72 leyes:
+> **entero**, el detector mide la **longitud del título**, no el uso. Medido sobre 72 leyes,
+> **selladas en `4e5cbbf`**:
 >
 > ```text
 > 0 citas : 40 leyes, titulo medio 74 caracteres

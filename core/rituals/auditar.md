@@ -26,7 +26,7 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 > **Este es el ritual más caro del kit** (~19 000 tokens): lo de abajo se abre por pregunta, nunca
 > entero.
 
-**Los seis pasos:**
+**Los pasos, y son nueve:**
 
 1. **Delimitar el alcance y decirlo en una línea ANTES de leer nada.** El eje es **qué documentos**
    entran, no qué rango de sesiones — el rango describe **cobertura temporal**, y sirve para saber qué
@@ -74,6 +74,14 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
    sobre un fichero inexistente y el harness reportó *"0 ok, 1 fallos"*. Sonaba a bloque roto y
    significaba *no hay bloques*. Es la hermana de *un comando que aborta detrás de una tubería es un
    cero*, por el otro lado.
+
+9. **Comprobar los TOPES, siempre.** Cada rol con presupuesto, contra el número que declara el
+   manifiesto — **y las plantillas del kit contra el suyo**, que es donde nadie mira. Es la clase 8, y
+   estaba escrita **600 líneas más abajo**: una auditoría que solo leyera este bloque no los miraba.
+   **Caso de campo:** dos plantillas del kit nacían por encima de su propio tope —206 contra 200, 74
+   contra 50— y **dieciséis auditorías no lo vieron**; lo encontró el agente de un adoptante.
+   **Ojo con las plantillas que traen formas alternativas**: se mide la que se instancia, no el
+   fichero.
 
 **Las siete que se saltan.** Cada una tiene abajo el caso que la produjo:
 

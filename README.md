@@ -83,10 +83,17 @@ que necesitas para instalar —las tres rutas, sus invariantes y la convención 
 `.stele/core/reference/rutas-y-tokens.md`. Esos dos, antes de escribir nada.
 
 **`guide.md` NO hace falta para instalar, y es de los caros.** Es el *por qué* del diseño, para quien
-decide adoptarlo o quiere entender las fronteras; **pesa más que la instalación entera**
-—`bootstrap.md` + `rutas-y-tokens.md`, que son 6 224 tokens fijos—, así que leerlo en el
-bootstrap **multiplica por más de dos y medio** lo que hay que leer. Léelo cuando quieras entender el
-marco, no para montarlo.
+decide adoptarlo o quiere entender las fronteras; **pesa más que la instalación entera** —`bootstrap.md`
++ `rutas-y-tokens.md`— así que leerlo en el bootstrap **más que dobla** lo que hay que leer. Léelo
+cuando quieras entender el marco, no para montarlo.
+
+<!-- Medido con tiktoken/o200k_base sobre `git show`, sellado en 729ecc0:
+       bootstrap.md 6 329 + rutas-y-tokens.md 2 851 = 9 180   ·   guide.md 11 867  (1,3x)
+     Decia "6 224 tokens fijos" y "multiplica por mas de dos y medio". Las dos eran de otro dia:
+     la suma esta un 47% baja --bootstrap.md sola ya la supera-- y el multiplicador era 2,5x cuando
+     hoy es 1,3x. Lo cazo la auditoria 17: la palabra "FIJOS" sobre lo que mas ha crecido.
+     El numero se queda FUERA de la prosa a proposito: en prosa envejece en silencio, aqui envejece
+     con su sello al lado. -->
 
 ## Arquitectura (tres capas)
 

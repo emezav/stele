@@ -28,9 +28,11 @@ terminó.**
    vendorizaste. Se captura con `git rev-parse` **antes** de borrar `.git`; después no hay de dónde
    sacarlo.
 6. **Instanciar cada plantilla** por rol bajo `base`, resolviendo los tokens.
-7. **Sembrar** `state` y `handover` (`SIN_TRABAJO_ACTIVO`), `index` vacío — **con la FORMA VACÍA que
-    traen las dos plantillas**, no con una sesión inventada. *Ninguna cerrada todavía* es el estado
-    real de todo proyecto recién instalado, y es el único que ninguna plantilla decía.
+7. **Sembrar** `state`, `handover` (`SIN_TRABAJO_ACTIVO`), `index`, `gotchas` y `effort` — **cada uno
+    con la FORMA VACÍA que trae su plantilla**, no con una sesión inventada ni con secciones a medio
+    llenar. *Ninguna cerrada todavía*, *arranca vacío y eso está bien*: es el estado real de todo
+    proyecto recién instalado. **No cuentes las plantillas que la traen: ábrelas.** Esta lista decía
+    *"las dos"* y se quedó vieja el mismo día en que pasaron a ser cinco.
 8. **Generar UNA PUERTA POR CADA NOMBRE de `loader`**, en la raíz. `loader` es una **lista**, no un
    archivo.
 9. **Validar** (ritual CONFIG, fase 5).
@@ -177,10 +179,16 @@ terminó.**
    el único momento en que se sabe con certeza, y sin ella ACTUALIZAR no puede correr después.
 6. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
-7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío, y **`effort` vacío si
-   `effort_log = on`** — si el toggle está encendido y el fichero no existe, el primer cierre escribe
-   una fila en un archivo que nadie creó. **`audit` no se instancia**: lo crea la primera auditoría, y
-   su ausencia es el dato (nunca se auditó).
+7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío, `gotchas` vacío, y
+   **`effort` vacío si `effort_log = on`** — si el toggle está encendido y el fichero no existe, el
+   primer cierre escribe una fila en un archivo que nadie creó. **`audit` no se instancia**: lo crea la
+   primera auditoría, y su ausencia es el dato (nunca se auditó).
+
+   **Cada uno con la FORMA VACÍA que trae su plantilla**, no con una sesión inventada ni con secciones
+   a medio llenar. **Ábrelas para saber cuáles la traen; no las cuentes de memoria** — esta lista y la
+   de `Lo mínimo` decían *"las dos"* cuando ya eran cinco, y **la corrección se aplicó primero a una
+   sola de las dos copias**, que es el caso que este mismo kit tiene registrado como *corregir a medias
+   sale más caro que el error*.
 
    **Y aquí se decide si `base` viaja o no, que es lo que decide si existe.** Si el proyecto usa un VCS
    y `base` **no** se versiona —opción legítima y la que toma el propio kit—, la línea que lo ignora

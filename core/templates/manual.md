@@ -3,9 +3,14 @@
 > Plantilla del rol `manual`. **Es el único doc del marco cuyo lector no es un agente**, y eso cambia
 > todo lo demás: no se rellena, **se redacta**, con el proyecto delante y en sus palabras.
 >
-> **Lo que esta plantilla fija son las preguntas, no la redacción.** Cópiale la estructura y **no le
+> **Casi toda esta plantilla fija las preguntas, no la redacción.** Cópiale la estructura y **no le
 > copies el tono**: los ejemplos de abajo hablan de un proyecto que no es el tuyo. Si al terminar el
 > texto suena al marco en vez de sonar al proyecto, está mal aunque esté completo.
+>
+> **La excepción es *Cómo trabajamos*, y está marcada dentro.** Ahí sí hay texto para copiar, porque
+> el ciclo de trabajo es idéntico en todos los proyectos que usan el marco y redactarlo de cero solo
+> produce versiones distintas de lo mismo. **Esta línea existe porque la frase de arriba decía
+> *"toda"* y el cuerpo ya no lo cumplía.**
 >
 > **Regla de oro: aquí no se nombra el marco.** Nada de `rol`, `token`, `handover`, `clase 7`,
 > `manifiesto`, `instancia` ni nombres de ritual. Se habla de *empezar*, *terminar*, *lo que quedó a
