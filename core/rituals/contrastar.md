@@ -144,7 +144,7 @@ error de canal **viaja a cada adoptante**, y allí no hay cartero ninguno al que
 ## Lo que cada fase esconde
 
 **Las fases están arriba y no se repiten aquí.** Esto es lo que el imperativo no cabe decir: los
-cadáveres que produjeron cada regla.
+casos que produjeron cada regla.
 
 **Fase 0, el reenvío.** Con cartero humano el reenvío es normal —se pega dos veces, se pega una vieja
 creyéndola nueva, se reenvía tras una interrupción— y no detectarlo sale caro: reprocesas, **reaplicas

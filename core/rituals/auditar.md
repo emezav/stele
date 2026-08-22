@@ -75,7 +75,7 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
    significaba *no hay bloques*. Es la hermana de *un comando que aborta detrás de una tubería es un
    cero*, por el otro lado.
 
-**Las siete que se saltan.** Cada una tiene su cadáver abajo:
+**Las siete que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |

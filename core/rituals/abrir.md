@@ -80,7 +80,7 @@ awk -F'|' '/^\| *[0-9]+ *\|/{n=$2;d=$4;c=$5;gsub(/ /,"",n);gsub(/ /,"",d);
 > miden el canal, que casi siempre es una persona que copia y pega, y que ninguno de los dos lados
 > puede observar.
 
-**El cadáver es propio y reciente.** Un proyecto midió el silencio de un corresponsal —seis días contra
+**El caso es propio y reciente.** Un proyecto midió el silencio de un corresponsal —seis días contra
 un máximo histórico de uno—, lo escribió en su estado **como el único dato que no encajaba**, y sacó de
 ahí una conclusión sobre el otro proyecto. La carta llegó fechada **seis días antes**: existía desde el
 primer día. **La medida era correcta y la inferencia falsa**, y lo que la delató fue que aquella carta

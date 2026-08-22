@@ -53,7 +53,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    — y sustituye a cualquier advertencia sobre
    trazabilidad, porque **se contesta con un comando** en vez de con un criterio.
 
-**Las siete que se saltan.** Cada una tiene su cadáver documentado abajo:
+**Las siete que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |

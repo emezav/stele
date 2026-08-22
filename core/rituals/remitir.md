@@ -51,7 +51,7 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
    `HEAD`, **tres líneas debajo del párrafo que decía que había que dejar de hacerlo**.
 7. **Enviar lo decide el usuario, nunca tú.**
 
-**Y las cinco del marcador, que son las que se saltan.** Cada una tiene su cadáver documentado abajo:
+**Y las cinco del marcador, que son las que se saltan.** Cada una tiene abajo el caso que la produjo, documentado abajo:
 
 | Situación | La regla |
 | --- | --- |

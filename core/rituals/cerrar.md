@@ -31,7 +31,7 @@
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
-**Las siete que se saltan.** Cada una tiene su cadáver documentado abajo:
+**Las siete que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |

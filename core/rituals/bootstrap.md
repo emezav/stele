@@ -35,7 +35,7 @@ terminó.**
 10. **Confirmar y COMPROBAR**: pídele que reabra el editor y te salude, **y dile de antemano qué verá
     si falla**. Este paso no afirma un resultado: lo comprueba.
 
-**Las cinco que se saltan.** Cada una tiene su cadáver en el cuerpo:
+**Las cinco que se saltan.** Cada una tiene en el cuerpo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |

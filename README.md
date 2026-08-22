@@ -188,8 +188,8 @@ viera. Que `grep -iF` aborta bajo cierto locale y su fallo se lee como un cero. 
 distintos tropezaron con lo mismo en semanas distintas. **Eso solo se sabe estando, y por eso está
 escrito aquí y no en tu cabeza.**
 
-> **Cada regla de este kit tiene un cadáver detrás**, y las que no lo tenían se han ido retirando una
-> tras otra. Cuando leas una que te parezca obvia, lo interesante no es la regla: es que alguien pagó
+> **Cada regla de este kit salió de algo que falló**, y las que no, se han ido retirando una tras
+> otra. Cuando leas una que te parezca obvia, lo interesante no es la regla: es que alguien pagó
 > por descubrirla.
 
 **Y hay una asimetría que conviene decir, porque decide cómo se lee el resto.** Este proyecto desconfía
