@@ -21,6 +21,36 @@
    siguiente**. Se ancla la sustitución (un *lookbehind* basta) y **se verifica después** que lo que no
    debía moverse sigue donde estaba. Es el mismo peligro que hace que `base` no se llame como el kit:
    la adyacencia **no solo confunde a las personas, confunde a las herramientas**.
+
+   **Y el barrido tiene un LÍMITE que hay que escribir, porque sin él se come el registro.** No se
+   barren `session`, `index` ni la correspondencia **recibida**: son inmutables y mencionan los
+   nombres viejos **a propósito** — corregirlos falsea el registro, y además destruye la única
+   prueba de por qué se renombró. La equivalencia vieja→nueva **se anota una vez, en la cabecera de
+   `index`**, y ahí se acaba. Lo que se barre es lo **vivo**: los docs de rol, el `loader`, el
+   manifiesto.
+   **Es la frontera entre reescribir y anclar, y no es un matiz: es la misma pregunta con dos
+   respuestas legítimas según de qué lado caiga el fichero.** Un adoptante la resolvió de las dos
+   maneras opuestas **el mismo día** —barrió sus actas al renombrar y las ancló al planear una
+   promoción— y las dos veces con argumento; lo que no encontró fue la regla, porque no estaba
+   escrita aquí. **Barrer lo vivo, anclar lo inmutable.**
+
+   **Y el acotado del barrido es en las DOS direcciones**, que es donde se falla:
+
+   | Se pasa… | Síntoma | Guarda |
+   | --- | --- | --- |
+   | **hacia dentro** | el `sed` alcanza el doc que describe el renombrado y lo deja diciendo *"de `x` a `x`"* | excluye ese fichero, o escribe las equivalencias **después** |
+   | **hacia fuera** | el `sed -i` corre sobre todos los `.md` versionados y toca el producto | acota la lista de ficheros **antes**, no el patrón |
+   | **corto** | un rol **creado en la misma operación** no está en el mapa viejo→nuevo | los añadidos entran en la lista de renombrado, no solo los movidos |
+
+   **Los tres son el mismo defecto:** el reemplazo se pensó como *qué cambiar* y no como **dónde
+   puede aterrizar**. Los tres, medidos en la misma sesión de campo.
+
+   > **En Windows el renombrado por MAYÚSCULAS no llega al índice de git.** El disco es insensible
+   > al *casing* y los repositorios suelen llevar `core.ignorecase=true`, así que `mv X.md x.md` no
+   > hace nada y `git` lo reporta como *modificado* **conservando el nombre viejo**. Hay que pasar
+   > por un nombre temporal, o usar `git mv` en dos pasos. **Esto alcanza a todo adoptante en
+   > Windows que actualice desde antes de `4e73392`**, que es cuando este kit bajó sus propios
+   > documentos a minúscula: el fichero parece renombrado en disco y no lo está en el repositorio.
 5. **Validar**: `grep` del nombre (o ruta) viejo = 0; cada nombre resuelve a un archivo; ningún rol
    activo apunta a faltante; los invariantes de ruta se cumplen.
 

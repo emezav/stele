@@ -8,11 +8,19 @@ de tesis, los resultados de un laboratorio socio, la evaluación de un curso, el
 que usa tu producto. Llega **fuera de banda** —no al abrir ni al cerrar— y procesarlo cuesta, así que
 **se invoca**, como auditar.
 
-**Por qué no lo cubre ningún otro ritual.** Los seis anteriores miran hacia dentro: escriben la
-documentación, mantienen el marco, o re-verifican lo ya escrito. El séptimo, REMITIR, sí mira hacia
-fuera —pero es la **salida**—. Ninguno maneja una **entrada de fuera**. Es la vía de mayor
-consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
-producto y viaja a todos— y es la única que no tenía procedimiento.
+**Por qué no lo cubre ningún otro ritual.** Los seis que no son de correspondencia miran hacia
+dentro: escriben la documentación, mantienen el marco, o re-verifican lo ya escrito. REMITIR, el
+otro de esta pareja, sí mira hacia fuera —pero es la **salida**—. Ninguno maneja una **entrada de
+fuera**. Es la vía de mayor consecuencia que tiene un proyecto —lo que entra por aquí se incorpora
+al producto y viaja a todos— y es la única que no tenía procedimiento.
+
+<!-- Aqui habia un ordinal ("el septimo, REMITIR") y se ha retirado, no corregido. La frase original
+     decia "el octavo"; el arreglo de la sesion 173 lo cambio a "septimo" contando por ORDEN DE
+     CREACION, que es un tercer orden distinto del de guide.md (donde CONTRASTAR es el septimo y
+     REMITIR el octavo) y del de "los otros siete". Lo caza un adoptante un commit despues. Con
+     tres ordenes posibles, cualquier ordinal exige declarar cual se usa; el enunciado por
+     categoria no lo necesita. Ver verificar.md -> "Cuando dos documentos cuentan la misma lista
+     distinto". -->
 
 ## Lo mínimo para ejecutarlo
 
@@ -22,7 +30,15 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
 **Fase 0, la que se salta y sale cara:**
 
 - **¿Ya llegó?** Búscala por un **token distintivo** —un número raro, un comando literal—, **nunca por
-  su número de carta**: cada proyecto numera el suyo. Si aparece, **diffea**: idéntica = ya procesada,
+  su número de carta**: cada proyecto numera el suyo. **Y elige el token con cuidado: un número corto
+  no es distintivo** sobre un corpus lleno de identificadores — `558` casa dentro de `2558b69`.
+  **Si todavía no tienes serie propia, esta regla no la puedes cumplir, y eso no es culpa tuya: es
+  que el rol `correspondence` está apagado.** Mientras no lo actives, el único número disponible es el
+  del corresponsal, y **acabarás numerando en su serie sin decidirlo** — le pasó a un adoptante
+  durante tres cartas, y lo notó él. Al activarlo, el índice lleva **las dos** columnas: la tuya y la
+  suya, porque lo ya entregado dice *"Carta N"* en su título y eso no se reescribe. **La asimetría no
+  es de almacenamiento, es de referencia:** quien tiene índice se lo impone al que no, sin
+  proponérselo. Si aparece, **diffea**: idéntica = ya procesada,
   párate; distinta = procesa **el delta**.
 - **¿Está al día el estado de la tuya?** Si esta carta responde a una tuya, la tuya tiene que figurar
   **entregada**. Y ese estado se lee **de la COLUMNA**, partiendo por `|` y anclando al principio —

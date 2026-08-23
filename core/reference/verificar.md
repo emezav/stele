@@ -2966,8 +2966,21 @@ contador, porque el sello está a doce caracteres.
 > dejado en ocho **y la discrepancia de definición viva**, lista para producir el quinto.
 
 **Lo trajo un adoptante, sin proponérselo:** su carta dijo *"el marco tiene siete rituales"* —un cuarto
-valor, y el único de los cinco que ningún documento nuestro respalda—. Buscar de dónde había sacado el
-siete es lo que destapó que el problema no era su cuenta.
+valor—. Buscar de dónde había sacado el siete es lo que destapó que el problema no era su cuenta. *(Y
+al datar su copia se vio que **su siete era cierto de su kit**: tenía seis rituales más el checkpoint.
+El quinto valor no existía; existía un desfase de versión.)*
+
+> **Y el arreglo produjo el caso siguiente, un commit después.** Al corregir *"el octavo, REMITIR"* se
+> escribió *"el séptimo, REMITIR"*, contando por **orden de creación** — un **tercer** orden, distinto
+> del de la portada (donde CONTRASTAR es el séptimo y REMITIR el octavo) y del de *"los otros siete"*.
+> Lo cazó el mismo adoptante al verificar los arreglos, y lo mandó **como candidato y no como
+> hallazgo**, con la razón exacta: *"son dos conjuntos de conteo distintos, cada uno coherente por
+> dentro"*, que es esta ley aplicada a quien la acababa de escribir.
+>
+> **La lección operativa es la que zanja el modo: con más de un orden posible, cualquier ordinal exige
+> declarar cuál se usa — así que el arreglo no es elegir bien, es no usar ordinal.** La frase quedó
+> *"REMITIR, el otro de esta pareja"*: nombra por categoría, no por posición, y no hay conteo que
+> pueda divergir. **Un contador que se corrige sigue siendo un contador.**
 
 ## Una afirmación se vuelve falsa sin que cambie ni ella ni el hecho: basta con que se amplíe aquello de lo que habla
 
@@ -3040,6 +3053,42 @@ X e Y"* — sintaxis de enumeración, no sustantivos. Es un encargo aparte para 
 con el caso de su propio trigger y con el agravante señalado por él mismo: esa enumeración nombraba
 dos rituales y no nombraba la operación que iba a ejecutar.*
 
+### La forma no la elige el autor: la elige qué MITAD de la regla está escribiendo
+
+**El mismo adoptante contó sus reglas duras —cuatro de seis enumeran— y encontró lo que convierte
+esto en algo aplicable: en tres de esos mismos párrafos la forma por complemento YA ESTABA escrita,
+por la misma mano y en la misma sesión.** El disparador del checkpoint enumeraba y su **exención**
+iba por complemento; los artefactos enumeraban qué son y su **destino** iba por complemento; la
+precedencia sobre el harness iba general y su **límite** por complemento.
+
+**No es un déficit de técnica. Quien escribió esas reglas sabía enunciar por complemento y lo hizo,
+en la línea siguiente.** Lo que cambia es la pregunta que se está contestando:
+
+```text
+"que hago sin pensar?"   -> se contesta con EJEMPLOS      -> enumeracion
+"donde para esto?"       -> se contesta con un CRITERIO   -> complemento
+```
+
+Y las dos se hacen seguidas, al escribir la misma regla. **El conjunto protegido se enumera; la
+excepción, el destino y el límite se complementan** — siempre en ese reparto.
+
+> **Consecuencia, y es del adoptante:** avisar solo al *especializar* una regla acierta el sitio y
+> **no el momento**. El impulso a enumerar aparece exactamente cuando uno intenta que la regla sea
+> **accionable**, o sea **cuando cree que la está mejorando**. Ese es el instante que hay que marcar.
+
+### Sub-especie: la enumeración que lleva su propio contador de cardinalidad
+
+*"Dos reglas obligatorias:"* seguido de dos viñetas está cerrado **por partida doble** — por la lista
+y por el número—. Quien añada la tercera tiene que acordarse de tocar una palabra que es **prosa, no
+lista**, y que ningún linter mira.
+
+**Y su caducidad es peor que la del contador de una afirmación.** El de una afirmación caduca cuando
+cambia el mundo, que es un momento cualquiera. El de una regla caduca **cuando alguien está editando
+esa misma regla**, es decir con toda la atención puesta en otra parte. Se detecta con su propio
+barrido —*"dos reglas"*, *"tres pasos"*, *"las cuatro fases"*— que es sintácticamente distinto del de
+las enumeraciones. *Lo trajo un adoptante señalando una regla suya, y la estaba quitando al
+escribirlo.*
+
 ## Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección
 
 Al verificar un informe externo aparece a veces **una causa común** que explica varias discrepancias a
@@ -3080,3 +3129,52 @@ done
 **Y hay un corolario que duele más que la ley: si le hubiéramos preguntado, no habría hecho falta.**
 La pregunta *"¿qué versión del kit tienes?"* cuesta una línea, y en su primera carta ya había cuatro
 señales para responderla sin preguntar.
+
+## Una enumeración no cubre el daño que ocurre FUERA de su dominio, y ampliarla no lo arregla
+
+Tercera especie del modo de fallo de las enumeraciones, y la única que no se cura con más filas.
+Una lista **corta** se alarga; una lista **cuyo dominio no alcanza el daño** no se puede alargar,
+porque lo que falta no es una entrada suya: es otra clase de cosa.
+
+**Caso de campo, y lo formuló quien lo sufrió.** La tabla de zonas de ACTUALIZAR clasifica por
+fichero o directorio **del kit**, y cada fila contesta *"¿qué implica este cambio del kit para tu
+instancia?"*. Un adoptante corrió un `sed -i` que alcanzó ficheros **de su propio proyecto**. Ese
+tropiezo **no podía tener fila**: lo que quedó fuera no era una zona del kit, y **ninguna enumeración
+de zonas del kit puede alcanzar ficheros que no son del kit**.
+
+**La distinción que lo explica es entre CAUSA y RADIO.** La tabla clasifica lo que **provoca** el
+trabajo —qué cambió y dónde—; nada clasificaba **hasta dónde puede llegar la operación que lo
+aplica**. Son dos ejes, y quien enumera el primero se queda con la sensación de haber cubierto el
+segundo, porque las dos preguntas se contestan mirando el mismo diff.
+
+> **El síntoma para reconocerlo antes de que pase: la lista está completa y el accidente cae fuera
+> del marco del que la lista habla.** Si al mirar un fallo tienes que decir *"eso no era una fila que
+> faltara"*, no estás ante una enumeración corta: estás ante un eje que nadie enumeró.
+
+**Y el remedio no es una tabla mejor: es una segunda pregunta antes de ejecutar.** *¿Dónde puede
+aterrizar esto?* — que se contesta con la **lista de ficheros** sobre la que corre el comando, no con
+el patrón. Un barrido se acota antes, no se corrige después.
+
+## Una regla que ya sabes puede seguir sin alcanzarte, y el momento en que aplica es el que lo impide
+
+No es *"no estaba escrita"* ni *"no se leyó"*. Es el caso peor: **escrita, destacada, con su propio
+caso de campo al lado, leída — y saltada igual.**
+
+**El ejemplar es exacto.** El paso 4 de ACTUALIZAR dice *"a partir de esta línea el procedimiento
+vigente es el del kit nuevo"*, tiene **sección propia** dedicada a él, y esa sección lo llama **el
+paso que más se salta**. Un adoptante lo saltó, con todo eso delante, y lo reportó él mismo.
+
+**El mecanismo no es de atención, es de momento.** Ese paso pide al agente **dejar de operar con lo
+que cargó al abrir** — y eso es lo único que un agente no puede notar que está haciendo, porque el
+procedimiento viejo sigue en su contexto y **se lee igual de bien que el nuevo**. Un aviso corrige a
+quien lo lee **a tiempo**; aquí el instante en que hay que obedecerlo es justo aquel en el que uno ya
+no está leyendo el procedimiento, sino ejecutándolo.
+
+**De ahí la única forma que funciona: convertirlo en un PASO con su propia acción**, no en un aviso
+por muy destacado que esté. *"Relee X antes de tocar nada más"* se puede ejecutar y se puede
+comprobar; *"ten en cuenta que a partir de aquí manda X"* solo se puede recordar.
+
+> **Y el corolario, del mismo adoptante y sobre sí mismo:** nos mandó como hallazgo propio que *el
+> observable llega en la sesión siguiente* — **que ya estaba escrito en nuestro paso 6**, que él había
+> leído, y que su propia sesión no ejerció. **Saber una regla y estar alcanzado por ella son estados
+> distintos**, y desde dentro se sienten igual.

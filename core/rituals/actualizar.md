@@ -43,6 +43,20 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    que `base` no está dentro. **A partir de esta línea el procedimiento vigente es el del kit nuevo**,
    no el que traes en contexto: si el diff tocó `SKILL.md`, relee lo que gobierna los pasos que te
    quedan — el informe del paso 6 incluido.
+
+   **Esa relectura es un PASO, no un aviso, y se hace ANTES de tocar nada más.** Es la única regla del
+   marco que **cambia mientras se está ejecutando**, así que hay un instante en el que no está claro
+   cuál manda — y ese instante no se nota, porque el procedimiento viejo sigue en tu contexto y se
+   lee igual de bien. Medido en campo: se releyó *después* de empezar a reconciliar, sin consecuencia
+   visible **esa vez**, y con el informe a punto de salir con las reglas viejas.
+
+   **Y si vas a barrer referencias, el acotado está en CONFIG (paso 4) y no se repite aquí: léelo.**
+   No es un detalle de implementación. En un salto corto el barrido son dos líneas y no se nota; en
+   un salto largo **el barrido es la operación**, y ahí se produjo *todo* lo que falló en el único
+   salto largo del que tenemos registro: tres de sus cinco tropiezos fueron el mismo barrido sin
+   acotar, en las tres direcciones posibles. **Este ritual dedica casi todo su texto a clasificar el
+   diff y casi nada a acotar el barrido que lo aplica** — lo dijo el adoptante que lo corrió, y tenía
+   razón.
 5. **Reconciliar con CONFIG** (fase 1, drift), acotado a lo que el diff señaló: filas que le faltan
    al manifiesto, secciones nuevas, derivados a regenerar.
 6. **Informar** en pocas líneas: qué cambió, qué se reconcilió solo, y qué exige decisión del usuario
@@ -99,6 +113,18 @@ actualización que la entrega*— aplicada un nivel más adentro: no al **qué m
 releerla en el paso 4.
 
 ## La tabla de zonas de impacto
+
+> **Al escribir o revisar una fila de esta tabla, ponla con el ADOPTANTE como sujeto.** Es una
+> observación de campo con una muestra pequeña y una prueba barata detrás. De las filas que un
+> adoptante atravesó en un salto largo, **la única que cubrió su caso entero y no le produjo ningún
+> tropiezo** es la del módulo renombrado — y es la única escrita desde él: *"el valor de `módulos` en
+> tu manifiesto **sigue siendo válido**… lo que **sí hay que revisar** son las referencias por ruta
+> que **tus propios docs** hayan escrito"*. Las que le fallaron están escritas desde el **cambio**:
+> *qué implica esta zona*.
+>
+> **La prueba, que cuesta una tarde y la propuso él: reescribe cada fila con el adoptante como
+> sujeto y mira cuáles se resisten.** Las que se resistan son probablemente las que todavía describen
+> el cambio en vez de la consecuencia. *Es una muestra de una, y va como hipótesis.*
 
 | Zona del diff | Qué implica para esta instancia |
 | --- | --- |
