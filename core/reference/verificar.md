@@ -2893,3 +2893,112 @@ grep -n 'reconstru' "$CARTA"          # donde se declara
 grep -n '^# \|^| Que ' "$CARTA"       # donde se afirma
 # si lo primero cae solo despues de lo segundo, el descargo no cubre nada
 ```
+
+## "Bajo palabra" cubre lo que el otro vio, no lo que el otro prevé
+
+CONTRASTAR manda tomar **bajo palabra** lo que un corresponsal afirma sobre su propio terreno, porque
+no es verificable desde aquí. La regla es buena y tiene un borde sin marcar: **una afirmación sobre lo
+que ya ocurrió allí es verificable en principio** —por ellos, por un tercero, por el propio árbol— y
+**una sobre lo que va a ocurrir no lo es por nadie, todavía**. Se marcan igual, se leen igual, y la
+segunda entra al kit con el crédito de la primera.
+
+**El discriminante es gramatical y cuesta un vistazo: el tiempo verbal.** Una carta bien escrita
+redacta su análisis en pasado —*"verificados uno a uno contra la raíz nueva"*— cuando la raíz nueva
+**todavía no existe**. No es engaño ni descuido: es cómo se escribe un análisis serio. Pero convierte
+una **predicción** en algo con la cara de una **observación**, y la diferencia importa justo donde más
+crédito se concede.
+
+**Caso de campo, y llegó declarándose:** un adoptante escribió antes de ejecutar una migración —*"se
+envía con la propuesta y antes de ejecutarla, no después"*, en su primera página— y su sección de
+resultados decía *"lo que el marco resolvió solo"*, en pasado, sobre un árbol que no se había movido.
+**Los dos hechos venían en la misma carta y no se leen juntos**: uno está en el encuadre y el otro en
+los datos, separados por cuatro secciones.
+
+**El remedio no es desconfiar: es anotar el tiempo.** Lo observado se cita; lo previsto entra como
+**predicción registrada**, con lo que la carta siguiente puede confirmarla o tumbarla. Eso no resta
+valor al informe — **se lo añade**, porque una predicción escrita antes es la única clase de
+afirmación que el terreno puede refutar después. El precedente es propio y salió bien: seis
+predicciones escritas antes de una prueba de campo, y las seis comprobadas al volver.
+
+> **Y el sesgo tiene su dirección: llega antes porque quien escribe hace lo correcto.** Pedir opinión
+> antes de ejecutar es exactamente lo que evita el hecho consumado, así que este borde se cruza con
+> más frecuencia en las cartas mejor intencionadas del intercambio, no en las peores.
+
+## Cuando dos documentos cuentan la misma lista distinto, lo que difiere no es el número: es la definición
+
+Un contador equivocado se corrige cambiando el número. **Dos contadores incompatibles no**, y tratarlos
+como cuatro erratas sueltas deja el defecto entero en pie: si dos documentos del mismo producto cuentan
+la misma lista y no coinciden, es que **están contando cosas distintas**, y el arreglo es decidir cuál
+es la cosa.
+
+**Caso medido, sobre el objeto más contable que tiene este kit: los ficheros de `core/rituals/`, que se
+cuentan con `ls`.** Cuatro contadores, tres valores, ninguno igual a ocho:
+
+```text
+guide.md   "Tres rituales base + tres de ciclo de vida + uno + dos"   -> 9
+guide.md   "Detalle operativo de los nueve"                           -> 9
+guide.md   "Por que el septimo existe. Los seis primeros..."          -> 7 mo
+SKILL.md   "cuando los nueve vivian aqui"                             -> 9
+contrastar "Los siete anteriores... El octavo, REMITIR"               -> 8 con REMITIR mal situado
+ls core/rituals/*.md | wc -l                                          -> 8
+```
+
+**Y no eran erratas: `guide.md` era coherente consigo mismo.** Contaba el **checkpoint** como ritual, y
+con esa definición sus cuatro números cuadran entre sí y con su propia lista. `SKILL.md` dice lo
+contrario con todas las letras —*"el checkpoint no está en la tabla porque no es un ritual: es una
+regla dura"*— y `core/rituals/` no tiene fichero para él. **Dos definiciones conviviendo, cada
+documento consistente por dentro.**
+
+**Por eso ningún detector local lo ve, y este sobrevivió diecisiete auditorías.** El detector de
+contadores compara el número con la lista que tiene al lado, y al lado la lista cuadra siempre. La
+contradicción solo existe **entre** los dos ficheros — que es literalmente lo que AUDITAR declara como
+su hallazgo más caro (*"eso no se ve leyendo ningún documento; solo aparece contrastando dos"*), dicho
+allí de las ausencias y cierto igual de las definiciones.
+
+**El agravante, y es el que enseña a mirar: un contador de aposición hereda el respaldo de su vecino.**
+El de `SKILL.md` viajaba pegado a una medida sellada —*"1845 líneas / 36 242 tokens (medido en
+`27a41bd`)"*, correcta— dentro de la misma oración. **El número que la frase afirma estaba comprobado;
+el que iba de paso, no.** Un lector que verifica esa frase verifica la cifra y da por bueno el
+contador, porque el sello está a doce caracteres.
+
+> **La pregunta operativa no es *¿cuántos hay?* sino *¿los dos sitios llaman lo mismo a lo mismo?*** Y
+> se contesta antes de tocar ningún número: corregir los contadores de `guide.md` uno a uno los habría
+> dejado en ocho **y la discrepancia de definición viva**, lista para producir el quinto.
+
+**Lo trajo un adoptante, sin proponérselo:** su carta dijo *"el marco tiene siete rituales"* —un cuarto
+valor, y el único de los cinco que ningún documento nuestro respalda—. Buscar de dónde había sacado el
+siete es lo que destapó que el problema no era su cuenta.
+
+## Una afirmación se vuelve falsa sin que cambie ni ella ni el hecho: basta con que se amplíe aquello de lo que habla
+
+El drift que este marco persigue tiene una forma conocida: la afirmación se queda quieta y **el hecho**
+cambia debajo. Hay una segunda forma, más barata de producir y **imposible de detectar con el mismo
+instrumento**: la afirmación se queda quieta, el hecho también, y lo que cambia es **el referente de
+uno de sus sustantivos**.
+
+**Caso: una promoción de raíz.** Un proyecto adoptado en un subdirectorio sube a cubrir el árbol
+entero. Un acta suya dice *"se decidió X para el proyecto"*. No tiene ni una ruta que arreglar, sigue
+describiendo con exactitud lo que ocurrió, y **ha dejado de ser cierta**: aquello se decidió para uno
+de varios procesos, y *"el proyecto"* ahora nombra a todos. **La frase no se tocó. El mundo se amplió
+por debajo de una de sus palabras.**
+
+**Y no hay `grep` que lo encuentre**, que es lo que lo separa del drift ordinario. Una ruta rota
+resuelve a nada y un identificador podrido no existe: los dos tienen un detector barato. Una palabra
+cuyo referente creció **resuelve perfectamente** — sigue siendo una palabra del idioma, en una frase
+gramatical, dentro de un documento coherente. El único instrumento es saber **cuándo** cambió el
+referente, que es un dato de fuera del texto.
+
+**De ahí la única defensa que existe, y es de forma, no de detección: anclar el referente con fecha.**
+Donde se anota la equivalencia de rutas se anota también la de alcance —*"hasta el DD-MM, «el
+proyecto» significaba esto"*—. No arregla ninguna frase, y no es su trabajo: hace que las viejas se
+sigan leyendo **como lo que fueron**.
+
+> **La lista de sustantivos en riesgo es corta y se sabe de antemano:** *el proyecto*, *el equipo*,
+> *el sistema*, *todos los documentos*, *el alcance*. Son los que nombran un conjunto sin enumerarlo,
+> y por eso siguen a su conjunto sin avisar.
+
+**Lo formuló el usuario de este proyecto**, mirando el caso de un adoptante ajeno: la observación fue
+que al subir de nivel *el contexto del proyecto cambia, se amplía*. Nuestro análisis del mismo caso lo
+había tratado entero como una transformación de rutas —prefijos, invariantes, enlaces— y **no había
+una sola línea sobre el significado**. Es la cuarta vez que la fuente más barata de las cuatro rinde
+más que las tres caras.

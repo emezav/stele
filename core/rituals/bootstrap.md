@@ -21,6 +21,9 @@ terminó.**
 
 1. **Resolver** `idioma`/`módulos`/`persistencia` y las tres rutas `kit`/`base`/`loader`, con defaults.
    `persistencia = git` solo si hay `.git` **en la raíz** — uno anidado deja la raíz sin versionar.
+   **Y con el mismo comando, busca un MARCO anidado:** un `stele.config.md` bajo un subdirectorio
+   significa que este proyecto ya tiene una instancia viva, un nivel más abajo. No sigas sin leer la
+   fila de abajo.
 2. **Eco del layout ANTES de escribir nada**, siempre, incluso si no preguntaste nada.
 3. **Validar los invariantes de ruta** (`core/reference/rutas-y-tokens.md` → *Las tres rutas*).
 4. **Resolver nombres** por rol y módulo. Los roles de un módulo inactivo van desactivados, no fuera.
@@ -39,7 +42,7 @@ terminó.**
 10. **Confirmar y COMPROBAR**: pídele que reabra el editor y te salude, **y dile de antemano qué verá
     si falla**. Este paso no afirma un resultado: lo comprueba.
 
-**Las cinco que se saltan.** Cada una tiene en el cuerpo el caso que la produjo:
+**Las seis que se saltan.** Cada una tiene en el cuerpo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |
@@ -47,6 +50,7 @@ terminó.**
 | Vas a escribir una puerta | Se escriben **todas** las de la lista. Una fila nueva entra como **testimonio**, y solo pasa a **corrida** cuando alguien reabre con ese agente y **le saludan sin pedirlo** |
 | Vas a decirle algo al usuario | **En sus palabras, no en las del marco.** `base` es *dónde te dejo los documentos*; `kit`, `loader` y *greenfield* **no se preguntan**: son detalles internos que resuelves tú |
 | Vas a sembrar `state` y `handover` | **No inventes una sesión anterior.** Usa la forma vacía de la plantilla: *ninguna cerrada todavía*. Es el estado en que nace **todo** bootstrap, y estuvo sin escribir hasta que dos agentes de campo lo improvisaron bien — que es como un hueco se queda abierto |
+| **Hay un `stele.config.md` en un subdirectorio** | **Esto no es un proyecto nuevo: es uno que quiere subir de raíz.** No siembres: el paso 7 declararía *ninguna sesión cerrada todavía* con un historial vivo ahí abajo, y el marco de arriba gana porque es el que tiene las puertas. Para y pregunta cuál instancia manda |
 | Vas a dar el paso 10 por hecho | **El saludo es el único observable que distingue un marco activo de uno apagado**, y quien lo ve primero es la persona: tú ya tienes el contexto y no puedes notar su falta |
 
 **Pasos:**
@@ -323,3 +327,41 @@ suposición de que hay alguien dentro con historia.**
 
 *(Caso de campo aportado por un proyecto que sembró a su hermano y escribió antes de saber si funciona,
 que es la parte difícil de reportar.)*
+
+## Un marco un nivel más abajo: instalar arriba NO es empezar de cero
+
+**El caso.** El proyecto adoptó el marco en un subdirectorio —el proceso por el que se empezó— y con
+el tiempo resultó ser uno de varios. Ahora alguien abre el agente en el directorio de arriba y pide
+instalar. **Desde ahí no se ve nada del marco**: la raíz no tiene puertas, ni manifiesto, ni
+historial, así que el ritual entra en *greenfield* y el paso 7 hace su trabajo — sembrar `state`,
+`index` y `handover` **vacíos**, con su *ninguna cerrada todavía*.
+
+**Nada falla y el daño es completo.** No se borra un solo archivo: el historial de abajo sigue
+íntegro en disco. Lo que se pierde es **quién manda**. Las puertas nuevas están en la raíz, que es
+donde el harness las auto-carga, así que a partir de la sesión siguiente el agente arranca leyendo un
+marco que declara un proyecto sin pasado, y el que tiene las siete sesiones no lo lee nadie. El
+observable de que algo va mal es el **saludo**, y ese saludo dice exactamente lo que un proyecto nuevo
+diría: **no se distingue del éxito.**
+
+**Por qué el paso 7 no protege aquí.** Su regla —*no inventes una sesión anterior*— es correcta y nació
+de un hueco real, pero descansa en que *"no veo historial"* significa *"no hay historial"*. En la raíz
+de una promoción esa inferencia es falsa, y **es falsa en silencio**, porque el ritual nunca mira hacia
+abajo. La comprobación que faltaba ya existía para el objeto de al lado: el paso 1 desconfía de un
+`.git` anidado desde siempre. **Un `stele.config.md` anidado es la misma señal**, y se busca con el
+mismo comando.
+
+**Qué hacer cuando aparece uno.** No hay decisión que el agente pueda tomar solo, así que se para y se
+pregunta. Lo que sí está decidido es el menú: **la instancia de abajo se PROMUEVE** —sube con su
+historial entero, y las rutas al contenido reciben su prefijo (ritual CONFIG → *Mover la raíz*)— o
+**la de abajo se declara cerrada** y la nueva empieza citándola. Lo que **no** existe es fusionar dos
+historiales: son append-only, y entrelazar dos series de sesiones exigiría reescribir al menos una.
+
+**Y con varias, que es a donde tiende un proyecto que adoptó por procesos:** si el barrido encuentra
+**N** manifiestos, no cambia la naturaleza del problema, cambia el número de decisiones. **Solo una
+puede promoverse** —el `index` resultante tiene que ser una sola serie— y las demás quedan **ancladas
+donde están**, cada una con su nota de equivalencia en la cabecera de su propio `index`. Es más
+trabajo y no es más difícil; lo difícil sería lo contrario, y lo contrario está prohibido.
+
+> **La señal, para reconocerla sin comando:** el usuario dice *"instala el marco aquí"* y a la vez
+> habla de sesiones anteriores, de decisiones ya tomadas o de un documento que *"ya existe"*. Eso no
+> es un proyecto nuevo hablando: es uno que se mudó de raíz y lo está contando desde arriba.

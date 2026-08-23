@@ -71,7 +71,7 @@ encuadró su trabajo, que es justo quien no necesitaba la tabla.
 | **REMITIR** | **La trampa que ibas a escribir es sobre una herramienta que usas, no sobre tu proyecto.** O te bajó una pregunta que sabes contestar | `remitir.md` |
 | **BOOTSTRAP** | El proyecto todavía no tiene el marco | `bootstrap.md` |
 | **ACTUALIZAR** | Vas a traer una versión nueva del kit | `actualizar.md` |
-| **CONFIG** | Vas a renombrar un doc o cambiar un parámetro del manifiesto | `configurar.md` |
+| **CONFIG** | Vas a renombrar un doc, cambiar un parámetro del manifiesto o **mover la raíz** | `configurar.md` |
 
 > **REMITIR va en negrita porque es el único que no se reconoce solo.** A los demás los dispara un
 > momento visible —abres, cierras, te llega algo, vas a tocar el manifiesto—. A ese lo dispara **una

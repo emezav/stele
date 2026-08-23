@@ -8,8 +8,8 @@ de tesis, los resultados de un laboratorio socio, la evaluación de un curso, el
 que usa tu producto. Llega **fuera de banda** —no al abrir ni al cerrar— y procesarlo cuesta, así que
 **se invoca**, como auditar.
 
-**Por qué no lo cubre ningún otro ritual.** Los siete anteriores miran hacia dentro: escriben la
-documentación, mantienen el marco, o re-verifican lo ya escrito. El octavo, REMITIR, sí mira hacia
+**Por qué no lo cubre ningún otro ritual.** Los seis anteriores miran hacia dentro: escriben la
+documentación, mantienen el marco, o re-verifican lo ya escrito. El séptimo, REMITIR, sí mira hacia
 fuera —pero es la **salida**—. Ninguno maneja una **entrada de fuera**. Es la vía de mayor
 consecuencia que tiene un proyecto —lo que entra por aquí se incorpora al
 producto y viaja a todos— y es la única que no tenía procedimiento.

@@ -7,6 +7,13 @@
 
 > **Este ritual se ejecuta CADA sesión**, así que un bloque mal cortado se paga a diario.
 
+**Guarda, antes del paso 1: ¿hay instancia aquí?** Si no hay `stele.config.md` en la raíz, **este
+ritual no aplica** — estás leyendo el kit desde fuera de un proyecto que lo tenga, y lo que
+corresponde es BOOTSTRAP. No es una comprobación defensiva de manual: los `printf >>` de los pasos 2
+y 3 **crean el archivo que falta** en lugar de fallar, así que cerrar sin instancia deja un `index`
+y un acta huérfanos, sin manifiesto y sin puertas, que **nadie va a cargar en la sesión siguiente**.
+Pasó en campo, con el marco vivo un nivel más abajo.
+
 1. **`session`** (nuevo): qué se hizo, decisiones, archivos, verificación, **tropiezos**, notas para
    retomar, y `## Esfuerzo equivalente` (si `effort_log`). `NNN` con padding a 3 dígitos, y la fecha
    **medida, no recordada** — ver *De dónde sale la fecha*, abajo.

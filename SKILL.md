@@ -277,10 +277,10 @@ solo en el checkpoint. Así que la comparación limpia no es *"doc de arranque c
 **añadirlo funciona**, no que el doc de arranque sobre. Escríbela en los dos sitios si hace falta: el
 de arranque te informa, el del salto te detiene.
 
-## Comprobar en vez de dar por hecho: tres momentos
+## Comprobar en vez de dar por hecho: cuatro momentos
 
-Una sola desconfianza en tres puntos del tiempo. Las tres cuestan un comando y las tres fallan **en
-silencio**, que es lo que las hace caras.
+Una sola desconfianza en cuatro puntos del tiempo. Las cuatro cuestan un comando y las cuatro fallan
+**en silencio**, que es lo que las hace caras.
 
 - **Antes de hacerlo — ¿ya está hecho?** No construyas sin mirar si existe. Dos casos de campo: un
   agente se ofreció a crear un entregable **que ya estaba verificado**, y otro propuso construir las
@@ -290,6 +290,14 @@ silencio**, que es lo que las hace caras.
 - **Después de un paso cuyo efecto ocurre fuera del texto — ¿ocurrió, y qué se ve si no?** Un paso que
   **afirma** un resultado que nadie mira no da error: sale igual de convincente. Se arregla con
   comprobación **más síntoma declarado** — ver BOOTSTRAP paso 10 y el `Sello` del `handover`.
+- **Antes de escribir en la instancia — ¿hay instancia?** Leer el kit es gratis y desde cualquier
+  sitio: basta con que el directorio esté a mano. **Eso te da el procedimiento sin darte el
+  proyecto.** Un ritual que escribe —CERRAR el primero— da por supuesto que existe lo que va a
+  actualizar, y `printf >>` **crea el archivo que falta** en vez de fallar, así que cerrar donde no
+  hay marco fabrica media instalación que ninguna puerta va a cargar. La comprobación es
+  `stele.config.md` en la raíz: si no está, el único ritual que puede correr es BOOTSTRAP. **Caso de
+  campo:** un agente leyó el kit desde el directorio de arriba y propuso cerrar la sesión; lo paró el
+  usuario, no el marco.
 
 **El síntoma es la parte que se olvida**, y sin él la comprobación no existe: *"comprueba que
 funcionó"* no sirve si quien mira no sabe qué aspecto tiene el fallo. Y quien mira suele ser el
@@ -298,7 +306,7 @@ usuario, no tú — tú ya tienes el contexto que oculta la falta.
 ## Los rituales, y dónde vive cada uno
 
 **Este archivo no contiene los rituales: los enruta.** Cada uno vive en `core/rituals/` y **se lee
-solo cuando se invoca**. Es deliberado y tiene una medida detrás: cuando los nueve vivían aquí, este
+solo cuando se invoca**. Es deliberado y tiene una medida detrás: cuando los ocho vivían aquí, este
 archivo pesaba **1845 líneas / 36 242 tokens** (medido en `27a41bd`) y crecía de forma monótona —de veinticinco cambios
 seguidos, **ninguno** lo redujo—, mientras el ritual que se usa **cada** sesión ocupaba 12 líneas y el
 que se usa **cada diez** ocupaba 615. **La masa era inversamente proporcional a la frecuencia de uso**,

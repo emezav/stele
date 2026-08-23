@@ -24,6 +24,15 @@
 5. **Validar**: `grep` del nombre (o ruta) viejo = 0; cada nombre resuelve a un archivo; ningún rol
    activo apunta a faltante; los invariantes de ruta se cumplen.
 
+   **Y si el cambio tocó `persistencia` o la raíz, se re-comprueba lo que BOOTSTRAP comprobó una vez:
+   `git` solo vale si hay `.git` en la RAÍZ** — uno anidado en un subdirectorio deja la raíz sin
+   versionar, y entonces el manifiesto declara `git` mientras el cierre cubre una fracción del árbol.
+   **Nada falla:** los commits salen bien, el `state` se escribe, y lo que queda fuera no da señal
+   ninguna. Lo trajo un adoptante que iba a promover su raíz: la comprobación existía, pero **solo se
+   leía en el ritual que se ejecuta una vez en la vida del proyecto**. Es la misma ley de *barre por
+   RUTA, no solo por texto*: tres rituales tocan `persistencia` —BOOTSTRAP, CONFIG y CERRAR— y solo
+   el primero la validaba.
+
    **Y si el cambio tocó una puerta o el `entry`, esa validación no alcanza: es toda textual.** Un
    nombre de puerta equivocado pasa las cuatro comprobaciones de arriba —resuelve a un archivo, no
    rompe ningún invariante— y deja el marco **instalado y mudo**. Acaba como BOOTSTRAP (paso 10),
@@ -72,6 +81,10 @@ principal**. La dirección peligrosa se llevó las reglas y la común se quedó 
   instanciados (`entry`, `protocol`, `loader`). No toca ningún doc de contenido.
 - Mover `base`: mover los docs de rol (y `history_dir` completo, con su historial) y regenerar el
   loader, cuyos `@import` son relativos a la raíz. El historial se mueve entero, no se reescribe.
+- **Mover la RAÍZ** (una *promoción*: el proyecto pasa a colgar de un directorio superior) es el caso
+  que no está en la tabla del manifiesto, porque **la raíz no es un valor configurado**: es el origen
+  del sistema de coordenadas, el CWD con que se abre el agente. Por eso no se persiste —igual que el
+  layout— y por eso **ningún ritual la cambiaba**. Detalle abajo.
 - Cambiar `loader` es **añadir o quitar puertas**, porque el valor es una lista.
   **Añadir** una: insertar el bloque en ese archivo —creándolo o modificándolo, invariante 6— con el
   mismo contenido que las demás. **Varias puertas activas NO compiten: es el diseño.** Todas llevan la
@@ -84,3 +97,71 @@ principal**. La dirección peligrosa se llevó las reglas y la común se quedó 
   **Y avisar de lo que quitar implica:** cerrar una puerta deja mudo al agente que la lee. Si el
   usuario trabaja con dos y se cierra una, lo notará la próxima vez que abra con ese — y lo notará
   como un saludo genérico, no como un error.
+
+## Mover la raíz (promoción), el cambio de ruta que no es un valor
+
+**Qué es.** El proyecto pasa a colgar de un directorio superior: lo que era la raíz queda un nivel
+abajo y el marco sube con ella. Ocurre cuando el subdirectorio que se adoptó resulta ser **uno de
+varios procesos** del trabajo real, y la documentación tiene que cubrir el árbol entero.
+
+**Lo que NO cambia, y explica por qué la operación es legal.** El marco viaja completo, así que `kit`,
+`base` y `loader` **conservan su valor** —son relativos a la raíz, y la raíz nueva es la suya—, los
+seis invariantes se siguen cumpliendo, y `{{history_dir}}` se mueve entero, con lo que sus enlaces
+Markdown internos sobreviven sin tocarlos (`{{kit}}/core/reference/rutas-y-tokens.md` → *Dos clases de
+ruta*). Un layout con nombre promovido sigue siendo ese mismo layout.
+
+**Lo que sí se rompe es exactamente lo que el marco no parametriza:** las referencias al **contenido
+del proyecto** —carpetas, scripts, plantillas propias— escritas a mano en los docs. El marco tiene
+tokens para sus rutas y **ninguno** para las del proyecto, así que ninguna operación de rutas las
+puede barrer sola. Reciben el prefijo de la raíz vieja, a mano y con el `grep` de control después.
+
+**Y el historial no se corrige: se ancla.** Las rutas citadas en `session` e `index` eran ciertas
+cuando se escribieron; después de la promoción apuntan a una raíz que ya no existe. Es drift que el
+marco **prohíbe reparar**, porque un registro no se reescribe. La salida ya existe y es la misma que
+para un renombrado: **se anota la equivalencia una vez, en la cabecera de `index`** —*"a partir del
+DD-MM la raíz es X; las rutas de las sesiones 1..N se resuelven anteponiendo `P/`"*— y ahí se acaba.
+No en `protocol`: el anclaje vive donde vive el índice de lo anclado.
+
+**Antes de escribir nada**, el mismo eco del bootstrap, con dos líneas más: **raíz** (antes → después)
+y **prefijo**. Corregir la interpretación cuesta cero antes y caro después.
+
+**Y su verificación no cabe en la sesión que la ejecuta.** Las puertas se auto-cargan **al abrir**, así
+que el observable de que la raíz nueva funciona es el saludo de la sesión **siguiente** — igual que el
+paso 10 de BOOTSTRAP, y por la misma razón. Se cierra pidiéndoselo al usuario, no afirmándolo.
+
+> **Con `persistencia = git`, promover la raíz mueve también lo que git ve.** Un `.gitignore` de raíz
+> escrito **antes** de mover el repositorio es parte de la operación, no una mejora posterior: el
+> commit de re-enraizado es el que decide qué entra, y lo que entre ahí ya está dentro. Los
+> `.gitignore` anidados siguen aplicando a su subárbol, así que lo ya excluido no se rehace.
+
+### Y lo que de verdad cambia no son las rutas: es el REFERENTE
+
+**Una promoción no mueve el proyecto: lo amplía.** Antes, *"el proyecto"* era el subdirectorio; después
+es el árbol entero, del que aquello es una parte. Las rutas cambian de **valor** y se ve; las
+afirmaciones cambian de **referente** y no se ve ninguna, porque **la frase sigue leyéndose
+perfectamente**.
+
+**El caso concreto está en el historial, y es peor que las rutas rotas.** Un acta que dice *"se decidió
+X para el proyecto"* no tenía ninguna ruta que arreglar y aun así dejó de ser cierta: aquello se
+decidió para **uno de varios** procesos, y ahora la misma frase promete un alcance que nadie acordó. Una
+ruta rota se detecta con un `grep`; **esto no se detecta con nada**, y no se puede corregir, porque un
+registro no se reescribe.
+
+**Por eso el anclaje de la cabecera de `index` es de ALCANCE y no solo de prefijo.** No basta con
+*"antepón `P/` a las rutas de las sesiones 1..N"*: hay que decir **qué era el proyecto entonces** —
+*"hasta el DD-MM, «el proyecto» significaba `P/`; a partir de ahí significa el árbol entero"*—. Cuesta
+una frase más y es la que hace legible el registro viejo.
+
+**Y hay docs vivos que sí se reescriben, precisamente porque no son registro.** Su sujeto acaba de
+cambiar y ninguna operación de rutas los toca:
+
+| Doc | Qué le pasó |
+| --- | --- |
+| `charter` | Describe el propósito de la parte, no del todo. Es el que más miente y el primero que se relee |
+| `state` | *Dónde estamos* pasa a medirse contra un proyecto mayor: sin tocarlo, **subestima lo que falta** |
+| `gotchas` | Sus trampas son las de un proceso; ahora conviven con las de los demás |
+| `specs` · `architecture` | Su alcance declarado es el viejo, y su título no lo dice |
+
+**Al cerrar, `audit completo`**, que es lo que el kit ya pide después de una migración estructural — y
+aquí con un encargo explícito, porque su detector habitual no lo cubre: **buscar afirmaciones que
+siguen siendo ciertas de la parte y falsas del todo.**

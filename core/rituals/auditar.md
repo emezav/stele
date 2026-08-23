@@ -327,6 +327,9 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Lo que solo pide un apunte se pierde cuando llega junto a lo que pide trabajo*
 - *Un identificador no se valida por su forma: se valida resolviéndolo*
 - *Antes de acusar, abre el artefacto que lo decide — y si no existe, di que reconstruyes*
+- *"Bajo palabra" cubre lo que el otro vio, no lo que el otro prevé*
+- *Cuando dos documentos cuentan la misma lista distinto, lo que difiere no es el número: es la definición*
+- *Una afirmación se vuelve falsa sin que cambie ni ella ni el hecho: basta con que se amplíe aquello de lo que habla*
 
 ## Por qué las leyes se citan por título y no por número
 
@@ -622,6 +625,16 @@ línea. Peor: la frase que **enunciaba esta misma regla** usaba *"las dos anclas
 lista cerrada, así que el ejemplo falsificó el criterio. La pregunta operativa no cambia —*¿añadir uno
 es un cambio previsto?*— pero **su respuesta tiene fecha**, y por eso los ejemplos de lista cerrada son
 ellos mismos candidatos de auditoría.
+
+**Y el ejemplo de arriba ya recibió el suyo, desde fuera.** Un adoptante que necesitaba mover la raíz
+de su proyecto llegó diciendo que *"la raíz es la **cuarta** ruta"*, apoyándose en que las tres del
+manifiesto son todas relativas a ella. **La formulación se rechaza y el fenómeno se acepta**: la raíz
+no es un valor configurado sino el origen de coordenadas, así que las rutas siguen siendo tres —el
+juicio aguanta—. Lo que no aguanta es la comodidad de tenerlo por cerrado: hizo falta un caso de campo
+para descubrir que **la lista estaba completa y el sistema no**, porque el parámetro que faltaba no era
+una ruta más, era la referencia contra la que se miden las tres. **Es la segunda vez que este ejemplo
+concreto recibe presión, y la primera que la presión viene de un terreno ajeno** — que es la única
+posición desde la que se ve, porque desde dentro la lista se cuenta y cuadra.
 
 **Ni alcanza a una medición.** *"1562 líneas"*, *"cuatro hogares"*, *"9 hallazgos, 5 falsos"* no son
 contadores: son **hechos fechados**, y su forma honesta ya la fija otra regla — van con su corpus al

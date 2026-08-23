@@ -78,19 +78,20 @@ Lo que **no** se sigue de esto es que dé igual escribir las reglas. Se sigue qu
 un lector que no seas tú es una deuda**, y que la pregunta al escribirla es siempre la misma: *¿qué
 tendría que mirar esto para que saltárselo fuera imposible en vez de solo incorrecto?*
 
-## Tres rituales base + tres de ciclo de vida + uno de verificación + dos de correspondencia
+## Dos rituales base + tres de ciclo de vida + uno de verificación + dos de correspondencia
 
-- **Abrir** (ponerse al día, barato) · **Checkpoint** (dejar el salto en curso a salvo antes de un
-  cambio interrumpible) · **Cerrar** (dejar registro durable).
+- **Abrir** (ponerse al día, barato) · **Cerrar** (dejar registro durable). El **checkpoint** —dejar
+  el salto en curso a salvo antes de un cambio interrumpible— va con ellos y **no es un ritual**: es
+  una regla dura, y por eso vive en `SKILL.md`, donde se lee sin invocar nada.
 - **Bootstrap** (instanciar el marco en un proyecto), **Actualizar** (traer una versión nueva del kit
   y reconciliar la instancia) y **Config** (adaptar nombres/parámetros).
 - **Auditar** (verificar hacia dentro que lo escrito sigue siendo cierto).
 - **Contrastar** (recibir de fuera un informe sobre tu trabajo y decidir qué entra) y **Remitir**
   (escribir hacia fuera lo que encontraste y no es tuyo).
 
-Detalle operativo de los nueve: `SKILL.md`.
+Detalle operativo de los ocho: `core/rituals/`, uno por fichero. `SKILL.md` los enruta.
 
-**Por qué el séptimo existe.** Los seis primeros se reparten en dos grupos —los que **escriben**
+**Por qué el sexto existe.** Los cinco primeros se reparten en dos grupos —los que **escriben**
 documentación y los que mantienen el **marco**— y ninguno de los dos re-verifica el **contenido** ya
 escrito: `abrir` lee poco a propósito, `cerrar` escribe el estado nuevo sin releer el viejo, y
 `config`/`actualizar` tocan el manifiesto y la maquinaria, no lo que dicen los docs. El hueco solo se
@@ -105,7 +106,7 @@ promovió al doc que se lee al abrir. Eso no se ve leyendo ningún documento; so
 dos. Por eso no puede ser un efecto secundario de otro ritual, y por eso **se invoca**: auditar es
 caro por naturaleza, y meterlo en `abrir` rompería el pilar 4 (arranque barato).
 
-**Por qué existen los dos de correspondencia.** Mismo test, otra respuesta. Los siete anteriores miran
+**Por qué existen los dos de correspondencia.** Mismo test, otra respuesta. Los seis anteriores miran
 **hacia dentro**: escriben la documentación del proyecto, mantienen su marco, o re-verifican lo ya
 escrito. Ninguno maneja el trato con **el exterior**. Visto como flujo, la asimetría salta:
 *actualizar* es cómo un cambio del kit **baja** hasta quien lo usa, y no existía el camino de
