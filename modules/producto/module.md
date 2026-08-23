@@ -135,6 +135,24 @@ Lo que sí hay que ajustar en ese caso es el `checkpoint_trigger` (ver arriba): 
 documentación, la exención por "solo contenido de documentación" eximiría al proyecto entero y
 dejaría la regla dura muerta. Especialízalo a lo que hace las veces de código.
 
+> **Y al especializarlo, enúncialo por COMPLEMENTO, nunca por lista.** El reflejo es escribir los
+> ficheros y carpetas que hoy hacen de código —*"antes de editar `X`, `Y` o `Z/`"*— y esa forma **no
+> se vuelve falsa nunca: se queda corta**. Sigue disparándose cuando toca, así que parece que sigue
+> protegiendo, mientras cada fichero nuevo del producto nace fuera de ella y **nada avisa**. Escribe
+> qué conjunto protege y deja fuera solo lo exento: *"antes de la primera edición de cualquier
+> fichero que se publique; la exención es el contenido de `{{base}}`"*. Lo protegido crece solo; las
+> excepciones se añaden con deliberación, y por eso la lista que se mantiene a mano tiene que ser la
+> de excepciones.
+>
+> **Dos casos de campo, uno de un adoptante y otro nuestro, y el nuestro es peor.** Allí, un trigger
+> enumeraba tres artefactos de un proceso y el proyecto pasó a tener ocho: la regla seguía siendo
+> cierta palabra por palabra y ya no cubría el cambio más grande que ese proyecto iba a hacer. Aquí,
+> el trigger de esta misma instancia decía *"la primera edición del kit"* —correcto y cerrado— **y
+> añadía un paréntesis con cinco entradas**. Fuera del paréntesis quedaba `buzon.md`, que viaja a
+> cada adoptante, y `.gitignore`, que ya nos había metido un fichero ajeno en un commit.
+> **La enumeración se puso para aclarar la regla general y acabó sustituyéndola**, porque es la parte
+> operativa y es la que se lee.
+
 **Escribir código no es lo que decide activar el módulo.** Un proyecto de documentación pura genera
 scripts en cuanto hay volumen: inventariar, emparejar, comparar dos fuentes, mover veinte archivos.
 Eso es **herramienta para manipular el proyecto**, no producto, y su hogar es `artifacts_dir` — no

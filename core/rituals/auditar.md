@@ -330,6 +330,8 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *"Bajo palabra" cubre lo que el otro vio, no lo que el otro prevé*
 - *Cuando dos documentos cuentan la misma lista distinto, lo que difiere no es el número: es la definición*
 - *Una afirmación se vuelve falsa sin que cambie ni ella ni el hecho: basta con que se amplíe aquello de lo que habla*
+- *Una regla que afirma se vuelve falsa; una que enumera se queda corta, y sigue disparándose*
+- *Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección*
 
 ## Por qué las leyes se citan por título y no por número
 

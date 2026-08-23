@@ -3002,3 +3002,81 @@ que al subir de nivel *el contexto del proyecto cambia, se amplía*. Nuestro an�
 había tratado entero como una transformación de rutas —prefijos, invariantes, enlaces— y **no había
 una sola línea sobre el significado**. Es la cuarta vez que la fuente más barata de las cuatro rinde
 más que las tres caras.
+
+## Una regla que afirma se vuelve falsa; una que enumera se queda corta, y sigue disparándose
+
+La ley de al lado —*una afirmación se vuelve falsa si se amplía aquello de lo que habla*— tiene un
+hermano que **su detector no encuentra**, porque no hay ningún sustantivo colectivo al que vigilar.
+Cuando lo que se amplía es el objeto de una regla que **enumera**, la regla no miente: sigue siendo
+verdadera palabra por palabra, sigue disparándose cuando le toca, y **deja de cubrir**.
+
+**Y es el más silencioso de los dos, porque una regla que sigue disparándose parece una regla que
+sigue protegiendo.** Una afirmación falsa, si alguien la lee, choca. Una lista corta no choca con
+nada: lo que le falta no está escrito en ninguna parte.
+
+**Dos casos, y el peor es propio.** Un adoptante tenía un `checkpoint_trigger` que enumeraba los
+artefactos de un proceso, y su proyecto pasó a tener ocho procesos: la regla seguía cubriendo el
+primero y **no cubría la migración que estaba a punto de ejecutar**, que era el cambio más grande de
+su historia. Aquí, el trigger de esta instancia decía *"antes de la primera edición del kit"* —general
+y cerrado— **y añadía un paréntesis con cinco entradas**. Fuera del paréntesis quedaban `buzon.md`,
+que viaja a cada adoptante, y `.gitignore`, que ya había metido un fichero ajeno en un commit.
+
+> **Lo nuestro enseña el mecanismo exacto: la enumeración se puso para ACLARAR la regla general y
+> acabó sustituyéndola.** El enunciado bueno estaba escrito, delante, en la misma línea. Pero la lista
+> es la parte operativa —dice qué hacer sin pensar— y es la que se lee. **Aclarar una regla cerrada
+> con ejemplos concretos es la forma más común de estrecharla sin tocarla.**
+
+**El remedio es de forma y no de detección: enuncia por COMPLEMENTO.** Di qué conjunto proteges y
+enumera solo lo **exento**. No es simetría estética: **lo protegido crece solo y las excepciones se
+añaden con deliberación**, así que la única lista que se puede mantener a mano es la segunda. Una
+regla por complemento cubre el fichero que se creará mañana sin que nadie se acuerde de ella.
+
+**Y el barrido que lo caza es distinto del de los colectivos**, cosa que hay que decir porque lo
+natural es reusar el otro: aquí se buscan paréntesis, listas separadas por comas, *"es decir"*, *"los
+X e Y"* — sintaxis de enumeración, no sustantivos. Es un encargo aparte para `audit completo`:
+**enumeraciones que siguen siendo ciertas y ya no son exhaustivas.**
+
+*El diagnóstico y su segunda mitad —"la que enumera se queda corta"— son de un adoptante, que lo trajo
+con el caso de su propio trigger y con el agravante señalado por él mismo: esa enumeración nombraba
+dos rituales y no nombraba la operación que iba a ejecutar.*
+
+## Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección
+
+Al verificar un informe externo aparece a veces **una causa común** que explica varias discrepancias a
+la vez: su copia es vieja, midió otro corpus, su versión no tiene esa pieza. En cuanto esa causa está
+identificada, **cubre todas las afirmaciones del mismo origen** — y ahí es donde se cuela el sesgo,
+porque las afirmaciones no son todas iguales para quien verifica: unas le dejan bien y otra le acusa.
+
+**Caso propio, y en una sola tabla.** Se verificaron doce afirmaciones de un adoptante. **Tres** se
+resolvieron con *"citan el fichero equivocado porque su copia del kit es anterior"* — o sea, el
+desfase de versión, escrito y aceptado. La **cuarta**, la única que decía algo desfavorable sobre
+nosotros —*"el marco tiene siete rituales"*—, se declaró **FALSA** sin aplicarle la misma explicación
+que acababa de usarse tres filas más arriba. Era cierta: **en su copia había seis rituales y el
+checkpoint contado como séptimo, y su propio `guide` lo decía en un encabezado.**
+
+**La prueba de que es sesgo y no descuido es que las cuatro estaban en la misma tabla, del mismo
+origen, verificadas en la misma pasada.** No hubo dos momentos ni dos criterios explicables por el
+tiempo: hubo dos tratos.
+
+**Y el remedio es más barato que el diagnóstico, porque el corpus ajeno se puede DATAR.** Cuando el
+terreno del otro es **una copia de tu producto**, deja de ser incomprobable: su versión está en tu
+propia historia pública. Con seis señales de su carta —longitud de un fichero, cuántos encabezados de
+un tipo, dos números de línea, qué directorios existen, qué pieza falta— se fijó su copia en **un
+commit exacto**, y ahí las seis coincidían.
+
+```text
+git log --format='%h %ad' --date=short -S"<frase que citan>" -- <fichero>
+for c in $(git log --format='%h' --since=<su adopcion> -- SKILL.md); do
+  echo "$c $(git show $c:SKILL.md | wc -l)"      # cuadrar con la longitud que reportan
+done
+# CONTROL: no basta UNA senal. Con dos numeros de linea exactos, la datacion ya no es conjetura.
+```
+
+> **Esto abre una grieta en *un proyecto no puede verificar el terreno ajeno*, y conviene decir
+> exactamente dónde:** sigue siendo cierto de su trabajo, de sus medidas y de su máquina. Es **falso
+> de la parte de su terreno que es producto tuyo** — y esa parte es justamente sobre la que discute
+> contigo. Datarla no es cortesía: es lo que decide si su afirmación era falsa o solo vieja.
+
+**Y hay un corolario que duele más que la ley: si le hubiéramos preguntado, no habría hecho falta.**
+La pregunta *"¿qué versión del kit tienes?"* cuesta una línea, y en su primera carta ya había cuatro
+señales para responderla sin preguntar.
