@@ -252,7 +252,13 @@
 | --- | --- | --- |
 | checkpoint | trigger | antes de un cambio interrumpible |
 | abrir | saludo | 1-3 líneas: última sesión + estado handover + próximo paso |
+| habla | trato | tú |
 
+> **`trato`** = cómo se dirige el agente a quien usa el proyecto, en las lenguas que distinguen
+> segunda persona: `tú` (default) o `usted`. Se **consulta, no se interpola**. En inglés y otras
+> lenguas sin esa distinción, la fila no aplica. El porqué del default está en `{{kit}}/SKILL.md` →
+> *Cómo se le habla al usuario*.
+>
 > El `trigger` de arriba es el default **agnóstico** del núcleo. Si el módulo `producto` está
 > activo, bootstrap escribe aquí su especialización: *antes de la primera edición de código*.
 > Un proyecto sin código lo adapta a lo que haga sus veces (ritual `config`, clase *wording*).

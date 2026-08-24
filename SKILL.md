@@ -109,6 +109,25 @@ El marco tiene **dos vocabularios**, y solo uno es contrato:
 entre paréntesis va **siempre**: es lo que le permite ir a mirarlo, y lo que hace que hablar claro no
 le quite precisión a un usuario técnico. Por eso la regla no necesita un parámetro que la active.
 
+**Y el TRATO sí lo necesita, porque el llano es universal y el trato no.** En las lenguas que
+distinguen segunda persona —castellano, francés, alemán, portugués…— hay que elegir, y **el silencio
+no es neutral: cada agente cae en su propio default y elige por ti**. El manifiesto lo fija
+(*Wording* → `trato`), **por defecto `tú`**, y se **consulta**: no hay token que interpolar.
+
+**La razón del default es de forma, no de gusto: un default que se NOTA cuando está mal es mejor que
+uno que no.** Un tuteo no deseado chirría en la primera frase y se corrige en una celda; un *usted* no
+deseado solo **distancia**, no da señal, y quien lo sufre puede no llegar a saber que había una celda
+que cambiar. Además el *usted* formal riñe con el registro que este archivo acaba de fijar: no se
+puede hablar en llano y tratar de usted sin que una de las dos cosas suene falsa.
+
+**Y es UN parámetro para todo el marco, no uno por ritual.** El defecto se nota primero instalando o
+actualizando —son los dos rituales donde el agente más habla: el eco, las preguntas, la comprobación
+final— y de ahí sale la tentación de tratarlos aparte. **Un trato distinto según el ritual serían dos
+definiciones conviviendo en el mismo proyecto**, que es una clase de defecto que este kit ya tiene
+documentada y que no vamos a fabricar a propósito.
+
+**En una lengua sin esa distinción —inglés— la fila no aplica y se deja como está.**
+
 **Y cuando el usuario tenga que ACTUAR sobre una lista, dásela como lista, no en prosa.** Una tabla o
 unos bullets se ejecutan de una pasada; la misma información en un párrafo hay que **reconstruirla**
 antes de poder usarla, y quien la reconstruye es él. Vale para lo que le toca hacer: decisiones que

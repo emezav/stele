@@ -45,6 +45,14 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
   **nunca buscando la palabra en la fila**, cuya prosa menciona estados de otras cartas.
 - **Y esa lectura lleva control positivo**, como cualquier detector: una fila que sabes entregada tiene
   que leerse entregada. Sin él, la sonda no mide nada.
+- **Y su otra mitad, que es de ESCRITURA y faltaba: el estado vigente va al PRINCIPIO de la celda.**
+  Una regla de lectura sin su regla de escritura correspondiente se cumple hasta que alguien escribe
+  de otra forma, y entonces la lectura devuelve un estado caducado **sin fallar**. El desenlace de una
+  carta se edita varias veces —redactada, publicada, revisada, entregada— y el impulso es **anteponer
+  lo último que pasó**, con lo que el historial crece por delante y el estado se hunde. Caso propio,
+  cazado por el control de lectura y no por la relectura: una fila empezaba por *"REDACTADA… y
+  REVISADA…"* con el `ENTREGADA` a mitad del campo, y la sonda anclada devolvía *redactada* sobre una
+  carta ya entregada. **Lo que va delante es el estado; el relato de cómo se llegó a él va detrás.**
 - **Y el índice se cuenta con un invariante, no con un patrón:** el **número de cartas** tiene que
   coincidir con el **último número de carta**. Ese fichero puede llevar más de una tabla numerada —los
   desacuerdos, por ejemplo— y entonces contar filas por patrón da de más **sin dar error**. Ocurrió a

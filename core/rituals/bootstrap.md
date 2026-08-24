@@ -160,7 +160,13 @@ terminó.**
    puertas      -> CLAUDE.md, AGENTS.md  (una por harness; añade la tuya si lee otro nombre)
    persistencia -> git        (cómo se guarda el trabajo al cerrar)
    módulos      -> pendiente  (¿hay producto con estructura? sí / no / todavía no)
+   trato        -> tú         (cómo te hablo; dilo y lo cambio)
    ```
+
+   **El `trato` va en el eco y NO se pregunta**, como todo lo demás: tiene default y se corrige con
+   una frase. Se omite en lenguas que no distinguen segunda persona. Es barato ponerlo aquí porque
+   **este ritual es donde más se te habla** —eco, preguntas, la comprobación final— y por tanto donde
+   un trato que no encaja se nota antes.
 
    Coste cero y ataja la mala interpretación antes del scaffold, no después. Si el kit ya se
    vendorizó en la ruta equivocada, moverlo aquí es trivial; después no.
