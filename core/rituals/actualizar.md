@@ -137,8 +137,25 @@ releerla en el paso 4.
 > existe para hablarle **a** él es el caso donde la reescritura gana sin discusión. Reescribir las
 > otras habría sido un barrido sobre texto que funciona.
 >
+> **PRIMERO, PARTE EL CORPUS. Y esto no es un preliminar: es la mitad de la prueba.** Separa las filas
+> que **piden algo** de las que **reportan algo**, y corre la prueba **solo sobre las primeras**. Una
+> fila que reporta una medida —*tu árbol pesa 5,4 GB*— admite el lector de sujeto sin ninguna
+> violencia y **no significa nada que lo admita**. Corrida a ciegas sobre un documento mixto, la
+> prueba dio **59 y 3 —un 95% limpio— donde el resultado real era 12 y 3**. El número alto es falso y
+> **tranquiliza**, que es lo peor que puede hacer un detector. El resultado se publica **con el
+> denominador partido**, nunca con el bruto.
+>
 > **Y el límite, que también es resultado: una muestra de 17 filas de una sola tabla.** Dice que el
-> detector encuentra algo; no dice que la relación sujeto→calidad sea general.
+> detector encuentra algo; no dice que la relación sujeto→calidad sea general. **Peor: esas 17 filas
+> son todas de instrucción**, así que aquí el denominador era el numerador y la clase entera de
+> falsos negativos **no podía aparecer**. La descubrió un adoptante corriéndola en un documento
+> mixto, que es lo que suele haber fuera de un kit.
+>
+> **Dos observaciones suyas que afinan dónde muerde**, las dos sin medir y declaradas como tales: que
+> el defecto se concentra en **tablas** porque una celda se rellena con pasiva refleja —*se escribe*,
+> *no se tocan*— y **la pasiva refleja borra el agente sin dejar hueco**, de modo que en prosa la
+> falta se ve y en una celda no; y que las listas en **infinitivo** pasan la prueba *por
+> construcción*, porque el infinitivo instructivo ya trae el sujeto-lector.
 
 | Zona del diff | Qué implica para esta instancia |
 | --- | --- |

@@ -336,6 +336,12 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un tramo que no observas no se explica: se marca como ausente*
 - *Un corpus declarado no es el corpus medido: es una promesa sobre el corpus medido*
 - *La especie 1 no mide disciplina: mide cuánta superficie comparten los dos*
+- *Un detector no distingue "pasa porque está bien" de "pasa porque no aplica", y el segundo caso tranquiliza*
+- *Un contador roto falla hacia ABAJO, y hacia abajo no se caza*
+- *Un número compuesto hereda los defectos de sus sumandos y pierde su procedencia*
+- *Una cifra sobre corpus NO versionado se declara con su instante: el sello no la alcanza*
+- *Hay superficie que solo puede aportar quien NO publica: la que no está en ningún árbol*
+- *Un control positivo publicado es la parte más perecedera de una carta*
 - *Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección*
 
 ## Por qué las leyes se citan por título y no por número

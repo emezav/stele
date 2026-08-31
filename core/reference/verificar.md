@@ -3253,3 +3253,164 @@ lo eligió quien tiene el árbol abierto"*.
 
 *Del corresponsal, contestando a una pregunta nuestra sobre cómo aumentar la especie 1. La respuesta
 cambió la pregunta, que es la señal de que era la buena.*
+
+## Un detector no distingue "pasa porque está bien" de "pasa porque no aplica", y el segundo caso tranquiliza
+
+Todo detector reporta dos números: los que fallan y los que no. **El segundo grupo está mezclado** —
+dentro caben los que pasaron la prueba y los que **nunca estuvieron sujetos a ella**— y nada en la
+salida los separa. El resultado es un porcentaje alto que se lee como salud.
+
+**Caso de campo, de un adoptante corriendo una prueba nuestra sobre su propio documento:**
+
+```text
+corpus: 62 filas de tabla en un plan de migracion
+  15 piden algo         -> la prueba dice algo:  12 pasan, 3 se resisten
+  38 reportan una medida-> la prueba NO dice nada, y pasan
+   5 juzgan trabajo ajeno-> tampoco, y pasan
+   4 son un mapeo        -> tampoco, y pasan
+
+corrida a ciegas sobre las 62  ->  59 y 3   =  95% limpio
+corrida sobre el denominador   ->  12 y 3   =  80%
+```
+
+**El 95% es falso y es peor que falso: es tranquilizador.** Se puede poner al lector de sujeto de un
+verbo de estado sin ninguna violencia —*tu árbol pesa 5,4 GB*, *tienes 54 referencias que
+prefijar*— y ninguna de esas filas se resiste. **Ninguna significa nada.**
+
+**El remedio no lo puede dar el detector: partir el corpus es el primer paso y lo hace una persona
+leyendo.** Y el resultado se publica **con ese denominador**, no con el bruto.
+
+> **Y el corolario es el que más duele, porque alcanza a la validación: un detector probado sobre un
+> corpus donde todo aplica no está probado.** La prueba se había corrido antes aquí, sobre una tabla
+> de 17 filas **todas de instrucción** — el denominador era el numerador, y la clase entera de falsos
+> negativos **no podía aparecer**. No la escondimos: era invisible desde ese corpus.
+
+*Del adoptante que la corrió en el suyo. Su documento era mixto, que es lo que suele haber fuera de
+un kit.*
+
+## Un contador roto falla hacia ABAJO, y hacia abajo no se caza
+
+Un contador que se rompe **hacia arriba** se delata solo: nadie se cree 400 cartas donde hay 40. Uno
+que se rompe **hacia abajo** devuelve un número menor, plausible y sin error, y **se lee como buena
+noticia**.
+
+**Tres casos independientes, de un mismo proyecto y en tres terrenos distintos:**
+
+```text
+contar cartas por su patron de fila     ->  8 donde hay 4   (el fichero lleva DOS tablas)
+contar entradas de .git en un .7z       -> 20 sin fallar    (un grep mal escapado)
+contar filas de tabla en un documento   -> 54 donde hay 62  (pierde las tablas INDENTADAS)
+```
+
+**La regularidad no es que los patrones fallen: es la dirección.** Y la dirección tiene causa: un
+patrón demasiado estrecho **pierde** casos, y estrecho es el estado por defecto de un patrón escrito
+deprisa. Pocos se escriben demasiado anchos.
+
+> **Consecuencia para cualquier detector de contadores: la dirección del error importa más que su
+> tamaño.** Un `+2` inverosímil se corrige el mismo día; un `-8` plausible sobrevive a todas las
+> relecturas, porque no hay nada que chirríe.
+
+*Formulación de un adoptante, con sus tres casos, el tercero encontrado mientras escribía la carta
+que contaba los dos primeros.*
+
+## Un número compuesto hereda los defectos de sus sumandos y pierde su procedencia
+
+Sumar dos mediciones para obtener una tercera **borra de dónde vino cada mitad**. El resultado ya no
+distingue *lo que se midió* de *lo que se añadió a mano*, y si uno de los sumandos traía un defecto,
+**la suma no lo puede ver**.
+
+**Caso de campo, y lo confesó quien lo cometió media hora antes de enviar la carta:** un documento
+tenía *12 tablas*. El 12 salió de sumar **10 de un `grep`** más **2 encontradas después a mano**,
+porque el `grep` perdía las tablas indentadas. Pero ese mismo `grep` traía además **un falso
+positivo** —un diagrama cuyas líneas empiezan por barra—, y la suma no podía verlo: sumar dos
+números correctos por separado no revela que uno de ellos contara mal por dentro. El valor real,
+medido de una pasada con un script, era **11**.
+
+**Es el mecanismo de un contador roto, un piso más arriba:** no un contador defectuoso, sino **un
+contador correcto alimentado con la salida de uno defectuoso**.
+
+> **Y lo que se pierde no es la exactitud, es la trazabilidad.** Una vez escrito en la carta, *12* era
+> indistinguible de un 12 medido: **no venía con la etiqueta de que la mitad era un conteo
+> defectuoso**. Un número compuesto se publica con sus sumandos al lado, o se vuelve a medir entero.
+
+*Lo cazó escribir el script que la propia carta recomendaba y correrlo antes de mandarla.*
+
+## Una cifra sobre corpus NO versionado se declara con su instante: el sello no la alcanza
+
+Publicar el sello y el comando ancla una cifra **solo si el corpus está dentro del sello**. Cuando la
+cifra se mide sobre algo que el repositorio no guarda —un archivo de correspondencia ignorado, un
+directorio de trabajo, un árbol privado— **el commit no la ancla: ancla otra cosa que estaba al
+lado**, y la cifra queda flotando con la apariencia de estar sellada.
+
+**El caso llegó como pregunta de un corresponsal, y es mejor pregunta que ley.** Un detector nuestro
+—cuántos ficheros casan cierto patrón de cabecera— **cambió de valor al archivar su carta**, porque
+el ejemplo del defecto que ella contenía cuenta como caso del defecto. Preguntaron: *¿qué gana la
+fila del marcador, el número de antes o el de después?* Y observaron que las dos respuestas rompen
+algo: con el de antes el marcador deja de describir el árbol; con el de después, **cualquier
+corresponsal puede moverlo escribiéndote**.
+
+**La pregunta presupone una elección que no existe, y ahí está la respuesta.** Ese detector corre
+sobre un directorio que el `.gitignore` excluye:
+
+```text
+git check-ignore -v <ese fichero>    -> .gitignore:18
+git ls-files --error-unmatch <ese>   -> no esta en el indice
+```
+
+**Ningún commit contiene ese corpus**, así que ningún sello puede fecharlo. El número correcto no es
+el de antes ni el de después: es **el del instante declarado**, y sin instante declarado no hay
+número correcto.
+
+> **De ahí la partición, que es lo accionable: en un mismo marcador conviven dos clases de cifra.**
+> Las que se miden **sobre lo versionado** se anclan con el sello y son **inmunes** a lo que pase
+> después. Las que se miden **sobre lo no versionado** solo se anclan con el instante — y de esas, y
+> solo de esas, es cierto que **un tercero puede moverlas sin proponérselo**.
+
+**Y la consecuencia práctica es que las dos no se escriben igual.** *"33 ficheros en `a19ef3d`"* es
+una promesa falsa si el corpus no está en `a19ef3d`. Lo honesto es *"33 ficheros, medido el
+2026-08-31"*, que no promete reproducibilidad y no la finge.
+
+## Hay superficie que solo puede aportar quien NO publica: la que no está en ningún árbol
+
+La ley de al lado dice que la especie 1 mide superficie compartida, y que **crece solo si uno de los
+dos publica más** — de donde salía que en un intercambio asimétrico la dirección es fija: el que
+tiene el árbol abierto puede ser verificado y el otro no.
+
+**Es cierto de todo lo que vive en un repositorio, y falso de una cosa.** El corresponsal privado lo
+señaló devolviendo el caso: **su tramo del canal**. Cuánto tardó una carta suya entre redactarse y
+entregarse **no está en ningún árbol, no se puede clonar y no lo puede observar el otro lado**. Existe
+solo si lo escriben.
+
+```text
+lo que el lado publico puede aportar : todo lo que este en su repositorio
+lo que SOLO el lado privado puede    : su tramo de una espera, y en general
+                                       cualquier hecho de su proceso que no
+                                       deje rastro en un arbol
+```
+
+**No equilibra la asimetría** —el kit sigue siendo el único árbol abierto— pero **cambia lo que se le
+puede pedir a quien no publica**. No es solo la parte que se toma bajo palabra: es **la única pieza
+del intercambio que el otro no puede obtener por ningún medio**, y por eso su declaración vale más que
+una cifra reproducible sobre algo que ya se podía mirar.
+
+*Y el caso trae su propia prueba de buena fe: lo escribieron **antes** de leer la carta que lo
+preguntaba, y esa precedencia es lo único de la afirmación que no va bajo palabra.*
+
+## Un control positivo publicado es la parte más perecedera de una carta
+
+Un control positivo se publica para que quien lee compruebe que el detector discrimina, y por eso se
+escribe pegado a la medida. **Pero no dice lo mismo que ella.** La medida habla de un corpus fijado;
+el control suele hablar de **hoy** —*"la punta da tal"*, *"sobre HEAD sale cual"*— y **hoy es la única
+parte de una carta que envejece entre escribirla y leerla**.
+
+**Caso, y lo reportó quien lo aprovechó.** Un corresponsal corrió nuestro bloque principal: reprodujo
+limpio, hasta los hashes. Después corrió **el control** y no dio lo publicado. De ahí salió todo el
+hallazgo — dos corpus mezclados, una contradicción aritmética dentro de nuestra propia tabla.
+
+> **El comando confirmaba lo que ya decíamos; el control era la única línea que afirmaba algo sobre
+> el estado del momento**, y por eso fue la única que pudo envejecer. *Lo corrimos por rutina, no por
+> sospecha* — que es exactamente para lo que sirve un control.
+
+**Consecuencia al escribir: el control se ancla como la medida, o se declara perecedero.** Si el
+control dice *"hoy"*, entonces la carta lleva dentro una afirmación que caduca sola, y quien la lea
+tres días después no está comprobando el detector: **está midiendo el paso del tiempo.**
