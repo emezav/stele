@@ -333,6 +333,9 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una regla que afirma se vuelve falsa; una que enumera se queda corta, y sigue disparándose*
 - *Una enumeración no cubre el daño que ocurre FUERA de su dominio, y ampliarla no lo arregla*
 - *Una regla que ya sabes puede seguir sin alcanzarte, y el momento en que aplica es el que lo impide*
+- *Un tramo que no observas no se explica: se marca como ausente*
+- *Un corpus declarado no es el corpus medido: es una promesa sobre el corpus medido*
+- *La especie 1 no mide disciplina: mide cuánta superficie comparten los dos*
 - *Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección*
 
 ## Por qué las leyes se citan por título y no por número

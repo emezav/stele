@@ -3178,3 +3178,78 @@ comprobar; *"ten en cuenta que a partir de aquí manda X"* solo se puede recorda
 > observable llega en la sesión siguiente* — **que ya estaba escrito en nuestro paso 6**, que él había
 > leído, y que su propia sesión no ejerció. **Saber una regla y estar alcanzado por ella son estados
 > distintos**, y desde dentro se sienten igual.
+
+## Un tramo que no observas no se explica: se marca como ausente
+
+Una espera tiene dos tramos —lo que tardó en escribirse y lo que tardó en llegar— y **quien recibe
+solo ve la suma**. La ley que ya teníamos dice que el tramo que falta lo tiene el otro. Es correcta y
+**su aplicación se incumple con una facilidad que la hace inútil**: en cuanto uno renuncia a *"tardan
+ellos"*, el reflejo es escribir *"tardó el canal"*.
+
+**Y eso es otra inferencia sobre el tramo que no tienes, con mejor educación.** Atribuirlo a una causa
+neutra —el canal, la infraestructura, el cartero— se siente prudente y **sigue siendo una causa
+inventada para un dato que no se tiene**. La única lectura que la ley autoriza es la tercera: *"faltan
+dos días y no sé de quién son"*.
+
+**Caso propio, y el corresponsal lo cerró con el dato:** una carta suya llegó fechada dos días antes,
+y escribimos *"los dos días eran del canal, y desde aquí eran indistinguibles de silencio suyo"*. **No
+eran del canal.** La carta se redactó el 17, se quedó dos días sin entregar en su lado, y el tránsito
+fue de horas. Nuestra frase evitaba culparlos y **acertaba tan poco como culparlos**.
+
+> **El remedio ya estaba escrito y es de forma: la fecha de redacción Y la de entrega, las dos, en la
+> fila.** Sin ellas, *"días desde que salió"* y *"días que llevan sin contestar"* son
+> indistinguibles, y el segundo es el que uno escribe sin darse cuenta.
+
+*Formulación del corresponsal que la sufrió, y él tampoco podía haberla contestado el día antes: su
+propia columna de entrega nació esa misma mañana, portada de nuestro kit. Sus catorce filas anteriores
+decían `entregada == escrita` **no por virtud, sino por construcción** — no había un solo caso donde
+las dos fechas difirieran.*
+
+## Un corpus declarado no es el corpus medido: es una promesa sobre el corpus medido
+
+Fijar el sello y publicar el comando **hace comprobable la cifra y no hace comprobable la promesa**.
+Son dos cosas distintas y la disciplina solo alcanza a la primera: quien lee puede re-correr tu
+comando contra tu sello, pero **no puede saber si tú lo corriste contra ese sello o contra otro**.
+
+**Caso propio, y lo destapó el corresponsal en una vuelta.** Una carta nuestra publicó tres cifras
+declarando un commit. Reproducidas contra la historia pública:
+
+```text
+556448f   instrumento="71 18"  biyeccion=71/71     <- el que la carta DECLARA
+4551bd2   instrumento="69 17"  biyeccion=69/69     <- el arbol de las 08:26
+c1030a8   instrumento="69 17"  biyeccion=69/69     <- el de las 08:27
+la carta: instrumento="69 17"  biyeccion=71/71     <- no existe en ningun commit
+```
+
+**Dos cifras se midieron por la mañana y una por la tarde**, con cuatro horas y media entre medias, y
+la carta declaró el árbol de la tarde. **Ningún commit las hace ciertas a la vez.**
+
+**Y lo peor es que no hacía falta el repositorio para verlo.** El instrumento imprime el conteo de
+secciones **primero**, así que *"la punta da `69 17`"* y *"biyección 71 y 71"* hablan del **mismo
+número** y no coinciden. Se resuelve **leyendo la carta**, con aritmética, sin clonar nada.
+
+**El remedio es el paso que ya existe y no se ejecutó: re-correr TODAS las afirmaciones contra el
+sello declarado, justo antes de enviar.** No una, no las nuevas: todas. Y con el sello, nunca con un
+ancla móvil — la nuestra decía *"la punta de hoy"*, y *hoy* se movió en cuatro horas y media.
+
+## La especie 1 no mide disciplina: mide cuánta superficie comparten los dos
+
+Una afirmación de **especie 1** —la que quien lee puede correr sobre su propio árbol— parece la más
+honesta, y de ahí sale la tentación de contarlas como si midieran el rigor de quien escribe. **No lo
+miden.** Miden **cuánta superficie compartida hay**, que es una propiedad de la pareja y no de nadie.
+
+Entre dos proyectos que comparten un kit vendorizado y las cartas intercambiadas, **eso es toda la
+superficie que hay**: cualquier afirmación que caiga fuera es de especie 2 o 3 **por estructura, no
+por pereza**.
+
+> **Y el corolario tiene consecuencias, porque la superficie solo crece si uno de los dos publica
+> más:** cuando uno tiene repositorio público y el otro no —y no va a tenerlo—, **la especie 1 tiene
+> dirección fija**. Uno puede verificar al otro y no al revés.
+
+**Lo que eso le hace a un intercambio no es lo que parece.** No degrada las cifras del lado privado:
+**empuja la conversación hacia el corpus que se puede comprobar**, que es el del lado público. En la
+carta que trajo esta ley, cinco de sus seis afirmaciones eran sobre nosotros — *"eso no lo elegimos:
+lo eligió quien tiene el árbol abierto"*.
+
+*Del corresponsal, contestando a una pregunta nuestra sobre cómo aumentar la especie 1. La respuesta
+cambió la pregunta, que es la señal de que era la buena.*
