@@ -3414,3 +3414,30 @@ hallazgo — dos corpus mezclados, una contradicción aritmética dentro de nues
 **Consecuencia al escribir: el control se ancla como la medida, o se declara perecedero.** Si el
 control dice *"hoy"*, entonces la carta lleva dentro una afirmación que caduca sola, y quien la lea
 tres días después no está comprobando el detector: **está midiendo el paso del tiempo.**
+
+## La cola de citas no mide desuso: mide lo que todavía no has necesitado
+
+Medir cuántas reglas del propio cuerpo se citan —y cuántas no— es la señal de si el corpus sigue
+consultándose. **Y la lectura que invita es la equivocada:** ver una ley en la columna de *cero citas*
+se siente como una candidata a poda, o al menos como prueba de que sobra.
+
+**No lo es. Una ley sin citas puede ser exactamente la que te falta**, y la diferencia entre las dos
+lecturas no está en la ley: está en si su ocasión ha llegado.
+
+**Caso, y de la misma auditoría que produjo la medida.** El paso de la cola dio once leyes sin ninguna
+cita, y entre ellas *Un filtro de bloques falla por tres sitios, no por uno*. **Dos pasos más abajo, en
+esa misma sesión**, el extractor de bloques del propio auditor falló por dos de esos tres sitios —se
+llevó los `>` de un bloque dentro de un blockquote y cortó otro a mitad— y publicó *"2 de 36 con error
+de sintaxis"* cuando el defecto era suyo y el corpus real eran 33.
+
+**La ley que habría evitado el error estaba en la lista de las que "no se usan", escrita, correcta, y
+sin haber sido necesaria hasta ese minuto.**
+
+> **Consecuencia para la serie: la columna de cero no es deuda, es inventario.** Lo que sí informa es
+> su **movimiento** entre auditorías — una ley que lleva muchas medidas sin salir de ahí es candidata
+> a que su ocasión no exista en este proyecto; una que sale es una ocasión que llegó. **Un punto
+> aislado no distingue las dos cosas**, y por eso la fracción solo significa algo en serie.
+
+**Y el instrumento tiene que declararse con la medida, porque cambiarlo rompe la serie sin avisar.**
+En esta corrida el corpus donde se buscan citas pasó de *las actas* a *las actas más las cartas*, y las
+citadas en dos o más saltaron de 16 a 53. **Ese salto es del instrumento, no del uso.**

@@ -342,6 +342,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una cifra sobre corpus NO versionado se declara con su instante: el sello no la alcanza*
 - *Hay superficie que solo puede aportar quien NO publica: la que no está en ningún árbol*
 - *Un control positivo publicado es la parte más perecedera de una carta*
+- *La cola de citas no mide desuso: mide lo que todavía no has necesitado*
 - *Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección*
 
 ## Por qué las leyes se citan por título y no por número
