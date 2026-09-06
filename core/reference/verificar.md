@@ -3441,3 +3441,101 @@ sin haber sido necesaria hasta ese minuto.**
 **Y el instrumento tiene que declararse con la medida, porque cambiarlo rompe la serie sin avisar.**
 En esta corrida el corpus donde se buscan citas pasó de *las actas* a *las actas más las cartas*, y las
 citadas en dos o más saltaron de 16 a 53. **Ese salto es del instrumento, no del uso.**
+
+## Un cardinal es un deíctico: se resuelve al escribirlo y se lee en otro instante
+
+*"Ayer"* no nombra un día: nombra **el día anterior al momento de escribir**. Un cardinal funciona
+igual — *"91 leyes"* no es un hecho sobre el corpus, es *"91 en el instante en que tecleé esto"* —, y
+lo único que los separa es la **cara**: el deíctico se ve relativo y el número se ve como un dato. Por
+eso al primero se le desconfía y al segundo no.
+
+**Los dos se rompen sin que nadie los toque.** No hay enlace colgado, ni identificador podrido, ni
+patrón que falle: la frase sigue siendo gramatical y coherente, y el conjunto creció por debajo.
+
+**Y esta ley existe porque las dos que parecían cubrirlo lo dejan fuera por su cláusula de alcance:**
+
+| Ley vecina | Por qué no alcanza |
+| --- | --- |
+| *Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO* | dice **"escrita en el kit"**, y el vicio vive en el `state` — que se reescribe cada cierre, así que sus cifras **parecen mantenidas** |
+| *Mover prosa rompe sus deícticos, y ninguno da error* | dispara al **mover**, y su lista es espacial: *arriba*, *abajo*, *siguiente*, ordinales |
+
+**Que la FOTO funciona ya está medido, y por eso el remedio de aquí es el suyo:** este mismo fichero
+dice *"medido sobre 55 leyes"*, *"57"*, *"72"* y *"46 reglas"* sobre un corpus que el 2026-09-06 tenía
+**91**, y **ninguna de las cuatro es falsa**, porque las cuatro llevan instante y corpus.
+
+**Casos propios del cardinal, al 2026-09-06:**
+
+```text
+"las dos anclas fijas de la raiz"        falsa desde la sesion 60, viva SIETE sesiones
+                                         y el handover de la 60 predijo la frase por escrito
+"el unico rol que nace del uso"          falsa en el MISMO commit que creo artifacts_dir
+"los dos contenedores"                   falsa al anadir correspondence_dir, una sesion
+                                         despues de escribir la leccion anterior
+guarda "aparece dos veces" (auditoria 18)  eran tres, y la copia caducada era la que
+                                         llevaba la guarda pegada
+la cifra de cartas                       vieja en dos de sus tres apariciones
+```
+
+**Los cinco se leyeron como falta de disciplina** —*"cuenta los sustantivos con número antes de
+cerrar"*, o poner una guarda— y uno de ellos demuestra que ese diagnóstico no sirve: la frase de *"las
+dos anclas"* **estaba predicha por escrito en el checkpoint de la sesión 60**, la regla general llegó a
+su hogar, y las dos frases concretas sobrevivieron **siete sesiones** leyéndose al arrancar. Es un
+defecto de forma, y se arregla en la forma.
+
+**El remedio es uno solo para las dos formas: anclar con un absoluto.** Al número se le pone su
+instante; al tiempo, su fecha o su identificador. Y hay una tercera salida, más barata, que es la que
+casi siempre sirve: **nombrar el conjunto en vez de contarlo** — *"las leyes de verificación"* no
+caduca nunca, y el lector que necesite el número tiene el fichero delante.
+
+### El detector, y lo que dio
+
+**Trae comando, y es un CRIBADOR, no un veredicto:** ningún patrón distingue el cardinal anclado del
+que no lo está, así que su salida se clasifica a mano.
+
+```bash
+# CARDINALES: numeral + sustantivo de conjunto. La segunda mitad de la alternancia
+# es la lista de conjuntos de TU proyecto; esta es la de este kit.
+N='(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|[0-9]{2,3})'
+C='(leyes|rituales|roles|plantillas|puertas|fases|pasos|sitios|clases|casos'
+C="$C"'|columnas|contadores|tablas|secciones|invariantes|cartas|sesiones|anclas'
+C="$C"'|topes|reglas|principios|detectores|hogares|ficheros|archivos)'
+markgrep search -e "\b$N $C\b" --in .
+grep -rniE "\b$N $C\b" .
+
+# DEICTICOS RELATIVOS: solo los que no pueden ser legitimos en prosa durable.
+D='(ayer|anteayer|anoche|mañana|la semana pasada|hace un rato|esta mañana|el otro día)'
+markgrep search -e "\b$D\b" --in .
+grep -rniE "\b$D\b" .
+# CONTROL DE ENCUADRE: "hoy" se excluye a proposito. Tiene un sentido legitimo
+# ("actualmente") que domina la salida y la vuelve ilegible: incluirlo es fabricar
+# la tasa de falsos positivos que protege al fallo que se busca.
+```
+
+**Medido el 2026-09-06 sobre los 35 markdown versionados de este kit** (`HEAD` en `202ee01`):
+
+```text
+cardinales           233 aciertos   SIN CLASIFICAR
+deicticos relativos   10 aciertos   clasificados uno a uno -> los 10 LEGITIMOS
+                                    ("manana" como futuro generico, "esta misma
+                                    manana" dentro de un caso fechado, "lo de
+                                    ayer" citado como frase de usuario)
+```
+
+**La mitad del deíctico salió limpia; la del cardinal no está clasificada y su cifra todavía no dice
+nada** — el grueso son las medidas fechadas de este mismo fichero, que son el uso correcto. Decirlo
+importa: *una ausencia y una no-aplicabilidad dan la misma cifra*, y un 233 sin clasificar tranquiliza
+igual que un cero. Los cinco casos de arriba se cazaron en la instancia.
+
+### Lo que el caso NO valida
+
+**La mitad del deíctico se apoya en UN caso, y no está en ningún fichero.** Un agente corrió `date` al
+abrir la sesión, lo tuvo en pantalla, y aun así escribió *"ayer"* dos veces sobre un mensaje suyo de
+cuarenta minutos antes, en un día cuyo día anterior no tenía nada. Vale para mostrar el mecanismo
+—tener la fecha correcta no salva, porque el remedio escrito fecha el **acta** y no la **prosa**— y no
+vale como frecuencia. Quien la aplique, que lo sepa.
+
+**Y NO se escribe la exención que pedía el cuerpo:** *"un cardinal pegado a su lista es seguro, porque
+contarlo es gratis"*. Suena bien y no tiene un solo caso medido detrás. Es además una **exención**, o
+sea lo que *La asimetría no es del error: es del acto que el error autoriza* manda verificar más:
+autoriza el acto de escribir, y un permiso falso corrompe algo correcto. Se decide cuando aparezca un
+cardinal adyacente que aguantó — o que no.

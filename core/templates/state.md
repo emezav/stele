@@ -14,6 +14,14 @@
 ## Dónde estamos
 
 - ADAPTAR: 3-8 bullets del estado REAL del proyecto (no histórico). Lo más reciente/importante arriba.
+- **Un cardinal aquí caduca solo, y este documento es donde peor se ve:** se reescribe entero cada
+  cierre, así que sus cifras **parecen mantenidas** — y mantenerlas es un recuento a mano por sesión.
+  *"N leyes"*, *"N cartas"*, *"las dos puertas"* se escriben **con su instante** (*"N al DD-MM"*) o se
+  sustituyen por el nombre del conjunto. Poner una guarda que avise de cuántas copias hay **no
+  sirve: la guarda es del mismo material y también se queda vieja** (caso de campo: decía *"dos
+  veces"* cuando eran tres, y la copia caducada era justo la que la llevaba pegada). Ver
+  `{{kit}}/core/reference/verificar.md` -> *Un cardinal es un deíctico: se resuelve al escribirlo y se
+  lee en otro instante*.
 
 ## Próximo paso inmediato
 
