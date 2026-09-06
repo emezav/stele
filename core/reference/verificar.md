@@ -3512,8 +3512,9 @@ grep -rniE "\b$D\b" .
 # la tasa de falsos positivos que protege al fallo que se busca.
 ```
 
-**Medido el 2026-09-06 sobre los 35 markdown versionados de este kit, con esta ley ya dentro** — el
-sello se omite a propósito: un commit no puede contener el estado que lo incluye.
+**Medido el 2026-09-06 sobre los 35 markdown versionados de este kit, con esta ley ya dentro. El
+corpus exacto es el sello `cacc81c`**, y va escrito porque sin él la cifra la mueve la siguiente
+edición de este mismo fichero — que es la ley aplicándose a su propia medida.
 
 ```text
 cardinales           237 aciertos     segunda pasada: 45 anclados / 192 sueltos
@@ -3537,7 +3538,7 @@ el encabezado describía, así que se le quitó el cardinal y se nombró el conj
 corpus de una corrida, así que se le puso su ancla en vez de borrarle el número.
 
 > **Y por eso la clasificación queda declarada y no terminada: el criterio que la cerraría es
-> justamente la exención que abajo se decide NO escribir.** Decirlo importa, porque *una ausencia y
+> justamente la exención que abajo se cierra EN CONTRA.** Decirlo importa, porque *una ausencia y
 > una no-aplicabilidad dan la misma cifra*: 193 sueltos sin clasificar tranquiliza igual que un cero.
 > **La muestra es de 15 y no se extrapola.**
 
@@ -3549,8 +3550,37 @@ cuarenta minutos antes, en un día cuyo día anterior no tenía nada. Vale para 
 —tener la fecha correcta no salva, porque el remedio escrito fecha el **acta** y no la **prosa**— y no
 vale como frecuencia. Quien la aplique, que lo sepa.
 
-**Y NO se escribe la exención que pedía el cuerpo:** *"un cardinal pegado a su lista es seguro, porque
-contarlo es gratis"*. Suena bien y no tiene un solo caso medido detrás. Es además una **exención**, o
-sea lo que *La asimetría no es del error: es del acto que el error autoriza* manda verificar más:
-autoriza el acto de escribir, y un permiso falso corrompe algo correcto. Se decide cuando aparezca un
-cardinal adyacente que aguantó — o que no.
+### La adyacencia NO protege, y la exención se cerró en contra
+
+Al publicar esta ley quedó pedida una exención de sentido común: *"un cardinal pegado a su lista es
+seguro, porque contarlo es gratis y falsearlo obliga a editar la frase que ya estás editando"*. Se
+dejó sin escribir por no tener caso. **Al ir a buscárselos, el corpus dio contraejemplos.**
+
+```text
+"las dos anclas (stele.config.md y el loader)"
+    el parentesis NOMBRA LAS DOS -> falsa desde la sesion 60, viva SIETE sesiones,
+    y en un fichero que se lee al arrancar
+
+"los roles de este modulo (gotchas, specs, architecture)"
+    el parentesis NOMBRA LOS TRES -> sacar uno la volvio falsa EN EL MISMO COMMIT
+```
+
+**Y un tercero, más débil pero vivo:** un fichero dice *"un rol contenedor no lleva plantilla
+(`history_dir` y `artifacts_dir` no la tienen)"* mientras el fichero de roles dice **"los tres
+contenedores"**. La regla **no es falsa** —va por complemento—, pero su enumeración ilustrativa se
+quedó corta y se lee cada sesión. Se cuenta como lo que es: no es una tercera falsificación.
+
+**El mecanismo, que es lo que la exención no vio: una lista adyacente es una COPIA del conjunto, no el
+conjunto.** El conjunto vive en otro fichero, y la edición que lo cambia ocurre **allí**. La
+adyacencia acerca el número a la copia, no a la fuente, así que no protege de nada — y es *apunta, no
+copies: lo copiado es lo que se queda viejo*, que ya estaba escrito.
+
+> **Y por qué la muestra parecía tranquilizadora: supervivencia.** Los cardinales adyacentes que se
+> leen hoy son los que **todavía** no han fallado; los que fallaron se arreglaron y se convirtieron en
+> entradas de gotchas. **Muestrear un corpus vivo mide a los supervivientes**, y los muertos están en
+> otro fichero.
+
+**Consecuencia sobre la clasificación pendiente:** la adyacencia tampoco sirve para **descartar** los
+sueltos, así que sigue sin haber discriminante barato. Lo que cambió no es el resultado — sigue
+declarada y no terminada — sino la razón: ya no falta decidir un criterio, es que **el criterio que
+parecía obvio está refutado**.
