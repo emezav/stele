@@ -3584,3 +3584,37 @@ copies: lo copiado es lo que se queda viejo*, que ya estaba escrito.
 sueltos, así que sigue sin haber discriminante barato. Lo que cambió no es el resultado — sigue
 declarada y no terminada — sino la razón: ya no falta decidir un criterio, es que **el criterio que
 parecía obvio está refutado**.
+
+### La forma que sí sobrevivía es la más CARA de arreglar, y eso invierte la intuición
+
+**Los tres contraejemplos comparten algo que la exención no miraba: los tres son COPIAS.** Queda por
+tanto una forma que ninguno alcanza — el cardinal sobre un conjunto que **la frase misma constituye**:
+una taxonomía que el autor está creando ahí, sin hogar en otro fichero. *"Un detector tiene tres
+superficies"*, *"un filtro de bloques falla por tres sitios"*. No hay otro sitio donde editar, así que
+no hay copia que se quede vieja.
+
+**Y aun así no se escribe como exención, por dos razones medidas.**
+
+**Primera: no está probada, solo no refutada — y su conjunto YA CRECIÓ una vez.** El cuerpo de *Un
+filtro de bloques falla por tres sitios* lo dice de sí mismo: *"la formulación corta no predecía el eje
+de la indentación, que es justo el que nos tocó"*. El tres no nació tres. Un conjunto que creció una
+vez es una promesa de que puede crecer otra.
+
+**Segunda, y es la que invierte la intuición: es el sitio donde la corrección cuesta más.** Un cardinal
+constitutivo tiende a vivir en el **título**, porque forma parte de la afirmación — **3 de los 92
+títulos de este fichero lo llevan, medido el 2026-09-06**. Y aquí las leyes **se citan por título**:
+pasar *"tres sitios"* a *"cuatro"* reescribe la **cabeza** del título, que es el renombre caro de los
+dos —el barrido del título viejo deja de encontrar la ley y encuentra **solo la fila de equivalencia**,
+y si esa fila se borra, toda cita entregada muere en silencio—.
+
+> **De ahí la inversión, que es el resultado de revisar la exención:** el caso que más parecía merecer
+> la exención —el número que es parte de la afirmación— es **el más caro de reparar cuando falla**. La
+> exención se pedía para ahorrarse una molestia al escribir, y se cobraría en la única moneda que este
+> proyecto no puede devolver: una cita entregada que ya no resuelve.
+
+**Y el remedio ya tiene precedente en casa, aplicado a un ordinal:** un ritual llevaba *"el séptimo,
+REMITIR"*, y cuando se vio que había tres órdenes posibles **el ordinal se RETIRÓ, no se corrigió** —
+*con tres órdenes posibles, cualquier ordinal exige declarar cuál se usa; el enunciado por categoría no
+lo necesita*. Lo mismo vale aquí, y es la salida barata: **el cardinal constitutivo se escribe en el
+cuerpo y el enunciado se deja categórico.** Ahí sigue diciendo lo que decía, sin comprometer al título
+—que es el identificador— con un número que el propio texto puede hacer crecer.
