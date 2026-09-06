@@ -2577,8 +2577,8 @@ grep -n '^## Lo mínimo para ejecutarlo' "$RITUAL"
 # si el primero es MAYOR que el segundo, el defecto vive fuera del bloque ejecutable
 ```
 
-**Es un CRIBADOR, no un veredicto, y lo dice su primera corrida.** Sobre los ocho rituales de este kit
-señala **uno**: un *"dónde cae por defecto lo que aún no tiene hogar"* que es prosa sobre datos
+**Es un CRIBADOR, no un veredicto, y lo dice su primera corrida.** Sobre los rituales de este kit
+—**ocho** en el corpus de aquella corrida— señala **uno**: un *"dónde cae por defecto lo que aún no tiene hogar"* que es prosa sobre datos
 huérfanos y no decide nada. **La cadena `por defecto` no distingue un valor por defecto de la
 locución**, así que cada acierto se lee. Lo que reduce el trabajo a nada es el filtro de la percha:
 solo sube lo que decide algo **irreversible o hacia fuera**.
@@ -3497,8 +3497,9 @@ que no lo está, así que su salida se clasifica a mano.
 # es la lista de conjuntos de TU proyecto; esta es la de este kit.
 N='(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|[0-9]{2,3})'
 C='(leyes|rituales|roles|plantillas|puertas|fases|pasos|sitios|clases|casos'
-C="$C"'|columnas|contadores|tablas|secciones|invariantes|cartas|sesiones|anclas'
-C="$C"'|topes|reglas|principios|detectores|hogares|ficheros|archivos)'
+C="$C"'|columnas|documentos|contadores|tablas|secciones|invariantes|cartas'
+C="$C"'|sesiones|anclas|topes|preguntas|reglas|principios|detectores|hogares'
+C="$C"'|ficheros|archivos|m(o|ó)dulos|auditor(i|í)as)'
 markgrep search -e "\b$N $C\b" --in .
 grep -rniE "\b$N $C\b" .
 
@@ -3511,20 +3512,34 @@ grep -rniE "\b$D\b" .
 # la tasa de falsos positivos que protege al fallo que se busca.
 ```
 
-**Medido el 2026-09-06 sobre los 35 markdown versionados de este kit** (`HEAD` en `202ee01`):
+**Medido el 2026-09-06 sobre los 35 markdown versionados de este kit, con esta ley ya dentro** — el
+sello se omite a propósito: un commit no puede contener el estado que lo incluye.
 
 ```text
-cardinales           233 aciertos   SIN CLASIFICAR
-deicticos relativos   10 aciertos   clasificados uno a uno -> los 10 LEGITIMOS
-                                    ("manana" como futuro generico, "esta misma
-                                    manana" dentro de un caso fechado, "lo de
-                                    ayer" citado como frase de usuario)
+cardinales           237 aciertos     segunda pasada: 45 anclados / 192 sueltos
+deicticos relativos   14 aciertos     clasificados uno a uno -> los 14 LEGITIMOS
 ```
 
-**La mitad del deíctico salió limpia; la del cardinal no está clasificada y su cifra todavía no dice
-nada** — el grueso son las medidas fechadas de este mismo fichero, que son el uso correcto. Decirlo
-importa: *una ausencia y una no-aplicabilidad dan la misma cifra*, y un 233 sin clasificar tranquiliza
-igual que un cero. Los cinco casos de arriba se cazaron en la instancia.
+**De esos aciertos, 5 cardinales y los 4 deícticos son de esta ley**, que entró en su propio
+corpus al escribirse: *el corpus donde todo detector empeora es el de los documentos que explican la
+regla*. Los 14 deícticos son legítimos —*"mañana"* como futuro genérico, *"esta misma mañana"* dentro
+de un caso fechado, *"lo de ayer"* citado como frase de usuario, y los ejemplos de aquí—.
+
+**La segunda pasada no aísla el defecto, y ese es el resultado.** Separar por ancla —fecha, verbo de
+medición, sello, *"sesión N"*— deja 45 anclados y 192 sueltos, con el invariante `237 = 45 + 192` y
+sus dos controles en verde. Pero *suelto* no es *defectuoso*: en una muestra sistemática de 1 de cada
+13 (15 unidades leídas una a una) solo **2** apuntaban a un conjunto que crece: una frase que decía
+*"los ocho rituales de este kit"* y un encabezado de `guide.md` que descomponía los rituales en
+*2 + 3 + 1 + 2*; el resto son
+enumeraciones cuyo listado está **en la misma unidad**, conjuntos históricos ya cerrados, o números
+que no cuentan un conjunto. **Los dos se arreglaron en este mismo cambio, y con remedios distintos:**
+el encabezado describía, así que se le quitó el cardinal y se nombró el conjunto; el otro **medía** el
+corpus de una corrida, así que se le puso su ancla en vez de borrarle el número.
+
+> **Y por eso la clasificación queda declarada y no terminada: el criterio que la cerraría es
+> justamente la exención que abajo se decide NO escribir.** Decirlo importa, porque *una ausencia y
+> una no-aplicabilidad dan la misma cifra*: 193 sueltos sin clasificar tranquiliza igual que un cero.
+> **La muestra es de 15 y no se extrapola.**
 
 ### Lo que el caso NO valida
 

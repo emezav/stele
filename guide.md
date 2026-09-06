@@ -78,7 +78,7 @@ Lo que **no** se sigue de esto es que dé igual escribir las reglas. Se sigue qu
 un lector que no seas tú es una deuda**, y que la pregunta al escribirla es siempre la misma: *¿qué
 tendría que mirar esto para que saltárselo fuera imposible en vez de solo incorrecto?*
 
-## Dos rituales base + tres de ciclo de vida + uno de verificación + dos de correspondencia
+## Los rituales, agrupados por lo que los dispara: base, ciclo de vida, verificación y correspondencia
 
 - **Abrir** (ponerse al día, barato) · **Cerrar** (dejar registro durable). El **checkpoint** —dejar
   el salto en curso a salvo antes de un cambio interrumpible— va con ellos y **no es un ritual**: es
@@ -89,7 +89,7 @@ tendría que mirar esto para que saltárselo fuera imposible en vez de solo inco
 - **Contrastar** (recibir de fuera un informe sobre tu trabajo y decidir qué entra) y **Remitir**
   (escribir hacia fuera lo que encontraste y no es tuyo).
 
-Detalle operativo de los ocho: `core/rituals/`, uno por fichero. `SKILL.md` los enruta.
+Detalle operativo de cada uno: `core/rituals/`, uno por fichero. `SKILL.md` los enruta.
 
 **Por qué el sexto existe.** Los cinco primeros se reparten en dos grupos —los que **escriben**
 documentación y los que mantienen el **marco**— y ninguno de los dos re-verifica el **contenido** ya
