@@ -21,6 +21,30 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    manifiesto** antes de seguir: sin ella el ritual no arranca, y no se deduce del árbol.
    **Y al terminar, actualiza `kit_sello`** con el commit que acabas de traer — mismo motivo: es el
    único momento en que existe.
+
+   > **Y COMPRUÉBALO, porque hasta aquí es un dato que escribes sin poder verificar.** El sello no se
+   > puede derivar de tu copia —la instalación borra `.git`— así que queda como palabra de quien te lo
+   > dio. Lo que **sí** puedes medir es el **contenido**, con un agregado que no necesita historia:
+   >
+   > ```bash
+   > # en tu copia del kit (y otra vez en el temporal, para comparar)
+   > find . -type f -not -path './.git/*' | sed 's|^\./||' | LC_ALL=C sort | while read -r f; do
+   >   printf '%s  %s\n' "$(sha256sum "$f" | cut -d' ' -f1)" "$f"
+   > done | sha256sum | cut -d' ' -f1
+   > ```
+   >
+   > **Necesita `find` y `sha256sum`** (en Windows sin Git Bash, `certutil -hashfile <f> SHA256`; en
+   > macOS, `shasum -a 256`). **La consecuencia es distinta a la de otros bloques de este kit:** una
+   > comprobación que no corres te deja sin comprobación, y esta **produce el número sobre el que
+   > actúas** — aporte de un adoptante, y con la parte que él no probó declarada como tal.
+   >
+   > **Y el valor esperado NO vive aquí dentro, ni siquiera como ejemplo.** Un fichero dentro del
+   > conjunto que declarase el hash del conjunto **lo cambiaría al escribirse**: medido, `5db8e980` pasa
+   > a `f68e07b4`, y corregirlo a ese da `5c624017` — **no hay punto fijo**. Las dos salidas son peores
+   > que no meterlo: excluir ese fichero mete **una exclusión dentro del detector**, que es lo que hace
+   > que mienta más tarde; y publicarlo fuera del conjunto es dejarlo donde ya está. **El número se
+   > deriva del origen** con este mismo comando sobre el árbol del sello, y quien puede clonar el origen
+   > lo saca solo. Lo que no puede reconstruir es **el método**, y por eso el método es lo que viaja.
 2. **Diffear** viejo contra nuevo: `diff -r {kit} {temporal}`. **Y si el manifiesto trae
    `kit_sello`, el diff se puede pedir exacto** —`git diff <kit_sello>..HEAD` en el temporal— en vez de
    compararlo contra un árbol sin historia: dice **qué cambió y por qué**, con los mensajes de commit
