@@ -345,6 +345,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *La cola de citas no mide desuso: mide lo que todavía no has necesitado*
 - *Una explicación que aplicas a unas afirmaciones del otro y no a la que te acusa no es una explicación: es una elección*
 - *Un cardinal es un deíctico: se resuelve al escribirlo y se lee en otro instante*
+- *Comprobar el proxy no es comprobar la afirmación, y el hueco es donde vive el fallo*
 
 ## Por qué las leyes se citan por título y no por número
 

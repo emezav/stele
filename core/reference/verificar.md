@@ -3618,3 +3618,44 @@ REMITIR"*, y cuando se vio que había tres órdenes posibles **el ordinal se RET
 lo necesita*. Lo mismo vale aquí, y es la salida barata: **el cardinal constitutivo se escribe en el
 cuerpo y el enunciado se deja categórico.** Ahí sigue diciendo lo que decía, sin comprometer al título
 —que es el identificador— con un número que el propio texto puede hacer crecer.
+
+## Comprobar el proxy no es comprobar la afirmación, y el hueco es donde vive el fallo
+
+**Vas a publicar qué hace un comando y compruebas su precondición.** No es lo mismo, y la diferencia
+no está repartida: **está concentrada exactamente en el caso interesante**, porque la implicación que
+une las dos —*"si no se da la precondición, el comando no puede funcionar"*— es lo que estás dando por
+supuesto sin mirar.
+
+**Caso de un adoptante, traído por él y contra sí mismo.** Nos escribió que `git log -1` sobre su copia
+vendorizada del kit *"no se puede correr, porque no es un repositorio git"*. La conclusión era
+correcta y **el razonamiento falso**: lo dedujo de comprobar que no existía el directorio `.git`, no de
+ejecutar el comando del que hablaba. Y `git` **sube por el árbol** hasta encontrar el repositorio que
+contenga a la copia.
+
+**Medido aquí con control, y es la mitad que el proxy no ve:**
+
+```text
+copia vendorizada FUERA de cualquier repo -> fatal: not a git repository
+copia vendorizada DENTRO de un repo       -> el HEAD DEL CONTENEDOR, sin error
+```
+
+**El segundo es el caso normal**, porque una copia vendorizada vive dentro del repositorio del
+proyecto que la adopta. El comando **no falla: contesta**, con formato correcto, sobre otro objeto. Esa
+mitad cae en la tercera superficie de *Un detector tiene tres superficies, y el control positivo cubre
+una* —*de dónde sale lo que lee*— y no necesita ley propia; lo que sí la necesita es **por qué nadie
+la mira**: porque el proxy ya había contestado que no.
+
+> **Y el pago no es el error, es el arreglo. Lo nombró él y es la carga de esta ley.** Una conclusión
+> **correcta** obtenida de un proxy **equivocado** produce el arreglo equivocado: quien se hubiera
+> fiado de aquel razonamiento habría corregido el caso que da **error limpio** —el benigno, el que se
+> caza solo— y habría dejado vivo el que contesta en silencio. **El proxy no solo falla al comprobar:
+> falla al describir qué hay que arreglar.**
+
+**La regla, y es de coste cero:** cuando vayas a publicar sobre lo que hace un comando, **corre ese
+comando**, no su precondición. Y si no puedes correrlo, **di cuál corriste** — la afirmación baja de
+categoría, que es exactamente lo que tenía que pasar.
+
+**Lo que este caso NO valida.** El proxy es afirmación suya sobre su terreno y va bajo su palabra; lo
+nuestro y medido es que el comando contesta sobre el contenedor, con su control. Son dos terrenos y se
+parecen demasiado —misma familia de máquina, mismo harness— para que la coincidencia signifique nada
+sobre el sustrato.
