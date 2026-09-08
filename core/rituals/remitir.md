@@ -66,6 +66,7 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
 | Si te preguntas… | Sección |
 | --- | --- |
 | ¿Esto es siquiera para otro proyecto? | *El disparador* |
+| **¿Y a quién se lo mando, si es del harness?** | *¿De quién es el sitio correcto?* — **a los pares, no al dueño de la herramienta** |
 | ¿Cómo digo que algo lo cambié yo? | *Una respuesta está hecha de afirmaciones sobre acciones propias* |
 | ¿A qué copia le mando a mirar? | *El tercer modo de fallo* |
 | ¿Y lo que afirmo sobre ÉL? | *El ángulo muerto* |
@@ -89,6 +90,35 @@ dio cuenta, y eso no es un mecanismo. El mecanizable sale de generalizar la **cl
 Si es sobre la herramienta, ahí no arregla nada: estorba a tus sesiones futuras y se queda donde nadie
 puede actuar. **Su hogar no es este repo.** Es el mismo defecto que ya persigue AUDITAR —un dato
 archivado donde no toca— salvo que esta vez el sitio correcto es de otro.
+
+### ¿De quién es el sitio correcto? No siempre del dueño de la herramienta
+
+**La pregunta de arriba dice que el hogar es de otro y se calla quién**, y ese silencio se rellena
+solo con la respuesta cómoda: el dueño de la herramienta. Vale cuando el hallazgo es un **defecto** que
+alguien puede arreglar. **No vale para el harness** —el transporte del comando, el editor, la terminal—,
+donde muchas veces no hay a quién escribir, no se toman reportes, o lo que encontraste no es un fallo
+sino un **comportamiento** que no va a cambiar.
+
+**Entonces el destinatario correcto son los PARES que corren sobre ese harness:** otros adoptantes,
+otros proyectos de la misma máquina. Son los que van a tropezar y pagarlo, y son los únicos que pueden
+comprobar tu medida en su terreno.
+
+**Caso, con las dos partes documentándolo.** Dos proyectos de la misma máquina, con el mismo kit y con
+el **mismo sello**, se comieron la misma trampa del transporte de comandos. Uno llevaba **nueve
+mordiscos registrados** y el otro varios, **cada uno en su propio `gotchas`, y ninguno pudo ayudar al
+otro** — porque `gotchas` es **por instancia**: no existe ningún fichero compartido donde una trampa
+del harness se escriba una sola vez para todos.
+
+> **Y no se arregla metiéndola en el kit, aunque sea lo primero que se piensa.** *Una trampa de máquina
+> escrita desde una sola máquina es una conjetura con cara de regla*: en una instancia, de cuatro
+> entradas que explicaban algo *por la máquina*, **tres cayeron a un escalón más barato** en cuanto
+> alguien varió el entorno. Distribuirla mandaría una regla falsa a quien tenga otro harness, y allí no
+> hay nadie a quien corregirla.
+
+**De ahí la consecuencia de forma: lo que hace viajar una trampa de máquina es la CORRESPONDENCIA, no
+el kit** — y por eso la carta tiene que llevar dentro **lo que la hace re-corrible en el otro lado**:
+el banco con su control, no la conclusión. Una conclusión sobre un harness ajeno no se puede
+comprobar; un comando de dos líneas sí, **y su resultado vale igual si confirma que si desmiente**.
 
 Segundo disparador, gratis: **bajó una carta con una pregunta que puedes contestar** (ver ACTUALIZAR).
 
