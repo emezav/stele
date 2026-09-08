@@ -39,8 +39,11 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    > actúas** — aporte de un adoptante, y con la parte que él no probó declarada como tal.
    >
    > **Y el valor esperado NO vive aquí dentro, ni siquiera como ejemplo.** Un fichero dentro del
-   > conjunto que declarase el hash del conjunto **lo cambiaría al escribirse**: medido, `5db8e980` pasa
-   > a `f68e07b4`, y corregirlo a ese da `5c624017` — **no hay punto fijo**. Las dos salidas son peores
+   > conjunto que declarase el hash del conjunto **lo cambiaría al escribirse**: medido **con un fichero
+   > llamado `SELLO-AGREGADO.txt`**, `5db8e980` pasa a `f68e07b4`, y corregirlo a ese da `5c624017` —
+   > **no hay punto fijo**. **El nombre va dicho porque los intermedios dependen de él** —el agregado
+   > hashea pares `hash  nombre`—; la conclusión no, y reproduce con cualquiera. Lo cazó un adoptante al
+   > reproducirlo, y ninguno de los dos había medido mal. Las dos salidas son peores
    > que no meterlo: excluir ese fichero mete **una exclusión dentro del detector**, que es lo que hace
    > que mienta más tarde; y publicarlo fuera del conjunto es dejarlo donde ya está. **El número se
    > deriva del origen** con este mismo comando sobre el árbol del sello, y quien puede clonar el origen

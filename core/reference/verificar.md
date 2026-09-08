@@ -3659,3 +3659,43 @@ categoría, que es exactamente lo que tenía que pasar.
 nuestro y medido es que el comando contesta sobre el contenedor, con su control. Son dos terrenos y se
 parecen demasiado —misma familia de máquina, mismo harness— para que la coincidencia signifique nada
 sobre el sustrato.
+
+## Un comando publicado no basta si su resultado depende de una entrada que elegiste
+
+**Es la vecina de *Una cifra sin su comando no es comprobable, aunque el corpus esté delante*, y su
+cláusula de alcance deja pasar este caso.** Allí el instrumento **no viaja**: sale el resultado y nada
+más. Aquí viaja entero, se puede leer, se puede correr — **y el número sigue sin poder repetirse**,
+porque el comando tenía una entrada que tú fijaste en silencio.
+
+**Caso con los dos terrenos midiendo, y es raro porque nadie se equivocó.** Se publicaron tres cifras
+de un experimento —un agregado de contenido sobre un árbol, para enseñar que no tiene punto fijo— con
+el comando completo al lado. Un adoptante lo reprodujo y le salieron **otros dos números**:
+
+```text
+fichero que guarda el valor      limpio      uno         dos
+SELLO-AGREGADO.txt (el nuestro)  5db8e980    f68e07b4    5c624017
+SELLO.txt          (el suyo)     5db8e980    2fbf0656    362c88cd
+```
+
+**El agregado hashea pares `hash  nombre`, así que el resultado depende de cómo se llame el fichero
+que guarda el valor** — una elección del que mide, invisible en el comando. Con su nombre salen sus
+números y con el nuestro los nuestros: comprobado en los dos lados. **No había desacuerdo: faltaba un
+dato.**
+
+> **Y la distinción que hace útil el caso es suya: una cosa es un INSTRUMENTO que el otro no tiene y
+> otra una ENTRADA que el otro no conoce.** Lo primero se arregla mandando el comando entero; **lo
+> segundo sobrevive a mandarlo entero**, porque la entrada no está en el texto del comando: está en la
+> mano del que lo corrió.
+
+**Las entradas que no viajan en el comando y hay que declarar** son siempre las mismas familias: el
+**nombre o la ruta** que elegiste, el **locale**, el **orden** de recorrido, el **directorio de
+trabajo** y el **corpus** exacto. *Un detector léxico depende del LOCALE, y el mismo patrón da dos
+respuestas* es la instancia de más frecuencia de esta ley, y sigue aparte porque trae sus controles.
+
+**La regla: publica el comando y las entradas que el comando no lleva dentro. Si no las tienes,
+declara el número como ilustrativo** — que es lo que era, y sigue valiendo para lo que ilustra.
+
+> **Y hay un corolario que evita el susto: una cifra puede ser irreproducible sin que el hallazgo sea
+> falso.** Aquí la conclusión —que no hay punto fijo— reprodujo con **los tres** nombres que el
+> adoptante probó. Lo irreproducible era la ilustración. Antes de retirar un hallazgo porque su número
+> no cuadra, mira si lo que no cuadra es el número o la afirmación.
