@@ -51,7 +51,7 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
    `HEAD`, **tres líneas debajo del párrafo que decía que había que dejar de hacerlo**.
 7. **Enviar lo decide el usuario, nunca tú.**
 
-**Y las cinco del marcador, que son las que se saltan.** Cada una tiene abajo el caso que la produjo, documentado abajo:
+**Y las del marcador, que son las que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |
@@ -59,6 +59,7 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
 | Una fila con **dos afirmaciones de evidencia distinta** | Son **dos filas** |
 | Una fila que dice *sí* y apunta a un sello **que aún no existe** | **No se escribe**: o se sella antes, o dice `SIN SELLAR` en el cuerpo |
 | Una fila que manda a comprobar a **una copia que no puede responder** | Di **en qué copia** |
+| Una fila que manda a correr **`git`** sobre la copia del otro | **La copia de un adoptante NO es un repositorio.** El kit se vendoriza sin `.git`: ofrece una comprobación por **contenido**, nunca por historia |
 | El estado (`redactada`/`publicada`/`entregada`) | **No va en la carta.** Vive en la fila del índice, y solo el usuario mueve la tercera |
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
