@@ -393,6 +393,98 @@ hueco que no se distingue de un identificador convierte cada comprobación en un
 que **mida lo que dice medir**. Un comando que corre y devuelve el número equivocado sale en verde por
 los tres escalones. Para eso sigue haciendo falta **el valor esperado escrito al lado**.
 
+### El instrumento de esta escalera falló por cuatro sitios, y ninguno era el corpus
+
+**Corrida entera sobre este kit el 2026-09-14: cero defectos en los comandos publicados.** Lo que
+salió roto fue **el instrumento**, cuatro veces, y las cuatro con salida plausible. Van aquí porque quien
+vuelva a correr la escalera va a escribir el mismo instrumento — y al final está lo que de verdad cubre.
+
+**1. El ancla decide el corpus, y anclar al margen esconde siempre la misma clase.** Con la valla
+anclada a `^```bash` salen **32** bloques; admitiendo sangría y blockquote salen **37**. Los cinco que
+se pierden no son cinco cualesquiera:
+
+```text
+README.md:49    ```bash sangrado    instalacion, opcion a   <- lo primero que corre un desconocido
+README.md:160   ```bash sangrado    instalacion, opcion b
+auditar.md:66   ```bash sangrado    paso del propio ritual
+auditar.md:246  > ```bash           el comm que comprueba la biyeccion del indice de leyes
+actualizar.md:29   > ```bash        el agregado por contenido  <- el que llego roto
+```
+
+> **Un bloque se sangra o se cita porque el documento lo DESTACÓ** — va dentro de un procedimiento
+> numerado, o dentro de un aviso. Así que el ancla al margen no pierde bloques al azar: **pierde los que
+> el documento consideró más importantes**, y entre ellos el que produce el número sobre el que actúa un
+> adoptante. Es *un corpus declarado no es el corpus medido* con una causa concreta.
+
+**2. El clasificador de riesgo mira las redirecciones y no ve lo que escribe por sí mismo.** El eje
+`SOLO-LEE` / `ESCRIBE` busca un `>` y da por seguro todo lo demás. El bloque de instalación del
+`README` —`npx degit`, `git clone`, `cp -r`, `rm -rf`— salió clasificado **SOLO-LEE**, así que se
+corrió: **creó `.stele/` en la raíz del repo y clonó en el temporal del sistema.** Sin daño porque el
+`rm -rf` iba detrás de un `&&` que falló, y se limpió a mano. **Un comando que crea no necesita
+redirigir**, y son justo los de instalar y actualizar.
+
+**3. El hueco tiene una cuarta forma que la enumeración de arriba no lista: `$VAR` de contexto.**
+Con los dos ejes de arriba, **22 bloques pasaban por ejecutables y cuatro fallaban por esto**
+—`$SELLO_AJENO`, `$LEYES`, `$RITUAL`, `$CARTA`—: son plantillas leídas como literales, y su `grep` sin
+argumento da *No such file or directory*, que se lee como corpus ausente. Contados después: **23 de los
+39 bloques referencian una variable en mayúsculas que su propio cuerpo no asigna**, o sea que son
+plantillas, y ninguno la asignaba — el criterio fino (*es hueco solo si el bloque no la asigna*) y el
+burdo (*hay un `$VAR`*) dan aquí **el mismo reparto**. **La enumeración de tres marcadores no se volvió falsa: se quedó corta**, y siguió
+disparándose sobre los tres que sí lista. Es *una regla que enumera se queda corta, y sigue
+disparándose* — sobre la enumeración de esta misma ley.
+
+**4. Un reloj no separa «cuelga» de «tarda», y el nombre que le pongas al 124 es lo que publicas.** Sin
+`</dev/null` el barrido **se cuelga** en el primer bloque que lea la entrada estándar, y un barrido
+colgado se lee como barrido lento. Con `timeout 10` aparecieron **dos `CUELGA` que eran falsos**:
+
+```text
+actualizar.md, el agregado : 78 s  sobre 864 ficheros del arbol auto-hospedado
+                              3 s  sobre una copia LIMPIA del kit (37 ficheros)   <- montaje
+cerrar.md, el rastro        : 17 s  sobre 216 commits, dos procesos git por commit
+```
+
+**El de 78 s no tenía nada roto: se corrió en el único modo donde su ritual no aplica.** *Antes de
+acusar al comando, mira el montaje de la medida.* Y el de 17 s crece con la historia del repositorio:
+**su coste sube para siempre, así que cualquier umbral fijo acabará llamándolo colgado.**
+
+**El extractor corregido, sin una sola barra invertida** — que es deliberado: viaja por transportes que
+las halvan, y esta ley existe porque un transporte le metió un salto de línea a un `awk`:
+
+```bash
+# extrae cada bloque bash: la valla NO se ancla al margen, y el prefijo del blockquote
+# o de la sangria se le quita a cada linea del cuerpo o el bloque sale con "> " pegado
+awk -v out="$OUT" '
+  !inb && /^[[:space:]>]*```bash[[:space:]]*$/ {
+    inb=1; pre=$0; sub(/```bash[[:space:]]*$/, "", pre); plen=length(pre)
+    fn=sprintf("%s/blk-%03d.sh", out, ++g); next }
+  inb && /^[[:space:]>]*```[[:space:]]*$/ { close(fn); inb=0; next }
+  inb { print substr($0, plen+1) >> fn }' "$f"
+# clasificar: hueco tambien si es $VAR de contexto; ESCRIBE tambien si crea por si mismo
+grep -qE '[{][{]?[a-z_]+[}]?[}]|<[a-zA-Z][^>]*>|[$][A-Z_]{2,}' "$b" && clase=PLANTILLA
+grep -v '^#' "$b" | grep -qwE 'clone|degit|mkdir|cp|mv|rm|touch|tee' && riesgo=ESCRIBE
+# correr SIN stdin y CON reloj, y 124 se reporta como "no termino en N s", no como "cuelga"
+timeout 60 bash "$b" </dev/null >/dev/null 2>"$OUT/err"
+# CONTROL: un bloque fabricado de cada clase tiene que caer donde toca, y uno sangrado
+# a proposito tiene que aparecer en el corpus -- sin el, el 37 vuelve a ser 32 sin avisar.
+```
+
+**Y lo último es la cobertura, que es lo que no se puede resumir como «se corren los bloques».** Medido
+el **2026-09-14 a las 21:00 (-0500)**, con el corpus incluyendo **los dos bloques que añade este mismo cambio**:
+
+```text
+bloques con valla bash en el kit                        : 39   (37 antes de este cambio)
+escalon 1, bash -n                                      : 39/39 en verde
+candidatos del escalon 2 -- LITERAL y SOLO-LEE           :  7   = 18% del corpus
+   en verde                                             :  5
+   pasados de un reloj de 10 s, los dos por montaje      :  2
+defectos reales en los comandos publicados               :  0
+```
+
+> **El escalón 2 no cubre «los bloques del kit»: cubre el 18%.** Lo demás son **29 plantillas** con un
+> hueco que solo el lector puede rellenar y **10 que escriben**, y ninguna de las dos clases se vuelve
+> ejecutable por insistir. *El nombre de una comprobación no es su cobertura* — y aquí el nombre
+> prometía el corpus entero mientras el alcance era menos de uno de cada cinco.
+
 ## Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador
 
 **Dos proyectos midieron la misma cosa sobre sus propios archivos y les dio 21% y 35%.** El primer
@@ -3699,3 +3791,57 @@ declara el número como ilustrativo** — que es lo que era, y sigue valiendo pa
 > falso.** Aquí la conclusión —que no hay punto fijo— reprodujo con **los tres** nombres que el
 > adoptante probó. Lo irreproducible era la ilustración. Antes de retirar un hallazgo porque su número
 > no cuadra, mira si lo que no cuadra es el número o la afirmación.
+
+## Una comprobación que solo cuelga de un ritual periódico no protege lo que se publica entre dos corridas
+
+**Lo caro no es que la comprobación no exista: es que exista con la cadencia equivocada.** Una que
+falta se nota al buscarla. Una que cuelga de un ritual periódico **está escrita, está citada y se
+corre de verdad** — y aun así todo lo que se produce entre dos corridas sale publicado sin pasar por
+ella. El registro la cuenta como cubierta.
+
+**Caso propio, y es el que mide la ventana.** Este kit manda extraer y correr los bloques que publica:
+*Un comando publicado tiene tantas sintaxis como lenguajes anida* está citada en la auditoría, paso 8,
+y es el único sitio de todo el marco que obliga a correrlos — barrido por concepto, con control
+positivo sobre la línea conocida. La cadencia de la auditoría es `audit_every_n_sessions`, aquí **10**:
+
+```text
+auditoria 18          2026-08-31   sesiones 172-181
+auditoria 19          vence hacia la sesion 192
+bloques ejecutables del kit al 2026-09-14         : 37
+de esos, escritos DENTRO de la ventana            :  2
+de esos dos, los que llegaron rotos por transporte:  1   <- el agregado de ACTUALIZAR
+```
+
+**El único bloque roto de la ventana no lo cazó la comprobación que existía**: lo cazó un artefacto
+improvisado el día que se escribió, porque alguien decidió correrlo. Con la auditoría como único hogar,
+habría vivido publicado **cuatro sesiones más** — y es el bloque que **produce el número sobre el que
+actúa un adoptante**.
+
+**Y el hogar de una comprobación no lo decide su tema: lo decide el ritmo del objeto que comprueba.**
+Que ese paso viva en la auditoría no fue un descuido, fue una agrupación **por tema**: todo lo que
+verifica vive ahí, así que ahí se escribió. Pero los bloques se escriben **al ritmo de la sesión**, y
+una comprobación de ritmo 10 sobre un objeto de ritmo 1 deja nueve de cada diez fuera. **El tema es
+donde se explica; el ritmo es donde se obliga.**
+
+> **La regla: una comprobación hereda la cadencia del ritual del que cuelga, y esa cadencia ES su
+> ventana de exposición.** Si el objeto se crea más rápido que la cadencia, hay objetos que se publican
+> sin comprobar, y cuántos no es una impresión: es el ritmo de creación por la cadencia.
+
+**El control es barato y se corre sobre cualquier comprobación periódica** — cuenta los objetos que
+nacieron desde la última corrida, que son exactamente los expuestos:
+
+```bash
+# objetos de la clase que comprueba el ritual periodico, creados desde su ultima corrida
+git diff "$SELLO_ULTIMA_CORRIDA"..HEAD -- '*.md' | grep -cE '^[+][[:space:]>]*```bash'
+# CONTROL POSITIVO: el mismo comando sobre un rango que SI trae un bloque nuevo tiene
+# que dar > 0; si da 0 en los dos, lo roto es el patron y no la cobertura.
+```
+
+**Ojo con ese contador, que aquí falló en la primera pasada:** anclado a `^[+]```bash` dio **1**, y con
+la sangría y el blockquote admitidos da **2**. El que se perdía era **el mismo** que se le escapa al
+extractor por la misma razón, y es el que había llegado roto: **un ancla mal puesta no se equivoca al
+azar, esconde siempre la misma clase de objeto**, y la esconde en cada medida que la use.
+
+**Lo que NO dice esta ley:** que la comprobación periódica sobre. La auditoría mira el corpus entero y
+encuentra lo que envejeció sin tocarse, que ninguna pasada por sesión ve. **No se mueve: se duplica al
+ritmo del objeto**, y la periódica queda como red de arrastre.

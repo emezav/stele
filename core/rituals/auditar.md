@@ -58,6 +58,13 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
    y reventar al correrlo. **Si el entorno no puede ejecutar, se dice en la fila** — un paso que no se
    pudo dar no es un paso limpio.
 
+   **Y esta NO es la única pasada, desde que el cierre tiene la suya.** CERRAR obliga a extraer y correr
+   **los bloques que la sesión acaba de escribir**, porque una comprobación que solo cuelga de aquí tiene
+   una ventana de exposición igual a `audit_every_n_sessions`. Lo de aquí es **la red de arrastre**: el
+   corpus entero, incluidos los bloques que nadie tocó en meses, que es justo lo que la pasada por sesión
+   no ve. Si las dos existen, **esta no debería encontrar nada nuevo en lo reciente** — y si lo encuentra,
+   el hallazgo es doble: el bloque y la pasada del cierre que no se dio.
+
    **Y el resultado se publica con su DENOMINADOR: cuántos bloques había, no cuántos pasaron.** Sin él,
    *"17 en verde"* y *"no encontré ninguno"* se escriben igual, y el segundo es un fallo de extracción
    disfrazado de éxito. **Cuenta el corpus ANTES de recorrerlo**, y si sale cero, eso no es un verde ni
@@ -347,6 +354,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Un cardinal es un deíctico: se resuelve al escribirlo y se lee en otro instante*
 - *Comprobar el proxy no es comprobar la afirmación, y el hueco es donde vive el fallo*
 - *Un comando publicado no basta si su resultado depende de una entrada que elegiste*
+- *Una comprobación que solo cuelga de un ritual periódico no protege lo que se publica entre dos corridas*
 
 ## Por qué las leyes se citan por título y no por número
 

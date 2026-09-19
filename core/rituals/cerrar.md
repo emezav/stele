@@ -38,7 +38,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
-**Las siete que se saltan.** Cada una tiene abajo el caso que la produjo:
+**Las ocho que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |
@@ -49,6 +49,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 | Vas a registrar un estado | Solo si **puedes observarlo**. *"Enviada"* no lo es: eso lo sabe el usuario, no tú |
 | Terminaste de escribir el cierre | **Comprueba lo que acabas de escribir** antes de persistir: **su contenido, su destino y su tamaño**. Un `printf >>` con la ruta mal compuesta **crea el fichero que falta** y no da error; y los topes del set de arranque **se miden, no se recuerdan** — el bloque está en `protocol`, y la primera vez que se corrió, **dos de los cuatro llevaban rotos desde siempre**. En el mismo sitio y en la misma tanda va **el respaldo declarado de `base`**, si está excluido del control de versiones: comprueba que **alguien contestó**, no que exista |
 | Escribiste la comprobación en el doc | **Escribirla no la corre.** El paso es correrla, y su cero no vale sin control positivo |
+| Esta sesión escribió o tocó un **bloque ejecutable** de un doc | **Extráelo y córrelo antes de persistir, no lo releas.** El transporte mete saltos de línea reales dentro de las comillas de un `awk`, y `bash -n` los da por buenos. La otra obligación de correrlos vive en la auditoría, **con cadencia de 10 sesiones**: lo que se escriba entre dos corridas sale publicado sin comprobar |
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
@@ -60,6 +61,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 | ¿Cómo verifico un reemplazo masivo? | *Un reemplazo en lote imprime su diff* |
 | ¿Qué va en el `state` y qué no? | *El `state` apunta a lo que caduca* · *No registres un estado que no puedas observar* |
 | ¿Qué compruebo antes de commitear? | *Antes de persistir, comprueba lo que acabas de escribir* |
+| Escribí un bloque de comandos | *Los bloques que escribiste se corren, no se releen* |
 | ¿Y si no hay git? | *Persistir el cierre, según el modo* |
 
 ## De dónde sale la fecha
@@ -300,6 +302,45 @@ que se le habla al usuario — y ahí el registro equivocado se cuela sin que na
 resto de lo que se escribe son identificadores y rutas, donde el error salta solo. Compruébalo con un
 comando, no releyendo: es lo que hace la diferencia entre una regla escrita y una regla aplicada. **Y
 esa diferencia se puede medir** — ver *Escribir la comprobación no la corre*, al final.
+
+## Los bloques que escribiste se corren, no se releen
+
+**El disparador es estrecho: solo si esta sesión escribió o cambió un bloque ejecutable** en un
+documento que se publica. Si no tocaste ninguno, aquí no hay paso — y la mayoría de las sesiones no
+tocan ninguno.
+
+**Por qué en el cierre y no en la auditoría, que ya lo mandaba.** Porque una comprobación hereda la
+cadencia del ritual del que cuelga, y la de la auditoría es `audit_every_n_sessions`: todo bloque
+escrito entre dos corridas se publica sin pasar por ella. Es
+*Una comprobación que solo cuelga de un ritual periódico no protege lo que se publica entre dos corridas*,
+y los bloques se escriben **al ritmo de la sesión**. La auditoría no se queda sin el paso: sigue siendo
+la red de arrastre sobre el corpus entero.
+
+**Releerlo no sirve, y esto es lo que lo hace un paso y no un consejo.** El defecto lo mete **la
+herramienta que escribe el fichero**, después de que tú redactaras la línea: un salto de línea escapado
+se convierte en un salto real dentro de una cadena de `awk`, y el bloque **se lee perfectamente bien**.
+Pasó cuatro veces en dos días en el proyecto que mantiene este kit, y la cuarta iba camino de un
+adoptante **dentro del comando que produce el número sobre el que iba a actuar**. Las cuatro las cazó
+correrlo; ninguna la cazó releerlo.
+
+**Cómo, sin reinventarlo:** el extractor y los dos clasificadores están en
+*Un comando publicado tiene tantas sintaxis como lenguajes anida, y comprobar la de fuera no dice nada de las de dentro*
+(`{{kit}}/core/reference/verificar.md`), con los cuatro modos en que falla el instrumento. De ellos, los
+dos que muerden en el cierre:
+
+- **La valla no se ancla al margen.** Un bloque sangrado dentro de un paso numerado o metido en un
+  aviso es igual de ejecutable, y anclar a `^```bash` **esconde siempre esa clase** — que es la de los
+  bloques que el documento destacó.
+- **Se corre sin entrada estándar y con reloj** (`</dev/null`, `timeout`). Sin lo primero el barrido se
+  cuelga en el primer bloque que lea stdin; y si el reloj salta, eso **no** significa que el bloque
+  cuelgue: mira el montaje antes de acusarlo.
+
+**Lo que cuesta, medido sobre este kit:** de 39 bloques, **7 son candidatos** —los demás son plantillas
+con un hueco que solo el lector rellena, o escriben— y la pasada tarda segundos salvo dos, que dependen
+del tamaño del árbol y de la historia del repositorio.
+
+**Y si el entorno no puede ejecutar, se dice en el `session`.** Un paso que no se pudo dar no es un paso
+limpio, y la próxima sesión necesita saber que ese bloque salió sin correr.
 
 ## Persistir el cierre, según el modo
 
