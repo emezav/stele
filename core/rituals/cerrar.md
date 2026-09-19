@@ -38,7 +38,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
-**Las ocho que se saltan.** Cada una tiene abajo el caso que la produjo:
+**Las nueve que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
 | --- | --- |
@@ -50,6 +50,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 | Terminaste de escribir el cierre | **Comprueba lo que acabas de escribir** antes de persistir: **su contenido, su destino y su tamaño**. Un `printf >>` con la ruta mal compuesta **crea el fichero que falta** y no da error; y los topes del set de arranque **se miden, no se recuerdan** — el bloque está en `protocol`, y la primera vez que se corrió, **dos de los cuatro llevaban rotos desde siempre**. En el mismo sitio y en la misma tanda va **el respaldo declarado de `base`**, si está excluido del control de versiones: comprueba que **alguien contestó**, no que exista |
 | Escribiste la comprobación en el doc | **Escribirla no la corre.** El paso es correrla, y su cero no vale sin control positivo |
 | Esta sesión escribió o tocó un **bloque ejecutable** de un doc | **Extráelo y córrelo antes de persistir, no lo releas.** El transporte mete saltos de línea reales dentro de las comillas de un `awk`, y `bash -n` los da por buenos. La otra obligación de correrlos vive en la auditoría, **con cadencia de 10 sesiones**: lo que se escriba entre dos corridas sale publicado sin comprobar |
+| Esta sesión escribió o tocó **andamio comentado** en un doc | **El comentario se renderiza, no se relee.** HTML **no anida**: un `<!--` dentro de otro —o su cierre escrito como texto— deja **vivo** todo lo que seguía, y en una plantilla eso es andamio con nombre de estado real. Vivió 28 días en el `handover` de este kit, en el doc que se lee en CADA arranque; lo vio **el primero que instaló**, porque desde un repo auto-hospedado la plantilla no se renderiza nunca |
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
@@ -62,6 +63,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 | ¿Qué va en el `state` y qué no? | *El `state` apunta a lo que caduca* · *No registres un estado que no puedas observar* |
 | ¿Qué compruebo antes de commitear? | *Antes de persistir, comprueba lo que acabas de escribir* |
 | Escribí un bloque de comandos | *Los bloques que escribiste se corren, no se releen* |
+| Escribí o moví andamio comentado | *El andamio comentado se renderiza, no se relee* |
 | ¿Y si no hay git? | *Persistir el cierre, según el modo* |
 
 ## De dónde sale la fecha
@@ -341,6 +343,68 @@ del tamaño del árbol y de la historia del repositorio.
 
 **Y si el entorno no puede ejecutar, se dice en el `session`.** Un paso que no se pudo dar no es un paso
 limpio, y la próxima sesión necesita saber que ese bloque salió sin correr.
+
+## El andamio comentado se renderiza, no se relee
+
+**El disparador es estrecho**, como el de su hermana de arriba: solo si esta sesión escribió, movió o
+alargó un comentario en un documento que se publica. Y pega sobre todo en **plantillas**, que es donde
+el andamio vive.
+
+**HTML no anida comentarios.** El primer cierre acaba el bloque, sea cual sea la profundidad aparente,
+así que hay **dos caminos al mismo efecto** y ninguno da error:
+
+- **Anidar**: un `<!--` dentro de otro. El cierre del de dentro cierra el de fuera, y todo lo que
+  seguía sale renderizado.
+- **Escribir el cierre como texto** dentro de un comentario —al explicar esta misma trampa, por
+  ejemplo—. Lo cierra igual, y aquí **no hay ningún `<!--` de más que delate nada**: un detector que
+  busque anidamiento da cero.
+
+**Lo que sale vivo no se lee como andamio: se lee como estado.** En el `handover` de este kit las
+secciones liberadas eran `## Estado intermedio`, `## Pendiente inmediato` y `## Si fui interrumpido`,
+en un documento cuyo `Estado` decía `SIN_TRABAJO_ACTIVO`. Un agente que lo abra al arrancar ve trabajo
+a medias que no existe, y la contradicción está **dentro del documento que decide eso**.
+
+**Por qué no lo caza nada de lo que ya hacemos, que es la parte que importa.** El linter calla, porque
+el comentario **es** HTML válido — cierra donde dice la especificación, no donde el autor creía. El
+contador de líneas lo mide entero y da un número correcto. Y el paso que extrae bloques ejecutables
+mira vallas, no comentarios. **Vivió 28 días, veinte sesiones y dos auditorías**; una llegó a contar
+ese fichero y registró su tamaño. Lo vio **el primero que instaló el marco**, y no por mirar mejor:
+**una plantilla solo se renderiza al instalarla**, y un repo auto-hospedado no pasa nunca por ese
+momento. Es *La segunda frontera la rompe un tercero*, con el renderizador de tercero.
+
+**El remedio de forma, antes que el detector:** un andamio largo **se cita, no se comenta**. Dentro de
+una valla no hay nada que cerrar, y además se ve. El detector es para lo que ya está escrito.
+
+```bash
+# ANDAMIO COMENTADO QUE SALE VIVO. Los dos caminos, en un solo recorrido:
+#   (A) un "<!--" con otro ya abierto      -> HTML no anida: lo de dentro cierra lo de fuera.
+#   (B) un cierre sin comentario abierto   -> el cierre iba escrito como TEXTO dentro de uno.
+# Las vallas se saltan a proposito: un ejemplo citado es literal para el lector, no sintaxis.
+# Sin eso el detector se ahoga en sus propios ejemplos -- medido, tres veces en una sesion.
+andamio_vivo() {
+  awk -v F="$1" '
+    /^[ \t>]*```/ { v = !v; next }
+    v { next }
+    { l = $0; gsub(/`[^`]*`/, "", l)   # el codigo inline NO es sintaxis: `<!--` no abre nada
+      while (match(l, /<!--|-->/)) {
+        t = substr(l, RSTART, RLENGTH); l = substr(l, RSTART + RLENGTH)
+        if (t == "<!--") { if (a) print "(A) " F ":" FNR "  andamio anidado"; else a = 1 }
+        else { if (a) a = 0; else print "(B) " F ":" FNR "  cierre suelto: lo de arriba sale vivo" }
+      } }' "$1"
+}
+n=0
+for m in $(git ls-files '*.md'); do andamio_vivo "$m"; n=$((n + 1)); done
+echo "--- barridos: $n ficheros. Un cero aqui NO vale sin el control de abajo."
+
+ctl=$(mktemp)
+printf '%s\n' 'vivo' '<!-- a' '<!-- b' 'fin -->' '<!-- c' 'cierre --> suelto' '-->' > "$ctl"
+echo "CONTROL POSITIVO (tiene que reportar UNA (A) y UNA (B); si falta una, no mide):"
+andamio_vivo "$ctl"; rm -f "$ctl"
+```
+
+**Y el cero de ese barrido no dice que el documento esté bien: dice que no tiene esta clase.** Lo que
+comprueba de verdad si el andamio salió vivo es **mirar los encabezados que el renderizador muestra** —
+y ese listado también se hace respetando las vallas, o cuenta como encabezado cada línea del ejemplo.
 
 ## Persistir el cierre, según el modo
 
