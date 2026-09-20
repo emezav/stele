@@ -337,8 +337,9 @@ dos que muerden en el cierre:
   cuelga en el primer bloque que lea stdin; y si el reloj salta, eso **no** significa que el bloque
   cuelgue: mira el montaje antes de acusarlo.
 
-**Lo que cuesta, medido sobre este kit:** de 39 bloques, **7 son candidatos** —los demás son plantillas
-con un hueco que solo el lector rellena, o escriben— y la pasada tarda segundos salvo dos, que dependen
+**Lo que cuesta, medido sobre este kit el 2026-09-14:** de 39 bloques, **7 son candidatos** —los demás
+son plantillas con un hueco que solo el lector rellena, o escriben— y la pasada tarda segundos salvo
+dos, que dependen
 del tamaño del árbol y de la historia del repositorio.
 
 **Y si el entorno no puede ejecutar, se dice en el `session`.** Un paso que no se pudo dar no es un paso

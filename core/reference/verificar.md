@@ -426,8 +426,9 @@ redirigir**, y son justo los de instalar y actualizar.
 **3. El hueco tiene una cuarta forma que la enumeración de arriba no lista: `$VAR` de contexto.**
 Con los dos ejes de arriba, **22 bloques pasaban por ejecutables y cuatro fallaban por esto**
 —`$SELLO_AJENO`, `$LEYES`, `$RITUAL`, `$CARTA`—: son plantillas leídas como literales, y su `grep` sin
-argumento da *No such file or directory*, que se lee como corpus ausente. Contados después: **23 de los
-39 bloques referencian una variable en mayúsculas que su propio cuerpo no asigna**, o sea que son
+argumento da *No such file or directory*, que se lee como corpus ausente. Contados después, sobre los
+**39 bloques del 2026-09-14**: **23 referencian una variable en mayúsculas que su propio cuerpo no
+asigna**, o sea que son
 plantillas, y ninguno la asignaba — el criterio fino (*es hueco solo si el bloque no la asigna*) y el
 burdo (*hay un `$VAR`*) dan aquí **el mismo reparto**. **La enumeración de tres marcadores no se volvió falsa: se quedó corta**, y siguió
 disparándose sobre los tres que sí lista. Es *una regla que enumera se queda corta, y sigue
@@ -480,9 +481,10 @@ candidatos del escalon 2 -- LITERAL y SOLO-LEE           :  7   = 18% del corpus
 defectos reales en los comandos publicados               :  0
 ```
 
-> **El escalón 2 no cubre «los bloques del kit»: cubre el 18%.** Lo demás son **29 plantillas** con un
-> hueco que solo el lector puede rellenar y **10 que escriben**, y ninguna de las dos clases se vuelve
-> ejecutable por insistir. *El nombre de una comprobación no es su cobertura* — y aquí el nombre
+> **El escalón 2 no cubre «los bloques del kit»: cubre el 18%** —de los **39** de esa medida, no de los
+> que haya hoy—. Lo demás son **29 plantillas** con un hueco que solo el lector puede rellenar y **10
+> que escriben**, y ninguna de las dos clases se vuelve ejecutable por insistir. *El nombre de una
+> comprobación no es su cobertura* — y aquí el nombre
 > prometía el corpus entero mientras el alcance era menos de uno de cada cinco.
 
 ## Una tasa mide también la EDAD de su corpus, y dos tasas no se comparan por el denominador
@@ -3801,14 +3803,19 @@ ella. El registro la cuenta como cubierta.
 
 **Caso propio, y es el que mide la ventana.** Este kit manda extraer y correr los bloques que publica:
 *Un comando publicado tiene tantas sintaxis como lenguajes anida* está citada en la auditoría, paso 8,
-y es el único sitio de todo el marco que obliga a correrlos — barrido por concepto, con control
-positivo sobre la línea conocida. La cadencia de la auditoría es `audit_every_n_sessions`, aquí **10**:
+y **hasta la sesión 190 era el único sitio de todo el marco que obligaba a correrlos** — barrido por
+concepto, con control positivo sobre la línea conocida. **Lo dice en pasado desde la auditoría 19:** la
+frase entró en `7f1f2d3`, que es **el mismo commit que le añadió a CERRAR su fila octava** y la volvió
+falsa al nacer. Es la clase que este documento describe dos secciones más arriba, cometida por quien la
+escribía, y **la pasada del cierre no podía cazarla**: corre bloques, no comprueba absolutos.
+
+La cadencia de la auditoría es `audit_every_n_sessions`, aquí **10**:
 
 ```text
 auditoria 18          2026-08-31   sesiones 172-181
-auditoria 19          vence hacia la sesion 192
-bloques ejecutables del kit al 2026-09-14         : 37
-de esos, escritos DENTRO de la ventana            :  2
+auditoria 19          2026-09-20   sesiones 182-192  (vencio en la 192)
+bloques ejecutables del kit al 2026-09-14, 20:00  : 37   <- la hora NO sobra:
+de esos, escritos DENTRO de la ventana            :  2      a las 21:00 ya eran 39
 de esos dos, los que llegaron rotos por transporte:  1   <- el agregado de ACTUALIZAR
 ```
 
