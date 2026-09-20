@@ -68,7 +68,7 @@ encuadró su trabajo, que es justo quien no necesitaba la tabla.
 | **CERRAR** | Vas a terminar, o el usuario se despide | `cerrar.md` |
 | **AUDITAR** | Vas a fiarte de algo escrito hace tiempo, o toca por cadencia | `auditar.md` |
 | **CONTRASTAR** | Te llega texto de fuera que habla de tu trabajo | `contrastar.md` |
-| **REMITIR** | **La trampa que ibas a escribir es sobre una herramienta que usas, no sobre tu proyecto.** O te bajó una pregunta que sabes contestar | `remitir.md` |
+| **REMITIR** | **La trampa que ibas a escribir es sobre una herramienta que usas, no sobre tu proyecto.** O te bajó una pregunta que sabes contestar. **O vas a escribir una carta — también cuando la estás CONTESTANDO** | `remitir.md` |
 | **BOOTSTRAP** | El proyecto todavía no tiene el marco | `bootstrap.md` |
 | **ACTUALIZAR** | Vas a traer una versión nueva del kit | `actualizar.md` |
 | **CONFIG** | Vas a renombrar un doc, cambiar un parámetro del manifiesto o **mover la raíz** | `configurar.md` |
@@ -77,6 +77,11 @@ encuadró su trabajo, que es justo quien no necesitaba la tabla.
 > momento visible —abres, cierras, te llega algo, vas a tocar el manifiesto—. A ese lo dispara **una
 > frase que ibas a escribir en otro sitio**, así que sin la pregunta escrita aquí no salta nunca: se
 > queda como una trampa más en `{{gotchas}}`, donde no arregla nada y estorba en cada arranque.
+>
+> **Y por eso desde la 192 lleva también un momento visible —contestar una carta—, que
+> es lo que le faltaba.** Lo pidió un adoptante que ejecutó CONTRASTAR entero y llegó a
+> *responder* sin que nada le nombrara este ritual: el enunciado por trampa **no cubre
+> el caso en que la carta te la piden a ti**.
 
 **Y los largos abren con un bloque `## Lo mínimo para ejecutarlo`.** Su contrato es que **si solo lees
 ese bloque ejecutas el ritual sin cometer ninguno de los fallos que su cuerpo documenta**; si uno se te

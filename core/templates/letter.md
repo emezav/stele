@@ -134,4 +134,9 @@ segundo dice que no.
         obtenerlo (antes de leerla, o mientras). El orden es parte de la carta, no logística.
      4. Archivo: guarda tu copia aquí. La copia del otro lado puede desaparecer (los buzones se
         curan), y entonces esta es la única.
-     5. Índice: la fila en `{{correspondence}}`, después de enviar. -->
+     5. Índice: la fila en `{{correspondence}}`, después de enviar.
+     6. Instrumento: si ofreces reproducir algo, **el comando entero va dentro de la carta**.
+        Un script de tus artefactos NO viaja: su ruta no existe en la máquina del otro. Y si
+        esa ruta cae dentro del marcador de comprobabilidad, la tabla promete comprobable
+        algo que el receptor no puede correr. Le pasó a un adoptante en dos cartas el mismo
+        día, y el coste lo pagó su corresponsal escribiendo un banco desde cero. -->

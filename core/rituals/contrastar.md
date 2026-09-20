@@ -81,6 +81,13 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
    donde vive. Lo que **no** se aplaza es escribir el diagnóstico.
 7. **Archivar, responder y registrar, en ese orden.** La fila va **después** de responder, porque su
    existencia implica que el circuito se cerró.
+   **Y responder es escribir una carta, así que ese tramo lo gobierna REMITIR**
+   (`{{kit}}/core/rituals/remitir.md`). Aquí no se repiten sus reglas —su hogar es aquel—;
+   lo que faltaba era **el camino**. La que más muerde es la del **instrumento**: *un script
+   de tus artefactos no viaja, el comando entero va dentro de la carta*. **Lo reportó un
+   adoptante que ejecutó este ritual entero y llegó hasta aquí sin que nada le nombrara el de
+   salida**, y sus dos respuestas ofrecieron reproducir con una ruta que en la máquina del
+   otro no existía.
 
 **Las cuatro que se saltan:**
 
