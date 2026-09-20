@@ -327,6 +327,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una cifra necesita su INSTANTE, no solo su instrumento*
 - *Un defecto escrito donde solo llegas DESPUÉS de decidir no es un defecto: es una nota*
 - *Un barrido mecánico gasta la ocasión sin producir atención, y blanquea la edad del fichero*
+- *Obligar a LEER no basta: hace falta que algo obligue a EJECUTAR*
 - *Cobertura e integridad son dos comprobaciones, y el control que las junta confirma la que puede*
 - *Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe*
 - *Una declaración estrecha se lee como completa, y por eso engaña más que una omisión*

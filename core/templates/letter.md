@@ -139,4 +139,9 @@ segundo dice que no.
         Un script de tus artefactos NO viaja: su ruta no existe en la máquina del otro. Y si
         esa ruta cae dentro del marcador de comprobabilidad, la tabla promete comprobable
         algo que el receptor no puede correr. Le pasó a un adoptante en dos cartas el mismo
-        día, y el coste lo pagó su corresponsal escribiendo un banco desde cero. -->
+        día, y el coste lo pagó su corresponsal escribiendo un banco desde cero.
+     7. Identificadores: **una ley se cita por su TÍTULO, nunca por un número.** El número no resuelve
+        contra el fichero --una inserción corre todos los ordinales posteriores-- y el receptor no
+        puede localizarla. Le pasó a este proyecto: una carta atribuyó a un adoptante "la ley 96" y
+        su ley estaba en la posición 68; el token "ley 96" no existía en ningún fichero del kit.
+        **El remedio estaba publicado y no aquí**, que es por lo que la carta lo incumplió. -->

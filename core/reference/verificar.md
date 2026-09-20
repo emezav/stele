@@ -2799,6 +2799,77 @@ tabla.
 filas de seis columnas y cuatro de siete, que son otra tabla— y **una fila fabricada con una barra sin
 escapar se perdía en silencio**, sin bajar el conteo ni romper el invariante.
 
+## Obligar a LEER no basta: hace falta que algo obligue a EJECUTAR
+
+**Una regla puede forzar la lectura de un documento entero, cumplirse, y no mover nada.** No es que
+nadie mirara: es que **mirar no era la acción que faltaba**.
+
+**El caso lo midió un adoptante sobre su propio registro, y la cifra es lo que lo hace demoledor.** Su
+documento de estado se reescribe **completo** cada sesión, y su justificación escrita es *«obliga a
+releerlo entero»*. Dentro llevaba, sesión tras sesión, un pendiente: una carta redactada y sin
+entregar. Contó las reescrituras que la llevaban dentro:
+
+```text
+reescrituras del documento de estado con el pendiente dentro ..... 15
+rango ............................................................ 27 dias
+la carta salio ................................................... al dia 32, y por otra via
+```
+
+> **Lo miraron quince veces.** La regla que forzaba la lectura funcionó las quince. **No existía
+> ninguna que forzara la ejecución**, y esa era la que faltaba.
+
+**Es el piso de abajo de *prohibir una observación no basta: hace falta que algo obligue a hacerla*.**
+Allí faltaba la obligación; aquí **la obligación existe y es de la acción equivocada**. Un documento
+que se relee entero produce lectura, no ejecución, y **desde fuera las dos se ven igual**: el pendiente
+sigue escrito y el estado sigue siendo cierto.
+
+**Cómo se distingue, y por qué el remedio no es un ritual sino un cruce.** En presente, *escrita y sin
+entregar* y *pendiente que nadie miró* se separan por sus **artefactos**: la primera deja un **fichero**
+y un **estado en una columna**, y es computable; la segunda es **una línea de prosa** en un documento
+que se reescribe entero — sin estado, sin columna, sin fecha de entrada— y **no lo es**. El adoptante
+derivó de ahí un control que cruza **estado × antigüedad × existencia del fichero**, con su control
+positivo: lo entregado ese día deja de aparecer.
+
+**Y el límite va con la cifra, porque él lo declaró primero:** quince reescrituras **no prueban quince
+lecturas**. Prueban quince reescrituras de un documento cuya regla dice que se relee entero.
+
+### Qué caza la lectura, medido en dos corpus independientes
+
+**La afirmación fácil —*«la relectura no caza nada»*— es falsa, y la midieron los dos lados.** Un
+adoptante repartió sus diecisiete tropiezos por **cómo se cazaron** y encontró **uno** de la lectura;
+este proyecto hizo el mismo ejercicio sobre sus actas y encontró **dos**:
+
+```text
+corpus                atribuciones   de la lectura   tasa
+adoptante                      17          1          5,9%
+proyecto del kit               36          2          5,6%
+```
+
+**Las dos tasas salen de instrumentos distintos y corpus disjuntos, y coinciden.** No es una serie
+—son dos puntos de dos terrenos— pero es lo más cerca que hemos estado de un número reproducido.
+
+**Y los tres casos dicen lo mismo, que es la parte útil:** el del adoptante fue un `tr -d ""` donde
+debía haber un conjunto de caracteres; los dos nuestros, un bloque partido al escribirlo y una fila
+con `%%`. **Los tres dejan un sinsentido VISIBLE.** De ahí su formulación, que entra entera porque es
+mejor que la negación que teníamos:
+
+> **La lectura caza exactamente las corrupciones que dejan un sinsentido visible, que son las que no
+> la necesitaban** — esas mismas las caza un control, un intérprete o cualquiera que pase por ahí. De
+> las que de verdad importan —un byte invisible, un ancla que no casa, un mensaje mordido— no cazó
+> ninguna.
+
+**Por qué esto es mejor que *«ninguno lo cazó la relectura»*:** aquella era una afirmación sobre **una
+cuenta**, y se rompe el día que aparezca el caso siguiente. Esta es sobre **qué clase de defecto** puede
+cazarse leyendo, y **sobrevive a que la cuenta cambie**. Para decidir qué hacer, la conclusión es la
+misma; para seguir siendo cierta, no.
+
+**Los denominadores van declarados, y no son los que parecen.** Del lado del kit se partió de 46 frases
+con *«lo cazó»* y **diez no atribuyen**: ocho son **negaciones** —*«ninguno lo cazó la relectura»* no es
+un caso cazado por la lectura, es su contrario— y dos hablan del campo en vez de usarlo. **El
+clasificador las contó como atribuciones en su primera versión**, y lo que lo destapó fue imprimir uno
+a uno los casos de la clase que decide la afirmación. **Los dos repartos son reconstrucciones desde
+actas**, no registros llevados al momento.
+
 ## Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe
 
 **Medir *"días desde que salió la mía"* y leerlo como *"días que llevan sin contestar"* es atribuir al
