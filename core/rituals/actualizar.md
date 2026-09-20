@@ -204,6 +204,24 @@ releerla en el paso 4.
 | **La lista de secciones del acta, si tu `protocol` la enumera en prosa** | La plantilla del acta ganó la sección **`Tropiezos`** — lo que costó, lo que se intentó y no estaba, el detector propio que falló—, y **tu `protocol` no se regenera**: es un doc tuyo. Compruébalo (`grep -in 'notas para retomar' <tu protocol>`) y añade la sección a esa enumeración. **La razón por la que esta fila existe es la enumeración, no la sección:** esa lista vivía en **cuatro** sitios del kit y al añadir una sección se corrigieron dos; los otros dos siguieron dando una lista incompleta **sin que nada fallara**. Un dato con varios hogares diverge por el que nadie mira, y una enumeración es el hogar que nadie mira |
 | El buzón del kit (si lo tiene) | **Correspondencia que baja.** Léela y dile al usuario si hay algo dirigido al `remitente` de este proyecto o alguna pregunta que pueda contestar. Contestar es ritual REMITIR; archivar solo lo que se conteste o lo que mueva a hacer algo. **Baja aunque `correspondence_log` esté en `off`** —viaja dentro del kit—, y entonces se puede leer pero no contestar: hace falta activar el rol y elegir `remitente`, y las dos cosas las decide la persona. No ofrezcas REMITIR sin decirlo |
 
+## El margen del tope no es del kit: es del adoptante
+
+**Una plantilla puede caber de sobra y aun así sacar de su presupuesto a quien la instancia.** Medido
+por un adoptante el 2026-09-20: un delta de **cinco líneas** en la tabla de disparadores del `entry`
+—sección `GENERADO`, que se porta a mano— llevó su instancia **de 250 a 255 contra un tope de 250**, y
+su validador empezó a fallar. **Tuvo que recortar cinco líneas suyas para que cupieran cinco nuestras.**
+
+La plantilla del kit no incumplía nada: iba a **211 de 250**. Lo que el número no dice es que **ese
+margen no lo gasta el kit, lo gasta quien escribe encima** — esa instancia llevaba 44 líneas propias.
+
+> **Un delta de N líneas en una plantilla de arranque es un delta de N líneas en TODAS sus
+> instancias**, y llega a un documento donde el presupuesto ya está comprometido en otra cosa.
+
+**Qué hacer con eso, sin inventar mecanismo:** al portar un delta a una sección `GENERADO`, **medir el
+tope después y decirlo en el `session`**. Si no cabe, lo que sobra **no es lo que acaba de llegar**:
+es que el documento lleva prosa que tiene otro hogar. El adoptante del caso recortó duplicados y **el
+documento quedó mejor**, pero eso fue suerte, no diseño.
+
 ## Cuándo una plantilla de contenido SÍ llega a quien ya adoptó
 
 **Una plantilla de contenido SÍ llega a quien ya adoptó en varios casos, y se agrupan en dos familias:

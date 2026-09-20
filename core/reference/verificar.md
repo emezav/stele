@@ -2717,7 +2717,11 @@ salta justamente a ellos**. El barrido **blanquea la edad**, y lo hace en bloque
 
 ```bash
 # un commit que toca muchos ficheros con un solo patron es una VISITA DE MAQUINA
-git log --format='%h %s' --numstat | awk '/^[0-9a-f]{7} /{h=$0; next} /^[0-9]+\t/{n[h]++}
+# LA REGEX VA SIN INTERVALOS A PROPOSITO. mawk --el awk por defecto en Debian y Ubuntu-- no
+# soporta {7}, asi que /^[0-9a-f]{7} / NO CASA NUNCA alli: todas las lineas caen bajo la clave
+# vacia, imprime UNA linea con un total plausible y sale con CODIGO 0. Lo reporto un adoptante
+# que lo corrio en su maquina. Escrita siete veces da lo mismo en gawk y ademas corre en mawk.
+git log --format='%h %s' --numstat | awk '/^[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f] /{h=$0; next} /^[0-9]+\t/{n[h]++}
   END{for(k in n) if(n[k]>=8) print n[k], k}' | sort -rn
 ```
 
@@ -2734,6 +2738,66 @@ contrario de un barrido.
 > solo patrón*.** El segundo término es el que discrimina, y es el que se cae al implementar el
 > detector, porque el número de ficheros lo da `git` y el patrón no. **Un detector al que se le cae el
 > término discriminante sigue devolviendo una lista plausible.**
+
+**Y el término que dábamos por perdido SÍ es computable — lo resolvió un adoptante, y la clave es la
+UNIDAD.** Lo que discrimina no es el patrón, que es intención y no se lee de `git`, sino su **huella**:
+un barrido produce **muchos cambios y muy pocas ediciones distintas**. Para cada reemplazo 1:1 se quita
+el prefijo y el sufijo comunes y se cuenta cuántos **residuos distintos** quedan:
+
+```text
+commit   ficheros  pares  ediciones_distintas  top    edicion dominante
+dafea44     19       81           10           88%    'emit' -> 'log'     <- barrido
+e41dcd7      9       41            1          100%    '#'    -> ''        <- barrido
+a617077     21       34           26           20%    -                   <- AUDITORIA
+92e00aa     22       23           18           13%    -                   <- AUDITORIA
+```
+
+> **La atención dispersa y la máquina concentra.** Sobre los 15 candidatos del detector de arriba, con
+> un piso de 10 pares, **el único con firma de barrido es `e41dcd7`**, y las dos auditorías quedan en
+> 13% y 20%.
+
+**La trampa está en la unidad, y es la que costó una pasada a quien lo midió: tokenizando por PALABRA,
+el caso más claro de barrido no se detecta.** `dafea44` da 242 tokens distintos de 265 y parece una
+auditoría, porque cada `evento.emit("device:update",` es una palabra distinta. **La homogeneidad no
+está en la palabra: está en la edición.** El detector no era peor — medía otra cosa.
+
+**Sus límites, declarados por él:** solo cuenta **reemplazos 1:1**, así que un commit de puras
+adiciones da cero pares; **un movimiento de fichero da 100% con tres pares**, de ahí el piso; y **es un
+proxy**, igual que la sangría — mide *forma de máquina*, no *ausencia de atención*, así que un barrido
+hecho a mano mirando cada sitio sale idéntico.
+
+## Cobertura e integridad son dos comprobaciones, y el control que las junta confirma la que puede
+
+**Un control de cobertura —¿está cada cosa donde debe?— supone en silencio que las filas que cuenta
+están bien formadas.** Son dos afirmaciones y solo una tiene evidencia, así que es el **marcador
+generoso** aplicado a un instrumento: confirma la mitad que sabe medir y **arrastra la otra**.
+
+**El caso, medido por un adoptante sobre su índice de correspondencia el 2026-09-20.** Dos de sus 76
+filas llevaban **una columna de más**, por una barra vertical sin escapar **dentro de un fragmento de
+código en línea** — markdown no respeta los delimitadores de código al partir una fila de tabla:
+
+```text
+su comando tal cual, sin cortar por columnas
+  filas contadas .... 76     invariante 76 == 76  ->  VERDE, y el defecto es INVISIBLE
+
+el remedio de cortar por 6 columnas, para separar dos tablas numeradas
+  filas que quedan .. 74     invariante 74 == 76  ->  PROTESTA
+  y la causa que sugiere --"faltan dos cartas"-- es FALSA
+```
+
+> **Lo caro no es el defecto: es lo que el remedio hace con él.** Sin el corte, un fallo silencioso.
+> Con el corte, **un diagnóstico plausible y falso**, que es peor — porque manda a buscar dos cartas
+> que están.
+
+**El remedio es separarlas, y en este orden: la integridad PRIMERO, porque la cobertura depende de
+ella.** Un reparto de anchos de fila con **una sola clase** es sano; con dos o más, la minoritaria son
+las filas a mirar. Y si el corpus tiene dos tablas legítimas de anchos distintos, eso hay que
+**comprobarlo mirándolas**, no suponerlo: una fila rota cae del lado equivocado y se lee como la otra
+tabla.
+
+**Confirmado en el corpus de este kit el mismo día**, con control positivo: el índice estaba sano —215
+filas de seis columnas y cuatro de siete, que son otra tabla— y **una fila fabricada con una barra sin
+escapar se perdía en silencio**, sin bajar el conteo ni romper el invariante.
 
 ## Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe
 
@@ -2764,6 +2828,20 @@ nadie escribía es **la de ENTREGA**.
 **Percha:** antes de publicar cualquier latencia medida a través de una frontera, **descomponla en
 tramos y pregunta de quién es cada uno**. Si un tramo cae del otro lado, la cifra no es sobre el otro
 proyecto: **es sobre el canal, y la etiqueta va ahí.**
+
+**Y un segundo corpus la matizó sin refutarla.** Un adoptante midió el suyo, que **sí** puede expresar
+*entregada != escrita*: 36 filas con fecha de entrega, **32 coinciden y 4 difieren**, con un máximo de
+5 días. El 89% de coincidencia **se parece mucho a un 31 de 32 y no significa lo mismo**: allí era un
+cero por construcción y aquí es que casi siempre se entrega el mismo día.
+
+> **El discriminador no es la tasa: es que exista al menos UNA fila que difiera.** *Coincidir* y *no
+> poder diferir* dan la misma cifra, y solo la segunda es el defecto.
+
+**Y el mismo adoptante encontró después el tercer estado, que ninguna de las dos formas nombra.** Su
+respuesta a una carta nuestra llevaba **32 días escrita y sin entregar**, leída sesión tras sesión en
+sus pendientes sin moverse. **Desde el otro lado, *escrita y sin entregar* es indistinguible de *no
+escrita*** — y desde el propio, de un pendiente cualquiera. *Esperando* y *tardan* no agotan el
+espacio: falta ese.
 
 ## Una declaración estrecha se lee como completa, y por eso engaña más que una omisión
 

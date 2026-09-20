@@ -327,6 +327,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Una cifra necesita su INSTANTE, no solo su instrumento*
 - *Un defecto escrito donde solo llegas DESPUÉS de decidir no es un defecto: es una nota*
 - *Un barrido mecánico gasta la ocasión sin producir atención, y blanquea la edad del fichero*
+- *Cobertura e integridad son dos comprobaciones, y el control que las junta confirma la que puede*
 - *Una espera tiene dos tramos, y el que falta lo tiene el otro y no lo escribe*
 - *Una declaración estrecha se lee como completa, y por eso engaña más que una omisión*
 - *Una confesión que enumera sus instancias por número omite justo la que sobrevive*
@@ -376,6 +377,25 @@ ley 60 -> posicion 13      ley 64 en adelante -> coinciden
 > por accidente**, cuando las últimas leyes se empezaron a añadir al final en vez de intercalarse. Un
 > identificador que coincide con la posición **durante un tramo** es peor que uno que no coincide nunca:
 > el tramo bueno enseña a confiar en él.
+
+**Y el mecanismo exacto lo midió un adoptante en nuestro repo, dos días antes de que lo encontrara
+la auditoría 16 — y su carta tardó un mes en llegar, así que ninguno de los dos supo del otro:**
+
+```text
+b8a4976  06:46:18   62 leyes    "ley 62" = una ley concreta
+ac11e7a  06:56:58   63 leyes    el mensaje la llama LEY 63  ->  y la coloca en la POSICION 14
+                                49 de las 62 se corren +1, sin que nadie las edite
+```
+
+> **Diez minutos y cuarenta segundos para invalidar 49 identificadores publicados.** Y la ley que
+> describe justo esto —*el identificador de una acción es el del instante en que ocurrió*— es **una de
+> las que se corrió**: estaba en la 22 y quedó en la 23. La regla se movió por el mecanismo que nombra.
+
+**LO QUE ESTO LE HACE AL CONTROL, que es lo accionable: la biyección `N y N` es CIEGA a una inserción
+por construcción.** Compara el **total** con la **etiqueta de la última**, y una inserción en medio no
+altera ninguno de los dos: sigue en verde mientras cada cita de fuera aterriza en la ley de al lado.
+**Cualquier control que no mire la POSICIÓN de cada ley es ciego a esto**, y lo descubrió alguien de
+fuera intentando usar el número — que es el único momento en que el defecto se nota.
 
 **Tres cosas más que hay que saber antes de intentarlo otra vez:**
 
