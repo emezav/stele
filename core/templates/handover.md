@@ -14,6 +14,15 @@ No hay trabajo a medias.
 sesión, así que no hay acta que citar en `{{history_dir}}`. No hay trabajo a medias."
 Se sustituye por la forma normal al cerrar la primera. -->
 
+## Cierre
+
+COMPLETO
+
+<!-- Si el cierre fue MINIMO (ver CERRAR -> "El cierre minimo"), aqui va el contador y la deuda:
+"MINIMO 2 de 3" y debajo "falta: acta de la NNN, fila de index, fila de esfuerzo, state".
+Al tercero, el siguiente cierre va COMPLETO. Al cerrar completo vuelve a COMPLETO y se dice de
+que sesiones se completo el acta -- o que no se va a completar, que tambien es una decision. -->
+
 ## Lo que espera al usuario
 
 <!-- Lo que NADIE puede hacer salvo el usuario: entregar algo, decidir algo, aprobar algo.
@@ -24,6 +33,14 @@ se deja la sección con "Nada pendiente" -- borrarla la vuelve invisible. -->
 | Qué | Detalle |
 | --- | --- |
 | **...** | ... |
+
+<!-- SU TOPE SE MIDE SOBRE LA FORMA INSTANCIADA, NO SOBRE ESTE FICHERO. Lo de abajo es andamio y
+     no viaja: el fichero puede pasar del tope del rol sin que la instancia lo pase. Comprobado el
+     2026-10-04: fichero 98 lineas, instanciada 26 de un tope de 40.
+     EL AVISO ESTA AQUI Y NO SOLO EN AUDITAR porque alli llega quien audita, y a esto llega quien
+     TOCA la plantilla. Le paso a quien escribio este comentario: leyo "98 de 90" y su primer
+     impulso fue podar, con la regla publicada en AUDITAR paso 9 y aplicada por la auditoria 19
+     dos semanas antes. El remedio estaba donde se descubre el defecto, no donde se comete. -->
 
 ## Forma EN_PROGRESO — ANDAMIO, se borra al instanciar
 

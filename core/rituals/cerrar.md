@@ -6,6 +6,10 @@
 ## Lo mínimo para ejecutarlo
 
 > **Este ritual se ejecuta CADA sesión**, así que un bloque mal cortado se paga a diario.
+>
+> **Y tiene DOS MODOS.** Lo de abajo es el **completo**. Si el completo va a costar más que no cerrar
+> —y a veces cuesta—, existe el **MÍNIMO**: tres pasos, y está abajo en *El cierre mínimo*. **Elegirlo
+> no es saltarse el ritual: es la única forma de que cerrar siga siendo más barato que abandonar.**
 
 **Guarda, antes del paso 1: ¿hay instancia aquí?** Si no hay `stele.config.md` en la raíz, **este
 ritual no aplica** — estás leyendo el kit desde fuera de un proyecto que lo tenga, y lo que
@@ -63,6 +67,7 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 | ¿Qué va en el `state` y qué no? | *El `state` apunta a lo que caduca* · *No registres un estado que no puedas observar* |
 | ¿Qué compruebo antes de commitear? | *Antes de persistir, comprueba lo que acabas de escribir* |
 | Escribí un bloque de comandos | *Los bloques que escribiste se corren, no se releen* |
+| Cerrar completo va a costar más que no cerrar | *El cierre mínimo* |
 | Escribí o moví andamio comentado | *El andamio comentado se renderiza, no se relee* |
 | ¿Y si no hay git? | *Persistir el cierre, según el modo* |
 
@@ -406,6 +411,62 @@ andamio_vivo "$ctl"; rm -f "$ctl"
 **Y el cero de ese barrido no dice que el documento esté bien: dice que no tiene esta clase.** Lo que
 comprueba de verdad si el andamio salió vivo es **mirar los encabezados que el renderizador muestra** —
 y ese listado también se hace respetando las vallas, o cuenta como encabezado cada línea del ejemplo.
+
+## El cierre mínimo, para cuando el completo cuesta más que no cerrar
+
+**El problema es de incentivos, no de disciplina.** El cierre completo escribe del orden de **260
+líneas** —un acta de unas noventa, el `state` entero de unas ciento cuarenta y cinco, y el `handover`—
+más dos filas, la verificación y el commit. **Cuando eso cuesta más de diez minutos, cerrar la ventana
+y dejar la sesión abierta sale más barato.** Y entonces se pierde lo que solo vivía en la sesión.
+
+> **Un ritual que cuesta más que abandonarlo no se cumple: se rodea.** Y el que lo rodea no está
+> siendo indisciplinado — está midiendo bien.
+
+**Qué se salva y qué se puede reconstruir, que es lo que decide el recorte:**
+
+| | ¿Se recupera después? |
+| --- | --- |
+| **Los tropiezos** | **NO.** El diff dice qué quedó hecho y **nunca** qué costó. Solo viven en la sesión |
+| **Qué quedó a medias** | **NO** del todo: el árbol lo insinúa, la intención no |
+| El acta narrativa | **Sí**, desde el control de versiones, el `handover` y los tropiezos |
+| Las filas de `index` y de esfuerzo | **Sí**, salen del acta |
+| El `state` reescrito entero | **Sí**, desde el `handover` y la historia |
+
+**Los tres pasos del mínimo, y no hay un cuarto:**
+
+1. **Los tropiezos, al `handover`** — no a un acta nueva, porque crear el acta **es** parte del coste
+   que se está evitando. Si no hubo, se escribe *"sin tropiezos"*, que también informa.
+2. **El `handover`** con lo de siempre —estado, qué quedó, qué falta para retomar— **más la
+   declaración de que este cierre fue mínimo y el CONTADOR**.
+3. **Persistir**, según `persistencia`.
+
+**Lo que distingue el mínimo de no cerrar es que el mínimo DEJA ESCRITO que es mínimo.** Un no-cierre
+deja un `handover` que describe un pasado en presente y **miente sin avisar**; el mínimo deja un
+documento que dice *«falta el acta, falta la fila, falta el `state`»*. **La diferencia no es cuánto se
+escribió: es si el siguiente agente sabe lo que no hay.**
+
+### El contador, porque la deuda se acumula en silencio
+
+**Tres mínimos seguidos y el cuarto cierre tiene que ser completo.** El contador vive en el `handover`,
+lo lee ABRIR y sale en el saludo:
+
+```text
+## Cierre
+MINIMO 2 de 3    <- dos seguidos; al tercero, el siguiente va completo
+falta: acta de la 207, fila de index, fila de esfuerzo, state
+```
+
+**Por qué en el `handover` y no en otro sitio:** es el único documento que **se lee en cada arranque y
+se reescribe en cada cierre**, así que el contador no puede quedarse viejo sin que alguien lo vea. Y por
+qué con tope: *obligar a leer no basta* — un contador visible que nadie ha prometido respetar es una
+cifra más en un documento lleno de cifras.
+
+**Al cerrar completo, el contador vuelve a cero y se dice de qué sesiones se completó el acta** — o se
+declara que no se va a completar, que también es una decisión y vale más que una deuda abierta.
+
+**Y el mínimo NO exime de dos cosas**, porque son las que se pagan en el commit y no en la sesión
+siguiente: **persistir** y, si la sesión tocó un bloque ejecutable o andamio comentado, **las filas
+octava y novena de arriba**. Un bloque roto publicado no se arregla escribiendo un acta después.
 
 ## Persistir el cierre, según el modo
 

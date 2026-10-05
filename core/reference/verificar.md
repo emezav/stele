@@ -729,6 +729,37 @@ vale es afinar el patrón, porque el patrón no es el problema.
 Así que el registro **no deja de prometer** — pasa a **prometer otra cosa**: no el re-corrido, el
 control.
 
+## El resultado se produce donde no sobrevive, y la salida se emite igual
+
+**La formulación es de un adoptante y entra con sus palabras, porque es más ancha que la de arriba.**
+Aquella cubre el caso en que algo **falla** detrás de una tubería. Ésta cubre además el caso en que
+**nada falla**:
+
+> *El resultado se produce en un sitio donde no sobrevive, o sobre datos que no llegaron, **y la salida
+> se emite igual**.*
+
+**Sus dos casos, medidos en su terreno el 2026-09-20:**
+
+- **Publicó un campo nuevo en nueve ficheros con el valor vacío.** Lo calculaba dentro de una función
+  que corre en una **subshell**, así que la variable moría al volver. **Sin error.**
+- **Y el día anterior, su generador de sellos emitió un sello perfectamente formado cuando todos sus
+  `sha256sum` habían fallado**, por la misma razón: el cálculo vivía dentro de una **tubería**.
+
+**Por qué no basta con la ley de arriba:** allí hay un código de salida que mirar, y el remedio es
+publicarlo. **Aquí la subshell devuelve bien, la tubería corre, y lo que se pierde es el ALCANCE de una
+variable.** No hay error que buscar, así que **el remedio no puede ser mirar el código**.
+
+> **Las tres formas tienen un solo remedio: mirar LA SALIDA, no el código.** Un reemplazo en lote de
+> este proyecto se cazó **imprimiendo el diff**; sus dos, **mirando el campo y el sello emitidos**.
+
+**Y la forma de reconocerla antes de que muerda es la pregunta de dónde vive el resultado:** si se
+calcula dentro de un `|`, de un `$( )`, de un `while read`, o de una función que no exporta, **el
+sitio donde se escribe no es el sitio donde se lee**. Lo que sale entonces no es un error: es **un
+valor por defecto con cara de medida**.
+
+**Límite declarado por él:** su caso del campo vacío **duró minutos y está sobrescrito**, así que va
+bajo su palabra. Lo que sí es nuestro y comprobable es el reemplazo en lote, y está en el historial.
+
 ## No verifiques a alguien con su propia herramienta
 
 Corolario directo del ejemplar de arriba, y cuesta perderlo de vista porque la herramienta del otro

@@ -32,6 +32,12 @@ el saludo sale igual de convincente.**
 nada. Ahí lo que sustituye al sello es que el propio documento diga **qué se observa en disco** para
 saber por dónde iba.
 
+**Y si el `handover` declara un CIERRE MÍNIMO, el saludo lo dice.** El campo trae un contador —*«MINIMO
+2 de 3»*— y la lista de lo que falta. **Va en el saludo porque es el único sitio donde la deuda del
+cierre se ve sin buscarla**, y porque al tercero el siguiente cierre tiene que ser completo: si eso no
+se anuncia al abrir, se descubre al cerrar, que es cuando ya no hay tiempo. Está en CERRAR → *El cierre
+mínimo*.
+
 **Confirma el arranque (visible):** un agente **no puede hablar antes de que el usuario escriba**,
 así que la confirmación va **al frente de tu PRIMERA respuesta** — 1-3 líneas: última sesión
 (N + título), si quedó trabajo a medias, próximo paso propuesto. En llano, nombrando los archivos
