@@ -48,6 +48,14 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   declaraba que la sección existía**, así que no había por dónde saber qué buscar.
   > **Un nombre estable que nadie ha escrito es tan invisible como uno variable.** Por eso la sección va
   > en la plantilla y no solo en la costumbre: lo que la hace contable no es el nombre, es **estar
+  **Y hay una vuelta más, medida el 2026-10-04: ESCRITO no es DECLARADO.** Una checklist de este kit
+  lleva los siete puntos con su nombre delante —*Tachado*, *Instrumento*, *Identificadores*…— y aun
+  así una carta nuestra los citó **por el número, dos veces**, teniendo el nombre en la misma línea.
+  **Nadie había dicho que el nombre fuera el identificador**, así que el número hizo de identificador
+  por defecto. Lo cazó un adoptante, y el ordinal que citamos había valido 5, 6 y 7 en ese fichero.
+
+  > **Un nombre visible al lado de un número no compite con él: pierde.** Lo que decide cuál se cita
+  > no es cuál está escrito, sino **cuál está declarado como el identificador**.
   > declarada en un sitio donde alguien pueda leerla**.
 - **Di QUIÉN lo cazó, y es el campo que más rinde.** Un comando, un control con su valor esperado, el
   usuario, un corresponsal — o **nadie, hasta que fue tarde**. Una línea por tropiezo.

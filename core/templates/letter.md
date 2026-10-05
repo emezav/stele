@@ -126,7 +126,13 @@ Si redactaste algo —rutas internas, nombres de servicio, datos de terceros—,
 lee: no es lo mismo *"no dan el dato"* que *"el dato va tachado"*. Lo primero invita a preguntar; lo
 segundo dice que no.
 
-<!-- ANTES DE ENVIAR (ritual REMITIR, `{{kit}}/core/rituals/remitir.md`):
+<!-- ANTES DE ENVIAR (ritual REMITIR, `{{kit}}/core/rituals/remitir.md`).
+     ESTOS PUNTOS SE CITAN POR SU NOMBRE --Tachado, Instrumento, Identificadores...-- NUNCA por su
+     numero. El numero es posicional y esta lista ha tenido 5, 6 y 7 items: "el septimo punto" no
+     resuelve contra ninguna copia anterior a que existiera el septimo. Lo cazo un adoptante en una
+     carta NUESTRA que lo citaba asi dos veces, y es el argumento del punto Identificadores aplicado
+     a esta lista. El nombre ya estaba escrito al lado del numero: lo que faltaba era DECLARARLO
+     como el identificador.
      1. Tachado: relee buscando rutas internas, nombres de máquinas y servicios, datos de personas.
         El seudónimo del remitente NO anonimiza el cuerpo.
      2. Consentimiento: enviar es publicar. Lo decide el usuario, nunca el agente por su cuenta.

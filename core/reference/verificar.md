@@ -729,6 +729,34 @@ vale es afinar el patrón, porque el patrón no es el problema.
 Así que el registro **no deja de prometer** — pasa a **prometer otra cosa**: no el re-corrido, el
 control.
 
+## Un dato obtenido por aritmética entre dos cifras tiene la forma de una medición y no ha abierto el corpus
+
+**La formulación es de un adoptante y la encontró contra sí mismo**, que es lo que la hace fiable.
+
+Su protocolo afirmaba, desde el día que adoptó una petición nuestra, que su documento de arranque
+tenía **44 líneas propias**. Al medirlo por solapamiento contra la plantilla salieron **78**, y la prosa
+literal del kit **99**. **El 44 no estaba mal copiado: estaba calculado** — 250 menos 211 más las cinco
+que había recortado son exactamente 44.
+
+> **No falla, no avisa, y queda publicado en el sitio donde vive el contenido de las actas.** Una resta
+> entre dos números correctos produce un tercero con **cara de medida**, y nadie abrió el documento.
+
+**Y la conclusión se invierte con el denominador correcto**, que es lo que lo hace caro y no anecdótico:
+con 44 propias, *«el margen no lo gasta el kit»* se sostenía; con 99 del kit sobre 188 de contenido, en
+ese documento **el kit ocupa el 52%** y la frase es falsa.
+
+**Es pariente de *mirar la salida, no el código*, con una diferencia que importa:** allí hay una salida
+que mirar. **Aquí no hay salida — hay que mirar el documento**, que es precisamente lo que la resta
+promete ahorrarte.
+
+**Cómo se reconoce antes de publicarla:** si una cifra sobre un documento se puede reconstruir sumando
+o restando otras dos que ya tienes, **probablemente así se obtuvo**. La regla es que una cifra sobre un
+documento **se mide contra el documento**, y que el registro lleve **el comando** y no el resultado de
+una cuenta.
+
+**Y no es de época:** el caso se re-midió sobre la instancia de un sello anterior contra la plantilla
+**de entonces**, y dio los mismos tres números. **Estaba mal el día que se escribió.**
+
 ## El resultado se produce donde no sobrevive, y la salida se emite igual
 
 **La formulación es de un adoptante y entra con sus palabras, porque es más ancha que la de arriba.**

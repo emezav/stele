@@ -276,6 +276,7 @@ título que se muda deja de ser encontrable por barrido desde donde estaba.**
 - *Antes de borrar un temporal: ¿lo que voy a borrar existe en otra parte?*
 - *Una cifra sobre tu propio corpus, escrita en el kit, es una FOTO*
 - *Un comando que aborta, detrás de una tubería, es un cero*
+- *Un dato obtenido por aritmética entre dos cifras tiene la forma de una medición y no ha abierto el corpus*
 - *El resultado se produce donde no sobrevive, y la salida se emite igual*
 - *No verifiques a alguien con su propia herramienta*
 - *El sustrato que dos corresponsales no pueden variar es el agente*

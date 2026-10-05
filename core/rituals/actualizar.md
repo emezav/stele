@@ -217,6 +217,52 @@ margen no lo gasta el kit, lo gasta quien escribe encima** — esa instancia lle
 > **Un delta de N líneas en una plantilla de arranque es un delta de N líneas en TODAS sus
 > instancias**, y llega a un documento donde el presupuesto ya está comprometido en otra cosa.
 
+### Y qué distingue «hay que podar» de «el tope está mal puesto»: un comando
+
+**El síntoma es idéntico en los dos casos; el documento no.** Lo que los separa es **de quién es la
+prosa que ocupa el tope**, y eso se mide. El discriminador es de un adoptante, que lo corrió sobre dos
+documentos suyos llenos a la vez y **obtuvo diagnósticos opuestos**:
+
+```text
+su documento de arranque    lineas=250 tope=250 plantilla=211
+  kit/contenido=52%   plantilla/tope=84%   <- NO es suyo: podar solo puede
+                                              cortar lo propio, o prosa del kit
+                                              que el proximo ACTUALIZAR vuelve a traer
+su documento de trampas     lineas=400 tope=400 plantilla=85
+  kit/contenido= 2%   plantilla/tope=21%   <- ES suyo: podar es lo correcto
+```
+
+**Son dos cifras y miden cosas distintas:**
+
+- **`plantilla/tope` CALIBRA.** Cuánto del presupuesto se gasta **al nacer**, antes de que el proyecto
+  escriba una línea. Es una propiedad **del kit**, igual para todos los adoptantes.
+- **`kit/contenido` DIAGNOSTICA.** De quién es lo que hay dentro **ahora**, en esta instancia.
+
+> **Un tope solo es un presupuesto para tu contenido en la medida en que la plantilla no se lo haya
+> gastado ya.** Con `plantilla/tope` al 84%, el número no acota lo que el proyecto escribe: acota lo
+> que el proyecto puede escribir **sin borrar al kit**.
+
+**Confirmado en un segundo terreno el 2026-10-04**, que es lo que lo saca de ser un caso: el proyecto
+que mantiene este kit midió los mismos dos roles y su `plantilla/tope` del arranque dio **84%
+también** —la misma cifra, como predice que sea propiedad del kit— mientras su documento de trampas dio
+**`kit/contenido` = 0%**, con 356 de 359 líneas propias. **Dos terrenos, cuatro documentos, y el
+discriminador separa los dos casos en los dos.**
+
+**El banco corre con rutas relativas y lleva sus guardas delante**, porque un detector no emite
+veredicto si no pudo leer sus entradas — ni si no había nada que leer:
+
+```sh
+# reparto.sh INSTANCIA PLANTILLA TOPE   -- normaliza, cruza con comm, y exige >=40c
+# para no contar separadores de tabla ni encabezados cortos como prosa compartida.
+norm() { grep -vE '^[[:space:]]*$' "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sort -u; }
+kit=$(comm -12 "$tpl_norm" "$inst_norm" | awk 'length>=40' | wc -l)
+mias=$(comm -13 "$tpl_norm" "$inst_norm" | wc -l)
+```
+
+**Sus límites, declarados por él:** el umbral de 40 caracteres **es una decisión, no un hecho**;
+`sort -u` cuenta **líneas distintas** y no sirve para contar presupuesto; y **el discriminador no
+calibra** — distingue las dos lecturas y no dice cuál debería ser el tope.
+
 **Qué hacer con eso, sin inventar mecanismo:** al portar un delta a una sección `GENERADO`, **medir el
 tope después y decirlo en el `session`**. Si no cabe, lo que sobra **no es lo que acaba de llegar**:
 es que el documento lleva prosa que tiene otro hogar. El adoptante del caso recortó duplicados y **el
