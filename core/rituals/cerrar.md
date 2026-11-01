@@ -471,12 +471,17 @@ del bloque ejecutable y del andamio comentado** de la tabla de arriba. Un bloque
 ## Persistir el cierre, según el modo
 
 **`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
-sesión, no en uno aparte. Dile al usuario el `git push` exacto (o hazlo si lo autoriza). Reglas,
-porque **un commit no puede contener su propio hash**:
+sesión, no en uno aparte, **si `base` se versiona**. Dile al usuario el `git push` exacto (o hazlo si
+lo autoriza). Reglas, porque **un commit no puede contener su propio hash**:
 
 - **No anotes el hash del commit que lleva el cierre.** Es información derivable, y por eso no se
   guarda: `git log --diff-filter=A -- {history_dir}{session}` devuelve el commit exacto de esa
   sesión. Guardar lo que se puede derivar es duplicar un hogar.
+- **Salvo que `base` esté ignorada** —opción legítima, ver BOOTSTRAP paso 7—. Entonces el acta **no
+  entra en ningún commit**: no hay autorreferencia que evitar y tampoco nada de donde derivar el hash,
+  porque ese mismo comando **devuelve vacío y sale con `rc 0`**, sin error. Ahí el orden se invierte:
+  **commitea primero el trabajo y anota su hash en el acta después**. Es el único registro que va a
+  quedar.
 - **`--amend` solo mientras el commit sea privado y nadie lo cite.** El amend **cambia el hash**, así
   que un hash ya anotado queda apuntando a un commit inexistente, y falla en silencio. Dos
   condiciones, ambas comprobables antes de tocar nada: (a) **no se ha pusheado** y (b) **ningún doc

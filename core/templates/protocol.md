@@ -141,9 +141,11 @@ que inyecta el harness suele ser **UTC** y adelanta un día durante la última f
 las dos señales fallan a la vez y coinciden, así que **se pregunta**. Detalle y sonda de zona en
 CERRAR -> *De dónde sale la fecha*. Vale para toda fecha estampada, no solo la del acta.
 
-**No lleva su propio hash de commit** (con `persistencia = git`). El cierre viaja en el mismo commit
-que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
-`git log --diff-filter=A -- {{history_dir}}<archivo de sesión>`.
+**No lleva su propio hash de commit** (con `persistencia = git` y `base` versionada). El cierre viaja
+en el mismo commit que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
+`git log --diff-filter=A -- {{history_dir}}<archivo de sesión>`. **Si `base` está ignorada, al revés:**
+el acta no entra en ningún commit, ese comando devuelve vacío sin error, y el hash del trabajo **se
+anota** después de commitear (CERRAR -> *Persistir el cierre*).
 
 ### `{{correspondence}}` + `{{letter}}` — la correspondencia (OPCIONAL, `correspondence_log`)
 

@@ -15,9 +15,10 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
 
 - `ruta/archivo` — qué cambió.
 
-<!-- No anotes aquí el hash del commit que incluye ESTE archivo: un commit no puede contener su
-     propio hash, y se recupera con `git log --diff-filter=A -- <este archivo>`. Los hashes de
-     commits anteriores de la sesión sí van. Ver {{protocol}}. -->
+<!-- Si este archivo se versiona, no anotes aquí el hash del commit que lo incluye: un commit no
+     puede contener su propio hash, y se recupera con `git log --diff-filter=A -- <este archivo>`.
+     Si se ignora (base fuera del VCS), ese comando devuelve vacío: commitea el trabajo primero y
+     anota su hash aquí. Los hashes de commits anteriores de la sesión van siempre. Ver {{protocol}}. -->
 
 ## Verificación
 
