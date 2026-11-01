@@ -20,7 +20,9 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    `{kit}`.** Si `kit_origen` falta o está vacío, **pide la URL al usuario y escríbela en el
    manifiesto** antes de seguir: sin ella el ritual no arranca, y no se deduce del árbol.
    **Y al terminar, actualiza `kit_sello`** con el commit que acabas de traer — mismo motivo: es el
-   único momento en que existe.
+   único momento en que existe. **Y `kit_revisado` con la fecha de hoy, también si el diff sale
+   vacío**: mirar el origen y no encontrar nada es una revisión. Solo no se toca si el problema
+   resulta estar aguas arriba (paso 2), porque entonces no viste el origen.
 
    > **Y COMPRUÉBALO, porque hasta aquí es un dato que escribes sin poder verificar.** El sello no se
    > puede derivar de tu copia —la instalación borra `.git`— así que queda como palabra de quien te lo
@@ -56,7 +58,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
    dicho por quien lo vivió, *"un clone de un kit sin publicar no da error: devuelve un kit"*.
    Antes de dar por bueno el primero, mira un dato observable del origen —la fecha de su último cambio,
    el identificador de su última entrega— y compáralo con lo que esperabas encontrar. Si cuadra: dilo en
-   una línea, borra el temporal y termina sin haber tocado nada. Si no, **el problema está aguas arriba**
+   una línea, borra el temporal, anota `kit_revisado` y termina sin haber tocado el kit. Si no, **el problema está aguas arriba**
    y lo que toca es avisar, no actualizar.
 3. **Clasificar por zona de impacto** (tabla abajo). Lo que no aparece en la tabla es procedimiento:
    se lee, no se migra. **Y lee entero todo archivo que el diff marque como NUEVO** (`Only in

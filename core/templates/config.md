@@ -36,6 +36,7 @@
 | persistencia_cmd | — |
 | kit_origen | `https://github.com/emezav/stele` |
 | kit_sello | `<hash del commit vendorizado>` |
+| kit_revisado | `<YYYY-MM-DD: última vez que se miró kit_origen>` |
 | remitente | — |
 | remitente_publico | — |
 
@@ -93,6 +94,11 @@
 > **Lo que compra tenerlo:** ACTUALIZAR saca un diff **exacto** en vez de aproximarlo, y cualquier
 > medición hecha sobre este proyecto **se data sola** — sin depender de que alguien recuerde con qué
 > versión trabajaba.
+>
+> `kit_revisado` = **la última vez que alguien miró el origen**, haya traído cambios o no. Lo escriben
+> `bootstrap` y ACTUALIZAR, y lo lee el cierre para el recordatorio de `update_every_n_days`. No es la
+> fecha de `kit_sello`: un origen sin novedades también cuenta como mirado. `—` o ausente = sin
+> recordatorio.
 
 ## Rutas
 
@@ -162,6 +168,7 @@
 | session_greeting | on | núcleo |
 | audit_log | on | núcleo |
 | audit_every_n_sessions | 10 | núcleo |
+| update_every_n_days | 30 | núcleo |
 | correspondence_log | on | núcleo |
 | manual_doc | on | núcleo |
 | effort_log | on | producto |
@@ -190,6 +197,12 @@
 > bajo: más vale que el aviso llegue pronto y el usuario lo aplace —cuesta una línea en `{{state}}`—
 > a que el drift se acumule sin que nadie lo mire. Súbelo o bájalo con el ritual `config` (clase
 > *feature*) según lo que cambie tu documentación por sesión.
+>
+> `update_every_n_days` es el mismo mecanismo para el kit: **no dispara nada**, es el umbral con el que
+> el cierre decide si anota "kit sin revisar" en `{{state}}`. Cuenta **días** y no sesiones porque el
+> origen cambia con el calendario, no con tu actividad. Avisa de que **toca mirar**, no de que haya
+> versión nueva: saberlo exigiría consultar el origen en cada sesión, y eso es un runtime (`{{kit}}/guide.md`
+> -> Alternativas descartadas). `—` = sin recordatorio; sin `kit_origen` no hay origen que mirar.
 
 ## Presupuestos
 

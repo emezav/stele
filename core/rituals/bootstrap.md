@@ -29,7 +29,7 @@ terminó.**
 4. **Resolver nombres** por rol y módulo. Los roles de un módulo inactivo van desactivados, no fuera.
 5. **Escribir `stele.config.md`** en la raíz — con `kit_origen` **y `kit_sello`**, el commit que
    vendorizaste. Se captura con `git rev-parse` **antes** de borrar `.git`; después no hay de dónde
-   sacarlo.
+   sacarlo. Y `kit_revisado` con la fecha de hoy, medida con `date`.
 6. **Instanciar cada plantilla** por rol bajo `base`, resolviendo los tokens.
 7. **Sembrar** `state`, `handover` (`SIN_TRABAJO_ACTIVO`), `index`, `gotchas` y `effort` — **cada uno
     con la FORMA VACÍA que trae su plantilla**, no con una sesión inventada ni con secciones a medio

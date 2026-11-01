@@ -30,6 +30,9 @@ Pasó en campo, con el marco vivo un nivel más abajo.
    está activo y desde la última fila de `audit` han pasado más de `audit_every_n_sessions`
    sesiones, anota **"auditoría vencida (última: sesión X)"** en *Pendientes operativos*. Es una
    comparación de dos números, no una verificación: cerrar no audita.
+   Igual con el kit: si `kit_origen` y `kit_revisado` tienen valor y desde `kit_revisado` han pasado
+   más de `update_every_n_days` días, anota **"kit sin revisar desde YYYY-MM-DD: toca mirar el
+   origen (ACTUALIZAR)"**. Son dos fechas locales: cerrar no consulta el origen.
 5. **Decisiones que perduran** -> su hogar (mapa): producto/feature -> `specs`; principio/decisión
    grande -> `charter`; patrón de código -> `architecture`; gotcha -> `gotchas`. Nunca solo en historial.
 6. **`handover`**: si cerró completo -> `SIN_TRABAJO_ACTIVO` **apuntando a la sesión que cierras

@@ -100,8 +100,8 @@ renombrar docs), que es justo lo que deja media instancia inconsistente si se co
 
 El checklist de cierre de `{{protocol}}`: crear `{{history_dir}}{{session}}`; una fila a `{{history_dir}}{{index}}`
 (y a `{{history_dir}}{{effort}}` si se usa) con `printf >>`; reescribir `{{state}}` entero; cada decisión durable
-a su hogar (mapa abajo); refrescar `{{handover}}`; **ver si toca auditar** (más de `audit_every_n_sessions`
-desde la última fila de `{{audit}}` -> anotarlo en `{{state}}`); y **persistir** según `persistencia`.
+a su hogar (mapa abajo); refrescar `{{handover}}`; **ver si toca auditar o mirar el kit** (umbrales
+`audit_every_n_sessions` y `update_every_n_days`) -> anotarlo en `{{state}}`; y **persistir** según `persistencia`.
 
 ## Dónde vive cada cosa (un hogar por dato)
 

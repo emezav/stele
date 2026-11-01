@@ -206,6 +206,7 @@ dejen de repetirse. Si te descubres explicando lo mismo dos veces, la primera ve
 | vendorizar / actualizar el kit | traer al proyecto una copia del marco / traer la versión nueva |
 | presupuesto de un doc | el tamaño máximo que debería tener |
 | `audit_every_n_sessions` / auditoría vencida | cada tantas sesiones conviene revisar la documentación — no es un límite, y cerrar sesiones siempre suma |
+| `update_every_n_days` / kit sin revisar | hace tiempo que nadie mira si el marco tiene versión nueva — es un recordatorio, no un aviso de que la haya |
 
 Esto **no cambia nada de lo que se escribe**: los docs, el manifiesto y los mensajes de commit siguen
 con el vocabulario del marco. Un documento lo lee el siguiente agente; el habla la lee quien está

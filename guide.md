@@ -308,6 +308,12 @@ gestor de esa herramienta.
 
 ## Alternativas descartadas (para no volver a proponerlas)
 
+- **Avisar en cada arranque de que el kit tiene versión nueva** (consultar `kit_origen` al abrir):
+  descartado aunque cueste pocos tokens. Correría siempre y sin que nadie lo decida, metería una
+  dependencia de red en el ritual más barato, y haría que los mismos docs saludaran distinto según el
+  estado de un servidor: un runtime, aunque sea de una línea. Lo que hay en su lugar es la cadencia de
+  `update_every_n_days`, que compara dos fechas locales al cerrar y le recuerda a la persona que vaya
+  a mirar. Saber qué hay en el origen queda fuera del repo, y lo cruza alguien, no el marco.
 - **Referencia por rol en vivo** (escribir `[state]` en los docs y resolverlo al leer): descartada.
   Markdown no tiene indirección nativa, y el marco es agente-primero: los docs instanciados llevan
   **nombres concretos y legibles**. La indirección se resuelve **una vez**, en `bootstrap`, y
