@@ -128,7 +128,7 @@ segundo dice que no.
 
 <!-- ANTES DE ENVIAR (ritual REMITIR, `{{kit}}/core/rituals/remitir.md`).
      ESTOS PUNTOS SE CITAN POR SU NOMBRE --Tachado, Instrumento, Identificadores...-- NUNCA por su
-     numero. El numero es posicional y esta lista ha tenido 5, 6 y 7 items: "el septimo punto" no
+     numero. El numero es posicional y esta lista ha tenido 5, 6, 7 y 8 items: "el septimo punto" no
      resuelve contra ninguna copia anterior a que existiera el septimo. Lo cazo un adoptante en una
      carta NUESTRA que lo citaba asi dos veces, y es el argumento del punto Identificadores aplicado
      a esta lista. El nombre ya estaba escrito al lado del numero: lo que faltaba era DECLARARLO
@@ -150,4 +150,8 @@ segundo dice que no.
         contra el fichero --una inserción corre todos los ordinales posteriores-- y el receptor no
         puede localizarla. Le pasó a este proyecto: una carta atribuyó a un adoptante "la ley 96" y
         su ley estaba en la posición 68; el token "ley 96" no existía en ningún fichero del kit.
-        **El remedio estaba publicado y no aquí**, que es por lo que la carta lo incumplió. -->
+        **El remedio estaba publicado y no aquí**, que es por lo que la carta lo incumplió.
+     8. Ejecutar: lo mecánico de esta lista --cabecera, estado, marcador citado, Identificadores-- no
+        se relee: **se corre**. El bloque está en REMITIR, en *Lo mínimo*, junto al linter. Que la
+        regla esté aquí la hace probable; que el bloque la mida la hace comprobable, y también por
+        quien recibe la carta. -->

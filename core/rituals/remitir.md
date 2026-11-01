@@ -34,6 +34,34 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
    va tachado. Fase obligatoria, no buena práctica.
 5. **Pasarle el linter de markdown** al fichero de la carta — y **el marcador va arriba y sin citar**:
    dentro de un bloque de cita, perder un `>` saca una fila de la tabla y **no da error**.
+   **Y correr el detector de la carta**, que comprueba lo mecánico de la plantilla `letter`: los campos
+   de la cabecera, el estado fuera de la carta, el marcador sin citar y los identificadores
+   posicionales (*la ley 96*, *el séptimo punto*):
+
+   ```bash
+   CARTA=ruta/de/la/carta.md   # la saliente, antes de entregarla; o una recibida
+   n=0
+   for c in 'De' 'Para' 'Fecha' 'Direcci' 'Responde a'; do
+     head -n 40 "$CARTA" | grep -q "^\*\*$c" || { echo "cabecera: falta **$c"; n=$((n+1)); }
+   done
+   if o=$(grep -n -i '^\*\*Estado' "$CARTA"); then echo "$o" | sed 's/^/estado: /'; n=$((n+1)); fi
+   if o=$(grep -n -E '^>[[:space:]]*\|' "$CARTA"); then echo "$o" | sed 's/^/marcador citado: /'; n=$((n+1)); fi
+   ORD='(primer|segund|tercer|cuart|quint|sext|s(e|é)ptim|octav|noven)[oa]'
+   if o=$(grep -n -i -E "(^|[^[:alnum:]])ley(es)? (n(u|ú)mero )?[0-9]+|(^|[^[:alnum:]])$ORD punto" "$CARTA" |
+          grep -v -i -E "(^|[^[:alnum:]])una? $ORD punto"); then
+     echo "$o" | sed 's/^/posicional: /'; n=$((n+1)); fi
+   echo "clases con hallazgo: $n"
+   ```
+
+   **Imprime cada hallazgo con su línea y no decide**: una carta que *menciona* un identificador
+   posicional —para contar que alguien lo usó mal— sale marcada igual que una que lo *usa*, y eso lo
+   juzga quien escribe. **Por qué un bloque y no una regla más:** una carta se escribe a mano, sin
+   sello contra el que comprobarla, y una regla de la plantilla solo se cumple si quien escribe la
+   lee. Medido en un archivo de 117 cartas salientes, las reglas puestas en la plantilla **se
+   cumplieron**; lo que no había era forma de **comprobarlo** sin fiarse de quien escribe. Este bloque
+   viaja en el kit, que tienen los dos lados, así que **quien recibe la carta también puede correrlo**.
+   **Ojo con el patrón:** `leyes?` no casa *ley* —hace opcional solo la `s`— y así nació este bloque,
+   dando cero sobre la carta que lo motivó. Su control positivo tiene que **imprimir la línea**.
 6. **RE-CORRER, afirmación por afirmación, ya con la carta escrita y justo antes de entregarla.** No
    revisarlas: **correrlas**. Es *Una comprobación puede CADUCAR sin fallar, y ningún control lo cubre*:
    los dos controles hablan del detector y **ninguno habla del momento**, así que una fila exacta el día
