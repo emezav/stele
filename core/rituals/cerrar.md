@@ -562,10 +562,8 @@ commit.** Es inmutable, va fechado, y se busca con un comando:
 
 ```bash
 # un acierto de este tipo no tiene seccion, pero SI tiene rastro: el mensaje
-git log --format='%H' | while read h; do
-  git log -1 --format='%B' "$h" | grep -qiE 'no entra|no se anade|se descarta|no hacia falta' &&
-  git log -1 --format='%h %s' "$h"
-done
+# una sola invocacion: el bucle por commit lanzaba dos procesos por cada uno y salia con rc 1
+git log -i -E --format='%h %s' --grep='no entra|no se anade|se descarta|no hacia falta'
 # CONTROL: el commit de la resta mas reciente tiene que salir en la lista
 ```
 
