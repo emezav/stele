@@ -13,11 +13,11 @@
 >
 > **NO lleva** — y las dos últimas son las que de verdad se cuelan:
 >
-> - contexto de negocio o decisiones de producto → `{{specs}}`
-> - principios y decisiones grandes → `{{charter}}`
-> - proceso y reglas de sesión → `{{entry}}`
-> - **el trabajo en curso, su alcance o lo que falta por entregar** → `{{handover}}`
-> - **dónde estamos y el próximo paso** → `{{state}}`
+> - contexto de negocio o decisiones de producto -> `{{specs}}`
+> - principios y decisiones grandes -> `{{charter}}`
+> - proceso y reglas de sesión -> `{{entry}}`
+> - **el trabajo en curso, su alcance o lo que falta por entregar** -> `{{handover}}`
+> - **dónde estamos y el próximo paso** -> `{{state}}`
 >
 > Para eso, apunta.
 >
@@ -46,14 +46,14 @@
 
 ## Entorno y herramientas
 
-- **`la herramienta`, `en esta máquina o este entorno`** — `qué hace distinto de lo esperado` →
+- **`la herramienta`, `en esta máquina o este entorno`** — `qué hace distinto de lo esperado` ->
   `cómo comprobarlo o qué usar en su lugar`.
 - Un detector que devuelve **cero** merece su propia entrada si el cero puede ser falso: anota **con
   qué comando** se obtuvo y **con qué control** se comprobó que el comando funciona.
 
 ## Al publicar o hacer durable el trabajo
 
-- **`el paso que se salta`** — `qué se pierde si se salta` → `qué hacer`.
+- **`el paso que se salta`** — `qué se pierde si se salta` -> `qué hacer`.
 
 ## Convenciones no evidentes
 

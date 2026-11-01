@@ -50,14 +50,14 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
   de otra forma, y entonces la lectura devuelve un estado caducado **sin fallar**. El desenlace de una
   carta se edita varias veces —redactada, publicada, revisada, entregada— y el impulso es **anteponer
   lo último que pasó**, con lo que el historial crece por delante y el estado se hunde. Caso propio,
-  cazado por el control de lectura y no por la relectura: una fila empezaba por *"REDACTADA… y
-  REVISADA…"* con el `ENTREGADA` a mitad del campo, y la sonda anclada devolvía *redactada* sobre una
+  cazado por el control de lectura y no por la relectura: una fila empezaba por *"REDACTADA... y
+  REVISADA..."* con el `ENTREGADA` a mitad del campo, y la sonda anclada devolvía *redactada* sobre una
   carta ya entregada. **Lo que va delante es el estado; el relato de cómo se llegó a él va detrás.**
 - **Y el índice se cuenta con un invariante, no con un patrón:** el **número de cartas** tiene que
   coincidir con el **último número de carta**. Ese fichero puede llevar más de una tabla numerada —los
   desacuerdos, por ejemplo— y entonces contar filas por patrón da de más **sin dar error**. Ocurrió a
   dos proyectos el mismo día, con instrumentos distintos, sobre el mismo archivo: `126` donde había
-  `123`. La ley y el caso, en `{{kit}}/core/reference/verificar.md` → *Cuando un fichero admite dos
+  `123`. La ley y el caso, en `{{kit}}/core/reference/verificar.md` -> *Cuando un fichero admite dos
   lecturas por patrón, el control es un invariante y no un patrón mejor*.
 
 **Después, en orden:**
@@ -100,7 +100,7 @@ terreno real—. Una idea, una preferencia o una petición de funcionalidad **no
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
-| Si te preguntas… | Sección |
+| Si te preguntas... | Sección |
 | --- | --- |
 | ¿Por qué no aplico su remedio tal cual? | *La regla central: el diagnóstico viaja, el remedio no* |
 | ¿Esta afirmación de qué clase es? | *Tres clases de afirmación* |
@@ -255,7 +255,7 @@ hay carta*— es la misma regla; lo que cambia aquí es de dónde viene la presi
 suelta, sino de **deberle algo a alguien**.
 
 Lo formuló un corresponsal ejerciéndolo, que es la única forma en que esto se puede decir con
-autoridad: escribió *"preferimos decir «no aplica» a inventar un hallazgo simétrico"* **en la misma
+autoridad: escribió *"preferimos decir "no aplica" a inventar un hallazgo simétrico"* **en la misma
 carta en la que podría haberlo inventado**.
 
 Por eso **la fila se escribe después de responder**: su existencia implica que el circuito se cerró. Y

@@ -45,7 +45,7 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
    definido cuando la fila afirma dos cosas. **De ahí la condición**, que un corresponsal ya tenía
    escrita para otro defecto: **si una fila junta dos afirmaciones y solo una tiene evidencia, son dos
    filas.** Sin eso, este paso hereda la granularidad de quien escribió la fila.
-   **Y ninguna fila se ancla a `HEAD`, a `main` ni a «hoy»: se ancla a un SELLO.** Un nombre móvil
+   **Y ninguna fila se ancla a `HEAD`, a `main` ni a "hoy": se ancla a un SELLO.** Un nombre móvil
    **finge no moverse**, así que una fila anclada a él nace caducando en silencio; una fecha al menos
    es honesta sobre su momento. Aquí la mitad que sobrevivió a la corrección fue justo la anclada a
    `HEAD`, **tres líneas debajo del párrafo que decía que había que dejar de hacerlo**.
@@ -62,12 +62,12 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
 | Una fila que nombra **un instrumento** que el otro no tiene | Un script de tus artefactos no viaja. **Da el comando entero dentro de la carta**, o di con qué se sustituye |
 | Una fila que manda a correr **`git`** sobre la copia del otro | **La copia de un adoptante NO es un repositorio.** El kit se vendoriza sin `.git`: ofrece una comprobación por **contenido**, nunca por historia |
 | El estado (`redactada`/`publicada`/`entregada`) | **No va en la carta.** Vive en la fila del índice, y solo el usuario mueve la tercera |
-| Una fila sobre **el estado de la copia del otro** | **No la cierra quien escribe: se PREGUNTA**, que el dato no es tuyo. Un adoptante recibió *«el sello que ya teníais»* estando seis commits por detrás |
+| Una fila sobre **el estado de la copia del otro** | **No la cierra quien escribe: se PREGUNTA**, que el dato no es tuyo. Un adoptante recibió *"el sello que ya teníais"* estando seis commits por detrás |
 | Una fila que ofrece `ls-remote`, `main` o `HEAD` para probar **algo pasado** | **Devuelven el presente.** Un estado de ayer se nombra por commits: `git log A..B`. Se lee **falsa siendo cierta** |
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
-| Si te preguntas… | Sección |
+| Si te preguntas... | Sección |
 | --- | --- |
 | ¿Esto es siquiera para otro proyecto? | *El disparador* |
 | **¿Y a quién se lo mando, si es del harness?** | *¿De quién es el sitio correcto?* — **a los pares, no al dueño de la herramienta** |
@@ -78,7 +78,7 @@ sí lo ejecuta el agente (ver *Una carta saliente tiene tres estados*); lo que n
 | ¿Por qué linter, si es prosa? | *La forma de una carta se rompe donde nadie la comprueba* |
 | ¿Qué NO me da el marcador? | *Lo que el marcador NO hace* |
 | **¿Va como issue o por chat?** | *Público o privado* — **se pregunta al usuario, y por defecto es privada** |
-| ¿Va con nombre o anónima? | *Público o privado* · *El remitente* |
+| ¿Va con nombre o anónima? | *Público o privado* - *El remitente* |
 | ¿Cuándo pasa a entregada? | *Una carta saliente tiene tres estados* |
 | ¿Le copio su forma de hablar? | *Espeja el registro, no el dialecto* |
 
@@ -193,7 +193,7 @@ Así que hace falta un valor más: **sí, cuando se selle**. O la carta no sale 
 la otra salida honesta. Lo que no vale es prometer comprobabilidad y salir sin ella.
 
 **La lista completa de valores vive en UN solo sitio, la tabla de más abajo** (*Y con un par que
-comparte disco…*). Aquí no se enumera a propósito: este párrafo añade uno, no cierra el conjunto.
+comparte disco...*). Aquí no se enumera a propósito: este párrafo añade uno, no cierra el conjunto.
 
 **Es la misma forma que el estado en la cabecera, dos secciones más abajo del mismo documento: un dato
 que se sella DESPUÉS, escrito en un artefacto que sale ANTES.** Que reaparezca en el mismo texto que
@@ -255,9 +255,9 @@ dieran. **Esta tabla es el hogar único del conjunto: si añades un valor, se a�
 | **No, bajo palabra** | no lo tengo, y no puedo dárselo a nadie |
 | **Observado** | **lo miré yo, sin que me lo dieran** — y digo qué miré |
 
-> **Aquí decía «el marcador tenía dos», y eran tres:** el tercero —*sí, cuando se selle*— estaba
+> **Aquí decía "el marcador tenía dos", y eran tres:** el tercero —*sí, cuando se selle*— estaba
 > sesenta líneas más arriba, en este mismo fichero, con su propio *"así que los valores son tres"*.
-> **Dos enumeraciones cerradas del mismo conjunto, las dos diciendo «tres», y ninguna igual a la
+> **Dos enumeraciones cerradas del mismo conjunto, las dos diciendo "tres", y ninguna igual a la
 > otra.** Lo cazó una auditoría, no una relectura. **Por eso el conjunto tiene ahora un hogar y los
 > demás párrafos añaden sin cerrar.**
 
@@ -335,7 +335,7 @@ por eso la regla no sale de uno solo.
 ## Una fila que junta dos afirmaciones con evidencia distinta son dos filas
 
 **Es el fallo contrario y también es real.** Una fila propia decía *"la comprobación no tenía control
-positivo, **ni escrito ni en la práctica**"* → **Sí**, con dos identificadores. El diff prueba *"ni
+positivo, **ni escrito ni en la práctica**"* -> **Sí**, con dos identificadores. El diff prueba *"ni
 escrito"*; *"ni en la práctica"* —siete sesiones corriéndola sin él— sale de las actas, **que no
 viajan**. Marcada entera como comprobable.
 
@@ -345,11 +345,11 @@ viajan**. Marcada entera como comprobable.
 | Cómo se manifiesta | una afirmación falsa que sobrevive al marcador | un lector que sale creyendo probado lo que no se probó |
 
 El daño del segundo es menor —acompaña una afirmación que puede ser cierta—, pero **el mecanismo es el
-mismo: el campo dice más de lo que sostiene**. Se parte limpia: *"no estaba escrito"* → **sí**, con su
-identificador; *"no se corrió con él"* → **no**, bajo palabra.
+mismo: el campo dice más de lo que sostiene**. Se parte limpia: *"no estaba escrito"* -> **sí**, con su
+identificador; *"no se corrió con él"* -> **no**, bajo palabra.
 
 **Lo caro del caso es que la misma tabla trataba el problema dos veces y solo acertó una:** dos filas
-más abajo, un reparto medido sobre las propias actas iba marcado *"sí… así que **no**. Bajo palabra"*.
+más abajo, un reparto medido sobre las propias actas iba marcado *"sí... así que **no**. Bajo palabra"*.
 La distinción estaba entendida en el mismo documento, a diez líneas. **No se evita habiéndolo
 entendido; se evita partiendo la fila.**
 
@@ -449,7 +449,7 @@ destinatario**. Es exactamente la distinción que ya haces con una carta, `redac
 producto tiene los mismos dos estados y es fácil olvidarlo**, porque el trabajo *se siente* terminado
 cuando está guardado.
 
-Así que la regla de *"al escribir «ya está hecho», compruébalo"* necesita su segunda mitad: **compruébalo
+Así que la regla de *"al escribir "ya está hecho", compruébalo"* necesita su segunda mitad: **compruébalo
 en el sitio donde el otro va a mirar.** Caso propio, y en el estreno del mecanismo: se entregó una carta
 que invitaba a verificar cada cambio contra el kit publicado, y el corresponsal fue a mirar y encontró
 **el repositorio sin actualizar** — ocho entregas de trabajo vivían solo en la copia local. La carta era

@@ -36,4 +36,4 @@ ADAPTAR: términos del dominio con una definición corta, para vocabulario compa
 agentes y humanos. Incluir los identificadores canónicos y qué NO confundir con qué.
 
 ## Mapa de documentación
-Dónde vive cada tipo de información: ver `{{entry}}` → "Dónde vive cada cosa" (no duplicar aquí).
+Dónde vive cada tipo de información: ver `{{entry}}` -> "Dónde vive cada cosa" (no duplicar aquí).

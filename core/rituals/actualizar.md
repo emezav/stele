@@ -16,7 +16,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 
 1. **Traer la versión nueva a un temporal**, fuera del árbol del proyecto o en un directorio ignorado
    por el VCS (si cae dentro, ensucia el `status` y puede acabar commiteado). La fuente es
-   **`kit_origen`** (manifiesto → Meta); con el mismo `degit`/`clone` de la instalación. **Nunca sobre
+   **`kit_origen`** (manifiesto -> Meta); con el mismo `degit`/`clone` de la instalación. **Nunca sobre
    `{kit}`.** Si `kit_origen` falta o está vacío, **pide la URL al usuario y escríbela en el
    manifiesto** antes de seguir: sin ella el ritual no arranca, y no se deduce del árbol.
    **Y al terminar, actualiza `kit_sello`** con el commit que acabas de traer — mismo motivo: es el
@@ -113,7 +113,7 @@ medias no deja nada roto: si no llegaste a aplicar, no tocaste nada.
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
-| Si te preguntas… | Sección |
+| Si te preguntas... | Sección |
 | --- | --- |
 | ¿Qué implica lo que cambió? | *La tabla de zonas de impacto* |
 | ¿Esto le llega a quien ya adoptó? | *Cuándo una plantilla de contenido SÍ llega* |
@@ -145,7 +145,7 @@ releerla en el paso 4.
 > observación de campo con una muestra pequeña y una prueba barata detrás. De las filas que un
 > adoptante atravesó en un salto largo, **la única que cubrió su caso entero y no le produjo ningún
 > tropiezo** es la del módulo renombrado — y es la única escrita desde él: *"el valor de `módulos` en
-> tu manifiesto **sigue siendo válido**… lo que **sí hay que revisar** son las referencias por ruta
+> tu manifiesto **sigue siendo válido**... lo que **sí hay que revisar** son las referencias por ruta
 > que **tus propios docs** hayan escrito"*. Las que le fallaron están escritas desde el **cambio**:
 > *qué implica esta zona*.
 >
@@ -153,9 +153,9 @@ releerla en el paso 4.
 > resisten.** **Corrida sobre las 17 filas de esta tabla, el resultado es 15 y 2** — y lo que enseña
 > no es el número, es que **los aciertos son de DOS clases y solo una es un defecto**:
 >
-> | Se resiste porque… | Ejemplo | ¿Defecto? |
+> | Se resiste porque... | Ejemplo | ¿Defecto? |
 > | --- | --- | --- |
-> | **la fila no tiene accionable** | `module.md` decía *"cambió lo que aporta un módulo activo"* y al ponerle el adoptante de sujeto quedaba *"un módulo tuyo aporta otra cosa… ¿y?"* | **Sí.** Era la fila más pobre de la tabla y nadie lo había visto |
+> | **la fila no tiene accionable** | `module.md` decía *"cambió lo que aporta un módulo activo"* y al ponerle el adoptante de sujeto quedaba *"un módulo tuyo aporta otra cosa... ¿y?"* | **Sí.** Era la fila más pobre de la tabla y nadie lo había visto |
 > | **el destinatario no es el adoptante** | la del buzón: su lector es el **agente**, y a quien hay que hablarle es al **usuario persona**. Dos actores, no uno | **No.** El sujeto es otro con razón, y forzarlo empeoraría la fila |
 >
 > **Así que la prueba es un detector, no un mandato de reescribir:** de las 15 que se dejan, solo se
@@ -173,7 +173,7 @@ releerla en el paso 4.
 > denominador partido**, nunca con el bruto.
 >
 > **Y el límite, que también es resultado: una muestra de 17 filas de una sola tabla.** Dice que el
-> detector encuentra algo; no dice que la relación sujeto→calidad sea general. **Peor: esas 17 filas
+> detector encuentra algo; no dice que la relación sujeto->calidad sea general. **Peor: esas 17 filas
 > son todas de instrucción**, así que aquí el denominador era el numerador y la clase entera de
 > falsos negativos **no podía aparecer**. La descubrió un adoptante corriéndola en un documento
 > mixto, que es lo que suele haber fuera de un kit.
@@ -189,11 +189,11 @@ releerla en el paso 4.
 | `core/roles.md`, `modules/*/roles.md` | Roles nuevos, renombrados o con distinto `startup`/`order`: al manifiesto le faltan filas y hay que **regenerar los dos derivados**. Y si el rol nuevo es un **doc**, su archivo **no existe en esta instancia**: ofrécelo al usuario e instáncialo si acepta — regenerar los derivados deja el mapa apuntando a algo que no está |
 | `core/templates/config.md` | Cambió la forma del manifiesto o el contrato de parseo: la instancia puede estar desfasada (secciones nuevas, claves nuevas) |
 | `modules/<mód>/module.md` | **Un módulo que tienes activo aporta ahora otra cosa**: features, defaults o su **regla dura**. Lo que te toca es comprobar las tres contra tu manifiesto — una feature nueva no se activa sola, un default cambiado **no** te pisa el valor que ya elegiste, y **la regla dura sí te alcanza**, porque no vive en el manifiesto sino en el `entry` que se lee cada sesión. *(Esta fila no decía qué hacer hasta que se le puso el adoptante de sujeto; ver la nota de arriba.)* |
-| Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/…`) que tus propios docs hayan escrito |
-| **El TÍTULO de la puerta** (su primera línea, `# Auto-arranque de stele …`) | **Está FUERA de las marcas `STELE:INICIO`/`STELE:FIN`**, así que ningún porte de bloque lo alcanza: si cambia en la plantilla, **hay que cambiarlo a mano en cada puerta**. Es la única línea del archivo generado que vive fuera de la zona protegida, y por eso es la única que se queda vieja para siempre sin que nada avise |
+| Un directorio de `modules/` **cambió de nombre** | El valor de `módulos` en tu manifiesto **sigue siendo válido**: los nombres viejos son alias permanentes y nadie tiene que migrar nada. Si quieres el nombre nuevo, es un cambio de una celda. Lo que **sí** hay que revisar son las referencias por ruta (`modules/<viejo>/...`) que tus propios docs hayan escrito |
+| **El TÍTULO de la puerta** (su primera línea, `# Auto-arranque de stele ...`) | **Está FUERA de las marcas `STELE:INICIO`/`STELE:FIN`**, así que ningún porte de bloque lo alcanza: si cambia en la plantilla, **hay que cambiarlo a mano en cada puerta**. Es la única línea del archivo generado que vive fuera de la zona protegida, y por eso es la única que se queda vieja para siempre sin que nada avise |
 | `core/templates/autostart.md`, y los bloques `GENERADO` de `core/templates/entry.md` | Cambió un **derivado**: **porta el delta a mano** al archivo real — **y `autostart` se instancia una vez POR PUERTA**, así que el delta va a **todas**, no solo a la primera que encuentres. Dos puertas que digan cosas distintas es el único modo en que varias puertas hacen daño. Se conserva íntegro lo que quede fuera de las marcas —invariante 6— **y también lo de dentro**, que está protegido por default (ver abajo). Solo se regenera el bloque entero si su marca dice `LIMPIO` |
 | `core/templates/protocol.md` gana una **comprobación de cierre** | **Tu `protocol` está instanciado y no se regenera, así que la comprobación nueva no te llega sola.** Se te **ofrece**, con su valor esperado y su control. Caso medido: la tabla de *último disparo* llegó a un adoptante **porque su agente leyó el diff**, no porque el ritual lo mandara — y eso no se puede repetir a voluntad |
-| Un bloque marcado `LEY:INICIO` … `LEY:FIN` en una plantilla de rol | **Se porta SIEMPRE**, aunque el documento ya exista y aunque el diff no lo señale. Es regla del marco, no prosa que el proyecto pueda haber reescrito: **su ausencia en el doc instanciado es un hueco, no una decisión**. Sin la marca las dos clases son indistinguibles desde el diff, y la fila de abajo se lee —correctamente para el 90% del texto y catastróficamente para el resto— como *nada que hacer*. **Caso de campo: un adoptante actualizó con cuidado, portó lo que llevaba marca, y el `PROHIBIDO` de los artefactos se quedó fuera; al día siguiente ocho artefactos acabaron en el scratchpad del harness** |
+| Un bloque marcado `LEY:INICIO` ... `LEY:FIN` en una plantilla de rol | **Se porta SIEMPRE**, aunque el documento ya exista y aunque el diff no lo señale. Es regla del marco, no prosa que el proyecto pueda haber reescrito: **su ausencia en el doc instanciado es un hueco, no una decisión**. Sin la marca las dos clases son indistinguibles desde el diff, y la fila de abajo se lee —correctamente para el 90% del texto y catastróficamente para el resto— como *nada que hacer*. **Caso de campo: un adoptante actualizó con cuidado, portó lo que llevaba marca, y el `PROHIBIDO` de los artefactos se quedó fuera; al día siguiente ocho artefactos acabaron en el scratchpad del harness** |
 | `core/templates/*` de rol (salvo sus bloques `GENERADO`), `modules/*/templates/*` | **Nada que hacer** para los docs que ya existen: son del proyecto y no se regeneran jamás. **Con excepciones, abajo, en dos familias.** Por AUSENCIA —un **rol nuevo**, o una **sección nueva** dentro de una plantilla que sí existe: no hay doc ni trozo que respetar—. Y por PRESENCIA ROTA —una **comprobación corregida**, un comando que el kit manda correr y estaba mal—, donde el adoptante no tiene un hueco sino **una copia rota que pasa en verde**. Todas **se ofrecen**, no se aplican en silencio |
 | **La tabla de disparadores de rituales de `core/templates/entry.md`** (nueva en la sesión 119) | **Esta SÍ se porta**, aunque la fila de las plantillas de contenido diga que no: no es contenido tuyo, es una **regla del kit** que vive ahí porque el `entry` es lo único garantizado en el arranque. Cópiala a tu `entry` resolviendo los tokens. Sin ella, tu agente puede trabajar cientos de sesiones sin saber que un ritual existe — pasó, y está medido. **Desde entonces la tabla lleva marca `GENERADO`**, así que la fila de derivados ya la cubriría; esta fila sigue aquí para **quien adoptó antes de la marca**, que en su `entry` no la tiene |
 | `SKILL.md`, `guide.md`, `README.md` | Procedimiento y fundamentos: se leen, no se migran. **Ojo con `SKILL.md` desde la 119:** ya no lleva la tabla de rituales, así que si tu `entry` no la tiene, no la tiene nadie |
@@ -217,7 +217,7 @@ margen no lo gasta el kit, lo gasta quien escribe encima** — esa instancia lle
 > **Un delta de N líneas en una plantilla de arranque es un delta de N líneas en TODAS sus
 > instancias**, y llega a un documento donde el presupuesto ya está comprometido en otra cosa.
 
-### Y qué distingue «hay que podar» de «el tope está mal puesto»: un comando
+### Y qué distingue "hay que podar" de "el tope está mal puesto": un comando
 
 **El síntoma es idéntico en los dos casos; el documento no.** Lo que los separa es **de quién es la
 prosa que ocupa el tope**, y eso se mide. El discriminador es de un adoptante, que lo corrió sobre dos
@@ -518,7 +518,7 @@ borra. Recupéralos o descártalos con el usuario antes de seguir, nunca en sile
 
 **Sin marcador de versión, a propósito.** El kit no lleva `VERSION` ni changelog: el diff dice *qué*
 cambió y dónde, que es lo único accionable, y un número habría que acordarse de subirlo en cada
-cambio. El porqué, en `guide.md` → "Alternativas descartadas".
+cambio. El porqué, en `guide.md` -> "Alternativas descartadas".
 
 **Pero el diff tiene un punto ciego, y son los renombrados.** Un directorio que cambia de nombre
 aparece como N borrados y N añadidos: el vínculo semántico —*esto se llamaba así*— **no está en el

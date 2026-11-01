@@ -3,7 +3,7 @@
 
 # Rutas y tokens — referencia
 
-## Las tres rutas: `kit` · `base` · `loader`
+## Las tres rutas: `kit` - `base` - `loader`
 
 | Ruta | Default | Qué contiene | Quién la escribe |
 | --- | --- | --- | --- |
@@ -89,10 +89,10 @@ Se usan de tres maneras:
 ## Convención de tokens en plantillas
 
 Las plantillas se escriben por **rol** y usan tokens que bootstrap/`config` resuelven a nombres:
-`{{rol}}` → nombre del rol (p. ej. `{{state}}`→`latest.md`); `{{history_dir}}`, `{{specs_dir}}`,
-`{{artifacts_dir}}` y `{{correspondence_dir}}` → **rutas** de los roles contenedores;
-`{{budget:rol}}` → tope de líneas; `{{effort_unit}}` y
-`{{checkpoint_trigger}}` → valores de Features/Wording; `{{kit}}` y `{{loader}}` → rutas
+`{{rol}}` -> nombre del rol (p. ej. `{{state}}`->`latest.md`); `{{history_dir}}`, `{{specs_dir}}`,
+`{{artifacts_dir}}` y `{{correspondence_dir}}` -> **rutas** de los roles contenedores;
+`{{budget:rol}}` -> tope de líneas; `{{effort_unit}}` y
+`{{checkpoint_trigger}}` -> valores de Features/Wording; `{{kit}}` y `{{loader}}` -> rutas
 (sección Rutas). Los toggles como `session_greeting` **se consultan, no se interpolan**: no hay
 token para ellos.
 Los bloques marcados `<!-- GENERADO -->` los produce el marco, no se editan a mano.
@@ -102,13 +102,13 @@ agentes operan con el CWD en la raíz y es lo que hace `grep`, así que el valor
 quedó cada archivo. De ahí dos reglas de composición:
 
 - `{{kit}}` se escribe **sin `/` final** y se usa como `{{kit}}/SKILL.md`. **Con `kit = .` el prefijo
-  colapsa**: `{{kit}}/SKILL.md` → `SKILL.md`, no `./SKILL.md`.
+  colapsa**: `{{kit}}/SKILL.md` -> `SKILL.md`, no `./SKILL.md`.
 - Los **contenedores** (`{{history_dir}}`, `{{specs_dir}}`, `{{artifacts_dir}}`, `{{correspondence_dir}}`) resuelven **con `base` delante y con `/`
-  final**, así que se concatenan directos, sin barra intermedia: `{{history_dir}}{{index}}` →
+  final**, así que se concatenan directos, sin barra intermedia: `{{history_dir}}{{index}}` ->
   `stele/history/index.md` con `base = stele`, y `history/index.md` con `base = .` (el prefijo
   colapsa igual que en `{{kit}}`). En el manifiesto el valor configurado es solo el nombre de la
   carpeta (`history/`); es el token el que le antepone `base` al resolverse.
-- **Los tokens de doc (`{{entry}}`, `{{memory}}`, `{{protocol}}`, `{{state}}`…) también llevan `base`
+- **Los tokens de doc (`{{entry}}`, `{{memory}}`, `{{protocol}}`, `{{state}}`...) también llevan `base`
   delante.** `{{entry}}` con `base = bitacora` es `bitacora/guia-agente.md`, no `guia-agente.md`. En el
   manifiesto el valor guardado es solo el nombre del archivo, igual que en los contenedores: **valor
   configurado != token resuelto**. Esta línea existe porque faltaba, y la falta salió cara — la lista
@@ -128,13 +128,13 @@ quedó cada archivo. De ahí dos reglas de composición:
 > `base` (`@bitacora/AGENTS.md`). Que unos acierten y otros no, en el mismo loader, es lo que prueba
 > que el fallo es de los tokens inline y no de la resolución en general.
 
-Esto importa sobre todo en lo **ejecutable**. Un `printf '…' >> {{history_dir}}{{index}}` mal
+Esto importa sobre todo en lo **ejecutable**. Un `printf '...' >> {{history_dir}}{{index}}` mal
 compuesto no da error: crea el archivo que falta y deja el de verdad sin la fila.
 
 **Dos clases de ruta, y no se resuelven igual** — confundirlas es lo que rompe enlaces al mover
 `base`:
 
-- **Ruta de comando** (`printf >> …`, `grep`, `git log --`): relativa a la **raíz del proyecto**,
+- **Ruta de comando** (`printf >> ...`, `grep`, `git log --`): relativa a la **raíz del proyecto**,
   porque los agentes operan con el CWD ahí. Es la que producen los tokens.
 - **Enlace Markdown clicable** (`[index.md](./index.md)`): relativo al **archivo que lo contiene**,
   porque así lo resuelve cualquier visor. Sobrevive a un cambio de `base` solo si su destino se mueve

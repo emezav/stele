@@ -81,7 +81,7 @@
 
 ## Carta 2 — ¿Quedó texto tuyo FUERA de las marcas del loader?
 
-**De:** stele · **Para:** cualquiera que haya adoptado el marco · **Fecha:** 2026-08-07
+**De:** stele - **Para:** cualquiera que haya adoptado el marco - **Fecha:** 2026-08-07
 
 **El caso.** El *invariante 6*: si el archivo de auto-arranque (`CLAUDE.md`, `AGENTS.md`, el que uses)
 **ya existía**, se **modifica** y no se recrea — el bloque del marco va entre las marcas
@@ -118,7 +118,7 @@ evidencia de nada.
 
 ## Carta 4 — ¿Tienes producto con estructura y el módulo apagado?
 
-**De:** stele · **Para:** cualquier proyecto que haya bootstrapeado · **Fecha:** 2026-08-09
+**De:** stele - **Para:** cualquier proyecto que haya bootstrapeado - **Fecha:** 2026-08-09
 
 **Primero lo que no tienes que hacer: nada.** `módulos = software` en tu manifiesto **sigue siendo
 válido para siempre**. El módulo ahora se llama `producto`, y el nombre viejo es un alias permanente.
@@ -152,7 +152,7 @@ tiene que preguntar antes y con más insistencia.
 
 ## Carta 6 — ¿En qué idioma están tus detectores de auditoría, y los tradujiste o los reescribiste?
 
-**De:** stele · **Para:** cualquiera que use el marco en un idioma que no sea el del kit · **Fecha:** 2026-08-09
+**De:** stele - **Para:** cualquiera que use el marco en un idioma que no sea el del kit - **Fecha:** 2026-08-09
 
 **La pregunta, y son dos:**
 
@@ -167,8 +167,8 @@ comando, y que la expresión se escribe desde cero. Lo escribimos con un razonam
 sale sin haberse corrido nunca, y lo decimos porque no queremos que se lea como algo probado.
 
 **Lo que de verdad no sabemos es si la traducción llega a ser posible.** Uno de nuestros detectores
-busca contadores en prosa, y su forma es `(los|las) (dos|tres…)`: artículo, género y número. En inglés
-el equivalente literal, `(the) (two|three…)`, **no discrimina nada** — no es el mismo detector
+busca contadores en prosa, y su forma es `(los|las) (dos|tres|cuatro)`: artículo, género y número. En inglés
+el equivalente literal, `(the) (two|three|four)`, **no discrimina nada** — no es el mismo detector
 traducido, es otro, con otra tasa de falsos positivos. No sabemos qué forma toma esa idea en tu idioma,
 ni si toma alguna.
 

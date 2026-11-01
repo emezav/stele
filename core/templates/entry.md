@@ -30,7 +30,7 @@ propósito, principios y decisiones grandes vive en `{{charter}}` (no duplicar a
 
 ## Estructura del proyecto
 
-ADAPTAR: directorios principales y su rol en una línea cada uno. Árbol completo → bajo demanda.
+ADAPTAR: directorios principales y su rol en una línea cada uno. Árbol completo -> bajo demanda.
 
 ## Al inicio de cada sesión (OBLIGATORIO)
 
@@ -146,7 +146,7 @@ Seguir el checklist de cierre de `{{protocol}}`. En resumen: crear `{{history_di
 append de una fila a `{{history_dir}}{{index}}` (y `{{history_dir}}{{effort}}` si se usa) con
 `printf >>`; reescribir `{{state}}` completo; llevar
 toda decisión durable a su hogar (mapa abajo), nunca solo en el historial; refrescar `{{handover}}`
-(→ `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); **comprobar si
+(-> `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); **comprobar si
 toca auditar** (si pasaron más de `audit_every_n_sessions` desde la última fila de `{{audit}}`,
 anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia`.
 
@@ -154,7 +154,7 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 
 <!-- GENERADO: tabla de enrutamiento derivada de los `triggers` de los roles activos. -->
 
-| Necesito… | Hogar |
+| Necesito... | Hogar |
 | --- | --- |
 | cómo trabajar, proceso, convenciones, arranque | `{{entry}}` |
 | por qué: principios, decisiones grandes, restricciones, glosario | `{{charter}}` |
@@ -162,7 +162,7 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | formatos/protocolo de documentación | `{{protocol}}` |
 | dónde estamos / próximo paso | `{{state}}` |
 | trabajo a medias (checkpoint) | `{{handover}}` |
-| qué pasó y cuándo | `{{index}}` → `{{session}}` |
+| qué pasó y cuándo | `{{index}}` -> `{{session}}` |
 | cuándo se auditó la documentación y qué se decidió | `{{audit}}` |
 | qué se intercambió con fuera, qué se aceptó y qué se rechazó | `{{correspondence}}` |
 | el texto de una carta concreta, enviada o recibida | `{{correspondence_dir}}{{letter}}` |

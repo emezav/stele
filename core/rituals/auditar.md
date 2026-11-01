@@ -104,7 +104,7 @@ silencio, y **un dato obsoleto se lee como hecho** — es peor que no tener el d
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
-| Si te preguntas… | Sección |
+| Si te preguntas... | Sección |
 | --- | --- |
 | ¿Qué entra y qué queda fuera? | *Alcance* |
 | ¿Cómo se comprueba algo? | **No está aquí**: `core/reference/verificar.md`, y su lista de títulos en *Las leyes de verificación viven aparte* |
@@ -594,8 +594,8 @@ puede; un test, sí; un parámetro obligatorio, sí.
 > **Una ley con comando puede impedir un error; una ley sin comando solo puede explicarlo después.** No
 > son la misma herramienta y **no se debe confundir cuál se tiene delante**.
 
-**Y lo que esto NO significa, porque el 83% es fácil de leer mal.** *Sin comando* **no es «inútil»: es
-«no ejecutable»**. Hay leyes que **no pueden** tener comando por su naturaleza — *una producción se
+**Y lo que esto NO significa, porque el 83% es fácil de leer mal.** *Sin comando* **no es "inútil": es
+"no ejecutable"**. Hay leyes que **no pueden** tener comando por su naturaleza — *una producción se
 puede forzar; una precondición negativa solo se puede declarar* trata precisamente de lo que no se
 puede forzar, y ninguna herramienta la va a ejercer. Esas cambian **dónde mira uno**, que es un efecto
 real y más lento.
@@ -626,7 +626,7 @@ de esta sección.
 | 8 | Crecimiento sin revisión | Un doc pasó de legible y nadie decidió si partirlo |
 
 Todas son agnósticas de dominio, y por eso el ritual es del núcleo. Un módulo activo aporta
-**detectores atados a sus roles** (el módulo de producto: el par `specs`↔`specs_dir` y los hogares
+**detectores atados a sus roles** (el módulo de producto: el par `specs`<->`specs_dir` y los hogares
 `specs`/`architecture` — ver su `module.md`).
 
 **Y una forma de clase 1 que se fabrica sola, al escribir sobre la propia tabla: el contador.**
@@ -1011,7 +1011,7 @@ activo) y comprobarlo contra el entorno. Cuatro cautelas, y las dos primeras no 
   **No falla como el recorte**, y por eso hace falta nombrarlo aparte: el recorte se cae al
   normalizarlo, pero la cita está bien extraída y existe literalmente en el archivo. Lo que la delata
   es leer la línea **entera**, no el fragmento — en el caso de campo, la frase decía *"la ruta real
-  es…"* tres palabras más allá.
+  es..."* tres palabras más allá.
   Y hay una fuente sistemática que conviene mirar de frente: **este marco fabrica citas**. El log de
   auditorías, los registros de sesión y los `gotchas` documentan correcciones, así que **contienen por
   diseño el valor equivocado**. Cuanto mejor documenta un proyecto lo que arregló, más material
@@ -1113,7 +1113,7 @@ Se reparten así:
   el que hay que mirar con cuidado, porque *parece* léxico y no lo es.
 
 **Y no se traducen: se derivan.** Traducir término a término produce detectores malos, y el de
-contadores lo demuestra solo: `(los|las) (dos|tres…)` en inglés sería `(the) (two|three…)`, que **no
+contadores lo demuestra solo: `(los|las) (dos|tres|cuatro)` en inglés sería `(the) (two|three|four)`, que **no
 discrimina ni género ni número** y por tanto no es el mismo detector sino otro, con otra tasa de falsos
 positivos. Lo que viaja es **el comentario que encabeza cada comando** —qué se busca y por qué—; el
 comando se escribe desde cero en el idioma del proyecto.
@@ -1244,7 +1244,7 @@ comentario, desde el primer día.
 ## Informe (forma fija)
 
 ```text
-AUDIT — sesiones 10-24 · 6 docs revisados
+AUDIT — sesiones 10-24 - 6 docs revisados
   estructura y conteo:  12 comprobadas, 7 falsas
   rutas y entorno:      21 comprobadas, 0 falsas
   TOTAL:                33 comprobadas, 7 falsas
@@ -1294,9 +1294,9 @@ Un "déjalo así" **se registra con su umbral**, que es lo que lo convierte en d
 aplazamiento. Si no, se rediscute en cada auditoría:
 
 - **Excepción de contenido** (una frase absoluta que sí es absoluta, un estado que se mantiene a
-  propósito) → sección *Acuerdos de auditoría* de `protocol`, con fecha y umbral. Se **cura**: al
+  propósito) -> sección *Acuerdos de auditoría* de `protocol`, con fecha y umbral. Se **cura**: al
   cruzarse el umbral, el acuerdo se revisita y se reescribe o se borra.
-- **Tope de tamaño de un rol** (clase 8) → eso no es un acuerdo, es un **presupuesto**: va a la
+- **Tope de tamaño de un rol** (clase 8) -> eso no es un acuerdo, es un **presupuesto**: va a la
   sección Presupuestos del manifiesto con el ritual `config` ("déjalo entero; revisar si pasa de
   ~1000 líneas" = `specs = 1000`). Ya hay un hogar para ese dato; crear un segundo lo desincroniza.
 

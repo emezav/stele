@@ -5,8 +5,8 @@
 
 Lee, en orden, SOLO la **lista de arranque** del proyecto (generada; con defaults del módulo de producto):
 
-1. `entry` · 2. `gotchas` · 3. `state` · 4. `handover` — **si su Estado ≠ `SIN_TRABAJO_ACTIVO`**,
-respétalo **y compruébalo** antes de editar (abajo). Bajo demanda (grep): `charter` (1ª vez /
+1. `entry` - 2. `gotchas` - 3. `state` - 4. `handover` — **si su Estado != `SIN_TRABAJO_ACTIVO`**,
+respétalo **y compruébalo** antes de editar (abajo). Bajo demanda (grep): `charter` (1.a vez /
 orientación), `protocol`, `specs`, `architecture`, `index`/`session`.
 
 **El `handover` es el único doc del set que puede estar caducado, y hay que comprobarlo.** Se escribe
@@ -32,10 +32,10 @@ el saludo sale igual de convincente.**
 nada. Ahí lo que sustituye al sello es que el propio documento diga **qué se observa en disco** para
 saber por dónde iba.
 
-**Y si el `handover` declara un CIERRE MÍNIMO, el saludo lo dice.** El campo trae un contador —*«MINIMO
-2 de 3»*— y la lista de lo que falta. **Va en el saludo porque es el único sitio donde la deuda del
+**Y si el `handover` declara un CIERRE MÍNIMO, el saludo lo dice.** El campo trae un contador —*"MINIMO
+2 de 3"*— y la lista de lo que falta. **Va en el saludo porque es el único sitio donde la deuda del
 cierre se ve sin buscarla**, y porque al tercero el siguiente cierre tiene que ser completo: si eso no
-se anuncia al abrir, se descubre al cerrar, que es cuando ya no hay tiempo. Está en CERRAR → *El cierre
+se anuncia al abrir, se descubre al cerrar, que es cuando ya no hay tiempo. Está en CERRAR -> *El cierre
 mínimo*.
 
 **Confirma el arranque (visible):** un agente **no puede hablar antes de que el usuario escriba**,
@@ -82,7 +82,7 @@ awk -F'|' '/^\| *[0-9]+ *\|/{n=$2;d=$4;c=$5;gsub(/ /,"",n);gsub(/ /,"",d);
 
 **Y la regla que decide cómo se dice: enumera, no diagnostiques.**
 
-> **«Esperando» no es «tardan».** Los días desde que salió la nuestra **no miden al corresponsal**:
+> **"Esperando" no es "tardan".** Los días desde que salió la nuestra **no miden al corresponsal**:
 > miden el canal, que casi siempre es una persona que copia y pega, y que ninguno de los dos lados
 > puede observar.
 

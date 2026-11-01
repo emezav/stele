@@ -3,7 +3,7 @@
 
 # Ritual: BOOTSTRAP (instanciar el marco en un proyecto)
 
-**Modo:** *greenfield* (no hay docs → scaffold) o *adopción* (ya existen → mapear a roles sin
+**Modo:** *greenfield* (no hay docs -> scaffold) o *adopción* (ya existen -> mapear a roles sin
 sobrescribir contenido; solo generar lo que falte).
 
 ## Lo mínimo para ejecutarlo
@@ -25,7 +25,7 @@ terminó.**
    significa que este proyecto ya tiene una instancia viva, un nivel más abajo. No sigas sin leer la
    fila de abajo.
 2. **Eco del layout ANTES de escribir nada**, siempre, incluso si no preguntaste nada.
-3. **Validar los invariantes de ruta** (`core/reference/rutas-y-tokens.md` → *Las tres rutas*).
+3. **Validar los invariantes de ruta** (`core/reference/rutas-y-tokens.md` -> *Las tres rutas*).
 4. **Resolver nombres** por rol y módulo. Los roles de un módulo inactivo van desactivados, no fuera.
 5. **Escribir `stele.config.md`** en la raíz — con `kit_origen` **y `kit_sello`**, el commit que
    vendorizaste. Se captura con `git rev-parse` **antes** de borrar `.git`; después no hay de dónde
@@ -176,7 +176,7 @@ terminó.**
    agente leyó *"no se auto-detecta: se PREGUNTA"*, se quedó con la mitad negativa y resolvió solo.
    Poner la decisión en un paso que ya se cumple la vuelve **visible y corregible** sin depender de
    que alguien se acuerde de preguntar. Si el usuario no dice nada, tu resolución vale.
-3. Validar los **invariantes de ruta** (ver `core/reference/rutas-y-tokens.md` → "Las tres rutas";
+3. Validar los **invariantes de ruta** (ver `core/reference/rutas-y-tokens.md` -> "Las tres rutas";
    **no `guide.md`**, que aquí no hace falta y pesa más que toda la instalación). Violación = abortar y
    re-preguntar.
 4. Resolver nombres (defaults de rol + módulo; override libre). **Los roles de un módulo inactivo se
@@ -187,7 +187,7 @@ terminó.**
 5. Escribir `stele.config.md` en la raíz (plantilla `core/templates/config.md`), con la sección
    Rutas ya resuelta y **`kit_origen` anotado**: la URL o ruta de la que acabas de traer el kit. Es
    el único momento en que se sabe con certeza, y sin ella ACTUALIZAR no puede correr después.
-6. Scaffold: instanciar cada template por rol → nombre configurado bajo `base`, **resolviendo
+6. Scaffold: instanciar cada template por rol -> nombre configurado bajo `base`, **resolviendo
    tokens** (incluido `{{kit}}`). En adopción, saltar los docs que ya existen.
 7. Semilla: `state` y `handover` (`SIN_TRABAJO_ACTIVO`) iniciales, `index` vacío, `gotchas` vacío, y
    **`effort` vacío si `effort_log = on`** — si el toggle está encendido y el fichero no existe, el
@@ -214,7 +214,7 @@ terminó.**
    **Las dos mitades van juntas o no van.** Ignorar `base` es correcto y no se discute; lo que no puede
    quedarse sin decidir es dónde está su copia — y el sitio donde se decide es **la línea que lo
    causa**, no un aviso en otro documento. Un aviso está *a la vista*; esto está *en el camino*, porque
-   no hay forma de escribir la exclusión sin escribir al lado su consecuencia (ver CERRAR → *a la vista*
+   no hay forma de escribir la exclusión sin escribir al lado su consecuencia (ver CERRAR -> *a la vista*
    contra *en el camino*).
 
    **Y esa línea cuesta DOS cosas, no una.** La segunda no se ve y muerde a diario: **el buscador de tu
@@ -223,7 +223,7 @@ terminó.**
    devuelve **cero**, sin error y sin aviso, y ese cero es indistinguible de un corpus limpio. Se
    trabaja con `grep` de shell o con la bandera que incluye ignorados; el buscador integrado queda para
    el código, que sí está versionado. La ley y su caso, en
-   `{{kit}}/core/reference/verificar.md` → *Un directorio ignorado es invisible a tu buscador y visible
+   `{{kit}}/core/reference/verificar.md` -> *Un directorio ignorado es invisible a tu buscador y visible
    en tu contexto*.
 
    **`RESPALDO: ninguno` es una respuesta válida** y a menudo la correcta al principio. Lo que no es
@@ -257,7 +257,7 @@ terminó.**
    *documentación primero* también, y **juntas producen una ventana en la que el proyecto entero cabe en
    un directorio sin red**. Nadie se equivocó en ningún paso.
 8. Generar derivados: **una puerta por cada nombre de la ruta `loader`**, en la raíz (plantilla
-   `autostart.md`) + mapa-doc en `entry`. **Si alguna puerta ya existe** (`CLAUDE.md`, `AGENTS.md`…
+   `autostart.md`) + mapa-doc en `entry`. **Si alguna puerta ya existe** (`CLAUDE.md`, `AGENTS.md`...
    escritos a mano antes de adoptar el marco), **léela primero e inserta** el bloque
    `STELE:INICIO`/`STELE:FIN` conservando todo lo demás — invariante 6. Igual que en adopción con
    cualquier otro doc: nunca reemplazar contenido que no escribiste.
@@ -280,7 +280,7 @@ terminó.**
     > próximo paso, sin que se lo pidas. **Si te contesta en genérico, ninguna puerta tiene el nombre
     > que lee tu agente**: dímelo y la añado."*
 
-    **Este paso decía antes "reabrir el editor → el loader se auto-carga", y eso AFIRMA un resultado
+    **Este paso decía antes "reabrir el editor -> el loader se auto-carga", y eso AFIRMA un resultado
     que nadie mira.** Era la única frase del ritual sobre algo que no se comprueba, y es exactamente
     donde un fallo de campo pasó desapercibido: el marco quedó instalado perfecto y mudo, sin error.
     **El saludo es el único observable que distingue un marco activo de uno apagado**, y quien lo ve
@@ -319,7 +319,7 @@ horas: se le dijo que tenía una versión y tenía la anterior, por once minutos
 **Importa más de lo que parece cuando el proyecto sembrado es el sujeto de algo.** Si alguien va a
 observar cómo se comporta ese proyecto —y sembrarlo suele venir con esa intención—, **el kit que lleva
 es la variable independiente**, y sin su identificador ningún resultado se puede atribuir. La ley, en
-`{{kit}}/core/reference/verificar.md` → *El identificador de una acción es el del instante en que
+`{{kit}}/core/reference/verificar.md` -> *El identificador de una acción es el del instante en que
 ocurrió, no el de cuando la cuentas*.
 
 **Lo que NO cambia, y conviene decirlo:** los invariantes de ruta, la protección de las puertas
@@ -358,7 +358,7 @@ mismo comando.
 
 **Qué hacer cuando aparece uno.** No hay decisión que el agente pueda tomar solo, así que se para y se
 pregunta. Lo que sí está decidido es el menú: **la instancia de abajo se PROMUEVE** —sube con su
-historial entero, y las rutas al contenido reciben su prefijo (ritual CONFIG → *Mover la raíz*)— o
+historial entero, y las rutas al contenido reciben su prefijo (ritual CONFIG -> *Mover la raíz*)— o
 **la de abajo se declara cerrada** y la nueva empieza citándola. Lo que **no** existe es fusionar dos
 historiales: son append-only, y entrelazar dos series de sesiones exigiría reescribir al menos una.
 

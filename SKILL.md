@@ -20,14 +20,14 @@ description: >
 
 ## Mapa de documentación (GENERADO — consúltalo antes de leer/escribir)
 
-El mapa "necesito X → tal archivo" **no se escribe a mano**: se genera en el doc `entry` desde los
+El mapa "necesito X -> tal archivo" **no se escribe a mano**: se genera en el doc `entry` desde los
 `triggers` de los roles activos + el binding de la config. Regla de generación:
 
 - **Roles activos** = roles del núcleo (`core/roles.md`) + roles de los módulos activos, menos los
   que tengan nombre `—` en la config.
 - **Lista de arranque** = roles `startup: obligatorio`, ordenados por `order`, nombre resuelto
   (`{base}/[{history_dir}/]{nombre}`). El resto va a la nota "bajo demanda con grep".
-- **Tabla de enrutamiento** = una fila `trigger → nombre` por cada rol activo.
+- **Tabla de enrutamiento** = una fila `trigger -> nombre` por cada rol activo.
 
 Se regenera en `config` y al activar/desactivar módulos o renombrar. **Regla de oro anti-tokens:**
 no leas un archivo entero "por si acaso"; usa el mapa y `grep -n` + lectura por rango.
@@ -67,7 +67,7 @@ el humano que abra el repo, ni quien clone el proyecto en otra máquina — y no
 dato que solo sobrevive mientras nadie cambie de herramienta no está guardado: está prestado.
 
 **La prueba es la ruta, no la intención.** Si el destino lleva el nombre de este proyecto y vive bajo
-la configuración del agente (`…/<agente>/projects/<este-repo>/memory/` y equivalentes), es memoria
+la configuración del agente (`.../<agente>/projects/<este-repo>/memory/` y equivalentes), es memoria
 privada **de proyecto** por construcción — da igual lo general que parezca el dato que ibas a escribir
 ahí. El hogar de una convención de trabajo es el doc de proceso; el de una trampa, el de gotchas.
 
@@ -82,11 +82,11 @@ quién manda, y las dos veces lo descubrió una persona leyendo, no el mecanismo
 ## Rutas y tokens (los invariantes; la exposición está aparte)
 
 Tres rutas independientes, todas **relativas a la raíz del proyecto** y **sin `/` final**:
-`kit` (el marco, reemplazable) · `base` (tus documentos, intocables) · `loader` (**las puertas** de
+`kit` (el marco, reemplazable) - `base` (tus documentos, intocables) - `loader` (**las puertas** de
 auto-arranque, siempre en la raíz). **Invariante duro: `base` nunca puede quedar dentro de `kit`.**
 Los valores vivos están en el manifiesto `stele.config.md`, no aquí.
 
-Las plantillas usan tokens (`{{state}}`, `{{history_dir}}`, `{{kit}}`…) que bootstrap y `config`
+Las plantillas usan tokens (`{{state}}`, `{{history_dir}}`, `{{kit}}`...) que bootstrap y `config`
 resuelven a nombres. **`{{kit}}` colapsa cuando `kit = .`**: se escribe `SKILL.md`, no `./SKILL.md`.
 Los contenedores ya traen `base` y su `/` final, así que se concatenan directos.
 
@@ -110,9 +110,9 @@ entre paréntesis va **siempre**: es lo que le permite ir a mirarlo, y lo que ha
 le quite precisión a un usuario técnico. Por eso la regla no necesita un parámetro que la active.
 
 **Y el TRATO sí lo necesita, porque el llano es universal y el trato no.** En las lenguas que
-distinguen segunda persona —castellano, francés, alemán, portugués…— hay que elegir, y **el silencio
+distinguen segunda persona —castellano, francés, alemán, portugués...— hay que elegir, y **el silencio
 no es neutral: cada agente cae en su propio default y elige por ti**. El manifiesto lo fija
-(*Wording* → `trato`), **por defecto `tú`**, y se **consulta**: no hay token que interpolar.
+(*Wording* -> `trato`), **por defecto `tú`**, y se **consulta**: no hay token que interpolar.
 
 **La razón del default es de forma, no de gusto: un default que se NOTA cuando está mal es mejor que
 uno que no.** Un tuteo no deseado chirría en la primera frase y se corrige en una celda; un *usted* no
@@ -196,7 +196,7 @@ dejen de repetirse. Si te descubres explicando lo mismo dos veces, la primera ve
 | checkpoint | dejar guardado dónde vas, antes de algo que se puede interrumpir |
 | bootstrap | preparar el proyecto la primera vez |
 | `kit` / `base` / `loader` | el marco / tus documentos / **las puertas** que arrancan al agente |
-| layout (`agrupado`, `docs`…) | dónde va cada cosa: todo el marco junto, o los docs en `docs/`… |
+| layout (`agrupado`, `docs`...) | dónde va cada cosa: todo el marco junto, o los docs en `docs/`... |
 | manifiesto | el archivo de configuración |
 | rol / token / derivado | (no se nombran: se dice el archivo, o "se regenera solo") |
 | instancia | tus documentos, los que ya existen en el proyecto |
@@ -372,10 +372,10 @@ párrafo que entra está justificado por su cuenta y el agregado es lo que rompe
 añadir aquí, comprueba si el sitio correcto es un ritual.
 
 ## Operaciones de bajo coste (preferir siempre)
-- Apéndice de una fila → `printf '...' >> archivo` (sin `Read` previo).
-- Archivo pequeño de formato fijo → un `Write` completo (no varios `Edit`).
-- Buscar en archivo grande → `grep -n` y luego leer solo el rango.
-- Volumen mecánico grande (dividir un doc de 1000+ líneas) → delegar a un subagente. **Dile dónde
+- Apéndice de una fila -> `printf '...' >> archivo` (sin `Read` previo).
+- Archivo pequeño de formato fijo -> un `Write` completo (no varios `Edit`).
+- Buscar en archivo grande -> `grep -n` y luego leer solo el rango.
+- Volumen mecánico grande (dividir un doc de 1000+ líneas) -> delegar a un subagente. **Dile dónde
   escribir:** un subagente trae su propio temporal privado, aún menos visible que el tuyo, así que
   esta recomendación multiplica el problema que resuelve el hogar de artefactos si no se le nombra el
   destino de forma explícita.

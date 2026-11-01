@@ -16,7 +16,7 @@ entero al arrancar cada sesión.
 ## Los seis pilares (agnósticos)
 
 1. **Continuidad.** El objetivo es que cualquier agente retome sin reconstruir contexto.
-2. **Estado ≠ historial.** El *estado* (dónde estamos) se **sobrescribe** y vive acotado; el
+2. **Estado != historial.** El *estado* (dónde estamos) se **sobrescribe** y vive acotado; el
    *historial* (qué pasó) es **append-only** en archivos que **no se releen** salvo búsqueda puntual.
 3. **Un hogar por dato.** Cada hecho vive en UN documento; los demás apuntan, no copian. Nada se
    duplica ni se desincroniza, y siempre sabes dónde buscar (y dónde escribir).
@@ -80,7 +80,7 @@ tendría que mirar esto para que saltárselo fuera imposible en vez de solo inco
 
 ## Los rituales, agrupados por lo que los dispara: base, ciclo de vida, verificación y correspondencia
 
-- **Abrir** (ponerse al día, barato) · **Cerrar** (dejar registro durable). El **checkpoint** —dejar
+- **Abrir** (ponerse al día, barato) - **Cerrar** (dejar registro durable). El **checkpoint** —dejar
   el salto en curso a salvo antes de un cambio interrumpible— va con ellos y **no es un ritual**: es
   una regla dura, y por eso vive en `SKILL.md`, donde se lee sin invocar nada.
 - **Bootstrap** (instanciar el marco en un proyecto), **Actualizar** (traer una versión nueva del kit
@@ -131,7 +131,7 @@ git. Hay una excepción que no costó nada: como *actualizar* ya se trae el árb
 buzón dentro del kit **baja solo** con la actualización. La bajada era gratis; la subida necesita
 cartero.
 
-## Arquitectura: núcleo · módulos · config
+## Arquitectura: núcleo - módulos - config
 
 El marco es **modular y configurable**, en tres capas:
 
@@ -141,7 +141,7 @@ El marco es **modular y configurable**, en tres capas:
 - **Módulos** (`modules/<nombre>/`) — paquetes de roles + disciplinas para un tipo de trabajo. El
   primero es `producto` (añade `specs`/`architecture`/`effort` + convenciones + la regla del
   checkpoint antes del primer archivo de código). Un proyecto sin producto con estructura no lo activa.
-- **Config** (`stele.config.md`, en la raíz del proyecto) — **fuente única** que enlaza `rol →
+- **Config** (`stele.config.md`, en la raíz del proyecto) — **fuente única** que enlaza `rol ->
   nombre`, activa módulos y fija toggles/presupuestos/wording/idioma y las **tres rutas**. Todo lo
   accionable en tablas. De aquí se **generan** dos derivados: el auto-arranque y el mapa de
   documentación.
@@ -170,13 +170,13 @@ find/replace a ciegas — es segura porque el marco se auto-documenta.
 La misma separación, aplicada una tercera vez, resuelve un problema distinto: **el vocabulario del
 marco no es el vocabulario de la conversación**. Los ids, las claves del manifiesto y los estados se
 *parsean*, así que son contrato y no se traducen; pero el saludo, los ecos y los informes no los
-consume ninguna máquina. Ahí el agente habla **en llano y nombra el archivo** (`SKILL.md` → "Cómo se
+consume ninguna máquina. Ahí el agente habla **en llano y nombra el archivo** (`SKILL.md` -> "Cómo se
 le habla al usuario"). No hace falta un parámetro: como el nombre del archivo va siempre entre
 paréntesis, un usuario técnico no pierde precisión y uno que no lo es no tiene que aprenderse
 `handover` para saber que quedó trabajo a medias. Lo que la regla **no** permite es suavizar el
 hecho: si algo quedó a medias o dos docs se contradicen, se dice.
 
-## Las tres rutas: `kit` · `base` · `loader`
+## Las tres rutas: `kit` - `base` - `loader`
 
 La misma separación aplica a las **ubicaciones**. Hay tres, independientes entre sí, todas en la
 sección Rutas del manifiesto:
@@ -250,7 +250,7 @@ lo *nombra* pero lo que se escribe son siempre las rutas.
 ## Persistencia y la red de recuperación
 
 Cerrar una sesión **escribe** el registro; persistirlo es otro paso, y el marco no asume cuál. El
-parámetro `persistencia` lo declara: `git` · `ninguna` (los archivos en disco son el registro) ·
+parámetro `persistencia` lo declara: `git` - `ninguna` (los archivos en disco son el registro) -
 `comando` (una orden que el usuario configuró: `rclone`, un empaquetado fechado, otro VCS). El
 núcleo es agnóstico a propósito — un proyecto de planeación o de investigación no tiene por qué usar
 git — y el ritual de cierre se resuelve contra ese parámetro.
@@ -334,7 +334,7 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
   de otros hogares: apunta.
 - **`charter` (design.md) — por qué el proyecto es así (a gran escala).** Norte, principios,
   restricciones y no-negociables, decisiones estructurales grandes (ADR-lite, fechadas), glosario.
-  Estable. Frontera: *principios transversales* aquí; *specs por feature* → módulo.
+  Estable. Frontera: *principios transversales* aquí; *specs por feature* -> módulo.
 - **`manual` (manual.md) — para la persona, no para el agente.** Es el único rol cuyo lector es
   humano, y por eso se **redacta** con el proyecto delante en vez de rellenarse: contesta *qué se
   espera de mí*, *qué avisos voy a ver y qué me piden*, y sobre todo *qué NO tengo que hacer*. Opcional
@@ -362,7 +362,7 @@ El error más común al adoptar el marco es solapar documentos. Fronteras de los
   solo uso, extracciones, volcados. Un subdirectorio por sesión, y **tampoco se instancia en
   bootstrap**: lo crea el primer artefacto. Existe porque el historial guarda el *qué* y no el *cómo*,
   y un script de un solo uso escrito en el temporal privado del agente se lleva el *cómo* consigo —
-  con `persistencia = ninguna`, la única reconstrucción posible. Ver `SKILL.md` → Precedencia.
+  con `persistencia = ninguna`, la única reconstrucción posible. Ver `SKILL.md` -> Precedencia.
 
 Los roles que añade un módulo se describen en su `modules/<nombre>/roles.md` (p. ej. `producto`:
 `specs`, `specs_dir`, `architecture`, `effort`).
@@ -433,11 +433,11 @@ El corte fue por ritual: `SKILL.md` enruta, y cada ritual se lee **solo cuando s
 | `SKILL.md` (enrutador) | 5 767 | siempre que se enruta — **no al arrancar** |
 | `core/rituals/abrir.md` | 753 | cada sesión, bajo demanda |
 | `core/rituals/cerrar.md` | 6 837 | cada cierre |
-| `core/rituals/contrastar.md` · `remitir.md` | 4 200 · 10 492 | si hay carta |
+| `core/rituals/contrastar.md` - `remitir.md` | 4 200 y 10 492 | si hay carta |
 | `core/rituals/auditar.md` | 17 372 | cada ~10 sesiones |
 | `core/reference/verificar.md` | **25 378** | al medir o publicar una cifra |
 | `core/rituals/actualizar.md` | 8 427 | al traer kit nuevo |
-| `core/rituals/bootstrap.md` · `configurar.md` | 3 372 · 1 799 | una vez / rara |
+| `core/rituals/bootstrap.md` - `configurar.md` | 3 372 y 1 799 | una vez / rara |
 | `core/reference/rutas-y-tokens.md` | 2 851 | bootstrap y config |
 
 **Sesión normal (enrutador + abrir + cerrar): 13 357.** Creció 658 desde el corpus anterior, casi todo
@@ -551,7 +551,7 @@ Una versión decía *"`auditar` es **hoy** 1,44 veces"*, con la tabla ya corpus-
 mintió —sus cifras siguen siendo verdad de `ce7a5ca`— pero **la frase derivada decía *hoy* y llevaba
 sesiones siendo falsa**, porque el fichero había crecido un 73% sin que nada avisara. De ahí salió la
 regla: **el identificador protege la tabla, no la prosa que se deriva de ella.** La siguiente versión
-—esta— la escribió, la dejó tres párrafos más abajo… y **volvió a fallar en el mismo sitio con la otra
+—esta— la escribió, la dejó tres párrafos más abajo... y **volvió a fallar en el mismo sitio con la otra
 mitad de la frase**: ya no era el adverbio, era el **sujeto**. *Arranque* nombraba un corpus que la
 tabla nunca midió, y ninguna cifra estaba mal.
 

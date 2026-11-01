@@ -19,7 +19,7 @@
 ## Verificación (antes de cerrar / persistir)
 
 - Compilar/typecheck + linter limpios en lo tocado; correr los tests afectados.
-- Reportar el resultado con honestidad en `{{session}}` → Verificación: si algo quedó sin probar o
+- Reportar el resultado con honestidad en `{{session}}` -> Verificación: si algo quedó sin probar o
   falló, decirlo. No afirmar "hecho y verificado" sin evidencia.
 - E2E/validación en vivo cuando aplique (deploy, integración): validar en local antes de stagear.
 
@@ -31,12 +31,12 @@ Exención: cambios que SOLO tocan el **contenido** de la documentación; una mig
 
 ## Dónde va cada decisión de código
 
-- Contrato/feature/modelo de datos → `{{specs}}`.
-- Patrón reutilizable del producto → `{{architecture}}` (uno por producto).
+- Contrato/feature/modelo de datos -> `{{specs}}`.
+- Patrón reutilizable del producto -> `{{architecture}}` (uno por producto).
 - Trampa no evidente **de trabajar aquí** —del entorno, de una herramienta, de publicar, de verificar,
-  y también del código— → `{{gotchas}}`. **No es el hogar de las trampas *de código*:** es el de las
+  y también del código— -> `{{gotchas}}`. **No es el hogar de las trampas *de código*:** es el de las
   trampas de trabajar en el proyecto, y por eso vive en el núcleo y no en este módulo.
-- Principio/apuesta grande transversal → `{{charter}}`.
+- Principio/apuesta grande transversal -> `{{charter}}`.
 - Nunca dejar una decisión de código solo en el historial ni en memoria privada del agente.
 
 ## Seguridad (mínimos al escribir código)

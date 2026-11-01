@@ -23,23 +23,23 @@ Pasó en campo, con el marco vivo un nivel más abajo.
    **medida, no recordada** — ver *De dónde sale la fecha*, abajo.
    **`Tropiezos` es la que se salta y la única que no se puede reconstruir después:** el diff dice qué
    quedó hecho y **nunca** qué costó. Si no hubo, se escribe *"sin tropiezos"* — que también informa.
-2. **`index`**: una fila con append de Bash — `printf '| N | … |\n' >> {history_dir}{index}`.
+2. **`index`**: una fila con append de Bash — `printf '| N | ... |\n' >> {history_dir}{index}`.
 3. **`effort`** (si `effort_log`): una fila con `printf >>`.
 4. **`state`**: reescríbelo COMPLETO con `Write` según su plantilla — **nunca `Edit`, nunca prepend**.
    Si `audit_log`
    está activo y desde la última fila de `audit` han pasado más de `audit_every_n_sessions`
    sesiones, anota **"auditoría vencida (última: sesión X)"** en *Pendientes operativos*. Es una
    comparación de dos números, no una verificación: cerrar no audita.
-5. **Decisiones que perduran** → su hogar (mapa): producto/feature → `specs`; principio/decisión
-   grande → `charter`; patrón de código → `architecture`; gotcha → `gotchas`. Nunca solo en historial.
-6. **`handover`**: si cerró completo → `SIN_TRABAJO_ACTIVO` **apuntando a la sesión que cierras
-   ahora**. Si quedó salto → `EN_PROGRESO`.
+5. **Decisiones que perduran** -> su hogar (mapa): producto/feature -> `specs`; principio/decisión
+   grande -> `charter`; patrón de código -> `architecture`; gotcha -> `gotchas`. Nunca solo en historial.
+6. **`handover`**: si cerró completo -> `SIN_TRABAJO_ACTIVO` **apuntando a la sesión que cierras
+   ahora**. Si quedó salto -> `EN_PROGRESO`.
 7. **Artefactos** (si la sesión produjo alguno en `{artifacts_dir}sesion-{NNN}/`): **nómbralos en el
    `session`** y marca cuáles **sostienen un cambio irreversible** — el script que movió los archivos,
    el que reescribió en lote. Esos son evidencia y no se podan; el resto es desecho y lo borra el
    usuario cuando quiera. **Tú no borras nada**: limpiar por tu cuenta destruye justo lo que hace
    auditable la sesión. Si no hubo artefactos, no se dice nada — no hay sección que rellenar.
-8. **Persistir el cierre** según `persistencia` (manifiesto → Meta). El cierre se escribe primero
+8. **Persistir el cierre** según `persistencia` (manifiesto -> Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
 **Las nueve que se saltan.** Cada una tiene abajo el caso que la produjo:
@@ -58,13 +58,13 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 
 **Dónde está el resto.** Se abre por **pregunta**, nunca entero:
 
-| Si te preguntas… | Sección |
+| Si te preguntas... | Sección |
 | --- | --- |
 | ¿De dónde saco la fecha, y por qué no de `git log`? | *De dónde sale la fecha* |
 | ¿Por qué entero y no un `Edit`? | *El `state` se reescribe entero* |
 | Voy a saltarme un paso por eficiencia | *La barrera se rodea por eficiencia, no por descuido* |
 | ¿Cómo verifico un reemplazo masivo? | *Un reemplazo en lote imprime su diff* |
-| ¿Qué va en el `state` y qué no? | *El `state` apunta a lo que caduca* · *No registres un estado que no puedas observar* |
+| ¿Qué va en el `state` y qué no? | *El `state` apunta a lo que caduca* - *No registres un estado que no puedas observar* |
 | ¿Qué compruebo antes de commitear? | *Antes de persistir, comprueba lo que acabas de escribir* |
 | Escribí un bloque de comandos | *Los bloques que escribiste se corren, no se releen* |
 | Cerrar completo va a costar más que no cerrar | *El cierre mínimo* |
@@ -442,7 +442,7 @@ y dejar la sesión abierta sale más barato.** Y entonces se pierde lo que solo 
 
 **Lo que distingue el mínimo de no cerrar es que el mínimo DEJA ESCRITO que es mínimo.** Un no-cierre
 deja un `handover` que describe un pasado en presente y **miente sin avisar**; el mínimo deja un
-documento que dice *«falta el acta, falta la fila, falta el `state`»*. **La diferencia no es cuánto se
+documento que dice *"falta el acta, falta la fila, falta el `state`"*. **La diferencia no es cuánto se
 escribió: es si el siguiente agente sabe lo que no hay.**
 
 ### El contador, porque la deuda se acumula en silencio
@@ -490,7 +490,7 @@ porque **un commit no puede contener su propio hash**:
 
 **`persistencia = ninguna`** — no hay VCS: los archivos en disco **son** el registro. Verifica que
 todo quedó escrito y dile al usuario en 2-3 líneas qué cambió y dónde. Sin red de recuperación la
-disciplina **sube**, no baja: ver `guide.md` → "Persistencia y la red de recuperación".
+disciplina **sube**, no baja: ver `guide.md` -> "Persistencia y la red de recuperación".
 
 **`persistencia = comando`** — ejecuta el `persistencia_cmd` del manifiesto y reporta su resultado
 con honestidad: si falla, dilo y **no des el cierre por persistido**. El comando **nunca lleva

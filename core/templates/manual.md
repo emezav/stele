@@ -14,7 +14,7 @@
 >
 > **Regla de oro: aquí no se nombra el marco.** Nada de `rol`, `token`, `handover`, `clase 7`,
 > `manifiesto`, `instancia` ni nombres de ritual. Se habla de *empezar*, *terminar*, *lo que quedó a
-> medias*, *el archivo donde está X*. La tabla de equivalencias está en `{{kit}}/SKILL.md` → *Cómo se
+> medias*, *el archivo donde está X*. La tabla de equivalencias está en `{{kit}}/SKILL.md` -> *Cómo se
 > le habla al usuario*, y aquí se aplica **entera**.
 >
 > **Cómo crece, y es lo que lo hace útil.** Este doc **no se escribe completo el primer día**: nace
@@ -101,7 +101,7 @@ solo tú sabes. Lo que **no**:
 Los avisos que **este** proyecto emite, con su nombre en llano y —lo que más falta— **qué te pide cada
 uno**, aunque la respuesta sea *"nada"*. Un aviso sin consecuencia escrita se lee como una advertencia.
 
-| Vas a ver algo como… | Significa | Qué tienes que hacer |
+| Vas a ver algo como... | Significa | Qué tienes que hacer |
 | --- | --- | --- |
 | "quedó trabajo a medias" | la sesión anterior se cortó y dejó anotado dónde iba | nada; el agente lo retoma solo |
 | "van N sesiones desde la última revisión" | cada tanto conviene repasar que la documentación siga siendo cierta | nada; se pide cuando quieras, y cerrar sesiones siempre suma |

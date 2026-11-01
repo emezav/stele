@@ -41,7 +41,7 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   kit. Uno la titulaba de forma **estable**; el otro contó **17 de sus últimas 20 actas** con un título
   distinto cada vez.
   **Ese 17 salió de un patrón con las palabras que a su autor se le ocurrieron** (*fallo*, *tropiezo*,
-  *detector*…), así que es **un suelo y no un número**: nadie lo contó a mano.
+  *detector*...), así que es **un suelo y no un número**: nadie lo contó a mano.
 - **Y el nombre estable tampoco basta, que es la mitad contraintuitiva.** En el proyecto que sí lo tenía
   estable, su primer barrido dio **6** y el número real era **11** — contado a mano, porque **ningún
   patrón las encontraba**. No fallaba la estabilidad del título: fallaba que **ningún documento
@@ -49,7 +49,7 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   > **Un nombre estable que nadie ha escrito es tan invisible como uno variable.** Por eso la sección va
   > en la plantilla y no solo en la costumbre: lo que la hace contable no es el nombre, es **estar
   **Y hay una vuelta más, medida el 2026-10-04: ESCRITO no es DECLARADO.** Una checklist de este kit
-  lleva los siete puntos con su nombre delante —*Tachado*, *Instrumento*, *Identificadores*…— y aun
+  lleva los siete puntos con su nombre delante —*Tachado*, *Instrumento*, *Identificadores*...— y aun
   así una carta nuestra los citó **por el número, dos veces**, teniendo el nombre en la misma línea.
   **Nadie había dicho que el nombre fuera el identificador**, así que el número hizo de identificador
   por defecto. Lo cazó un adoptante, y el ordinal que citamos había valido 5, 6 y 7 en ese fichero.
@@ -82,7 +82,7 @@ Resumen de 1-3 líneas: qué se hizo y por qué importa.
   un pendiente con su propio hogar. Un `session` **no se reescribe nunca**, así que un estado escrito
   aquí queda congelado en el instante de cerrar y a partir de ahí se lee como actual siendo un fósil.
   Se nombra el hogar y se apunta: *"queda la carta N sin contestar — mira su fila"*, no *"la carta N
-  está sin contestar"*. Ver `{{kit}}/core/rituals/remitir.md` → las doce cabeceras: mismo defecto, otro
+  está sin contestar"*. Ver `{{kit}}/core/rituals/remitir.md` -> las doce cabeceras: mismo defecto, otro
   artefacto, y ahí se decidió que **una omisión en una plantilla no se defiende sola**.
 - **Y el peor de todos, aparte porque no es uno más de la lista: el CONTADOR.** *"Séptima sesión
   seguida sin desplegar"*, *"lleva once esperando"*. Un contador no solo caduca como cualquier estado:

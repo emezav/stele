@@ -5,7 +5,7 @@
 > no los edites por separado. Todo lo accionable va en **tablas**; la prosa solo explica.
 >
 > **Contrato de parseo:** los headers `##` son secciones canónicas y fijas, en este orden:
-> `Meta` · `Rutas` · `Nombres` · `Features` · `Presupuestos` · `Wording de rituales`. Se
+> `Meta` - `Rutas` - `Nombres` - `Features` - `Presupuestos` - `Wording de rituales`. Se
 > referencian por posición, no por su texto. En cada tabla, col1 = clave, col2 = valor; columnas
 > y filas extra se ignoran.
 >
@@ -40,7 +40,7 @@
 | remitente_publico | — |
 
 > `módulos` admite **tres clases de valor**, y la tercera no es un adorno: una lista de módulos
-> activos · `—` (ninguno, **decidido**) · `pendiente` (**falta decidirlo**, típico de un proyecto que
+> activos - `—` (ninguno, **decidido**) - `pendiente` (**falta decidirlo**, típico de un proyecto que
 > nace vacío). `—` y `pendiente` producen la misma instancia hoy y significan cosas distintas mañana:
 > si los dos se escribieran igual, nadie volvería a plantearse la pregunta. AUDITAR comprueba los
 > `pendiente` contra el árbol real. El em-dash `—` aquí significa *ninguno*, igual que en la tabla
@@ -51,8 +51,8 @@
 > migrar nada. Si tu manifiesto lo lleva, déjalo. Mismo precedente que `RICO` en el bloque del loader:
 > el kit no rompe un valor que ya está escrito en un archivo que no controla.
 >
-> `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` · `ninguna` (los archivos en
-> disco son el registro) · `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
+> `persistencia` = cómo se vuelve durable el trabajo al cerrar: `git` - `ninguna` (los archivos en
+> disco son el registro) - `comando` (ejecuta `persistencia_cmd`). **`persistencia_cmd` nunca lleva
 > secretos:** este archivo es markdown legible y versionado; las credenciales viven en el entorno o
 > en el gestor de la herramienta. Ver `{{kit}}/core/rituals/cerrar.md`, paso 7.
 >
@@ -76,7 +76,7 @@
 >
 > `kit_origen` = de dónde se vendorizó el kit. Lo escribe `bootstrap` y lo lee el ritual ACTUALIZAR
 > para traer la versión nueva; sin él, actualizar se bloquea. **No es un número de versión** — eso se
-> descartó por derivable (`{{kit}}/guide.md` → Alternativas descartadas): la procedencia es lo
+> descartó por derivable (`{{kit}}/guide.md` -> Alternativas descartadas): la procedencia es lo
 > contrario, no hay nada en el árbol de donde deducirla, y el `README` del kit no sirve porque
 > apuntaría al upstream aunque tú vendorizaras de un fork. `—` si el kit no se vendoriza (modo
 > auto-hospedado). Es una URL o ruta pública: **nunca** con credenciales embebidas.
@@ -113,7 +113,7 @@
 > Tres rutas independientes, todas relativas a la raíz del proyecto y sin `/` final. `kit` es
 > maquinaria **reemplazable** (se sustituye entera con el ritual ACTUALIZAR); `base` son tus docs,
 > versionados, y nunca se tocan al actualizar. **Invariante duro: `base` nunca puede quedar dentro de
-> `kit`.** Ver `{{kit}}/core/reference/rutas-y-tokens.md` → "Las tres rutas", que es donde están los
+> `kit`.** Ver `{{kit}}/core/reference/rutas-y-tokens.md` -> "Las tres rutas", que es donde están los
 > **invariantes numerados** y es lo que CONFIG tiene que validar. El *porqué* del modelo está en
 > `{{kit}}/guide.md`, en una sección del mismo título: **son dos capas, no dos copias.**
 
@@ -123,7 +123,7 @@
 | base | . | Raíz de los docs instanciados. `.` = raíz del proyecto. |
 | loader | CLAUDE.md, AGENTS.md | **Puertas** de auto-arranque, siempre en la raíz. GENERADO. Lista separada por comas. |
 
-## Nombres (rol → archivo)
+## Nombres (rol -> archivo)
 
 | Rol | Archivo | Origen |
 | --- | --- | --- |
@@ -203,7 +203,7 @@
 
 <!-- POR QUE ESTOS NUMEROS, para que nadie los baje "por higiene" dentro de seis meses.
 
-     entry 250 y handover 150 salieron de un defecto de campo: LAS PLANTILLAS DE ESTE KIT NACIAN
+     entry 250 y handover 90 salieron de un defecto de campo: LAS PLANTILLAS DE ESTE KIT NACIAN
      POR ENCIMA DE SU PROPIO TOPE --206 contra 200, y 74 contra 50--, asi que todo adoptante
      empezaba en rojo sin haber escrito una linea. Lo encontro el agente de un adoptante, que ademas
      lo diagnostico bien: "lo que sobra es prosa del marco y no contenido tuyo".
@@ -256,7 +256,7 @@
 
 > **`trato`** = cómo se dirige el agente a quien usa el proyecto, en las lenguas que distinguen
 > segunda persona: `tú` (default) o `usted`. Se **consulta, no se interpola**. En inglés y otras
-> lenguas sin esa distinción, la fila no aplica. El porqué del default está en `{{kit}}/SKILL.md` →
+> lenguas sin esa distinción, la fila no aplica. El porqué del default está en `{{kit}}/SKILL.md` ->
 > *Cómo se le habla al usuario*.
 >
 > El `trigger` de arriba es el default **agnóstico** del núcleo. Si el módulo `producto` está

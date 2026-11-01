@@ -7,7 +7,7 @@
 > `printf '| N | YYYY-MM-DD | dir | corresponsal | asunto | desenlace |\n' >> {{correspondence_dir}}{{correspondence}}`
 >
 > **Y si en algún momento dos corresponsales miden lo mismo y les sale distinto, este archivo gana una
-> SECCIÓN —no una columna—** con su propia tabla: *qué se midió · su valor · el tuyo · causa*. La fila
+> SECCIÓN —no una columna—** con su propia tabla: *qué se midió - su valor - el tuyo - causa*. La fila
 > **nace** con el desacuerdo y se **cierra** cuando se sabe la causa; mientras la causa esté vacía está
 > **abierta**, y esa es la que vale — es la única forma escrita de decir *aquí hay algo que ninguno de
 > los dos entiende todavía*. **La regla que la hace útil: un desacuerdo sin causa no se resuelve
@@ -32,7 +32,7 @@
 > contador de nada; *abierta desde tal día, contra tal corpus, la cierra tal parte* es una medición, y
 > las mediciones no caducan — se quedan siendo verdad de su día.
 >
-> `Dir` = `->` sale · `<-` entra. Es lo que permite ver el intercambio como una conversación.
+> `Dir` = `->` sale - `<-` entra. Es lo que permite ver el intercambio como una conversación.
 > `Corresponsal` = con quién. Si escribes tú, a quién; si recibes, el **remitente** que venga en la
 > carta. Guardarlo no es burocracia: una fuente que ya acertó antes se pesa distinto que la primera
 > carta de una desconocida, y ese dato solo existe si se anota.
@@ -74,9 +74,6 @@
 > a los dos rituales sin memoria: cada carta se evalúa como si fuera la primera, y lo ya rechazado
 > vuelve.)
 
-| # | Fecha | Dir | Corresponsal | Asunto | Desenlace |
-| --- | --- | --- | --- | --- | --- |
-
 <!-- LEY:INICIO ancla="la tardanza va DENTRO de la fila" -->
 
 > **La `Fecha` es la de REDACCIÓN. Cuando el estado pase a `entregada`, escribe también CUÁNDO se
@@ -94,3 +91,5 @@
 
 <!-- LEY:FIN -->
 
+| # | Fecha | Dir | Corresponsal | Asunto | Desenlace |
+| --- | --- | --- | --- | --- | --- |

@@ -33,7 +33,7 @@ de la documentación — no una **migración estructural** (mover o renombrar do
 ACTUALIZAR), que es interrumpible aunque no toque código.
 
 Esta regla vive en el módulo (no en el núcleo) porque presupone la noción de "archivo de código".
-El núcleo agnóstico usa un `checkpoint_trigger` genérico configurable (`stele.config.md` →
+El núcleo agnóstico usa un `checkpoint_trigger` genérico configurable (`stele.config.md` ->
 Wording, default *antes de un cambio interrumpible*); este módulo lo especializa a "antes del primer
 archivo de código". Un proyecto de software sin código todavía —o cuyo producto no es código— debe
 reescribirlo con el ritual `config`, o la exención de documentación deja la regla muerta.
@@ -46,8 +46,8 @@ detección necesita saber *qué doc contradice a cuál*, y eso depende de los ro
 
 | Clase | Detector que habilitan estos roles |
 | --- | --- |
-| 4 — índice desincronizado | Par `specs` ↔ `specs_dir`: cada tema de `specs_dir` tiene entrada en `specs`, y cada entrada apunta a un archivo que existe. Al revés también: una sección de `specs` que ya superó ~50 líneas debería estar extraída |
-| 7 — hallazgo sin hogar | Los hogares de promoción que añade el módulo: decisión por feature → `specs`; patrón o mapa del producto → `architecture`. Se suman a los del núcleo (`gotchas`, `charter`), no los sustituyen: por cada sesión del rango, sus *Decisiones* deben tener eco en alguno |
+| 4 — índice desincronizado | Par `specs` <-> `specs_dir`: cada tema de `specs_dir` tiene entrada en `specs`, y cada entrada apunta a un archivo que existe. Al revés también: una sección de `specs` que ya superó ~50 líneas debería estar extraída |
+| 7 — hallazgo sin hogar | Los hogares de promoción que añade el módulo: decisión por feature -> `specs`; patrón o mapa del producto -> `architecture`. Se suman a los del núcleo (`gotchas`, `charter`), no los sustituyen: por cada sesión del rango, sus *Decisiones* deben tener eco en alguno |
 | 8 — crecimiento sin revisión | Los topes del módulo: tema de `specs` ~600-800 líneas |
 | 2 y 6 — estado obsoleto y bloqueo | `specs` es donde viven las fases y las preguntas abiertas por feature, y por eso es el doc que más rápido caduca cuando el producto avanza |
 | 1 — afirmación caducada | Patrones comprobables propios de software, para el detector de entorno del núcleo: puertos, unidades de servicio (`\b[a-z0-9_-]+\.service\b`), nombres de contenedor e imágenes. **Solo si el proyecto opera servicios en red** (ver abajo). Valen las cuatro cautelas del núcleo, empezando por que un candidato extraído es un **recorte** de la afirmación |

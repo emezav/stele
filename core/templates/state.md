@@ -41,4 +41,4 @@
 
 ## Referencias
 
-- `{{charter}} §…` / `{{specs}} §…` / tema de `{{specs}}` / `{{architecture}}`
+- `{{charter}} Sec. ...` / `{{specs}} Sec. ...` / tema de `{{specs}}` / `{{architecture}}`

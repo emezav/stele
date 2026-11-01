@@ -49,7 +49,7 @@ CONTROL: con un solo espacio, las dos implementaciones coinciden
 
 **La cuarta variable es cómo está IMPLEMENTADO el patrón**, y no se ve porque no se escribe en ninguna
 parte: el patrón publicado —*"invocación al inicio de línea"*— era idéntico en los dos lados. **Lo que
-diverge es el código que decide qué es «la primera palabra».**
+diverge es el código que decide qué es "la primera palabra".**
 
 > **Fijar corpus, regla y herramientas no hace comparables dos cifras.** Queda la implementación, y esa
 > **solo se puede comparar por sus resultados** — porque describirla con más precisión es escribir el
@@ -109,7 +109,7 @@ Caso de campo: `grep -icF 'x' fichero` sobre dos líneas ASCII tiene una respues
 y salida 0**—. Una máquina donde eso aborta no exhibe *una diferencia de sustrato*: exhibe **un
 incumplimiento**. Y la distinción no es académica, porque cambia qué hay que hacer:
 
-| Si el desacuerdo es… | Qué hay | Qué se hace |
+| Si el desacuerdo es... | Qué hay | Qué se hace |
 | --- | --- | --- |
 | **Instrumento incompleto** | Una bandera sin publicar | Se completa el comando |
 | **Incumplimiento de especificación** | Un fallo | Se **reporta**, y no hay nada que estudiar |
@@ -131,7 +131,7 @@ Una especificación no solo fija la conducta correcta: **delimita dónde hay con
 se declara a sí misma no especificada, dos montajes pueden discrepar sin que ninguno tenga un fallo — y
 eso **se sabe leyéndola, sin el segundo montaje**.
 
-| Si la especificación… | Qué hay | Qué se hace |
+| Si la especificación... | Qué hay | Qué se hace |
 | --- | --- | --- |
 | **fija la conducta y alguien se desvía** | Un fallo | Se reporta |
 | **declara la zona no especificada** | Una divergencia permitida | No se publica ahí un detector; y si se mide, se declara el montaje |
@@ -186,7 +186,7 @@ para cada diferencia que la sonda excluye:
 ## El nombre de una comprobación no es su cobertura
 
 **Y un nombre que enuncia el invariante es PEOR que uno que no dice nada**, porque se lee como si lo
-cubriera. Nadie vuelve a mirar dentro de algo que ya se llama *"comprueba siempre que…"*.
+cubriera. Nadie vuelve a mirar dentro de algo que ya se llama *"comprueba siempre que..."*.
 
 **Caso de campo:** un test llamado `TestPrintMatchesAlwaysEmitsTheGrepEquivalent` ejercitaba **un
 camino de cuatro**. Decía *siempre* y probaba el caso por defecto. **Sobrevivió a cuatro auditorías**
@@ -206,7 +206,7 @@ actas propias (medido el 2026-08-11), y **el defecto no estaba ahí**: ningún c
 rótulo universal tapando un caso suelto. Lo que hay en un acta es **intermitencia** — comprobaciones
 reales que unas veces se registran y otras no. No refuta la regla; delimita dónde buscar: **en un
 registro escrito a mano, mide la intermitencia y no el rótulo.** Para ese caso la regla es otra —
-`cerrar.md` → *Escribir la comprobación no la corre* — y el detector, también.
+`cerrar.md` -> *Escribir la comprobación no la corre* — y el detector, también.
 
 ## El sello de una cifra certifica que sigue viva, no que sea la cifra de lo que dices
 
@@ -434,7 +434,7 @@ burdo (*hay un `$VAR`*) dan aquí **el mismo reparto**. **La enumeración de tre
 disparándose sobre los tres que sí lista. Es *una regla que enumera se queda corta, y sigue
 disparándose* — sobre la enumeración de esta misma ley.
 
-**4. Un reloj no separa «cuelga» de «tarda», y el nombre que le pongas al 124 es lo que publicas.** Sin
+**4. Un reloj no separa "cuelga" de "tarda", y el nombre que le pongas al 124 es lo que publicas.** Sin
 `</dev/null` el barrido **se cuelga** en el primer bloque que lea la entrada estándar, y un barrido
 colgado se lee como barrido lento. Con `timeout 10` aparecieron **dos `CUELGA` que eran falsos**:
 
@@ -469,7 +469,7 @@ timeout 60 bash "$b" </dev/null >/dev/null 2>"$OUT/err"
 # a proposito tiene que aparecer en el corpus -- sin el, el 37 vuelve a ser 32 sin avisar.
 ```
 
-**Y lo último es la cobertura, que es lo que no se puede resumir como «se corren los bloques».** Medido
+**Y lo último es la cobertura, que es lo que no se puede resumir como "se corren los bloques".** Medido
 el **2026-09-14 a las 21:00 (-0500)**, con el corpus incluyendo **los dos bloques que añade este mismo cambio**:
 
 ```text
@@ -481,7 +481,7 @@ candidatos del escalon 2 -- LITERAL y SOLO-LEE           :  7   = 18% del corpus
 defectos reales en los comandos publicados               :  0
 ```
 
-> **El escalón 2 no cubre «los bloques del kit»: cubre el 18%** —de los **39** de esa medida, no de los
+> **El escalón 2 no cubre "los bloques del kit": cubre el 18%** —de los **39** de esa medida, no de los
 > que haya hoy—. Lo demás son **29 plantillas** con un hueco que solo el lector puede rellenar y **10
 > que escriben**, y ninguna de las dos clases se vuelve ejecutable por insistir. *El nombre de una
 > comprobación no es su cobertura* — y aquí el nombre
@@ -742,7 +742,7 @@ que había recortado son exactamente 44.
 > entre dos números correctos produce un tercero con **cara de medida**, y nadie abrió el documento.
 
 **Y la conclusión se invierte con el denominador correcto**, que es lo que lo hace caro y no anecdótico:
-con 44 propias, *«el margen no lo gasta el kit»* se sostenía; con 99 del kit sobre 188 de contenido, en
+con 44 propias, *"el margen no lo gasta el kit"* se sostenía; con 99 del kit sobre 188 de contenido, en
 ese documento **el kit ocupa el 52%** y la frase es falsa.
 
 **Es pariente de *mirar la salida, no el código*, con una diferencia que importa:** allí hay una salida
@@ -1125,7 +1125,7 @@ método.
 instrumento **no se publica en absoluto**: viaja el resultado y nada más.
 
 **Caso propio, y el sitio donde falló lo agrava.** Se publicó que un directorio ajeno seguía intacto,
-con la prueba puesta en un hash: `60429a57…`, repetido en cuatro documentos, **uno de ellos una carta**.
+con la prueba puesta en un hash: `60429a57...`, repetido en cuatro documentos, **uno de ellos una carta**.
 El corresponsal tenía el directorio delante, quiso reproducirlo y **no pudo**: nada decía si era
 `md5sum` de la concatenación, la suma de sumas, con qué orden de ficheros, incluyendo o no rutas. Lo
 dijo con precisión — *"no pudimos reproducirlo porque no sabemos con qué lo calcularon"*.
@@ -1284,7 +1284,7 @@ clave**, no el corpus. Las dos coinciden en lo único que importa aquí, que es 
 > leyes— que no contiene ni una palabra del título.
 >
 > **Por eso la clave es PARCIAL y el conteo suma las dos vías.** Con el instrumento corregido, hoy:
-> `0: 32 · 1: 29 · 2+: 11 · fracción 40,3%`. **Los puntos anteriores de la serie se midieron con clave
+> `0: 32, 1: 29, 2+: 11, fracción 40,3%`. **Los puntos anteriores de la serie se midieron con clave
 > entera, así que no son comparables con este**: la serie empieza aquí.
 
 **Y el control positivo tiene que ser el caso DIFÍCIL, que aquí es el título más largo.** El publicado
@@ -1859,14 +1859,14 @@ C  `git ls-tree -d` para decir que hay
 **El A se cazó solo**: `1` donde iban `61` está fuera del rango de cualquier respuesta verdadera y
 **nadie lo lee como un resultado**. El B estuvo a punto de salir en una carta como *"su fila no se
 sostiene"* — **una acusación falsa contra el otro proyecto**, porque `0` donde iba `1` **es exactamente
-la forma que tiene «la afirmación es falsa»**.
+la forma que tiene "la afirmación es falsa"**.
 
 > **Un detector roto cuya salida cae dentro del rango plausible no se lee como avería: se lee como
 > hallazgo.** Y cuanto más plausible, más caro — el techo es acusar a otro de algo que no hizo.
 
 **De ahí la regla operativa, que es la que decide dónde gastar el control:**
 
-> **Todo detector cuyo «no encontré nada» sea una respuesta con significado necesita control positivo,
+> **Todo detector cuyo "no encontré nada" sea una respuesta con significado necesita control positivo,
 > porque el cero siempre es plausible.** Un contador puede pasar sin él —su absurdo grita—; una
 > búsqueda de existencia, no.
 
@@ -2237,7 +2237,7 @@ incluida la frase exacta que ya se había dado por corregida. Aquí, sobre el mi
 antes por ese mismo motivo**.
 
 > **Encontrar los candidatos es un `grep`; lo caro es juzgar cuál DESCRIBE y cuál solo CITA.** No hay
-> patrón que los separe: *"ver `X` → renombrar"* es una cita y *"trampas → `X`"* es una descripción, y
+> patrón que los separe: *"ver `X` -> renombrar"* es una cita y *"trampas -> `X`"* es una descripción, y
 > las dos son una línea con el mismo token. El coste es **un juicio por candidato**, no una búsqueda.
 
 **Y el patrón que las dos veces se repitió merece nombre, porque es de método y no de contenido:**
@@ -2295,7 +2295,7 @@ raíz. **Son citas, no usos**, y ningún patrón las distingue.
 Lo caro no es el ruido: es **cuándo aparece**. Esos documentos se escriben justo **después** de
 aprender la regla, que es exactamente cuando quieres medir si la regla funciona. Caso propio, y por
 poco se publica al revés: se comparó la tasa de un defecto antes y después de escribir su regla, y
-salió **22% → 54%**. El conteo crudo decía *"la regla empeoró las cosas"*. Revisados uno a uno, **los
+salió **22% -> 54%**. El conteo crudo decía *"la regla empeoró las cosas"*. Revisados uno a uno, **los
 siete aciertos del segundo grupo eran citas del propio defecto** y los usos nuevos eran **cero**.
 
 **De ahí la regla de método: al medir si una regla funciona, excluye del corpus los documentos que la
@@ -2311,7 +2311,7 @@ irreversible por diseño. Uno cuya salida desemboca en **avisar a una persona** 
 **se desmiente solo**: reportaron un servicio caído que estaba vivo, y el usuario lo desmintió en dos
 minutos abriéndolo — no tocó ni un documento.
 
-| El falso positivo desemboca en… | Qué cuesta |
+| El falso positivo desemboca en... | Qué cuesta |
 | --- | --- |
 | **escribir o arreglar** un documento | corrompe algo correcto; irreversible si ya se entregó |
 | **avisar** a una persona | credibilidad, y hay revisor humano inmediato |
@@ -2537,7 +2537,7 @@ Las tres palabras hacen trabajo:
 **Y define la unidad antes de publicar la N, porque la resta admite dos lecturas.** ¿Cuenta la carga en
 la que se detectó, o solo las que pasaron sin verla? Las dos son defendibles y **dan números distintos**:
 una contradicción que entró al cerrar la sesión 109 y se vio en la 131 sobrevivió **21 cargas ciegas** y
-fue cazada en la **22ª**.
+fue cazada en la **22.a**.
 
 > **Aquí se cuenta la carga en la que se detectó, y el número es 22.** No porque sea mejor, sino porque
 > **es la resta directa de las dos fechas** y no exige acordarse de restar uno. Lo que no vale es
@@ -2736,7 +2736,7 @@ huérfanos y no decide nada. **La cadena `por defecto` no distingue un valor por
 locución**, así que cada acierto se lee. Lo que reduce el trabajo a nada es el filtro de la percha:
 solo sube lo que decide algo **irreversible o hacia fuera**.
 
-> **Aquí decía «señaló dos», y es una corrección que vale más que el número.** El segundo acierto era
+> **Aquí decía "señaló dos", y es una corrección que vale más que el número.** El segundo acierto era
 > *el caso de esta ley* — y al correr el cribador **el arreglo ya estaba aplicado**, así que no salía.
 > Se escribió lo que el detector **habría** marcado antes del arreglo que el mismo commit hacía, y se
 > presentó como *su primera corrida*. **Un detector corrido después del arreglo no puede reportar el
@@ -2793,7 +2793,7 @@ repo de documentación marcó **15 de 175 commits (9%), sellado en `4e5cbbf`** �
 auditoría y el commit inicial**. Una auditoría toca muchos ficheros **y es atención pura**: es lo
 contrario de un barrido.
 
-> **«Muchos ficheros» no es la forma de una visita de máquina: la forma es *muchos ficheros* Y *un
+> **"Muchos ficheros" no es la forma de una visita de máquina: la forma es *muchos ficheros* Y *un
 > solo patrón*.** El segundo término es el que discrimina, y es el que se cae al implementar el
 > detector, porque el número de ficheros lo da `git` y el patrón no. **Un detector al que se le cae el
 > término discriminante sigue devolviendo una lista plausible.**
@@ -2864,8 +2864,8 @@ escapar se perdía en silencio**, sin bajar el conteo ni romper el invariante.
 nadie mirara: es que **mirar no era la acción que faltaba**.
 
 **El caso lo midió un adoptante sobre su propio registro, y la cifra es lo que lo hace demoledor.** Su
-documento de estado se reescribe **completo** cada sesión, y su justificación escrita es *«obliga a
-releerlo entero»*. Dentro llevaba, sesión tras sesión, un pendiente: una carta redactada y sin
+documento de estado se reescribe **completo** cada sesión, y su justificación escrita es *"obliga a
+releerlo entero"*. Dentro llevaba, sesión tras sesión, un pendiente: una carta redactada y sin
 entregar. Contó las reescrituras que la llevaban dentro:
 
 ```text
@@ -2886,7 +2886,7 @@ sigue escrito y el estado sigue siendo cierto.
 entregar* y *pendiente que nadie miró* se separan por sus **artefactos**: la primera deja un **fichero**
 y un **estado en una columna**, y es computable; la segunda es **una línea de prosa** en un documento
 que se reescribe entero — sin estado, sin columna, sin fecha de entrada— y **no lo es**. El adoptante
-derivó de ahí un control que cruza **estado × antigüedad × existencia del fichero**, con su control
+derivó de ahí un control que cruza **estado x antigüedad x existencia del fichero**, con su control
 positivo: lo entregado ese día deja de aparecer.
 
 **Y el límite va con la cifra, porque él lo declaró primero:** quince reescrituras **no prueban quince
@@ -2894,7 +2894,7 @@ lecturas**. Prueban quince reescrituras de un documento cuya regla dice que se r
 
 ### Qué caza la lectura, medido en dos corpus independientes
 
-**La afirmación fácil —*«la relectura no caza nada»*— es falsa, y la midieron los dos lados.** Un
+**La afirmación fácil —*"la relectura no caza nada"*— es falsa, y la midieron los dos lados.** Un
 adoptante repartió sus diecisiete tropiezos por **cómo se cazaron** y encontró **uno** de la lectura;
 este proyecto hizo el mismo ejercicio sobre sus actas y encontró **dos**:
 
@@ -2917,13 +2917,13 @@ mejor que la negación que teníamos:
 > las que de verdad importan —un byte invisible, un ancla que no casa, un mensaje mordido— no cazó
 > ninguna.
 
-**Por qué esto es mejor que *«ninguno lo cazó la relectura»*:** aquella era una afirmación sobre **una
+**Por qué esto es mejor que *"ninguno lo cazó la relectura"*:** aquella era una afirmación sobre **una
 cuenta**, y se rompe el día que aparezca el caso siguiente. Esta es sobre **qué clase de defecto** puede
 cazarse leyendo, y **sobrevive a que la cuenta cambie**. Para decidir qué hacer, la conclusión es la
 misma; para seguir siendo cierta, no.
 
 **Los denominadores van declarados, y no son los que parecen.** Del lado del kit se partió de 46 frases
-con *«lo cazó»* y **diez no atribuyen**: ocho son **negaciones** —*«ninguno lo cazó la relectura»* no es
+con *"lo cazó"* y **diez no atribuyen**: ocho son **negaciones** —*"ninguno lo cazó la relectura"* no es
 un caso cazado por la lectura, es su contrario— y dos hablan del campo en vez de usarlo. **El
 clasificador las contó como atribuciones en su primera versión**, y lo que lo destapó fue imprimir uno
 a uno los casos de la clase que decide la afirmación. **Los dos repartos son reconstrucciones desde
@@ -3304,8 +3304,8 @@ gramatical, dentro de un documento coherente. El único instrumento es saber **c
 referente, que es un dato de fuera del texto.
 
 **De ahí la única defensa que existe, y es de forma, no de detección: anclar el referente con fecha.**
-Donde se anota la equivalencia de rutas se anota también la de alcance —*"hasta el DD-MM, «el
-proyecto» significaba esto"*—. No arregla ninguna frase, y no es su trabajo: hace que las viejas se
+Donde se anota la equivalencia de rutas se anota también la de alcance —*"hasta el DD-MM, "el
+proyecto" significaba esto"*—. No arregla ninguna frase, y no es su trabajo: hace que las viejas se
 sigan leyendo **como lo que fueron**.
 
 > **La lista de sustantivos en riesgo es corta y se sabe de antemano:** *el proyecto*, *el equipo*,

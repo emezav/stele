@@ -2,25 +2,25 @@
 
 > **Fuente de verdad de los roles agnósticos** del marco. De aquí se generan los dos artefactos
 > derivados (lista de arranque + tabla de enrutamiento) combinando estos metadatos con el binding
-> `rol → nombre` del manifiesto (`stele.config.md`). Los ids de rol son **estables y no se
+> `rol -> nombre` del manifiesto (`stele.config.md`). Los ids de rol son **estables y no se
 > traducen**; los nombres son defaults que la config puede reescribir.
 
 ## Resolución de ruta
 
 `ruta = {base}/[<valor del contenedor> si la ubicación nombra uno]{nombre}`, donde el valor del
-contenedor es el nombre de carpeta que da el manifiesto (`history/`, `correspondencia/`…). Ubicación
+contenedor es el nombre de carpeta que da el manifiesto (`history/`, `correspondencia/`...). Ubicación
 `base` = directo bajo `base`; `history` o `correspondence_dir` = bajo esa carpeta. Un rol con nombre
 `—` en la config está **desactivado** (no aparece en arranque ni en el mapa).
 
 **No confundir el valor con el token.** El manifiesto guarda el nombre de la carpeta; el token
 `{{history_dir}}` que usan las plantillas resuelve a la ruta completa desde la raíz, **con `base` ya
-delante**. Por eso `{{history_dir}}{{index}}` es una ruta ejecutable y `{base}/{{history_dir}}…`
-duplicaría `base`. Ver `core/reference/rutas-y-tokens.md` → "Convención de tokens".
+delante**. Por eso `{{history_dir}}{{index}}` es una ruta ejecutable y `{base}/{{history_dir}}...`
+duplicaría `base`. Ver `core/reference/rutas-y-tokens.md` -> "Convención de tokens".
 
 **Ningún rol vive en el kit.** `base` (docs instanciados) y `kit` (el marco) son rutas
 independientes del manifiesto: los roles se resuelven siempre bajo `base`; `{{kit}}` solo aparece
 como referencia *hacia* el marco dentro de las plantillas. El `loader` es la tercera ruta y no es
-un rol: se genera en la raíz. Ver `guide.md` → "Las tres rutas" — **el porqué del modelo**, que es lo
+un rol: se genera en la raíz. Ver `guide.md` -> "Las tres rutas" — **el porqué del modelo**, que es lo
 que hace falta aquí. Si lo que buscas son los **invariantes que hay que validar**, esos están en
 `core/reference/rutas-y-tokens.md`, que es la referencia operativa.
 
@@ -31,7 +31,7 @@ que hace falta aquí. Si lo que buscas son los **invariantes que hay que validar
 | entry | guia-agente.md | base | obligatorio | 10 | Cómo trabajar: proceso, estructura, convenciones, arranque. Punto de entrada único. |
 | gotchas | memory.md | base | obligatorio | 20 | Trampas y convenciones no evidentes **al trabajar en el proyecto**: del entorno, de las herramientas, de publicar, de verificar. Hogar único; se **cura**. |
 | state | latest.md | history | obligatorio | 30 | Dónde estamos y el próximo paso. Se **sobrescribe**; acotado. |
-| handover | handover.md | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado ≠ `SIN_TRABAJO_ACTIVO`. |
+| handover | handover.md | history | obligatorio* | 40 | Checkpoint de trabajo en curso. *Se lee al abrir solo si su Estado != `SIN_TRABAJO_ACTIVO`. |
 | charter | design.md | base | on-demand | — | Por qué el proyecto es así: norte, principios, restricciones, decisiones grandes, glosario. |
 | manual | manual.md | base | on-demand | — | **Para la persona, no para el agente**: qué se espera de ella, qué avisos verá y qué significan. Escrito en el vocabulario del proyecto. Opcional (feature `manual_doc`). |
 | protocol | protocol.md | base | on-demand | — | Formatos y convenciones de documentación entre sesiones. |
@@ -60,7 +60,7 @@ Los que la conservan, y por qué:
 | `README.md`, `LICENSE` | Convención universal y las plataformas de código |
 | `CLAUDE.md` (u otro `loader`) | La herramienta lo busca por ese nombre exacto |
 | `AGENTS.md`, `CLAUDE.md` (las **puertas**) | Cada harness auto-carga el suyo de la raíz, con ese nombre exacto |
-| `SKILL.md` | El layout `skill`: al vendorizar el kit en `.claude/skills/…`, Claude Code busca ese nombre |
+| `SKILL.md` | El layout `skill`: al vendorizar el kit en `.claude/skills/...`, Claude Code busca ese nombre |
 
 **`SKILL.md` es el que más fácil se cuela en un barrido de minúsculas**, porque no lo impone la
 plataforma sino un layout — y bajarlo rompe ese layout **en todo adoptante sin dar error en ningún
@@ -70,9 +70,9 @@ Y una consecuencia que ya mordió: **`base` no se llama como el kit.** Ver la ta
 `{{kit}}/core/reference/rutas-y-tokens.md` — un nombre que es subcadena de otro no solo confunde a las personas, hace que una
 sustitución textual corrompa en silencio.
 
-## Triggers (enrutamiento: "necesito… → hogar")
+## Triggers (enrutamiento: "necesito... -> hogar")
 
-| Rol | Necesito… |
+| Rol | Necesito... |
 | --- | --- |
 | entry | cómo trabajar, proceso, reglas operativas, arranque |
 | gotchas | una trampa no evidente de trabajar aquí: del entorno, de una herramienta, de publicar, de verificar |

@@ -16,7 +16,7 @@
    un tema de `{{specs}}` + link.
 5. Nada de esto vive en memoria privada del agente; todo en el proyecto. **Tampoco los artefactos**
    —scripts de un solo uso, extracciones, volcados—: su hogar es `{{artifacts_dir}}sesion-{NNN}/`, y
-   esa regla vale por encima de cualquier default del harness (`{{kit}}/SKILL.md` → Precedencia).
+   esa regla vale por encima de cualquier default del harness (`{{kit}}/SKILL.md` -> Precedencia).
 6. **Un hogar por dato** (mapa en `{{kit}}/SKILL.md` y en `{{entry}}`).
 
 <!-- LEY:FIN -->
@@ -25,7 +25,7 @@
 
 Dos clases, y no se resuelven igual:
 
-- **Ruta de comando** (`printf '...' >> …`, `grep`, `git log --`): siempre **desde la raíz del
+- **Ruta de comando** (`printf '...' >> ...`, `grep`, `git log --`): siempre **desde la raíz del
   proyecto**, porque ahí opera el agente. Incluye `{{history_dir}}` delante del nombre del archivo.
 - **Enlace Markdown clicable** (`[{{index}}](./{{index}})`): relativo **al archivo que lo contiene**,
   que es como lo resuelve cualquier visor.
@@ -77,7 +77,7 @@ dentro de `{{history_dir}}`); los que apuntan fuera del bloque se rompen y hay q
 
 ## Archivos y su rol
 
-Ver `{{kit}}/guide.md` → "Roles y fronteras". Aquí solo los **formatos**.
+Ver `{{kit}}/guide.md` -> "Roles y fronteras". Aquí solo los **formatos**.
 
 ### `{{state}}` — formato fijo, se SOBREESCRIBE (~{{budget:state}} líneas)
 
@@ -96,7 +96,7 @@ Ver `{{kit}}/guide.md` → "Roles y fronteras". Aquí solo los **formatos**.
 - Procesos en background / decisiones abiertas / trabajo sin persistir
 
 ## Referencias
-- {{specs}} §X — … / {{charter}} § … / tema de {{specs}}
+- {{specs}} Sec. X — ... / {{charter}} Sec. ... / tema de {{specs}}
 ```
 
 **Siempre que se toque** —al cerrar y también a mitad de sesión— se reescribe COMPLETO con `Write`.
@@ -139,7 +139,7 @@ con grep.
 que inyecta el harness suele ser **UTC** y adelanta un día durante la última franja horaria local; y
 `git log -1` **no da hoy, da el día del último commit**. Si el shell no corre en la máquina del usuario
 las dos señales fallan a la vez y coinciden, así que **se pregunta**. Detalle y sonda de zona en
-CERRAR → *De dónde sale la fecha*. Vale para toda fecha estampada, no solo la del acta.
+CERRAR -> *De dónde sale la fecha*. Vale para toda fecha estampada, no solo la del acta.
 
 **No lleva su propio hash de commit** (con `persistencia = git`). El cierre viaja en el mismo commit
 que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
@@ -152,7 +152,7 @@ que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
 inmutable, numerado, se lee con grep) y su carpeta (`{{correspondence_dir}}`). Lo crea la primera
 carta, no el bootstrap.
 
-Índice: `| # | Fecha | Dir | Corresponsal | Asunto | Desenlace |`, con `Dir` = `->` sale · `<-` entra.
+Índice: `| # | Fecha | Dir | Corresponsal | Asunto | Desenlace |`, con `Dir` = `->` sale - `<-` entra.
 En una carta recibida, `Desenlace` dice **qué se aceptó y qué se rechazó con su razón** — eso es lo
 único que guarda este índice y no guarda ningún otro doc; el detalle de lo aceptado vive en el hogar
 que corrigió, con su procedencia.
@@ -260,7 +260,7 @@ la vuelve a derivar. No se traduce lo que había.
 ## Convenciones de texto (y dónde se escapan)
 
 Si este proyecto restringe qué se puede escribir a un archivo —solo ASCII, terminología fija, lo que
-sea—, la regla vive en `{{entry}}` → Convenciones. Lo que va aquí es **cómo se comprueba**, porque una
+sea—, la regla vive en `{{entry}}` -> Convenciones. Lo que va aquí es **cómo se comprueba**, porque una
 convención de texto no falla donde está escrita sino donde se escribe.
 
 **Los dos sitios calientes son las filas append-only y el mensaje de commit.** Son los únicos momentos
@@ -285,7 +285,7 @@ del control es **un** carácter y **dos** bytes: bajo `LC_ALL=C` el detector rep
 locale UTF-8 reporta **1**. Un control que solo exigiera salida pasaría en verde **en los dos mundos**,
 así que certificaría igual el detector sano y el detector que está casando caracteres donde tú crees
 que cuenta bytes. Con el 2 escrito al lado, el mismo comando comprueba dos cosas: que el detector
-dispara **y** que estás en la semántica que el patrón supone. Ver `{{kit}}/core/reference/verificar.md` →
+dispara **y** que estás en la semántica que el patrón supone. Ver `{{kit}}/core/reference/verificar.md` ->
 *"Un número sin expectativa no es información: es decoración"*.
 
 **Sin salida = limpio SOLO si el control positivo dio su número.** Un detector roto no da error: **da
@@ -393,7 +393,7 @@ un olvido suyo.
 
 **Una plantilla de rol mezcla dos clases de prosa**: la que tu proyecto puede haber reescrito
 legítimamente —y que por eso no se pisa al actualizar— y la que es **ley del marco** y tiene que
-llegar aunque el documento ya exista. La segunda va marcada `LEY:INICIO` … `LEY:FIN`.
+llegar aunque el documento ya exista. La segunda va marcada `LEY:INICIO` ... `LEY:FIN`.
 
 **Y esta comprobación es la única que caza el hueco en un proyecto que YA lo tiene**, porque no mira el
 diff de una actualización: mira el estado de hoy.
@@ -433,8 +433,7 @@ que corre en la máquina:
 ```bash
 # RAICES es configuracion del proyecto, no un supuesto del kit: cada harness usa la suya
 for raiz in $RAICES; do
-  [ -d "$raiz" ] && find "$raiz" -type f -newermt "$DESDE" -printf '%TY-%Tm-%Td %8s %p
-'
+  [ -d "$raiz" ] && find "$raiz" -type f -newermt "$DESDE" -printf '%TY-%Tm-%Td %8s %p\n'
 done
 # CONTROL POSITIVO: escribe un fichero ahi a proposito y tiene que aparecer
 ```
@@ -455,7 +454,7 @@ done
   y 267 ficheros**, y nuestra recuperación fallida se trajo 37 que no eran nuestros. **Saber cuáles
   eran míos fue memoria del agente, no un criterio** — y la memoria no es un criterio.
 - **Una raíz COMPARTIDA no se puede enumerar sin criterio de pertenencia.** Corrido aquí, el
-  scratchpad por proyecto estaba **limpio** y la fuga real estaba en `/tmp`… que tiene **5 934**
+  scratchpad por proyecto estaba **limpio** y la fuga real estaba en `/tmp`... que tiene **5 934**
   ficheros de otros programas. **Enumerarla sin filtro se trae basura ajena**: hace falta acotar por
   fecha, por nombre o por contenido, y decir cuál se usó.
 
@@ -484,13 +483,13 @@ awk '/^```/ { code=!code; prev="CODE"; next }
 
 - **La clase de caracteres no puede incluir `*` ni `` ` ``** — casi todo párrafo abre en negrita, y el
   detector devuelve el fichero entero.
-- **Y la versión que solo mira «tras línea en blanco» NO caza el caso que la produjo**, porque el
+- **Y la versión que solo mira "tras línea en blanco" NO caza el caso que la produjo**, porque el
   huérfano suele quedar **pegado** a la cita que lo partió. Hay que mirar también qué había antes.
 
 **En su primera corrida sobre este kit encontró dos**, y el segundo era de contenido y no de forma:
 media frase se había quedado **dentro de una cita**, que pasaba así a afirmar algo ajeno. **Llevaba
 once sesiones ahí** — y esa cifra costó dos correcciones: la primera dijo *cinco* apoyándose en un
-`git log -S`, que **data el texto y no el defecto** (ver *Un instrumento que data el TEXTO…*).
+`git log -S`, que **data el texto y no el defecto** (ver *Un instrumento que data el TEXTO...*).
 
 > **Un párrafo partido no rompe nada que un linter mire**: la sintaxis es válida, los bloques cierran
 > y las tablas cuadran. **Lo único que se rompe es la frase**, y eso solo lo ve quien la lea entera —
@@ -530,11 +529,11 @@ formato cuando haya dudas.
 
 ## Operaciones de bajo coste (preferir)
 
-- Apéndice de fila → `printf '...' >> archivo`.
-- Archivo pequeño de formato fijo → un `Write`.
-- Buscar en archivo grande → `grep -n` + lectura por rango.
+- Apéndice de fila -> `printf '...' >> archivo`.
+- Archivo pequeño de formato fijo -> un `Write`.
+- Buscar en archivo grande -> `grep -n` + lectura por rango.
 - Si vas a EDITAR, léelo con el tool `Read` (no `cat`/`sed`) o el `Edit` se bloquea.
-- Volumen mecánico grande → delegar a un subagente.
+- Volumen mecánico grande -> delegar a un subagente.
 
 ## Ninguna plantilla puede nacer por encima de su propio tope
 

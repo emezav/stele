@@ -75,7 +75,7 @@ Objetivo en una frase + decisiones ya tomadas que el siguiente agente debe respe
 - Lo que sabes que puede salir mal en LO QUE VAS A HACER, no trampas generales del proyecto — esas
   viven en su hogar. Aquí van las que dispararían en las próximas horas.
 - Es el sitio donde una advertencia llega a tiempo: un doc que se lee al arrancar informa; esto
-  detiene. (Ver `{{kit}}/SKILL.md` → la regla dura del checkpoint.)
+  detiene. (Ver `{{kit}}/SKILL.md` -> la regla dura del checkpoint.)
 
 ## Estado intermedio
 - **Tampoco aquí se copia un estado que vive en otro documento.** Su hogar lo dice y este apunta:

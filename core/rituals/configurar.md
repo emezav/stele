@@ -12,8 +12,8 @@
 3. **Previsualizar** (dry-run) y confirmar (renombrar toca varios archivos). Para un cambio de ruta,
    el dry-run es el **mismo eco** del bootstrap, con el antes y el después (línea `layout` incluida).
 4. **Aplicar**, acotado a los **docs del marco** (nunca código de producto): mover (`git mv`, o `mv`
-   si el kit no está versionado) → reescribir la tabla del manifiesto **completa** → barrido de
-   referencias por el mapa viejo→nuevo → regenerar derivados (auto-arranque + mapa-doc).
+   si el kit no está versionado) -> reescribir la tabla del manifiesto **completa** -> barrido de
+   referencias por el mapa viejo->nuevo -> regenerar derivados (auto-arranque + mapa-doc).
    **Antes del barrido, comprueba si el nombre viejo es SUBCADENA de otra ruta viva.** Si lo es, una
    sustitución textual la corrompe **en silencio**: caso real de campo, `.stele/` contiene `stele/`, y
    un `replace("stele/", "bitacora/")` ingenuo habría convertido el kit en `.bitacora/` — el marco
@@ -25,7 +25,7 @@
    **Y el barrido tiene un LÍMITE que hay que escribir, porque sin él se come el registro.** No se
    barren `session`, `index` ni la correspondencia **recibida**: son inmutables y mencionan los
    nombres viejos **a propósito** — corregirlos falsea el registro, y además destruye la única
-   prueba de por qué se renombró. La equivalencia vieja→nueva **se anota una vez, en la cabecera de
+   prueba de por qué se renombró. La equivalencia vieja->nueva **se anota una vez, en la cabecera de
    `index`**, y ahí se acaba. Lo que se barre es lo **vivo**: los docs de rol, el `loader`, el
    manifiesto.
    **Es la frontera entre reescribir y anclar, y no es un matiz: es la misma pregunta con dos
@@ -36,11 +36,11 @@
 
    **Y el acotado del barrido es en las DOS direcciones**, que es donde se falla:
 
-   | Se pasa… | Síntoma | Guarda |
+   | Se pasa... | Síntoma | Guarda |
    | --- | --- | --- |
    | **hacia dentro** | el `sed` alcanza el doc que describe el renombrado y lo deja diciendo *"de `x` a `x`"* | excluye ese fichero, o escribe las equivalencias **después** |
    | **hacia fuera** | el `sed -i` corre sobre todos los `.md` versionados y toca el producto | acota la lista de ficheros **antes**, no el patrón |
-   | **corto** | un rol **creado en la misma operación** no está en el mapa viejo→nuevo | los añadidos entran en la lista de renombrado, no solo los movidos |
+   | **corto** | un rol **creado en la misma operación** no está en el mapa viejo->nuevo | los añadidos entran en la lista de renombrado, no solo los movidos |
 
    **Los tres son el mismo defecto:** el reemplazo se pensó como *qué cambiar* y no como **dónde
    puede aterrizar**. Los tres, medidos en la misma sesión de campo.
@@ -137,7 +137,7 @@ varios procesos** del trabajo real, y la documentación tiene que cubrir el árb
 **Lo que NO cambia, y explica por qué la operación es legal.** El marco viaja completo, así que `kit`,
 `base` y `loader` **conservan su valor** —son relativos a la raíz, y la raíz nueva es la suya—, los
 seis invariantes se siguen cumpliendo, y `{{history_dir}}` se mueve entero, con lo que sus enlaces
-Markdown internos sobreviven sin tocarlos (`{{kit}}/core/reference/rutas-y-tokens.md` → *Dos clases de
+Markdown internos sobreviven sin tocarlos (`{{kit}}/core/reference/rutas-y-tokens.md` -> *Dos clases de
 ruta*). Un layout con nombre promovido sigue siendo ese mismo layout.
 
 **Lo que sí se rompe es exactamente lo que el marco no parametriza:** las referencias al **contenido
@@ -152,7 +152,7 @@ para un renombrado: **se anota la equivalencia una vez, en la cabecera de `index
 DD-MM la raíz es X; las rutas de las sesiones 1..N se resuelven anteponiendo `P/`"*— y ahí se acaba.
 No en `protocol`: el anclaje vive donde vive el índice de lo anclado.
 
-**Antes de escribir nada**, el mismo eco del bootstrap, con dos líneas más: **raíz** (antes → después)
+**Antes de escribir nada**, el mismo eco del bootstrap, con dos líneas más: **raíz** (antes -> después)
 y **prefijo**. Corregir la interpretación cuesta cero antes y caro después.
 
 **Y su verificación no cabe en la sesión que la ejecuta.** Las puertas se auto-cargan **al abrir**, así
@@ -179,7 +179,7 @@ registro no se reescribe.
 
 **Por eso el anclaje de la cabecera de `index` es de ALCANCE y no solo de prefijo.** No basta con
 *"antepón `P/` a las rutas de las sesiones 1..N"*: hay que decir **qué era el proyecto entonces** —
-*"hasta el DD-MM, «el proyecto» significaba `P/`; a partir de ahí significa el árbol entero"*—. Cuesta
+*"hasta el DD-MM, "el proyecto" significaba `P/`; a partir de ahí significa el árbol entero"*—. Cuesta
 una frase más y es la que hace legible el registro viejo.
 
 **Y hay docs vivos que sí se reescriben, precisamente porque no son registro.** Su sujeto acaba de
@@ -190,7 +190,7 @@ cambiar y ninguna operación de rutas los toca:
 | `charter` | Describe el propósito de la parte, no del todo. Es el que más miente y el primero que se relee |
 | `state` | *Dónde estamos* pasa a medirse contra un proyecto mayor: sin tocarlo, **subestima lo que falta** |
 | `gotchas` | Sus trampas son las de un proceso; ahora conviven con las de los demás |
-| `specs` · `architecture` | Su alcance declarado es el viejo, y su título no lo dice |
+| `specs` - `architecture` | Su alcance declarado es el viejo, y su título no lo dice |
 
 **Al cerrar, `audit completo`**, que es lo que el kit ya pide después de una migración estructural — y
 aquí con un encargo explícito, porque su detector habitual no lo cubre: **buscar afirmaciones que

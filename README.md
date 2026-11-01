@@ -39,7 +39,7 @@ puerta       505    3%   generada
 **Por eso el marco le pone presupuesto a cada uno de ellos**, y el que domina es el que acumula. Los
 topes y qué hacer cuando se cruzan están en `guide.md`.
 
-## 🤖 ¿Eres un agente de IA? Instala stele por tu cuenta
+## ¿Eres un agente de IA? Instala stele por tu cuenta
 
 Si tu usuario te dio la URL de este repo y te pidió algo como *"usa stele aquí"* / *"instala stele"*,
 haz esto sin pedir más instrucciones:
@@ -88,7 +88,7 @@ decide adoptarlo o quiere entender las fronteras; **pesa más que la instalació
 cuando quieras entender el marco, no para montarlo.
 
 <!-- Medido con tiktoken/o200k_base sobre `git show`, sellado en 729ecc0:
-       bootstrap.md 6 329 + rutas-y-tokens.md 2 851 = 9 180   ·   guide.md 11 867  (1,3x)
+       bootstrap.md 6 329 + rutas-y-tokens.md 2 851 = 9 180   |   guide.md 11 867  (1,3x)
      Decia "6 224 tokens fijos" y "multiplica por mas de dos y medio". Las dos eran de otro dia:
      la suma esta un 47% baja --bootstrap.md sola ya la supera-- y el multiplicador era 2,5x cuando
      hoy es 1,3x. Lo cazo la auditoria 17: la palabra "FIJOS" sobre lo que mas ha crecido.
@@ -104,11 +104,11 @@ cuando quieras entender el marco, no para montarlo.
   archivo de código). Un proyecto sin producto con estructura no lo activa. `módulos = software`, su
   nombre anterior, sigue siendo válido para siempre.
 - **Config** (`stele.config.md`, en la raíz del proyecto destino) — **fuente única** que enlaza
-  `rol → nombre`, activa módulos, fija toggles/presupuestos/wording/idioma, declara las **tres
+  `rol -> nombre`, activa módulos, fija toggles/presupuestos/wording/idioma, declara las **tres
   rutas** — `kit` (dónde vive el marco, default `.stele`), `base` (dónde viven tus docs, default
   `.`) y `loader` (**la lista de puertas** de auto-arranque — `CLAUDE.md` para Claude Code,
-  `AGENTS.md` para Codex y la mayoría, y la tuya si tu harness lee otra) — y la **persistencia** (`git` ·
-  `ninguna` · `comando`: cómo se vuelve durable el trabajo al cerrar). De aquí se **generan** el
+  `AGENTS.md` para Codex y la mayoría, y la tuya si tu harness lee otra) — y la **persistencia** (`git` -
+  `ninguna` - `comando`: cómo se vuelve durable el trabajo al cerrar). De aquí se **generan** el
   auto-arranque y el mapa de documentación.
 
 ## Qué contiene esta carpeta
@@ -233,19 +233,19 @@ honesta de que el método funciona: un marco que promete detectar documentación
 poder enseñar la suya envejeciendo. Ninguna la encontró un lector — las encontró el ritual de
 auditoría del propio kit.
 
-**1 · La cifra que nombraba mal a su sujeto.** Decía que auditar cuesta *"~12 400"*. Auditar lee
+**1. La cifra que nombraba mal a su sujeto.** Decía que auditar cuesta *"~12 400"*. Auditar lee
 `auditar.md` **y** `verificar.md`, así que el número real es casi el triple. No estaba solo
 caducada: **nombraba un fichero donde la operación usa dos**, y contra eso no protege ningún sello
 —certifica que la cifra sigue viva, no que sea la cifra de lo que dices—.
 
-**2 · El presupuesto que acotaba lo que no crecía.** Este archivo decía que los documentos que
+**2. El presupuesto que acotaba lo que no crecía.** Este archivo decía que los documentos que
 crecen son `state` y `handover`, *"por eso el manifiesto les pone presupuesto"*. Son el 17% del
 total. Se había acotado **lo que se sobrescribe** —y por construcción no crece— dejando libre **lo
 que se acumula**, que es el 60%. El fallo no estaba en las cifras: **la frase que justificaba el
 presupuesto nombraba mal a su sujeto**, y mientras siguiera en pie nadie iba a buscar el tope que
 faltaba.
 
-**3 · El superlativo.** Este archivo llamaba a `guide.md` *"el archivo más caro del kit"*, con
+**3. El superlativo.** Este archivo llamaba a `guide.md` *"el archivo más caro del kit"*, con
 *"~7 000 tokens"*. Medido en `aac632b`: es el **tercero** —`verificar.md` 22 245 y `auditar.md`
 16 314 van delante— y pesa **10 466**, un +50% sobre lo publicado. Las dos afirmaciones fueron
 ciertas el día que se escribieron; después se partió otro fichero en dos y **el mismo cambio hecho
@@ -259,7 +259,7 @@ sobre un fichero que el mismo cambio está tocando **nace falsa**. Por eso arrib
 se mueve —los 6 224 de la instalación— y el resto se deja en la tabla de `guide.md`, que lleva su
 corpus.
 
-**4 · El reparto que nació caducado.** El bloque de tokens de arriba se escribió a mitad de una
+**4. El reparto que nació caducado.** El bloque de tokens de arriba se escribió a mitad de una
 sesión y **esa misma sesión podó uno de los ficheros que medía, una hora después**. Además `state`
 y `handover` fluctúan **dentro** de una sesión: un checkpoint abierto multiplica el `handover` por
 cinco. Por eso ese bloque lleva el instante en que se midió, y por eso lo que se afirma en prosa es
