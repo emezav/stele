@@ -12,7 +12,9 @@
 >      Una sección GENERADA está PROTEGIDA por default: ACTUALIZAR y CONFIG portan el delta a mano
 >      en vez de reescribirla. "GENERADO RICO" (marca antigua) significa lo mismo. Para autorizar la
 >      reescritura entera: "GENERADO LIMPIO", y solo tras comprobar con un diff que la sección no
->      dice nada que la plantilla no diga. -->
+>      dice nada que la plantilla no diga.
+>      La marca va JUSTO DEBAJO del encabezado `##` de su sección, tras una línea en blanco, y la
+>      sección llega hasta el siguiente `##`: es lo que permite medir cuánto del arranque es GENERADO. -->
 
 ## Regla crítica: no revertir trabajo ajeno
 
@@ -50,11 +52,11 @@ Leer en este orden antes de responder cualquier cosa:
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
 codebase), `{{index}}`/`{{session}}` (historial).
 
+## Los rituales: qué te hace abrir cada uno
+
 <!-- GENERADO: derivado del KIT (`{{kit}}/core/rituals/`), no del manifiesto. Es una regla del marco,
      no contenido de tu proyecto: vive aquí solo porque el arranque no garantiza ningún otro fichero.
      Al actualizar el kit, porta el delta — con el mismo criterio que los demás bloques GENERADO. -->
-
-## Los rituales: qué te hace abrir cada uno
 
 **Aquí no están los rituales: está lo que te hace ir a buscarlos.** Cada uno vive en
 `{{kit}}/core/rituals/<nombre>.md` y **se lee solo cuando se invoca**, nunca entero de antemano. Esta
