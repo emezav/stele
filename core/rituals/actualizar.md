@@ -225,12 +225,18 @@ documentos suyos llenos a la vez y **obtuvo diagnósticos opuestos**:
 
 ```text
 su documento de arranque    lineas=250 tope=250 plantilla=211
-  kit/contenido=52%   plantilla/tope=84%   <- NO es suyo: podar solo puede
+  kit/contenido=52%   <- NO es suyo: podar solo puede
                                               cortar lo propio, o prosa del kit
                                               que el proximo ACTUALIZAR vuelve a traer
 su documento de trampas     lineas=400 tope=400 plantilla=85
-  kit/contenido= 2%   plantilla/tope=21%   <- ES suyo: podar es lo correcto
+  kit/contenido= 2%   <- ES suyo: podar es lo correcto
+calibracion (no lee ninguna instancia: solo PLANTILLA y TOPE)
+  arranque plantilla/tope=84%   trampas plantilla/tope=21%
 ```
+
+**La calibración va en su propia línea, y no por estética.** El banco original la imprimía al lado de
+`kit/contenido`, en cada instancia, y **una cifra impresa al lado de una medida hereda su forma de
+medida**: la leímos como dato del terreno y la publicamos como confirmación. Lo cazó el mismo adoptante.
 
 **Son dos cifras y miden cosas distintas:**
 
@@ -242,11 +248,20 @@ su documento de trampas     lineas=400 tope=400 plantilla=85
 > gastado ya.** Con `plantilla/tope` al 84%, el número no acota lo que el proyecto escribe: acota lo
 > que el proyecto puede escribir **sin borrar al kit**.
 
-**Confirmado en un segundo terreno el 2026-10-04**, que es lo que lo saca de ser un caso: el proyecto
-que mantiene este kit midió los mismos dos roles y su `plantilla/tope` del arranque dio **84%
-también** —la misma cifra, como predice que sea propiedad del kit— mientras su documento de trampas dio
-**`kit/contenido` = 0%**, con 356 de 359 líneas propias. **Dos terrenos, cuatro documentos, y el
-discriminador separa los dos casos en los dos.**
+**Confirmado en un segundo terreno el 2026-10-04, y solo en su mitad DIAGNÓSTICA:** el proyecto que
+mantiene este kit corrió el banco sobre su documento de trampas y dio **`kit/contenido` = 0%**, con 356
+de 359 líneas propias — el discriminador separa los dos casos en los dos terrenos.
+**El 84% de su arranque NO confirma nada, y se publicó como si lo hiciera.** `plantilla/tope` es
+`wc -l` de la plantilla por 100 entre el tope: 211 por 100 entre 250, en **cualquier** adoptante con ese
+tope. Un fichero de una sola línea da el mismo 84%. Coincide por construcción, y se escribió como
+confirmación **en el mismo commit** que añadía *Un dato obtenido por aritmética entre dos cifras tiene la forma de una medición y no ha abierto el corpus*.
+**Lo único que mueve esa cifra es un adoptante que haya cambiado el tope en su manifiesto.**
+
+**Y lo que el tope cuenta, medido por el mismo adoptante en su instancia:** de la prosa del kit en su
+arranque, **más de la mitad cae en secciones `GENERADO`**, que ACTUALIZAR y CONFIG portan a mano y que
+el adoptante **no puede podar**. Así que el tope cuenta líneas que el kit protege contra un presupuesto
+que es del adoptante, y para volver a caber **solo puede recortar lo suyo**. Es un diagnóstico, todavía
+sin remedio decidido.
 
 **El banco corre con rutas relativas y lleva sus guardas delante**, porque un detector no emite
 veredicto si no pudo leer sus entradas — ni si no había nada que leer:

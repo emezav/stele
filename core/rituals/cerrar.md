@@ -466,7 +466,7 @@ declara que no se va a completar, que también es una decisión y vale más que 
 
 **Y el mínimo NO exime de dos cosas**, porque son las que se pagan en el commit y no en la sesión
 siguiente: **persistir** y, si la sesión tocó un bloque ejecutable o andamio comentado, **las filas
-octava y novena de arriba**. Un bloque roto publicado no se arregla escribiendo un acta después.
+del bloque ejecutable y del andamio comentado** de la tabla de arriba. Un bloque roto publicado no se arregla escribiendo un acta después.
 
 ## Persistir el cierre, según el modo
 

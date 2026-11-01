@@ -36,7 +36,7 @@ se deja la sección con "Nada pendiente" -- borrarla la vuelve invisible. -->
 
 <!-- SU TOPE SE MIDE SOBRE LA FORMA INSTANCIADA, NO SOBRE ESTE FICHERO. Lo de abajo es andamio y
      no viaja: el fichero puede pasar del tope del rol sin que la instancia lo pase. Comprobado el
-     2026-10-04: fichero 98 lineas, instanciada 26 de un tope de 40.
+     2026-10-04: fichero 98 lineas, instanciada 26 de un tope de 90.
      EL AVISO ESTA AQUI Y NO SOLO EN AUDITAR porque alli llega quien audita, y a esto llega quien
      TOCA la plantilla. Le paso a quien escribio este comentario: leyo "98 de 90" y su primer
      impulso fue podar, con la regla publicada en AUDITAR paso 9 y aplicada por la auditoria 19
