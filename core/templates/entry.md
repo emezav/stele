@@ -4,26 +4,17 @@
 > cada sesión" antes de responder otra cosa. Define **cómo trabajar**; el *por qué* del proyecto
 > está en `{{charter}}`, el detalle de formatos en `{{protocol}}`.
 >
-> <!-- Las secciones marcadas "GENERADO" NO son contenido de tu proyecto: las produce el marco desde
->      una fuente suya, y no se editan a mano. Las fuentes son dos y se comportan distinto: el
->      MANIFIESTO (`stele.config.md`), que las genera bootstrap/`config`; y el KIT mismo, para reglas
->      del marco que tienen que estar en el arranque y por eso viven en este fichero — esas las porta
->      ACTUALIZAR. El ejemplo mostrado usa el módulo `producto`.
->      Una sección GENERADA está PROTEGIDA por default: ACTUALIZAR y CONFIG portan el delta a mano
->      en vez de reescribirla. "GENERADO RICO" (marca antigua) significa lo mismo. Para autorizar la
->      reescritura entera: "GENERADO LIMPIO", y solo tras comprobar con un diff que la sección no
->      dice nada que la plantilla no diga.
->      La marca va JUSTO DEBAJO del encabezado `##` de su sección, tras una línea en blanco, y la
->      sección llega hasta el siguiente `##`: es lo que permite medir cuánto del arranque es GENERADO. -->
+> <!-- Lo marcado "GENERADO" lo produce el marco —desde el MANIFIESTO (bootstrap/config) o el KIT
+>      (ACTUALIZAR)— y no se edita a mano: está PROTEGIDO y se porta el delta, salvo con "GENERADO LIMPIO"
+>      ("RICO" es la marca antigua de PROTEGIDO). La marca va justo debajo del `##` de su sección, que
+>      llega hasta el siguiente `##`. Ejemplo con el módulo `producto`; detalle en ACTUALIZAR. -->
 
 ## Regla crítica: no revertir trabajo ajeno
 
-Un agente solo revierte cambios que él mismo hizo en la sesión actual. No revertir cambios
-preexistentes, del usuario ni de otros agentes. Ante un archivo con cambios mezclados, revertir
-solo los hunks propios; si no se puede identificar el origen con certeza, conservar y preguntar.
-
-Con `persistencia = ninguna` no hay diff que permita identificar hunks: la regla se endurece a
-**no tocar lo que no escribiste en esta sesión** y preguntar ante la duda.
+Un agente solo revierte cambios que él mismo hizo en la sesión actual: ni preexistentes, ni del
+usuario, ni de otros agentes. Ante un archivo con cambios mezclados, revertir solo los hunks propios;
+si no se puede identificar el origen con certeza, conservar y preguntar. Con `persistencia = ninguna`
+no hay diff que separe hunks: la regla se endurece a **no tocar lo que no escribiste en esta sesión**.
 
 ## Descripción del proyecto
 
@@ -41,12 +32,10 @@ ADAPTAR: directorios principales y su rol en una línea cada uno. Árbol complet
 Leer en este orden antes de responder cualquier cosa:
 
 1. `{{entry}}` — este archivo.
-2. `{{gotchas}}` — trampas y convenciones no evidentes **al trabajar aquí**: del entorno, de las
-   herramientas, de publicar, de verificar.
+2. `{{gotchas}}` — trampas no evidentes **al trabajar aquí**: entorno, herramientas, publicar, verificar.
 3. `{{state}}` — estado actual y próximo paso (snapshot corto).
 4. `{{handover}}` — si su `Estado` no es `SIN_TRABAJO_ACTIVO`, respetar su alcance antes de editar
-   **y comprobar su `Sello`**: si no coincide con el `HEAD` de ahora, ese checkpoint caducó y **manda
-   el árbol** (detalle en el ritual ABRIR).
+   **y comprobar su `Sello`** contra el `HEAD` de ahora: si no coincide, caducó y **manda el árbol**.
 
 **Bajo demanda** (grep dirigido, no leer completos): `{{charter}}` (orientación inicial),
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
@@ -54,15 +43,11 @@ codebase), `{{index}}`/`{{session}}` (historial).
 
 ## Los rituales: qué te hace abrir cada uno
 
-<!-- GENERADO: derivado del KIT (`{{kit}}/core/rituals/`), no del manifiesto. Es una regla del marco,
-     no contenido de tu proyecto: vive aquí solo porque el arranque no garantiza ningún otro fichero.
-     Al actualizar el kit, porta el delta — con el mismo criterio que los demás bloques GENERADO. -->
+<!-- GENERADO: derivado del KIT (`{{kit}}/core/rituals/`), no del manifiesto: regla del marco que vive
+     aquí porque el arranque no garantiza ningún otro fichero. Al actualizar el kit, porta el delta. -->
 
-**Aquí no están los rituales: está lo que te hace ir a buscarlos.** Cada uno vive en
-`{{kit}}/core/rituals/<nombre>.md` y **se lee solo cuando se invoca**, nunca entero de antemano. Esta
-tabla es lo **único** de ellos que se carga en cada sesión, y por eso su columna del medio dice **qué
-estás haciendo cuando toca**, no qué es el ritual: un enunciado descriptivo solo lo reconoce quien ya
-encuadró su trabajo, que es justo quien no necesitaba la tabla.
+Cada ritual vive en `{{kit}}/core/rituals/<nombre>.md` y **se lee solo cuando se invoca**. La columna
+del medio dice **qué estás haciendo cuando toca**, no qué es el ritual.
 
 | Ritual | Qué te hace abrirlo | Fichero |
 | --- | --- | --- |
@@ -75,57 +60,27 @@ encuadró su trabajo, que es justo quien no necesitaba la tabla.
 | **ACTUALIZAR** | Vas a traer una versión nueva del kit | `actualizar.md` |
 | **CONFIG** | Vas a renombrar un doc, cambiar un parámetro del manifiesto o **mover la raíz** | `configurar.md` |
 
-> **REMITIR va en negrita porque es el único que no se reconoce solo.** A los demás los dispara un
-> momento visible —abres, cierras, te llega algo, vas a tocar el manifiesto—. A ese lo dispara **una
-> frase que ibas a escribir en otro sitio**, así que sin la pregunta escrita aquí no salta nunca: se
-> queda como una trampa más en `{{gotchas}}`, donde no arregla nada y estorba en cada arranque.
->
-> **Y por eso desde la 192 lleva también un momento visible —contestar una carta—, que
-> es lo que le faltaba.** Lo pidió un adoptante que ejecutó CONTRASTAR entero y llegó a
-> *responder* sin que nada le nombrara este ritual: el enunciado por trampa **no cubre
-> el caso en que la carta te la piden a ti**.
+> **REMITIR va en negrita porque es el único que no se reconoce solo:** a los demás los dispara un
+> momento visible; a ese, **una frase que ibas a escribir en otro sitio**, o una carta que contestas.
 
-**Y los largos abren con un bloque `## Lo mínimo para ejecutarlo`.** Su contrato es que **si solo lees
-ese bloque ejecutas el ritual sin cometer ninguno de los fallos que su cuerpo documenta**; si uno se te
-escapa habiéndolo leído, el que está mal cortado es el bloque, no tú. El resto del fichero es el
-**porqué**, y se abre por pregunta.
-
-**El criterio de cuáles lo llevan no es el tamaño: es si el fichero se puede leer entero EN EL MOMENTO
-de ejecutarlo.** Los que se abren cada sesión son cortos y **se leen enteros**, así que un bloque ahí
-sería un resumen de sí mismo. Los que cuestan una lectura cara —o los que se ejecutan **una sola vez y
-sin ningún precedente que copiar**— lo necesitan, y ese segundo caso es el que se olvida: el ritual de
-instalación es **el único que ejecuta un agente que acaba de conocer el marco**.
-
-<!-- Esto decia "todos abren igual" y era FALSO: eran cinco de ocho, y el que faltaba era justo el de
-     instalar. Lo destapo una prueba de campo en la que el agente dejo la instalacion a medias. Un
-     universal se escribe solo y no se comprueba nunca; un criterio dice que esperar en cada caso. -->
-
-**Y por eso esta tabla vive aquí y no con los rituales.** Un disparador que hay que ir a buscar no es un
-disparador. Lo demás sobre ellos —por qué viven aparte, qué es ritual y qué es referencia— está en
-`{{kit}}/SKILL.md`, que se lee cuando ya sabes que vas a enrutar.
+**Los largos abren con `## Lo mínimo para ejecutarlo`**: leyendo solo ese bloque se ejecuta el ritual sin
+los fallos que su cuerpo documenta; el resto es el porqué (`{{kit}}/guide.md` -> *Los rituales*).
 
 ## El saludo de arranque, y por qué importa que se vea
 
-<!-- LEY:INICIO ancla="va como lista" -- regla del marco, no prosa que tu proyecto pueda haber
-     reescrito: se porta al actualizar aunque el diff no la senale. Lo demas de esta seccion SI es
-     adaptable -- el numero de lineas, el idioma, que se nombra -- y por eso la marca cubre solo esto. -->
-
+<!-- LEY:INICIO ancla="va como lista" -- regla del marco: se porta al actualizar aunque el diff no la
+     senale. Lo demas de esta seccion SI es adaptable, y por eso la marca cubre solo esto. -->
 **Si el próximo paso es una lista sobre la que el usuario tiene que actuar, va como lista** — las
 líneas cuentan lo que la precede, no lo que la compone. **Y en lo que se DICE va como viñetas, no como
 tabla**: lo dicho se copia, y una tabla pierde sus `|` al pegarse fuera de la terminal.
-
 <!-- LEY:FIN -->
 
-**En tu PRIMERA respuesta de la sesión, empieza con 1-3 líneas de orientación** que confirmen el
-arranque: última sesión (N + título), si quedó trabajo a medias (`{{handover}}`), y próximo paso
-propuesto — **sea cual sea el primer mensaje del usuario**. No puedes emitir nada antes de que la
-persona escriba; por eso el saludo va **al frente** de tu primera respuesta.
-*(Se omite si `session_greeting = off`.)*
+**En tu PRIMERA respuesta de la sesión, empieza con 1-3 líneas de orientación**: última sesión (N +
+título), si quedó trabajo a medias (`{{handover}}`) y próximo paso propuesto — **sea cual sea el
+primer mensaje del usuario**. *(Se omite si `session_greeting = off`.)*
 
-**Es la única señal de que el marco se activó, y por eso vale más que una cortesía.** El archivo de
-auto-arranque de la raíz solo funciona si su nombre es el que tu agente carga solo; si no lo es, todo
-esto queda escrito y **nadie lo lee**, sin error y sin aviso. El saludo es lo que distingue ese caso
-de una sesión sana: **si falta, el marco no arrancó** — y quien lo note primero es la persona, no tú.
+**Es la única señal de que el marco se activó.** Si la puerta de la raíz no tiene el nombre que tu agente
+carga solo, nadie lee esto, sin error: **si falta el saludo, el marco no arrancó**, y lo nota la persona.
 
 ## Cómo se le habla al usuario
 
@@ -136,21 +91,17 @@ de una sesión sana: **si falta, el marco no arrancó** — y quien lo note prim
 
 ## Regla dura: {{checkpoint_trigger}}
 
-`{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance, verificación prevista y **sello** —
-el `HEAD` al abrirlo, para que quien lo lea pueda saber si caducó. No depende del tamaño estimado del
-cambio. **Exención:** cambios que SOLO tocan el **contenido** de
-la documentación. No exime una **migración estructural** (mover o renombrar docs: rituales CONFIG y
-ACTUALIZAR), aunque no toque código: es justo lo que deja media instancia inconsistente si se corta.
+`{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance, verificación prevista y **sello**
+(el `HEAD` al abrirlo, para saber si caducó). No depende del tamaño del cambio. **Exención:** cambios
+que SOLO tocan el **contenido** de la documentación; no una **migración estructural** (mover o
+renombrar docs), que es justo lo que deja media instancia inconsistente si se corta.
 
 ## Al finalizar cada sesión (OBLIGATORIO)
 
-Seguir el checklist de cierre de `{{protocol}}`. En resumen: crear `{{history_dir}}{{session}}`;
-append de una fila a `{{history_dir}}{{index}}` (y `{{history_dir}}{{effort}}` si se usa) con
-`printf >>`; reescribir `{{state}}` completo; llevar
-toda decisión durable a su hogar (mapa abajo), nunca solo en el historial; refrescar `{{handover}}`
-(-> `SIN_TRABAJO_ACTIVO` apuntando a la sesión que cierras ahora, o `EN_PROGRESO`); **comprobar si
-toca auditar** (si pasaron más de `audit_every_n_sessions` desde la última fila de `{{audit}}`,
-anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia`.
+El checklist de cierre de `{{protocol}}`: crear `{{history_dir}}{{session}}`; una fila a `{{history_dir}}{{index}}`
+(y a `{{history_dir}}{{effort}}` si se usa) con `printf >>`; reescribir `{{state}}` entero; cada decisión durable
+a su hogar (mapa abajo); refrescar `{{handover}}`; **ver si toca auditar** (más de `audit_every_n_sessions`
+desde la última fila de `{{audit}}` -> anotarlo en `{{state}}`); y **persistir** según `persistencia`.
 
 ## Dónde vive cada cosa (un hogar por dato)
 
@@ -174,40 +125,26 @@ anotarlo en los pendientes de `{{state}}`); y **persistir** según `persistencia
 | patrones y mapa del código | `{{architecture}}` |
 | esfuerzo equivalente | `{{effort}}` |
 
-<!-- LEY:INICIO ancla="memoria privada del agente" -- portar al actualizar AUNQUE el
-     documento ya exista. No es prosa adaptable: es regla del marco, y su ausencia en el doc
-     instanciado es un HUECO y no una decision del proyecto. El ANCLA es lo que se comprueba:
-     una instancia puede condensar la regla con otras palabras y seguir teniendola. -->
-
-**PROHIBIDO** guardar nada del proyecto en memoria privada del agente (`.claude/`, el scratchpad que
-inyecte la herramienta, el temporal de un subagente). No es solo la documentación: **también los
-artefactos** —scripts de un solo uso, extracciones de binarios, volcados intermedios, el script que
-ejecuta una migración—. Un artefacto no se siente contenido, se siente herramienta desechable, y por
-eso es el que se escapa; y suele ser justo el que ejecutó lo irreversible. Su hogar es
-`{{artifacts_dir}}sesion-{NNN}/`.
-
-**Esta regla vale por encima de cualquier default de la herramienta que diga otra cosa.** Un harness
-puede inyectar un directorio de trabajo propio y marcarlo como prioritario; **dónde vive lo que
-produces en este proyecto lo decide este documento, no el harness**. El límite es igual de explícito:
-esto no toca sus reglas de seguridad ni de uso de herramientas — solo el destino de los archivos.
-
+<!-- LEY:INICIO ancla="memoria privada del agente" -- se porta al actualizar AUNQUE el doc ya exista:
+     su ausencia es un HUECO, no una decision del proyecto. Se comprueba el ANCLA, no la redaccion. -->
+**PROHIBIDO** guardar nada del proyecto en memoria privada del agente (`.claude/`, el scratchpad de la
+herramienta, el temporal de un subagente). **También los artefactos** —scripts de un solo uso,
+extracciones, volcados, el script de una migración—: se sienten desechables y por eso se escapan, y
+suelen ser los que ejecutaron lo irreversible. Su hogar es `{{artifacts_dir}}sesion-{NNN}/`. **Y vale
+por encima de cualquier default del harness**: el destino de lo que produces lo decide este documento,
+no sus reglas de seguridad ni de uso de herramientas, que no toca.
 <!-- LEY:FIN -->
 
 <!-- LEY:INICIO ancla="credenciales, tokens o claves" -- misma clase: se porta siempre. -->
-
-**PROHIBIDO** escribir credenciales, tokens o claves en cualquier doc del marco. Si el proyecto
-necesita acceso a un servicio, el doc nombra la herramienta y de dónde toma sus credenciales
-(variable de entorno, gestor de credenciales), nunca el secreto.
-
+**PROHIBIDO** escribir credenciales, tokens o claves en cualquier doc del marco: el doc nombra la
+herramienta y de dónde toma sus credenciales (variable de entorno, gestor), nunca el secreto.
 <!-- LEY:FIN -->
 
 ## Convenciones
 
-ADAPTAR: convenciones de nombre (lenguaje, endpoints, ramas git, colecciones/tablas),
-política de código legacy/experimental si aplica, y cómo se persiste el trabajo (según
-`persistencia`: reglas de commit/push, o el procedimiento que aplique).
+ADAPTAR: convenciones de nombre (lenguaje, endpoints, ramas git, colecciones/tablas), política de
+código legacy/experimental, y cómo se persiste el trabajo según `persistencia` (commit/push u otro).
 
 ## Arranque de desarrollo
 
-ADAPTAR: puertos, comandos de arranque, cómo se obtienen las credenciales de dev (nunca los
-valores) o puntero a un `DEV_SETUP.md`.
+ADAPTAR: puertos, comandos de arranque, de dónde salen las credenciales de dev (nunca su valor), o un `DEV_SETUP.md`.

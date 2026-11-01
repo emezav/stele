@@ -199,6 +199,7 @@
 | gotchas | 400 |
 | state | 100 |
 | handover | 90 |
+| Plantilla del entry (del kit) | 150 |
 | SKILL.md (enrutador del kit) | 400 |
 
 <!-- POR QUE ESTOS NUMEROS, para que nadie los baje "por higiene" dentro de seis meses.
@@ -238,6 +239,11 @@
 > el repo del propio marco **el 2026-08-12, antes de podarlo**: **487 líneas en 13 secciones, ninguna
 > por encima de 122** —conforme en todas, en todo momento— y aun así **el 64% de todo lo que se cargaba
 > al arrancar**.
+>
+> **La plantilla del `entry` lleva tope propio, el 60% del de su instancia: es el margen que el kit te
+> garantiza.** Nacía en 211 de 250, y cada delta del kit a una sección `GENERADO` se comía tu sitio
+> (`{{kit}}/core/rituals/actualizar.md` -> *El margen del tope no es del kit*). Las dos filas del kit
+> empiezan por mayúscula a propósito: el bloque que mide tus topes solo lee filas de rol.
 >
 > **El último no es de tu proyecto: es del kit, y está aquí porque faltaba.** El marco ponía tope a lo
 > que el adoptante escribe y ninguno a lo que él mismo distribuye. Medido en `27a41bd`: `SKILL.md`

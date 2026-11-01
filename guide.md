@@ -89,7 +89,25 @@ tendría que mirar esto para que saltárselo fuera imposible en vez de solo inco
 - **Contrastar** (recibir de fuera un informe sobre tu trabajo y decidir qué entra) y **Remitir**
   (escribir hacia fuera lo que encontraste y no es tuyo).
 
-Detalle operativo de cada uno: `core/rituals/`, uno por fichero. `SKILL.md` los enruta.
+Detalle operativo de cada uno: `core/rituals/`, uno por fichero. `SKILL.md` los enruta, y la tabla
+de **qué te hace abrir cada uno** vive en el `entry`, porque es lo único garantizado al arrancar (el
+porqué, en `SKILL.md` -> *Los rituales, y dónde vive cada uno*).
+
+**Por qué REMITIR va en negrita en esa tabla.** Es el único que no se reconoce solo. A los demás los
+dispara un momento visible —abres, cierras, te llega algo, vas a tocar el manifiesto—; a ese, **una
+frase que ibas a escribir en otro sitio**, así que sin la pregunta escrita en el arranque no salta
+nunca y la trampa acaba en `gotchas`, donde no arregla nada. Desde la sesión 192 lleva también un
+momento visible, **contestar una carta**: lo pidió un adoptante que ejecutó CONTRASTAR entero y llegó a
+responder sin que nada le nombrara este ritual.
+
+**Por qué unos rituales abren con `## Lo mínimo para ejecutarlo` y otros no.** El contrato del bloque:
+si solo lo lees, ejecutas el ritual sin ninguno de los fallos que su cuerpo documenta; si uno se te
+escapa habiéndolo leído, el mal cortado es el bloque. **El criterio no es el tamaño: es si el fichero se
+puede leer entero EN EL MOMENTO de ejecutarlo.** Los de cada sesión son cortos y se leen enteros, y un
+bloque ahí sería un resumen de sí mismo. Lo necesitan los de lectura cara **y los que se ejecutan una
+sola vez sin precedente que copiar**: el de instalación lo ejecuta un agente que acaba de conocer el
+marco. La regla decía antes *"todos abren igual"* y era falsa —cinco de ocho, y faltaba justo el de
+instalar—: lo destapó una prueba de campo con la instalación a medias.
 
 **Por qué el sexto existe.** Los cinco primeros se reparten en dos grupos —los que **escriben**
 documentación y los que mantienen el **marco**— y ninguno de los dos re-verifica el **contenido** ya
