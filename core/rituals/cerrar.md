@@ -484,7 +484,10 @@ lo autoriza). Reglas, porque **un commit no puede contener su propio hash**:
   entra en ningún commit**: no hay autorreferencia que evitar y tampoco nada de donde derivar el hash,
   porque ese mismo comando **devuelve vacío y sale con `rc 0`**, sin error. Ahí el orden se invierte:
   **commitea primero el trabajo y anota su hash en el acta después**. Es el único registro que va a
-  quedar.
+  quedar. **Y si la sesión no tocó nada versionado, no hay commit que hacer ni hash que anotar:** para
+  el cierre rige de hecho `ninguna` (abajo). Escribe en el acta, o en el `handover` si el cierre es
+  mínimo, **"sin commit: no se tocó nada versionado"**, porque un acta sin hash se lee igual que un
+  olvido, y la diferencia solo la sabe quien cerró.
 - **`--amend` solo mientras el commit sea privado y nadie lo cite.** El amend **cambia el hash**, así
   que un hash ya anotado queda apuntando a un commit inexistente, y falla en silencio. Dos
   condiciones, ambas comprobables antes de tocar nada: (a) **no se ha pusheado** y (b) **ningún doc

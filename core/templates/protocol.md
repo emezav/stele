@@ -145,7 +145,8 @@ CERRAR -> *De dónde sale la fecha*. Vale para toda fecha estampada, no solo la 
 en el mismo commit que el trabajo, y un commit no puede contener su propio hash. Para recuperarlo:
 `git log --diff-filter=A -- {{history_dir}}<archivo de sesión>`. **Si `base` está ignorada, al revés:**
 el acta no entra en ningún commit, ese comando devuelve vacío sin error, y el hash del trabajo **se
-anota** después de commitear (CERRAR -> *Persistir el cierre*).
+anota** después de commitear; si la sesión no commiteó nada, se anota **"sin commit"**, para que la
+ausencia no se lea como olvido (CERRAR -> *Persistir el cierre*).
 
 ### `{{correspondence}}` + `{{letter}}` — la correspondencia (OPCIONAL, `correspondence_log`)
 
