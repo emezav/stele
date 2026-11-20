@@ -406,14 +406,22 @@ diff de una actualización: mira el estado de hoy.
 # porque una instancia puede condensar la regla con otras palabras y seguir teniendola:
 # comparar la linea entera da FALTA sobre reglas que si estan.
 # Y el doc se APLANA antes de buscar, porque plantilla e instancia envuelven distinto.
+# Y se le QUITA el atributo ancla="..." de cada marca: la marca contiene el ancla, y buscarla
+# con la marca dentro la encuentra siempre, aunque la ley se haya borrado.
 grep -o 'LEY:INICIO ancla="[^"]*"' "$KIT/core/templates/entry.md" |
   sed 's/.*ancla="//; s/"$//' |
   while IFS= read -r ancla; do
-    tr '\n' ' ' < "$ENTRY" | tr -s ' ' | grep -qF "$ancla" || echo "FALTA en $ENTRY: $ancla"
+    tr '\n' ' ' < "$ENTRY" | tr -s ' ' | sed 's/ancla="[^"]*"//g' | grep -qF "$ancla" ||
+      echo "FALTA en $ENTRY: $ancla"
   done
-# CONTROL POSITIVO: borra el bloque de una copia del doc y tiene que decir FALTA
+# CONTROL POSITIVO: borra el CUERPO de una ley en una copia del doc, DEJANDO su marca, y tiene
+# que decir FALTA. Borrar el bloque entero se lleva la marca y esconde el fallo que se busca.
 # CONTROL NEGATIVO: sobre el doc intacto no puede decir nada
 ```
+
+**Es una comprobación léxica, aunque el texto lo ponga el kit:** busca una frase del kit. En una
+instancia escrita en otro idioma da `FALTA` sobre leyes que sí están, y ahí se comprueba a mano, por
+contenido. Lo cazó un adoptante en inglés, junto con que el ancla se encontraba dentro de la marca.
 
 > **Su ausencia es un hueco, no una decisión.** Si el bloque no está, no es que tu proyecto lo haya
 > descartado: es que **nunca llegó** — y el diff de la actualización no lo señaló, porque el fichero

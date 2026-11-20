@@ -21,6 +21,10 @@
 > con el índice dándolas por entregadas — el campo no lo pedía esta plantilla, lo añadió quien escribió
 > la primera y lo copiaron las once siguientes.
 >
+> **Tampoco en un comentario**, que viaja con la carta: ahí cabe un **hecho fechado** (*"Redactada el
+> 2026-11-01"*), que sigue siendo cierto para siempre, y no un **estado vivo** (*"ESTADO: REDACTADA"*),
+> que se vuelve fósil igual que en la cabecera.
+>
 > **`Responde a` no es opcional.** Las cartas **se cruzan**: quien te escribe puede no tener tu última,
 > y tú puedes contestar algo que ya cambió. Lo que hace que cruzarse no rompa nada es que cada carta
 > **diga a qué contesta**, sin depender de que las dos partes compartan estado. Y como cada proyecto
