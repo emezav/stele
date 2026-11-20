@@ -1119,9 +1119,9 @@ discrimina ni género ni número** y por tanto no es el mismo detector sino otro
 positivos. Lo que viaja es **el comentario que encabeza cada comando** —qué se busca y por qué—; el
 comando se escribe desde cero en el idioma del proyecto.
 
-**Caso de campo, el único que tenemos fuera del idioma del kit:** un adoptante que trabaja en inglés.
-Su detector de contadores no se tradujo ni se derivó del comentario: se reescribió desde cero en cada
-auditoría. Y como el inglés no marca género ni número en el artículo, la respuesta fue **añadir
+**Caso de campo, el primero que tenemos fuera del idioma del kit (noviembre de 2026):** un adoptante
+que trabaja en inglés. Su detector de contadores no se tradujo ni se derivó del comentario: se
+reescribió desde cero en cada auditoría. Y como el inglés no marca género ni número en el artículo, la respuesta fue **añadir
 determinantes** (`the|its|our|all|those|these`), que sube los candidatos y no la discriminación. **El
 detector gramatical se degradó a un extractor de candidatos que una persona lee**: los candidatos *se
 leen, nunca se barren*. Si esa es la forma que toma la idea en inglés o solo la que tomó en ese

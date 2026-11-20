@@ -116,8 +116,9 @@ titular lleva el `handover`, el `state`, las actas y la numeración; el satélit
 dos escritores en un documento que se reescribe entero se pisan sin error.
 
 **Cómo sabes que eres satélite:** te lo dice el usuario, o al abrir encuentras el `handover` en
-`EN_PROGRESO` con su sello vigente: otra sesión tiene trabajo vivo. Ahí **pregunta** antes de seguir,
-porque también puede ser una sesión que murió sin cerrar, y eso solo lo sabe el usuario.
+`EN_PROGRESO`. **El sello no dice si ese trabajo está vivo**: casa si la otra sesión aún no editó y no
+casa si ya editó, igual que el de una sesión que murió sin cerrar. Eso solo lo sabe el usuario:
+**pregunta** antes de seguir, y no retomes ese trabajo hasta que te conteste.
 
 **Siendo satélite:**
 
