@@ -1118,14 +1118,31 @@ discrimina ni género ni número** y por tanto no es el mismo detector sino otro
 positivos. Lo que viaja es **el comentario que encabeza cada comando** —qué se busca y por qué—; el
 comando se escribe desde cero en el idioma del proyecto.
 
+**Caso de campo, el único que tenemos fuera del idioma del kit:** un adoptante que trabaja en inglés.
+Su detector de contadores no se tradujo ni se derivó del comentario: se reescribió desde cero en cada
+auditoría. Y como el inglés no marca género ni número en el artículo, la respuesta fue **añadir
+determinantes** (`the|its|our|all|those|these`), que sube los candidatos y no la discriminación. **El
+detector gramatical se degradó a un extractor de candidatos que una persona lee**: los candidatos *se
+leen, nunca se barren*. Si esa es la forma que toma la idea en inglés o solo la que tomó en ese
+proyecto, no se sabe. **Lo que sí se sabe es la consecuencia:** donde el detector solo extrae, su cero
+no significa *corpus limpio* sino *nada que leer*, y su número es una cola de lectura, no una cuenta
+de defectos.
+
 **Cada detector derivado se guarda con su control positivo, y sin eso no se guarda.** Una regex recién
 escrita y nunca ejercida es la mejor fuente de ceros falsos que existe, y un cero falso aquí se lee
 como *"corpus limpio"*. Junto al comando va **una línea de ejemplo que tiene que dar match**: si no lo
 da, el detector está roto y sus ceros no valen nada. Es la misma ley del cero de más abajo, aplicada en
 el momento de escribir el detector en vez de en el de usarlo.
+**En el mismo caso, el control fue por INSTRUMENTO y no por detector** —un positivo y un negativo para
+cada herramienta de búsqueda— **y no fue ceremonia**: cazó un recuento que no imprimía la línea que se
+leía y un patrón con llaves partido en dos argumentos por el entorno. **Nunca cazó un problema de
+idioma**: lo que falló siempre fue la capa de abajo. Un control por instrumento no ve una sonda muerta
+sola; por eso la regla pide uno **por detector**.
 
 Su hogar es la sección *Detectores de auditoría* de `protocol`, **no el manifiesto**: son una lista
-larga y viva, no un parámetro. Y **no van en *Acuerdos de auditoría***, que es otra cosa — allí viven
+larga y viva, no un parámetro. **Sin ese hogar se reescriben cada vez:** en el caso de arriba la
+sección no existía, ningún detector pasó de una auditoría a la siguiente, y el vocabulario en inglés
+quedó sin guardar. Y **no van en *Acuerdos de auditoría***, que es otra cosa — allí viven
 decisiones con umbral, y un léxico no tiene umbral ni es una decisión de no cambiar nada.
 
 ## Lo que cada fase esconde

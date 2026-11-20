@@ -182,3 +182,8 @@ preferimos una regla con una excepción escrita que una regla que solo funciona 
 
 **Lo que no te vamos a ocultar: si trabajas en el idioma del kit, esta carta no te toca.** No hay nada
 que derivar y los detectores te sirven tal cual.
+
+**Llegó una respuesta, en inglés, y ya está en `core/rituals/auditar.md`** (*Los detectores frente al
+idioma*): el de contadores no se derivó, se reescribió, y quedó como extractor de candidatos que una
+persona lee. **La carta sigue abierta**, porque eso es un idioma y un proyecto: si trabajas en otro,
+tu caso es el que falta.
