@@ -35,7 +35,7 @@ Leer en este orden antes de responder cualquier cosa:
 2. `{{gotchas}}` — trampas no evidentes **al trabajar aquí**: entorno, herramientas, publicar, verificar.
 3. `{{state}}` — estado actual y próximo paso (snapshot corto).
 4. `{{handover}}` — si su `Estado` no es `SIN_TRABAJO_ACTIVO`, respetar su alcance antes de editar
-   **y comprobar su `Sello`** contra el `HEAD` de ahora: si no coincide, caducó y **manda el árbol**.
+   **y comprobar su `Sello`** recalculando la huella de su alcance: si no casa, **manda el disco**.
 
 **Bajo demanda** (grep dirigido, no leer completos): `{{charter}}` (orientación inicial),
 `{{protocol}}` (formatos/cierre), `{{specs}}` (al implementar), `{{architecture}}` (al tocar un
@@ -91,10 +91,10 @@ carga solo, nadie lee esto, sin error: **si falta el saludo, el marco no arranc�
 
 ## Regla dura: {{checkpoint_trigger}}
 
-`{{handover}}` debe quedar en `EN_PROGRESO` con objetivo, alcance, verificación prevista y **sello**
-(el `HEAD` al abrirlo, para saber si caducó). No depende del tamaño del cambio. **Exención:** cambios
-que SOLO tocan el **contenido** de la documentación; no una **migración estructural** (mover o
-renombrar docs), que es justo lo que deja media instancia inconsistente si se corta.
+`{{handover}}` —o tu nota, si eres satélite (ABRIR)— debe quedar en `EN_PROGRESO` con objetivo,
+alcance, verificación y **sello** (la huella de su alcance al abrirlo), sea cual sea el tamaño del
+cambio. **Exención:** cambios que SOLO tocan el **contenido** de la documentación; no una **migración
+estructural** (mover o renombrar docs), que es justo lo que deja media instancia inconsistente.
 
 ## Al finalizar cada sesión (OBLIGATORIO)
 

@@ -42,7 +42,7 @@ que no dependen de que nadie se acuerde. Todas son **prestadas** — ninguna la 
 | Las **puertas** y sus `@`-imports | el harness, al abrir | Que el agente **no pueda** empezar sin el set de arranque en contexto |
 | **`.gitignore`** | `git`, en cada `add` | Que lo que no debe viajar no entre por descuido (`add -f` lo salta: es contra el olvido, no contra la decisión) |
 | El **linter** de markdown | el editor | Que un error de forma se vea **al escribirlo**. Caza forma, nunca veracidad |
-| El **sello** contra el servidor | el servidor de `git` | Que exista un objeto **contra el que el otro pueda contradecirte** |
+| El **sello** en el sitio público | el servidor de `git`, o la huella de contenido en la copia del otro | Que exista un objeto **contra el que el otro pueda contradecirte** |
 
 > **La lista es un suelo, no un techo, y la primera versión de esta sección lo confundió.** Decía
 > *"tres"* y dejaba fuera el linter por ser *"del entorno"* — cuando el harness también lo es y sí se
@@ -53,7 +53,8 @@ que no dependen de que nadie se acuerde. Todas son **prestadas** — ninguna la 
 > garantías tengo?"* sino **"¿cuántos lectores automáticos estoy dispuesto a adoptar?"**.
 
 **Y la del sello dice menos de lo que parece, que es la corrección más fina de las dos.** `git
-ls-remote` confirma que el identificador **resuelve**, no que el commit haga lo que la carta afirma. La
+ls-remote` confirma que el identificador **resuelve**, no que el commit haga lo que la carta afirma; la
+huella de contenido, que el texto es el mismo, no que diga lo que la carta afirma. La
 existencia la garantiza el servidor; **el contenido lo garantiza que alguien vaya a mirar**. Así que
 esa fila no describe una garantía de herramienta sino **una condición para que exista otra**: la del
 corresponsal que comprueba. Es la única de la tabla que no se puede prestar de ningún programa, y por
@@ -282,12 +283,11 @@ documental **sube**, no baja:
 - La regla "revertir solo los hunks propios" **presupone que puedes identificar hunks**. Sin VCS
   degrada a "no toques lo que no escribiste en esta sesión, y ante la duda pregunta".
 - El checkpoint se vuelve **más** crítico, no menos: sin `git status` ni diff, el `handover` es la
-  única forma de saber qué quedó a medias tras una interrupción. **Y por eso ahí no lleva sello:** el
-  sello es la instrucción de contrastarlo contra el árbol, y sin VCS no hay árbol que consultar. Lo
-  que lo sustituye es que el documento diga **qué se observa en disco** para saber por dónde iba.
-  Con VCS pasa lo contrario, y es el error que se comete: **el `handover` deja de ser la única fuente
-  y sigue leyéndose como si lo fuera.** Un checkpoint escrito antes del trabajo describe un pasado en
-  presente, así que tiene que decir cuál de las dos manda cuando discrepan — y manda el árbol.
+  única forma de saber qué quedó a medias tras una interrupción. **Y su sello funciona igual:** es
+  la huella de los ficheros del alcance, no un commit, así que se recalcula sin VCS. Con VCS el error
+  que se comete es otro: **el `handover` deja de ser la única fuente y sigue leyéndose como si lo
+  fuera.** Un checkpoint escrito antes del trabajo describe un pasado en presente, así que tiene que
+  decir cuál manda cuando discrepan — y manda el disco.
 
 **El marco nunca implementa la persistencia**: eso sería runtime, y rompería "markdown puro". El
 paso de cierre es declarativo — le dice al usuario qué hacer, o ejecuta el comando que él configuró.
@@ -300,6 +300,25 @@ a un VCS:
   no se recupera el conjunto como unidad. Las tres reglas de arriba siguen aplicando igual.
 - **Los conflictos rompen justo los archivos append-only.** Cerrar sesión desde dos máquinas genera
   copias en conflicto, y `index`/`effort` son precisamente los que se duplican o se pisan.
+
+### Lo que git puede ser
+
+**Git es el modo de persistencia más común, y por eso es fácil que se vuelva runtime sin que nadie lo
+decida.** Pasa cuando una regla deja de *usar* git y empieza a *depender* de él para funcionar. La
+frontera, por papeles:
+
+| Papel | Qué es | ¿Cabe? |
+| --- | --- | --- |
+| **Persistencia** | volver durable lo que vive en ficheros | **Sí**: es un modo entre otros (`ninguna`, `comando`) |
+| **Instrumento** | medir, identificar o comprobar algo | **Sí, con su equivalencia sin git escrita al lado** |
+| **Coordinación** | decidir si un trabajo está vivo, o de quién es | **No** |
+| **Registro** | ser el único sitio donde vive un dato | **No**: sin git, el dato no existiría |
+
+**Los dos casos que este kit tenía y corrigió**, para reconocer los tuyos: el sello del `handover` era
+el `HEAD` —coordinación: el commit de otra sesión declaraba caducado un trabajo vivo— y hoy es la huella
+de los ficheros del alcance; y las decisiones de no hacer vivían solo en el mensaje del commit
+—registro— y hoy su hogar es el acta. **El modelo de instrumento bien hecho es el agregado sha256 de
+ACTUALIZAR**: compara una copia sin `.git` por contenido, y git queda como atajo.
 
 **Credenciales, nunca.** Ningún doc del marco lleva tokens, claves ni cadenas de conexión: son
 markdown legible, normalmente versionado, y en un kit vendorizado hasta se copian a otros proyectos.

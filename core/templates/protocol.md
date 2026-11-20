@@ -194,12 +194,17 @@ Estados: `SIN_TRABAJO_ACTIVO` | `EN_PROGRESO` | `COMPLETADO`. **Regla dura:** {{
 `EN_PROGRESO` con objetivo/alcance/verificación **y sello**. Al cerrar, siempre refrescar el puntero a
 la sesión que se cierra AHORA. Plantilla en `{{kit}}/core/templates/handover.md`.
 
-**El sello, y por qué es el cuarto y no un adorno.** Es el `HEAD` al abrir el checkpoint (con VCS) más
-la instrucción de compararlo. Existe porque este es **el único doc del set de arranque que puede estar
-caducado**: se escribe *antes* de la primera edición y no se vuelve a tocar hasta el cierre, así que en
-esa ventana afirma en presente algo que ya es pasado. **Cuando el sello y el `HEAD` discrepan, manda el
-árbol** — el `handover` no compite con el repositorio, lo indexa. La comprobación es del ritual ABRIR;
-aquí vive el formato.
+**Las notas de satélite** viven al lado, `{{history_dir}}satelite-YYYY-MM-DD-<tema>.md`, con la forma de
+este doc: son el checkpoint de una sesión que trabaja a la vez que la titular sin tocar su `handover`.
+La titular las recoge al cerrar y las mueve a sus artefactos (ABRIR y CERRAR, *satélite*).
+
+**El sello, y por qué es el cuarto y no un adorno.** Es la huella de los ficheros del alcance al abrir
+el checkpoint, con o sin VCS, más la instrucción de compararla. Existe porque este es **el único doc
+del set de arranque que puede estar caducado**: se escribe *antes* de la primera edición y no se vuelve
+a tocar hasta el cierre, así que en esa ventana afirma en presente algo que ya es pasado. **Cuando el
+sello y el disco discrepan, manda el disco** — el `handover` no compite con los ficheros, los indexa.
+**No es el `HEAD`:** un commit de otra sesión lo movería sin tocar este trabajo, y git no coordina
+(`guide.md` -> *Lo que git puede ser*). La comprobación es del ritual ABRIR; aquí vive el formato.
 
 ### `{{specs}}` (+ temas)
 
@@ -388,9 +393,9 @@ el patrón sin el ancla `^`, empieza a contar la palabra dentro de la prosa de o
 
 **Sin VCS este bloque no aplica y el hueco es real.** Con `persistencia = ninguna` no hay `.gitignore`
 donde poner la declaración. El sitio que ha funcionado en campo es el **`Sello` del `handover`**, que
-sin VCS ya dice *qué se observa en disco*: ahí cabe **qué existe y qué no tiene copia**. No está
-resuelto como convención — se dice para que quien llegue a ese caso sepa que es un hueco conocido y no
-un olvido suyo.
+ya lista los ficheros del alcance con su huella: a su lado cabe **qué existe y qué no tiene copia**.
+No está resuelto como convención — se dice para que quien llegue a ese caso sepa que es un hueco
+conocido y no un olvido suyo.
 
 ## Los bloques de LEY del kit están en tus documentos, o falta uno
 

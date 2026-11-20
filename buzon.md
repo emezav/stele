@@ -36,8 +36,9 @@
 > recibido este marco están registradas una a una, con lo que se corrigió a raíz de cada una.
 >
 > **Regla de curación (importante).** Este archivo es **carga pública y permanente**: viaja a cada
-> copia del kit. Por eso se poda —una pregunta contestada se retira— y el rastro queda en `git log`.
-> Mismo criterio que el resto del marco: lo histórico vive en la historia, no en el kit.
+> copia del kit. Por eso se poda —una pregunta contestada se retira— y el rastro queda en el historial
+> del origen: el texto retirado, en los artefactos de la sesión que lo retira, y el acta lo anota. Mismo
+> criterio que el resto del marco: lo histórico vive en la historia, no en el kit.
 > **Y se retira también lo que el kit ya dice en el sitio donde se lee**, aunque nadie lo haya
 > contestado: si una carta explicaba algo que ahora vive en `SKILL.md` o en una plantilla, mantenerla
 > aquí es duplicar en carga pública lo que ya se lee donde toca. El criterio **no** es "ya se leyó" —
@@ -59,8 +60,8 @@
 > existía.
 >
 > **Los números no se reutilizan ni se renumeran.** Una carta retirada deja su hueco: así una copia que
-> alguien archivó como "Carta 2" sigue siendo identificable. Lo retirado vive en `git log`. El número es
-> lo que se protege, no el texto: una carta estrechada conserva el suyo.
+> alguien archivó como "Carta 2" sigue siendo identificable. Lo retirado vive en el historial del
+> origen. El número es lo que se protege, no el texto: una carta estrechada conserva el suyo.
 >
 > **Y una carta de este buzón se escribe como pregunta, no como anuncio.** Una regla nueva **llega
 > sola** con la actualización, así que anunciarla aquí no añade nada. Lo que este canal consigue y el

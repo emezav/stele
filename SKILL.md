@@ -277,11 +277,12 @@ queda el puntero más las tres líneas que hacen falta para no romper nada al re
 **Y un `handover` que no cabe casi nunca pide más sitio: pide darse cuenta de que lleva varios saltos
 en un documento diseñado para uno.**
 
-**El sello es la cuarta pieza y la más barata: el `HEAD` al abrir el checkpoint, con la instrucción de
-compararlo.** Este doc se escribe *antes* de la primera edición y no se vuelve a tocar hasta el cierre,
-así que es **el único del set de arranque que puede estar caducado** — y un checkpoint caducado no falla:
-propone trabajo ya hecho, con toda la seguridad del mundo. La comprobación va en ABRIR
-(`core/rituals/abrir.md`), y la ley es que **cuando discrepan manda el árbol**.
+**El sello es la cuarta pieza y la más barata: la huella de los ficheros del alcance al abrir el
+checkpoint, con la instrucción de recalcularla.** Este doc se escribe *antes* de la primera edición y
+no se vuelve a tocar hasta el cierre, así que es **el único del set de arranque que puede estar
+caducado** — y un checkpoint caducado no falla: propone trabajo ya hecho, con toda la seguridad del
+mundo. La comprobación va en ABRIR (`core/rituals/abrir.md`), y la ley es que **cuando discrepan manda
+el disco**. No es el `HEAD`: un commit de otra sesión lo movería sin tocar este trabajo.
 
 La evidencia de campo tiene los dos lados, que es raro y por eso vale. Un proyecto anotó en su
 checkpoint que una sustitución textual podía alcanzar al kit, hizo el cambio y **lo esquivó** — y

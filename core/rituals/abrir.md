@@ -14,11 +14,23 @@ orientación), `protocol`, `specs`, `architecture`, `index`/`session`.
 **pasado presentado en presente**, y si la sesión murió ahí, miente. El `state` no tiene el problema
 —se reescribe al cerrar, así que está al día o no existe.
 
-Con VCS cuesta un comando: **compara su `Sello` con el `HEAD` de ahora** (`git log -1`). Si no
-coinciden, hubo trabajo después de escribirlo: **manda el árbol, no el documento** — lee el diff y
-dilo al usuario en el saludo, en vez de proponerle trabajo ya hecho. Si ese `handover` no tiene campo
-`Sello` (se instanció antes de que existiera), la comprobación equivalente es mirar si hay commits
-posteriores al último cierre; añádele el sello la próxima vez que abras un checkpoint.
+Cuesta un comando, con VCS o sin él: **recalcula la huella de los ficheros de su `Sello`** y compárala.
+Lo que no case lo tocó alguien después de escribirlo: **manda el disco, no el documento** — mira qué
+cambió en esos ficheros y dilo al usuario en el saludo, en vez de proponerle trabajo ya hecho. **Un
+commit ajeno que no toca el alcance no lo caduca:** con dos sesiones en el mismo proyecto el `HEAD` se
+mueve sin que tu trabajo haya avanzado, y por eso el `HEAD`, si lo hay, es atajo y no decisor.
+
+```sh
+# el sello: al abrir el checkpoint se anota la salida; al retomar se corre igual y se compara
+for f in README.md ruta/que/aun/no/existe.md; do   # los ficheros del alcance, por nombre
+  if [ -f "$f" ]; then printf '%s  %s\n' "$(tr -d '\r' < "$f" | sha256sum | cut -c1-12)" "$f"
+  else printf 'ausente       %s\n' "$f"; fi
+done
+```
+
+Si ese `handover` trae un sello viejo —solo un `HEAD`, o ninguno—, la comprobación equivalente es mirar
+si hay cambios posteriores al último cierre **en su alcance**; ponle el sello por contenido la próxima
+vez que abras un checkpoint.
 
 **El síntoma, para reconocerlo sin comando:** si el `handover` te propone construir algo que **ya
 está construido**, caducó. Caso de campo, y de manual: un agente arrancó por una puerta del marco y
@@ -27,10 +39,10 @@ de las dos puertas delgadas ya construidas**. El sello que lo destapaba estaba e
 documento; nadie lo había mandado mirar. **Un doc que afirma en vez de comprobar falla en silencio, y
 el saludo sale igual de convincente.**
 
-**Sin VCS esto no aplica**, y conviene saber por qué: no hay árbol que consultar, así que el
-`handover` es la única fuente de qué quedó a medias y no se le puede pedir que se contraste contra
-nada. Ahí lo que sustituye al sello es que el propio documento diga **qué se observa en disco** para
-saber por dónde iba.
+**Sin VCS esto aplica igual**, y es lo que ganó el sello al dejar de ser un commit: la huella se
+recalcula sobre los ficheros, no sobre una historia. Antes, sin VCS el `handover` no se podía
+contrastar contra nada y lo sustituía una descripción libre de *qué se observa en disco*, que nadie
+podía comprobar.
 
 **Y si el `handover` declara un CIERRE MÍNIMO, el saludo lo dice.** El campo trae un contador —*"MINIMO
 2 de 3"*— y la lista de lo que falta. **Va en el saludo porque es el único sitio donde la deuda del
@@ -95,3 +107,33 @@ llevaba **fecha de redacción** y las propias no.
 **De ahí sale la otra mitad, barata:** que las cartas propias lleven **fecha de redacción** además de la
 de entrega. Sin ella, *"días desde que salió"* y *"días que llevan sin contestar"* son indistinguibles,
 y el segundo es el que uno escribe sin darse cuenta.
+
+## Y si otra sesión trabaja a la vez: titular y satélite
+
+**El marco admite dos sesiones independientes en el mismo proyecto** —dos agentes, dos ventanas, que
+coordina el usuario desde fuera—, con una condición: **una es la titular y las demás, satélites**. La
+titular lleva el `handover`, el `state`, las actas y la numeración; el satélite no toca ninguno, porque
+dos escritores en un documento que se reescribe entero se pisan sin error.
+
+**Cómo sabes que eres satélite:** te lo dice el usuario, o al abrir encuentras el `handover` en
+`EN_PROGRESO` con su sello vigente: otra sesión tiene trabajo vivo. Ahí **pregunta** antes de seguir,
+porque también puede ser una sesión que murió sin cerrar, y eso solo lo sabe el usuario.
+
+**Siendo satélite:**
+
+- **Tu checkpoint es una nota propia**, `{history_dir}satelite-YYYY-MM-DD-<tema>.md`, creada **antes de
+  tu primera edición** con la forma del `handover`: objetivo, alcance y sello. Cumple la regla dura sin
+  tocar el `handover` de la titular, y un fichero con nombre propio no choca con nada.
+- **Saluda declarándote satélite**, y no propongas el próximo paso del proyecto: es de la titular.
+- **No tienes número de sesión, y cierras completando la nota** (CERRAR, *Siendo satélite*).
+
+**Siendo titular, el saludo lista las notas sin recoger**, igual que la correspondencia. Lo que queda en
+el historial con ese prefijo es exactamente lo pendiente, porque al recogerlas se mueven:
+
+```bash
+HIST=ruta/del/historial/   # {history_dir}
+ls "$HIST"satelite-*.md 2>/dev/null   # cada una: trabajo de un satelite que tu acta aun no recoge
+```
+
+**Lo que esto no arregla, y se dice:** el saludo es una foto. Si la otra sesión mueve algo después de
+que saludes, el saludo no lo sabe; lo sabrá el sello, al recalcularlo.

@@ -51,24 +51,27 @@ y lo vio el primero que instaló: desde un repo auto-hospedado es invisible, por
 renderiza al instalar. Una valla no tiene ese modo de fallo. **Y este párrafo no puede ir comentado:**
 explicar la trampa exige escribir la secuencia que cierra un comentario, que dentro de uno lo cierra.
 
-Cuando arranca un cambio interrumpible, **sobrescribir el documento entero** con esta forma:
+Cuando arranca un cambio interrumpible, **sobrescribir el documento entero** con esta forma. **Una
+sesión satélite** usa la misma forma en su propia nota, `satelite-YYYY-MM-DD-<tema>.md`, y no toca este
+documento (ABRIR, *titular y satélite*):
 
 ```markdown
 ## Estado
 EN_PROGRESO
 
 ## Sello
-El commit de `HEAD` al abrir este checkpoint (si `persistencia = git`), y si el árbol estaba limpio.
-Debajo, la instrucción de compararlo: **si no coincide con el `HEAD` de ahora, este documento describe
-un pasado y manda el árbol.** Cuesta una línea y es lo único que distingue un checkpoint vigente de
-uno caducado — ver el ritual ABRIR. Sin VCS no hay sello: en su lugar, di **qué se observa en disco**
-para saber por dónde ibas (p. ej. "el paso 2 deja los dos archivos a la vez").
+Los ficheros del **alcance**, cada uno con su huella al abrir este checkpoint (el bloque está en el
+ritual ABRIR), y `ausente` en el que todavía no existe. Debajo, la instrucción: **al retomar, recalcula;
+lo que no case lo tocó alguien después, y ahí manda el disco, no este documento.** Con git puedes
+añadir el `HEAD` como atajo para leer el diff, pero no decide: un commit ajeno que no toca tu alcance
+no caduca tu trabajo. Vale igual sin VCS, y es lo único que distingue un checkpoint vigente de uno
+caducado.
 
 ## Salto actual
 Objetivo en una frase + decisiones ya tomadas que el siguiente agente debe respetar.
 
 ## Alcance permitido / No tocar
-- permitido: <archivo/dir>
+- permitido: <archivo/dir>, por nombre: es la lista que se sella y la que se persiste
 - no tocar: <archivo/dir fuera de alcance>
 
 ## Trampas de este salto

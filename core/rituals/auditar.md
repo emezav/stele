@@ -434,7 +434,8 @@ necesita esto**. No se amplía: nada nuevo entra con número.
 
 **Cómo se construyó, que es lo que la hace comprobable:** cada fila sale del **mensaje del commit que
 anunció la ley**, no de su posición de hoy. Los mensajes son inmutables y públicos, así que la tabla se
-puede rehacer entera desde fuera.
+puede rehacer entera desde fuera. **Git es aquí instrumento, no registro:** el acta de la sesión que
+anunció cada ley la nombra también, y sin git es de ahí de donde se rehace.
 
 **Y una corrección al conteo que la motivó:** la auditoría dijo *15 leyes en 66 menciones*. Al separar
 lo propio de lo ajeno —el corresponsal también numera las suyas, y sus *"su ley NN"* entraban en el

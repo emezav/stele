@@ -142,6 +142,8 @@ segundo dice que no.
      2. Consentimiento: enviar es publicar. Lo decide el usuario, nunca el agente por su cuenta.
      3. Sincronía: si la carta afirma cambios en algo que al destinatario le llega, dile CUÁNDO
         obtenerlo (antes de leerla, o mientras). El orden es parte de la carta, no logística.
+        Y CON QUÉ comprobarlo: el commit para quien tiene el repositorio, y la huella de cada
+        fichero afirmado para quien tiene la copia sin `.git` (REMITIR, *Qué es publicado*).
      4. Archivo: guarda tu copia aquí. La copia del otro lado puede desaparecer (los buzones se
         curan), y entonces esta es la única.
      5. Índice: la fila en `{{correspondence}}`, después de enviar.

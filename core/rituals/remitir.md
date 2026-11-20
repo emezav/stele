@@ -594,7 +594,27 @@ cuerpo del marcador **avergüenza al que la lee**, que es el único lector garan
 más barata todavía: **no escribir esas filas hasta tener el identificador** — un marcador con una fila
 menos es honesto, y uno con una fila que apunta a nada no lo es.
 
-### Cómo se comprueba que algo está publicado, que son dos pasos
+### Qué es *publicado*, y por qué no es *estar en git*
+
+**Publicado es que lo que la carta afirma está donde el destinatario puede leerlo, con un
+identificador que él puede comprobar.** Git es un modo de cumplirlo, no la definición: un dato que solo
+existe en git no existe para el marco (`guide.md` -> *Lo que git puede ser*). Y el destinatario típico
+**no tiene git**: su copia del kit se vendoriza sin `.git`, así que un commit no lo puede comprobar en
+lo que tiene delante. **Lo que sí puede comprobar es contenido**:
+
+```sh
+# la huella de lo que la carta afirma, desde la raiz del kit; el destinatario corre lo mismo en su copia
+# sin '\r': una copia sacada en Windows puede tener CRLF y daria otra huella con el mismo texto
+for f in core/rituals/remitir.md core/templates/letter.md; do
+  printf '%s  %s\n' "$(tr -d '\r' < "$f" | sha256sum | cut -c1-12)" "$f"
+done
+```
+
+**Si la carta afirma cambios del kit, lleva los dos identificadores:** el commit, para quien tiene el
+repositorio, y la huella de cada fichero afirmado, para quien tiene la copia. Sin remoto git, la huella
+sola cumple; el sitio legible es entonces el que uséis para pasaros el kit.
+
+### Con git: cómo se comprueba que un commit está publicado, que son dos pasos
 
 **El primero es de red y el segundo es local, y hacen falta los dos.** `git ls-remote` da **la punta**;
 la pertenencia la da `git merge-base --is-ancestor <id> <punta>`:
@@ -622,10 +642,11 @@ cuanto alguien empuja algo encima, porque ya no es la punta: la carta sigue sien
 verificación falla, sin que nada haya ido mal. **Un método de comprobación que expira cuando el otro
 publica no es un método**, y por eso el paso local no es opcional.
 
-`publicada` **es observable por el agente** —un identificador contra el servidor, no contra la copia
-local— y por eso puede exigirse. **Una fila `entregada` sin haber pasado por `publicada`, cuando la
-carta afirma cambios, es una deuda visible en el índice** en vez de un descubrimiento una carta
-después. Es el mismo mecanismo que ya justifica los otros dos estados, aplicado al paso que faltaba.
+`publicada` **es observable por el agente** —un identificador en el sitio que lee el destinatario, no
+en la copia local— y por eso puede exigirse. **Una fila `entregada` sin haber pasado por `publicada`,
+cuando la carta afirma cambios, es una deuda visible en el índice** en vez de un descubrimiento una
+carta después. Es el mismo mecanismo que ya justifica los otros dos estados, aplicado al paso que
+faltaba.
 
 **No aplica a toda carta:** una que no afirma cambios en ningún artefacto va de `redactada` a
 `entregada` y ahí se acaba. Y **las filas viejas no se reescriben** para añadirles el estado: el índice

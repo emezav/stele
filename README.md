@@ -190,8 +190,8 @@ cada uno está en `core/reference/rutas-y-tokens.md`; no son un parámetro que s
 forma corta de nombrar dos rutas.
 
 > Detalle de rituales y plantillas: `SKILL.md`. Fundamentos, capas y fronteras: `guide.md`.
-> El historial de diseño del marco vive en `git log`, no en el kit: todo lo que se vendoriza es lo
-> que un agente necesita para trabajar.
+> El historial de diseño del marco vive en el origen —sus actas y sus decisiones—, no en el kit: todo
+> lo que se vendoriza es lo que un agente necesita para trabajar.
 
 ## Qué es esto y qué no: escribimos los casos, no las instrucciones
 

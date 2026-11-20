@@ -45,6 +45,9 @@ Pasó en campo, con el marco vivo un nivel más abajo.
 8. **Persistir el cierre** según `persistencia` (manifiesto -> Meta). El cierre se escribe primero
    (pasos 1-7) y se persiste **una sola vez**, al final.
 
+**Si eres satélite, nada de lo anterior:** completa tu nota (*Siendo satélite*, abajo). **Si eres
+titular y hay notas `satelite-*` en `{history_dir}`, recógelas** en el paso 1 y muévelas en el 7.
+
 **Las nueve que se saltan.** Cada una tiene abajo el caso que la produjo:
 
 | Situación | La regla |
@@ -401,8 +404,12 @@ andamio_vivo() {
         else { if (a) a = 0; else print "(B) " F ":" FNR "  cierre suelto: lo de arriba sale vivo" }
       } }' "$1"
 }
+# El corpus: con git, lo versionado; sin git, el arbol entero (sin lista de ignorados que respetar).
+# Sin esta rama, sin git el bucle no recorre nada y el cero sale limpio.
+if git rev-parse --git-dir >/dev/null 2>&1; then corpus=$(git ls-files '*.md')
+else corpus=$(find . -name '*.md' -not -path './.git/*'); fi
 n=0
-for m in $(git ls-files '*.md'); do andamio_vivo "$m"; n=$((n + 1)); done
+for m in $corpus; do andamio_vivo "$m"; n=$((n + 1)); done
 echo "--- barridos: $n ficheros. Un cero aqui NO vale sin el control de abajo."
 
 ctl=$(mktemp)
@@ -471,11 +478,26 @@ declara que no se va a completar, que también es una decisión y vale más que 
 siguiente: **persistir** y, si la sesión tocó un bloque ejecutable o andamio comentado, **las filas
 del bloque ejecutable y del andamio comentado** de la tabla de arriba. Un bloque roto publicado no se arregla escribiendo un acta después.
 
+## Siendo satélite, o recogiendo a uno
+
+**El satélite no cierra completo:** ni acta, ni filas, ni `state`, ni `handover`, que son de la
+titular (ABRIR, *titular y satélite*). Su cierre es **completar su nota**: lo hecho, los ficheros
+tocados y **los tropiezos**, que son lo único que no se reconstruye después. Persiste solo lo de su
+alcance, por nombre, o nada.
+
+**La titular la recoge en su siguiente cierre:** lo hecho y los tropiezos entran en su acta, el esfuerzo
+en su fila, y la nota **se mueve** a `{artifacts_dir}sesion-{NNN}/` de la sesión que la recoge.
+**Moverla, no copiarla:** así lo que queda en `{history_dir}` con el prefijo es exactamente lo
+pendiente, y el `ls` de ABRIR no necesita otro registro.
+
 ## Persistir el cierre, según el modo
 
 **`persistencia = git`** — los archivos de cierre van en el **mismo commit** que el trabajo de la
 sesión, no en uno aparte, **si `base` se versiona**. Dile al usuario el `git push` exacto (o hazlo si
-lo autoriza). Reglas, porque **un commit no puede contener su propio hash**:
+lo autoriza). **Persiste por nombre lo de tu alcance** —el del `handover`— y los archivos de cierre,
+no todo lo modificado (`git add -u`, `-A`): con otra sesión en el mismo proyecto, eso mete en tu commit
+lo ajeno a medias, sin error. La lista es texto, y vale igual con `persistencia = comando`. Reglas,
+porque **un commit no puede contener su propio hash**:
 
 - **No anotes el hash del commit que lleva el cierre.** Es información derivable, y por eso no se
   guarda: `git log --diff-filter=A -- {history_dir}{session}` devuelve el commit exacto de esa
@@ -552,7 +574,7 @@ lado del comando que lo produce, el chequeo pegado al `printf` que escribe la fi
 es la visibilidad, son los pasos** — y la vía segura tiene que costar lo mismo que la insegura, o se
 paga la diferencia en olvidos.
 
-## El acierto no tiene sección, y sí tiene artefacto: el mensaje del commit
+## El acierto no tiene sección, y sí tiene sitio: el acta, y el commit como copia
 
 **Todo el registro de este marco está construido para que un ERROR deje rastro** — la sección de
 tropiezos, el campo *quién lo cazó*, la fecha del último disparo. **Para lo contrario no hay nada.** La
@@ -563,14 +585,19 @@ una, **no aparece en ningún sitio donde se busque**: no es un tropiezo y no es 
 descubre— y este tipo de acierto **consiste en que no pasa nada**. Lo que no pasa no dispara ningún
 registro.
 
-**Pero sí hay un artefacto que se produce en el instante de decidir, y es el único: el mensaje del
-commit.** Es inmutable, va fechado, y se busca con un comando:
+**Su sitio es el acta, que existe con cualquier `persistencia`.** Con git, el mensaje del commit lo
+repite, y es la copia que nace **en el instante de decidir**: inmutable y fechada. **Es copia y no
+hogar**: sin git no existe, y un dato que solo vive en git no existe para el marco (`guide.md` ->
+*Lo que git puede ser*). Los dos se buscan con un comando:
 
 ```bash
-# un acierto de este tipo no tiene seccion, pero SI tiene rastro: el mensaje
-# una sola invocacion: el bucle por commit lanzaba dos procesos por cada uno y salia con rc 1
-git log -i -E --format='%h %s' --grep='no entra|no se anade|se descarta|no hacia falta'
-# CONTROL: el commit de la resta mas reciente tiene que salir en la lista
+# un acierto de este tipo no tiene seccion, pero SI tiene rastro: el acta, y el commit como copia
+HIST=ruta/del/historial/   # {{history_dir}}
+P='no entra|no se a(n|ñ)ade|se descarta|no hac(i|í)a falta'
+grep -l -i -E "$P" "$HIST"sesion-*.md                   # el hogar: con cualquier persistencia
+# el atajo, si hay git; una sola invocacion: el bucle por commit lanzaba dos procesos por cada uno
+git log -i -E --format='%h %s' --grep="$P" 2>/dev/null
+# CONTROL: la resta mas reciente tiene que salir en la lista del acta
 ```
 
 **Medido sobre el repo de este kit en `4e52bae`: `4` de `156` commits registran una decisión de no
@@ -593,9 +620,9 @@ la seccion de TROPIEZOS     -> se puede rellenar escribiendo "sin tropiezos"
 contestar?"*— **cae del lado malo**. Cumplirla no exige más que escribir, y el autor es el único juez
 de si sabe la respuesta. **Hacerla obligatoria probablemente la degradaría**, así que aquí no lo es.
 
-> **Si la decisión fue no hacer algo, dilo en el mensaje del commit.** Es la única forma barata de que
-> un acierto sea recuperable: **el commit ya se escribe, y se escribe justo cuando la decisión se
-> toma.**
+> **Si la decisión fue no hacer algo, dilo en el acta**, y con git, también en el mensaje del commit.
+> Es la forma barata de que un acierto sea recuperable: **los dos ya se escriben**, y el commit justo
+> cuando la decisión se toma.
 
 **Sigue siendo un suelo léxico** —depende de las palabras que se le ocurrieron a quien lo midió— y
 sirve igual para lo que importa: **el rastro existe y no hubo que inventar ningún sitio nuevo**.
